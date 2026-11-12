@@ -158,7 +158,7 @@ try {
 
   // Diagnóstico
   await page.goto(BASE + '/diagnostico');
-  await page.getByText('Operativa · v2').waitFor();
+  await page.getByText('Operativa · v3').waitFor();
   check(true, 'IndexedDB operativa');
   await page.getByRole('button', { name: 'Probar escritura local' }).click();
   await page.getByText(/Correcta · /).waitFor();
@@ -202,6 +202,9 @@ try {
   await p.getByRole('dialog').waitFor({ state: 'detached' });
   check(await visible(p.getByRole('button', { name: /^Carpeta de expedientes/ })), 'Al girar aparece el escritorio sin recargar');
   await pctx.close();
+} catch (err) {
+  failures++;
+  console.log('✘ Error inesperado:', err.message.split('\n').slice(0, 4).join(' | '));
 } finally {
   await browser.close();
   // npx lanza vite como proceso hijo: se termina el grupo completo.
