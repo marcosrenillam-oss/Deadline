@@ -1,0 +1,75 @@
+/*
+ * Superficies compartidas por todas las escenas.
+ * .wood: mesa de madera oscura iluminada por la lámpara (intensidad y tono
+ * controlados por los ajustes del usuario).
+ */
+.wood {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    /* luz de la lámpara */
+    radial-gradient(
+      ellipse 62% 78% at 26% 22%,
+      rgba(var(--light-color), calc(0.2 * var(--light-intensity))) 0%,
+      rgba(var(--light-color), calc(0.07 * var(--light-intensity))) 45%,
+      transparent 72%
+    ),
+    /* viñeta cinematográfica */
+    radial-gradient(ellipse 120% 100% at 50% 40%, transparent 45%, rgba(0, 0, 0, 0.62) 100%),
+    /* veta */
+    repeating-linear-gradient(
+      91deg,
+      rgba(0, 0, 0, 0.16) 0 2px,
+      transparent 2px 7px,
+      rgba(255, 255, 255, 0.018) 7px 8px,
+      transparent 8px 19px
+    ),
+    repeating-linear-gradient(
+      89.3deg,
+      transparent 0 41px,
+      rgba(0, 0, 0, 0.22) 41px 43px,
+      transparent 43px 97px
+    ),
+    linear-gradient(180deg, var(--wood-2), var(--wood-1) 55%, var(--wood-3));
+}
+
+/* Zona útil: respeta notch, Dynamic Island e indicador de inicio. */
+.safe {
+  position: absolute;
+  inset: 0;
+  padding: var(--pad-top) var(--pad-right) var(--pad-bottom) var(--pad-left);
+}
+
+.scene {
+  animation: scene-in var(--dur-slow) var(--ease-paper) both;
+}
+
+/* Hoja de papel envejecido. */
+.paper {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.18), transparent 60%),
+    radial-gradient(ellipse at 100% 100%, rgba(90, 70, 40, 0.22), transparent 55%),
+    linear-gradient(180deg, #d8c7a2, var(--paper) 70%, #b89f73);
+  color: var(--on-paper);
+  box-shadow: var(--shadow-paper);
+}
+
+/* Ficha de marfil, más limpia, para índices y listados. */
+.card {
+  position: relative;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 27px, rgba(118, 45, 43, 0.12) 27px 28px),
+    linear-gradient(180deg, #ece4d2, var(--ivory));
+  color: var(--on-paper);
+  box-shadow: var(--shadow-paper);
+}
+
+.scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--paper-shadow) transparent;
+}

@@ -1,0 +1,48 @@
+.slip {
+  position: fixed;
+  right: var(--pad-right);
+  bottom: var(--pad-bottom);
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  max-width: min(440px, calc(100vw - var(--pad-left) - var(--pad-right)));
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--ivory);
+  color: var(--on-paper);
+  box-shadow: var(--shadow-lift);
+  transform: rotate(-0.6deg);
+  animation: scene-in var(--dur-med) var(--ease-paper) both;
+}
+
+.text {
+  margin: 0;
+  font-family: var(--font-type);
+  font-size: var(--fs-sm);
+}
+
+.actions {
+  display: flex;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+}
+
+.primary,
+.secondary {
+  min-height: var(--touch);
+  padding: 0 var(--sp-3);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.primary {
+  background: var(--seal);
+  color: var(--ivory);
+}
+
+.secondary {
+  color: var(--on-paper-soft);
+}

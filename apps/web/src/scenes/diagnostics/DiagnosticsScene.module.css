@@ -1,0 +1,91 @@
+.layout {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--sp-5);
+  align-items: start;
+}
+
+.nav {
+  padding-top: 2px;
+}
+
+.sheet {
+  max-height: 100%;
+  padding: var(--sp-4) var(--sp-5);
+}
+
+.title {
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--seal);
+}
+
+.loading {
+  font-family: var(--font-type);
+  font-size: var(--fs-sm);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  column-gap: var(--sp-6);
+  margin: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 11em minmax(0, 1fr);
+  gap: var(--sp-2);
+  padding: 5px 0;
+  border-bottom: 1px dotted rgba(42, 36, 26, 0.3);
+  font-size: var(--fs-xs);
+}
+
+.row dt {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--on-paper-soft);
+}
+
+.row dd {
+  margin: 0;
+  font-family: var(--font-type);
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+}
+
+.button {
+  min-height: var(--touch);
+  padding: 0 var(--sp-4);
+  border: 1.5px solid var(--on-paper);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.button:active {
+  background: var(--on-paper);
+  color: var(--ivory);
+}
+
+.note {
+  margin: var(--sp-2) 0 0;
+  font-family: var(--font-hand);
+  font-size: var(--fs-lg);
+  color: #3d4a6b;
+}

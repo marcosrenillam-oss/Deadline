@@ -1,0 +1,24 @@
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: var(--touch);
+  padding: 0 var(--sp-2);
+  margin-left: calc(var(--sp-2) * -1);
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.back:active {
+  color: var(--ivory);
+}
+
+.arrow {
+  font-family: var(--font-type);
+  font-size: var(--fs-md);
+}

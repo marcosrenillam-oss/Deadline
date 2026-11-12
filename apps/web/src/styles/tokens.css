@@ -1,0 +1,110 @@
+/*
+ * DEADLINE · Tokens de diseño
+ * NEO-NOIR CINEMATIC + THE ARCHIVE
+ * Todo color, tipografía, sombra y tiempo de animación sale de aquí.
+ */
+:root {
+  /* Paleta base (definida por dirección de arte) */
+  --ink: #171715;
+  --charcoal: #292721;
+  --paper: #c4ad83;
+  --ivory: #e6ddc9;
+  --seal: #762d2b;
+
+  /* Derivados */
+  --ink-deep: #0e0e0d;
+  --ink-raised: #1f1e1b;
+  --charcoal-soft: #3a372f;
+  --paper-dark: #a48f67;
+  --paper-shadow: #7d6c4c;
+  --ivory-dim: rgba(230, 221, 201, 0.72);
+  --ivory-faint: rgba(230, 221, 201, 0.42);
+  --seal-bright: #94403c;
+  --seal-ink: rgba(118, 45, 43, 0.85);
+  --brass: #9c8251;
+  --graphite: #4a4740;
+  --wood-1: #2b1d14;
+  --wood-2: #3a2619;
+  --wood-3: #1c130d;
+
+  /* Texto sobre papel */
+  --on-paper: #2a241a;
+  --on-paper-soft: #5a4d37;
+
+  /* Tipografía */
+  --font-display: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino', Georgia, serif;
+  --font-type: 'Courier Prime', 'Courier New', ui-monospace, monospace;
+  --font-ui: 'IBM Plex Sans Condensed', 'Avenir Next Condensed', 'Helvetica Neue', system-ui, sans-serif;
+  --font-hand: 'Caveat', 'Bradley Hand', 'Marker Felt', cursive;
+
+  /* Escala tipográfica (multiplicada por el ajuste de tamaño de texto) */
+  --text-scale: 1;
+  --fs-2xs: calc(0.6875rem * var(--text-scale));
+  --fs-xs: calc(0.75rem * var(--text-scale));
+  --fs-sm: calc(0.875rem * var(--text-scale));
+  --fs-md: calc(1rem * var(--text-scale));
+  --fs-lg: calc(1.25rem * var(--text-scale));
+  --fs-xl: calc(1.625rem * var(--text-scale));
+  --fs-2xl: calc(2.25rem * var(--text-scale));
+  --fs-3xl: calc(3.25rem * var(--text-scale));
+
+  /* Espaciado */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+
+  /* Zonas seguras de iOS. max() garantiza un margen mínimo en pantallas sin notch. */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --gutter: 16px;
+  --pad-top: max(var(--safe-top), var(--gutter));
+  --pad-right: max(var(--safe-right), var(--gutter));
+  --pad-bottom: max(var(--safe-bottom), 12px);
+  --pad-left: max(var(--safe-left), var(--gutter));
+
+  /* Tamaño mínimo de objetivo táctil (HIG: 44pt) */
+  --touch: 44px;
+
+  /* Iluminación de la lámpara (la controla el ajuste del usuario) */
+  --light-intensity: 0.85;
+  --light-color: 255, 196, 128;
+
+  /* Sombras cinematográficas */
+  --shadow-paper: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 10px 24px rgba(0, 0, 0, 0.45), 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-lift: 0 18px 40px rgba(0, 0, 0, 0.55), 0 4px 10px rgba(0, 0, 0, 0.45);
+
+  /* Movimiento */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-paper: cubic-bezier(0.3, 0.7, 0.1, 1);
+  --dur-fast: 140ms;
+  --dur-med: 280ms;
+  --dur-slow: 520ms;
+}
+
+:root[data-light-tone='neutral'] {
+  --light-color: 246, 226, 196;
+}
+:root[data-light-tone='cold'] {
+  --light-color: 198, 214, 230;
+}
+
+/* Reducción de animaciones: por ajuste del usuario o por preferencia del sistema. */
+:root[data-reduced-motion='on'] {
+  --dur-fast: 0ms;
+  --dur-med: 0ms;
+  --dur-slow: 0ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-reduced-motion='off']) {
+    --dur-fast: 0ms;
+    --dur-med: 0ms;
+    --dur-slow: 0ms;
+  }
+}

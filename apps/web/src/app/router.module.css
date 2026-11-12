@@ -1,0 +1,38 @@
+.center {
+  display: grid;
+  place-items: center;
+}
+
+.sheet {
+  max-width: 520px;
+  padding: var(--sp-5) var(--sp-6) var(--sp-3);
+  transform: rotate(-0.8deg);
+}
+
+.kicker {
+  margin: 0;
+  font-family: var(--font-type);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--seal);
+}
+
+.title {
+  margin: var(--sp-1) 0 var(--sp-2);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-xl);
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.body {
+  margin: 0 0 var(--sp-2);
+  font-family: var(--font-type);
+  font-size: var(--fs-sm);
+}
+
+.sheet :global(a) {
+  color: var(--seal);
+}

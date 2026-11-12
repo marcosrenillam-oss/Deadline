@@ -1,0 +1,142 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(16px, 4vw, 48px);
+  align-items: center;
+}
+
+/* Carpeta manila */
+.folder {
+  align-self: center;
+  padding: clamp(18px, 4vh, 36px) clamp(18px, 3vw, 36px);
+  border-radius: 2px 6px 4px 4px;
+  transform: rotate(-1.6deg);
+}
+
+.tab {
+  position: absolute;
+  top: -22px;
+  left: 18px;
+  padding: 4px 18px 2px;
+  border-radius: 6px 6px 0 0;
+  background: #cdb88f;
+  color: var(--on-paper-soft);
+  font-family: var(--font-type);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.3em;
+}
+
+.kicker {
+  margin: 0;
+  font-family: var(--font-type);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--on-paper-soft);
+}
+
+.title {
+  margin: 2px 0 6px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(40px, 9vh, 68px);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+.lede {
+  margin: 0 0 var(--sp-4);
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--fs-lg);
+  line-height: 1.25;
+  color: var(--on-paper);
+}
+
+.stamps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+/* Ficha índice */
+.index {
+  max-height: 100%;
+  padding: var(--sp-4) var(--sp-5) var(--sp-3);
+  transform: rotate(0.8deg);
+}
+
+.indexTitle {
+  margin: 0;
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--seal);
+}
+
+.indexNote {
+  margin: 0 0 var(--sp-1);
+  font-family: var(--font-hand);
+  font-size: var(--fs-lg);
+  line-height: 1.1;
+  color: #3d4a6b;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: var(--touch);
+  padding: 3px 0;
+  border-bottom: 1px dotted rgba(42, 36, 26, 0.28);
+  transition: color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.row:active {
+  color: var(--seal);
+  transform: translateX(2px);
+}
+
+.object {
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  line-height: 1.2;
+}
+
+.dest {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--fs-md);
+  line-height: 1.15;
+  color: var(--on-paper-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.diag {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch);
+  margin-top: var(--sp-1);
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--on-paper-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

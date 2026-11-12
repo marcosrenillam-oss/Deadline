@@ -1,0 +1,23 @@
+{
+  "name": "deadline",
+  "private": true,
+  "description": "DEADLINE — Timeless Crime Archive",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "npm run dev -w @deadline/web",
+    "build": "npm run typecheck && npm run build -w @deadline/web",
+    "preview": "npm run preview -w @deadline/web",
+    "typecheck": "npm run typecheck -w @deadline/core && npm run typecheck -w @deadline/web",
+    "test": "npm run test -w @deadline/core && npm run test -w @deadline/web",
+    "test:e2e": "npm run test:e2e -w @deadline/web",
+    "icons": "node scripts/generate-icons.mjs",
+    "validate:content": "npm run validate:content -w @deadline/core"
+  }
+}
