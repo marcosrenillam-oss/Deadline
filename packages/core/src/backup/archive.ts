@@ -30,6 +30,8 @@ export interface ArchiveData {
   caseRecords: CaseRecord[];
   notes: Note[];
   dailyLedger: DailyLedger | null;
+  /** Partidas cooperativas (estructura propia de la app; se validan al importar). */
+  coopSessions: Array<{ id: string; updatedAt: number } & Record<string, unknown>>;
 }
 
 const archiveDataSchema = z.strictObject({
@@ -39,6 +41,7 @@ const archiveDataSchema = z.strictObject({
   caseRecords: z.array(caseRecordSchema),
   notes: z.array(noteSchema),
   dailyLedger: dailyLedgerSchema.nullable(),
+  coopSessions: z.array(z.looseObject({ id: z.string(), updatedAt: z.number() })).default([]),
 });
 
 const archiveSchema = z.strictObject({
@@ -218,6 +221,7 @@ export function mergeArchiveData(local: ArchiveData, incoming: ArchiveData, mode
     caseRecords: [...records.values()],
     notes: byNewest(local.notes, incoming.notes, (x) => x.id),
     dailyLedger,
+    coopSessions: byNewest(local.coopSessions, incoming.coopSessions, (x) => x.id),
   };
 }
 

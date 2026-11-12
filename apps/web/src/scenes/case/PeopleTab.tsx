@@ -11,11 +11,11 @@ const ROLE: Record<string, string> = { victim: 'Víctima', suspect: 'Sospechoso'
 /** 3 · PERSONAS: víctima, sospechosos y testigos con su ficha. */
 export function PeopleTab() {
   const { characterId } = useParams();
-  const { c, k, inv, closed } = useCase();
+  const { c, k, inv, closed, base } = useCase();
   const people = closed ? c.characters : visibleCharacters(c, k);
   const current = people.find((p) => p.id === characterId) ?? people.find((p) => p.role === 'suspect') ?? people[0];
   if (!current) return null;
-  const canInterrogate = !closed && availableInterrogations(c, k).some((it) => it.characterId === current.id);
+  const canInterrogate = !closed && availableInterrogations(c, k, inv?.role).some((it) => it.characterId === current.id);
   const heard = (inv?.heardLines ?? []).map((id) => ({ id, ...lines(c).get(id) })).filter((l) => l.characterId === current.id);
   const secrets = c.secrets.filter((x) => x.characterId === current.id && (k.secrets.has(x.id) || closed));
   const rels = c.relationships.filter((r) => (r.a === current.id || r.b === current.id) && (closed || (evaluateCondition(r.visibleWhen, k) && people.some((p) => p.id === (r.a === current.id ? r.b : r.a)))));
@@ -26,7 +26,7 @@ export function PeopleTab() {
       <ul className={`${s.peopleList} ${s.scroll}`} aria-label="Personas del caso">
         {people.map((p) => (
           <li key={p.id}>
-            <Link to={`/expediente/${c.id}/personas/${p.id}`} className={s.personCard} aria-current={p.id === current.id ? 'true' : undefined} onClick={() => sound.play('paper')}>
+            <Link to={`${base}/personas/${p.id}`} className={s.personCard} aria-current={p.id === current.id ? 'true' : undefined} onClick={() => sound.play('paper')}>
               <Portrait character={p} size={46} />
               <span>
                 <span className={s.personName}>{p.name}</span>
@@ -48,7 +48,7 @@ export function PeopleTab() {
             </p>
             {current.relationToVictim && <p className={s.meta}>{current.relationToVictim}</p>}
             {canInterrogate && (
-              <Link to={`/expediente/${c.id}/interrogatorio/${current.id}`} className={s.primaryLink} onClick={() => sound.play('phone')}>
+              <Link to={`${base}/interrogatorio/${current.id}`} className={s.primaryLink} onClick={() => sound.play('phone')}>
                 Interrogar
               </Link>
             )}

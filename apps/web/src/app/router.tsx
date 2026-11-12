@@ -6,6 +6,9 @@ import { SettingsScene } from '../scenes/settings/SettingsScene.tsx';
 import { ArchiveScene } from '../scenes/archive/ArchiveScene.tsx';
 import { NotebookScene } from '../scenes/notebook/NotebookScene.tsx';
 import { CalendarScene } from '../scenes/calendar/CalendarScene.tsx';
+import { CoopScene } from '../scenes/coop/CoopScene.tsx';
+import { ProfileScene } from '../scenes/profile/ProfileScene.tsx';
+import { CoopCaseScene } from '../scenes/coop/CoopCaseScene.tsx';
 import { CaseScene } from '../scenes/case/CaseScene.tsx';
 import { DossierTab } from '../scenes/case/DossierTab.tsx';
 import { EvidenceTab } from '../scenes/case/EvidenceTab.tsx';
@@ -56,6 +59,24 @@ export const router = createBrowserRouter([
       { path: 'archivo', element: <ArchiveScene /> },
       { path: 'libreta', element: <NotebookScene /> },
       { path: 'calendario', element: <CalendarScene /> },
+      { path: 'telefono', element: <CoopScene /> },
+      { path: 'perfil', element: <ProfileScene /> },
+      {
+        path: 'pareja/:sessionId',
+        element: <CoopCaseScene />,
+        children: [
+          { index: true, element: <DossierTab /> },
+          { path: 'evidencias', element: <EvidenceTab /> },
+          { path: 'evidencias/:evidenceId', element: <EvidenceViewer /> },
+          { path: 'personas', element: <PeopleTab /> },
+          { path: 'personas/:characterId', element: <PeopleTab /> },
+          { path: 'interrogatorio/:characterId', element: <InterrogationView /> },
+          { path: 'cronologia', element: <TimelineTab /> },
+          { path: 'tablero', element: <BoardTab /> },
+          { path: 'acusacion', element: <AccusationView /> },
+          { path: 'informe', element: <ReportView /> },
+        ],
+      },
       {
         path: 'expediente/:caseId',
         element: <CaseScene />,

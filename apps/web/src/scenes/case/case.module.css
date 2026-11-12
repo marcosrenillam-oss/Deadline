@@ -1466,3 +1466,9 @@
   align-items: flex-start;
   gap: var(--sp-1);
 }
+
+.coopTab {
+  font-size: var(--fs-xs);
+  color: #e9b04a;
+  border-left-color: #e9b04a;
+}

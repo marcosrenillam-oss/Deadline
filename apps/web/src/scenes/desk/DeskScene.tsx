@@ -181,9 +181,16 @@ export function DeskScene() {
             aria-label={settings.lampOn ? 'Apagar la lámpara' : 'Encender la lámpara'}
           />
 
-          <div className={styles.nameplate} aria-label={`Placa: ${rank}, investigador ${investigator}`} role="img">
-            <Nameplate investigator={investigator} rank={rank} />
-          </div>
+          <button
+            className={styles.nameplate}
+            aria-label={`Placa: ${rank}, investigador ${investigator}. Abrir tu ficha`}
+            onClick={() => {
+              sound.play('stamp');
+              void navigate('/perfil');
+            }}
+          >
+            <Nameplate investigator={profile?.alias ? `${profile.alias} · ${investigator}` : investigator} rank={rank} />
+          </button>
 
           {!settings.deskGuideDismissed && (
             <button className={styles.object} data-object="guide" onClick={() => setGuideOpen(true)} aria-label="Nota de bienvenida: cómo funciona la mesa">

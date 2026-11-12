@@ -9,7 +9,7 @@
     "preview": "vite preview --host --port 4173 --strictPort",
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
-    "test:e2e": "node e2e/smoke.mjs && node e2e/case.mjs && node e2e/stage4.mjs",
+    "test:e2e": "node e2e/smoke.mjs && node e2e/case.mjs && node e2e/stage4.mjs && node e2e/coop.mjs",
     "predev": "node --experimental-strip-types ../../scripts/build-content.ts",
     "pretest:e2e": "node --experimental-strip-types ../../scripts/build-content.ts"
   },

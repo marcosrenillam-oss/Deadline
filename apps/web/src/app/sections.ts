@@ -49,7 +49,7 @@ export const SECTIONS: readonly SectionDef[] = [
     description: 'Dos detectives y un mismo expediente: en un solo iPhone pasándolo de mano en mano, o en dos iPhone intercambiando informes de campo.',
     contents: ['Partida en un mismo dispositivo', 'Partida entre dos dispositivos con códigos e informes', 'Información compartida o dividida', 'Acusación conjunta'],
     stage: 6,
-    ready: false,
+    ready: true,
   },
   {
     id: 'history',

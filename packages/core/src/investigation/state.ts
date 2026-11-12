@@ -82,6 +82,10 @@ export const investigationSchema = z.strictObject({
   caseId: z.string(),
   caseVersion: z.number().int(),
   mode: z.enum(CASE_MODES),
+  /** Cooperativo de información dividida: papel de este investigador. */
+  role: z.enum(['A', 'B']).optional(),
+  /** Cooperativo: partida a la que pertenece. */
+  coopSessionId: z.string().optional(),
   /** 1 para la primera apertura; se incrementa en cada reapertura. */
   attempt: z.number().int().min(1),
   status: z.enum(INVESTIGATION_STATUSES),

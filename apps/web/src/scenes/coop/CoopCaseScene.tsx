@@ -1,0 +1,106 @@
+import { useEffect, useMemo, useState } from 'react';
+import { Navigate, useNavigate, useParams } from 'react-router';
+import { CaseProvider } from '../../cases/CaseProvider.tsx';
+import { answer as answerProposal, getSession, otherRole, propose as proposeAccusation, saveSession } from '../../cases/coopRepo.ts';
+import type { CoopApi, CoopSession } from '../../cases/coopTypes.ts';
+import { loadCase } from '../../cases/contentRepo.ts';
+import { useProfile } from '../../profile/ProfileProvider.tsx';
+import { Workspace } from '../case/CaseScene.tsx';
+import surface from '../../ui/Surface.module.css';
+import { CoopPanel } from './CoopPanel.tsx';
+import s from './coop.module.css';
+
+/** Ruta /pareja/:sessionId — el expediente de una partida cooperativa. */
+export function CoopCaseScene() {
+  const { sessionId = '' } = useParams();
+  const navigate = useNavigate();
+  const { reload: reloadProfile } = useProfile();
+  const [session, setSession] = useState<CoopSession | null | undefined>(undefined);
+  const [panel, setPanel] = useState(false);
+  const [lastCode, setLastCode] = useState<{ code: string; label: string } | null>(null);
+  const [passing, setPassing] = useState(false);
+  const [generation, setGeneration] = useState(0);
+
+  useEffect(() => {
+    void getSession(sessionId).then((x) => setSession(x ?? null));
+  }, [sessionId]);
+
+  const role = session?.mode === 'same-device' ? session.activeRole : session?.myRole;
+  const investigationId = session ? (role ? session.investigationIds[role] : session.investigationIds.shared) : undefined;
+  const base = `/pareja/${sessionId}`;
+
+  const api = useMemo<CoopApi | undefined>(() => {
+    if (!session) return undefined;
+    return {
+      session,
+      role,
+      roleTitle: role ? `${role === 'A' ? 'Papel A' : 'Papel B'}` : 'Compartida',
+      propose: async (a) => {
+        const out = await proposeAccusation(session, role ?? 'A', a);
+        setSession(out.session);
+        if (out.code) {
+          setLastCode({ code: out.code, label: 'Propuesta de acusación para tu compañero' });
+          setPanel(true);
+        }
+      },
+      answer: async (agree) => {
+        const c = await loadCase(session.caseId);
+        const out = await answerProposal(c, session, agree);
+        setSession(out.session);
+        if (out.code) setLastCode({ code: out.code, label: agree ? 'Firma de la acusación para tu compañero' : 'Rechazo para tu compañero' });
+        await reloadProfile();
+        setGeneration((g) => g + 1);
+        if (!agree) setPanel(true);
+      },
+      openPanel: () => setPanel(true),
+    };
+  }, [session, role, reloadProfile]);
+
+  if (session === undefined) return <main className={surface.wood} />;
+  if (session === null) return <Navigate to="/telefono" replace />;
+  if (session.status === 'pending') return <Navigate to="/telefono" replace />;
+
+  return (
+    <CaseProvider
+      key={`${investigationId}-${generation}`}
+      caseId={session.caseId}
+      {...(investigationId ? { investigationId } : {})}
+      base={base}
+      {...(api ? { coop: api } : {})}
+      fallback={() => <main className={surface.wood} />}
+    >
+      <Workspace />
+      <CoopPanel
+        open={panel}
+        onClose={() => setPanel(false)}
+        session={session}
+        setSession={setSession}
+        lastCode={lastCode}
+        onPass={() => {
+          setPanel(false);
+          setPassing(true);
+        }}
+      />
+      {passing && role && (
+        <div className={s.pass} role="dialog" aria-modal="true" aria-labelledby="pass-title">
+          <p className={s.passKicker}>Mesa compartida</p>
+          <h2 id="pass-title" className={s.passTitle}>
+            Pasa el iPhone a {otherRole(role)}
+          </h2>
+          <p className={s.passText}>{role}, no mires: lo que hay en la carpeta de tu compañero es solo suyo hasta que lo ponga sobre la mesa. El reloj sigue corriendo.</p>
+          <button
+            className={s.primary}
+            onClick={async () => {
+              const next = await saveSession({ ...session, activeRole: otherRole(role) });
+              setSession(next);
+              setPassing(false);
+              void navigate(base);
+            }}
+          >
+            Soy {otherRole(role)}: continuar
+          </button>
+        </div>
+      )}
+    </CaseProvider>
+  );
+}

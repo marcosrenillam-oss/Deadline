@@ -11,13 +11,13 @@ const OUTCOME: Record<string, string> = { success: 'Resuelto', partial: 'Resuelt
 
 /** Reapertura e historial de intentos de un expediente cerrado. */
 export function ReopenPanel() {
-  const { c, closed, reopen, attempts } = useCase();
+  const { c, closed, reopen, attempts, base, coop } = useCase();
   const { profile } = useProfile();
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
   const [confirm, setConfirm] = useState(false);
   const [busy, setBusy] = useState(false);
-  if (!closed) return null;
+  if (!closed || coop) return null;
   const cost = reopenCost(c);
   const balance = profile?.points ?? 0;
   const affordable = balance >= cost;
@@ -27,7 +27,7 @@ export function ReopenPanel() {
     setError(null);
     try {
       await reopen();
-      void navigate(`/expediente/${c.id}`);
+      void navigate(base);
     } catch (e) {
       setError(e instanceof NotEnoughPoints ? e.message : e instanceof Error ? e.message : String(e));
     } finally {

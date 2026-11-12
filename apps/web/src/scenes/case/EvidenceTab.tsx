@@ -11,7 +11,7 @@ import s from './case.module.css';
  * las encontradas de las que se pasaron por alto.
  */
 export function EvidenceTab() {
-  const { c, k, inv, closed, run, notify } = useCase();
+  const { c, k, inv, closed, run, notify, base } = useCase();
   const [filter, setFilter] = useState<'all' | 'starred' | 'dismissed'>('all');
   const [relating, setRelating] = useState(false);
   const [picked, setPicked] = useState<string[]>([]);
@@ -109,7 +109,7 @@ export function EvidenceTab() {
                   {content}
                 </button>
               ) : (
-                <Link className={s.cardInner} to={`/expediente/${c.id}/evidencias/${e.id}`} onClick={() => sound.play('paper')}>
+                <Link className={s.cardInner} to={`${base}/evidencias/${e.id}`} onClick={() => sound.play('paper')}>
                   {content}
                 </Link>
               )}

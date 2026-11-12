@@ -18,6 +18,7 @@ function sample(): ArchiveData {
     caseRecords: [record('DL-I-0001', { rewardedKeys: ['evidence:ev-a'] })],
     notes: [note('note-0001', 'El jardinero mintió', 50)],
     dailyLedger: { ...createDailyLedger('2026-11-12' as CivilDate), highestUnlocked: 2, unlockedOn: { 0: '2026-11-12', 1: '2026-11-13', 2: '2026-11-14' } },
+    coopSessions: [],
   };
 }
 

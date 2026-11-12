@@ -16,9 +16,8 @@ const OUTCOME = {
 
 /** INFORME FINAL. Tras cerrar el caso, todo el expediente queda abierto para consulta. */
 export function ReportView() {
-  const { c, k, inv, closed } = useCase();
+  const { c, k, inv, closed, base, coop } = useCase();
   const { profile } = useProfile();
-  const base = `/expediente/${c.id}`;
   if (!inv || !closed || !inv.result) {
     return (
       <div className={s.sheet}>
@@ -53,7 +52,7 @@ export function ReportView() {
       <header className={s.sheetHead}>
         <div>
           <p className={s.kicker}>Informe final · {c.title}</p>
-          <h1 className={s.title}>{ending?.title ?? OUTCOME[r.outcome]}</h1>
+          <h1 className={s.title}>{ending?.title ?? (coop && r.outcome === 'expired' ? 'Cooperativa incompleta' : OUTCOME[r.outcome])}</h1>
         </div>
         <Stamp tilt={-8}>{OUTCOME[r.outcome]}</Stamp>
       </header>

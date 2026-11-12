@@ -68,6 +68,9 @@ No hay servidor, base de datos remota, cuentas ni servicios externos. Ver
 | `engine/engine.ts` | Motor de investigación: acciones y consultas puras |
 | `engine/resolution.ts` | Acusación, finales, cronología, puntuación, cierre por tiempo |
 | `engine/reopen.ts` | Coste de reapertura y qué se conserva |
+| `engine/coop.ts` | Puesta en común entre papeles, unión de tableros |
+| `exchange/codec.ts` | Códigos DL1: compresión, base64url, firma HMAC |
+| `exchange/packets.ts` | Invitación, aceptación, informe, propuesta, respuesta |
 | `sync/queue.ts` | Reservado para un futuro servidor |
 
 ### `apps/web`
@@ -96,7 +99,7 @@ subrutas `evidencias`, `evidencias/:id`, `personas`, `personas/:id`,
 `informe`. `CaseProvider` carga el contenido, mantiene la investigación,
 ejecuta las acciones del motor, guarda en IndexedDB y vigila el reloj.
 
-## Almacenamiento local (IndexedDB `deadline`, v2)
+## Almacenamiento local (IndexedDB `deadline`, v3)
 
 | Almacén | Clave | Índices | Contenido |
 |---|---|---|---|
@@ -110,6 +113,7 @@ ejecuta las acciones del motor, guarda en IndexedDB y vigila el reloj.
 | `caseRecords` | caseId | estado, modo | Resumen por caso y recompensas cobradas |
 | `notes` | id | caso, actualización | Libreta |
 | `dailyLedger` | `ledger` | — | Calendario del jugador y diarios desbloqueados |
+| `coopSessions` (v3) | id | caso, actualización | Partidas en pareja: modo, papeles, clave, lo compartido y recibido, mensajes, propuesta |
 | `syncQueue` | opId | próximo intento, entidad | Reservado (vacío) para un futuro servidor |
 
 Migraciones incrementales en `storage/db.ts` (nunca se edita una publicada).
@@ -126,3 +130,16 @@ src/cases/downloads.ts ── fetch case.json → SHA-256 = catálogo? → Index
         ▼
 Service worker: /content/*.json → NetworkFirst · /content/<recursos> → CacheFirst (misma caché)
 ```
+
+## Cooperativo sin servidor
+
+```
+Mesa compartida (1 iPhone)                 Correspondencia (2 iPhone)
+  carpeta A ──poner sobre la mesa──▶ B       A ── invitación (DL1, lleva la clave) ──▶ B
+  carpeta B ──poner sobre la mesa──▶ A       A ◀── aceptación (DL1 firmado, startedAt) ── B
+  pase de turno entre papeles                A ⇄ B informes de campo (piezas, notas, tablero, mensaje)
+  propone uno · firma el otro                A ⇄ B propuesta · respuesta → cada uno cierra su parte
+```
+
+Rutas: `/telefono` (partidas, crear, unirse) y `/pareja/:sesión/…` (las
+mismas pantallas del expediente, sobre la investigación del papel activo).

@@ -218,3 +218,42 @@ precachea `content/`.
 ### D-038 · Precarga de diarios
 Se descargan por adelantado los diarios de los próximos 7 días cuando hay
 conexión, de modo que el desbloqueo diario no depende de tenerla.
+
+---
+
+## Etapas 5 y 6 · Perfil local y cooperativo sin servidor
+
+### D-039 · La placa de la mesa abre la ficha del investigador
+El perfil no tenía objeto propio en la mesa; la placa de latón con el rango
+y el número es su sitio natural.
+
+### D-040 · Retrato: silueta o foto, siempre local
+La foto se recorta y reduce en el dispositivo (240 × 288, JPEG) y se
+muestra virada al tono del archivo. No sale del dispositivo salvo en las
+copias que exporte el jugador.
+
+### D-041 · Compartir es explícito y por categorías
+En el cooperativo nada se sincroniza solo: cada jugador decide qué pone
+sobre la mesa o qué incluye en un informe. Es lo que da sentido a la
+información dividida y evita que el reparto sea decorativo.
+
+### D-042 · Formato DL1 con firma de partida
+Los códigos se comprimen y se firman con una clave aleatoria de 256 bits
+que viaja en la invitación. La firma detecta mezclas de partidas y errores
+al copiar; no protege frente a quien tenga la invitación (no se pretende).
+
+### D-043 · El reloj de la pareja empieza cuando el invitado dice «Preparado»
+El anfitrión alinea su reloj al importar el código de aceptación. Así ambos
+tienen el mismo límite sin servidor, a costa de que el anfitrión pierda el
+tiempo que tarde en recibir el código.
+
+### D-044 · Mesa compartida: se puntúa una vez, con lo que sabe el equipo
+Las dos carpetas se cierran con la misma acusación, pero los puntos se
+calculan una sola vez sobre el conocimiento unido, para no duplicar mérito
+en el mismo perfil.
+
+### D-045 · Una acción propia nunca entrega una pieza del compañero
+En información dividida, si una pregunta o un detalle de A desbloquearía una
+evidencia de B, A no la recibe: tendrá que pedírsela. El contenido debe
+diseñarse con esto en cuenta; el validador avisa si un papel puede resolver
+solo.

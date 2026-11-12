@@ -55,6 +55,8 @@ export const localProfileSchema = z.strictObject({
   investigatorNumber: z.string().regex(INVESTIGATOR_NUMBER_PATTERN),
   /** Alias opcional para identificarse en el cooperativo y en las tarjetas de investigador. */
   alias: z.string().regex(USERNAME_PATTERN).optional(),
+  /** Retrato: 'preset:<n>' (silueta de ficha) o una foto propia como data URL reducida (≤ 200 KB). */
+  avatar: z.string().max(200_000).optional(),
   createdAt: z.number().int(),
   /** Cosmético equipado en cada hueco de la oficina. */
   equipped: z.strictObject(loadoutShape),
@@ -81,3 +83,20 @@ export function createLocalProfile(now: number, random?: () => number): LocalPro
     updatedAt: now,
   };
 }
+
+/**
+ * TARJETA DE INVESTIGADOR: lo que un jugador comparte de sí mismo con sus
+ * amigos (por código). Son datos declarados: nadie puede verificarlos.
+ */
+export const investigatorCardSchema = z.strictObject({
+  t: z.literal('card'),
+  n: z.string().regex(INVESTIGATOR_NUMBER_PATTERN),
+  a: z.string().regex(USERNAME_PATTERN).optional(),
+  soloRank: z.string(),
+  coopRank: z.string(),
+  soloMerit: z.number().int().min(0),
+  coopMerit: z.number().int().min(0),
+  solved: z.number().int().min(0),
+  at: z.number().int(),
+});
+export type InvestigatorCard = z.infer<typeof investigatorCardSchema>;

@@ -3,7 +3,16 @@
 Se conservan los **500 expedientes cooperativos** y sus dos estilos
 (investigación compartida e información dividida). Sin servidor no puede
 haber sincronización en tiempo real; **no se simula**. En su lugar, dos
-modalidades reales. Implementación: Etapa 6.
+modalidades reales. **Implementado en la Etapa 6** (ver STATUS); abajo, el
+diseño y las diferencias con lo implementado.
+
+Diferencias con el diseño inicial:
+- El PIN por papel en la mesa compartida no se ha implementado: la pantalla
+  de pase de turno es la protección (de honor).
+- No hay lector de QR: los códigos se envían como texto (Compartir/Copiar) y
+  se pegan.
+- Las notas compartidas llegan como notas de la libreta («De <alias>: …»).
+- El chat son mensajes dentro de los informes de campo (asíncronos).
 
 ## Modalidad 1 · Mesa compartida (un dispositivo)
 

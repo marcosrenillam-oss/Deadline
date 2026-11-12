@@ -55,7 +55,7 @@ try {
   for (const name of [/^Carpeta de expedientes/, /^Calendario:/, /^Teléfono:/, /^Máquina de escribir:/, /^Lámpara:/, /^Libreta:/]) {
     check(await visible(page.getByRole('button', { name })), `Objeto interactivo visible: ${name.source}`);
   }
-  check(await visible(page.getByRole('img', { name: /^Placa: Novato, investigador DL-\d{5}-[A-Z]/ })), 'Placa con rango y número de investigador local');
+  check(await visible(page.getByRole('button', { name: /^Placa: Novato, investigador DL-\d{5}-[A-Z]/ })), 'Placa con rango y número de investigador local');
   const calLabel = await page.getByRole('button', { name: /^Calendario:/ }).getAttribute('aria-label');
   check(/Diario nº 1 de 500/.test(calLabel ?? ''), `El calendario arranca en el diario nº 1 (${calLabel})`);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
@@ -103,9 +103,9 @@ try {
   check(true, 'La carpeta abre la Biblioteca con el primer expediente');
   await page.getByRole('link', { name: /Escritorio/ }).click();
   await folder.waitFor();
-  await page.getByRole('button', { name: /^Teléfono:/ }).click();
-  await page.waitForURL('**/telefono');
-  await page.getByText('En preparación · Etapa 6').waitFor({ timeout: 3000 });
+  await page.getByRole('button', { name: /^Máquina de escribir/ }).click();
+  await page.waitForURL('**/maquina');
+  await page.getByText('En preparación · Etapa 7').waitFor({ timeout: 3000 });
   check(true, 'Las secciones pendientes declaran honestamente su etapa');
   await page.getByRole('link', { name: /Volver al escritorio/ }).click();
   await folder.waitFor();

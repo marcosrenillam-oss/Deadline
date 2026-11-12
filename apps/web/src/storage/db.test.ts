@@ -15,7 +15,7 @@ describe('IndexedDB', () => {
     const db = await getDB();
     expect(db.version).toBe(DB_VERSION);
     expect([...db.objectStoreNames].sort()).toEqual(
-      ['caseAssets', 'caseContent', 'caseRecords', 'catalog', 'dailyLedger', 'investigations', 'meta', 'notes', 'profile', 'settings', 'syncQueue'].sort(),
+      ['caseAssets', 'caseContent', 'caseRecords', 'catalog', 'coopSessions', 'dailyLedger', 'investigations', 'meta', 'notes', 'profile', 'settings', 'syncQueue'].sort(),
     );
     const counts = await storeCounts();
     expect(Object.values(counts).every((n) => n === 0)).toBe(true);

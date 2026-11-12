@@ -42,13 +42,13 @@ export function CaseScene() {
 }
 
 function CaseBody() {
-  const { inv } = useCase();
+  const { inv, base } = useCase();
   return inv ? <Workspace /> : <Cover />;
 }
 
 /** Portada precintada: la dificultad no se muestra hasta abrirlo. */
 function Cover() {
-  const { c, open } = useCase();
+  const { c, open, base } = useCase();
   const [busy, setBusy] = useState(false);
   return (
     <main className={surface.wood}>
@@ -101,14 +101,13 @@ const TABS = [
   { to: 'tablero', label: 'Tablero' },
 ];
 
-function Workspace() {
-  const { c, inv, k, closed, remainingMs, toasts, dismiss } = useCase();
+export function Workspace() {
+  const { c, inv, k, closed, remainingMs, toasts, dismiss, base, coop } = useCase();
   const navigate = useNavigate();
   const [panel, setPanel] = useState<'notes' | 'contradiction' | 'hints' | 'pause' | null>(null);
   const unread = c.evidence.filter((e) => k.evidence.has(e.id) && !k.examined.has(e.id)).length;
   const urgent = !closed && remainingMs < 5 * 60_000;
   const hintsLeft = inv ? c.maxHints - inv.hintsUsed.length : 0;
-  const base = `/expediente/${c.id}`;
   return (
     <main className={surface.wood}>
       <div className={`${surface.safe} ${s.workspace}`}>
@@ -134,6 +133,12 @@ function Workspace() {
               {t.to === 'evidencias' && unread > 0 && !closed && <span className={s.badge}>{unread}</span>}
             </NavLink>
           ))}
+          {coop && (
+            <button className={`${s.tab} ${s.coopTab}`} onClick={coop.openPanel}>
+              {coop.role ? `${coop.role} · ${coop.roleTitle}` : 'Pareja'}
+              {coop.session.proposal?.status === 'pending' && coop.session.proposal.from !== coop.role && <span className={s.badge}>!</span>}
+            </button>
+          )}
           <div className={s.tools}>
             <button className={s.iconButton} onClick={() => setPanel('notes')} aria-label="Libreta" title="Libreta">
               ✎
@@ -151,7 +156,7 @@ function Workspace() {
             </NavLink>
           ) : (
             <button className={`${s.tab} ${s.accuse}`} onClick={() => void navigate(`${base}/acusacion`)}>
-              Acusar
+              {coop ? 'Acusación conjunta' : 'Acusar'}
             </button>
           )}
         </nav>

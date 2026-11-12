@@ -11,7 +11,7 @@ import s from './case.module.css';
 /** Una evidencia abierta sobre la mesa: leer, examinar con lupa, marcar y asociar. */
 export function EvidenceViewer() {
   const { evidenceId = '' } = useParams();
-  const { c, k, inv, closed, run, patch, notify } = useCase();
+  const { c, k, inv, closed, run, patch, notify, base } = useCase();
   const [lupa, setLupa] = useState(false);
   const [assoc, setAssoc] = useState(false);
   const e = c.evidence.find((x) => x.id === evidenceId);
@@ -25,7 +25,7 @@ export function EvidenceViewer() {
     return (
       <div className={s.sheet}>
         <p className={s.hand}>Esa pieza no está en tu expediente.</p>
-        <Link to={`/expediente/${c.id}/evidencias`} className={s.link}>
+        <Link to={`${base}/evidencias`} className={s.link}>
           Volver a las evidencias
         </Link>
       </div>
@@ -70,7 +70,7 @@ export function EvidenceViewer() {
   return (
     <div className={s.viewer}>
       <div className={s.viewerBar}>
-        <Link to={`/expediente/${c.id}/evidencias`} className={s.link} onClick={() => sound.play('paper')}>
+        <Link to={`${base}/evidencias`} className={s.link} onClick={() => sound.play('paper')}>
           ← Evidencias
         </Link>
         <span className={s.spacer} />

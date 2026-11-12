@@ -13,7 +13,7 @@ import s from './case.module.css';
  * expediente con un final negativo.
  */
 export function AccusationView() {
-  const { c, k, closed, accuse } = useCase();
+  const { c, k, closed, accuse, base, coop } = useCase();
   const navigate = useNavigate();
   const [culprits, setCulprits] = useState<string[]>([]);
   const [motive, setMotive] = useState<string>('');
@@ -21,7 +21,6 @@ export function AccusationView() {
   const [proof, setProof] = useState<string>('');
   const [confirm, setConfirm] = useState(false);
   const [sealing, setSealing] = useState(false);
-  const base = `/expediente/${c.id}`;
 
   if (closed) {
     return (
@@ -31,6 +30,63 @@ export function AccusationView() {
           Leer el informe final
         </Link>
       </div>
+    );
+  }
+
+  const prop = coop?.session.proposal;
+  if (coop && prop?.status === 'pending') {
+    const mine = prop.from === coop.role || (coop.session.mode === 'correspondence' && prop.from === coop.session.myRole);
+    const label = (list: Array<{ id: string; label: string }>, id: string) => list.find((x) => x.id === id)?.label ?? id;
+    return (
+      <article className={`${s.sheet} ${s.scroll} ${s.accusation}`}>
+        <p className={s.kicker}>Acusación conjunta · {c.title}</p>
+        <h1 className={s.title}>{mine ? 'Esperando a tu compañero' : 'Tu compañero propone esta acusación'}</h1>
+        <dl className={s.fields}>
+          <div>
+            <dt>Culpable</dt>
+            <dd>{prop.accusation.culprits.map((x) => c.characters.find((ch) => ch.id === x)?.name ?? x).join(', ')}</dd>
+          </div>
+          <div>
+            <dt>Motivo</dt>
+            <dd>{label(c.accusation.motives, prop.accusation.motive)}</dd>
+          </div>
+          <div>
+            <dt>Método</dt>
+            <dd>{label(c.accusation.methods, prop.accusation.method)}</dd>
+          </div>
+          <div>
+            <dt>Prueba</dt>
+            <dd>{c.evidence.find((e) => e.id === prop.accusation.proof)?.title}</dd>
+          </div>
+        </dl>
+        {mine ? (
+          <p className={s.hand}>
+            {coop.session.mode === 'same-device'
+              ? `Pasa el turno a ${prop.from === 'A' ? 'B' : 'A'} para que la firme o la rechace.`
+              : 'Envía a tu compañero el código de la propuesta (panel de pareja) y recibe su respuesta.'}
+          </p>
+        ) : (
+          <div className={s.sealRow}>
+            <button className={s.secondary} onClick={() => void coop.answer(false)}>
+              No estoy de acuerdo
+            </button>
+            <button
+              className={s.primary}
+              onClick={() =>
+                void coop.answer(true).then(() => {
+                  sound.play('stamp');
+                  void navigate(`${base}/informe`);
+                })
+              }
+            >
+              Firmar la acusación
+            </button>
+          </div>
+        )}
+        <button className={s.secondary} onClick={coop.openPanel}>
+          Abrir el panel de pareja
+        </button>
+      </article>
     );
   }
 
@@ -44,6 +100,12 @@ export function AccusationView() {
     setSealing(true);
     sound.play('stamp');
     haptic('confirm');
+    if (coop) {
+      await coop.propose({ culprits, motive, method, proof });
+      setSealing(false);
+      setConfirm(false);
+      return;
+    }
     await accuse({ culprits, motive, method, proof });
     setTimeout(() => void navigate(`${base}/informe`), 700);
   };
@@ -51,9 +113,11 @@ export function AccusationView() {
   return (
     <article className={`${s.sheet} ${s.scroll} ${s.accusation}`} data-sealing={sealing || undefined}>
       <p className={s.kicker}>Acta de acusación · {c.title}</p>
-      <h1 className={s.title}>Formular la acusación</h1>
+      <h1 className={s.title}>{coop ? 'Proponer la acusación conjunta' : 'Formular la acusación'}</h1>
       <p className={s.warn}>
-        Puedes acusar cuando quieras, aunque no lo hayas descubierto todo. Si la acusación es errónea, el expediente se cierra.
+        {coop
+          ? 'La acusación solo se presenta si los dos la firmáis. Si es errónea, el expediente se cierra para los dos.'
+          : 'Puedes acusar cuando quieras, aunque no lo hayas descubierto todo. Si la acusación es errónea, el expediente se cierra.'}
       </p>
 
       <h2 className={s.h2}>1 · Culpable{culprits.length > 1 ? 's' : ''}</h2>
@@ -96,7 +160,7 @@ export function AccusationView() {
               Revisar
             </button>
             <button className={s.primary} disabled={sealing} onClick={() => void seal()}>
-              Sellar la acusación
+              {coop ? 'Proponer al compañero' : 'Sellar la acusación'}
             </button>
           </>
         )}

@@ -1,4 +1,5 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
+import type { CoopSession } from '../cases/coopTypes.ts';
 import type { CaseCatalogEntry, CaseFile, CaseRecord, DailyLedger, Investigation, LocalProfile, Note, Settings, SyncOp } from '@deadline/core';
 
 /**
@@ -20,7 +21,7 @@ import type { CaseCatalogEntry, CaseFile, CaseRecord, DailyLedger, Investigation
  */
 
 export const DB_NAME = 'deadline';
-export const DB_VERSION = 2;
+export const DB_VERSION = 3;
 
 export type AssetState = 'none' | 'downloading' | 'partial' | 'verified' | 'corrupt';
 
@@ -59,6 +60,8 @@ export interface DeadlineDB extends DBSchema {
   caseRecords: { key: string; value: CaseRecord; indexes: { byStatus: string; byMode: string } };
   notes: { key: string; value: Note; indexes: { byCase: string; byUpdated: number } };
   dailyLedger: { key: string; value: DailyLedger };
+  /** v3 · Partidas cooperativas (mesa compartida y correspondencia). */
+  coopSessions: { key: string; value: CoopSession; indexes: { byCase: string; byUpdated: number } };
   /** Reservado para una futura versión con servidor; vacío en la versión local-first. */
   syncQueue: { key: string; value: SyncOp; indexes: { byNextAttempt: number; byEntity: string } };
 }
@@ -99,6 +102,11 @@ export function upgrade(db: DeadlineDatabase, oldVersion: number): void {
   }
   if (oldVersion < 2) {
     db.createObjectStore('profile');
+  }
+  if (oldVersion < 3) {
+    const coop = db.createObjectStore('coopSessions', { keyPath: 'id' });
+    coop.createIndex('byCase', 'caseId');
+    coop.createIndex('byUpdated', 'updatedAt');
   }
   // Futuras versiones: if (oldVersion < 3) { … }
 }

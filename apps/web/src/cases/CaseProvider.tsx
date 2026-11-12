@@ -21,6 +21,8 @@ import { attemptsOf, latestInvestigation, getRecord, openInvestigation, reopenIn
 import { fetchCatalog } from './contentRepo.ts';
 import { downloadCase, getStatus } from './downloads.ts';
 import type { CaseAssetStatus } from '../storage/db.ts';
+import { getInvestigation } from './investigationRepo.ts';
+import type { CoopApi } from './coopTypes.ts';
 
 export interface Toast {
   id: number;
@@ -48,6 +50,12 @@ interface CaseContextValue {
   attempts: Investigation[];
   /** Estado de la descarga para jugar sin conexión. */
   offline: CaseAssetStatus | undefined;
+  /** Ruta base de las pantallas del caso (/expediente/ID o /pareja/SID). */
+  base: string;
+  /** Presente solo en partidas cooperativas. */
+  coop: CoopApi | undefined;
+  /** Vuelve a leer la investigación (p. ej. tras recibir algo del compañero). */
+  refresh: () => Promise<void>;
   toasts: Toast[];
   notify: (kind: Toast['kind'], text: string) => void;
   dismiss: (id: number) => void;
@@ -63,7 +71,22 @@ export function useCase(): CaseContextValue {
 
 type LoadState = { status: 'loading' } | { status: 'error'; message: string } | { status: 'ready'; c: CaseFile };
 
-export function CaseProvider({ caseId, children, fallback }: { caseId: string; children: ReactNode; fallback: (s: { status: 'loading' } | { status: 'error'; message: string }) => ReactNode }) {
+export function CaseProvider({
+  caseId,
+  investigationId,
+  base = `/expediente/${caseId}`,
+  coop,
+  children,
+  fallback,
+}: {
+  caseId: string;
+  /** Investigación concreta (cooperativo). Por defecto, la última del caso. */
+  investigationId?: string;
+  base?: string;
+  coop?: CoopApi;
+  children: ReactNode;
+  fallback: (s: { status: 'loading' } | { status: 'error'; message: string }) => ReactNode;
+}) {
   const [load, setLoad] = useState<LoadState>({ status: 'loading' });
   const [inv, setInv] = useState<Investigation | null>(null);
   const [record, setRecord] = useState<CaseRecord | null>(null);
@@ -82,7 +105,12 @@ export function CaseProvider({ caseId, children, fallback }: { caseId: string; c
     setLoad({ status: 'loading' });
     (async () => {
       const c = await loadCase(caseId);
-      const [latest, rec, all, dl] = await Promise.all([latestInvestigation(caseId), getRecord(caseId), attemptsOf(caseId), getStatus(caseId)]);
+      const [latest, rec, all, dl] = await Promise.all([
+        investigationId ? getInvestigation(investigationId) : latestInvestigation(caseId),
+        getRecord(caseId),
+        investigationId ? Promise.resolve([]) : attemptsOf(caseId),
+        getStatus(caseId),
+      ]);
       if (!alive) return;
       setAttempts(all);
       setOffline(dl);
@@ -94,7 +122,17 @@ export function CaseProvider({ caseId, children, fallback }: { caseId: string; c
     return () => {
       alive = false;
     };
-  }, [caseId]);
+  }, [caseId, investigationId]);
+
+  const refresh = useCallback(async () => {
+    const id = invRef.current?.id ?? investigationId;
+    if (!id) return;
+    const fresh = await getInvestigation(id);
+    if (fresh) {
+      invRef.current = fresh;
+      setInv(fresh);
+    }
+  }, [investigationId]);
 
   // Guardado: inmediato para lo importante, agrupado para cambios rápidos (arrastrar en el tablero).
   const persist = useCallback((next: Investigation, immediate: boolean) => {
@@ -328,11 +366,14 @@ export function CaseProvider({ caseId, children, fallback }: { caseId: string; c
       reopen,
       attempts,
       offline,
+      base,
+      coop,
+      refresh,
       toasts,
       notify,
       dismiss,
     };
-  }, [c, inv, record, timer?.remainingMs, open, run, patch, accuse, reopen, attempts, offline, toasts, notify, dismiss]);
+  }, [c, inv, record, timer?.remainingMs, open, run, patch, accuse, reopen, attempts, offline, base, coop, refresh, toasts, notify, dismiss]);
 
   if (load.status !== 'ready' || !value) return <>{fallback(load.status === 'ready' ? { status: 'loading' } : load)}</>;
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

@@ -8,7 +8,8 @@ import s from './case.module.css';
 
 /** 1 · EXPEDIENTE: contexto inicial y lo que ya se sabe. */
 export function DossierTab() {
-  const { c, k, closed, offline, inv } = useCase();
+  const { c, k, closed, offline, inv, base, coop } = useCase();
+  const myRole = c.coop?.roles.find((r) => r.id === inv?.role);
   const facts = c.facts.filter((f) => k.facts.has(f.id)).sort((a, b) => Number(b.important) - Number(a.important));
   const objectives = c.objectives.filter((o) => !o.hidden || evaluateCondition(o.completeWhen, k));
   return (
@@ -39,6 +40,13 @@ export function DossierTab() {
               <dd>{c.briefing.incidentDisplay}</dd>
             </div>
           </dl>
+          {myRole && (
+            <>
+              <h2 className={s.h2}>Tu papel · {myRole.id} · {myRole.title}</h2>
+              <p className={s.hand}>{myRole.briefing}</p>
+            </>
+          )}
+          {coop && !myRole && <p className={s.hand}>Investigación compartida: los dos veis todo el expediente.</p>}
           <h2 className={s.h2}>Resumen</h2>
           <p className={s.prose}>{c.briefing.summary}</p>
           <h2 className={s.h2}>Situación</h2>
@@ -81,9 +89,9 @@ export function DossierTab() {
           )}
           <h2 className={s.h2}>Documentación inicial</h2>
           <ul className={s.linkList}>
-            {c.briefing.initialEvidence.map((id) => (
+            {c.briefing.initialEvidence.filter((id) => closed || k.evidence.has(id)).map((id) => (
               <li key={id}>
-                <Link to={`/expediente/${c.id}/evidencias/${id}`}>{c.evidence.find((e) => e.id === id)?.title}</Link>
+                <Link to={`${base}/evidencias/${id}`}>{c.evidence.find((e) => e.id === id)?.title}</Link>
               </li>
             ))}
           </ul>
@@ -99,7 +107,7 @@ export function DossierTab() {
           </p>
           {closed && (
             <p className={s.hand}>
-              Expediente cerrado. <Link to={`/expediente/${c.id}/informe`}>Leer el informe final</Link>
+              Expediente cerrado. <Link to={`${base}/informe`}>Leer el informe final</Link>
             </p>
           )}
           <ReopenPanel />

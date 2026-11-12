@@ -17,3 +17,6 @@ export * from './backup/archive.ts';
 export * from './engine/engine.ts';
 export * from './engine/resolution.ts';
 export * from './engine/reopen.ts';
+export * from './engine/coop.ts';
+export * from './exchange/codec.ts';
+export * from './exchange/packets.ts';

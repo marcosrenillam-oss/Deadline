@@ -51,12 +51,17 @@ export function knowledgeOf(inv: Investigation): Knowledge {
  * evidencias que aparecen solas, secretos que se revelan, eventos de
  * cronología que se desbloquean.
  */
-export function settle(c: CaseFile, k: Knowledge): Knowledge {
+/** ¿Puede tener este investigador una pieza con este receptor? (cooperativo dividido) */
+export function holds(holder: 'A' | 'B' | 'both' | undefined, role: 'A' | 'B' | undefined): boolean {
+  return !role || !holder || holder === 'both' || holder === role;
+}
+
+export function settle(c: CaseFile, k: Knowledge, role?: 'A' | 'B'): Knowledge {
   let cur = k;
   for (let i = 0; i < 100; i++) {
     const pending: Effect[] = [];
     for (const f of c.facts) if (f.derivedWhen && !cur.facts.has(f.id) && evaluateCondition(f.derivedWhen, cur)) pending.push({ grantFact: f.id });
-    for (const e of c.evidence) if (e.autoDiscoverWhen && !cur.evidence.has(e.id) && evaluateCondition(e.autoDiscoverWhen, cur)) pending.push({ grantEvidence: e.id });
+    for (const e of c.evidence) if (e.autoDiscoverWhen && holds(e.holder, role) && !cur.evidence.has(e.id) && evaluateCondition(e.autoDiscoverWhen, cur)) pending.push({ grantEvidence: e.id });
     for (const s of c.secrets) if (s.revealedWhen && !cur.secrets.has(s.id) && evaluateCondition(s.revealedWhen, cur)) pending.push({ revealSecret: s.id });
     for (const t of c.timeline) if (t.autoUnlockWhen && !cur.timelineEvents.has(t.id) && evaluateCondition(t.autoUnlockWhen, cur)) pending.push({ unlockTimelineEvent: t.id });
     if (pending.length === 0) return cur;
@@ -65,8 +70,22 @@ export function settle(c: CaseFile, k: Knowledge): Knowledge {
   return cur;
 }
 
-function commit(c: CaseFile, inv: Investigation, k: Knowledge, now: number, extra: Partial<Investigation> = {}, log?: { type: string; ref?: string }): Investigation {
-  const settled = settle(c, k);
+export function commitShared(c: CaseFile, inv: Investigation, k: Knowledge, now: number, extra: Partial<Investigation>, ref: string): Investigation {
+  return commit(c, inv, k, now, extra, { type: 'received', ref }, true);
+}
+
+function commit(c: CaseFile, inv: Investigation, k: Knowledge, now: number, extra: Partial<Investigation> = {}, log?: { type: string; ref?: string }, allowForeign = false): Investigation {
+  let settled = settle(c, k, inv.role);
+  if (inv.role && !allowForeign) {
+    // Información dividida: una acción propia nunca entrega una pieza del compañero.
+    const before = new Set(inv.knowledge.evidence);
+    const foreign = c.evidence.filter((e) => !before.has(e.id) && settled.evidence.has(e.id) && !holds(e.holder, inv.role)).map((e) => e.id);
+    if (foreign.length) {
+      const trimmed = cloneKnowledge(settled);
+      foreign.forEach((id) => trimmed.evidence.delete(id));
+      settled = trimmed;
+    }
+  }
   return {
     ...inv,
     ...extra,
@@ -86,12 +105,22 @@ export function timeLimitMinutes(c: CaseFile): number {
 
 export function startInvestigation(
   c: CaseFile,
-  opts: { id: string; now: number; attempt?: number; carried?: SerializedKnowledge; workspace?: Partial<Pick<Investigation, 'board' | 'timeline' | 'evidenceMarks' | 'associations' | 'deductions'>> },
+  opts: {
+    id: string;
+    now: number;
+    attempt?: number;
+    carried?: SerializedKnowledge;
+    workspace?: Partial<Pick<Investigation, 'board' | 'timeline' | 'evidenceMarks' | 'associations' | 'deductions'>>;
+    role?: 'A' | 'B';
+    coopSessionId?: string;
+  },
 ): Investigation {
+  const role = c.coop?.style === 'split' ? opts.role : undefined;
   let k = opts.carried ? deserializeKnowledge(opts.carried) : emptyKnowledge();
+  const own = (id: string) => holds(c.evidence.find((e) => e.id === id)?.holder, role);
   k = applyEffects(k, [
     ...c.briefing.initialFacts.map((x) => ({ grantFact: x })),
-    ...c.briefing.initialEvidence.map((x) => ({ grantEvidence: x })),
+    ...c.briefing.initialEvidence.filter(own).map((x) => ({ grantEvidence: x })),
     ...c.briefing.initialTimeline.map((x) => ({ unlockTimelineEvent: x })),
   ]);
   const base: Investigation = {
@@ -115,6 +144,8 @@ export function startInvestigation(
     log: [],
     rev: 0,
     updatedAt: opts.now,
+    ...(role ? { role } : {}),
+    ...(opts.coopSessionId ? { coopSessionId: opts.coopSessionId } : {}),
     ...opts.workspace,
   };
   return commit(c, base, k, opts.now, {}, { type: opts.attempt && opts.attempt > 1 ? 'reopen' : 'open' });
@@ -141,10 +172,10 @@ export function findableDetails(e: Evidence, k: Knowledge): HiddenDetail[] {
   return e.details.filter((d) => !k.details.has(d.id) && evaluateCondition(d.requires, k));
 }
 
-export function availableInterrogations(c: CaseFile, k: Knowledge): Interrogation[] {
+export function availableInterrogations(c: CaseFile, k: Knowledge, role?: 'A' | 'B'): Interrogation[] {
   return c.interrogations.filter((it) => {
     const ch = byId(c.characters, it.characterId);
-    return evaluateCondition(it.availableWhen, k) && evaluateCondition(ch?.appearsWhen, k);
+    return holds(it.holder, role) && evaluateCondition(it.availableWhen, k) && evaluateCondition(ch?.appearsWhen, k);
   });
 }
 
@@ -252,7 +283,7 @@ export interface AskResult {
 
 export function ask(c: CaseFile, inv: Investigation, questionId: string, now: number): Outcome<AskResult> {
   const k = knowledgeOf(inv);
-  for (const it of availableInterrogations(c, k)) {
+  for (const it of availableInterrogations(c, k, inv.role)) {
     for (const t of availableTopics(it, k)) {
       const view = questionsFor(t, k).find((v) => v.question.id === questionId);
       if (!view) continue;

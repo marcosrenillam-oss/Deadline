@@ -370,10 +370,12 @@ function checkIntegrity(c: CaseFile, errors: Issue[], warnings: Issue[]): void {
  * Es una sobreaproximación: las condiciones `not` se consideran superables
  * (el jugador puede elegir el orden de sus acciones).
  */
-export function exploreReachable(c: CaseFile): { knowledge: Knowledge; lines: Set<string>; unreachedQuestions: string[] } {
+export function exploreReachable(c: CaseFile, role?: 'A' | 'B'): { knowledge: Knowledge; lines: Set<string>; unreachedQuestions: string[] } {
+  const holderOf = new Map(c.evidence.map((e) => [e.id, e.holder]));
+  const mine = (holder: 'A' | 'B' | 'both' | undefined) => !role || !holder || holder === 'both' || holder === role;
   let k = applyEffects(emptyKnowledge(), [
     ...c.briefing.initialFacts.map((x) => ({ grantFact: x })),
-    ...c.briefing.initialEvidence.map((x) => ({ grantEvidence: x })),
+    ...c.briefing.initialEvidence.filter((x) => mine(holderOf.get(x))).map((x) => ({ grantEvidence: x })),
     ...c.briefing.initialTimeline.map((x) => ({ unlockTimelineEvent: x })),
   ]);
   const lines = new Set<string>();
@@ -387,7 +389,7 @@ export function exploreReachable(c: CaseFile): { knowledge: Knowledge; lines: Se
     for (const f of c.facts) if (f.derivedWhen && holds(f.derivedWhen)) pending.push({ grantFact: f.id });
     for (const s of c.secrets) if (s.revealedWhen && holds(s.revealedWhen)) pending.push({ revealSecret: s.id });
     for (const ev of c.timeline) if (ev.autoUnlockWhen && holds(ev.autoUnlockWhen)) pending.push({ unlockTimelineEvent: ev.id });
-    for (const e of c.evidence) if (e.autoDiscoverWhen && holds(e.autoDiscoverWhen)) pending.push({ grantEvidence: e.id });
+    for (const e of c.evidence) if (e.autoDiscoverWhen && mine(e.holder) && holds(e.autoDiscoverWhen)) pending.push({ grantEvidence: e.id });
 
     const examinedNow: string[] = [];
     for (const evId of k.evidence) {
@@ -403,6 +405,7 @@ export function exploreReachable(c: CaseFile): { knowledge: Knowledge; lines: Se
     }
     const askedNow: string[] = [];
     for (const it of c.interrogations) {
+      if (!mine(it.holder)) continue;
       const subject = c.characters.find((ch) => ch.id === it.characterId);
       if (!holds(it.availableWhen) || !holds(subject?.appearsWhen)) continue;
       it.opening.forEach((l) => l.id && lines.add(l.id));
@@ -433,7 +436,7 @@ export function exploreReachable(c: CaseFile): { knowledge: Knowledge; lines: Se
       if (ok) pending.push(...d.effects);
     }
 
-    k = applyEffects(k, pending);
+    k = applyEffects(k, role ? pending.filter((e) => !('grantEvidence' in e) || mine(holderOf.get(e.grantEvidence))) : pending);
     const mutable = k as Record<keyof Knowledge, Set<string>>;
     examinedNow.forEach((x) => mutable.examined.add(x));
     askedNow.forEach((x) => mutable.asked.add(x));
@@ -468,6 +471,19 @@ function checkSolvability(c: CaseFile, errors: Issue[], warnings: Issue[]): void
   for (const ev of c.timeline) if (ev.key && !k.timelineEvents.has(ev.id)) warnings.push({ path: 'timeline', message: `El evento clave ${ev.id} nunca se desbloquea` });
   for (const o of c.objectives) if (!holds(o.completeWhen)) warnings.push({ path: 'objectives', message: `El objetivo ${o.id} no es completable` });
   for (const q of unreachedQuestions) warnings.push({ path: 'interrogations', message: `La pregunta ${q} nunca está disponible` });
+
+  // Información dividida: ninguno de los dos debería poder resolverlo solo.
+  if (c.coop?.style === 'split') {
+    for (const role of ['A', 'B'] as const) {
+      const solo = exploreReachable(c, role).knowledge;
+      const can = (cond: Condition | undefined) => evaluateCondition(relaxNot(cond), solo);
+      const solvable =
+        c.solution.proof.some((p) => solo.evidence.has(p)) &&
+        can(c.accusation.motives.find((m) => m.id === c.solution.motive)?.availableWhen) &&
+        can(c.accusation.methods.find((m) => m.id === c.solution.method)?.availableWhen);
+      if (solvable) warnings.push({ path: 'coop', message: `El papel ${role} puede resolver el caso sin cooperar` });
+    }
+  }
 }
 
 /** Sustituye `not X` por "cierto" para la sobreaproximación de alcanzabilidad. */

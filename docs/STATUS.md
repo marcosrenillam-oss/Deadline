@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-Última actualización: Etapa 4.
+Última actualización: Etapas 5 y 6.
 
 ## Etapas
 
@@ -10,8 +10,8 @@
 | 2 · The Detective's Desk | **Completada** (pendiente de prueba en iPhone físico) |
 | 3 · Motor de expedientes | **Completada** con un expediente completo (pendiente de prueba en iPhone físico) |
 | 4 · Cronómetros, guardado y offline | Reglas puras listas; integración pendiente |
-| 5 · ~~Cuentas y backend~~ → Perfil local y copias | Perfil local y exportar/importar **hechos**; no habrá cuentas (D-016) |
-| 6 · Cooperativo | Diseño sin servidor en `COOP.md`; implementación pendiente |
+| 5 · ~~Cuentas y backend~~ → Perfil local y copias | **Completada**: perfil local, alias, retrato, tarjeta de investigador, copias |
+| 6 · Cooperativo sin servidor | **Completada**: mesa compartida y correspondencia por códigos (pendiente de prueba con dos iPhone reales) |
 | 7 · Progresión y personalización | Cosméticos de serie y equipamiento **hechos**; puntos, logros y desbloqueos pendientes |
 | 8 · Contenido, optimización y pruebas | Pendiente |
 
@@ -108,9 +108,41 @@
   deducciones, 3 contradicciones, 3 interrogatorios, 6 finales. Validado:
   0 errores, 0 avisos.
 
+### Etapa 5 · Perfil local
+- Ficha del investigador (la placa de la mesa): número, alias (sin registro
+  central), retrato a elegir entre siluetas o foto propia reducida en el
+  dispositivo, rangos individual y en pareja con progreso, puntos y méritos.
+- Tarjeta de investigador exportable como código (para la clasificación
+  entre amigos de la Etapa 7).
+- Las partidas en pareja viajan también en las copias de seguridad.
+
+### Etapa 6 · Cooperativo sin servidor
+- Motor: reparto por papeles (A/B) en información dividida — piezas
+  iniciales, apariciones automáticas e interrogatorios según el receptor; una
+  acción propia nunca entrega una pieza del compañero. Puesta en común
+  explícita e idempotente; unión de tableros.
+- Códigos `DL1.` comprimidos (deflate-raw) y firmados (HMAC-SHA256 con la
+  clave de la partida): invitación (~240 caracteres), aceptación, informes de
+  campo (~400), propuesta y respuesta. Se aceptan con texto alrededor; se
+  rechazan los de otra partida, los alterados y los incompletos.
+- **Mesa compartida** (un iPhone): dos carpetas, «poner sobre la mesa»,
+  pantalla de pase de turno, acusación que propone uno y firma el otro; se
+  puntúa una vez con lo que sabe el equipo.
+- **Correspondencia** (dos iPhone): invitación → «Preparado» (empieza el
+  reloj) → código de aceptación → relojes alineados; informes con selección
+  por categorías, notas, tablero y mensaje; recepción idempotente; propuesta,
+  rechazo o firma; ambos dispositivos cierran con el mismo final.
+- Mérito y rango en pareja independientes de los individuales.
+- Validador: avisa si en un caso dividido algún papel puede resolverlo solo.
+- **DL-C-0001 «Punto de rocío»** (Nueva Atenas, 2096): 3 sospechosos, 13
+  evidencias repartidas entre Archivo Central (A) y Unidad de Calle (B), 4
+  deducciones (2 cruzadas), 3 contradicciones (todas exigen compartir), 3
+  interrogatorios repartidos, 6 finales. Comprobado: A solo alcanza 8
+  evidencias, B solo 5; juntos, todo.
+
 ## Pruebas
 
-- `@deadline/core`: 61 pruebas (validador, condiciones, motor, acusación y
+- `@deadline/core`: 69 pruebas (validador, condiciones, motor, acusación y
   puntuación, cronómetro, diarios, rangos, ajustes, perfil, cosméticos,
   copias de seguridad).
 - `@deadline/web`: 9 pruebas (IndexedDB, ajustes, perfil, calendario,
@@ -131,6 +163,13 @@
   reapertura pagando 150 puntos con reloj nuevo y descubrimientos
   conservados, descarga verificada, apertura sin conexión con imágenes,
   detección de recursos borrados por el sistema.
+- E2E del cooperativo: 30 comprobaciones — mesa compartida completa
+  (información dividida, poner sobre la mesa, pase de turno, deducciones
+  cruzadas, confesión, acusación conjunta, mérito en pareja) y
+  correspondencia entre dos contextos de navegador aislados (alias, tarjeta,
+  invitación con texto alrededor, relojes alineados, informe firmado,
+  mensaje, idempotencia, código alterado rechazado, propuesta rechazada,
+  propuesta firmada con el mismo final en los dos).
 - Build con `DEADLINE_BASE=/Deadline/`: navegación, alcance del service
   worker, manifiesto, iconos y enlace profundo sin conexión verificados.
 
@@ -162,6 +201,13 @@
   los puntos de la reapertura. Con 2 expedientes publicados es posible.
   Opciones a decidir: saldo inicial, primera reapertura gratis o coste
   menor. No lo he cambiado por mi cuenta.
+- Cooperativo: no se ha probado todavía con dos iPhone reales (compartir
+  por Mensajes/WhatsApp/AirDrop y pegar). Sin lector de QR por ahora.
+- Cooperativo: si el tiempo se agota sin acusación conjunta, cada
+  dispositivo cierra su parte como «cooperativa incompleta»; la lista de
+  partidas del teléfono no lo refleja hasta abrirla.
+- Solo hay un cooperativo escrito (de información dividida); el estilo
+  «compartido» está implementado pero sin caso propio.
 - Solo hay un diario escrito: del día 2 en adelante el calendario dice
   honestamente «en redacción».
 - La descarga de un expediente con muchas imágenes no se ha medido aún en

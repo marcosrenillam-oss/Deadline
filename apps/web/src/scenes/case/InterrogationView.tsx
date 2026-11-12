@@ -13,8 +13,8 @@ const KIND_LABEL = { ask: '', press: 'Insistir', confront: 'Confrontar', present
 /** Interrogatorio: temas, preguntas que dependen de lo que sabes y transcripción. */
 export function InterrogationView() {
   const { characterId = '' } = useParams();
-  const { c, k, inv, closed, run } = useCase();
-  const it = availableInterrogations(c, k).find((x) => x.characterId === characterId) ?? (closed ? c.interrogations.find((x) => x.characterId === characterId) : undefined);
+  const { c, k, inv, closed, run, base } = useCase();
+  const it = availableInterrogations(c, k, inv?.role).find((x) => x.characterId === characterId) ?? (closed ? c.interrogations.find((x) => x.characterId === characterId) : undefined);
   const [topicId, setTopicId] = useState<string | null>(null);
   const [fresh, setFresh] = useState<number>(-1);
   const logRef = useRef<HTMLDivElement>(null);
@@ -28,7 +28,7 @@ export function InterrogationView() {
     return (
       <div className={s.sheet}>
         <p className={s.hand}>No hay motivo para interrogar a esa persona.</p>
-        <Link to={`/expediente/${c.id}/personas`} className={s.link}>
+        <Link to={`${base}/personas`} className={s.link}>
           Volver a personas
         </Link>
       </div>
@@ -56,7 +56,7 @@ export function InterrogationView() {
   return (
     <div className={s.interrogation}>
       <aside className={s.subject}>
-        <Link to={`/expediente/${c.id}/personas/${subject.id}`} className={s.link}>
+        <Link to={`${base}/personas/${subject.id}`} className={s.link}>
           ← Ficha
         </Link>
         <Portrait character={subject} size={96} />
