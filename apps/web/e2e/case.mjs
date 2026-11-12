@@ -221,7 +221,8 @@ try {
 
   // Modo archivo: todo consultable, lo omitido marcado
   await goto(`${C}/evidencias`);
-  check((await p.getByText('No encontrada').count()) > 0, 'En modo archivo se ven las evidencias no encontradas');
+  const missedShown = await p.getByText('No encontrada').first().waitFor({ timeout: 5000 }).then(() => true, () => false);
+  check(missedShown, 'En modo archivo se ven las evidencias no encontradas');
   check((await p.getByRole('button', { name: 'Acusar' }).count()) === 0, 'Un expediente cerrado no admite otra acusación');
 
   // Archivo y escritorio reflejan el resultado
