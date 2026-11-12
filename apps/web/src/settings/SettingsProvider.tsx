@@ -1,12 +1,16 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { DEFAULT_SETTINGS, normalizeSettings, type Settings } from '@deadline/core';
 import { loadSettings, saveSettings } from '../storage/settingsRepo.ts';
+import { sound } from '../audio/sound.ts';
+import { setHapticsEnabled } from '../audio/haptics.ts';
 
 interface SettingsContextValue {
   settings: Settings;
   /** true cuando ya se han leído los ajustes guardados. */
   loaded: boolean;
   update: (patch: Partial<Settings>) => void;
+  /** Vuelve a leer los ajustes guardados (p. ej. tras importar un archivo). */
+  reload: () => Promise<void>;
 }
 
 const SettingsContext = createContext<SettingsContextValue | null>(null);
@@ -14,7 +18,8 @@ const SettingsContext = createContext<SettingsContextValue | null>(null);
 /** Traslada los ajustes visuales al documento (variables CSS y atributos). */
 export function applySettingsToDocument(s: Settings, root: HTMLElement = document.documentElement): void {
   root.style.setProperty('--text-scale', String(s.textScale));
-  root.style.setProperty('--light-intensity', String(s.lightIntensity));
+  root.style.setProperty('--light-intensity', String(s.lampOn ? s.lightIntensity : 0));
+  root.dataset.lamp = s.lampOn ? 'on' : 'off';
   root.dataset.lightTone = s.lightTone;
   root.dataset.reducedMotion = s.reducedMotion;
 }
@@ -38,7 +43,15 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  useEffect(() => applySettingsToDocument(settings), [settings]);
+  useEffect(() => {
+    applySettingsToDocument(settings);
+    sound.configure({ sfxVolume: settings.sfxVolume, ambienceVolume: settings.ambienceVolume, ambience: settings.officeAmbience });
+    setHapticsEnabled(settings.haptics);
+  }, [settings]);
+
+  const reload = useCallback(async () => {
+    setSettings(await loadSettings());
+  }, []);
 
   const update = useCallback((patch: Partial<Settings>) => {
     setSettings((prev) => {
@@ -48,8 +61,11 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const value = useMemo(() => ({ settings, loaded, update }), [settings, loaded, update]);
-  return <SettingsContext.Provider value={value}>{children}</SettingsContext.Provider>;
+  const value = useMemo(() => ({ settings, loaded, update, reload }), [settings, loaded, update, reload]);
+  // No se pinta nada hasta leer los ajustes guardados: evita que la mesa
+  // aparezca un instante con los valores por defecto (luz, nota, texto).
+  // La lectura de IndexedDB tarda milisegundos; el fondo ya es color tinta.
+  return <SettingsContext.Provider value={value}>{loaded ? children : null}</SettingsContext.Provider>;
 }
 
 export function useSettings(): SettingsContextValue {

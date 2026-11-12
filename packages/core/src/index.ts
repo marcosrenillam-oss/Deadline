@@ -11,3 +11,6 @@ export * from './settings/settings.ts';
 export * from './profile/profile.ts';
 export * from './sync/queue.ts';
 export * from './util/id.ts';
+export * from './daily/ledgerSchema.ts';
+export * from './cosmetics/catalog.ts';
+export * from './backup/archive.ts';

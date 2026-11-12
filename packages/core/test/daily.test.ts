@@ -5,13 +5,14 @@ import {
   dailyIndexFor,
   dailyStatus,
   daysBetween,
-  emptyDailyLedger,
+  createDailyLedger,
   maxLegitimateDailyIndex,
   reconcileDailyLedger,
   type CivilDate,
 } from '../src/daily/schedule.ts';
 
-const START = '2027-01-01';
+const START = '2027-01-01' as CivilDate;
+const fresh = () => createDailyLedger(START);
 
 describe('calendario diario', () => {
   it('cuenta días civiles sin verse afectado por el cambio de hora', () => {
@@ -28,24 +29,24 @@ describe('calendario diario', () => {
   });
 
   it('desbloquea los días saltados con su fecha propia y nunca vuelve a bloquear', () => {
-    let ledger = advanceDailyLedger(emptyDailyLedger(), '2027-01-01', START);
-    ledger = advanceDailyLedger(ledger, '2027-01-04', START);
+    let ledger = advanceDailyLedger(fresh(), '2027-01-01');
+    ledger = advanceDailyLedger(ledger, '2027-01-04');
     expect(ledger.highestUnlocked).toBe(3);
     expect(ledger.unlockedOn[2]).toBe('2027-01-03');
-    const back = advanceDailyLedger(ledger, '2027-01-02', START);
+    const back = advanceDailyLedger(ledger, '2027-01-02');
     expect(back).toBe(ledger);
   });
 
   it('el diario no jugado pasa al archivo, no se pierde', () => {
     const today = '2027-01-04' as CivilDate;
-    const ledger = advanceDailyLedger(emptyDailyLedger(), today, START);
-    expect(dailyStatus(3, ledger, today, START)).toBe('today');
-    expect(dailyStatus(1, ledger, today, START)).toBe('archived');
-    expect(dailyStatus(4, ledger, today, START)).toBe('locked');
+    const ledger = advanceDailyLedger(fresh(), today);
+    expect(dailyStatus(3, ledger, today)).toBe('today');
+    expect(dailyStatus(1, ledger, today)).toBe('archived');
+    expect(dailyStatus(4, ledger, today)).toBe('locked');
   });
 
   it('el servidor recorta desbloqueos adelantados por un reloj manipulado', () => {
-    const cheated = advanceDailyLedger(emptyDailyLedger(), '2027-02-01', START);
+    const cheated = advanceDailyLedger(fresh(), '2027-02-01');
     const serverNow = Date.UTC(2027, 0, 5, 12, 0, 0);
     const max = maxLegitimateDailyIndex(serverNow, START);
     expect(max).toBe(5); // 6 de enero en UTC+14
@@ -55,8 +56,8 @@ describe('calendario diario', () => {
   });
 
   it('las fechas registradas por el servidor prevalecen', () => {
-    const local = advanceDailyLedger(emptyDailyLedger(), '2027-01-03', START);
-    const server = { highestUnlocked: 1, unlockedOn: { 0: '2027-01-01', 1: '2027-01-01' } as Record<number, CivilDate> };
+    const local = advanceDailyLedger(fresh(), '2027-01-03');
+    const server = { calendarStart: START, highestUnlocked: 1, unlockedOn: { 0: '2027-01-01', 1: '2027-01-01' } as Record<number, CivilDate> };
     const merged = reconcileDailyLedger(local, 10, server);
     expect(merged.unlockedOn[1]).toBe('2027-01-01');
     expect(merged.highestUnlocked).toBe(2);

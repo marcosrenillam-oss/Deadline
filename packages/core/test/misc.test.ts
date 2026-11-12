@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { DEFAULT_SETTINGS, normalizeSettings } from '../src/settings/settings.ts';
 import { progressToNext, rankFor, RANK_DEFINITIONS } from '../src/progression/ranks.ts';
-import { isValidUsername } from '../src/profile/profile.ts';
+import { isValidUsername, generateInvestigatorNumber, isValidInvestigatorNumber, createLocalProfile } from '../src/profile/profile.ts';
+import { sanitizeLoadout, DEFAULT_LOADOUT, COSMETIC_SLOTS, cosmeticsForSlot } from '../src/cosmetics/catalog.ts';
 import { nextBackoff } from '../src/sync/queue.ts';
 import { formatCaseNumber, toCatalogEntry, caseFileSchema } from '../src/case/schema.ts';
 import { minimalCase } from './fixtures/minimal-case.ts';
@@ -50,5 +51,33 @@ describe('utilidades', () => {
   });
   it('genera identificadores únicos', () => {
     expect(new Set(Array.from({ length: 100 }, newId)).size).toBe(100);
+  });
+});
+
+describe('perfil local', () => {
+  it('genera números de investigador con letra de control válida', () => {
+    for (let i = 0; i < 50; i++) expect(isValidInvestigatorNumber(generateInvestigatorNumber())).toBe(true);
+    expect(generateInvestigatorNumber(() => 0.48213)).toBe('DL-48213-M');
+    expect(isValidInvestigatorNumber('DL-48213-A')).toBe(false);
+  });
+  it('crea un perfil con el equipamiento de serie', () => {
+    const p = createLocalProfile(1000);
+    expect(p.equipped).toEqual(DEFAULT_LOADOUT);
+    expect(p.points).toBe(0);
+  });
+});
+
+describe('cosméticos', () => {
+  it('cada hueco tiene al menos dos variantes y un valor de serie válido', () => {
+    for (const slot of COSMETIC_SLOTS) {
+      expect(cosmeticsForSlot(slot).length).toBeGreaterThanOrEqual(2);
+      expect(cosmeticsForSlot(slot).some((c) => c.id === DEFAULT_LOADOUT[slot])).toBe(true);
+    }
+  });
+  it('corrige equipamientos inválidos', () => {
+    const out = sanitizeLoadout({ desk: 'desk-mahogany', lamp: 'phone-oxblood', phone: 'no-existe' });
+    expect(out.desk).toBe('desk-mahogany');
+    expect(out.lamp).toBe(DEFAULT_LOADOUT.lamp);
+    expect(out.phone).toBe(DEFAULT_LOADOUT.phone);
   });
 });

@@ -1,46 +1,52 @@
 # Arquitectura
 
-## Visión general
+## Visión general (versión local-first, sin servidor)
 
 ```
-┌──────────────────────────── iPhone (PWA standalone, horizontal) ───────────────────────────┐
-│  React 19 + TypeScript · React Router · CSS Modules + tokens                               │
-│                                                                                             │
-│  Escenas (escritorio, archivo, expediente, tablero…)                                        │
-│        │                                                                                    │
-│  @deadline/core  ← motor de condiciones, validación, cronómetro, diarios, reglas            │
-│        │                                                                                    │
-│  Repositorios locales ── IndexedDB (idb): progreso, notas, catálogo, contenido, cola sync   │
-│                       └─ Cache Storage: imágenes/audio de expedientes verificados (Etapa 4) │
-│  Service worker (Workbox): armazón de la app offline                                        │
-└───────────────┬───────────────────────────────────────────────┬────────────────────────────┘
-                │ HTTPS (REST)                                  │ WebSocket (cooperativo)
-┌───────────────▼───────────────────────────────────────────────▼────────────────────────────┐
-│  Servidor (Etapa 5–6, pendiente de confirmar proveedor): cuentas Argon2id, sesiones,        │
-│  perfiles, amigos, presencia, salas cooperativas con reloj autoritativo, validación de      │
-│  acusaciones y puntos, sincronización. Reutiliza @deadline/core.                            │
-│  PostgreSQL · CDN de recursos de expedientes                                                │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+            GitHub (repositorio público)
+              │ push / Run workflow
+              ▼
+   GitHub Actions: typecheck · tests · validación de casos · build
+              │
+              ▼
+   GitHub Pages (estático, HTTPS) ── https://<usuario>.github.io/Deadline/
+              │ primera visita + actualizaciones
+              ▼
+┌──────────────────────── iPhone (PWA standalone, horizontal) ────────────────────────┐
+│  React 19 + TypeScript · React Router · CSS Modules + tokens                        │
+│  Escenas: escritorio (SVG/CSS + madera en canvas), ajustes, secciones…              │
+│  Audio sintetizado (Web Audio) · hápticos (mejora progresiva)                       │
+│        │                                                                            │
+│  @deadline/core ← condiciones, validación, cronómetro, diarios, rangos,             │
+│                   cosméticos, copias de seguridad                                    │
+│        │                                                                            │
+│  IndexedDB (fuente de verdad): perfil, ajustes, progreso, notas, diarios…           │
+│  Service worker: la app completa funciona sin conexión                              │
+│        │                                                                            │
+│  Archivo personal ⇄ archivo JSON (Archivos / iCloud Drive / AirDrop)                │
+│  Cooperativo ⇄ códigos e informes de campo entre dispositivos (Etapa 6)             │
+└─────────────────────────────────────────────────────────────────────────────────────┘
 ```
+
+No hay servidor, base de datos remota, cuentas ni servicios externos. Ver
+`LOCAL_FIRST.md` (qué cambió y limitaciones), `DISTRIBUTION.md` y `COOP.md`.
 
 ## Principios
 
 1. **El contenido es datos, no código.** Un expediente es un JSON validado por
    esquema. Todo lo que depende de lo que sabe el jugador se expresa con el
-   lenguaje de condiciones (`packages/core/src/case/conditions.ts`). Añadir un
-   caso no requiere programar.
+   lenguaje de condiciones (`packages/core/src/case/conditions.ts`).
 2. **Separación estricta** entre contenido del expediente, estado de la
    investigación, progreso/recompensas, recursos descargados y datos
-   cooperativos (tipos y almacenes distintos).
-3. **El tiempo son marcas absolutas.** `deadlineAt` se fija al empezar y el
-   restante se calcula siempre como `deadlineAt − ahora` (con blindaje frente
-   a relojes que retroceden y corrección con el servidor).
-4. **El servidor es la autoridad** sobre puntos, rangos, recompensas cobradas,
-   reloj cooperativo y desbloqueo de diarios. El cliente calcula previsiones
-   para funcionar offline y las reconcilia al sincronizar.
-5. **Offline-first para el modo individual**; el cooperativo exige conexión.
-6. **Código compartido** entre cliente y servidor (`@deadline/core`) para que
-   las reglas no diverjan.
+   cooperativos.
+3. **El tiempo son marcas absolutas** (`deadlineAt − ahora`), con blindaje
+   frente a relojes que retroceden.
+4. **El dispositivo es la autoridad** sobre puntos, rangos, recompensas y
+   diarios. Las piezas para un futuro servidor (desfase de reloj,
+   reconciliación de diarios, cola de sincronización) se conservan sin uso.
+5. **Offline-first total**: también el cooperativo, que se basa en
+   intercambio de códigos y paquetes.
+6. **El jugador es dueño de sus datos**: puede exportarlos e importarlos.
 
 ## Paquetes
 
@@ -56,16 +62,20 @@
 | `daily/schedule.ts` | Calendario de 500 diarios, registro anti-duplicados, reconciliación |
 | `progression/*` | Rangos (6 niveles, 2 progresiones) y reglas económicas |
 | `settings/settings.ts` | Ajustes del dispositivo con valores por defecto tolerantes |
-| `profile/profile.ts` | Perfil público, formato de usuario y nº de investigador |
-| `sync/queue.ts` | Operaciones idempotentes de la cola de sincronización |
+| `profile/profile.ts` | Perfil local y nº de investigador con letra de control |
+| `cosmetics/catalog.ts` | Huecos de la oficina, variantes y reglas de desbloqueo |
+| `backup/archive.ts` | Formato de copia, suma SHA-256, validación y fusión |
+| `sync/queue.ts` | Reservado para un futuro servidor |
 
 ### `apps/web`
 | Carpeta | Contenido |
 |---|---|
 | `app/` | Raíz, router, registro de secciones, puerta de orientación, avisos del SW |
-| `scenes/` | Una carpeta por escena (escritorio, secciones, diagnóstico…) |
-| `storage/` | IndexedDB (esquema y migraciones), repositorios, persistencia |
-| `settings/` | Proveedor de ajustes (lee/escribe IDB y aplica variables CSS) |
+| `scenes/` | Escritorio (`desk/`), ajustes (`settings/`), secciones pendientes, diagnóstico |
+| `storage/` | IndexedDB (esquema y migraciones), repositorios, copias de seguridad |
+| `settings/` | Proveedor de ajustes (lee/escribe IDB y aplica variables CSS, audio y hápticos) |
+| `profile/` | Proveedor del perfil local y equipamiento de la oficina |
+| `audio/` | Motor de sonido sintetizado y hápticos |
 | `platform/` | Detección de entorno, hooks de orientación/conexión |
 | `ui/` | Primitivas visuales compartidas (superficies, sellos…) |
 | `styles/` | Tokens de diseño, tipografías autoalojadas, base |
@@ -79,19 +89,20 @@ Las transiciones usan View Transitions cuando el navegador las soporta.
 
 En la Etapa 3 se añadirán `/expediente/:caseId/{dossier,evidencias,sospechosos,cronologia,tablero}`.
 
-## Almacenamiento local (IndexedDB `deadline`, v1)
+## Almacenamiento local (IndexedDB `deadline`, v2)
 
 | Almacén | Clave | Índices | Contenido |
 |---|---|---|---|
 | `meta` | key | — | Valores sueltos (primer arranque, desfase servidor…) |
 | `settings` | `device` | — | Ajustes |
+| `profile` (v2) | `local` | — | Perfil local, equipamiento, saldo y mérito |
 | `catalog` | id | modo, época, categoría, diario | Fichas de catálogo |
 | `caseContent` | id | — | JSON completo de expedientes descargados |
 | `caseAssets` | caseId | estado | Estado de verificación de recursos offline |
 | `investigations` | id | caso, estado | Cada intento de investigación |
 | `caseRecords` | caseId | estado, modo | Resumen por caso y recompensas cobradas |
 | `notes` | id | caso, actualización | Libreta |
-| `dailyLedger` | `ledger` | — | Registro de diarios desbloqueados |
-| `syncQueue` | opId | próximo intento, entidad | Cola de sincronización |
+| `dailyLedger` | `ledger` | — | Calendario del jugador y diarios desbloqueados |
+| `syncQueue` | opId | próximo intento, entidad | Reservado (vacío) para un futuro servidor |
 
 Migraciones incrementales en `storage/db.ts` (nunca se edita una publicada).

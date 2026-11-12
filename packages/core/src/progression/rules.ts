@@ -2,8 +2,8 @@ import type { Difficulty } from '../case/taxonomy.ts';
 
 /**
  * Reglas económicas base. Propuesta inicial; se calibrarán en la Etapa 7.
- * El servidor aplica estas mismas reglas (paquete compartido) y es la
- * autoridad sobre el saldo: el cliente solo muestra previsiones.
+ * Versión local-first: estas reglas se aplican en el dispositivo, que es la
+ * única autoridad. No son verificables por terceros (ver docs/LOCAL_FIRST.md).
  */
 
 /** Puntos por componente de la acusación, según dificultad. */

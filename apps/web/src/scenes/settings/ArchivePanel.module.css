@@ -1,0 +1,91 @@
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1.5px solid rgba(42, 36, 26, 0.5);
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.warn {
+  border-color: var(--seal);
+  color: var(--seal);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  padding: var(--sp-3) 0;
+}
+
+.message {
+  margin: 0 0 var(--sp-2);
+  font-family: var(--font-hand);
+  font-size: var(--fs-lg);
+  color: #2c3856;
+}
+
+.slip {
+  margin: 0 0 var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: #f5efe1;
+  border-left: 4px solid var(--seal);
+  box-shadow: var(--shadow-paper);
+  font-family: var(--font-type);
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+}
+
+.slip p {
+  margin: 0 0 var(--sp-2);
+}
+
+.slipTitle {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.small {
+  font-size: var(--fs-xs);
+  color: var(--on-paper-soft);
+}
+
+.details {
+  margin-top: var(--sp-3);
+  font-family: var(--font-type);
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  color: var(--on-paper-soft);
+}
+
+.details summary {
+  min-height: var(--touch);
+  display: flex;
+  align-items: center;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--on-paper);
+  cursor: pointer;
+}
+
+.details ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.diag {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch);
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-paper-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

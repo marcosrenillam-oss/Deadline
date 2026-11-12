@@ -1,0 +1,61 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(150px, 22%) minmax(0, 1fr);
+  gap: var(--sp-4);
+  align-items: stretch;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Separadores de fichero: pestañas de cartulina. */
+.tab {
+  min-height: var(--touch);
+  padding: 0 var(--sp-3);
+  text-align: left;
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.06em;
+  color: var(--ivory-dim);
+  border-left: 3px solid transparent;
+  transition: color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.tab[aria-selected='true'] {
+  color: var(--on-paper);
+  background: linear-gradient(90deg, #d8c7a2, var(--paper));
+  border-left-color: var(--seal);
+  transform: translateX(6px);
+  box-shadow: var(--shadow-paper);
+}
+
+.tab:active {
+  color: var(--ivory);
+}
+
+.panel {
+  min-height: 0;
+  max-height: 100%;
+  padding: var(--sp-3) var(--sp-5) var(--sp-4);
+}
+
+.title {
+  margin: 0 0 var(--sp-1);
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--seal);
+}

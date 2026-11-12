@@ -1,9 +1,11 @@
-# Backend: comparativa y propuesta
+# Backend: propuesta archivada para el futuro
 
-> **Estado:** propuesta. Se confirma contigo antes de empezar la Etapa 5,
-> porque condiciona coste, seguridad y operación. Los precios son
-> orientativos y deben verificarse en la web de cada proveedor en el momento
-> de contratar: cambian con frecuencia.
+> **Estado: ARCHIVADA.** Por decisión de producto (D-016), la primera
+> versión de DEADLINE no tiene servidor ni costes recurrentes: ver
+> `LOCAL_FIRST.md`, `DISTRIBUTION.md` y `COOP.md`. Este documento se
+> conserva como referencia por si en el futuro se quiere añadir cuentas,
+> cooperativo en tiempo real o clasificaciones verificadas. Los precios eran
+> orientativos y habría que verificarlos de nuevo.
 
 ## Requisitos que condicionan la elección
 

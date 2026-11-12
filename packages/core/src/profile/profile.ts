@@ -1,12 +1,22 @@
 import { z } from 'zod';
+import { COSMETIC_SLOTS, DEFAULT_LOADOUT, type CosmeticSlot } from '../cosmetics/catalog.ts';
 
 /**
- * Perfil público del investigador. El servidor es el dueño de estos datos;
- * el cliente guarda una copia para mostrarla offline.
+ * PERFIL LOCAL DEL INVESTIGADOR.
+ *
+ * Versión local-first: no hay cuentas ni registro central. El perfil vive
+ * en el dispositivo y viaja con las copias de seguridad (exportar/importar).
+ *
+ * Consecuencias honestas:
+ * - El número de investigador se genera en el dispositivo. Es aleatorio
+ *   (100 000 combinaciones) pero no hay garantía global de unicidad.
+ * - El nombre visible no es único: no hay nadie que lo compruebe.
+ * - Puntos y rangos no son verificables por terceros.
  */
+
 export const USERNAME_PATTERN = /^[a-z0-9_]{3,20}$/;
 
-/** Normaliza un nombre de usuario para comprobar unicidad (sin distinguir mayúsculas). */
+/** Normaliza un alias (minúsculas, sin espacios laterales). */
 export function normalizeUsername(raw: string): string {
   return raw.trim().toLowerCase();
 }
@@ -15,21 +25,59 @@ export function isValidUsername(raw: string): boolean {
   return USERNAME_PATTERN.test(normalizeUsername(raw));
 }
 
-/** Número de investigador: único e inalterable, asignado por el servidor (p. ej. "DL-48213-K"). */
+/** "DL-48213-K": cinco cifras y letra de control (como la del DNI, detecta erratas al copiarlo). */
 export const INVESTIGATOR_NUMBER_PATTERN = /^DL-\d{5}-[A-Z]$/;
+const CONTROL_LETTERS = 'TRWAGMYFPDXBNJZSQVHLCKE';
 
-export const profileSchema = z.strictObject({
-  userId: z.string(),
-  username: z.string().regex(USERNAME_PATTERN),
-  displayName: z.string().max(40).optional(),
+export function investigatorControlLetter(digits: string): string {
+  return CONTROL_LETTERS.charAt(Number(digits) % 23);
+}
+
+export function generateInvestigatorNumber(random: () => number = secureRandom): string {
+  const digits = String(Math.floor(random() * 100_000)).padStart(5, '0');
+  return `DL-${digits}-${investigatorControlLetter(digits)}`;
+}
+
+export function isValidInvestigatorNumber(n: string): boolean {
+  if (!INVESTIGATOR_NUMBER_PATTERN.test(n)) return false;
+  return investigatorControlLetter(n.slice(3, 8)) === n.charAt(9);
+}
+
+function secureRandom(): number {
+  const buf = new Uint32Array(1);
+  globalThis.crypto.getRandomValues(buf);
+  return buf[0]! / 2 ** 32;
+}
+
+const loadoutShape = Object.fromEntries(COSMETIC_SLOTS.map((s) => [s, z.string()])) as Record<CosmeticSlot, z.ZodString>;
+
+export const localProfileSchema = z.strictObject({
   investigatorNumber: z.string().regex(INVESTIGATOR_NUMBER_PATTERN),
-  avatar: z.string().optional(),
+  /** Alias opcional para identificarse en el cooperativo y en las tarjetas de investigador. */
+  alias: z.string().regex(USERNAME_PATTERN).optional(),
   createdAt: z.number().int(),
-  soloRank: z.string(),
-  coopRank: z.string(),
-  points: z.number().int().min(0),
-  soloMerit: z.number().int().min(0),
-  coopMerit: z.number().int().min(0),
-  equippedCosmetics: z.record(z.string(), z.string()),
+  /** Cosmético equipado en cada hueco de la oficina. */
+  equipped: z.strictObject(loadoutShape),
+  /** Cosméticos desbloqueados (además de los de serie). */
+  unlockedCosmetics: z.array(z.string()).default([]),
+  /** Saldo de puntos gastables (Etapa 7). */
+  points: z.number().int().min(0).default(0),
+  /** Mérito acumulado, no gastable: determina los rangos (Etapa 7). */
+  soloMerit: z.number().int().min(0).default(0),
+  coopMerit: z.number().int().min(0).default(0),
+  updatedAt: z.number().int(),
 });
-export type Profile = z.infer<typeof profileSchema>;
+export type LocalProfile = z.infer<typeof localProfileSchema>;
+
+export function createLocalProfile(now: number, random?: () => number): LocalProfile {
+  return {
+    investigatorNumber: generateInvestigatorNumber(random),
+    createdAt: now,
+    equipped: { ...DEFAULT_LOADOUT },
+    unlockedCosmetics: [],
+    points: 0,
+    soloMerit: 0,
+    coopMerit: 0,
+    updatedAt: now,
+  };
+}

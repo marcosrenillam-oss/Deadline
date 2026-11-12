@@ -1,5 +1,5 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
-import type { CaseCatalogEntry, CaseFile, CaseRecord, DailyLedger, Investigation, Note, Settings, SyncOp } from '@deadline/core';
+import type { CaseCatalogEntry, CaseFile, CaseRecord, DailyLedger, Investigation, LocalProfile, Note, Settings, SyncOp } from '@deadline/core';
 
 /**
  * BASE DE DATOS LOCAL (IndexedDB).
@@ -15,11 +15,12 @@ import type { CaseCatalogEntry, CaseFile, CaseRecord, DailyLedger, Investigation
  * iOS puede desalojar el almacenamiento de una PWA. Por eso:
  * - se solicita almacenamiento persistente (no garantizado en iOS),
  * - el estado de recursos se re-verifica al abrir un caso,
- * - el progreso se sincroniza con el servidor cuando hay conexión (Etapa 5).
+ * - el jugador puede exportar su archivo personal a un fichero e importarlo
+ *   (no hay servidor: es la única copia fuera del navegador).
  */
 
 export const DB_NAME = 'deadline';
-export const DB_VERSION = 1;
+export const DB_VERSION = 2;
 
 export type AssetState = 'none' | 'downloading' | 'partial' | 'verified' | 'corrupt';
 
@@ -45,6 +46,8 @@ export interface StoredCaseContent {
 export interface DeadlineDB extends DBSchema {
   meta: { key: string; value: { key: string; value: unknown; updatedAt: number } };
   settings: { key: string; value: Settings };
+  /** v2 · Perfil local (clave 'local'). */
+  profile: { key: string; value: LocalProfile };
   catalog: {
     key: string;
     value: CaseCatalogEntry;
@@ -56,6 +59,7 @@ export interface DeadlineDB extends DBSchema {
   caseRecords: { key: string; value: CaseRecord; indexes: { byStatus: string; byMode: string } };
   notes: { key: string; value: Note; indexes: { byCase: string; byUpdated: number } };
   dailyLedger: { key: string; value: DailyLedger };
+  /** Reservado para una futura versión con servidor; vacío en la versión local-first. */
   syncQueue: { key: string; value: SyncOp; indexes: { byNextAttempt: number; byEntity: string } };
 }
 
@@ -66,8 +70,8 @@ export type DeadlineDatabase = IDBPDatabase<DeadlineDB>;
  * se añade un nuevo `case` y se sube DB_VERSION.
  */
 export function upgrade(db: DeadlineDatabase, oldVersion: number): void {
-  switch (oldVersion) {
-    case 0: {
+  if (oldVersion < 1) {
+    {
       db.createObjectStore('meta', { keyPath: 'key' });
       db.createObjectStore('settings');
       const catalog = db.createObjectStore('catalog', { keyPath: 'id' });
@@ -92,8 +96,11 @@ export function upgrade(db: DeadlineDatabase, oldVersion: number): void {
       queue.createIndex('byNextAttempt', 'nextAttemptAt');
       queue.createIndex('byEntity', 'entityKey');
     }
-    // falls through — futuras versiones: case 1: …
   }
+  if (oldVersion < 2) {
+    db.createObjectStore('profile');
+  }
+  // Futuras versiones: if (oldVersion < 3) { … }
 }
 
 let dbPromise: Promise<DeadlineDatabase> | null = null;

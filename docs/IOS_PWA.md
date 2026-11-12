@@ -13,8 +13,10 @@ en un iPhone real: las pruebas automáticas usan Chromium emulando un iPhone.
 | **Almacenamiento** | IndexedDB y Cache Storage disponibles, pero iOS puede **desalojar** datos de webs/PWAs poco usadas y la cuota es limitada. `navigator.storage.persist()` no garantiza nada. | Se solicita persistencia; se re-verifican recursos antes de jugar offline; el progreso se sincroniza con el servidor. Un caso solo se marca "disponible offline" tras verificar bytes + SHA-256. |
 | **Almacenamiento separado** | La PWA instalada y Safari tienen almacenamiento **distinto**. | La sesión se inicia dentro de la app instalada; los datos se recuperan del servidor. |
 | **Temporizadores en segundo plano** | JS se congela al bloquear o salir. | El cronómetro usa marcas absolutas (`deadlineAt − ahora`). |
-| **Vibración** | **iOS no soporta la Vibration API** (`navigator.vibrate`). | Hápticos: en Safari 18+ alternar un `<input type="checkbox" switch>` produce una respuesta háptica del sistema; se evaluará en la Etapa 2 como mejora progresiva. **[verificar]**. Si no es fiable, el ajuste de vibración solo tendrá efecto en dispositivos compatibles y se indicará así. |
-| **Audio** | El audio necesita un gesto del usuario para empezar; el interruptor de silencio afecta a parte del audio web. | El audio se inicia tras el primer toque en el escritorio (Etapa 2/7). **[verificar]** comportamiento con modo silencio. |
+| **Vibración** | **iOS no soporta la Vibration API** (`navigator.vibrate`). | Implementado (Etapa 2): en iOS 18+ se acciona un `<input type="checkbox" switch>` oculto, que produce el "tic" háptico del sistema. Ajustes → Tacto explica el soporte real. **[verificar]** en iPhone. |
+| **Audio** | El audio necesita un gesto del usuario para empezar; el interruptor de silencio afecta a parte del audio web. | Implementado (Etapa 2): el motor Web Audio se desbloquea en el primer toque y se suspende en segundo plano. **[verificar]** comportamiento con el modo silencio. |
+| **Hoja de compartir** | `navigator.share` con archivos funciona en Safari, pero solo dentro de un gesto del usuario. | La copia de seguridad se prepara antes de pulsar *Exportar*. **[verificar]**. |
+| **Origen y datos** | El almacenamiento va ligado al origen (dominio). | Cambiar de dominio obliga a exportar/importar (ver `LOCAL_FIRST.md`). |
 | **Notificaciones push** | Existen en iOS 16.4+, pero el producto **no** las usa. | Sin push. |
 | **Gestor de contraseñas** | Funciona en PWA con los `autocomplete` correctos. | Formularios con `username` / `new-password` / `current-password` (Etapa 5). **[verificar]**. |
 | **Zoom y gestos** | iOS ignora `user-scalable=no`. El doble toque puede hacer zoom. | `touch-action: manipulation` global; los gestos de zoom de evidencias se gestionan dentro de su visor. |
@@ -23,7 +25,7 @@ en un iPhone real: las pruebas automáticas usan Chromium emulando un iPhone.
 
 ## Cómo probar en iPhone
 
-1. Desplegar la build en un dominio HTTPS (previsualización).
+1. Publicar en GitHub Pages (ver `DISTRIBUTION.md`).
 2. Abrir en Safari → Compartir → Añadir a pantalla de inicio.
 3. Abrir desde el icono y entrar en *Diagnóstico técnico*: comprobar modo
    standalone, zonas seguras (`↑ → ↓ ←`), IndexedDB, service worker y

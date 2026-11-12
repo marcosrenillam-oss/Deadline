@@ -1,8 +1,10 @@
 /**
  * CALENDARIO DE CASOS DIARIOS.
  *
- * Los 500 diarios vienen precargados. Cada día local del jugador desbloquea
- * el siguiente índice. Las fechas se manejan como "días civiles" (Y-M-D) y la
+ * Los 500 diarios vienen precargados. El calendario de cada jugador empieza
+ * el día de su primer arranque (versión local-first, sin servidor que fije
+ * una fecha común): el día 1 siempre es el diario nº 1. Cada día local del
+ * jugador desbloquea el siguiente índice. Las fechas se manejan como "días civiles" (Y-M-D) y la
  * diferencia se calcula con aritmética UTC sobre esa fecha, de modo que los
  * cambios de horario de verano no producen días de 23 o 25 horas.
  *
@@ -54,18 +56,21 @@ export function dailyIndexFor(today: string, calendarStart: string): number {
 }
 
 export interface DailyLedger {
+  /** Día civil en que empieza el calendario de este jugador (índice 0). */
+  calendarStart: CivilDate;
   /** Mayor índice desbloqueado alguna vez (nunca disminuye). */
   highestUnlocked: number;
   /** Fecha civil local en la que se desbloqueó cada índice. */
   unlockedOn: Record<number, CivilDate>;
 }
 
-export function emptyDailyLedger(): DailyLedger {
-  return { highestUnlocked: -1, unlockedOn: {} };
+export function createDailyLedger(calendarStart: CivilDate): DailyLedger {
+  return { calendarStart, highestUnlocked: -1, unlockedOn: {} };
 }
 
 /** Avanza el registro según la fecha local actual. Puro e idempotente. */
-export function advanceDailyLedger(ledger: DailyLedger, today: CivilDate, calendarStart: string): DailyLedger {
+export function advanceDailyLedger(ledger: DailyLedger, today: CivilDate): DailyLedger {
+  const calendarStart = ledger.calendarStart;
   const target = dailyIndexFor(today, calendarStart);
   if (target <= ledger.highestUnlocked) return ledger;
   const unlockedOn = { ...ledger.unlockedOn };
@@ -73,18 +78,23 @@ export function advanceDailyLedger(ledger: DailyLedger, today: CivilDate, calend
     // Los índices que se "saltaron" (app sin abrir) constan desbloqueados el día que les tocaba.
     unlockedOn[i] = addDays(calendarStart, i);
   }
-  return { highestUnlocked: target, unlockedOn };
+  return { calendarStart, highestUnlocked: target, unlockedOn };
 }
 
 export type DailyStatus = 'locked' | 'today' | 'archived';
 
 /** Un diario no jugado el día que le tocaba pasa al archivo permanente; nunca se pierde. */
-export function dailyStatus(index: number, ledger: DailyLedger, today: CivilDate, calendarStart: string): DailyStatus {
+export function dailyStatus(index: number, ledger: DailyLedger, today: CivilDate): DailyStatus {
   if (index > ledger.highestUnlocked) return 'locked';
-  return index === dailyIndexFor(today, calendarStart) ? 'today' : 'archived';
+  return index === dailyIndexFor(today, ledger.calendarStart) ? 'today' : 'archived';
 }
 
 /**
+ * ─── Reservado para una futura versión con servidor ───
+ * Sin servidor no hay forma de impedir que alguien adelante el reloj del
+ * dispositivo para desbloquear diarios antes de tiempo (solo se perjudica
+ * a sí mismo). Estas funciones quedan listas para cuando exista.
+ *
  * Reconciliación con el servidor: el máximo índice legítimo es el del día
  * civil en UTC+14 para el instante del servidor (ningún huso va por delante).
  */
@@ -95,7 +105,7 @@ export function maxLegitimateDailyIndex(serverNowMs: number, calendarStart: stri
 }
 
 export function reconcileDailyLedger(local: DailyLedger, serverMaxIndex: number, serverLedger?: DailyLedger): DailyLedger {
-  const merged: DailyLedger = { highestUnlocked: Math.max(local.highestUnlocked, serverLedger?.highestUnlocked ?? -1), unlockedOn: { ...serverLedger?.unlockedOn, ...local.unlockedOn } };
+  const merged: DailyLedger = { calendarStart: serverLedger?.calendarStart ?? local.calendarStart, highestUnlocked: Math.max(local.highestUnlocked, serverLedger?.highestUnlocked ?? -1), unlockedOn: { ...serverLedger?.unlockedOn, ...local.unlockedOn } };
   // Lo que el servidor ya registró manda sobre la fecha local.
   if (serverLedger) Object.assign(merged.unlockedOn, serverLedger.unlockedOn);
   if (merged.highestUnlocked > serverMaxIndex) {

@@ -5,12 +5,16 @@ export const settingsSchema = z.strictObject({
   musicVolume: z.number().min(0).max(1).default(0.55),
   sfxVolume: z.number().min(0).max(1).default(0.8),
   haptics: z.boolean().default(true),
+  /** Lámpara encendida. Apagada, la oficina queda en penumbra (solo luz ambiente). */
+  lampOn: z.boolean().default(true),
   /** Intensidad de la lámpara del escritorio. */
   lightIntensity: z.number().min(0.3).max(1).default(0.85),
   /** Tonalidad de la luz: cálida (tungsteno), neutra o fría (fluorescente). */
   lightTone: z.enum(['warm', 'neutral', 'cold']).default('warm'),
-  /** Ambiente sonoro de la oficina. */
-  officeAmbience: z.enum(['rain', 'night-city', 'quiet', 'radio']).default('rain'),
+  /** Volumen del ambiente sonoro. */
+  ambienceVolume: z.number().min(0).max(1).default(0.45),
+  /** Ambiente sonoro de la oficina (sintetizado en el dispositivo, sin archivos de audio). */
+  officeAmbience: z.enum(['rain', 'night-city', 'quiet']).default('rain'),
   /** Escala del texto de lectura (documentos, diálogos). */
   textScale: z.number().min(0.85).max(1.5).default(1),
   /** 'system' respeta prefers-reduced-motion. */

@@ -2,6 +2,7 @@ import { createBrowserRouter, isRouteErrorResponse, useRouteError } from 'react-
 import { DeskScene } from '../scenes/desk/DeskScene.tsx';
 import { SectionScene } from '../scenes/section/SectionScene.tsx';
 import { DiagnosticsScene } from '../scenes/diagnostics/DiagnosticsScene.tsx';
+import { SettingsScene } from '../scenes/settings/SettingsScene.tsx';
 import { BackToDesk } from '../ui/BackToDesk.tsx';
 import surface from '../ui/Surface.module.css';
 import { SECTIONS } from './sections.ts';
@@ -29,14 +30,18 @@ function MissingFile() {
   );
 }
 
+/** Sin barra final: '/' → '', '/Deadline/' → '/Deadline'. */
+export const BASENAME = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 export const router = createBrowserRouter([
   {
     path: '/',
     errorElement: <MissingFile />,
     children: [
       { index: true, element: <DeskScene /> },
-      ...SECTIONS.map((s) => ({ path: s.path.slice(1), element: <SectionScene id={s.id} /> })),
+      { path: 'lampara', element: <SettingsScene /> },
+      ...SECTIONS.filter((s) => !s.ready).map((s) => ({ path: s.path.slice(1), element: <SectionScene id={s.id} /> })),
       { path: 'diagnostico', element: <DiagnosticsScene /> },
     ],
   },
-]);
+], { basename: BASENAME });

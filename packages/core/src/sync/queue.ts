@@ -1,6 +1,11 @@
 import { z } from 'zod';
 
 /**
+ * ─── RESERVADO PARA UNA FUTURA VERSIÓN CON SERVIDOR ───
+ * La versión actual es local-first y no sincroniza con ningún servidor. El
+ * almacén `syncQueue` de IndexedDB existe pero permanece vacío. Se conserva
+ * para no tener que migrar datos si algún día se añade un backend.
+ *
  * COLA DE SINCRONIZACIÓN (offline-first).
  *
  * Cada cambio local relevante para el servidor se registra como una

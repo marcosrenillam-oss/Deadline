@@ -1,0 +1,416 @@
+/*
+ * Unidades: 1cqi = 1 % del ancho del escenario (= 10 unidades de diseño).
+ * Las sombras caen hacia abajo-derecha: la lámpara está arriba-izquierda.
+ */
+
+/* ─── Carpeta ─────────────────────────────────────────────────────────────── */
+.folder {
+  position: absolute;
+  inset: 0;
+  perspective: 120cqi;
+}
+
+.folderBack {
+  position: absolute;
+  inset: 3% 0 0 2%;
+  border-radius: 0.4cqi 0.8cqi 0.6cqi 0.6cqi;
+  background: linear-gradient(160deg, #b29a6c, #957d52);
+  box-shadow: 1.2cqi 1.6cqi 2.4cqi rgba(0, 0, 0, 0.55), 0.2cqi 0.3cqi 0.4cqi rgba(0, 0, 0, 0.5);
+}
+
+.sheet {
+  position: absolute;
+  background: linear-gradient(180deg, #f1ebdc, #ddd2b8);
+  box-shadow: 0.2cqi 0.3cqi 0.6cqi rgba(0, 0, 0, 0.35);
+  padding: 2.2cqi 2cqi;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1cqi;
+}
+
+.sheetA {
+  inset: 6% -3% 9% 9%;
+  transform: rotate(3deg);
+}
+
+.sheetB {
+  inset: 12% 4% 4% 4%;
+  transform: rotate(-2.5deg);
+  background: linear-gradient(180deg, #e9e0c8, #d2c5a5);
+}
+
+.typedLine {
+  display: block;
+  height: 0.35cqi;
+  width: 80%;
+  margin-left: auto;
+  background: repeating-linear-gradient(90deg, rgba(42, 36, 26, 0.55) 0 0.5cqi, transparent 0.5cqi 0.7cqi);
+}
+
+.short {
+  width: 45%;
+}
+
+.photo {
+  position: absolute;
+  right: 6%;
+  bottom: 8%;
+  width: 34%;
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(135deg, #5f5d50, #24231e);
+  border: 0.6cqi solid #f0ebdf;
+  transform: rotate(4deg);
+}
+
+.folderCover {
+  position: absolute;
+  inset: 4% 1% 0 0;
+  border-radius: 0.4cqi 0.8cqi 0.6cqi 0.6cqi;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(255, 255, 255, 0.22), transparent 55%),
+    radial-gradient(ellipse at 90% 95%, rgba(80, 55, 20, 0.28), transparent 55%),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.018) 0 0.15cqi, transparent 0.15cqi 0.4cqi),
+    linear-gradient(170deg, #dcc596, #c4ad83 55%, #b29766);
+  box-shadow: inset 0 0 0 0.12cqi rgba(90, 70, 40, 0.35), 0.4cqi 0.6cqi 1.2cqi rgba(0, 0, 0, 0.35);
+  transform-origin: 0% 50%;
+  transition: transform var(--dur-slow) var(--ease-paper);
+  backface-visibility: hidden;
+}
+
+.folderTab {
+  position: absolute;
+  top: -3.4cqi;
+  left: 6%;
+  padding: 0.7cqi 2.4cqi 0.5cqi;
+  border-radius: 0.8cqi 0.8cqi 0 0;
+  background: linear-gradient(180deg, #e2cc9e, #d3bb8b);
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: 1.15cqi;
+  letter-spacing: 0.32em;
+  color: #5a4d37;
+}
+
+.folderLabel {
+  position: absolute;
+  top: 14%;
+  left: 10%;
+  right: 16%;
+  padding: 1.4cqi 1.8cqi;
+  background: linear-gradient(180deg, #f5efe1, #e8dfca);
+  box-shadow: 0.1cqi 0.15cqi 0.3cqi rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4cqi;
+  transform: rotate(-1deg);
+}
+
+.labelKicker {
+  font-family: var(--font-type);
+  font-size: 1cqi;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #762d2b;
+}
+
+.labelTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.6cqi;
+  line-height: 1;
+  color: #1c1914;
+}
+
+.labelRule {
+  height: 0.12cqi;
+  background: rgba(42, 36, 26, 0.35);
+  margin: 0.3cqi 0;
+}
+
+.labelMeta {
+  font-family: var(--font-type);
+  font-size: 1.05cqi;
+  color: #5a4d37;
+}
+
+.folderStamp {
+  position: absolute;
+  left: 18%;
+  bottom: 16%;
+  padding: 0.5cqi 1.4cqi 0.3cqi;
+  border: 0.3cqi solid currentColor;
+  border-radius: 0.4cqi;
+  color: rgba(118, 45, 43, 0.82);
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: 1.7cqi;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transform: rotate(-11deg);
+  mix-blend-mode: multiply;
+  mask-image: repeating-linear-gradient(97deg, #000 0 0.4cqi, rgba(0, 0, 0, 0.7) 0.4cqi 0.5cqi, #000 0.5cqi 1.1cqi);
+}
+
+.clip {
+  position: absolute;
+  top: -2.4cqi;
+  right: 14%;
+  width: 2.2cqi;
+  filter: drop-shadow(0.2cqi 0.3cqi 0.2cqi rgba(0, 0, 0, 0.5));
+}
+
+:global([data-opening='true']) .folderCover {
+  transform: rotateY(-62deg) translateX(-2%);
+}
+
+/* ─── Calendario de taco ──────────────────────────────────────────────────── */
+.calendar {
+  position: absolute;
+  inset: 0;
+  perspective: 80cqi;
+}
+
+.calStack {
+  position: absolute;
+  inset: 8% 0 0 0;
+  background: repeating-linear-gradient(180deg, #e7dfcb 0 0.25cqi, #b9ae95 0.25cqi 0.35cqi);
+  border-radius: 0.3cqi;
+  box-shadow: 1cqi 1.4cqi 2cqi rgba(0, 0, 0, 0.55);
+}
+
+.calPage,
+.calPageUnder {
+  position: absolute;
+  inset: 8% 0 4% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.3cqi;
+  background: linear-gradient(180deg, #f4efe3, #e4dcc8);
+  overflow: hidden;
+}
+
+.calPageUnder {
+  justify-content: center;
+  opacity: 0.6;
+}
+
+.calPage {
+  box-shadow: 0 0.2cqi 0.3cqi rgba(0, 0, 0, 0.2);
+  transform-origin: 50% 0%;
+  transition: transform var(--dur-slow) var(--ease-paper), opacity var(--dur-slow) var(--ease-paper);
+}
+
+.calHeader {
+  width: 100%;
+  padding: 1.6cqi 0 0.7cqi;
+  background: linear-gradient(180deg, #8a3632, #762d2b);
+  color: var(--ivory);
+  text-align: center;
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: 1.25cqi;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.calDay {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 7.6cqi;
+  line-height: 0.95;
+  margin-top: 0.8cqi;
+  color: #1c1914;
+}
+
+.calWeekday {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.7cqi;
+  color: #5a4d37;
+}
+
+.calDaily {
+  margin-top: auto;
+  margin-bottom: 1.1cqi;
+  padding-top: 0.6cqi;
+  border-top: 0.1cqi solid rgba(42, 36, 26, 0.3);
+  font-family: var(--font-type);
+  font-size: 1cqi;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #762d2b;
+}
+
+.calRings {
+  position: absolute;
+  top: 1.5%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 22%;
+}
+
+.calRings i {
+  width: 1.1cqi;
+  height: 1.9cqi;
+  border-radius: 0.6cqi;
+  background: linear-gradient(90deg, #6e6a62, #d6d2c8 45%, #77736a);
+  box-shadow: 0.2cqi 0.3cqi 0.3cqi rgba(0, 0, 0, 0.5);
+}
+
+:global([data-opening='true']) .calPage {
+  transform: rotateX(78deg) translateY(-6%);
+  opacity: 0.2;
+}
+
+/* ─── Libreta ─────────────────────────────────────────────────────────────── */
+.notebook {
+  position: absolute;
+  inset: 0;
+  perspective: 90cqi;
+}
+
+.nbPages {
+  position: absolute;
+  inset: 1.5% 0 1.5% 4%;
+  border-radius: 0 0.6cqi 0.6cqi 0;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 1.9cqi, rgba(61, 74, 107, 0.25) 1.9cqi 2cqi),
+    linear-gradient(90deg, #ddd3bc, #f2ecdd 12%);
+  box-shadow: 1cqi 1.4cqi 2cqi rgba(0, 0, 0, 0.5);
+  padding: 2.4cqi 1.8cqi;
+}
+
+.nbHand {
+  font-family: var(--font-hand);
+  font-size: 2cqi;
+  color: #3d4a6b;
+}
+
+.nbCover {
+  position: absolute;
+  inset: 0 1% 0 0;
+  border-radius: 0.5cqi 1cqi 1cqi 0.5cqi;
+  background:
+    radial-gradient(ellipse at 30% 20%, var(--nb-light), transparent 60%),
+    repeating-radial-gradient(circle at 40% 40%, rgba(0, 0, 0, 0.05) 0 0.12cqi, transparent 0.12cqi 0.3cqi),
+    linear-gradient(90deg, var(--nb-dark) 0 7%, var(--nb-cover) 9%, var(--nb-cover) 85%, var(--nb-dark));
+  box-shadow: inset 0 0 0 0.15cqi rgba(0, 0, 0, 0.35), inset 0.6cqi 0 0.6cqi rgba(255, 255, 255, 0.06);
+  transform-origin: 0% 50%;
+  transition: transform var(--dur-slow) var(--ease-paper);
+  backface-visibility: hidden;
+}
+
+.nbLabel {
+  position: absolute;
+  top: 18%;
+  left: 22%;
+  right: 22%;
+  padding: 0.8cqi 0.6cqi;
+  background: #ece4d0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0.1cqi 0.15cqi 0.3cqi rgba(0, 0, 0, 0.4);
+}
+
+.nbLabel span {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.2cqi;
+  line-height: 1;
+  color: #1c1914;
+}
+
+.nbLabel small {
+  font-family: var(--font-type);
+  font-size: 0.95cqi;
+  color: #5a4d37;
+}
+
+.nbBand {
+  position: absolute;
+  top: -1%;
+  bottom: -1%;
+  right: 14%;
+  width: 1.1cqi;
+  background: linear-gradient(90deg, #000, var(--nb-band) 40%, #3a3a3a 55%, var(--nb-band));
+  box-shadow: 0.3cqi 0 0.4cqi rgba(0, 0, 0, 0.5);
+}
+
+.pencil {
+  position: absolute;
+  right: -9%;
+  top: 6%;
+  height: 92%;
+  transform: rotate(4deg);
+  filter: drop-shadow(0.5cqi 0.6cqi 0.4cqi rgba(0, 0, 0, 0.55));
+}
+
+:global([data-opening='true']) .nbCover {
+  transform: rotateY(-80deg);
+}
+
+/* ─── Placa de identificación ─────────────────────────────────────────────── */
+.nameplate {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.4cqi;
+  background: linear-gradient(180deg, #e2c27a, #b08d4f 45%, #8e6d34);
+  box-shadow: inset 0 0.15cqi 0 rgba(255, 255, 255, 0.45), inset 0 -0.2cqi 0 rgba(0, 0, 0, 0.3), 0.8cqi 1cqi 1.4cqi rgba(0, 0, 0, 0.55);
+  color: #3b2a10;
+  text-shadow: 0 0.08cqi 0 rgba(255, 240, 200, 0.55);
+}
+
+.npRank {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.6cqi;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.npNumber {
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: 1.05cqi;
+  letter-spacing: 0.2em;
+}
+
+/* ─── Nota de bienvenida ──────────────────────────────────────────────────── */
+.note {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1.4cqi;
+  background: linear-gradient(180deg, #f3ecd8, #e6dbbf);
+  box-shadow: 0.6cqi 0.9cqi 1.2cqi rgba(0, 0, 0, 0.5);
+}
+
+.tape {
+  position: absolute;
+  top: -1cqi;
+  left: 35%;
+  width: 4.5cqi;
+  height: 1.8cqi;
+  background: rgba(230, 221, 201, 0.55);
+  transform: rotate(-6deg);
+  box-shadow: 0 0.1cqi 0.2cqi rgba(0, 0, 0, 0.15);
+}
+
+.noteText {
+  font-family: var(--font-hand);
+  font-size: 2.1cqi;
+  line-height: 1.05;
+  color: #3d4a6b;
+}

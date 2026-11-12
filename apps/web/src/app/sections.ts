@@ -16,6 +16,8 @@ export interface SectionDef {
   contents: string[];
   /** Etapa del plan en la que la sección pasa a ser funcional. */
   stage: number;
+  /** La sección ya está construida y operativa. */
+  ready: boolean;
 }
 
 export const SECTIONS: readonly SectionDef[] = [
@@ -27,6 +29,7 @@ export const SECTIONS: readonly SectionDef[] = [
     description: 'Todos los casos individuales del archivo, los ya resueltos y los que aún esperan en el cajón.',
     contents: ['Casos individuales', 'Expedientes resueltos', 'Búsqueda por título, número y palabras clave', 'Filtros por época, crimen, lugar, origen y estado'],
     stage: 3,
+    ready: false,
   },
   {
     id: 'daily',
@@ -36,15 +39,17 @@ export const SECTIONS: readonly SectionDef[] = [
     description: 'Un expediente nuevo cada día durante 500 días. Los que no se juegan pasan al archivo; ninguno se pierde.',
     contents: ['Expediente de hoy', 'Días anteriores', 'Progreso de los 500 diarios'],
     stage: 4,
+    ready: false,
   },
   {
     id: 'coop',
     path: '/telefono',
     object: 'Teléfono',
     title: 'Investigación en pareja',
-    description: 'Dos detectives, dos iPhone, un mismo expediente. Información compartida o dividida.',
-    contents: ['Amigos', 'Invitaciones', 'Salas de investigación'],
+    description: 'Dos detectives y un mismo expediente: en un solo iPhone pasándolo de mano en mano, o en dos iPhone intercambiando informes de campo.',
+    contents: ['Partida en un mismo dispositivo', 'Partida entre dos dispositivos con códigos e informes', 'Información compartida o dividida', 'Acusación conjunta'],
     stage: 6,
+    ready: false,
   },
   {
     id: 'history',
@@ -54,15 +59,17 @@ export const SECTIONS: readonly SectionDef[] = [
     description: 'El historial de cada caso abierto, cerrado o reabierto, mecanografiado línea a línea.',
     contents: ['Historial de investigaciones', 'Registro de actividad', 'Estadísticas personales'],
     stage: 7,
+    ready: false,
   },
   {
     id: 'settings',
     path: '/lampara',
     object: 'Lámpara',
     title: 'Ajustes',
-    description: 'Luz, sonido y comodidad de lectura de tu oficina.',
-    contents: ['Iluminación: intensidad y tonalidad', 'Música, efectos y ambiente', 'Hápticos', 'Tamaño de texto y reducción de animaciones'],
+    description: 'Luz, sonido y comodidad de lectura de tu oficina, su decoración y la copia de tu archivo.',
+    contents: ['Iluminación', 'Efectos y ambiente', 'Hápticos', 'Lectura y animaciones', 'Personalización de la oficina', 'Archivo personal: exportar e importar'],
     stage: 2,
+    ready: true,
   },
   {
     id: 'notebook',
@@ -72,6 +79,7 @@ export const SECTIONS: readonly SectionDef[] = [
     description: 'Notas personales, hipótesis y sospechas. Nada de lo que escribas aquí revela la solución.',
     contents: ['Notas personales', 'Apuntes de investigación', 'Teorías y deducciones', 'Recordatorios'],
     stage: 3,
+    ready: false,
   },
 ];
 

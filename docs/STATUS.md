@@ -1,66 +1,89 @@
 # Estado del proyecto
 
-Última actualización: Etapa 1.
+Última actualización: Etapa 2 (con el cambio a estrategia local-first).
 
 ## Etapas
 
 | Etapa | Estado |
 |---|---|
-| 1 · Arquitectura y estructura | **Completada** (pendiente de prueba en iPhone físico) |
-| 2 · The Detective's Desk | Pendiente |
-| 3 · Motor de expedientes | Modelo de datos y validador listos; interfaz pendiente |
-| 4 · Cronómetros, guardado y offline | Reglas puras listas (cronómetro, diarios, cola); integración pendiente |
-| 5 · Cuentas y backend | Propuesta escrita; **requiere tu confirmación** |
-| 6 · Cooperativo online | Pendiente |
-| 7 · Progresión y personalización | Definición de rangos y reglas base; pendiente |
+| 1 · Arquitectura y estructura | Completada; adaptada a local-first (ver `LOCAL_FIRST.md`) |
+| 2 · The Detective's Desk | **Completada** (pendiente de prueba en iPhone físico) |
+| 3 · Motor de expedientes | Modelo y validador listos; interfaz pendiente |
+| 4 · Cronómetros, guardado y offline | Reglas puras listas; integración pendiente |
+| 5 · ~~Cuentas y backend~~ → Perfil local y copias | Perfil local y exportar/importar **hechos**; no habrá cuentas (D-016) |
+| 6 · Cooperativo | Diseño sin servidor en `COOP.md`; implementación pendiente |
+| 7 · Progresión y personalización | Cosméticos de serie y equipamiento **hechos**; puntos, logros y desbloqueos pendientes |
 | 8 · Contenido, optimización y pruebas | Pendiente |
 
 ## Implementado y probado
 
-- Monorepo npm workspaces (`@deadline/core`, `@deadline/web`), TS estricto.
-- Esquema completo de expedientes (zod) y ficha de catálogo.
-- Lenguaje de condiciones/efectos y modelo de conocimiento del jugador.
-- Validador de expedientes: esquema + integridad + simulación de resolubilidad.
-- Modelo de estado del jugador: investigación (intento), registro por caso con
-  recompensas cobradas, tablero, cronología del jugador, notas.
-- Cronómetro por marcas de tiempo con blindaje de reloj y desfase de servidor.
-- Calendario de diarios con registro anti-retroceso y reconciliación.
-- Rangos (6 niveles), reglas base de puntos/reapertura/penalización de pistas.
-- Ajustes con valores por defecto tolerantes; se aplican a la interfaz
-  (escala de texto, luz, tono, reducción de animaciones).
-- IndexedDB v1 con 10 almacenes, índices y migraciones.
-- PWA: manifiesto, iconos, service worker (armazón offline), aviso de
-  actualización a elección del usuario.
-- Viewport `viewport-fit=cover`, zonas seguras, raíz fija sin rebote.
-- Invitación a girar en vertical sin desmontar la app.
-- Navegación entre secciones (pantallas que declaran su etapa, sin simular
-  funcionalidad), página 404 temática.
-- Pantalla de diagnóstico técnico real (modo, zonas seguras, IndexedDB,
-  almacenamiento, persistencia, service worker, prueba de escritura).
+### Etapa 1
+- Monorepo, TypeScript estricto, esquema y validador de expedientes,
+  condiciones, cronómetro, calendario diario, rangos, ajustes, IndexedDB,
+  PWA con armazón offline, zonas seguras, aviso de giro, diagnóstico.
+
+### Cambio a local-first
+- IndexedDB v2 (almacén `profile`) con migración desde v1.
+- Perfil local con número de investigador y letra de control.
+- Calendario diario que empieza el día del primer arranque.
+- **Archivo personal**: exportar (hoja de compartir o descarga), importar
+  con vista previa, fusionar o reemplazar, suma SHA-256, aviso de copia
+  antigua, estado del almacenamiento y solicitud de persistencia.
+- Publicación en GitHub Pages: subruta configurable, `404.html`,
+  `.nojekyll`, flujo de GitHub Actions (**preparado; requiere que lo actives**).
+
+### Etapa 2 · The Detective's Desk
+- Mesa cenital a pantalla completa: madera generada en el dispositivo, vade
+  de cuero, luz de lámpara con caída cinematográfica y polvo en el haz.
+- Seis objetos interactivos que son el menú: carpeta (archivo), calendario
+  (diario), teléfono (pareja), máquina de escribir (historial), lámpara
+  (ajustes), libreta (notas). Respuesta al toque, animación propia de cada
+  objeto al abrirse (la carpeta se abre, la hoja se arranca, el auricular se
+  levanta, el carro se desplaza, la libreta se abre, la lámpara parpadea),
+  sonido y háptico.
+- Datos reales sobre la mesa: fecha y diario del día en el calendario,
+  actividad y estado de conexión en la hoja de la máquina, nº de notas en
+  la libreta, rango y nº de investigador en la placa.
+- Cadenita de la lámpara: enciende/apaga la luz de la oficina (persistente).
+- Nota de bienvenida opcional (sin tutorial obligatorio) que se puede retirar
+  y volver a poner.
+- Ajustes completos (Lámpara): luz, sonido (efectos y ambiente sintetizados),
+  tacto, lectura, oficina, archivo personal.
+- Personalización inicial: mesa (3), lámpara (2), teléfono (2), máquina (2),
+  libreta (2), objeto personal (3). Cambia materiales, nunca la composición.
+- Escalado a cualquier pantalla horizontal con unidades de contenedor,
+  respetando zonas seguras.
 
 ## Pruebas
 
-- `@deadline/core`: 34 pruebas unitarias (validador, condiciones, cronómetro,
-  diarios, rangos, ajustes, utilidades).
-- `@deadline/web`: 5 pruebas (IndexedDB con fake-indexeddb, ajustes).
-- E2E (Chromium emulando iPhone 15): 18 comprobaciones — carga horizontal,
-  sin desbordamiento, zonas seguras simuladas, navegación, diagnóstico,
-  IndexedDB, 404, service worker, **arranque y navegación offline**, aviso de
-  giro en vertical y recuperación al girar, sin errores de consola.
+- `@deadline/core`: 42 pruebas (validador, condiciones, cronómetro, diarios,
+  rangos, ajustes, perfil, cosméticos, copias de seguridad).
+- `@deadline/web`: 9 pruebas (IndexedDB, ajustes, perfil, calendario,
+  exportar → restaurar en otro dispositivo, fusionar/reemplazar).
+- E2E (Chromium emulando iPhone 15): 37 comprobaciones — objetos de la mesa,
+  zonas seguras simuladas, nota de bienvenida, lámpara persistente,
+  navegación por objetos, ajustes persistentes, material de la mesa,
+  exportar/importar/rechazar copia manipulada, IndexedDB v2, 404, service
+  worker, arranque offline, giro a vertical y vuelta.
+- Build con `DEADLINE_BASE=/Deadline/`: navegación, alcance del service
+  worker, manifiesto, iconos y enlace profundo sin conexión verificados.
 
 ## No probado todavía
 
-- **iPhone físico** (Safari/WebKit real, notch real, instalación, modo
-  standalone, desalojo de almacenamiento). Necesita un despliegue HTTPS.
-- WebKit en automatizado (no está instalado en este entorno; solo Chromium).
+- **iPhone físico**: Safari/WebKit real, notch real, instalación, hápticos
+  de iOS, hoja de compartir, audio con modo silencio, rendimiento de las
+  capas de luz y del `canvas` de madera.
+- Publicación real en GitHub Pages (el flujo está escrito; hay que activarlo).
+- WebKit automatizado (no disponible en el entorno de desarrollo).
 
 ## Errores conocidos / deuda
 
 - Sin ESLint (incompatible con TypeScript 7 por ahora).
-- `npm audit` informa de avisos moderados en dependencias de compilación de
-  `workbox-build` (deepmerge, glob, minimatch). No llegan al bundle de la app;
-  se revisarán cuando haya versiones corregidas.
-- Bundle JS ≈ 138 KB gzip (zod v4 completo incluido). Se valorará `zod/mini`
-  o carga diferida en la Etapa 8.
+- `npm audit`: avisos moderados en dependencias de compilación de
+  `workbox-build`; no llegan al bundle.
+- Bundle JS ≈ 140 KB gzip; revisar `zod/mini` en la Etapa 8.
+- Un cambio de ajustes hecho milisegundos antes de cerrar a la fuerza la app
+  podría no llegar a guardarse (escritura asíncrona en IndexedDB).
+- Las secciones archivo, diario, pareja, historial y libreta siguen siendo
+  pantallas que indican su etapa.
 - Falta `apple-touch-startup-image` horizontal.
-- El escritorio actual es un índice provisional (lo sustituye la Etapa 2).
