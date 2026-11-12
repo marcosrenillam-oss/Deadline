@@ -15,6 +15,8 @@ const here = dirname(fileURLToPath(import.meta.url));
 const shots = join(here, '__screens__');
 mkdirSync(shots, { recursive: true });
 const BASE = 'http://localhost:4177';
+/** Espera (hasta 5 s) a que el elemento sea visible: evita carreras con el pintado asíncrono. */
+const visible = (locator) => locator.first().waitFor({ timeout: 5000 }).then(() => true, () => false);
 let failures = 0;
 const check = (cond, msg) => {
   console.log(`${cond ? '✔' : '✘'} ${msg}`);
@@ -216,7 +218,7 @@ try {
   check(true, 'Acusación completa con confesión: final «La última foto»');
   const total = Number((await p.locator('tr', { hasText: 'Total' }).locator('td').last().innerText()).trim());
   check(total > 800, `Puntuación obtenida: ${total}`);
-  check(await p.getByText('Caso resuelto').first().isVisible(), 'Informe con sello de caso resuelto');
+  check(await visible(p.getByText('Caso resuelto').first()), 'Informe con sello de caso resuelto');
   await p.screenshot({ path: join(shots, 'case-report.png') });
 
   // Modo archivo: todo consultable, lo omitido marcado

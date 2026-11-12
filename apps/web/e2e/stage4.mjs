@@ -16,6 +16,8 @@ const here = dirname(fileURLToPath(import.meta.url));
 const shots = join(here, '__screens__');
 mkdirSync(shots, { recursive: true });
 const BASE = 'http://localhost:4178';
+/** Espera (hasta 5 s) a que el elemento sea visible: evita carreras con el pintado asíncrono. */
+const visible = (locator) => locator.first().waitFor({ timeout: 5000 }).then(() => true, () => false);
 let failures = 0;
 const check = (cond, msg) => {
   console.log(`${cond ? '✔' : '✘'} ${msg}`);
@@ -67,15 +69,15 @@ try {
   await p.getByRole('button', { name: /^Calendario:/ }).click();
   await p.waitForURL('**/calendario');
   await p.getByText('Cenizas en el Celio').waitFor();
-  check(await p.getByText('Día 1 de 500').isVisible(), 'El calendario empieza en el día 1 de 500');
+  check(await visible(p.getByText('Día 1 de 500')), 'El calendario empieza en el día 1 de 500');
   await p.screenshot({ path: join(shots, 'calendar.png') });
   await p.getByText('Cenizas en el Celio').click();
   await p.getByRole('button', { name: /Romper el precinto/ }).click();
   await p.getByRole('timer').waitFor();
   await goto(D);
   await p.getByRole('heading', { name: 'Hechos documentados' }).waitFor();
-  check(await p.getByText('Inspirado en hechos reales').first().isVisible(), 'El diario muestra su origen real');
-  check(await p.getByRole('heading', { name: 'Recreación narrativa' }).isVisible(), 'Separa los hechos documentados de la recreación');
+  check(await visible(p.getByText('Inspirado en hechos reales').first()), 'El diario muestra su origen real');
+  check(await visible(p.getByRole('heading', { name: 'Recreación narrativa' })), 'Separa los hechos documentados de la recreación');
 
   // Descubrimientos antes de que se acabe el tiempo
   await open(/Informe del vigil/);
@@ -142,7 +144,7 @@ try {
   check(!!second && second.ev.includes('ev-alfiler') && second.ev.includes('ev-inventario'), 'Se conservan las evidencias descubiertas');
   check(!!second && second.asked.length === 0, 'Las conversaciones empiezan de cero');
   await goto(D);
-  check(await p.getByText(/Intento nº 2/).isVisible(), 'El historial registra el segundo intento');
+  check(await visible(p.getByText(/Intento nº 2/)), 'El historial registra el segundo intento');
 
   // ── Descarga verificada y juego sin conexión ─────────────────────────────
   await goto(`${BASE}/archivo`);

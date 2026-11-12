@@ -19,6 +19,8 @@ const shots = join(here, '__screens__');
 mkdirSync(shots, { recursive: true });
 const BASE = 'http://localhost:4173';
 
+/** Espera (hasta 5 s) a que el elemento sea visible: evita carreras con el pintado asíncrono. */
+const visible = (locator) => locator.first().waitFor({ timeout: 5000 }).then(() => true, () => false);
 let failures = 0;
 const check = (cond, msg) => {
   console.log(`${cond ? '✔' : '✘'} ${msg}`);
@@ -51,9 +53,9 @@ try {
   check(true, 'El escritorio carga en horizontal');
   check((await page.getByRole('dialog').count()) === 0, 'Sin aviso de giro en horizontal');
   for (const name of [/^Carpeta de expedientes/, /^Calendario:/, /^Teléfono:/, /^Máquina de escribir:/, /^Lámpara:/, /^Libreta:/]) {
-    check(await page.getByRole('button', { name }).isVisible(), `Objeto interactivo visible: ${name.source}`);
+    check(await visible(page.getByRole('button', { name })), `Objeto interactivo visible: ${name.source}`);
   }
-  check(await page.getByRole('img', { name: /^Placa: Novato, investigador DL-\d{5}-[A-Z]/ }).isVisible(), 'Placa con rango y número de investigador local');
+  check(await visible(page.getByRole('img', { name: /^Placa: Novato, investigador DL-\d{5}-[A-Z]/ })), 'Placa con rango y número de investigador local');
   const calLabel = await page.getByRole('button', { name: /^Calendario:/ }).getAttribute('aria-label');
   check(/Diario nº 1 de 500/.test(calLabel ?? ''), `El calendario arranca en el diario nº 1 (${calLabel})`);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
@@ -165,7 +167,7 @@ try {
 
   // Ruta inexistente
   await page.goto(BASE + '/no-existe');
-  check(await page.getByRole('heading', { name: 'Este expediente no figura en el archivo' }).isVisible(), 'Página 404 temática');
+  check(await visible(page.getByRole('heading', { name: 'Este expediente no figura en el archivo' })), 'Página 404 temática');
 
   // Service worker y arranque offline
   await page.goto(BASE);
@@ -182,7 +184,7 @@ try {
   const tw = await page.getByRole('button', { name: /^Máquina de escribir/ }).getAttribute('aria-label');
   check(/sin conexión/.test(tw ?? ''), 'Arranca sin conexión y lo indica en la máquina de escribir');
   await page.goto(BASE + '/libreta');
-  check(await page.getByRole('heading', { name: 'Libreta del investigador' }).isVisible(), 'Navegación offline a rutas profundas');
+  check(await visible(page.getByRole('heading', { name: 'Libreta del investigador' })), 'Navegación offline a rutas profundas');
   await ctx.setOffline(false);
 
   check(errors.length === 0, `Sin errores de consola${errors.length ? ': ' + errors.join(' | ') : ''}`);
@@ -193,12 +195,12 @@ try {
   const p = await pctx.newPage();
   await p.goto(BASE);
   await p.getByRole('dialog').waitFor();
-  check(await p.getByRole('heading', { name: 'Gira el dispositivo' }).isVisible(), 'En vertical invita a girar el dispositivo');
+  check(await visible(p.getByRole('heading', { name: 'Gira el dispositivo' })), 'En vertical invita a girar el dispositivo');
   check((await p.locator('[inert]').count()) === 1, 'La app queda inerte pero montada (no pierde estado)');
   await p.screenshot({ path: join(shots, 'portrait.png') });
   await p.setViewportSize({ width: 852, height: 393 });
   await p.getByRole('dialog').waitFor({ state: 'detached' });
-  check(await p.getByRole('button', { name: /^Carpeta de expedientes/ }).isVisible(), 'Al girar aparece el escritorio sin recargar');
+  check(await visible(p.getByRole('button', { name: /^Carpeta de expedientes/ })), 'Al girar aparece el escritorio sin recargar');
   await pctx.close();
 } finally {
   await browser.close();
