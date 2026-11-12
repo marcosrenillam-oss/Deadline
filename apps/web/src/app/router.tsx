@@ -5,6 +5,7 @@ import { DiagnosticsScene } from '../scenes/diagnostics/DiagnosticsScene.tsx';
 import { SettingsScene } from '../scenes/settings/SettingsScene.tsx';
 import { ArchiveScene } from '../scenes/archive/ArchiveScene.tsx';
 import { NotebookScene } from '../scenes/notebook/NotebookScene.tsx';
+import { CalendarScene } from '../scenes/calendar/CalendarScene.tsx';
 import { CaseScene } from '../scenes/case/CaseScene.tsx';
 import { DossierTab } from '../scenes/case/DossierTab.tsx';
 import { EvidenceTab } from '../scenes/case/EvidenceTab.tsx';
@@ -54,6 +55,7 @@ export const router = createBrowserRouter([
       { path: 'lampara', element: <SettingsScene /> },
       { path: 'archivo', element: <ArchiveScene /> },
       { path: 'libreta', element: <NotebookScene /> },
+      { path: 'calendario', element: <CalendarScene /> },
       {
         path: 'expediente/:caseId',
         element: <CaseScene />,

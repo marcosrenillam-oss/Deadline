@@ -188,3 +188,33 @@ qué es cierto, no en adivinar el orden.
 Carril izquierdo con las cinco secciones, libreta, contradicción, pistas y
 acusación siempre a mano; reloj arriba. Sin cabecera convencional. Cabe en
 un iPhone en horizontal con objetivos táctiles de 44 pt.
+
+---
+
+## Etapa 4 · Cronómetros, reapertura y offline
+
+### D-034 · Tapar no es pausar
+El reloj se puede tapar (tocándolo) para ocultar el expediente, pero nunca
+se detiene: así lo pide el diseño y así se le dice al jugador.
+
+### D-035 · Lo descubierto se cobra también al agotarse el tiempo
+Antes, cerrar por tiempo daba 0 puntos. Ahora se cobran los descubrimientos
+(una sola vez), nunca la acusación. Motivo: sin esto, un jugador que agota
+el tiempo en su primer caso no podría pagar nunca una reapertura.
+
+### D-036 · Qué conserva una reapertura
+Evidencias, detalles, hechos, fichas de cronología, deducciones, tablero,
+cronología del jugador y notas. Se reinician preguntas, contradicciones,
+secretos y marcas: hay que volver a interrogar. Encaja con «se mantienen
+las evidencias y notas» sin regalar la resolución.
+
+### D-037 · Descargas con verificación y caché compartida
+El gestor de descargas escribe en la misma Cache Storage que consulta el
+service worker (CacheFirst para recursos, NetworkFirst para JSON). Las URLs
+de recursos llevan la huella del contenido (`?v=`) para que una corrección
+publicada no conviva con una copia antigua. El armazón de la app no
+precachea `content/`.
+
+### D-038 · Precarga de diarios
+Se descargan por adelantado los diarios de los próximos 7 días cuando hay
+conexión, de modo que el desbloqueo diario no depende de tenerla.

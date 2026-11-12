@@ -39,7 +39,7 @@ export const SECTIONS: readonly SectionDef[] = [
     description: 'Un expediente nuevo cada día durante 500 días. Los que no se juegan pasan al archivo; ninguno se pierde.',
     contents: ['Expediente de hoy', 'Días anteriores', 'Progreso de los 500 diarios'],
     stage: 4,
-    ready: false,
+    ready: true,
   },
   {
     id: 'coop',

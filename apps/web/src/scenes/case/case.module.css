@@ -458,6 +458,8 @@
 
 .clock {
   flex: 1;
+  border: 0;
+  cursor: pointer;
   min-height: var(--touch);
   display: grid;
   place-items: center;
@@ -1408,4 +1410,59 @@
 
 .trueTimeline li[data-key]::marker {
   color: var(--seal);
+}
+
+/* ─── Pausa (el reloj sigue) ─────────────────────────────────────────────── */
+.pause {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--pad-top) var(--pad-right) var(--pad-bottom) var(--pad-left);
+  text-align: center;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(196, 173, 131, 0.16), transparent 70%),
+    linear-gradient(170deg, #b29766, #8f7650);
+  animation: scene-in var(--dur-med) var(--ease-paper) both;
+}
+
+.pauseKicker {
+  margin: 0;
+  font-family: var(--font-type);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #3b2a10;
+}
+
+.pauseTime {
+  margin: 0;
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: var(--fs-3xl);
+  color: #1c1914;
+  font-variant-numeric: tabular-nums;
+}
+
+.pauseText {
+  margin: 0 0 var(--sp-2);
+  max-width: 44ch;
+  font-family: var(--font-hand);
+  font-size: var(--fs-lg);
+  color: #2c3856;
+}
+
+/* ─── Reapertura ─────────────────────────────────────────────────────────── */
+.reopen {
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-2);
+  border-top: 1px dashed rgba(42, 36, 26, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-1);
 }

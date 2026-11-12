@@ -1,0 +1,1806 @@
+{
+  "schemaVersion": 1,
+  "id": "DL-D-0001",
+  "contentVersion": 1,
+  "mode": "daily",
+  "dailyIndex": 0,
+  "title": "Cenizas en el Celio",
+  "subtitle": "Un prestamista muerto la noche en que ardió Roma",
+  "origin": "real",
+  "historical": {
+    "documented": [
+      "En julio del año 64 un gran incendio arrasó buena parte de Roma. Comenzó en las tiendas del Circo Máximo próximas al Palatino y al Celio, donde había mercancías inflamables (Tácito, Anales XV, 38).",
+      "Tácito lo fecha el día decimocuarto antes de las calendas de agosto (19 de julio) y señala que coincidía con la fecha en que los galos senones incendiaron la ciudad siglos antes (Anales XV, 41).",
+      "Duró seis días; se contuvo al pie del Esquilino derribando edificios para dejarle sin combustible, y después rebrotó (Anales XV, 40).",
+      "Nerón estaba en Antium y volvió cuando el fuego se acercaba a su residencia; abrió el Campo de Marte, los monumentos de Agripa y sus propios jardines a quienes lo habían perdido todo (Anales XV, 39).",
+      "De las catorce regiones de Roma, cuatro quedaron intactas, tres arrasadas y en las otras siete apenas quedaron restos de casas (Anales XV, 40).",
+      "Roma contaba con un cuerpo de vigiles, creado por Augusto, encargado de los incendios y de la vigilancia nocturna."
+    ],
+    "hypotheses": [
+      "Tácito dice que no se sabe si el fuego fue fortuito o provocado por el emperador; Suetonio y Dion Casio culpan a Nerón. Los historiadores actuales lo discuten.",
+      "Nerón culpó a los cristianos y los castigó con crueldad (Anales XV, 44)."
+    ],
+    "dramatized": [
+      "Lucio Vetio Rufo, su casa del Celio, su familia, sus deudores y su asesinato son inventados.",
+      "La hora a la que el humo llegó a esta parte del Celio y la cronología de esa noche son una recreación.",
+      "La investigación por parte de un oficial de los vigiles es una licencia narrativa: no consta un caso así."
+    ],
+    "documentedResolution": "El incendio no tiene un culpable demostrado con certeza. El crimen de este expediente es ficción; su solución es la del propio expediente.",
+    "sources": [
+      "Tácito, Anales, XV 38–44",
+      "Suetonio, Vida de Nerón, 38",
+      "Dion Casio, Historia romana, LXII 16–18"
+    ]
+  },
+  "era": "antiquity",
+  "eraLabel": "Roma, año 64 d. C.",
+  "year": 64,
+  "location": {
+    "city": "Roma",
+    "place": "Casa de Lucio Vetio Rufo, en el Celio",
+    "country": "Imperio romano"
+  },
+  "category": "homicide",
+  "difficulty": "detective",
+  "keywords": [
+    "Roma",
+    "incendio",
+    "Nerón",
+    "vigiles",
+    "prestamista",
+    "pagaré",
+    "ámbar",
+    "panadería"
+  ],
+  "ambience": {
+    "music": "rome-64-fire",
+    "mood": "tense"
+  },
+  "maxHints": 4,
+  "briefing": {
+    "incidentDisplay": "Noche del 19 al 20 de julio del año 64",
+    "summary": "Mientras el fuego devora el valle del Circo, el prestamista Lucio Vetio Rufo aparece muerto en el despacho de su casa del Celio, con el arca abierta. Todo apunta a un saqueo aprovechando el caos.",
+    "context": "Su liberto Filón, que había llevado a la familia a ponerse a salvo junto a la puerta Capena, lo encontró al volver al amanecer. Los vigiles de la cohorte del Celio tienen otras cosas que hacer esta semana, así que el tribuno te encarga el asunto.",
+    "background": "Rufo, de cincuenta y cinco años, es dueño de varias ínsulas y presta dinero a comerciantes de toda la ciudad. Viudo y sin hijos, su heredero es su sobrino. El fuego se detuvo a pocas calles de su casa: solo la alcanzó el humo.",
+    "victim": "ch-rufo",
+    "initialFacts": [],
+    "initialEvidence": [
+      "ev-informe",
+      "ev-medico",
+      "ev-portero"
+    ],
+    "initialTimeline": [
+      "te-fuego",
+      "te-muerte",
+      "te-hallazgo"
+    ]
+  },
+  "characters": [
+    {
+      "id": "ch-rufo",
+      "name": "Lucio Vetio Rufo",
+      "role": "victim",
+      "age": 55,
+      "occupation": "Prestamista y propietario de ínsulas",
+      "summary": "Medía a las personas por lo que le debían.",
+      "biography": "Hijo de un liberto enriquecido con el comercio de aceite, multiplicó la fortuna prestando a interés. Era puntual con los vencimientos y nunca perdonaba uno.",
+      "personality": [
+        "Metódico",
+        "Avaro",
+        "Desconfiado"
+      ]
+    },
+    {
+      "id": "ch-filon",
+      "name": "Filón",
+      "role": "suspect",
+      "age": 40,
+      "occupation": "Liberto y administrador de la casa",
+      "summary": "Lleva las llaves, las cuentas y los secretos de su antiguo amo.",
+      "biography": "Nacido esclavo en Alejandría, manumitido hace seis años. Administra la casa y las cuentas de Rufo. Vive con Glícera, una esclava de otra casa cuya libertad intenta comprar.",
+      "personality": [
+        "Leal",
+        "Meticuloso",
+        "Teme perderlo todo"
+      ],
+      "relationToVictim": "Su antiguo esclavo, ahora su administrador",
+      "motive": {
+        "text": "Había sacado dinero del arca para comprar la libertad de Glícera.",
+        "visibleWhen": {
+          "secret": "se-filon"
+        }
+      },
+      "alibi": {
+        "claim": "Guiando a la familia hasta la puerta Capena y cuidándola allí toda la noche."
+      }
+    },
+    {
+      "id": "ch-gayo",
+      "name": "Gayo Anio Fausto",
+      "role": "suspect",
+      "age": 24,
+      "occupation": "Sobrino y heredero",
+      "summary": "Debe dinero en media Subura.",
+      "biography": "Hijo de la difunta hermana de Rufo. Elegante, simpático y arruinado. Su tío le cerró la bolsa en junio.",
+      "personality": [
+        "Encantador",
+        "Impulsivo",
+        "Jugador"
+      ],
+      "relationToVictim": "Sobrino y único heredero",
+      "motive": {
+        "text": "Hereda la fortuna de su tío.",
+        "visibleWhen": {
+          "fact": "fa-gayo-heredero"
+        }
+      },
+      "alibi": {
+        "claim": "Pasando cubos con los vigiles junto al Circo hasta el amanecer."
+      }
+    },
+    {
+      "id": "ch-marcia",
+      "name": "Marcia Prisca",
+      "role": "suspect",
+      "age": 38,
+      "occupation": "Panadera viuda del Vico Tusco",
+      "summary": "Su horno estaba en el camino del fuego.",
+      "biography": "Heredó de su marido un obrador en el Vico Tusco, junto al Foro. Lo ha sacado adelante sola, con dos esclavos y muchas deudas. Lleva siempre el pelo recogido con los alfileres de ámbar que él le regaló.",
+      "personality": [
+        "Orgullosa",
+        "Trabajadora",
+        "Firme bajo presión"
+      ],
+      "motive": {
+        "text": "Debía 20.000 sestercios a Rufo, con su horno como garantía, a pagar en las calendas de agosto.",
+        "visibleWhen": {
+          "fact": "fa-marcia-deuda"
+        }
+      },
+      "alibi": {
+        "claim": "En su horno toda la noche, salvando la harina del fuego."
+      },
+      "appearsWhen": {
+        "any": [
+          {
+            "fact": "fa-marcia-deuda"
+          },
+          {
+            "fact": "fa-ambar-marcia"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch-davo",
+      "name": "Davo",
+      "role": "witness",
+      "age": 60,
+      "occupation": "Portero (ostiarius) de la casa",
+      "summary": "Cuarenta años abriendo y cerrando la misma puerta.",
+      "biography": "Esclavo de la casa desde niño. Fue el último en salir aquella noche.",
+      "personality": [
+        "Observador",
+        "Supersticioso"
+      ]
+    },
+    {
+      "id": "ch-siro",
+      "name": "Siro",
+      "role": "witness",
+      "age": 30,
+      "occupation": "Esclavo panadero de Marcia Prisca",
+      "summary": "Amasa desde antes del alba desde que tiene memoria.",
+      "biography": "Trabaja en el horno del Vico Tusco desde que lo compró el difunto marido de Marcia.",
+      "personality": [
+        "Honrado",
+        "Asustado"
+      ],
+      "appearsWhen": {
+        "evidence": "ev-siro"
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "lo-casa",
+      "name": "Casa de Rufo",
+      "description": "Una domus en la ladera del Celio que mira al valle del Circo."
+    },
+    {
+      "id": "lo-tablinum",
+      "name": "Tablinum (despacho)",
+      "description": "Donde Rufo guardaba el arca y sus cuentas."
+    },
+    {
+      "id": "lo-horno",
+      "name": "Horno de Marcia Prisca",
+      "description": "En el Vico Tusco, entre el Foro y el Velabro.",
+      "appearsWhen": {
+        "fact": "fa-marcia-deuda"
+      }
+    },
+    {
+      "id": "lo-capena",
+      "name": "Puerta Capena",
+      "description": "Donde se refugió la familia de Rufo."
+    }
+  ],
+  "relationships": [
+    {
+      "id": "re-filon",
+      "a": "ch-rufo",
+      "b": "ch-filon",
+      "label": "Patrono y liberto"
+    },
+    {
+      "id": "re-gayo",
+      "a": "ch-rufo",
+      "b": "ch-gayo",
+      "label": "Tío y sobrino heredero"
+    },
+    {
+      "id": "re-marcia",
+      "a": "ch-rufo",
+      "b": "ch-marcia",
+      "label": "Acreedor y deudora",
+      "visibleWhen": {
+        "fact": "fa-marcia-deuda"
+      }
+    },
+    {
+      "id": "re-siro",
+      "a": "ch-marcia",
+      "b": "ch-siro",
+      "label": "Ama y esclavo",
+      "visibleWhen": {
+        "evidence": "ev-siro"
+      }
+    }
+  ],
+  "facts": [
+    {
+      "id": "fa-monedas",
+      "text": "En el arca abierta sigue una bolsa con unos tres mil sestercios.",
+      "important": true
+    },
+    {
+      "id": "fa-no-fuego",
+      "text": "Rufo murió de un golpe en la sien antes de que el humo llegara a la casa.",
+      "important": true
+    },
+    {
+      "id": "fa-candelabro",
+      "text": "El arma fue el candelabro de bronce del despacho."
+    },
+    {
+      "id": "fa-sello-delfin",
+      "text": "El anillo de sello de Rufo lleva grabado un delfín."
+    },
+    {
+      "id": "fa-le-abrio",
+      "text": "Rufo abrió él mismo la puerta a una mujer velada que dijo traer un pago.",
+      "important": true
+    },
+    {
+      "id": "fa-velada-ambar",
+      "text": "La mujer velada llevaba alfileres de ámbar como el hallado bajo el lecho.",
+      "important": true
+    },
+    {
+      "id": "fa-vencimientos",
+      "text": "Del arca falta solo el cofrecillo de los pagarés que vencían en las calendas de agosto.",
+      "important": true
+    },
+    {
+      "id": "fa-no-saqueo",
+      "text": "No fue un saqueo: quien entró dejó el dinero y se llevó los pagarés que vencían en agosto.",
+      "important": true
+    },
+    {
+      "id": "fa-marcia-deuda",
+      "text": "Marcia Prisca debía 20.000 sestercios a Rufo, con su horno como garantía, a pagar en las calendas de agosto.",
+      "important": true
+    },
+    {
+      "id": "fa-prestamo-filon",
+      "text": "Filón anotó un préstamo de 500 sestercios del arca a sí mismo."
+    },
+    {
+      "id": "fa-gayo-heredero",
+      "text": "Gayo es el único heredero de su tío."
+    },
+    {
+      "id": "fa-gayo-coartada",
+      "text": "Gayo pasó la noche en una taberna del Esquilino, ante una docena de testigos."
+    },
+    {
+      "id": "fa-ambar-marcia",
+      "text": "Marcia Prisca lleva siempre el pelo sujeto con alfileres de ámbar."
+    },
+    {
+      "id": "fa-falta-alfiler",
+      "text": "A Marcia le falta uno de sus dos alfileres de ámbar."
+    },
+    {
+      "id": "fa-marcia-salio",
+      "text": "Marcia dejó su horno «una hora» para ir a ver al prestamista.",
+      "important": true
+    },
+    {
+      "id": "fa-tablillas-horno",
+      "text": "Al volver, Marcia echó unas tablillas al horno.",
+      "important": true
+    },
+    {
+      "id": "fa-tablillas-rufo",
+      "text": "Las tablillas quemadas en el horno de Marcia llevaban el sello del delfín de Rufo.",
+      "important": true
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-informe",
+      "kind": "report",
+      "title": "Informe del vigil",
+      "dated": "Día 13 antes de las calendas de agosto",
+      "source": "Cohorte de vigiles del Celio",
+      "summary": "Lo que encontraron al llegar a la casa.",
+      "related": {
+        "characters": [
+          "ch-rufo",
+          "ch-filon"
+        ],
+        "locations": [
+          "lo-casa",
+          "lo-tablinum"
+        ],
+        "events": [
+          "te-hallazgo"
+        ]
+      },
+      "body": [
+        {
+          "type": "heading",
+          "text": "AL TRIBUNO DE LA COHORTE, SALUD"
+        },
+        {
+          "type": "typed",
+          "text": "Al amanecer acudimos a la casa de Lucio Vetio Rufo, en el Celio, avisados por su liberto Filón. La puerta de la calle no estaba forzada. El fuego no llegó a la casa: solo hay hollín en las paredes del atrio, que da al valle."
+        },
+        {
+          "type": "typed",
+          "text": "En el tablinum yacía el dueño, con la cabeza ensangrentada. {{dt-candelabro|Junto a él, el candelabro de bronce del despacho, con sangre y cabellos en la base.}} El arca de hierro estaba abierta y revuelta; {{dt-monedas|dentro seguía una bolsa de cuero con unos tres mil sestercios.}}"
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-bajo-lecho|Bajo el lecho de lectura, entre el polvo, recogimos un alfiler de pelo con la cabeza de ámbar.}}"
+        },
+        {
+          "type": "typed",
+          "text": "Con media ciudad ardiendo, no podemos destinar más hombres. Que el tribuno decida."
+        },
+        {
+          "type": "signature",
+          "name": "Sexto, vigil de la III cohorte"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-candelabro",
+          "label": "El candelabro ensangrentado",
+          "description": "El arma estaba en el propio despacho.",
+          "effects": [
+            {
+              "grantFact": "fa-candelabro"
+            }
+          ],
+          "points": 10
+        },
+        {
+          "id": "dt-monedas",
+          "label": "El dinero sigue en el arca",
+          "description": "Un saqueador no se habría dejado tres mil sestercios.",
+          "effects": [
+            {
+              "grantFact": "fa-monedas"
+            }
+          ],
+          "points": 15
+        },
+        {
+          "id": "dt-bajo-lecho",
+          "label": "Un alfiler de ámbar",
+          "description": "Un objeto caro, y no de Rufo.",
+          "effects": [
+            {
+              "grantEvidence": "ev-alfiler"
+            }
+          ],
+          "points": 20
+        }
+      ]
+    },
+    {
+      "id": "ev-medico",
+      "kind": "report",
+      "title": "Examen del médico",
+      "source": "Asclepíades, médico de la cohorte",
+      "summary": "Cómo murió Rufo, y cuándo.",
+      "related": {
+        "characters": [
+          "ch-rufo"
+        ],
+        "locations": [
+          "lo-tablinum"
+        ],
+        "events": [
+          "te-muerte"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "Golpe en la sien izquierda con un objeto pesado de borde duro. La muerte fue rápida."
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-hollin|Ni en la boca ni en la nariz hay hollín: no respiraba cuando el humo llegó a la casa.}} Murió, pues, en las primeras horas de la noche."
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-anillo|En el anular izquierdo conserva su anillo de sello, de oro, con un delfín grabado.}} Quien lo mató no se lo quitó."
+        },
+        {
+          "type": "signature",
+          "name": "Asclepíades"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-hollin",
+          "label": "Sin hollín en la boca",
+          "description": "Ya estaba muerto antes de que llegara el humo: no fue el incendio.",
+          "effects": [
+            {
+              "grantFact": "fa-no-fuego"
+            }
+          ],
+          "points": 15
+        },
+        {
+          "id": "dt-anillo",
+          "label": "El sello del delfín",
+          "description": "Todos sus documentos llevan esa marca.",
+          "effects": [
+            {
+              "grantFact": "fa-sello-delfin"
+            }
+          ],
+          "points": 10
+        }
+      ],
+      "points": 5
+    },
+    {
+      "id": "ev-portero",
+      "kind": "statement",
+      "title": "Declaración de Davo, el portero",
+      "source": "Tomada en el atrio de la casa",
+      "summary": "El último en salir de la casa aquella noche.",
+      "related": {
+        "characters": [
+          "ch-davo",
+          "ch-rufo"
+        ],
+        "locations": [
+          "lo-casa"
+        ],
+        "events": [
+          "te-desalojo",
+          "te-velada"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—Cuando se vio el resplandor sobre el Circo, el amo mandó a todos con Filón hacia la puerta Capena. Él se quedó: dijo que no dejaba el arca ni aunque bajara Vulcano en persona."
+        },
+        {
+          "type": "typed",
+          "text": "—Yo fui el último en salir, a la segunda hora de la noche. Al cerrar la puerta llegó una mujer velada, con un farol. {{dt-pelo|Llevaba el pelo recogido con alfileres que brillaban como miel a la luz del farol.}}"
+        },
+        {
+          "type": "quote",
+          "text": "Dijo que traía un pago. El amo bajó y le abrió él mismo. Me mandó marchar.",
+          "lineId": "ln-davo"
+        },
+        {
+          "type": "signature",
+          "name": "Davo, ostiarius (marca con una cruz)"
+        }
+      ],
+      "onExamine": [
+        {
+          "grantFact": "fa-le-abrio"
+        },
+        {
+          "unlockTimelineEvent": "te-desalojo"
+        },
+        {
+          "unlockTimelineEvent": "te-velada"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-pelo",
+          "label": "Alfileres que brillaban como miel",
+          "description": "Así brilla el ámbar a la luz de una llama.",
+          "effects": [],
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "ev-alfiler",
+      "kind": "object",
+      "title": "Alfiler de pelo con cabeza de ámbar",
+      "source": "Bajo el lecho del tablinum",
+      "summary": "Un adorno caro, perdido en el lugar del crimen.",
+      "related": {
+        "characters": [],
+        "locations": [
+          "lo-tablinum"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Alfiler de hueso pulido, largo como un dedo, rematado por una cabeza de ámbar del norte tallada en forma de piña. El ámbar se paga en Roma casi como el oro. Es la pareja de otro: estos alfileres se llevan de dos en dos."
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-inventario",
+      "kind": "record",
+      "title": "Inventario del arca",
+      "source": "Hecho por Filón al volver",
+      "summary": "Lo que había y lo que falta.",
+      "related": {
+        "characters": [
+          "ch-filon",
+          "ch-rufo"
+        ],
+        "locations": [
+          "lo-tablinum"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Contenido",
+            "Estado"
+          ],
+          "rows": [
+            [
+              "Bolsa de cuero con sestercios (unos 3.000)",
+              "Presente"
+            ],
+            [
+              "Collar de oro de la difunta señora",
+              "Presente"
+            ],
+            [
+              "Libro de cuentas en tablillas",
+              "Presente"
+            ],
+            [
+              "Pagarés cancelados (atados con cinta)",
+              "Presentes"
+            ],
+            [
+              "{{dt-cofrecillo|Cofrecillo con los pagarés que vencen en las calendas de agosto}}",
+              "FALTA"
+            ]
+          ]
+        },
+        {
+          "type": "handwritten",
+          "text": "Solo falta eso. Por los dioses, ¿qué ladrón deja el oro?",
+          "author": "Filón, al margen"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-cofrecillo",
+          "label": "Solo faltan los vencimientos de agosto",
+          "description": "Quien abrió el arca sabía lo que buscaba.",
+          "effects": [
+            {
+              "grantFact": "fa-vencimientos"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "points": 5
+    },
+    {
+      "id": "ev-codex",
+      "kind": "record",
+      "title": "Libro de cuentas de Rufo",
+      "source": "Arca del tablinum",
+      "summary": "Tablillas enceradas con préstamos y vencimientos.",
+      "related": {
+        "characters": [
+          "ch-rufo",
+          "ch-filon",
+          "ch-marcia"
+        ],
+        "locations": [
+          "lo-tablinum"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "heading",
+          "text": "VENCEN EN LAS CALENDAS DE AGOSTO"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Deudor",
+            "Suma",
+            "Garantía"
+          ],
+          "rows": [
+            [
+              "{{dt-marcia|Marcia Prisca, panadera del Vico Tusco}}",
+              "20.000 HS",
+              "Su horno y su obrador"
+            ],
+            [
+              "Quinto Lolio, tintorero",
+              "4.000 HS",
+              "Sus tinas"
+            ],
+            [
+              "Aulo Cerdo, carretero",
+              "1.500 HS",
+              "Dos mulas"
+            ]
+          ]
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-filon|A Filón, de la propia arca, 500 HS, devolverá de su peculio.}} (Letra de Filón.)"
+        },
+        {
+          "type": "handwritten",
+          "text": "Lo de la panadera: no hay prórroga. El horno vale el doble.",
+          "author": "Letra de Rufo"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-marcia",
+          "label": "La deuda de Marcia Prisca",
+          "description": "La mayor de las que vencían en agosto, garantizada con su horno.",
+          "effects": [
+            {
+              "grantFact": "fa-marcia-deuda"
+            }
+          ],
+          "points": 20
+        },
+        {
+          "id": "dt-filon",
+          "label": "Un préstamo de Filón a sí mismo",
+          "description": "El administrador se prestó dinero del arca.",
+          "effects": [
+            {
+              "grantFact": "fa-prestamo-filon"
+            }
+          ],
+          "points": 10
+        }
+      ],
+      "points": 5
+    },
+    {
+      "id": "ev-lista-vigiles",
+      "kind": "record",
+      "title": "Lista de voluntarios de los vigiles",
+      "source": "Puesto de los vigiles junto al Circo",
+      "summary": "Quiénes ayudaron con los cubos esa noche.",
+      "autoDiscoverWhen": {
+        "asked": "q-gayo-noche"
+      },
+      "related": {
+        "characters": [
+          "ch-gayo"
+        ],
+        "locations": [],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "Ciudadanos que se presentaron a pasar cubos en la cadena del Circo la primera noche (se anotaba el nombre para entregarles después una ración de pan):"
+        },
+        {
+          "type": "typed",
+          "text": "Tiberio Celso · Marco Opilio · los hermanos Varrón · Cayo Pansa · Lucio Ateyo… y cuarenta y tres nombres más. {{dt-sin-gayo|Ningún Anio. Ningún Fausto.}}"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-sin-gayo",
+          "label": "Gayo no está en la lista",
+          "description": "Nadie anotó a Gayo Anio Fausto.",
+          "effects": [],
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "ev-siro",
+      "kind": "statement",
+      "title": "Declaración de Siro, esclavo de Marcia",
+      "source": "Tomada ante las ruinas del horno",
+      "summary": "El esclavo que debía confirmar la coartada de su ama.",
+      "related": {
+        "characters": [
+          "ch-siro",
+          "ch-marcia"
+        ],
+        "locations": [
+          "lo-horno"
+        ],
+        "events": [
+          "te-marcia-sale",
+          "te-tablillas"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—La señora estuvo aquí, sí. Casi toda la noche. Salvamos la harina que pudimos."
+        },
+        {
+          "type": "typed",
+          "text": "—{{dt-una-hora|Bueno… salió una hora. Dijo que iba a ver al prestamista, a pedirle más plazo con la ciudad ardiendo.}} Se llevó el velo y el farol."
+        },
+        {
+          "type": "typed",
+          "text": "—{{dt-al-horno|Cuando volvió no dijo nada. Echó unas tablillas al fuego del horno y se quedó mirando cómo ardían.}} Yo no pregunté. No se pregunta."
+        },
+        {
+          "type": "signature",
+          "name": "Siro (marca con una cruz)"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-una-hora",
+          "label": "Salió una hora",
+          "description": "Marcia dejó el horno para ir a ver a Rufo.",
+          "effects": [
+            {
+              "grantFact": "fa-marcia-salio"
+            },
+            {
+              "unlockTimelineEvent": "te-marcia-sale"
+            }
+          ],
+          "points": 20
+        },
+        {
+          "id": "dt-al-horno",
+          "label": "Tablillas al fuego",
+          "description": "Al volver quemó unos documentos.",
+          "effects": [
+            {
+              "grantFact": "fa-tablillas-horno"
+            },
+            {
+              "unlockTimelineEvent": "te-tablillas"
+            }
+          ],
+          "points": 20
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-cenizas",
+      "kind": "physical",
+      "title": "Restos del horno de Marcia",
+      "source": "Registro del horno del Vico Tusco",
+      "summary": "Lo que no terminó de arder.",
+      "autoDiscoverWhen": {
+        "fact": "fa-tablillas-horno"
+      },
+      "related": {
+        "characters": [
+          "ch-marcia"
+        ],
+        "locations": [
+          "lo-horno"
+        ],
+        "events": [
+          "te-tablillas"
+        ]
+      },
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Entre las cenizas de la boca del horno, los marcos calcinados de varias tablillas de madera, con la cera derretida. En uno de ellos, {{dt-sello-ceniza|una gota de lacre ennegrecida conserva medio delfín grabado.}}"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-sello-ceniza",
+          "label": "Medio delfín en el lacre",
+          "description": "Un sello que ya has visto antes.",
+          "effects": [],
+          "points": 15
+        }
+      ],
+      "decisive": true,
+      "points": 15
+    }
+  ],
+  "deductions": [
+    {
+      "id": "de-saqueo",
+      "title": "No fue un saqueo",
+      "combine": [
+        "dt-monedas",
+        "dt-cofrecillo"
+      ],
+      "explanation": "El ladrón dejó tres mil sestercios y un collar de oro, y se llevó solo los pagarés que vencían en agosto: buscaba documentos, no dinero.",
+      "effects": [
+        {
+          "grantFact": "fa-no-saqueo"
+        }
+      ],
+      "points": 30
+    },
+    {
+      "id": "de-ambar",
+      "title": "Alfileres de ámbar",
+      "combine": [
+        "dt-pelo",
+        "ev-alfiler"
+      ],
+      "explanation": "Los alfileres que «brillaban como miel» a la luz del farol eran de ámbar, como el que apareció bajo el lecho: la mujer velada estuvo en el despacho.",
+      "effects": [
+        {
+          "grantFact": "fa-velada-ambar"
+        }
+      ],
+      "points": 30
+    },
+    {
+      "id": "de-sello",
+      "title": "El delfín en las cenizas",
+      "combine": [
+        "dt-anillo",
+        "dt-sello-ceniza"
+      ],
+      "explanation": "El medio delfín del lacre quemado es el sello de Rufo: en el horno de Marcia ardieron pagarés de su arca.",
+      "effects": [
+        {
+          "grantFact": "fa-tablillas-rufo"
+        }
+      ],
+      "points": 40
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "cx-marcia",
+      "title": "Marcia sí dejó el horno",
+      "a": {
+        "line": "ln-marcia-horno"
+      },
+      "b": {
+        "detail": "dt-una-hora"
+      },
+      "explanation": "Marcia dice que no se movió del horno; su propio esclavo cuenta que salió una hora a ver al prestamista.",
+      "effects": [
+        {
+          "unlockTimelineEvent": "te-marcia-sale"
+        }
+      ],
+      "points": 40
+    },
+    {
+      "id": "cx-gayo",
+      "title": "Gayo no pasó cubos en el Circo",
+      "a": {
+        "line": "ln-gayo-cubos"
+      },
+      "b": {
+        "detail": "dt-sin-gayo"
+      },
+      "explanation": "Gayo asegura que ayudó a los vigiles toda la noche; su nombre no está en la lista de voluntarios.",
+      "effects": [],
+      "points": 20
+    },
+    {
+      "id": "cx-filon",
+      "title": "Alguien tocó el arca",
+      "a": {
+        "line": "ln-filon-arca"
+      },
+      "b": {
+        "detail": "dt-filon"
+      },
+      "explanation": "Filón jura que nadie tocó el arca desde los idus; el libro recoge, de su puño y letra, un préstamo a sí mismo.",
+      "effects": [],
+      "points": 20
+    }
+  ],
+  "secrets": [
+    {
+      "id": "se-filon",
+      "characterId": "ch-filon",
+      "text": "Filón sacó 500 sestercios del arca para completar el precio de la libertad de Glícera. Pensaba devolverlos de su peculio.",
+      "points": 25
+    },
+    {
+      "id": "se-gayo",
+      "characterId": "ch-gayo",
+      "text": "Mientras Roma ardía, Gayo jugaba a los dados en una taberna del Esquilino, algo prohibido fuera de las Saturnales.",
+      "points": 20
+    },
+    {
+      "id": "se-marcia",
+      "characterId": "ch-marcia",
+      "text": "Marcia fue a casa de Rufo esa noche a suplicar un aplazamiento.",
+      "revealedWhen": {
+        "contradiction": "cx-marcia"
+      },
+      "points": 15
+    }
+  ],
+  "interrogations": [
+    {
+      "id": "in-filon",
+      "characterId": "ch-filon",
+      "setting": "En el atrio ennegrecido de la casa. Filón no ha soltado el manojo de llaves.",
+      "opening": [
+        {
+          "text": "Treinta años en esta casa. Lo encontré yo. Pregunte, magistrado: no tengo nada que esconder."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-filon-noche",
+          "label": "La noche del fuego",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-filon-noche",
+              "prompt": "¿Qué pasó anoche en la casa?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Hacia la primera hora de la noche se vio el resplandor sobre el Circo. El amo nos mandó a todos a la puerta Capena. Él se quedó con el arca; no hubo manera.",
+                      "tone": "truth"
+                    },
+                    {
+                      "text": "Volví al amanecer, cuando el viento cambió. Y lo encontré en el tablinum.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "unlockTimelineEvent": "te-desalojo"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-filon-capena",
+              "prompt": "¿Alguien le vio en la puerta Capena toda la noche?",
+              "kind": "press",
+              "requires": {
+                "asked": "q-filon-noche"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Las dieciséis almas de esta casa, y medio barrio que dormía al raso. No me separé de ellos.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-filon-arca",
+          "label": "El arca",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-filon-arca",
+              "prompt": "¿Qué había en el arca?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Dinero, las joyas de la difunta señora, el libro de cuentas y los pagarés. He hecho inventario: tenga.",
+                      "tone": "truth"
+                    },
+                    {
+                      "id": "ln-filon-arca",
+                      "text": "Nadie tocó esa arca desde los idus. Lo juro por los lares de esta casa.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantEvidence": "ev-inventario"
+                    },
+                    {
+                      "grantEvidence": "ev-codex"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-filon-cx",
+              "prompt": "Su propia letra anota un préstamo del arca a usted mismo.",
+              "kind": "contradiction",
+              "contradiction": "cx-filon",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Filón aprieta las llaves hasta que le blanquean los nudillos."
+                    },
+                    {
+                      "text": "Quinientos sestercios. Para la libertad de Glícera. Su amo pedía dos mil y yo tenía mil quinientos.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "Iba a devolverlos de mi peculio antes de las calendas. El amo lo sabía. Bueno… lo iba a saber.",
+                      "tone": "admission"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "revealSecret": "se-filon"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-filon-gente",
+          "label": "Las personas de la casa",
+          "kind": "person",
+          "questions": [
+            {
+              "id": "q-filon-gayo",
+              "prompt": "¿Qué me dice del sobrino?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Gayo es el único heredero. Debe en media Subura. El amo le cerró la bolsa en junio y le dijo que heredaría «cuando aprendiera a contar».",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-gayo-heredero"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-filon-marcia",
+              "prompt": "¿Quién es Marcia Prisca?",
+              "kind": "ask",
+              "requires": {
+                "fact": "fa-marcia-deuda"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "La viuda del horno del Vico Tusco. Le debía veinte mil. El amo quería el horno: decía que valía el doble.",
+                      "tone": "truth"
+                    },
+                    {
+                      "text": "Vino hace diez días a pedir prórroga. Él ni la dejó pasar del vestíbulo.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-gayo",
+      "characterId": "ch-gayo",
+      "setting": "Una taberna de la Subura. Huele a vino agrio y a humo.",
+      "opening": [
+        {
+          "text": "Mi tío, muerto la misma noche que arde Roma. Los dioses tienen sentido del humor. ¿Me acusa de algo, o me invita a una copa?"
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-gayo-noche",
+          "label": "La noche del fuego",
+          "kind": "alibi",
+          "questions": [
+            {
+              "id": "q-gayo-noche",
+              "prompt": "¿Dónde estuvo anoche?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-gayo-cubos",
+                      "text": "En el Circo, en la cadena de cubos de los vigiles, hasta el amanecer. Mire mis manos. Pregunte a cualquiera.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "unlockTimelineEvent": "te-falso-gayo"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-gayo-cx",
+              "prompt": "Su nombre no aparece en la lista de voluntarios de los vigiles.",
+              "kind": "contradiction",
+              "contradiction": "cx-gayo",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Está bien. Estaba en la taberna de Febo, en el Esquilino. Dados.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "Media Roma ardiendo y yo perdiendo lo que no tengo. Doce testigos y el tabernero, que no me fía ni el agua. No fui a ver a mi tío.",
+                      "tone": "admission"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "revealSecret": "se-gayo"
+                    },
+                    {
+                      "grantFact": "fa-gayo-coartada"
+                    },
+                    {
+                      "unlockTimelineEvent": "te-gayo-dados"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-gayo-tio",
+          "label": "Su tío",
+          "kind": "victim",
+          "about": "ch-rufo",
+          "questions": [
+            {
+              "id": "q-gayo-tio",
+              "prompt": "¿Cómo se llevaba con su tío?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Como se llevan un pozo y un cubo. Soy su heredero, eso sí; no tenía a nadie más a quien dejarle las ínsulas.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-gayo-heredero"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-gayo-ambar",
+              "prompt": "¿Conoce a alguien que lleve alfileres de ámbar en el pelo?",
+              "kind": "ask",
+              "requires": {
+                "any": [
+                  {
+                    "evidence": "ev-alfiler"
+                  },
+                  {
+                    "detail": "dt-pelo"
+                  }
+                ]
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "¿Ámbar? La panadera del Vico Tusco, la viuda Prisca. Se los regaló su marido; los lleva hasta para amasar. Le debía a mi tío una fortuna, por cierto.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-ambar-marcia"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-marcia",
+      "characterId": "ch-marcia",
+      "setting": "Ante las ruinas humeantes de su horno. Lleva el pelo recogido, y la ceniza le ha encanecido el moño.",
+      "opening": [
+        {
+          "text": "El fuego se ha llevado el obrador, la harina y medio barrio. Si viene a decirme que además debo dinero, llega tarde: ya lo sé."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-marcia-noche",
+          "label": "La noche del fuego",
+          "kind": "alibi",
+          "questions": [
+            {
+              "id": "q-marcia-noche",
+              "prompt": "¿Dónde estuvo anoche?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-marcia-horno",
+                      "text": "Aquí. El fuego subía por el Vico Tusco y no me moví del horno en toda la noche, sacando sacos.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "unlockTimelineEvent": "te-falso-marcia"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-marcia-testigo",
+              "prompt": "¿Alguien puede confirmarlo?",
+              "kind": "press",
+              "requires": {
+                "asked": "q-marcia-noche"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Siro, mi esclavo. Estuvo a mi lado todo el tiempo. Pregúntele.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantEvidence": "ev-siro"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-marcia-cx",
+              "prompt": "Siro dice que salió una hora a ver al prestamista.",
+              "kind": "contradiction",
+              "contradiction": "cx-marcia",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Fui a pedirle una semana. ¡Ardía media ciudad! Cualquiera con corazón habría esperado.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "Me dijo que no y me fui. Estaba vivo cuando cerré la puerta.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-marcia-deuda",
+          "label": "La deuda",
+          "kind": "personal",
+          "questions": [
+            {
+              "id": "q-marcia-deuda",
+              "prompt": "Debía veinte mil sestercios a Vetio Rufo.",
+              "kind": "confront",
+              "requires": {
+                "fact": "fa-marcia-deuda"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Y en las calendas se quedaba con el horno de mi marido. Ahora el fuego se lo ha quedado antes. Ya ve qué suerte la mía.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-marcia-alfiler",
+              "prompt": "Este alfiler apareció bajo el lecho de Rufo.",
+              "kind": "present",
+              "presentEvidence": "ev-alfiler",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Sin pensarlo, se lleva la mano al moño. Solo hay un alfiler de ámbar; el otro lado del pelo está sujeto con una cinta."
+                    },
+                    {
+                      "text": "Lo perdí hace semanas. En el mercado. Hay muchos alfileres de ámbar en Roma.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-falta-alfiler"
+                    },
+                    {
+                      "grantFact": "fa-ambar-marcia"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-marcia-final",
+              "prompt": "En su horno ardieron pagarés con el sello del delfín de Rufo.",
+              "kind": "confront",
+              "requires": {
+                "all": [
+                  {
+                    "fact": "fa-tablillas-rufo"
+                  },
+                  {
+                    "contradiction": "cx-marcia"
+                  }
+                ]
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Marcia mira las ruinas del horno durante un largo rato."
+                    },
+                    {
+                      "text": "Le pedí una semana. Una. Con la ciudad en llamas. Se rió, abrió el cofrecillo y me enseñó mi propio pagaré, como quien enseña un trofeo.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "El candelabro estaba ahí. No pensé. Luego cogí todo el cofrecillo, para que pareciera un ladrón. El dinero no lo toqué: no soy una ladrona.",
+                      "tone": "admission"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "setFlag": "marcia-confiesa"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "id": "te-fuego",
+      "t": -150,
+      "display": "Al caer la noche",
+      "title": "El fuego prende junto al Circo Máximo",
+      "description": "El resplandor se ve desde el Celio.",
+      "characters": [],
+      "key": false
+    },
+    {
+      "id": "te-desalojo",
+      "t": -60,
+      "display": "Primera hora de la noche",
+      "title": "Rufo manda a la casa a la puerta Capena y se queda con el arca",
+      "description": "Filón guía a la familia.",
+      "characters": [
+        "ch-rufo",
+        "ch-filon"
+      ],
+      "location": "lo-casa",
+      "key": true
+    },
+    {
+      "id": "te-marcia-sale",
+      "t": -45,
+      "display": "Hacia la segunda hora",
+      "title": "Marcia deja su horno «una hora»",
+      "description": "Con velo y farol.",
+      "characters": [
+        "ch-marcia"
+      ],
+      "location": "lo-horno",
+      "key": true
+    },
+    {
+      "id": "te-falso-marcia",
+      "t": -40,
+      "display": "Toda la noche",
+      "title": "Marcia, en su horno sin moverse",
+      "description": "Según Marcia.",
+      "characters": [
+        "ch-marcia"
+      ],
+      "veracity": "false",
+      "claimedBy": "ch-marcia"
+    },
+    {
+      "id": "te-velada",
+      "t": -20,
+      "display": "Segunda hora de la noche",
+      "title": "Una mujer velada llega a casa de Rufo y él le abre",
+      "description": "Dice que trae un pago.",
+      "characters": [
+        "ch-rufo"
+      ],
+      "location": "lo-casa",
+      "key": true
+    },
+    {
+      "id": "te-gayo-dados",
+      "t": -10,
+      "display": "Toda la noche",
+      "title": "Gayo juega a los dados en el Esquilino",
+      "description": "En la taberna de Febo.",
+      "characters": [
+        "ch-gayo"
+      ]
+    },
+    {
+      "id": "te-falso-gayo",
+      "t": -5,
+      "display": "Toda la noche",
+      "title": "Gayo pasa cubos con los vigiles en el Circo",
+      "description": "Según Gayo.",
+      "characters": [
+        "ch-gayo"
+      ],
+      "veracity": "false",
+      "claimedBy": "ch-gayo"
+    },
+    {
+      "id": "te-muerte",
+      "t": 0,
+      "display": "Hacia la tercera hora de la noche",
+      "title": "Muerte de Lucio Vetio Rufo",
+      "description": "Un golpe en la sien, en su despacho.",
+      "characters": [
+        "ch-rufo"
+      ],
+      "location": "lo-tablinum",
+      "key": true
+    },
+    {
+      "id": "te-tablillas",
+      "t": 30,
+      "display": "Hacia la cuarta hora",
+      "title": "Marcia vuelve y quema unas tablillas en su horno",
+      "description": "Siro la ve.",
+      "characters": [
+        "ch-marcia"
+      ],
+      "location": "lo-horno",
+      "key": true
+    },
+    {
+      "id": "te-hallazgo",
+      "t": 420,
+      "display": "Al amanecer",
+      "title": "Filón encuentra el cuerpo",
+      "description": "Al volver de la puerta Capena.",
+      "characters": [
+        "ch-filon",
+        "ch-rufo"
+      ],
+      "location": "lo-tablinum",
+      "key": true
+    }
+  ],
+  "accusation": {
+    "motives": [
+      {
+        "id": "mo-deuda",
+        "label": "Destruir su pagaré antes de perder el horno en las calendas de agosto",
+        "availableWhen": {
+          "fact": "fa-marcia-deuda"
+        }
+      },
+      {
+        "id": "mo-herencia",
+        "label": "Heredar antes de tiempo la fortuna de su tío",
+        "availableWhen": {
+          "fact": "fa-gayo-heredero"
+        }
+      },
+      {
+        "id": "mo-libertad",
+        "label": "Ocultar el dinero sacado del arca",
+        "availableWhen": {
+          "secret": "se-filon"
+        }
+      },
+      {
+        "id": "mo-saqueo",
+        "label": "Robar aprovechando el caos del incendio"
+      }
+    ],
+    "methods": [
+      {
+        "id": "me-candelabro",
+        "label": "Le golpeó con el candelabro de bronce y se llevó los pagarés de agosto para fingir un robo",
+        "availableWhen": {
+          "fact": "fa-candelabro"
+        }
+      },
+      {
+        "id": "me-fuego",
+        "label": "Lo dejó encerrado para que muriera en el incendio"
+      },
+      {
+        "id": "me-saqueadores",
+        "label": "Abrió la puerta a una banda de saqueadores"
+      }
+    ]
+  },
+  "solution": {
+    "culprits": [
+      "ch-marcia"
+    ],
+    "motive": "mo-deuda",
+    "method": "me-candelabro",
+    "proof": [
+      "ev-cenizas",
+      "ev-alfiler",
+      "ev-siro"
+    ],
+    "whatHappened": "Marcia Prisca mató a Lucio Vetio Rufo para que su pagaré no le costara el horno en las calendas de agosto. Aprovechó el incendio para salir de su obrador una hora y acudir velada a casa de Rufo, que se había quedado solo con su arca. Él le abrió creyendo que traía un pago, se negó a la prórroga y le enseñó el pagaré. Ella lo golpeó con el candelabro, se llevó el cofrecillo de los vencimientos para que pareciera un robo —sin tocar el dinero— y lo quemó en su horno. Perdió un alfiler de ámbar bajo el lecho.",
+    "reconstruction": [
+      "Al caer la noche, el fuego prende en las tiendas del Circo Máximo. Desde el Celio se ve el resplandor.",
+      "Rufo manda a toda la casa con Filón a la puerta Capena y se queda a custodiar el arca.",
+      "En el Vico Tusco, Marcia deja a Siro con el horno, coge velo y farol y sube al Celio.",
+      "Davo, el último en salir, la ve llegar. Rufo le abre él mismo: «trae un pago».",
+      "Rufo se niega a aplazar la deuda y le muestra el pagaré. Marcia le golpea con el candelabro.",
+      "Se lleva el cofrecillo de los pagarés de agosto y deja el dinero. En el forcejeo pierde un alfiler de ámbar.",
+      "De vuelta en su obrador, echa las tablillas al horno. El lacre con el sello del delfín no llega a arder del todo.",
+      "Al amanecer, Filón vuelve y encuentra el cuerpo. Solo el humo ha alcanzado la casa."
+    ],
+    "decisiveEvidence": [
+      "ev-alfiler",
+      "ev-portero",
+      "ev-siro",
+      "ev-cenizas",
+      "ev-medico"
+    ],
+    "alibiTruths": [
+      {
+        "characterId": "ch-filon",
+        "truth": "Estuvo toda la noche en la puerta Capena con la familia. Mintió sobre el arca para ocultar su préstamo."
+      },
+      {
+        "characterId": "ch-gayo",
+        "truth": "No pasó cubos en el Circo: jugaba a los dados en el Esquilino, ante una docena de testigos."
+      },
+      {
+        "characterId": "ch-marcia",
+        "truth": "No estuvo toda la noche en su horno: subió al Celio, mató a Rufo y volvió a quemar los pagarés."
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "en-confesion",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct",
+        "knowledge": {
+          "flag": "marcia-confiesa"
+        }
+      },
+      "outcome": "success",
+      "title": "Lo que el fuego no quemó",
+      "text": "Marcia Prisca confiesa ante el tribuno. Con media Roma en ruinas, el juicio es breve y el pretor, por una vez, escucha: la condena a destierro en lugar de a muerte. El horno del Vico Tusco nunca vuelve a encenderse."
+    },
+    {
+      "id": "en-exito",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct"
+      },
+      "outcome": "success",
+      "title": "Caso cerrado entre cenizas",
+      "text": "El alfiler, el testimonio de Siro y el lacre del delfín bastan al pretor. Marcia Prisca es condenada. Gayo hereda las ínsulas, y la mitad ya no existe."
+    },
+    {
+      "id": "en-parcial",
+      "when": {
+        "culprit": "correct"
+      },
+      "outcome": "partial",
+      "title": "La culpable, sin todas las piezas",
+      "text": "Marcia Prisca es acusada, pero la acusación cojea y el abogado de la viuda la desmonta en parte. La condena llega tarde y a medias."
+    },
+    {
+      "id": "en-gayo",
+      "when": {
+        "culprit": "ch-gayo"
+      },
+      "outcome": "failure",
+      "title": "El sobrino",
+      "text": "Gayo es detenido. El tabernero Febo y doce jugadores juran por todos los dioses que no se movió de la mesa de dados. Gayo queda libre, multado por jugar, y hereda. El caso se archiva."
+    },
+    {
+      "id": "en-filon",
+      "when": {
+        "culprit": "ch-filon"
+      },
+      "outcome": "failure",
+      "title": "El liberto",
+      "text": "Filón es acusado y dieciséis personas juran que pasó la noche con ellas en la puerta Capena. Solo se le condena a devolver los quinientos sestercios. El asesino de Rufo nunca aparece."
+    },
+    {
+      "id": "en-fallo",
+      "when": {},
+      "outcome": "failure",
+      "title": "Otro muerto del incendio",
+      "text": "La acusación no se sostiene. En los registros de la cohorte, Lucio Vetio Rufo queda como una víctima más de la noche en que ardió Roma."
+    }
+  ],
+  "hints": [
+    {
+      "id": "hl-saqueo",
+      "topic": "Lo que un ladrón se llevaría",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-no-saqueo"
+        }
+      },
+      "steps": [
+        "Los saqueadores buscan dinero.",
+        "Compara lo que falta del arca con lo que sigue dentro.",
+        "Relaciona la bolsa de sestercios del informe con el cofrecillo que falta en el inventario de Filón."
+      ]
+    },
+    {
+      "id": "hl-velada",
+      "topic": "Una visita en plena noche",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-velada-ambar"
+        }
+      },
+      "steps": [
+        "El portero vio algo brillar a la luz del farol.",
+        "En el despacho apareció un objeto que brilla así.",
+        "Relaciona la declaración de Davo con el alfiler de ámbar."
+      ]
+    },
+    {
+      "id": "hl-horno",
+      "topic": "Lo que se quema",
+      "relevantWhen": {
+        "all": [
+          {
+            "fact": "fa-marcia-deuda"
+          },
+          {
+            "not": {
+              "evidence": "ev-cenizas"
+            }
+          }
+        ]
+      },
+      "steps": [
+        "Una coartada que depende de un esclavo no es tan sólida.",
+        "Pregunta a Marcia quién puede confirmar dónde estuvo.",
+        "Lee con atención lo que cuenta Siro."
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "id": "ob-saqueo",
+      "text": "Demuestra que no fue un saqueo.",
+      "completeWhen": {
+        "fact": "fa-no-saqueo"
+      },
+      "points": 30
+    },
+    {
+      "id": "ob-filon",
+      "text": "Averigua por qué mintió el liberto.",
+      "completeWhen": {
+        "secret": "se-filon"
+      },
+      "points": 30
+    },
+    {
+      "id": "ob-gayo",
+      "text": "Descubre dónde pasó la noche el heredero.",
+      "completeWhen": {
+        "secret": "se-gayo"
+      },
+      "points": 30,
+      "hidden": true
+    }
+  ],
+  "assets": []
+}

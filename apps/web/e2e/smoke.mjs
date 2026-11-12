@@ -101,9 +101,9 @@ try {
   check(true, 'La carpeta abre la Biblioteca con el primer expediente');
   await page.getByRole('link', { name: /Escritorio/ }).click();
   await folder.waitFor();
-  await page.getByRole('button', { name: /^Calendario:/ }).click();
-  await page.waitForURL('**/calendario');
-  await page.getByText('En preparación · Etapa 4').waitFor({ timeout: 3000 });
+  await page.getByRole('button', { name: /^Teléfono:/ }).click();
+  await page.waitForURL('**/telefono');
+  await page.getByText('En preparación · Etapa 6').waitFor({ timeout: 3000 });
   check(true, 'Las secciones pendientes declaran honestamente su etapa');
   await page.getByRole('link', { name: /Volver al escritorio/ }).click();
   await folder.waitFor();

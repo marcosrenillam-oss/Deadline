@@ -178,10 +178,11 @@ describe('acusación y puntuación', () => {
     expect(r.falsePlaced).toEqual(['te-dormia']);
   });
 
-  it('tiempo agotado: cerrado sin puntos', () => {
+  it('tiempo agotado: cerrado sin puntos de acusación', () => {
     const s = expire(c, solveAll(), record(), T0 + 2 * 3_600_000);
     expect(s.inv.status).toBe('expired');
-    expect(s.result.total).toBe(0);
+    expect(s.result.score.some((l) => l.label === 'Culpable identificado')).toBe(false);
+    expect(s.record.rewardedKeys).not.toContain('solve');
     expect(s.record.carriedKnowledge).toBeDefined();
   });
 });
@@ -190,5 +191,32 @@ describe('detalles en el texto', () => {
   it('separa y limpia marcas de detalle', () => {
     expect(parseInline('La puerta {{dt-x|no estaba forzada}}, dijo.')).toEqual([{ text: 'La puerta ' }, { text: 'no estaba forzada', detail: 'dt-x' }, { text: ', dijo.' }]);
     expect(plainText('A {{dt-x|b}} c')).toBe('A b c');
+  });
+});
+
+describe('cierre por tiempo y reapertura', () => {
+  it('al agotarse el tiempo se cobran los descubrimientos, una sola vez', async () => {
+    const { expire: exp } = await import('../src/engine/resolution.ts');
+    const s = exp(c, solveAll(), record(), T0 + 2 * 3_600_000);
+    expect(s.result.total).toBeGreaterThan(0);
+    expect(s.result.score.some((l) => l.label.startsWith('Contradicción'))).toBe(true);
+    const again = exp(c, solveAll(), s.record, T0 + 3 * 3_600_000);
+    expect(again.result.total).toBe(0);
+  });
+
+  it('reabrir conserva descubrimientos y trabajo, pero no las conversaciones', async () => {
+    const { carryOverKnowledge, carryOverWorkspace, reopenCost } = await import('../src/engine/reopen.ts');
+    const prev = { ...solveAll(), board: { nodes: [], edges: [], viewport: { x: 5, y: 5, zoom: 1 } } };
+    const next = startInvestigation(c, { id: 'inv-00000002', now: T0 + 5, attempt: 2, carried: carryOverKnowledge(prev.knowledge), workspace: carryOverWorkspace(prev) });
+    const k = knowledgeOf(next);
+    expect(k.evidence.has('ev-botas')).toBe(true);
+    expect(k.facts.has('fa-barro')).toBe(true);
+    expect(k.asked.size).toBe(0);
+    expect(k.contradictions.size).toBe(0);
+    expect(next.board.viewport.x).toBe(5);
+    expect(next.attempt).toBe(2);
+    expect(next.log[0]?.type).toBe('reopen');
+    expect(next.deadlineAt - next.startedAt).toBe(60 * 60_000);
+    expect(reopenCost(c)).toBe(150);
   });
 });

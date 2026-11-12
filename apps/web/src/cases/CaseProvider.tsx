@@ -17,7 +17,10 @@ import { sound } from '../audio/sound.ts';
 import { haptic } from '../audio/haptics.ts';
 import { useProfile } from '../profile/ProfileProvider.tsx';
 import { loadCase } from './contentRepo.ts';
-import { latestInvestigation, getRecord, openInvestigation, saveInvestigation, settleCase } from './investigationRepo.ts';
+import { attemptsOf, latestInvestigation, getRecord, openInvestigation, reopenInvestigation, saveInvestigation, settleCase } from './investigationRepo.ts';
+import { fetchCatalog } from './contentRepo.ts';
+import { downloadCase, getStatus } from './downloads.ts';
+import type { CaseAssetStatus } from '../storage/db.ts';
 
 export interface Toast {
   id: number;
@@ -39,6 +42,12 @@ interface CaseContextValue {
   /** Cambios del espacio de trabajo (tablero, cronología, marcas) sin efecto en el conocimiento. */
   patch: (fn: (inv: Investigation) => Investigation) => void;
   accuse: (a: Omit<Accusation, 'submittedAt'>) => Promise<void>;
+  /** Reabre el expediente cerrado pagando puntos. Lanza NotEnoughPoints si no alcanza. */
+  reopen: () => Promise<void>;
+  /** Todos los intentos de este expediente (historial). */
+  attempts: Investigation[];
+  /** Estado de la descarga para jugar sin conexión. */
+  offline: CaseAssetStatus | undefined;
   toasts: Toast[];
   notify: (kind: Toast['kind'], text: string) => void;
   dismiss: (id: number) => void;
@@ -60,6 +69,9 @@ export function CaseProvider({ caseId, children, fallback }: { caseId: string; c
   const [record, setRecord] = useState<CaseRecord | null>(null);
   const [now, setNow] = useState(() => Date.now());
   const [toasts, setToasts] = useState<Toast[]>([]);
+  const [attempts, setAttempts] = useState<Investigation[]>([]);
+  const [offline, setOffline] = useState<CaseAssetStatus | undefined>(undefined);
+  const warned = useRef(new Set<string>());
   const { reload: reloadProfile } = useProfile();
   const invRef = useRef<Investigation | null>(null);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -70,8 +82,10 @@ export function CaseProvider({ caseId, children, fallback }: { caseId: string; c
     setLoad({ status: 'loading' });
     (async () => {
       const c = await loadCase(caseId);
-      const [latest, rec] = await Promise.all([latestInvestigation(caseId), getRecord(caseId)]);
+      const [latest, rec, all, dl] = await Promise.all([latestInvestigation(caseId), getRecord(caseId), attemptsOf(caseId), getStatus(caseId)]);
       if (!alive) return;
+      setAttempts(all);
+      setOffline(dl);
       invRef.current = latest ?? null;
       setInv(latest ?? null);
       setRecord(rec ?? null);
@@ -85,9 +99,30 @@ export function CaseProvider({ caseId, children, fallback }: { caseId: string; c
   // Guardado: inmediato para lo importante, agrupado para cambios rápidos (arrastrar en el tablero).
   const persist = useCallback((next: Investigation, immediate: boolean) => {
     if (saveTimer.current) clearTimeout(saveTimer.current);
-    const write = () => void saveInvestigation(next).catch((e: unknown) => console.error('[case] No se pudo guardar', e));
+    const write = () =>
+      void saveInvestigation(next).catch((e: unknown) => {
+        console.error('[case] No se pudo guardar', e);
+        notifyRef.current?.('info', 'No se ha podido guardar en el dispositivo. ¿Queda espacio libre?');
+      });
     if (immediate) write();
     else saveTimer.current = setTimeout(write, 400);
+  }, []);
+
+  // Al ocultar la app (cambiar de app, bloquear el iPhone) se guarda lo pendiente al momento.
+  useEffect(() => {
+    const flush = () => {
+      if (!saveTimer.current || !invRef.current) return;
+      clearTimeout(saveTimer.current);
+      saveTimer.current = null;
+      void saveInvestigation(invRef.current);
+    };
+    const onHide = () => document.hidden && flush();
+    document.addEventListener('visibilitychange', onHide);
+    window.addEventListener('pagehide', flush);
+    return () => {
+      document.removeEventListener('visibilitychange', onHide);
+      window.removeEventListener('pagehide', flush);
+    };
   }, []);
 
   useEffect(
@@ -101,12 +136,14 @@ export function CaseProvider({ caseId, children, fallback }: { caseId: string; c
     [],
   );
 
+  const notifyRef = useRef<((kind: Toast['kind'], text: string) => void) | null>(null);
   const notify = useCallback((kind: Toast['kind'], text: string) => {
     const id = ++toastId.current;
     setToasts((t) => [...t.slice(-1), { id, kind, text }]);
     setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), kind === 'miss' ? 1800 : 3200);
   }, []);
   const dismiss = useCallback((id: number) => setToasts((t) => t.filter((x) => x.id !== id)), []);
+  notifyRef.current = notify;
 
   const c = load.status === 'ready' ? load.c : null;
 
@@ -167,9 +204,35 @@ export function CaseProvider({ caseId, children, fallback }: { caseId: string; c
     invRef.current = fresh;
     setInv(fresh);
     setRecord(rec);
+    setAttempts([fresh]);
     sound.play('paper');
     haptic('confirm');
+    void prepareOffline(c.id);
   }, [c]);
+
+  /** Deja el expediente listo para jugar sin conexión (en segundo plano). */
+  const prepareOffline = useCallback(async (id: string) => {
+    if (!navigator.onLine) return;
+    try {
+      const entry = (await fetchCatalog()).find((e) => e.id === id);
+      if (entry) setOffline(await downloadCase(entry));
+    } catch {
+      /* se reintentará desde el archivo */
+    }
+  }, []);
+
+  const reopen = useCallback(async () => {
+    if (!c) return;
+    const { inv: fresh, record: rec } = await reopenInvestigation(c);
+    invRef.current = fresh;
+    warned.current.clear();
+    setInv(fresh);
+    setRecord(rec);
+    setAttempts(await attemptsOf(c.id));
+    await reloadProfile();
+    sound.play('paper');
+    haptic('confirm');
+  }, [c, reloadProfile]);
 
   const accuse = useCallback(
     async (a: Omit<Accusation, 'submittedAt'>) => {
@@ -180,6 +243,7 @@ export function CaseProvider({ caseId, children, fallback }: { caseId: string; c
       invRef.current = s.inv;
       setInv(s.inv);
       setRecord(s.record);
+      setAttempts(await attemptsOf(c.id));
       await reloadProfile();
     },
     [c, record, reloadProfile],
@@ -198,16 +262,55 @@ export function CaseProvider({ caseId, children, fallback }: { caseId: string; c
 
   const timer = inv ? readTimer({ startedAt: inv.startedAt, deadlineAt: inv.deadlineAt, lastObservedAt: inv.lastObservedAt, localNow: now }) : null;
 
-  // Tiempo agotado: el expediente se cierra.
+  // Tiempo agotado: el expediente se cierra (los descubrimientos se cobran).
   useEffect(() => {
     if (!c || !inv || !record || inv.status !== 'active' || !timer?.expired) return;
     const s = expire(c, inv, record, Date.now());
     invRef.current = s.inv;
     setInv(s.inv);
     setRecord(s.record);
-    void settleCase(s.inv, s.record, 0);
+    void settleCase(s.inv, s.record, s.result.total).then(async () => {
+      setAttempts(await attemptsOf(c.id));
+      await reloadProfile();
+    });
+    sound.play('ding');
+    haptic('confirm');
     notify('info', 'Se agotó el tiempo: el expediente queda cerrado.');
-  }, [c, inv, record, timer?.expired, notify]);
+  }, [c, inv, record, timer?.expired, notify, reloadProfile]);
+
+  // Avisos de tiempo (una vez por investigación y umbral).
+  useEffect(() => {
+    if (!inv || inv.status !== 'active' || !timer || timer.expired) return;
+    for (const [min, text] of [
+      [10, 'Quedan 10 minutos.'],
+      [5, 'Quedan 5 minutos. Piensa en tu acusación.'],
+      [1, 'Último minuto.'],
+    ] as const) {
+      const key = `${inv.id}:${min}`;
+      if (timer.remainingMs <= min * 60_000 && !warned.current.has(key)) {
+        // Al abrir con menos tiempo del umbral se marcan los anteriores sin avisar de todos.
+        for (const m of [10, 5, 1]) if (m > min) warned.current.add(`${inv.id}:${m}`);
+        warned.current.add(key);
+        sound.play('ding');
+        haptic('confirm');
+        notify('info', text);
+        break;
+      }
+    }
+    if (timer.clockWentBack && !warned.current.has(`${inv.id}:clock`)) {
+      warned.current.add(`${inv.id}:clock`);
+      notify('info', 'El reloj del dispositivo ha retrocedido. DEADLINE sigue contando desde la hora más tardía registrada.');
+    }
+  }, [inv, timer, notify]);
+
+  // Cada 30 s se guarda el instante más tardío observado: retrasar el reloj del
+  // dispositivo no devuelve tiempo aunque el jugador no haga nada.
+  useEffect(() => {
+    if (!inv || inv.status !== 'active') return;
+    const t = Date.now();
+    if (t - inv.lastObservedAt < 30_000) return;
+    patch((i) => ({ ...i, lastObservedAt: Math.max(i.lastObservedAt, t) }));
+  }, [now, inv, patch]);
 
   const value = useMemo<CaseContextValue | null>(() => {
     if (!c) return null;
@@ -222,11 +325,14 @@ export function CaseProvider({ caseId, children, fallback }: { caseId: string; c
       run,
       patch,
       accuse,
+      reopen,
+      attempts,
+      offline,
       toasts,
       notify,
       dismiss,
     };
-  }, [c, inv, record, timer?.remainingMs, open, run, patch, accuse, toasts, notify, dismiss]);
+  }, [c, inv, record, timer?.remainingMs, open, run, patch, accuse, reopen, attempts, offline, toasts, notify, dismiss]);
 
   if (load.status !== 'ready' || !value) return <>{fallback(load.status === 'ready' ? { status: 'loading' } : load)}</>;
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

@@ -3,11 +3,12 @@ import { evaluateCondition, formatCaseNumber } from '@deadline/core';
 import { useCase } from '../../cases/CaseProvider.tsx';
 import { CRIME_CATEGORY_LABELS, DIFFICULTY_LABELS, ORIGIN_LABELS } from '../../cases/labels.ts';
 import { Stamp } from '../../ui/Stamp.tsx';
+import { ReopenPanel } from './ReopenPanel.tsx';
 import s from './case.module.css';
 
 /** 1 · EXPEDIENTE: contexto inicial y lo que ya se sabe. */
 export function DossierTab() {
-  const { c, k, closed } = useCase();
+  const { c, k, closed, offline, inv } = useCase();
   const facts = c.facts.filter((f) => k.facts.has(f.id)).sort((a, b) => Number(b.important) - Number(a.important));
   const objectives = c.objectives.filter((o) => !o.hidden || evaluateCondition(o.completeWhen, k));
   return (
@@ -86,11 +87,22 @@ export function DossierTab() {
               </li>
             ))}
           </ul>
+          <p className={s.trayHelp}>
+            {offline?.state === 'verified'
+              ? '✓ Disponible sin conexión.'
+              : offline?.state === 'downloading'
+                ? 'Preparando el expediente para jugar sin conexión…'
+                : offline?.state === 'partial' || offline?.state === 'corrupt'
+                  ? 'Descarga incompleta: reinténtalo desde el archivo para jugar sin conexión.'
+                  : 'Aún no está descargado para jugar sin conexión.'}
+            {inv && inv.attempt > 1 ? ` Intento nº ${inv.attempt}.` : ''}
+          </p>
           {closed && (
             <p className={s.hand}>
               Expediente cerrado. <Link to={`/expediente/${c.id}/informe`}>Leer el informe final</Link>
             </p>
           )}
+          <ReopenPanel />
         </section>
       </div>
     </article>

@@ -173,21 +173,31 @@ export function accuse(c: CaseFile, inv: Investigation, record: CaseRecord, a: O
   return { inv: nextInv, record: nextRecord, result, ending };
 }
 
-/** Cierre por tiempo agotado: sin acusación, sin puntos de acusación. */
+/**
+ * Cierre por tiempo agotado: sin acusación ni puntos de acusación, pero los
+ * descubrimientos hechos sí se cobran (una sola vez, como siempre).
+ */
 export function expire(c: CaseFile, inv: Investigation, record: CaseRecord, now: number): Settlement {
   const timeline = timelineAccuracy(c, inv);
+  const rewards = discoveryRewards(c, inv, new Set(record.rewardedKeys));
   const result: InvestigationResult = {
     outcome: 'expired',
     components: { culprit: false, motive: false, method: false, proof: false },
-    score: [],
-    total: 0,
+    score: rewards.map((r) => ({ label: r.label, points: r.points })),
+    total: rewards.reduce((sum, r) => sum + r.points, 0),
     timelineAccuracy: timeline.accuracy,
     falseEventsPlaced: timeline.falsePlaced,
-    newRewardKeys: [],
+    newRewardKeys: rewards.map((r) => r.key),
     elapsedMs: inv.deadlineAt - inv.startedAt,
   };
   const nextInv: Investigation = { ...inv, status: 'expired', result, closedAt: inv.deadlineAt, log: [...inv.log, { at: now, type: 'expire' }], rev: inv.rev + 1, updatedAt: now };
-  const nextRecord: CaseRecord = { ...record, status: record.status === 'solved' ? 'solved' : 'closed', carriedKnowledge: nextInv.knowledge };
+  const nextRecord: CaseRecord = {
+    ...record,
+    status: record.status === 'solved' ? 'solved' : 'closed',
+    bestScore: Math.max(record.bestScore, result.total),
+    rewardedKeys: [...new Set([...record.rewardedKeys, ...result.newRewardKeys])].sort(),
+    carriedKnowledge: nextInv.knowledge,
+  };
   delete nextRecord.activeInvestigationId;
   return { inv: nextInv, record: nextRecord, result };
 }

@@ -149,5 +149,65 @@
 .stamp {
   position: absolute;
   right: 10px;
-  top: 10px;
+  bottom: 10px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.offline {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 32px;
+  font-family: var(--font-type);
+  font-size: var(--fs-2xs);
+  color: var(--ivory-dim);
+}
+
+.dl,
+.dlAll {
+  min-height: 36px;
+  padding: 0 var(--sp-2);
+  background: rgba(230, 221, 201, 0.14);
+  color: var(--paper);
+  font-family: var(--font-type);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.06em;
+  border: 1px solid rgba(196, 173, 131, 0.4);
+}
+
+.dl:disabled,
+.dlAll:disabled {
+  opacity: 0.4;
+}
+
+.dlAll {
+  min-height: var(--touch);
+  width: 100%;
+}
+
+.offlineBox {
+  margin-top: var(--sp-2);
+  padding-top: var(--sp-2);
+  border-top: 1px dashed rgba(196, 173, 131, 0.3);
+}
+
+.bar {
+  position: relative;
+  width: 80px;
+  height: 6px;
+  background: rgba(230, 221, 201, 0.15);
+}
+
+.bar::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--p);
+  background: #e9b04a;
+  transition: width var(--dur-fast) linear;
 }

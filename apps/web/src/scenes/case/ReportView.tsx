@@ -4,6 +4,7 @@ import { useCase } from '../../cases/CaseProvider.tsx';
 import { useProfile } from '../../profile/ProfileProvider.tsx';
 import { characterName, evidenceTitle, formatDuration } from '../../cases/labels.ts';
 import { Stamp } from '../../ui/Stamp.tsx';
+import { ReopenPanel } from './ReopenPanel.tsx';
 import s from './case.module.css';
 
 const OUTCOME = {
@@ -185,6 +186,7 @@ export function ReportView() {
         </section>
       </div>
       <p className={s.trayHelp}>Todo el expediente queda abierto para consulta: las piezas que no encontraste aparecen marcadas.</p>
+      <ReopenPanel />
     </article>
   );
 }

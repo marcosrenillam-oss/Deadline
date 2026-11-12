@@ -5,6 +5,7 @@ import './styles/tokens.css';
 import './styles/base.css';
 import { App } from './app/App.tsx';
 import { getMeta, setMeta } from './storage/meta.ts';
+import { runStartupMaintenance } from './cases/startup.ts';
 
 // Primer arranque: se registra una sola vez (útil para diagnóstico y, más adelante, para la guía opcional del escritorio).
 void getMeta<number>('firstLaunchAt')
@@ -18,3 +19,6 @@ createRoot(container).render(
     <App />
   </StrictMode>,
 );
+
+// Mantenimiento en segundo plano, cuando la app ya está pintada.
+setTimeout(() => void runStartupMaintenance().catch((err: unknown) => console.warn('[startup]', err)), 2500);

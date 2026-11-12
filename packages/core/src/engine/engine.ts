@@ -86,7 +86,7 @@ export function timeLimitMinutes(c: CaseFile): number {
 
 export function startInvestigation(
   c: CaseFile,
-  opts: { id: string; now: number; attempt?: number; carried?: SerializedKnowledge },
+  opts: { id: string; now: number; attempt?: number; carried?: SerializedKnowledge; workspace?: Partial<Pick<Investigation, 'board' | 'timeline' | 'evidenceMarks' | 'associations' | 'deductions'>> },
 ): Investigation {
   let k = opts.carried ? deserializeKnowledge(opts.carried) : emptyKnowledge();
   k = applyEffects(k, [
@@ -115,8 +115,9 @@ export function startInvestigation(
     log: [],
     rev: 0,
     updatedAt: opts.now,
+    ...opts.workspace,
   };
-  return commit(c, base, k, opts.now, {}, { type: 'open' });
+  return commit(c, base, k, opts.now, {}, { type: opts.attempt && opts.attempt > 1 ? 'reopen' : 'open' });
 }
 
 // ─── Consultas ───────────────────────────────────────────────────────────────

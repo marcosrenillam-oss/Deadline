@@ -414,3 +414,20 @@
   line-height: 1.05;
   color: #3d4a6b;
 }
+
+.calFresh {
+  position: absolute;
+  right: -6%;
+  bottom: 14%;
+  padding: 0.3cqi 0.9cqi 0.2cqi;
+  border: 0.25cqi solid currentColor;
+  border-radius: 0.3cqi;
+  color: rgba(118, 45, 43, 0.9);
+  background: rgba(244, 239, 227, 0.85);
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: 1cqi;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transform: rotate(-12deg);
+}

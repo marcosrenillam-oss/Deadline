@@ -41,7 +41,7 @@ export async function loadCase(id: string): Promise<CaseFile> {
   const stored = await db.get('caseContent', id);
   const catalog = (await db.get('catalog', id)) as CatalogEntry | undefined;
   if (stored && (!catalog || stored.contentVersion >= catalog.contentVersion)) return stored.data;
-  const res = await fetch(`${BASE}/cases/${id}/case.json`);
+  const res = await fetch(caseJsonUrl(id));
   if (!res.ok) {
     if (stored) return stored.data;
     throw new Error(res.status === 404 ? 'Este expediente no figura en el archivo.' : `No se pudo abrir el expediente (HTTP ${res.status}).`);
@@ -51,8 +51,27 @@ export async function loadCase(id: string): Promise<CaseFile> {
   return data;
 }
 
+/**
+ * URL de un recurso. Lleva la huella del contenido (?v=) para que una
+ * corrección publicada nunca se confunda con la copia guardada.
+ */
 export function assetUrl(caseId: string, c: CaseFile, assetId: string): string | undefined {
   const a = c.assets.find((x) => x.id === assetId);
   if (!a) return undefined;
-  return a.src.startsWith('shared/') ? `${BASE}/${a.src}` : `${BASE}/cases/${caseId}/${a.src}`;
+  return assetUrlFor(caseId, a);
+}
+
+export function assetUrlFor(caseId: string, a: { src: string; sha256: string }): string {
+  const path = a.src.startsWith('shared/') ? `${BASE}/${a.src}` : `${BASE}/cases/${caseId}/${a.src}`;
+  return `${path}?v=${a.sha256.slice(0, 12)}`;
+}
+
+export function caseJsonUrl(caseId: string): string {
+  return `${BASE}/cases/${caseId}/case.json`;
+}
+
+/** Guarda en IndexedDB un expediente ya verificado. */
+export async function storeCase(data: CaseFile): Promise<void> {
+  const db = await getDB();
+  await db.put('caseContent', { id: data.id, contentVersion: data.contentVersion, data, storedAt: Date.now() });
 }

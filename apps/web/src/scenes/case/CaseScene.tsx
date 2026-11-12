@@ -104,7 +104,7 @@ const TABS = [
 function Workspace() {
   const { c, inv, k, closed, remainingMs, toasts, dismiss } = useCase();
   const navigate = useNavigate();
-  const [panel, setPanel] = useState<'notes' | 'contradiction' | 'hints' | null>(null);
+  const [panel, setPanel] = useState<'notes' | 'contradiction' | 'hints' | 'pause' | null>(null);
   const unread = c.evidence.filter((e) => k.evidence.has(e.id) && !k.examined.has(e.id)).length;
   const urgent = !closed && remainingMs < 5 * 60_000;
   const hintsLeft = inv ? c.maxHints - inv.hintsUsed.length : 0;
@@ -117,9 +117,16 @@ function Workspace() {
             <Link to="/" className={s.iconButton} aria-label="Volver al escritorio" onClick={() => sound.play('paper')}>
               ←
             </Link>
-            <div className={s.clock} data-urgent={urgent || undefined} role="timer" aria-label={closed ? 'Expediente cerrado' : `Tiempo restante ${formatRemaining(remainingMs)}`}>
+            <button
+              className={s.clock}
+              data-urgent={urgent || undefined}
+              role="timer"
+              aria-label={closed ? 'Expediente cerrado' : `Tiempo restante ${formatRemaining(remainingMs)}. Tocar para tapar el expediente`}
+              disabled={closed}
+              onClick={() => setPanel('pause')}
+            >
               {closed ? 'CERRADO' : formatRemaining(remainingMs)}
-            </div>
+            </button>
           </div>
           {TABS.map((t) => (
             <NavLink key={t.label} to={t.to ? `${base}/${t.to}` : base} end={t.end} className={s.tab} onClick={() => sound.play('page')}>
@@ -162,6 +169,18 @@ function Workspace() {
       <NotebookPanel open={panel === 'notes'} onClose={() => setPanel(null)} caseId={c.id} />
       <ContradictionTool open={panel === 'contradiction'} onClose={() => setPanel(null)} />
       <HintsPanel open={panel === 'hints'} onClose={() => setPanel(null)} />
+      {panel === 'pause' && (
+        <div className={s.pause} role="dialog" aria-modal="true" aria-labelledby="pause-title">
+          <p className={s.pauseKicker}>Expediente tapado</p>
+          <h2 id="pause-title" className={s.pauseTime}>
+            {formatRemaining(remainingMs)}
+          </h2>
+          <p className={s.pauseText}>Tapar la carpeta no detiene el reloj: el tiempo sigue corriendo aunque no mires, salgas de la app o bloquees el iPhone.</p>
+          <button className={s.primary} onClick={() => setPanel(null)} autoFocus>
+            Destapar y seguir
+          </button>
+        </div>
+      )}
     </main>
   );
 }

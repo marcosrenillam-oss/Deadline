@@ -67,6 +67,7 @@ No hay servidor, base de datos remota, cuentas ni servicios externos. Ver
 | `backup/archive.ts` | Formato de copia, suma SHA-256, validación y fusión |
 | `engine/engine.ts` | Motor de investigación: acciones y consultas puras |
 | `engine/resolution.ts` | Acusación, finales, cronología, puntuación, cierre por tiempo |
+| `engine/reopen.ts` | Coste de reapertura y qué se conserva |
 | `sync/queue.ts` | Reservado para un futuro servidor |
 
 ### `apps/web`
@@ -104,7 +105,7 @@ ejecuta las acciones del motor, guarda en IndexedDB y vigila el reloj.
 | `profile` (v2) | `local` | — | Perfil local, equipamiento, saldo y mérito |
 | `catalog` | id | modo, época, categoría, diario | Fichas de catálogo |
 | `caseContent` | id | — | JSON completo de expedientes descargados |
-| `caseAssets` | caseId | estado | Estado de verificación de recursos offline |
+| `caseAssets` | caseId | estado | Estado de la descarga verificada (`none`, `downloading`, `partial`, `verified`, `corrupt`) |
 | `investigations` | id | caso, estado | Cada intento de investigación |
 | `caseRecords` | caseId | estado, modo | Resumen por caso y recompensas cobradas |
 | `notes` | id | caso, actualización | Libreta |
@@ -112,3 +113,16 @@ ejecuta las acciones del motor, guarda en IndexedDB y vigila el reloj.
 | `syncQueue` | opId | próximo intento, entidad | Reservado (vacío) para un futuro servidor |
 
 Migraciones incrementales en `storage/db.ts` (nunca se edita una publicada).
+
+## Recursos sin conexión
+
+```
+Archivo / apertura de un caso / arranque
+        │
+        ▼
+src/cases/downloads.ts ── fetch case.json → SHA-256 = catálogo? → IndexedDB (caseContent)
+        │                  fetch recurso?v=<huella> → bytes + SHA-256 → Cache Storage «deadline-cases-v1»
+        │                  estado → IndexedDB (caseAssets) → «Disponible sin conexión» solo si todo verificado
+        ▼
+Service worker: /content/*.json → NetworkFirst · /content/<recursos> → CacheFirst (misma caché)
+```

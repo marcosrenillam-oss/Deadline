@@ -68,9 +68,25 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,woff2,png,svg,webp}'],
         navigateFallback: 'index.html',
         cleanupOutdatedCaches: true,
-        // Los recursos de expedientes NO se precachean aquí: se descargan por caso
-        // y se verifican (Etapa 4). Este precache es solo el armazón de la app.
+        // Este precache es solo el armazón de la app. Los expedientes se descargan
+        // por caso y se verifican (src/cases/downloads.ts).
+        globIgnores: ['content/**'],
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+        runtimeCaching: [
+          {
+            // Recursos de expedientes: misma caché que el gestor de descargas.
+            // La URL lleva la huella (?v=), así que una corrección nunca sirve la copia vieja.
+            urlPattern: ({ url }) => url.pathname.includes('/content/') && !url.pathname.endsWith('.json'),
+            handler: 'CacheFirst',
+            options: { cacheName: 'deadline-cases-v1', cacheableResponse: { statuses: [200] } },
+          },
+          {
+            // Catálogo y expedientes: primero la red; sin conexión, la última copia.
+            urlPattern: ({ url }) => url.pathname.includes('/content/') && url.pathname.endsWith('.json'),
+            handler: 'NetworkFirst',
+            options: { cacheName: 'deadline-content-meta', networkTimeoutSeconds: 4, cacheableResponse: { statuses: [200] } },
+          },
+        ],
       },
       devOptions: { enabled: false },
     }),

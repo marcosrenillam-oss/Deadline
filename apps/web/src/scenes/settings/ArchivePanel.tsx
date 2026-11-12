@@ -9,6 +9,8 @@ import { useSettings } from '../../settings/SettingsProvider.tsx';
 import { sound } from '../../audio/sound.ts';
 import { haptic } from '../../audio/haptics.ts';
 import { ActionButton, Field } from '../../ui/Controls.tsx';
+import { fetchCatalog } from '../../cases/contentRepo.ts';
+import { verifyAll } from '../../cases/downloads.ts';
 import styles from './ArchivePanel.module.css';
 
 const DAY = 86_400_000;
@@ -47,6 +49,26 @@ export function ArchivePanel() {
   const [storage, setStorage] = useState<StorageStatus | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [imp, setImp] = useState<ImportState>({ step: 'idle' });
+  const [offline, setOffline] = useState<{ ready: number; total: number; bytes: number } | null>(null);
+  const [checking, setChecking] = useState(false);
+
+  const checkDownloads = async (deep: boolean) => {
+    setChecking(true);
+    try {
+      const catalog = await fetchCatalog();
+      const st = await verifyAll(catalog, deep);
+      const ready = Object.values(st).filter((x) => x.state === 'verified');
+      setOffline({ ready: ready.length, total: catalog.length, bytes: ready.reduce((n, x) => n + x.bytesStored, 0) });
+      if (deep) setMessage(`Comprobación terminada: ${ready.length} expedientes íntegros.`);
+    } catch {
+      setOffline(null);
+    } finally {
+      setChecking(false);
+    }
+  };
+  useEffect(() => {
+    void checkDownloads(false);
+  }, []);
   const input = useRef<HTMLInputElement>(null);
 
   const refresh = () => {
@@ -182,6 +204,18 @@ export function ArchivePanel() {
           </ActionButton>
         </div>
       )}
+
+      <Field
+        label="Expedientes sin conexión"
+        hint={offline ? `${formatBytes(offline.bytes)} de recursos verificados. Se descargan desde el archivo; los diarios de los próximos días, solos.` : 'Calculando…'}
+      >
+        <span className={styles.badge}>{offline ? `${offline.ready} de ${offline.total}` : '—'}</span>
+      </Field>
+      <div className={styles.row}>
+        <ActionButton disabled={checking} onClick={() => void checkDownloads(true)}>
+          {checking ? 'Comprobando…' : 'Comprobar descargas a fondo'}
+        </ActionButton>
+      </div>
 
       <details className={styles.details}>
         <summary>Qué significa guardar todo en el dispositivo</summary>

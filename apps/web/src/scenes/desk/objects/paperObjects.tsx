@@ -36,7 +36,7 @@ export function FolderVisual({ investigator }: { investigator: string }) {
   );
 }
 
-export function CalendarVisual({ day, month, weekday, dailyLabel }: { day: string; month: string; weekday: string; dailyLabel: string }) {
+export function CalendarVisual({ day, month, weekday, dailyLabel, fresh }: { day: string; month: string; weekday: string; dailyLabel: string; fresh?: boolean }) {
   return (
     <div className={s.calendar}>
       <div className={s.calStack} />
@@ -49,6 +49,7 @@ export function CalendarVisual({ day, month, weekday, dailyLabel }: { day: strin
         <span className={s.calWeekday}>{weekday}</span>
         <span className={s.calDaily}>{dailyLabel}</span>
       </div>
+      {fresh && <span className={s.calFresh}>Caso nuevo</span>}
       <div className={s.calRings} aria-hidden="true">
         <i />
         <i />

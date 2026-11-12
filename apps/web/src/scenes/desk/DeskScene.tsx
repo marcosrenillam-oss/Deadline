@@ -158,8 +158,8 @@ export function DeskScene() {
             <TypewriterSvg m={typewriter} lines={twLines} />
           </button>
 
-          <button {...objectProps('calendar')} aria-label={`Calendario: ${weekday} ${day} de ${month}. ${dailyLabel}`}>
-            <CalendarVisual day={day} month={month} weekday={weekday} dailyLabel={dailyLabel} />
+          <button {...objectProps('calendar')} aria-label={`Calendario: ${weekday} ${day} de ${month}. ${dailyLabel}${data.todayDailyNew ? '. Caso del día sin abrir' : ''}`}>
+            <CalendarVisual day={day} month={month} weekday={weekday} dailyLabel={dailyLabel} fresh={data.todayDailyNew} />
           </button>
 
           <button {...objectProps('notebook')} aria-label={`Libreta: ${data.notes} anotaciones`}>
