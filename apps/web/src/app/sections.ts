@@ -29,7 +29,7 @@ export const SECTIONS: readonly SectionDef[] = [
     description: 'Todos los casos individuales del archivo, los ya resueltos y los que aún esperan en el cajón.',
     contents: ['Casos individuales', 'Expedientes resueltos', 'Búsqueda por título, número y palabras clave', 'Filtros por época, crimen, lugar, origen y estado'],
     stage: 3,
-    ready: false,
+    ready: true,
   },
   {
     id: 'daily',
@@ -79,7 +79,7 @@ export const SECTIONS: readonly SectionDef[] = [
     description: 'Notas personales, hipótesis y sospechas. Nada de lo que escribas aquí revela la solución.',
     contents: ['Notas personales', 'Apuntes de investigación', 'Teorías y deducciones', 'Recordatorios'],
     stage: 3,
-    ready: false,
+    ready: true,
   },
 ];
 

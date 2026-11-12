@@ -97,9 +97,14 @@ try {
   // Objeto → sección (con animación de apertura)
   await folder.click();
   await page.waitForURL('**/archivo');
-  await page.getByRole('heading', { name: 'Biblioteca de expedientes' }).waitFor({ timeout: 3000 });
-  check(true, 'La carpeta abre la Biblioteca');
-  check(await page.getByText('En preparación · Etapa 3').isVisible(), 'La sección declara honestamente su etapa');
+  await page.getByRole('link', { name: /Revelado en negro/ }).waitFor({ timeout: 5000 });
+  check(true, 'La carpeta abre la Biblioteca con el primer expediente');
+  await page.getByRole('link', { name: /Escritorio/ }).click();
+  await folder.waitFor();
+  await page.getByRole('button', { name: /^Calendario:/ }).click();
+  await page.waitForURL('**/calendario');
+  await page.getByText('En preparación · Etapa 4').waitFor({ timeout: 3000 });
+  check(true, 'Las secciones pendientes declaran honestamente su etapa');
   await page.getByRole('link', { name: /Volver al escritorio/ }).click();
   await folder.waitFor();
 

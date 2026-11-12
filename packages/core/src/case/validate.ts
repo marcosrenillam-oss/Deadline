@@ -7,7 +7,7 @@ import {
   type Effect,
   type Knowledge,
 } from './conditions.ts';
-import { caseFileSchema, type CaseFile, type StatementRef } from './schema.ts';
+import { caseFileSchema, inlineDetailIds, type CaseFile, type StatementRef } from './schema.ts';
 
 /**
  * Validación de expedientes en tres capas:
@@ -244,6 +244,11 @@ function checkIntegrity(c: CaseFile, errors: Issue[], warnings: Issue[]): void {
         errors.push({ path: `${p}.details.${j}.region`, message: 'La región se sale de la imagen' });
     });
     if (e.body.length === 0 && !e.asset) errors.push({ path: p, message: 'Evidencia sin contenido (ni cuerpo ni imagen)' });
+    const own = new Set(e.details.map((d) => d.id));
+    const anchored = inlineDetailIds(e.body);
+    for (const a of anchored) if (!own.has(a)) errors.push({ path: `${p}.body`, message: `El texto ancla el detalle "${a}", que no pertenece a esta evidencia` });
+    if (new Set(anchored).size !== anchored.length) errors.push({ path: `${p}.body`, message: 'Un detalle está anclado más de una vez' });
+    for (const d of e.details) if (d.region && anchored.includes(d.id)) warnings.push({ path: `${p}.details`, message: `${d.id} tiene región y ancla de texto a la vez` });
   });
 
   c.deductions.forEach((d, i) => {

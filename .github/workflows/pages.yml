@@ -34,7 +34,7 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
-      - run: npm run validate:content
+      - run: npm run content
       - name: Build
         run: npm run build -w @deadline/web
         env:

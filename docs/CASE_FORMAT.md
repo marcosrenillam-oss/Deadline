@@ -1,8 +1,33 @@
 # Formato de expedientes
 
-Cada expediente vive en `content/cases/<ID>/case.json` (más sus recursos) y se
-valida con `npm run validate:content`. El esquema completo y comentado está
-en [`packages/core/src/case/schema.ts`](../packages/core/src/case/schema.ts).
+## Cómo se escribe un expediente
+
+```
+content/cases/DL-I-0001/
+  case.ts         ← fuente: el expediente tipado (TypeScript comprueba la forma al escribirlo)
+  generate.ts     ← opcional: genera recursos gráficos por código (SVG)
+  *.ts            ← módulos auxiliares (p. ej. la geometría de la hoja de contactos)
+  case.json       ← generado: lo que se publica
+  *.svg / *.webp  ← recursos
+```
+
+`npm run content` compila todos los expedientes: genera recursos, calcula
+tamaño y SHA-256 de cada uno, valida el caso entero y publica
+`case.json`, recursos y `catalog.json` en `apps/web/public/content`. Si un
+expediente tiene errores, no se publica y la compilación falla (también en
+GitHub Actions).
+
+El esquema completo y comentado está en
+[`packages/core/src/case/schema.ts`](../packages/core/src/case/schema.ts).
+
+### Detalles ocultos
+
+- **En el texto:** `{{dt-id|fragmento}}` dentro de un bloque. El fragmento se
+  muestra con normalidad; con la lupa, el jugador puede tocar cualquier
+  frase, y solo las marcadas revelan algo.
+- **En una imagen:** `region: { x, y, w, h }` normalizada (0..1). Con la lupa,
+  tocar dentro de la zona revela el detalle.
+- **Sin posición:** se revelan con «Examinar a fondo».
 
 ## Identificadores
 

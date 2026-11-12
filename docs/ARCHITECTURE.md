@@ -65,6 +65,8 @@ No hay servidor, base de datos remota, cuentas ni servicios externos. Ver
 | `profile/profile.ts` | Perfil local y nº de investigador con letra de control |
 | `cosmetics/catalog.ts` | Huecos de la oficina, variantes y reglas de desbloqueo |
 | `backup/archive.ts` | Formato de copia, suma SHA-256, validación y fusión |
+| `engine/engine.ts` | Motor de investigación: acciones y consultas puras |
+| `engine/resolution.ts` | Acusación, finales, cronología, puntuación, cierre por tiempo |
 | `sync/queue.ts` | Reservado para un futuro servidor |
 
 ### `apps/web`
@@ -87,7 +89,11 @@ Rutas con nombres del universo: `/` (escritorio), `/archivo`, `/calendario`,
 `app/sections.ts` es la fuente única de rutas, nombres y etapa de cada sección.
 Las transiciones usan View Transitions cuando el navegador las soporta.
 
-En la Etapa 3 se añadirán `/expediente/:caseId/{dossier,evidencias,sospechosos,cronologia,tablero}`.
+Expediente: `/expediente/:caseId` (portada o expediente) y las
+subrutas `evidencias`, `evidencias/:id`, `personas`, `personas/:id`,
+`interrogatorio/:characterId`, `cronologia`, `tablero`, `acusacion` e
+`informe`. `CaseProvider` carga el contenido, mantiene la investigación,
+ejecuta las acciones del motor, guarda en IndexedDB y vigila el reloj.
 
 ## Almacenamiento local (IndexedDB `deadline`, v2)
 

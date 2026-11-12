@@ -3,6 +3,18 @@ import { DeskScene } from '../scenes/desk/DeskScene.tsx';
 import { SectionScene } from '../scenes/section/SectionScene.tsx';
 import { DiagnosticsScene } from '../scenes/diagnostics/DiagnosticsScene.tsx';
 import { SettingsScene } from '../scenes/settings/SettingsScene.tsx';
+import { ArchiveScene } from '../scenes/archive/ArchiveScene.tsx';
+import { NotebookScene } from '../scenes/notebook/NotebookScene.tsx';
+import { CaseScene } from '../scenes/case/CaseScene.tsx';
+import { DossierTab } from '../scenes/case/DossierTab.tsx';
+import { EvidenceTab } from '../scenes/case/EvidenceTab.tsx';
+import { EvidenceViewer } from '../scenes/case/EvidenceViewer.tsx';
+import { PeopleTab } from '../scenes/case/PeopleTab.tsx';
+import { InterrogationView } from '../scenes/case/InterrogationView.tsx';
+import { TimelineTab } from '../scenes/case/TimelineTab.tsx';
+import { BoardTab } from '../scenes/case/BoardTab.tsx';
+import { AccusationView } from '../scenes/case/AccusationView.tsx';
+import { ReportView } from '../scenes/case/ReportView.tsx';
 import { BackToDesk } from '../ui/BackToDesk.tsx';
 import surface from '../ui/Surface.module.css';
 import { SECTIONS } from './sections.ts';
@@ -40,6 +52,24 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <DeskScene /> },
       { path: 'lampara', element: <SettingsScene /> },
+      { path: 'archivo', element: <ArchiveScene /> },
+      { path: 'libreta', element: <NotebookScene /> },
+      {
+        path: 'expediente/:caseId',
+        element: <CaseScene />,
+        children: [
+          { index: true, element: <DossierTab /> },
+          { path: 'evidencias', element: <EvidenceTab /> },
+          { path: 'evidencias/:evidenceId', element: <EvidenceViewer /> },
+          { path: 'personas', element: <PeopleTab /> },
+          { path: 'personas/:characterId', element: <PeopleTab /> },
+          { path: 'interrogatorio/:characterId', element: <InterrogationView /> },
+          { path: 'cronologia', element: <TimelineTab /> },
+          { path: 'tablero', element: <BoardTab /> },
+          { path: 'acusacion', element: <AccusationView /> },
+          { path: 'informe', element: <ReportView /> },
+        ],
+      },
       ...SECTIONS.filter((s) => !s.ready).map((s) => ({ path: s.path.slice(1), element: <SectionScene id={s.id} /> })),
       { path: 'diagnostico', element: <DiagnosticsScene /> },
     ],

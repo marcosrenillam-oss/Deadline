@@ -103,7 +103,25 @@ export const investigationSchema = z.strictObject({
   associations: z.array(z.strictObject({ evidenceId: z.string(), targetId: z.string() })),
   board: boardStateSchema,
   timeline: z.array(playerTimelineEntrySchema),
+  /** Deducciones (relaciones entre piezas) que el jugador ha establecido. */
+  deductions: z.array(z.string()),
+  /** Diario de actividad: alimenta el historial y el informe final. */
+  log: z.array(z.strictObject({ at: z.number().int(), type: z.string(), ref: z.string().optional() })),
   accusation: accusationSchema.optional(),
+  /** Resultado de la acusación (o del cierre por tiempo), guardado para el informe. */
+  result: z
+    .strictObject({
+      outcome: z.enum(['success', 'partial', 'failure', 'expired']),
+      endingId: z.string().optional(),
+      components: z.strictObject({ culprit: z.boolean(), motive: z.boolean(), method: z.boolean(), proof: z.boolean() }),
+      score: z.array(z.strictObject({ label: z.string(), points: z.number().int() })),
+      total: z.number().int(),
+      timelineAccuracy: z.number().min(0).max(1),
+      falseEventsPlaced: z.array(z.string()),
+      newRewardKeys: z.array(z.string()),
+      elapsedMs: z.number().int(),
+    })
+    .optional(),
   /** Revisión local monótona; la usa la cola de sincronización. */
   rev: z.number().int().min(0),
   updatedAt: z.number().int(),

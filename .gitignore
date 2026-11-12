@@ -10,3 +10,4 @@ coverage/
 apps/web/e2e/__screens__/
 test-results/
 playwright-report/
+apps/web/public/content/

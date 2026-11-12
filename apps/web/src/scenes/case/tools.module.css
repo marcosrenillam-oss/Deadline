@@ -1,0 +1,138 @@
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+.column {
+  min-width: 0;
+}
+
+.colTitle {
+  margin: 0 0 var(--sp-1);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: var(--fs-lg);
+}
+
+.groupLabel {
+  margin: var(--sp-2) 0 2px;
+  font-family: var(--font-type);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--seal);
+}
+
+.picks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pick {
+  width: 100%;
+  min-height: var(--touch);
+  padding: 6px var(--sp-2);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: 1.5px solid rgba(42, 36, 26, 0.2);
+  font-family: var(--font-type);
+  font-size: var(--fs-xs);
+  line-height: 1.35;
+}
+
+.pick[aria-pressed='true'] {
+  border-color: var(--seal);
+  background: rgba(118, 45, 43, 0.1);
+}
+
+.who {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-paper-soft);
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  justify-content: flex-end;
+  padding-top: var(--sp-2);
+  background: linear-gradient(transparent, #e6dbbf 30%);
+}
+
+.verdict {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-2);
+  border-left: 4px solid rgba(42, 36, 26, 0.5);
+  font-family: var(--font-type);
+  font-size: var(--fs-xs);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.verdict[data-ok] {
+  border-left-color: var(--seal);
+}
+
+.primary {
+  min-height: var(--touch);
+  padding: 0 var(--sp-4);
+  background: var(--seal);
+  color: var(--ivory);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.primary:disabled {
+  opacity: 0.4;
+}
+
+.note {
+  font-family: var(--font-type);
+  font-size: var(--fs-xs);
+  line-height: 1.45;
+  color: var(--on-paper-soft);
+}
+
+.hints {
+  margin: 0 0 var(--sp-3);
+  padding-left: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.hint {
+  display: flex;
+  flex-direction: column;
+}
+
+.hand {
+  font-family: var(--font-hand);
+  font-size: var(--fs-xl);
+  line-height: 1.15;
+  color: #2c3856;
+}
+
+@media (max-width: 600px) {
+  .cols {
+    grid-template-columns: 1fr;
+  }
+}

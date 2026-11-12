@@ -144,3 +144,47 @@ para que la mesa no aparezca un instante con valores por defecto.
 ### D-026 · Ambiente "radio" retirado del esquema de ajustes
 Se eliminó la opción `radio` (no publicada) porque no hay forma de
 sintetizarla con calidad; los ajustes antiguos se normalizan solos.
+
+---
+
+## Etapa 3 · Motor de expedientes
+
+### D-027 · Expedientes escritos en TypeScript y compilados a JSON
+`case.ts` se comprueba con el compilador mientras se escribe (autocompletado
+de campos, errores de forma al momento) y `scripts/build-content.ts` lo
+convierte en `case.json`, calcula huellas de los recursos y valida. El
+contenido sigue siendo datos: no hay lógica de caso en código.
+
+### D-028 · Motor puro y separado de la interfaz
+`packages/core/src/engine`: examinar, advertir detalles, preguntar,
+relacionar piezas, señalar contradicciones, pedir pistas, acusar, cerrar por
+tiempo. Funciones puras probadas sin navegador; la interfaz solo las invoca.
+
+### D-029 · Pruebas visuales dibujadas como lo haría la policía
+Sin presupuesto de arte, las evidencias gráficas del primer caso son
+piezas que en la ficción también son dibujos o esquemas: un croquis
+policial y una hoja de contactos con fotogramas esquemáticos, generados por
+código (SVG, pocos KB). Los retratos son siluetas de ficha generadas por
+código y lo dicen: no fingen ser fotografías. La producción de retratos e
+imágenes realistas queda para la Etapa 8 (ver STATUS).
+
+### D-030 · Relacionar piezas
+Una deducción se reconoce si las piezas elegidas incluyen todas las suyas y
+sobra como mucho una. Así no hace falta acertar la combinación exacta, pero
+seleccionarlo todo no funciona.
+
+### D-031 · La acusación puntúa una vez por expediente
+Los puntos de acusación y de descubrimientos se cobran solo la primera vez
+(`rewardedKeys`). Repetir un caso resuelto no suma; perder no impide cobrar
+más tarde lo que no se cobró.
+
+### D-032 · Cronología con versiones falsas
+Las declaraciones de los sospechosos generan fichas de cronología que pueden
+ser falsas. Si el jugador las coloca sin marcarlas como dudosas, restan
+precisión. La hora de cada ficha es visible: la dificultad está en saber
+qué es cierto, no en adivinar el orden.
+
+### D-033 · Navegación del expediente como separadores de archivador
+Carril izquierdo con las cinco secciones, libreta, contradicción, pistas y
+acusación siempre a mano; reloj arriba. Sin cabecera convencional. Cabe en
+un iPhone en horizontal con objetivos táctiles de 44 pt.

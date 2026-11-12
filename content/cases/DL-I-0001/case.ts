@@ -1,0 +1,1388 @@
+import type { CaseFileInput } from '../../../packages/core/src/case/schema.ts';
+import { frameRegion } from './contactSheet.ts';
+
+/**
+ * DL-I-0001 · REVELADO EN NEGRO
+ * Londres, 1987 · Homicidio · Ficción original · Dificultad: Detective
+ *
+ * Verdad del caso (no visible para el jugador):
+ * Imogen Ashcroft sale de la Kingsway Playhouse en el descanso (21:56), entra
+ * en el estudio con la llave que nunca devolvió y, mientras Desmond revela con
+ * la luz roja encendida, echa cianuro de su propio frasco en el termo (22:12).
+ * Limpia el frasco, vuelve al teatro empapada (22:38). Desmond se sirve del
+ * termo a las 22:32 y muere hacia las 22:40. La cámara del trípode, en una
+ * prueba de intervalómetro, fotografía el estudio cada diez minutos.
+ *
+ * Pistas falsas: Nora volvió a las 21:42 (a por sus negativos), Julian
+ * ocultaba un desfalco, Callum llegó al portal a las 23:15.
+ */
+const caseFile: CaseFileInput = {
+  schemaVersion: 1,
+  id: 'DL-I-0001',
+  contentVersion: 1,
+  mode: 'individual',
+  title: 'Revelado en negro',
+  subtitle: 'Muerte de un fotógrafo en el Soho',
+  origin: 'fiction',
+  era: 'c20',
+  eraLabel: 'Londres, 1987',
+  year: 1987,
+  location: { city: 'Londres', place: 'Estudio Ashcroft & Price, Greek Street, Soho', country: 'Reino Unido' },
+  category: 'homicide',
+  difficulty: 'detective',
+  keywords: ['fotografía', 'cianuro', 'Soho', 'teatro', 'cuarto oscuro', 'herencia', 'Fleet Street'],
+  ambience: { music: 'london-1987-rain', mood: 'urban' },
+  maxHints: 5,
+
+  briefing: {
+    incidentDisplay: 'Viernes, 13 de noviembre de 1987 · noche',
+    summary:
+      'Desmond Ashcroft, fotógrafo de prensa y de moda, aparece muerto en el cuarto oscuro de su estudio del Soho. La autopsia confirma un envenenamiento por cianuro.',
+    context:
+      'Su ayudante, Nora Kell, encontró el cuerpo el sábado a las 8:20 al abrir el estudio. La lámpara roja de «No entrar» seguía encendida sobre la puerta del cuarto oscuro. Junto al cuerpo, el vaso de un termo con restos de té.',
+    background:
+      'Ashcroft, de 52 años, era una firma conocida de Fleet Street desde los setenta. Compartía el estudio con su socio, Julian Price. Estaba separado de su esposa, Imogen, desde 1985; el divorcio seguía en trámite. En los últimos años practicaba por afición el colodión húmedo, un procedimiento fotográfico del siglo XIX que emplea cianuro potásico.',
+    victim: 'ch-desmond',
+    initialFacts: [],
+    initialEvidence: ['ev-informe', 'ev-autopsia', 'ev-croquis', 'ev-camara', 'ev-foto-pared', 'ev-nota-portal', 'ev-recorte'],
+    initialTimeline: ['te-muerte', 'te-hallazgo'],
+  },
+
+  // ─── Personajes ────────────────────────────────────────────────────────────
+  characters: [
+    {
+      id: 'ch-desmond',
+      name: 'Desmond Ashcroft',
+      role: 'victim',
+      age: 52,
+      occupation: 'Fotógrafo de prensa y moda',
+      summary: 'Un ojo prodigioso y un carácter difícil. Encantador cuando le convenía.',
+      biography:
+        'Hijo de un impresor de Leeds, llegó a Londres en 1962 con una Leica de segunda mano. En los setenta sus portadas para los dominicales lo hicieron famoso. Coleccionaba procedimientos antiguos y enemigos modernos.',
+      personality: ['Perfeccionista', 'Manipulador', 'Rutinario hasta la obsesión'],
+    },
+    {
+      id: 'ch-nora',
+      name: 'Nora Kell',
+      role: 'suspect',
+      age: 26,
+      occupation: 'Ayudante de fotografía',
+      summary: 'Encontró el cuerpo. Tiene talento y prisa por demostrarlo.',
+      biography:
+        'Nacida en Brixton, becada en la Escuela de Arte de Camberwell. Entró en el estudio en 1984 como ayudante para todo: revela, ilumina, archiva y aguanta. Fotografía por su cuenta los fines de semana.',
+      personality: ['Directa', 'Orgullosa de su trabajo', 'Miente mal'],
+      relationToVictim: 'Su ayudante desde 1984',
+      motive: { text: 'Ashcroft exponía como propias fotografías de Nora.', visibleWhen: { secret: 'se-nora-negativos' } },
+      alibi: { claim: 'En su piso de Camden desde las ocho, toda la noche.' },
+    },
+    {
+      id: 'ch-julian',
+      name: 'Julian Price',
+      role: 'suspect',
+      age: 49,
+      occupation: 'Socio del estudio, gestor comercial',
+      summary: 'Lleva quince años vendiendo el talento de Ashcroft. Y las cuentas.',
+      biography:
+        'Antiguo agente de publicidad. Puso el capital del estudio en 1972 y se ocupa de clientes, contratos y facturas. Socio del Carlisle Club, jugador de bridge, deudor discreto.',
+      personality: ['Afable', 'Calculador', 'Habla de más cuando se pone nervioso'],
+      relationToVictim: 'Socio desde 1972',
+      motive: { text: 'Ashcroft había descubierto que desviaba dinero del estudio.', visibleWhen: { secret: 'se-julian-desfalco' } },
+      alibi: { claim: 'Cenando en el Carlisle Club, en Pall Mall, hasta pasadas las once.' },
+    },
+    {
+      id: 'ch-imogen',
+      name: 'Imogen Ashcroft',
+      role: 'suspect',
+      age: 47,
+      occupation: 'Restauradora de libros antiguos',
+      summary: 'La esposa. Separada, no divorciada. Nunca levanta la voz.',
+      biography:
+        'Hija de un librero de Cecil Court. Se casó con Desmond en 1966 y lo dejó en 1985. Tiene un taller de encuadernación en Bloomsbury y una casa en Hampstead que, según el acuerdo provisional, sigue a nombre de los dos.',
+      personality: ['Contenida', 'Irónica', 'Paciente como su oficio'],
+      relationToVictim: 'Esposa, separada desde 1985',
+      motive: { text: 'El lunes, Ashcroft iba a cambiar su testamento y el beneficiario de su seguro de vida.', visibleWhen: { fact: 'fa-cita-abogado' } },
+      alibi: { claim: 'En la Kingsway Playhouse durante toda la función.' },
+    },
+    {
+      id: 'ch-callum',
+      name: 'Callum Reyes',
+      role: 'suspect',
+      age: 34,
+      occupation: 'Periodista de «The Sunday Courier»',
+      summary: 'Compra fotos que otros no se atreven a publicar.',
+      biography:
+        'Reportero de sucesos reconvertido en cazador de exclusivas. Paga bien, no pregunta cómo se consiguió una foto y nunca revela una fuente.',
+      personality: ['Encantador', 'Evasivo', 'Leal a sus fuentes'],
+      relationToVictim: 'Comprador habitual de fotografías',
+      motive: { text: 'Ashcroft le había subido tres veces el precio de unas fotos comprometedoras.', visibleWhen: { secret: 'se-callum-fotos' } },
+      alibi: { claim: 'Toda la noche en la redacción, en Fleet Street.' },
+      appearsWhen: { asked: 'q-nora-cr' },
+    },
+    {
+      id: 'ch-okafor',
+      name: 'Samuel Okafor',
+      role: 'witness',
+      age: 61,
+      occupation: 'Acomodador de la Kingsway Playhouse',
+      summary: 'Treinta años guiando a la gente a oscuras.',
+      biography: 'Conoce cada butaca del teatro y a la mayoría de quienes se sientan en ellas.',
+      personality: ['Observador', 'Meticuloso'],
+      appearsWhen: { evidence: 'ev-acomodador' },
+    },
+  ],
+
+  locations: [
+    { id: 'lo-estudio', name: 'Estudio Ashcroft & Price', description: 'Primera planta del nº 41 de Greek Street, sobre una tienda de discos.' },
+    { id: 'lo-cuarto-oscuro', name: 'Cuarto oscuro', description: 'Al fondo del estudio. Con la lámpara roja encendida, nadie entra.' },
+    { id: 'lo-teatro', name: 'Kingsway Playhouse', description: 'Teatro junto a Kingsway, a unos diez minutos a pie del Soho.', appearsWhen: { asked: 'q-imogen-noche' } },
+    { id: 'lo-club', name: 'Carlisle Club', description: 'Club de caballeros en Pall Mall.', appearsWhen: { asked: 'q-julian-noche' } },
+  ],
+
+  relationships: [
+    { id: 're-matrimonio', a: 'ch-desmond', b: 'ch-imogen', label: 'Matrimonio separado', description: 'Casados en 1966, separados en 1985. Divorcio en trámite.' },
+    { id: 're-socios', a: 'ch-desmond', b: 'ch-julian', label: 'Socios', description: 'Ashcroft & Price desde 1972.' },
+    { id: 're-ayudante', a: 'ch-desmond', b: 'ch-nora', label: 'Ayudante', description: 'Desde 1984.' },
+    { id: 're-prensa', a: 'ch-desmond', b: 'ch-callum', label: 'Comprador de fotos', visibleWhen: { asked: 'q-nora-cr' } },
+    { id: 're-nora-julian', a: 'ch-nora', b: 'ch-julian', label: 'Desconfianza mutua', visibleWhen: { asked: 'q-julian-nora' } },
+  ],
+
+  // ─── Hechos ────────────────────────────────────────────────────────────────
+  facts: [
+    { id: 'fa-sin-forzar', text: 'Nadie forzó el portal: quien entró tenía llave.', important: true },
+    { id: 'fa-luz-roja', text: 'Con la lámpara roja encendida nadie abre el cuarto oscuro: quien revela no ve el estudio.', important: true },
+    { id: 'fa-costumbre-termo', text: 'Las noches de revelado, Ashcroft preparaba un termo de té hacia las 21:30.' },
+    { id: 'fa-kcn-estudio', text: 'El cianuro procede del frasco de cianuro potásico que Ashcroft usaba para el colodión húmedo.' },
+    { id: 'fa-envenenado-termo', text: 'El veneno estaba en el té del termo. La tetera y el azúcar estaban limpios.', important: true },
+    { id: 'fa-frasco-limpio', text: 'Alguien limpió el frasco de cianuro: ni siquiera tiene las huellas de Ashcroft. No fue un accidente.' , important: true },
+    { id: 'fa-hora-fiable', text: 'La hora que imprime la cámara en cada fotograma es exacta.' },
+    { id: 'fa-encuadre', text: 'La cámara del trípode encuadra la cocina, la mesa, el portal y la puerta del cuarto oscuro.' },
+    { id: 'fa-nora-volvio', text: 'Nora Kell estuvo en el estudio a las 21:42.' },
+    { id: 'fa-vivo-2202', text: 'A las 22:02, Ashcroft bebe del termo sin consecuencias.', important: true },
+    { id: 'fa-figura-2212', text: 'A las 22:12, con la luz roja encendida, una figura encapuchada está junto al termo.', important: true },
+    { id: 'fa-sirve-2232', text: 'A las 22:32, Ashcroft se sirve del termo y vuelve al cuarto oscuro.', important: true },
+    { id: 'fa-sombra-2312', text: 'A las 23:12, alguien espera tras el cristal del portal. Nadie le abre.' },
+    { id: 'fa-ventana', text: 'El veneno entró en el termo entre las 22:02 y las 22:32.', important: true },
+    { id: 'fa-paraguas-imogen', text: 'El paraguas con mango de pato del fotograma de las 22:12 es el de Imogen Ashcroft.', important: true },
+    { id: 'fa-cita-abogado', text: 'El lunes 16, Ashcroft iba a firmar un testamento nuevo y cambiar el beneficiario de su seguro de vida.', important: true },
+    { id: 'fa-imogen-sabia', text: 'Imogen sabía lo de la cita del lunes: el bufete le envió copia de la carta.' },
+    { id: 'fa-imogen-llave', text: 'Según Nora, Imogen nunca devolvió su llave del portal.' },
+    { id: 'fa-descanso', text: 'El descanso de la función fue de 21:50 a 22:10.' },
+    { id: 'fa-imogen-butaca', text: 'Imogen se sentaba en la fila K, butaca 14.' },
+    { id: 'fa-imogen-pase', text: 'Imogen pidió un pase de salida a las 21:56.' },
+    { id: 'fa-imogen-vuelta', text: 'Imogen volvió a la sala hacia las 22:38, empapada, con un paraguas de mango de pato.', important: true },
+    { id: 'fa-descanso-encaja', text: 'El descanso deja tiempo para ir de Kingsway al Soho, estar junto al termo a las 22:12 y volver a la sala a las 22:38.' },
+    { id: 'fa-julian-club', text: 'Julian Price no salió del Carlisle Club entre las 20:02 y las 23:05.' },
+    { id: 'fa-llamada-2205', text: 'A las 22:05, Ashcroft llamó a Price al club. Hablaron seis minutos.' },
+    { id: 'fa-cuentas-alteradas', text: 'En el libro de cuentas hay cifras de septiembre y octubre raspadas y reescritas.' },
+    { id: 'fa-negocio-callum', text: 'Ashcroft negociaba con «C. R.» la venta de unos «negativos del ministro».' },
+    { id: 'fa-callum-vino', text: 'Callum Reyes estuvo en el portal hacia las 23:15 y nadie le abrió.' },
+    { id: 'fa-nora-descartada', text: 'Nora se fue antes de que el termo estuviera envenenado.' },
+    { id: 'fa-julian-descartado', text: 'Price estaba al teléfono en Pall Mall a las 22:05 y no salió del club: no pudo estar junto al termo a las 22:12.' },
+    { id: 'fa-callum-descartado', text: 'Callum llegó al portal cuando Ashcroft ya había bebido el veneno.' },
+  ],
+
+  // ─── Evidencias ────────────────────────────────────────────────────────────
+  evidence: [
+    {
+      id: 'ev-informe',
+      kind: 'report',
+      title: 'Informe del agente',
+      dated: 'Sábado, 14 de noviembre de 1987',
+      source: 'Policía Metropolitana · West End Central',
+      summary: 'Primer informe en el lugar de los hechos.',
+      related: { characters: ['ch-desmond', 'ch-nora'], locations: ['lo-estudio', 'lo-cuarto-oscuro'], events: ['te-hallazgo'] },
+      body: [
+        { type: 'heading', text: 'INFORME DE INCIDENTE Nº WEC/87/11/0412' },
+        { type: 'field', label: 'Agente', value: 'P.C. 4471 Gareth Rhodes' },
+        { type: 'field', label: 'Aviso', value: '08:26 · llamada de la Srta. Nora Kell desde el estudio' },
+        {
+          type: 'typed',
+          text: 'Me persono en el nº 41 de Greek Street a las 08:41. El estudio ocupa la primera planta, sobre una tienda de discos cerrada. {{dt-portal|El portal de la calle no presenta señales de haber sido forzado: la cerradura funciona con normalidad y solo abre con llave.}}',
+        },
+        {
+          type: 'typed',
+          text: 'En el cuarto oscuro, al fondo del estudio, hallo el cuerpo de un varón de unos cincuenta años, identificado por la Srta. Kell como Desmond Ashcroft. Yace junto a la mesa de las cubetas. Al lado, el vaso-tapa de un termo con un dedo de té frío. {{dt-luz|La lámpara roja de aviso sobre la puerta del cuarto oscuro sigue encendida.}}',
+        },
+        {
+          type: 'typed',
+          text: 'En el estudio, una cámara sobre trípode. Bajo el felpudo del portal, una nota manuscrita (se adjunta). Llovió con fuerza durante la noche; en el rellano quedan cercos secos de agua.',
+        },
+        { type: 'typed', text: 'Personas con llave del portal según la Srta. Kell: el fallecido, ella misma y el socio, Sr. Julian Price.' },
+        { type: 'signature', name: 'P.C. G. Rhodes' },
+      ],
+      details: [
+        { id: 'dt-portal', label: 'El portal no fue forzado', description: 'Quien entrara esa noche lo hizo con llave… o le abrieron.', effects: [{ grantFact: 'fa-sin-forzar' }], points: 15 },
+        { id: 'dt-luz', label: 'La luz roja seguía encendida', description: 'Ashcroft murió en plena sesión de revelado.', effects: [{ grantFact: 'fa-luz-roja' }], points: 10 },
+      ],
+    },
+    {
+      id: 'ev-autopsia',
+      kind: 'report',
+      title: 'Informe de autopsia',
+      dated: 'Sábado, 14 de noviembre de 1987',
+      source: 'Instituto de Medicina Forense de Westminster',
+      summary: 'Causa y hora estimada de la muerte.',
+      related: { characters: ['ch-desmond'], locations: [], events: ['te-muerte'] },
+      body: [
+        { type: 'field', label: 'Fallecido', value: 'Desmond Ashcroft, 52 años' },
+        { type: 'field', label: 'Causa de la muerte', value: 'Intoxicación aguda por cianuro' },
+        { type: 'field', label: 'Vía', value: 'Oral. Contenido gástrico: té con leche y azúcar, ingerido poco antes de la muerte.' },
+        { type: 'field', label: 'Hora estimada', value: 'Entre las 22:30 y las 23:30 del viernes 13.' },
+        {
+          type: 'typed',
+          text: 'Por vía oral, una dosis letal de cianuro causa pérdida de conciencia en pocos minutos. La víctima no pudo ingerir el veneno mucho antes de morir.',
+        },
+        { type: 'typed', text: 'Sin signos de violencia ni de forcejeo. Sin alcohol en sangre.' },
+        { type: 'signature', name: 'Dra. Helen Marsh' },
+      ],
+      points: 5,
+    },
+    {
+      id: 'ev-laboratorio',
+      kind: 'report',
+      title: 'Análisis del laboratorio',
+      dated: 'Domingo, 15 de noviembre de 1987',
+      source: 'Laboratorio de la Policía Metropolitana',
+      summary: 'Dónde estaba el veneno y de dónde salió.',
+      autoDiscoverWhen: { examined: 'ev-autopsia' },
+      onExamine: [{ grantFact: 'fa-kcn-estudio' }],
+      related: { characters: ['ch-desmond'], locations: ['lo-cuarto-oscuro'], events: [] },
+      body: [
+        { type: 'field', label: 'Muestras', value: 'Vaso-tapa del termo, termo, tetera eléctrica, azucarero, botella de leche, frascos del armario de químicos.' },
+        { type: 'typed', text: '{{dt-termo|Cianuro potásico en el té del termo y en el vaso-tapa.}} La tetera, el azucarero y la leche, limpios.' },
+        {
+          type: 'typed',
+          text: 'En el armario del cuarto oscuro, frasco de cianuro potásico de uso fotográfico (etiqueta manuscrita «Colodión — VENENO») con un tercio de su contenido. {{dt-frasco|El frasco y el tirador del armario han sido limpiados: no queda ninguna huella, ni siquiera las del propietario.}}',
+        },
+        { type: 'typed', text: 'Termo de acero de un litro. Contenía unos 300 ml de té con leche.' },
+        { type: 'signature', name: 'Dr. P. Lindqvist' },
+      ],
+      details: [
+        { id: 'dt-termo', label: 'El veneno estaba en el termo', description: 'Ni en la tetera ni en el azúcar: solo en el termo.', effects: [{ grantFact: 'fa-envenenado-termo' }], points: 15 },
+        { id: 'dt-frasco', label: 'Frasco sin huellas', description: 'Ashcroft lo usaba a menudo; sus huellas deberían estar ahí. Alguien lo limpió.', effects: [{ grantFact: 'fa-frasco-limpio' }], points: 15 },
+      ],
+      points: 10,
+    },
+    {
+      id: 'ev-croquis',
+      kind: 'map',
+      title: 'Croquis del estudio',
+      source: 'P.C. G. Rhodes',
+      summary: 'Planta del estudio con la posición de la cámara.',
+      asset: 'as-croquis',
+      related: { characters: [], locations: ['lo-estudio', 'lo-cuarto-oscuro'], events: [] },
+      body: [
+        {
+          type: 'paragraph',
+          text: 'Croquis levantado por el agente. {{dt-encuadre|La cámara del trípode apunta hacia el fondo: abarca la cocina, el archivo, la mesa de trabajo, el portal y la puerta del cuarto oscuro.}}',
+        },
+      ],
+      details: [{ id: 'dt-encuadre', label: 'Lo que ve la cámara', description: 'Todo lo que ocurrió en el estudio quedó frente al objetivo.', effects: [{ grantFact: 'fa-encuadre' }], points: 5 }],
+    },
+    {
+      id: 'ev-camara',
+      kind: 'object',
+      title: 'Nikon F3 sobre trípode',
+      source: 'Estudio, junto a la ventana',
+      summary: 'Cámara con motor y respaldo de datos, conectada a un temporizador.',
+      related: { characters: ['ch-desmond'], locations: ['lo-estudio'], events: [] },
+      body: [
+        {
+          type: 'paragraph',
+          text: 'Cámara réflex de 35 mm con motor y un respaldo que imprime la fecha y la hora en cada fotograma. Un cable la une a un temporizador de intervalos.',
+        },
+        {
+          type: 'paragraph',
+          text: '{{dt-contador|El contador marca 36: el carrete está terminado y sigue dentro de la cámara.}} En la mesa, una nota de Ashcroft: «Prueba de intervalómetro para el encargo de Harrods. Una foto cada 10 min desde las 18:00».',
+        },
+        { type: 'paragraph', text: '{{dt-respaldo|El reloj del respaldo coincide al minuto con el reloj del agente.}}' },
+      ],
+      details: [
+        {
+          id: 'dt-contador',
+          label: 'El carrete está terminado',
+          description: 'Treinta y seis fotos del estudio, una cada diez minutos. Se envía el carrete al laboratorio.',
+          effects: [{ grantEvidence: 'ev-contactos' }],
+          points: 25,
+        },
+        { id: 'dt-respaldo', label: 'La hora es exacta', description: 'Las horas impresas en los fotogramas son fiables.', effects: [{ grantFact: 'fa-hora-fiable' }], points: 5 },
+      ],
+    },
+    {
+      id: 'ev-contactos',
+      kind: 'photo',
+      title: 'Hoja de contactos del carrete',
+      source: 'Revelado por el laboratorio de la Policía Metropolitana',
+      summary: '36 fotogramas del estudio, de 18:02 a 23:52, con la hora impresa.',
+      asset: 'as-contactos',
+      decisive: true,
+      points: 30,
+      related: { characters: ['ch-desmond'], locations: ['lo-estudio'], events: ['te-envenena'] },
+      body: [
+        {
+          type: 'paragraph',
+          text: 'El laboratorio ha revelado el carrete de la Nikon. A la izquierda, el archivo y la cocina con la tetera y el termo; en el centro, la mesa de trabajo y, al fondo, el cristal esmerilado del portal; a la derecha, la puerta del cuarto oscuro con su lámpara de aviso.',
+        },
+        { type: 'paragraph', text: 'Los fotogramas son pequeños: hay que examinarlos con la lupa.' },
+      ],
+      details: [
+        {
+          id: 'dt-f2142',
+          label: '21:42 — Nora Kell en el estudio',
+          description: 'Con el abrigo puesto y el pelo mojado, Nora saca una caja de la estantería del archivo. Ashcroft sigue en su mesa. Ella no se acerca a la cocina.',
+          region: frameRegion('21:42'),
+          effects: [{ grantFact: 'fa-nora-volvio' }, { unlockTimelineEvent: 'te-nora-vuelve' }],
+          points: 15,
+        },
+        {
+          id: 'dt-f2202',
+          label: '22:02 — Ashcroft bebe del termo',
+          description: 'Ashcroft, en su mesa, se lleva a la boca el vaso del termo. Tres minutos después hará una llamada.',
+          region: frameRegion('22:02'),
+          effects: [{ grantFact: 'fa-vivo-2202' }, { unlockTimelineEvent: 'te-bebe' }],
+          points: 15,
+        },
+        {
+          id: 'dt-f2212',
+          label: '22:12 — Una figura junto al termo',
+          description:
+            'La lámpara roja está encendida: Ashcroft revela dentro. Junto a la cocina, una figura con abrigo largo y capucha, de espaldas, inclinada sobre el termo. En la mano lleva un paraguas cerrado cuyo mango tiene forma de cabeza de pato.',
+          region: frameRegion('22:12'),
+          effects: [{ grantFact: 'fa-figura-2212' }, { unlockTimelineEvent: 'te-envenena' }],
+          points: 30,
+        },
+        {
+          id: 'dt-f2232',
+          label: '22:32 — Ashcroft se sirve',
+          description: 'Ashcroft ha salido un momento del cuarto oscuro. Llena el vaso del termo y vuelve dentro. Es su última imagen.',
+          region: frameRegion('22:32'),
+          effects: [{ grantFact: 'fa-sirve-2232' }, { unlockTimelineEvent: 'te-sirve' }],
+          points: 15,
+        },
+        {
+          id: 'dt-f2312',
+          label: '23:12 — Una sombra en el portal',
+          description: 'Tras el cristal esmerilado se adivina la silueta de un hombre con sombrero que espera. Nadie le abre.',
+          region: frameRegion('23:12'),
+          effects: [{ grantFact: 'fa-sombra-2312' }],
+          points: 10,
+        },
+      ],
+    },
+    {
+      id: 'ev-foto-pared',
+      kind: 'photo',
+      title: 'Fotografía enmarcada',
+      source: 'Estudio, junto a la puerta del cuarto oscuro',
+      summary: 'Una mujer bajo la lluvia en Brighton.',
+      related: { characters: ['ch-imogen', 'ch-desmond'], locations: ['lo-estudio'], events: [] },
+      body: [
+        {
+          type: 'paragraph',
+          text: 'Copia en blanco y negro, 30 × 40 cm. Una mujer ríe bajo la lluvia en el paseo marítimo de Brighton. Sostiene un paraguas abierto cuyo mango, tallado en madera, tiene forma de cabeza de pato.',
+        },
+        { type: 'handwritten', text: 'Para I., que nunca se moja. — D., Brighton, 1979', author: 'Al dorso' },
+      ],
+      points: 5,
+    },
+    {
+      id: 'ev-nota-portal',
+      kind: 'letter',
+      title: 'Nota bajo el felpudo',
+      source: 'Portal del nº 41 de Greek Street',
+      summary: 'Una nota firmada con iniciales.',
+      related: { characters: ['ch-desmond'], locations: ['lo-estudio'], events: ['te-callum'] },
+      body: [
+        { type: 'quote', text: 'D.: son las once y cuarto y no abres.', lineId: 'ln-nota' },
+        { type: 'handwritten', text: 'Mañana sin falta, que el lunes cierro edición. {{dt-ministro|Trae los negativos del ministro.}} — C. R.' },
+      ],
+      details: [
+        { id: 'dt-ministro', label: '«Los negativos del ministro»', description: 'Ashcroft tenía algo que vender, y «C. R.» quería comprarlo.', effects: [{ grantFact: 'fa-negocio-callum' }], points: 10 },
+      ],
+    },
+    {
+      id: 'ev-recorte',
+      kind: 'press',
+      title: 'Recorte de prensa',
+      dated: 'Sábado, 14 de noviembre de 1987',
+      source: 'The London Evening Post',
+      summary: 'La tormenta del viernes en el West End.',
+      body: [
+        { type: 'heading', text: 'DILUVIO EN EL WEST END' },
+        {
+          type: 'paragraph',
+          text: 'Una tromba de agua cayó sobre el centro de Londres entre las nueve y media de la noche y la madrugada. Hubo colas de taxis frente a los teatros de Covent Garden y Kingsway, y más de un espectador volvió a su butaca «como si hubiera cruzado el Támesis a nado».',
+        },
+      ],
+    },
+    {
+      id: 'ev-carta-abogado',
+      kind: 'letter',
+      title: 'Carta del bufete Whitlock & Moss',
+      dated: '11 de noviembre de 1987',
+      source: 'Cajón de la mesa de Ashcroft',
+      summary: 'Una cita para el lunes 16.',
+      autoDiscoverWhen: { any: [{ asked: 'q-nora-lunes' }, { asked: 'q-julian-planes' }] },
+      onExamine: [{ grantFact: 'fa-cita-abogado' }],
+      related: { characters: ['ch-desmond', 'ch-imogen'], locations: [], events: [] },
+      body: [
+        { type: 'typed', text: 'Estimado Sr. Ashcroft:' },
+        {
+          type: 'typed',
+          text: 'Le confirmamos la cita del lunes 16 de noviembre a las 10:00 para la firma de su nuevo testamento y de la modificación del beneficiario de su póliza de vida con Albion Mutual (50.000 £), que pasará a ser la Fundación para la Fotografía Documental.',
+        },
+        {
+          type: 'typed',
+          text: 'Conforme a lo estipulado en el acuerdo de separación, {{dt-copia|remitimos copia de la presente a la Sra. Imogen Ashcroft.}}',
+        },
+        { type: 'signature', name: 'R. Whitlock' },
+      ],
+      details: [{ id: 'dt-copia', label: 'Imogen recibió copia', description: 'Desde el día 11, Imogen sabía lo que iba a pasar el lunes.', effects: [{ grantFact: 'fa-imogen-sabia' }], points: 20 }],
+      points: 10,
+    },
+    {
+      id: 'ev-libro-club',
+      kind: 'record',
+      title: 'Registro del Carlisle Club',
+      dated: 'Viernes, 13 de noviembre de 1987',
+      source: 'Conserjería del Carlisle Club, Pall Mall',
+      summary: 'Entradas, salidas y llamadas de la noche.',
+      autoDiscoverWhen: { asked: 'q-julian-noche' },
+      onExamine: [{ grantFact: 'fa-julian-club' }],
+      related: { characters: ['ch-julian', 'ch-desmond'], locations: ['lo-club'], events: ['te-llamada'] },
+      body: [
+        {
+          type: 'table',
+          header: ['Hora', 'Socio', 'Anotación'],
+          rows: [
+            ['20:02', 'Sr. J. Price', 'Entrada. Mesa 6 con un invitado.'],
+            ['22:05', 'Sr. J. Price', '{{dt-llamada|Llamada recibida del Sr. Ashcroft. Atendida en la cabina 2, seis minutos.}}'],
+            ['22:20', 'Sr. J. Price', 'Partida de bridge, sala azul.'],
+            ['23:05', 'Sr. J. Price', 'Salida. Taxi pedido por conserjería.'],
+          ],
+        },
+        { type: 'signature', name: 'E. Barnes, conserje' },
+      ],
+      details: [
+        { id: 'dt-llamada', label: 'La llamada de las 22:05', description: 'Ashcroft estaba vivo a las 22:05 y habló con Price durante seis minutos.', effects: [{ grantFact: 'fa-llamada-2205' }, { unlockTimelineEvent: 'te-llamada' }], points: 15 },
+      ],
+      points: 10,
+    },
+    {
+      id: 'ev-libro-cuentas',
+      kind: 'record',
+      title: 'Libro de cuentas del estudio',
+      dated: '1987',
+      source: 'Despacho del estudio',
+      summary: 'Ingresos y gastos de Ashcroft & Price.',
+      related: { characters: ['ch-julian', 'ch-desmond'], locations: ['lo-estudio'], events: [] },
+      body: [
+        { type: 'heading', text: 'ASHCROFT & PRICE — INGRESOS 1987' },
+        {
+          type: 'table',
+          header: ['Mes', 'Cliente', 'Importe'],
+          rows: [
+            ['Agosto', 'Harrods (catálogo otoño)', '2.800 £'],
+            ['Septiembre', 'Vogue UK', '1.100 £'],
+            ['Octubre', 'The Observer Magazine', '900 £'],
+          ],
+        },
+        { type: 'typed', text: '{{dt-raspado|Las cifras de septiembre y octubre están raspadas con cuchilla y reescritas con otra tinta.}}' },
+        { type: 'handwritten', text: '¿Dónde están las 4.200 £ de Vogue? Hablar con J. antes del lunes.', author: 'Letra de Ashcroft, en el margen' },
+      ],
+      details: [{ id: 'dt-raspado', label: 'Cifras raspadas', description: 'Alguien ha maquillado los ingresos del estudio.', effects: [{ grantFact: 'fa-cuentas-alteradas' }], points: 15 }],
+      points: 5,
+    },
+    {
+      id: 'ev-programa',
+      kind: 'document',
+      title: 'Programa de mano de la función',
+      source: 'Kingsway Playhouse',
+      summary: '«La casa de las sombras», viernes 13 de noviembre.',
+      autoDiscoverWhen: { asked: 'q-imogen-noche' },
+      related: { characters: ['ch-imogen'], locations: ['lo-teatro'], events: [] },
+      body: [
+        { type: 'heading', text: 'LA CASA DE LAS SOMBRAS — Drama en dos actos' },
+        { type: 'field', label: 'Función', value: 'Viernes 13 de noviembre de 1987 · 19:30' },
+        { type: 'field', label: 'Primer acto', value: '19:30 – 21:50' },
+        { type: 'field', label: 'Descanso', value: '{{dt-descanso|21:50 – 22:10 · bar del primer piso}}' },
+        { type: 'field', label: 'Segundo acto', value: '22:10 – 23:05' },
+        { type: 'typed', text: 'Se ruega puntualidad. Iniciado el acto, solo se accederá a la sala acompañado por el personal.' },
+      ],
+      details: [{ id: 'dt-descanso', label: 'Veinte minutos de descanso', description: 'De 21:50 a 22:10. El Soho está a unos diez minutos a pie.', effects: [{ grantFact: 'fa-descanso' }], points: 10 }],
+    },
+    {
+      id: 'ev-entrada',
+      kind: 'document',
+      title: 'Entrada de teatro de Imogen Ashcroft',
+      source: 'Entregada por Imogen Ashcroft',
+      summary: 'Platea, fila K, butaca 14.',
+      onExamine: [{ grantFact: 'fa-imogen-butaca' }],
+      related: { characters: ['ch-imogen'], locations: ['lo-teatro'], events: [] },
+      body: [
+        { type: 'field', label: 'Teatro', value: 'Kingsway Playhouse' },
+        { type: 'field', label: 'Función', value: '13-XI-1987 · 19:30' },
+        { type: 'field', label: 'Localidad', value: 'Platea · Fila K · Butaca 14' },
+        { type: 'typed', text: 'Al dorso, {{dt-sello|un sello de tinta azul: «PASE · 21:56».}}' },
+      ],
+      details: [{ id: 'dt-sello', label: 'Un pase de salida', description: 'Imogen salió del teatro a las 21:56, en el descanso.', effects: [{ grantFact: 'fa-imogen-pase' }, { unlockTimelineEvent: 'te-imogen-sale' }], points: 20 }],
+      decisive: true,
+    },
+    {
+      id: 'ev-acomodador',
+      kind: 'statement',
+      title: 'Declaración del acomodador',
+      dated: 'Sábado, 14 de noviembre de 1987',
+      source: 'Tomada en la Kingsway Playhouse',
+      summary: 'Samuel Okafor recuerda a la espectadora de la K14.',
+      autoDiscoverWhen: { fact: 'fa-imogen-butaca' },
+      related: { characters: ['ch-imogen', 'ch-okafor'], locations: ['lo-teatro'], events: ['te-imogen-vuelve'] },
+      body: [
+        {
+          type: 'typed',
+          text: '—Me acuerdo de la señora de la K14 porque fue la única de esa fila que pidió pase en el descanso. {{dt-vuelta|Volvió con el segundo acto empezado, a las once menos veinte, más o menos, calada hasta los huesos}}; tuve que acompañarla con la linterna.',
+        },
+        {
+          type: 'typed',
+          text: '—Llevaba uno de esos paraguas con el mango en forma de pato. Chorreaba. Le pedí que lo dejara en el guardarropa y no quiso soltarlo.',
+        },
+        { type: 'signature', name: 'Samuel Okafor, acomodador' },
+      ],
+      details: [{ id: 'dt-vuelta', label: 'Volvió a las 22:38', description: 'Empapada y con el paraguas del pato.', effects: [{ grantFact: 'fa-imogen-vuelta' }, { unlockTimelineEvent: 'te-imogen-vuelve' }], points: 20 }],
+      decisive: true,
+      points: 15,
+    },
+    {
+      id: 'ev-negativos',
+      kind: 'object',
+      title: 'Caja de negativos de Nora Kell',
+      source: 'Entregada por Nora Kell',
+      summary: 'Lo que Nora fue a buscar el viernes.',
+      related: { characters: ['ch-nora', 'ch-desmond'], locations: [], events: ['te-nora-vuelve'] },
+      body: [
+        {
+          type: 'paragraph',
+          text: 'Caja de cartón con 214 negativos en fundas, rotulados a mano «N. K.». Entre ellos, los originales de «Lluvia en Brixton», la serie que Ashcroft expuso en la galería Hayward en 1986 con su firma.',
+        },
+      ],
+      points: 10,
+    },
+  ],
+
+  // ─── Deducciones ───────────────────────────────────────────────────────────
+  deductions: [
+    {
+      id: 'de-paraguas',
+      title: 'El paraguas del pato',
+      combine: ['dt-f2212', 'ev-foto-pared'],
+      explanation: 'El mango en forma de cabeza de pato del fotograma de las 22:12 es el del paraguas que Ashcroft regaló a Imogen en Brighton.',
+      effects: [{ grantFact: 'fa-paraguas-imogen' }],
+      points: 40,
+    },
+    {
+      id: 'de-ventana',
+      title: 'La ventana del veneno',
+      combine: ['dt-f2202', 'dt-f2232'],
+      explanation: 'A las 22:02 Ashcroft bebe del termo sin daño; a las 22:32 vuelve a servirse y muere poco después. El veneno entró en el termo entre esos dos fotogramas.',
+      effects: [{ grantFact: 'fa-ventana' }],
+      points: 30,
+    },
+    {
+      id: 'de-descanso',
+      title: 'Ida y vuelta en el descanso',
+      combine: ['dt-descanso', 'dt-f2212'],
+      explanation: 'El descanso empezó a las 21:50 y el Soho está a diez minutos de Kingsway: hay tiempo de estar junto al termo a las 22:12 y volver a la sala hacia las 22:38.',
+      effects: [{ grantFact: 'fa-descanso-encaja' }],
+      points: 30,
+    },
+    {
+      id: 'de-nora',
+      title: 'Nora se fue antes del veneno',
+      combine: ['dt-f2142', 'dt-f2202'],
+      explanation: 'Nora se marcha poco después de las 21:42 y a las 22:02 Ashcroft todavía bebe del termo sin daño: cuando ella se fue, el té no estaba envenenado.',
+      effects: [{ grantFact: 'fa-nora-descartada' }],
+      points: 20,
+    },
+    {
+      id: 'de-julian',
+      title: 'Price, al teléfono en Pall Mall',
+      combine: ['dt-llamada', 'dt-f2212'],
+      explanation: 'A las 22:05 Price atiende la llamada en el club, del que no sale hasta las 23:05. No pudo estar en el Soho a las 22:12.',
+      effects: [{ grantFact: 'fa-julian-descartado' }],
+      points: 20,
+    },
+    {
+      id: 'de-callum',
+      title: 'Demasiado tarde',
+      combine: ['dt-f2312', 'dt-f2232'],
+      explanation: 'La sombra del portal llega a las 23:12. Ashcroft había bebido el veneno pasadas las 22:32.',
+      effects: [{ grantFact: 'fa-callum-descartado' }],
+      points: 10,
+    },
+  ],
+
+  // ─── Contradicciones ───────────────────────────────────────────────────────
+  contradictions: [
+    {
+      id: 'cx-nora',
+      title: 'Nora no estuvo en Camden toda la noche',
+      a: { line: 'ln-nora-camden' },
+      b: { detail: 'dt-f2142' },
+      explanation: 'Nora dice que no salió de su piso desde las ocho; la cámara la fotografía en el estudio a las 21:42.',
+      effects: [{ grantFact: 'fa-nora-volvio' }, { unlockTimelineEvent: 'te-nora-vuelve' }],
+      points: 25,
+    },
+    {
+      id: 'cx-julian',
+      title: 'Las cuentas no estaban en orden',
+      a: { line: 'ln-julian-orden' },
+      b: { detail: 'dt-raspado' },
+      explanation: 'Price asegura que las cuentas están en orden; el libro tiene cifras raspadas y reescritas.',
+      effects: [],
+      points: 25,
+    },
+    {
+      id: 'cx-llave',
+      title: 'La llave que nunca se devolvió',
+      a: { line: 'ln-imogen-llave' },
+      b: { line: 'ln-nora-llave' },
+      explanation: 'Imogen dice que devolvió la llave en 1985; Nora asegura que nunca lo hizo.',
+      effects: [],
+      points: 30,
+    },
+    {
+      id: 'cx-teatro',
+      title: 'Imogen se movió de su butaca',
+      a: { line: 'ln-imogen-butaca' },
+      b: { evidence: 'ev-acomodador' },
+      explanation: 'Imogen afirma que no se movió en toda la función; el acomodador la vio salir en el descanso y volver empapada a las 22:38.',
+      effects: [{ unlockTimelineEvent: 'te-imogen-sale' }, { unlockTimelineEvent: 'te-imogen-vuelve' }],
+      points: 40,
+    },
+    {
+      id: 'cx-callum',
+      title: 'Callum sí pisó el Soho',
+      a: { line: 'ln-callum-fleet' },
+      b: { line: 'ln-nota' },
+      explanation: 'Callum dice que no salió de Fleet Street; su nota estaba bajo el felpudo de Ashcroft a las once y cuarto.',
+      effects: [],
+      points: 20,
+    },
+  ],
+
+  // ─── Secretos ──────────────────────────────────────────────────────────────
+  secrets: [
+    { id: 'se-nora-negativos', characterId: 'ch-nora', text: 'Ashcroft expuso como suya la serie «Lluvia en Brixton», fotografiada por Nora. Ella volvió el viernes a por sus negativos para demostrarlo.', points: 30 },
+    { id: 'se-julian-desfalco', characterId: 'ch-julian', text: 'Julian Price desvió 4.200 £ del estudio. En la llamada de las 22:05, Ashcroft le dio hasta el lunes para devolverlas.', points: 30 },
+    { id: 'se-callum-fotos', characterId: 'ch-callum', text: 'Ashcroft iba a vender a Callum Reyes fotografías comprometedoras de un ministro.', points: 20 },
+    { id: 'se-imogen-llave', characterId: 'ch-imogen', text: 'Imogen nunca devolvió su llave del portal.', revealedWhen: { contradiction: 'cx-llave' }, points: 20 },
+  ],
+
+  // ─── Interrogatorios ───────────────────────────────────────────────────────
+  interrogations: [
+    {
+      id: 'in-nora',
+      characterId: 'ch-nora',
+      setting: 'Sala de interrogatorios 2, West End Central. Nora no ha dormido.',
+      opening: [{ text: 'Fui yo quien lo encontró. ¿Sabe lo que es abrir esa puerta y…? Da igual. Pregunte lo que tenga que preguntar.' }],
+      topics: [
+        {
+          id: 'tp-nora-noche',
+          label: 'La noche del viernes',
+          kind: 'alibi',
+          questions: [
+            {
+              id: 'q-nora-noche',
+              prompt: '¿Qué hizo el viernes por la noche?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Salí del estudio a las ocho, como siempre. Metro en Tottenham Court Road y a casa.', tone: 'truth' },
+                    { id: 'ln-nora-camden', text: 'Me quedé en mi piso de Camden toda la noche. No volví a salir.', tone: 'lie' },
+                  ],
+                  effects: [{ unlockTimelineEvent: 'te-nora-sale' }, { unlockTimelineEvent: 'te-falso-nora' }],
+                },
+              ],
+            },
+            {
+              id: 'q-nora-testigos',
+              prompt: '¿Alguien puede confirmarlo?',
+              kind: 'press',
+              requires: { asked: 'q-nora-noche' },
+              responses: [{ lines: [{ text: 'Vivo sola. Vi la tele. No me pregunte qué echaban; estaba agotada.', tone: 'evasion' }] }],
+            },
+            {
+              id: 'q-nora-foto',
+              prompt: 'La cámara del trípode la fotografió a las 21:42 en el estudio, con el pelo mojado.',
+              kind: 'confront',
+              requires: { detail: 'dt-f2142' },
+              responses: [
+                {
+                  lines: [
+                    { speaker: 'narration', text: 'Nora mira la hoja de contactos mucho rato. Luego se ríe, sin ninguna gracia.' },
+                    { text: 'Claro. Su maldita prueba de Harrods. Volví, sí. Diez minutos. Él estaba en su mesa y ni levantó la vista.', tone: 'admission' },
+                    { text: 'Cogí una caja del archivo y me fui. No me acerqué a la cocina; mire sus fotos, que para eso las tiene.', tone: 'truth' },
+                  ],
+                  effects: [{ grantFact: 'fa-nora-volvio' }, { unlockTimelineEvent: 'te-nora-vuelve' }],
+                },
+              ],
+            },
+            {
+              id: 'q-nora-cx',
+              prompt: 'Dijo que no salió de Camden en toda la noche. Eso no es verdad.',
+              kind: 'contradiction',
+              contradiction: 'cx-nora',
+              responses: [
+                {
+                  lines: [{ text: 'Vale. Volví al estudio un momento, hacia las diez menos cuarto. No lo dije porque sabía cómo iba a sonar.', tone: 'admission' }],
+                  effects: [{ grantFact: 'fa-nora-volvio' }],
+                },
+              ],
+            },
+            {
+              id: 'q-nora-caja',
+              prompt: '¿Qué había en esa caja?',
+              kind: 'press',
+              requires: { fact: 'fa-nora-volvio' },
+              responses: [
+                {
+                  lines: [
+                    { text: 'Mis negativos. Míos.', tone: 'admission' },
+                    { text: '«Lluvia en Brixton» es mía. Él la colgó en la Hayward con su nombre y yo le serví el vino en la inauguración. Iba a ir a un abogado con los originales. Por eso volví a por ellos: antes de que los «perdiera».', tone: 'admission' },
+                  ],
+                  effects: [{ grantEvidence: 'ev-negativos' }, { revealSecret: 'se-nora-negativos' }],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'tp-nora-desmond',
+          label: 'Desmond Ashcroft',
+          kind: 'victim',
+          about: 'ch-desmond',
+          questions: [
+            {
+              id: 'q-nora-como',
+              prompt: '¿Cómo era trabajar con él?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Aprendí más en tres años con él que en toda la escuela. Y lo odié más que a nadie. Las dos cosas son verdad a la vez.', tone: 'truth' }] }],
+            },
+            {
+              id: 'q-nora-rutina',
+              prompt: '¿Qué costumbres tenía las noches de revelado?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Siempre las mismas. Hacia las nueve y media llenaba el termo de té, con leche y dos de azúcar. Encendía la luz roja y se encerraba.', tone: 'truth' },
+                    { text: 'Con la luz roja no entraba nadie. Nadie. Si abrías esa puerta le velabas el trabajo de toda la noche y te ponía en la calle.', tone: 'truth' },
+                  ],
+                  effects: [{ grantFact: 'fa-luz-roja' }, { grantFact: 'fa-costumbre-termo' }, { unlockTimelineEvent: 'te-termo' }],
+                },
+              ],
+            },
+            {
+              id: 'q-nora-cianuro',
+              prompt: '¿Por qué había cianuro en el estudio?',
+              kind: 'ask',
+              requires: { fact: 'fa-kcn-estudio' },
+              responses: [
+                {
+                  lines: [
+                    { text: 'Por el colodión húmedo, su capricho del siglo diecinueve. El frasco estaba en el armario del cuarto oscuro, con una calavera dibujada a rotulador.', tone: 'truth' },
+                    { text: 'Lo sabía todo el que hubiera pasado por el estudio. Su mujer le regaló el primer juego de placas.', tone: 'truth' },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 'q-nora-lunes',
+              prompt: '¿Tenía algún asunto pendiente esta semana?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Estaba de un humor raro. El jueves me dijo que el lunes iba a «poner orden en su vida»: el abogado, el seguro, todo. Lo dijo como quien amenaza a alguien.', tone: 'truth' },
+                    { text: 'La carta del abogado está en el cajón de su mesa. La vi el miércoles.', tone: 'truth' },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'tp-nora-gente',
+          label: 'Las personas de su entorno',
+          kind: 'person',
+          questions: [
+            {
+              id: 'q-nora-llaves',
+              prompt: '¿Quién tiene llave del portal?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Desmond, Julian y yo.', tone: 'truth' },
+                    { id: 'ln-nora-llave', text: 'Bueno, y la señora Ashcroft. Nunca la devolvió. Desmond decía que así podía volver cuando quisiera; creo que le gustaba pensarlo.', tone: 'truth' },
+                  ],
+                  effects: [{ grantFact: 'fa-imogen-llave' }],
+                },
+              ],
+            },
+            {
+              id: 'q-nora-julian',
+              prompt: '¿Cómo se llevaban Ashcroft y Price?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Quince años de socios. Últimamente discutían a puerta cerrada.', tone: 'truth' },
+                    { text: 'Desmond se pasó la semana con el libro de cuentas encima de la mesa. Las cuentas las lleva Julian. Saque usted conclusiones; está en el despacho.', tone: 'truth' },
+                  ],
+                  effects: [{ grantEvidence: 'ev-libro-cuentas' }],
+                },
+              ],
+            },
+            {
+              id: 'q-nora-imogen',
+              prompt: '¿Y su esposa?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Imogen viene poco. Educada, fría, muy de Hampstead. A mí siempre me trató bien, mejor que él.', tone: 'truth' },
+                    { text: 'La última vez fue hace un mes. Discutieron en la escalera; ella no levantó la voz ni una vez, y eso daba más miedo que los gritos de él.', tone: 'truth' },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 'q-nora-cr',
+              prompt: '¿Sabe quién firma «C. R.»?',
+              kind: 'ask',
+              requires: { examined: 'ev-nota-portal' },
+              responses: [
+                {
+                  lines: [
+                    { text: 'Callum Reyes, del Sunday Courier. De los que pagan bien y no preguntan de dónde salen las fotos.', tone: 'truth' },
+                    { text: 'Venía a veces de noche. Desmond le vendía cosas que no pasaban por las cuentas del estudio.', tone: 'truth' },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-julian',
+      characterId: 'ch-julian',
+      setting: 'Su despacho en el estudio. Insiste en ofrecer café.',
+      opening: [{ text: 'Inspector, lo que necesite. Desmond era… era el estudio. Sin él, no sé qué queda de todo esto.' }],
+      topics: [
+        {
+          id: 'tp-julian-noche',
+          label: 'La noche del viernes',
+          kind: 'alibi',
+          questions: [
+            {
+              id: 'q-julian-noche',
+              prompt: '¿Dónde estaba el viernes por la noche?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'En el Carlisle Club, en Pall Mall. Cené con un cliente, me quedé a la partida de bridge y salí pasadas las once.', tone: 'truth' },
+                    { text: 'El conserje lo tendrá apuntado. Allí lo apuntan todo; es lo único que hacen bien.', tone: 'truth' },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 'q-julian-llamada',
+              prompt: 'Ashcroft le llamó al club a las 22:05. ¿Para qué?',
+              kind: 'press',
+              requires: { fact: 'fa-llamada-2205' },
+              responses: [
+                {
+                  when: { detail: 'dt-raspado' },
+                  lines: [
+                    { speaker: 'narration', text: 'Price deja la taza en el plato con mucho cuidado.' },
+                    { text: 'Para decirme que había visto los libros. Que me daba hasta el lunes para devolver el dinero; después del abogado, iría a la policía.', tone: 'admission' },
+                    { text: 'Seis minutos. Fue la última vez que hablé con él. Y no, no salí del club. Pregunte a los tres caballeros con los que perdí al bridge.', tone: 'truth' },
+                  ],
+                  effects: [{ revealSecret: 'se-julian-desfalco' }],
+                },
+                { lines: [{ text: 'Cosas del negocio. Un cliente, unas fechas. Nada que no pudiera esperar al lunes.', tone: 'evasion' }] },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'tp-julian-negocio',
+          label: 'El estudio',
+          kind: 'other',
+          questions: [
+            {
+              id: 'q-julian-cuentas',
+              prompt: '¿Cómo iban las cuentas del estudio?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Un año flojo, como todos desde que medio Fleet Street se fue a Wapping.', tone: 'truth' },
+                    { id: 'ln-julian-orden', text: 'Pero las cuentas están en orden. Las llevo yo.', tone: 'lie' },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 'q-julian-libro',
+              prompt: 'Estas cifras están raspadas y reescritas.',
+              kind: 'present',
+              presentEvidence: 'ev-libro-cuentas',
+              requires: { detail: 'dt-raspado' },
+              responses: [
+                {
+                  lines: [
+                    { text: 'Una inversión que salió mal. Iba a devolverlo, cada penique.', tone: 'admission' },
+                    { text: 'Desmond lo descubrió el miércoles. Y sí, eso me da un motivo precioso. Pero yo no sé ni dónde guardaba sus venenos.', tone: 'truth' },
+                  ],
+                  effects: [{ revealSecret: 'se-julian-desfalco' }],
+                },
+              ],
+            },
+            {
+              id: 'q-julian-planes',
+              prompt: '¿Tenía Ashcroft planes inmediatos?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'El lunes iba al abogado: testamento nuevo y cambio de beneficiario del seguro. Quería dejarlo todo a una fundación de fotografía documental. Muy noble, muy suyo.', tone: 'truth' },
+                    { text: 'Imogen se lo tomó fatal, me consta. Yo no insinúo nada.', tone: 'truth' },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'tp-julian-gente',
+          label: 'Los demás',
+          kind: 'person',
+          questions: [
+            {
+              id: 'q-julian-imogen',
+              prompt: '¿Qué puede contarme de Imogen Ashcroft?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Que si Desmond firmaba el lunes, ella perdía la casa y el seguro. Eso lo sabe todo Londres. Es una mujer muy inteligente; nunca la he visto perder los nervios.', tone: 'truth' }] }],
+            },
+            {
+              id: 'q-julian-nora',
+              prompt: '¿Y de Nora Kell?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Brillante. Demasiado para ser ayudante, y Desmond lo sabía; eso le ponía de mal humor. Ella y yo no nos tragamos, si es lo que pregunta.', tone: 'truth' }] }],
+            },
+            {
+              id: 'q-julian-callum',
+              prompt: '¿Conoce a Callum Reyes?',
+              kind: 'ask',
+              requires: { asked: 'q-nora-cr' },
+              responses: [{ lines: [{ text: 'Un buitre con buena pluma. Desmond le vendía cosas que el estudio no facturaba. Prefiero no saber qué.', tone: 'truth' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-imogen',
+      characterId: 'ch-imogen',
+      setting: 'Su taller de encuadernación en Bloomsbury. No deja de trabajar mientras habla.',
+      opening: [
+        { speaker: 'narration', text: 'Huele a cola de conejo y a papel viejo. Imogen cose un pliego sin levantar la vista.' },
+        { text: 'Siéntese, si encuentra dónde. Supongo que viene a preguntarme si me alegro. No. Me casé con él.' },
+      ],
+      topics: [
+        {
+          id: 'tp-imogen-noche',
+          label: 'La noche del viernes',
+          kind: 'alibi',
+          questions: [
+            {
+              id: 'q-imogen-noche',
+              prompt: '¿Dónde estaba el viernes por la noche?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'En la Kingsway Playhouse. «La casa de las sombras». Una obra mediocre con un primer acto interminable. Guardé el programa, por si le sirve.', tone: 'truth' }] }],
+            },
+            {
+              id: 'q-imogen-toda',
+              prompt: '¿Estuvo allí toda la función?',
+              kind: 'press',
+              requires: { asked: 'q-imogen-noche' },
+              responses: [
+                {
+                  lines: [{ id: 'ln-imogen-butaca', text: 'De principio a fin. No me moví de mi butaca.', tone: 'lie' }],
+                  effects: [{ unlockTimelineEvent: 'te-falso-imogen' }],
+                },
+              ],
+            },
+            {
+              id: 'q-imogen-prueba',
+              prompt: '¿Puede demostrar dónde se sentaba?',
+              kind: 'press',
+              requires: { asked: 'q-imogen-toda' },
+              responses: [
+                {
+                  lines: [
+                    { speaker: 'narration', text: 'Abre un bolso de piel gastada y saca la entrada sin buscarla.' },
+                    { text: 'Fila K, butaca catorce. Guardo siempre las entradas; deformación profesional. Tenga.', tone: 'truth' },
+                  ],
+                  effects: [{ grantEvidence: 'ev-entrada' }],
+                },
+              ],
+            },
+            {
+              id: 'q-imogen-cx-teatro',
+              prompt: 'El acomodador dice que salió en el descanso y volvió empapada a las once menos veinte.',
+              kind: 'contradiction',
+              contradiction: 'cx-teatro',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Salí a fumar. Llovía a mares y tardé en encontrar un portal donde no me mojara.', tone: 'lie' },
+                    { text: '¿Es un delito perderse diez minutos de una obra mala?', tone: 'evasion' },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 'q-imogen-pase',
+              prompt: 'Su entrada tiene un pase de salida de las 21:56. Cuarenta minutos fumando bajo la lluvia.',
+              kind: 'present',
+              presentEvidence: 'ev-entrada',
+              requires: { detail: 'dt-sello' },
+              responses: [{ lines: [{ text: 'Fumo despacio.', tone: 'evasion' }] }],
+            },
+          ],
+        },
+        {
+          id: 'tp-imogen-llave',
+          label: 'El estudio',
+          kind: 'personal',
+          questions: [
+            {
+              id: 'q-imogen-llave',
+              prompt: '¿Conserva llave del estudio?',
+              kind: 'ask',
+              responses: [{ lines: [{ id: 'ln-imogen-llave', text: 'La devolví cuando me marché, en el ochenta y cinco. No tenía ninguna intención de volver.', tone: 'lie' }] }],
+            },
+            {
+              id: 'q-imogen-cx-llave',
+              prompt: 'Nora Kell asegura que nunca la devolvió.',
+              kind: 'contradiction',
+              contradiction: 'cx-llave',
+              responses: [{ lines: [{ text: 'Nora es una chica con mucha imaginación. Y Desmond tenía una forma muy suya de contar las cosas.', tone: 'evasion' }] }],
+            },
+            {
+              id: 'q-imogen-veneno',
+              prompt: '¿Sabía que guardaba cianuro en el cuarto oscuro?',
+              kind: 'ask',
+              requires: { fact: 'fa-kcn-estudio' },
+              responses: [{ lines: [{ text: 'Le regalé el primer juego de placas de colodión. Así que sí, inspector: sabía que tenía venenos. Como media Inglaterra en su garaje.', tone: 'truth' }] }],
+            },
+          ],
+        },
+        {
+          id: 'tp-imogen-desmond',
+          label: 'Su matrimonio',
+          kind: 'victim',
+          about: 'ch-desmond',
+          questions: [
+            {
+              id: 'q-imogen-matrimonio',
+              prompt: '¿Por qué se separaron?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Porque Desmond solo sabía mirar a través de un visor. Las personas le interesaban mientras quedaran bien en una copia.', tone: 'truth' }] }],
+            },
+            {
+              id: 'q-imogen-lunes',
+              prompt: 'El lunes iba a cambiar el testamento y el beneficiario de su seguro.',
+              kind: 'confront',
+              requires: { fact: 'fa-cita-abogado' },
+              responses: [
+                {
+                  when: { fact: 'fa-imogen-sabia' },
+                  lines: [
+                    { text: 'Sí, lo sabía. Whitlock tiene la cortesía de mandarme copias.', tone: 'admission' },
+                    { text: 'Veinte años de matrimonio y me deja a la altura de una fundación. Pero de eso a… No sea ridículo.', tone: 'evasion' },
+                  ],
+                },
+                { lines: [{ text: '¿Ah, sí? Desmond cambiaba de testamento como de objetivo. No me había enterado.', tone: 'lie' }] },
+              ],
+            },
+            {
+              id: 'q-imogen-foto',
+              prompt: 'La cámara de Desmond la fotografió a las 22:12 junto a su termo. Con su paraguas.',
+              kind: 'confront',
+              requires: { all: [{ fact: 'fa-paraguas-imogen' }, { any: [{ contradiction: 'cx-teatro' }, { detail: 'dt-sello' }] }] },
+              responses: [
+                {
+                  lines: [
+                    { speaker: 'narration', text: 'Imogen deja la plegadera sobre la mesa. Por primera vez, sus manos no hacen nada.' },
+                    { text: 'Él siempre tenía que quedarse con la última foto, ¿verdad?', tone: 'admission' },
+                    { text: 'No voy a decir nada más sin mi abogado.', tone: 'neutral' },
+                  ],
+                  effects: [{ setFlag: 'imogen-quebrada' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-callum',
+      characterId: 'ch-callum',
+      setting: 'Un pub de Fleet Street. Él paga la ronda.',
+      opening: [{ text: 'Si esto va de Desmond, que sepa que lo siento de verdad. El mejor ojo de Londres. Y el peor negociante.' }],
+      topics: [
+        {
+          id: 'tp-callum-noche',
+          label: 'La noche del viernes',
+          kind: 'alibi',
+          questions: [
+            {
+              id: 'q-callum-noche',
+              prompt: '¿Dónde estaba el viernes por la noche?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [{ id: 'ln-callum-fleet', text: 'En la redacción. Cerrábamos edición. No pisé el Soho en toda la noche.', tone: 'lie' }],
+                  effects: [{ unlockTimelineEvent: 'te-falso-callum' }],
+                },
+              ],
+            },
+            {
+              id: 'q-callum-cx',
+              prompt: 'Su nota estaba bajo el felpudo de Ashcroft: «son las once y cuarto y no abres».',
+              kind: 'contradiction',
+              contradiction: 'cx-callum',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Vale. Fui. Llamé, esperé diez minutos bajo la lluvia, dejé la nota y me largué. Nadie me abrió.', tone: 'admission' },
+                    { text: 'Si llego a saber que estaba ahí arriba…', tone: 'truth' },
+                  ],
+                  effects: [{ grantFact: 'fa-callum-vino' }, { unlockTimelineEvent: 'te-callum' }],
+                },
+              ],
+            },
+            {
+              id: 'q-callum-luz',
+              prompt: '¿Vio luz en el estudio?',
+              kind: 'press',
+              requires: { fact: 'fa-callum-vino' },
+              responses: [{ lines: [{ text: 'La lámpara roja se veía desde la calle por el tragaluz. Por eso esperé: pensé que estaba revelando y que bajaría en un rato.', tone: 'truth' }] }],
+            },
+          ],
+        },
+        {
+          id: 'tp-callum-negocio',
+          label: 'Los negocios con Ashcroft',
+          kind: 'other',
+          questions: [
+            {
+              id: 'q-callum-ministro',
+              prompt: '¿Qué son «los negativos del ministro»?',
+              kind: 'ask',
+              requires: { fact: 'fa-negocio-callum' },
+              responses: [
+                {
+                  lines: [
+                    { text: 'No le voy a dar un nombre. Desmond tenía fotos de alguien importante en un sitio muy inconveniente.', tone: 'admission' },
+                    { text: 'Me había subido el precio tres veces. Pero a un proveedor así no se le mata, inspector: se le paga.', tone: 'truth' },
+                  ],
+                  effects: [{ revealSecret: 'se-callum-fotos' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+
+  // ─── Cronología (t = minutos respecto a las 22:40) ─────────────────────────
+  timeline: [
+    { id: 'te-nora-sale', t: -160, display: '20:00', title: 'Nora sale del estudio', description: 'Nora termina su jornada y se marcha.', characters: ['ch-nora'], location: 'lo-estudio' },
+    { id: 'te-falso-nora', t: -150, display: '20:00 – mañana', title: 'Nora, en Camden toda la noche', description: 'Según Nora, no volvió a salir de su piso.', characters: ['ch-nora'], veracity: 'false', claimedBy: 'ch-nora' },
+    { id: 'te-termo', t: -68, display: 'Hacia las 21:30', title: 'Ashcroft prepara el termo de té', description: 'Como cada noche de revelado.', characters: ['ch-desmond'], location: 'lo-estudio', key: true },
+    { id: 'te-nora-vuelve', t: -58, display: '21:42', title: 'Nora vuelve a por sus negativos', description: 'Saca una caja del archivo y se marcha.', characters: ['ch-nora'], location: 'lo-estudio', evidence: ['ev-contactos'] },
+    { id: 'te-imogen-sale', t: -44, display: '21:56', title: 'Imogen sale del teatro', description: 'Pide un pase de salida en el descanso.', characters: ['ch-imogen'], location: 'lo-teatro', evidence: ['ev-entrada'], key: true },
+    { id: 'te-falso-imogen', t: -40, display: '19:30 – 23:05', title: 'Imogen, en su butaca toda la función', description: 'Según Imogen, no se movió.', characters: ['ch-imogen'], veracity: 'false', claimedBy: 'ch-imogen' },
+    { id: 'te-bebe', t: -38, display: '22:02', title: 'Ashcroft bebe del termo sin daño', description: 'El té aún no está envenenado.', characters: ['ch-desmond'], location: 'lo-estudio', evidence: ['ev-contactos'], key: true },
+    { id: 'te-llamada', t: -35, display: '22:05', title: 'Ashcroft llama a Price al club', description: 'Seis minutos de conversación.', characters: ['ch-desmond', 'ch-julian'], location: 'lo-club', evidence: ['ev-libro-club'], key: true },
+    { id: 'te-envenena', t: -28, display: '22:12', title: 'Una figura envenena el termo', description: 'Con la luz roja encendida, alguien con capucha y un paraguas de mango de pato se inclina sobre el termo.', characters: ['ch-imogen'], location: 'lo-estudio', evidence: ['ev-contactos'], key: true },
+    { id: 'te-sirve', t: -8, display: '22:32', title: 'Ashcroft se sirve del termo', description: 'Llena el vaso y vuelve al cuarto oscuro.', characters: ['ch-desmond'], location: 'lo-estudio', evidence: ['ev-contactos'], key: true },
+    { id: 'te-imogen-vuelve', t: -2, display: '22:38', title: 'Imogen vuelve a su butaca, empapada', description: 'El acomodador la acompaña con la linterna.', characters: ['ch-imogen'], location: 'lo-teatro', evidence: ['ev-acomodador'], key: true },
+    { id: 'te-muerte', t: 0, display: 'Hacia las 22:40', title: 'Muerte de Desmond Ashcroft', description: 'En el cuarto oscuro, con la luz roja encendida.', characters: ['ch-desmond'], location: 'lo-cuarto-oscuro', evidence: ['ev-autopsia'], key: true },
+    { id: 'te-falso-callum', t: 20, display: 'Toda la noche', title: 'Callum, en la redacción toda la noche', description: 'Según Callum, no pisó el Soho.', characters: ['ch-callum'], veracity: 'false', claimedBy: 'ch-callum' },
+    { id: 'te-callum', t: 35, display: '23:15', title: 'Callum deja una nota en el portal', description: 'Llama, espera y se va.', characters: ['ch-callum'], location: 'lo-estudio', evidence: ['ev-nota-portal'], autoUnlockWhen: { fact: 'fa-callum-vino' } },
+    { id: 'te-hallazgo', t: 580, display: 'Sábado, 8:20', title: 'Nora encuentra el cuerpo', description: 'Al abrir el estudio.', characters: ['ch-nora', 'ch-desmond'], location: 'lo-cuarto-oscuro', evidence: ['ev-informe'], key: true },
+  ],
+
+  // ─── Acusación ─────────────────────────────────────────────────────────────
+  accusation: {
+    motives: [
+      { id: 'mo-herencia', label: 'Impedir que el lunes la apartara del testamento y del seguro de vida', availableWhen: { fact: 'fa-cita-abogado' } },
+      { id: 'mo-negativos', label: 'Recuperar la autoría robada de sus fotografías', availableWhen: { secret: 'se-nora-negativos' } },
+      { id: 'mo-desfalco', label: 'Evitar la denuncia por el dinero desviado del estudio', availableWhen: { secret: 'se-julian-desfalco' } },
+      { id: 'mo-ministro', label: 'Quedarse con las fotos del ministro sin pagar', availableWhen: { secret: 'se-callum-fotos' } },
+      { id: 'mo-rencor', label: 'Rencor acumulado: una venganza personal' },
+    ],
+    methods: [
+      { id: 'me-termo', label: 'Echó cianuro del propio estudio en el termo de té mientras él revelaba con la luz roja encendida', availableWhen: { fact: 'fa-envenenado-termo' } },
+      { id: 'me-tetera', label: 'Puso cianuro en la tetera eléctrica', availableWhen: { fact: 'fa-kcn-estudio' } },
+      { id: 'me-azucar', label: 'Envenenó el azúcar que solo él tomaba' },
+      { id: 'me-gas', label: 'Provocó gas de cianuro mezclando productos en las cubetas', availableWhen: { fact: 'fa-kcn-estudio' } },
+    ],
+  },
+
+  solution: {
+    culprits: ['ch-imogen'],
+    motive: 'mo-herencia',
+    method: 'me-termo',
+    proof: ['ev-contactos', 'ev-acomodador', 'ev-entrada'],
+    whatHappened:
+      'Imogen Ashcroft envenenó a su marido para impedir que el lunes la apartara del testamento y de su seguro de vida. Aprovechó el descanso de la función, entró en el estudio con la llave que nunca devolvió y, mientras Desmond revelaba con la luz roja encendida, echó en el termo de té cianuro de su propio frasco. Limpió el frasco, volvió al teatro empapada y se sentó en la fila K como si nada. No sabía que la cámara del trípode tomaba una foto cada diez minutos.',
+    reconstruction: [
+      'El miércoles 11, el bufete Whitlock & Moss envía a Imogen copia de la carta: el lunes 16 Desmond cambiará su testamento y el beneficiario de su seguro.',
+      'El viernes, Imogen va a la Kingsway Playhouse con su paraguas. A las 21:56 pide un pase de salida en el descanso.',
+      'A las 21:30, como cada noche de revelado, Desmond ha preparado su termo de té. A las 22:02 bebe de él sin problema; a las 22:05 llama a su socio para darle un ultimátum.',
+      'Hacia las 22:08 Desmond entra en el cuarto oscuro y enciende la luz roja: nadie le molestará.',
+      'Imogen abre el portal con su llave y sube. A las 22:12 la cámara la sorprende de espaldas junto al termo. Echa el cianuro del armario del cuarto oscuro, vecino a la puerta, y limpia el frasco.',
+      'A las 22:32 Desmond sale un momento, se sirve té del termo y vuelve a su trabajo. Muere hacia las 22:40.',
+      'A las 22:38 Imogen regresa al teatro empapada; el acomodador la acompaña a la K14.',
+      'A las 23:15, Callum Reyes llama al portal, ve la luz roja y deja una nota. A la mañana siguiente, Nora encuentra el cuerpo.',
+    ],
+    decisiveEvidence: ['ev-contactos', 'ev-foto-pared', 'ev-acomodador', 'ev-entrada', 'ev-carta-abogado'],
+    alibiTruths: [
+      { characterId: 'ch-nora', truth: 'No pasó la noche en Camden: volvió al estudio a las 21:42 a por sus negativos y se marchó antes de las 22:00, cuando el té aún estaba limpio.' },
+      { characterId: 'ch-julian', truth: 'Su coartada es cierta: no salió del Carlisle Club. Mintió sobre las cuentas.' },
+      { characterId: 'ch-imogen', truth: 'Salió del teatro a las 21:56 con un pase y volvió a las 22:38. Entre medias, envenenó el termo.' },
+      { characterId: 'ch-callum', truth: 'Mintió: estuvo en el portal a las 23:15, cuando Ashcroft ya había bebido el veneno.' },
+    ],
+  },
+
+  endings: [
+    {
+      id: 'en-confesion',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct', knowledge: { flag: 'imogen-quebrada' } },
+      outcome: 'success',
+      title: 'La última foto',
+      text: 'Imogen Ashcroft es detenida en su taller de Bloomsbury. No vuelve a hablar sin su abogado, pero no hace falta: el jurado tarda menos de una tarde. La hoja de contactos se exhibe en el juicio y, años después, en una retrospectiva de Ashcroft. Nora Kell recupera «Lluvia en Brixton» con su nombre.',
+    },
+    {
+      id: 'en-exito',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct' },
+      outcome: 'success',
+      title: 'Caso cerrado',
+      text: 'Con el fotograma de las 22:12, el paraguas del pato y la declaración del acomodador, la fiscalía no necesita una confesión. Imogen Ashcroft es condenada por asesinato. La fundación recibe el seguro.',
+    },
+    {
+      id: 'en-parcial',
+      when: { culprit: 'correct' },
+      outcome: 'partial',
+      title: 'La culpable, a medias',
+      text: 'Imogen Ashcroft es detenida, pero el informe no se sostiene en todos sus puntos y la defensa lo aprovecha. Un juicio largo, una condena rebajada y la sensación de que el caso merecía una acusación más precisa.',
+    },
+    {
+      id: 'en-nora',
+      when: { culprit: 'ch-nora' },
+      outcome: 'failure',
+      title: 'La ayudante',
+      text: 'Nora Kell pasa tres semanas en prisión preventiva antes de que su abogado presente la hoja de contactos completa: a las 22:02 Ashcroft bebía tranquilamente del termo. El expediente se cierra en falso. Imogen Ashcroft cobra el seguro.',
+    },
+    {
+      id: 'en-julian',
+      when: { culprit: 'ch-julian' },
+      outcome: 'failure',
+      title: 'El socio',
+      text: 'Julian Price es acusado, y acaba condenado… por el desfalco. Tres caballeros del Carlisle Club juran que no se movió de la mesa de bridge. El asesinato de Desmond Ashcroft queda sin resolver.',
+    },
+    {
+      id: 'en-callum',
+      when: { culprit: 'ch-callum' },
+      outcome: 'failure',
+      title: 'El periodista',
+      text: 'La acusación contra Callum Reyes dura lo que tarda su periódico en publicar la hora de la autopsia y la de su nota. El Courier vende muchos ejemplares a costa de la policía. El caso queda abierto.',
+    },
+    {
+      id: 'en-fallo',
+      when: {},
+      outcome: 'failure',
+      title: 'Expediente cerrado en falso',
+      text: 'La acusación no resiste el primer examen del fiscal. El caso Ashcroft pasa al archivo de casos sin resolver.',
+    },
+  ],
+
+  hints: [
+    {
+      id: 'hl-camara',
+      topic: 'Un testigo que no habla',
+      relevantWhen: { not: { evidence: 'ev-contactos' } },
+      steps: [
+        'Esa noche hubo en el estudio un testigo que no puede declarar.',
+        'Fíjate en lo que estaba haciendo la cámara del trípode.',
+        'Examina la Nikon con la lupa: el contador dice algo importante sobre el carrete.',
+      ],
+    },
+    {
+      id: 'hl-figura',
+      topic: 'Los fotogramas',
+      relevantWhen: { all: [{ evidence: 'ev-contactos' }, { not: { detail: 'dt-f2212' } }] },
+      steps: [
+        'La hoja de contactos merece la lupa: los fotogramas son pequeños.',
+        'Atención a los fotogramas en que la lámpara roja está encendida.',
+        'A las 22:12 hay alguien junto al termo.',
+      ],
+    },
+    {
+      id: 'hl-paraguas',
+      topic: 'Una figura sin rostro',
+      relevantWhen: { all: [{ detail: 'dt-f2212' }, { not: { fact: 'fa-paraguas-imogen' } }] },
+      steps: [
+        'La figura no muestra la cara, pero lleva algo muy reconocible.',
+        'En el estudio hay otra fotografía en la que aparece ese mismo objeto.',
+        'Relaciona el fotograma de las 22:12 con la fotografía enmarcada de la pared.',
+      ],
+    },
+    {
+      id: 'hl-teatro',
+      topic: 'Una coartada con entreacto',
+      relevantWhen: { all: [{ fact: 'fa-paraguas-imogen' }, { not: { contradiction: 'cx-teatro' } }] },
+      steps: [
+        'Una coartada de teatro tiene un punto débil.',
+        '¿Qué pasaba en la Kingsway Playhouse entre las 21:50 y las 22:10?',
+        'Pide a Imogen que demuestre dónde se sentaba y lee lo que declara el acomodador.',
+      ],
+    },
+  ],
+
+  objectives: [
+    { id: 'ob-nora', text: 'Descubre por qué Nora Kell mintió sobre esa noche.', completeWhen: { secret: 'se-nora-negativos' }, points: 40 },
+    { id: 'ob-julian', text: 'Averigua qué le dijo Ashcroft a su socio en la llamada de las 22:05.', completeWhen: { secret: 'se-julian-desfalco' }, points: 40 },
+    { id: 'ob-descartes', text: 'Descarta con pruebas a los tres inocentes.', completeWhen: { all: [{ fact: 'fa-nora-descartada' }, { fact: 'fa-julian-descartado' }, { fact: 'fa-callum-descartado' }] }, points: 60 },
+    { id: 'ob-sombra', text: 'Pon nombre a la sombra del portal.', completeWhen: { fact: 'fa-callum-vino' }, points: 30, hidden: true },
+  ],
+
+  assets: [
+    { id: 'as-contactos', kind: 'image', src: 'contactos.svg', bytes: 0, sha256: '', width: 1200, height: 980, alt: 'Hoja de contactos con 36 fotogramas del estudio, cada uno con la hora impresa en naranja.' },
+    { id: 'as-croquis', kind: 'image', src: 'croquis.svg', bytes: 0, sha256: '', width: 1000, height: 700, alt: 'Croquis a mano de la planta del estudio: cocina, archivo, mesa, portal, cámara y cuarto oscuro.' },
+  ],
+};
+
+export default caseFile;

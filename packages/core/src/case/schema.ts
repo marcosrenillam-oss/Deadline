@@ -54,7 +54,13 @@ export type Asset = z.infer<typeof assetSchema>;
 
 // ─── Bloques de documento ─────────────────────────────────────────────────────
 
-/** Contenido de documentos (informes, cartas, declaraciones…) en bloques tipados. */
+/**
+ * Contenido de documentos (informes, cartas, declaraciones…) en bloques tipados.
+ *
+ * Detalles ocultos en el texto: `{{dt-id|texto}}` marca un fragmento que el
+ * jugador puede advertir al examinar el documento con la lupa. El texto se
+ * muestra con normalidad; nada lo distingue hasta encontrarlo.
+ */
 export const docBlockSchema = z.discriminatedUnion('type', [
   z.strictObject({ type: z.literal('heading'), text }),
   z.strictObject({ type: z.literal('paragraph'), text }),
@@ -486,6 +492,38 @@ export interface CaseCatalogEntry {
   contentVersion: number;
   /** Tamaño total de los recursos, para estimar descargas. */
   assetBytes: number;
+}
+
+const INLINE_DETAIL = /\{\{([a-z]{1,3}-[a-z0-9-]+)\|([^}]+)\}\}/g;
+
+export type InlineSegment = { text: string; detail?: string };
+
+/** Divide un texto en segmentos normales y segmentos con detalle oculto. */
+export function parseInline(text: string): InlineSegment[] {
+  const out: InlineSegment[] = [];
+  let last = 0;
+  for (const m of text.matchAll(INLINE_DETAIL)) {
+    if (m.index > last) out.push({ text: text.slice(last, m.index) });
+    out.push({ text: m[2]!, detail: m[1]! });
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) out.push({ text: text.slice(last) });
+  return out;
+}
+
+/** Texto sin marcas de detalle (para lectores de pantalla, búsquedas, etc.). */
+export function plainText(text: string): string {
+  return text.replace(INLINE_DETAIL, '$2');
+}
+
+/** Ids de detalle anclados en el texto de una evidencia. */
+export function inlineDetailIds(blocks: readonly DocBlock[]): string[] {
+  const ids: string[] = [];
+  for (const b of blocks) {
+    const texts = 'text' in b ? [b.text] : b.type === 'field' ? [b.value] : b.type === 'table' ? b.rows.flat() : [];
+    for (const t of texts) for (const seg of parseInline(t)) if (seg.detail) ids.push(seg.detail);
+  }
+  return ids;
 }
 
 export function caseNumber(caseId: string): number {

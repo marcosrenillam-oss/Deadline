@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+  <rect width="1000" height="700" fill="#efe9da"/>
+  <g stroke="#c9bfa9" stroke-width="1"><line x1="0" y1="0" x2="1000" y2="0"/><line x1="0" y1="21" x2="1000" y2="21"/><line x1="0" y1="42" x2="1000" y2="42"/><line x1="0" y1="63" x2="1000" y2="63"/><line x1="0" y1="84" x2="1000" y2="84"/><line x1="0" y1="105" x2="1000" y2="105"/><line x1="0" y1="126" x2="1000" y2="126"/><line x1="0" y1="147" x2="1000" y2="147"/><line x1="0" y1="168" x2="1000" y2="168"/><line x1="0" y1="189" x2="1000" y2="189"/><line x1="0" y1="210" x2="1000" y2="210"/><line x1="0" y1="231" x2="1000" y2="231"/><line x1="0" y1="252" x2="1000" y2="252"/><line x1="0" y1="273" x2="1000" y2="273"/><line x1="0" y1="294" x2="1000" y2="294"/><line x1="0" y1="315" x2="1000" y2="315"/><line x1="0" y1="336" x2="1000" y2="336"/><line x1="0" y1="357" x2="1000" y2="357"/><line x1="0" y1="378" x2="1000" y2="378"/><line x1="0" y1="399" x2="1000" y2="399"/><line x1="0" y1="420" x2="1000" y2="420"/><line x1="0" y1="441" x2="1000" y2="441"/><line x1="0" y1="462" x2="1000" y2="462"/><line x1="0" y1="483" x2="1000" y2="483"/><line x1="0" y1="504" x2="1000" y2="504"/><line x1="0" y1="525" x2="1000" y2="525"/><line x1="0" y1="546" x2="1000" y2="546"/><line x1="0" y1="567" x2="1000" y2="567"/><line x1="0" y1="588" x2="1000" y2="588"/><line x1="0" y1="609" x2="1000" y2="609"/><line x1="0" y1="630" x2="1000" y2="630"/><line x1="0" y1="651" x2="1000" y2="651"/><line x1="0" y1="672" x2="1000" y2="672"/><line x1="0" y1="693" x2="1000" y2="693"/></g>
+  <text x="40" y="48" font-family="'Courier New', Courier, monospace" font-size="20" font-weight="700" fill="#2a241a">CROQUIS — 41 GREEK STREET, 1ª PLANTA</text>
+  <text x="40" y="72" font-family="'Courier New', Courier, monospace" font-size="14" fill="#5a4d37">P.C. 4471 G. Rhodes · 14-XI-87 · Sin escala</text>
+  <g fill="none" stroke="#2b3b63" stroke-width="5">
+    <rect x="80" y="110" width="840" height="520"/>
+    <line x1="640" y1="110" x2="640" y2="330"/><line x1="640" y1="390" x2="640" y2="630"/>
+  </g>
+  <g fill="none" stroke="#2b3b63" stroke-width="3">
+    <!-- escalera / portal (al fondo, frente a la cámara) -->
+    <rect x="380" y="110" width="120" height="70"/>
+    <line x1="380" y1="118" x2="500" y2="118"/><line x1="380" y1="128" x2="500" y2="128"/><line x1="380" y1="138" x2="500" y2="138"/><line x1="380" y1="148" x2="500" y2="148"/><line x1="380" y1="158" x2="500" y2="158"/><line x1="380" y1="168" x2="500" y2="168"/>
+    <!-- cocina -->
+    <rect x="96" y="126" width="200" height="60"/>
+    <circle cx="140" cy="156" r="14"/><rect x="200" y="140" width="16" height="32"/>
+    <!-- estantería -->
+    <rect x="96" y="210" width="34" height="200"/>
+    <!-- mesa de trabajo -->
+    <rect x="330" y="300" width="200" height="90"/>
+    <!-- puerta del cuarto oscuro -->
+    <path d="M640 330 a60 60 0 0 1 -60 60" stroke-dasharray="6 6"/>
+    <!-- mesa de ampliación -->
+    <rect x="720" y="160" width="160" height="80"/>
+    <rect x="680" y="420" width="225" height="60"/>
+  </g>
+  <!-- cámara y su encuadre -->
+  <g stroke="#2b3b63" stroke-width="2.5" fill="none">
+    <path d="M470 580 L150 190 M470 580 L640 330" stroke-dasharray="10 8"/>
+    <rect x="455" y="580" width="30" height="22" fill="#2b3b63"/>
+  </g>
+  <g font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="22" fill="#2b3b63">
+    <text x="104" y="210" font-size="18">cocina (tetera, termo)</text>
+    <text x="150" y="360" transform="rotate(-90 150 360)" font-size="18">archivo</text>
+    <text x="340" y="345">mesa de trabajo</text>
+    <text x="350" y="372" font-size="17">(teléfono)</text>
+    <text x="660" y="140">CUARTO OSCURO</text>
+    <text x="722" y="208" font-size="17">ampliadora</text>
+    <text x="690" y="456" font-size="16">cubetas · armario de químicos</text>
+    <text x="560" y="300" font-size="17">lámpara roja ▲</text>
+    <text x="386" y="205" font-size="17">portal (cristal esmerilado)</text>
+    <text x="495" y="600" font-size="17">cámara en trípode</text>
+    <text x="700" y="610" font-size="17">cuerpo</text>
+  </g>
+  <g stroke="#7a1e1c" stroke-width="3" fill="none"><line x1="760" y1="545" x2="790" y2="575"/><line x1="790" y1="545" x2="760" y2="575"/></g>
+</svg>

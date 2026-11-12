@@ -41,7 +41,7 @@ describe('IndexedDB', () => {
       caseVersion: 1, mode: 'individual' as const, attempt: 1, status: 'active' as const, startedAt: 1, deadlineAt: 2, lastObservedAt: 1,
       knowledge: { facts: [], evidence: [], examined: [], details: [], contradictions: [], secrets: [], asked: [], flags: [], timelineEvents: [] },
       heardLines: [], hintsUsed: [], evidenceMarks: {}, associations: [], board: { nodes: [], edges: [], viewport: { x: 0, y: 0, zoom: 1 } },
-      timeline: [], rev: 0, updatedAt: 1,
+      timeline: [], deductions: [], log: [], rev: 0, updatedAt: 1,
     };
     await db.put('investigations', { ...base, id: 'inv-00001', caseId: 'DL-I-0001' });
     await db.put('investigations', { ...base, id: 'inv-00002', caseId: 'DL-I-0001', attempt: 2 });
