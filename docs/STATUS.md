@@ -148,8 +148,11 @@
 - `npm audit`: avisos moderados en dependencias de compilación de
   `workbox-build`; no llegan al bundle.
 - Bundle JS ≈ 140 KB gzip; revisar `zod/mini` en la Etapa 8.
-- Un cambio de ajustes hecho milisegundos antes de cerrar a la fuerza la app
-  podría no llegar a guardarse (escritura asíncrona en IndexedDB).
+- Cualquier acción hecha milisegundos antes de matar la app (o recargarla
+  por completo) puede no llegar a guardarse: la escritura en IndexedDB es
+  asíncrona y el navegador la aborta. Las pruebas E2E lo detectaron; en uso
+  normal (cambiar de app, bloquear) sí se guarda. Las pruebas esperan a que
+  termine la escritura antes de recargar.
 - Diario, pareja e historial siguen siendo pantallas que indican su etapa.
 - **Arte provisional:** retratos en silueta y evidencias gráficas
   esquemáticas. Faltan retratos y fotografías con calidad final (Etapa 8;

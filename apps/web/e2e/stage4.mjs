@@ -32,6 +32,13 @@ const browser = await chromium.launch();
 try {
   const ctx = await browser.newContext({ ...devices['iPhone 15 landscape'], viewport: { width: 852, height: 393 } });
   const p = await ctx.newPage();
+  // Una recarga completa justo después de una acción puede abortar la escritura
+  // de IndexedDB aún en curso (equivale a matar la app en ese instante). Las
+  // navegaciones de la prueba esperan a que la escritura termine.
+  const goto = async (url) => {
+    await p.waitForTimeout(300);
+    await p.goto(url);
+  };
   const errors = [];
   p.on('pageerror', (e) => errors.push(e.message));
   p.on('console', (m) => m.type() === 'error' && !/ERR_INTERNET_DISCONNECTED|Failed to load resource/.test(m.text()) && errors.push(m.text()));
@@ -48,13 +55,13 @@ try {
     await p.waitForTimeout(100);
   };
   const open = async (name) => {
-    await p.goto(`${D}/evidencias`);
+    await goto(`${D}/evidencias`);
     await p.getByRole('link', { name }).first().click();
     await p.getByRole('button', { name: /Examinar con lupa|Lupa activa/ }).waitFor();
   };
 
   // ── Diario del día ────────────────────────────────────────────────────────
-  await p.goto(BASE);
+  await goto(BASE);
   await p.getByRole('button', { name: /^Calendario:.*Caso del día sin abrir/ }).waitFor();
   check(true, 'El calendario de la mesa avisa del caso del día');
   await p.getByRole('button', { name: /^Calendario:/ }).click();
@@ -65,7 +72,7 @@ try {
   await p.getByText('Cenizas en el Celio').click();
   await p.getByRole('button', { name: /Romper el precinto/ }).click();
   await p.getByRole('timer').waitFor();
-  await p.goto(D);
+  await goto(D);
   await p.getByRole('heading', { name: 'Hechos documentados' }).waitFor();
   check(await p.getByText('Inspirado en hechos reales').first().isVisible(), 'El diario muestra su origen real');
   check(await p.getByRole('heading', { name: 'Recreación narrativa' }).isVisible(), 'Separa los hechos documentados de la recreación');
@@ -79,12 +86,12 @@ try {
   await lupaTap('Ni en la boca ni en la nariz');
   await open(/Declaración de Davo/);
   await lupaTap('Llevaba el pelo recogido');
-  await p.goto(`${D}/interrogatorio/ch-filon`);
+  await goto(`${D}/interrogatorio/ch-filon`);
   await p.getByRole('tab', { name: /El arca/ }).click();
   await p.getByRole('button', { name: /¿Qué había en el arca/ }).click();
   await open(/Inventario del arca/);
   await lupaTap('Cofrecillo con los pagarés');
-  await p.goto(`${D}/evidencias`);
+  await goto(`${D}/evidencias`);
   await p.getByRole('button', { name: 'Relacionar piezas' }).click();
   await p.getByRole('button', { name: /El dinero sigue en el arca/ }).click();
   await p.getByRole('button', { name: /Solo faltan los vencimientos/ }).click();
@@ -108,7 +115,7 @@ try {
   await p.clock.fastForward('10:00');
   await p.getByRole('timer', { name: 'Expediente cerrado' }).waitFor({ timeout: 5000 });
   check(true, 'Al agotarse los 60 minutos el expediente se cierra solo');
-  await p.goto(`${D}/informe`);
+  await goto(`${D}/informe`);
   await p.getByText('Cerrado por tiempo').first().waitFor();
   const points = await idb((db) => new Promise((res) => {
     const q = db.transaction('profile').objectStore('profile').get('local');
@@ -134,11 +141,11 @@ try {
   const second = after2.attempts.find((x) => x.a === 2);
   check(!!second && second.ev.includes('ev-alfiler') && second.ev.includes('ev-inventario'), 'Se conservan las evidencias descubiertas');
   check(!!second && second.asked.length === 0, 'Las conversaciones empiezan de cero');
-  await p.goto(D);
+  await goto(D);
   check(await p.getByText(/Intento nº 2/).isVisible(), 'El historial registra el segundo intento');
 
   // ── Descarga verificada y juego sin conexión ─────────────────────────────
-  await p.goto(`${BASE}/archivo`);
+  await goto(`${BASE}/archivo`);
   const card = p.locator('li', { hasText: 'Revelado en negro' });
   await card.getByRole('button', { name: /Descargar/ }).click();
   await card.getByText('✓ Disponible sin conexión').waitFor({ timeout: 15000 });
@@ -151,11 +158,11 @@ try {
   await p.screenshot({ path: join(shots, 'archive-offline.png') });
 
   await ctx.setOffline(true);
-  await p.goto(`${BASE}/archivo`);
+  await goto(`${BASE}/archivo`);
   await p.getByText('Revelado en negro').click();
   await p.getByRole('button', { name: /Romper el precinto/ }).click();
   await p.getByRole('timer').waitFor();
-  await p.goto(`${BASE}/expediente/DL-I-0001/evidencias/ev-croquis`);
+  await goto(`${BASE}/expediente/DL-I-0001/evidencias/ev-croquis`);
   const img = p.locator('img[alt^="Croquis"]');
   await img.waitFor();
   await p.waitForFunction(() => {
@@ -167,7 +174,7 @@ try {
 
   // ── El sistema borra el almacenamiento (simulado) ────────────────────────
   await p.evaluate(() => caches.delete('deadline-cases-v1'));
-  await p.goto(`${BASE}/archivo`);
+  await goto(`${BASE}/archivo`);
   await p.clock.runFor(4000);
   await p.locator('li', { hasText: 'Revelado en negro' }).getByRole('button', { name: /Incompleto · Reintentar/ }).waitFor({ timeout: 8000 });
   check(true, 'Si el sistema borra los recursos, el expediente deja de figurar como disponible');

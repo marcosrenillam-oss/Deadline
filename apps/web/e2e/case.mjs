@@ -31,13 +31,20 @@ const browser = await chromium.launch();
 try {
   const ctx = await browser.newContext({ ...devices['iPhone 15 landscape'], viewport: { width: 852, height: 393 } });
   const p = await ctx.newPage();
+  // Una recarga completa justo después de una acción puede abortar la escritura
+  // de IndexedDB aún en curso (equivale a matar la app en ese instante). Las
+  // navegaciones de la prueba esperan a que la escritura termine.
+  const goto = async (url) => {
+    await p.waitForTimeout(300);
+    await p.goto(url);
+  };
   const errors = [];
   p.on('pageerror', (e) => errors.push(e.message));
   p.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
   const C = `${BASE}/expediente/DL-I-0001`;
 
   const openEvidence = async (name) => {
-    await p.goto(`${C}/evidencias`);
+    await goto(`${C}/evidencias`);
     await p.getByRole('link', { name }).first().click();
     await p.getByRole('button', { name: /Examinar con lupa|Lupa activa/ }).waitFor();
   };
@@ -59,7 +66,7 @@ try {
   }), [key, id]);
 
   // Archivo → portada → abrir
-  await p.goto(`${BASE}/archivo`);
+  await goto(`${BASE}/archivo`);
   await p.getByText('Revelado en negro').click();
   await p.getByRole('button', { name: /Romper el precinto/ }).click();
   await p.getByRole('timer').waitFor();
@@ -116,7 +123,7 @@ try {
 
   // Fotografía enmarcada y relación de piezas
   await openEvidence(/Fotografía enmarcada/);
-  await p.goto(`${C}/evidencias`);
+  await goto(`${C}/evidencias`);
   await p.getByRole('button', { name: 'Relacionar piezas' }).click();
   await p.getByRole('button', { name: /22:12 — Una figura/ }).click();
   await p.getByRole('button', { name: /Fotografía enmarcada/ }).click();
@@ -130,7 +137,7 @@ try {
   await p.screenshot({ path: join(shots, 'case-relate.png') });
 
   // Julian → carta del abogado
-  await p.goto(`${C}/interrogatorio/ch-julian`);
+  await goto(`${C}/interrogatorio/ch-julian`);
   await p.getByRole('tab', { name: /El estudio/ }).click();
   await p.getByRole('button', { name: /planes inmediatos/ }).click();
   check(await knows('evidence', 'ev-carta-abogado'), 'Price menciona al abogado y aparece la carta');
@@ -140,7 +147,7 @@ try {
   check(await knows('facts', 'fa-imogen-sabia'), 'Imogen recibió copia de la carta');
 
   // Imogen: coartada, entrada, acomodador
-  await p.goto(`${C}/interrogatorio/ch-imogen`);
+  await goto(`${C}/interrogatorio/ch-imogen`);
   await p.getByRole('button', { name: /¿Dónde estaba el viernes/ }).click();
   await p.getByRole('button', { name: /toda la función/ }).click();
   await p.getByRole('button', { name: /demostrar dónde se sentaba/ }).click();
@@ -164,19 +171,19 @@ try {
   await p.keyboard.press('Escape');
 
   // Confrontación final
-  await p.goto(`${C}/interrogatorio/ch-imogen`);
+  await goto(`${C}/interrogatorio/ch-imogen`);
   await p.getByRole('tab', { name: /Su matrimonio/ }).click();
   await p.getByRole('button', { name: /La cámara de Desmond la fotografió/ }).click();
   await p.getByText('Él siempre tenía que quedarse con la última foto').waitFor();
   check(true, 'La confrontación final quiebra a Imogen');
 
   // Cronología y tablero
-  await p.goto(`${C}/cronologia`);
+  await goto(`${C}/cronologia`);
   for (const t of ['Ashcroft bebe del termo sin daño', 'Una figura envenena el termo', 'Ashcroft se sirve del termo', 'Muerte de Desmond Ashcroft']) {
     await p.getByRole('button', { name: new RegExp(t) }).click();
   }
   check((await p.locator('ol li').count()) === 4, 'Se construye la cronología');
-  await p.goto(`${C}/tablero`);
+  await goto(`${C}/tablero`);
   await p.getByRole('button', { name: '+ Añadir' }).click();
   const picker = p.getByRole('dialog', { name: 'Añadir al tablero' });
   await picker.getByRole('button', { name: 'Imogen Ashcroft', exact: true }).click();
@@ -197,7 +204,7 @@ try {
   await p.screenshot({ path: join(shots, 'case-board.png') });
 
   // Acusación
-  await p.goto(`${C}/acusacion`);
+  await goto(`${C}/acusacion`);
   await p.getByRole('button', { name: /Imogen Ashcroft/ }).click();
   await p.getByText('Impedir que el lunes la apartara').click();
   await p.getByText('Echó cianuro del propio estudio').click();
@@ -213,15 +220,15 @@ try {
   await p.screenshot({ path: join(shots, 'case-report.png') });
 
   // Modo archivo: todo consultable, lo omitido marcado
-  await p.goto(`${C}/evidencias`);
+  await goto(`${C}/evidencias`);
   check((await p.getByText('No encontrada').count()) > 0, 'En modo archivo se ven las evidencias no encontradas');
   check((await p.getByRole('button', { name: 'Acusar' }).count()) === 0, 'Un expediente cerrado no admite otra acusación');
 
   // Archivo y escritorio reflejan el resultado
-  await p.goto(`${BASE}/archivo`);
+  await goto(`${BASE}/archivo`);
   await p.getByRole('link', { name: /Revelado en negro/ }).getByText('Resuelto').waitFor();
   check(true, 'El archivo marca el expediente como resuelto');
-  await p.goto(BASE);
+  await goto(BASE);
   const solvedOnDesk = await p
     .getByRole('button', { name: /^Máquina de escribir.*Casos resueltos: 1/ })
     .waitFor({ timeout: 5000 })
