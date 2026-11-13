@@ -338,9 +338,8 @@ try {
   await guest.p.getByRole('button', { name: 'Recibir', exact: true }).click();
   await guest.p.getByRole('button', { name: 'Firmar la acusación' }).click();
   await guest.p.waitForURL('**/informe');
-  await guest.panel();
-  const sig = await guest.p.getByLabel('Firma de la acusación para tu compañero').inputValue();
-  await guest.closePanel();
+  // El código de la firma aparece en el propio informe (no hace falta el panel)
+  const sig = await guest.p.getByLabel(/Firma de la acusación/).first().inputValue();
   const endingGuest = await guest.p.getByRole('heading', { level: 1 }).last().innerText();
   await host.panel();
   await host.p.getByLabel('Recibir un código de tu compañero').fill(sig);
@@ -350,6 +349,12 @@ try {
   await guest.p.goto(guest.p.url().replace(/\/acusacion$/, '/informe'));
   await guest.p.getByRole('heading', { name: 'El culpable, sin el porqué' }).waitFor();
   check(true, `Acusación firmada por los dos: mismo final en ambos dispositivos («El culpable, sin el porqué»; ${endingGuest ? 'ok' : ''})`);
+  const totalOf = (q) => q.p.locator('tr', { hasText: 'Total' }).last().innerText();
+  const [tH, tG] = [await totalOf(host), await totalOf(guest)];
+  check(tH === tG, `Los dos informes son iguales (${tH.replace(/\s+/g, ' ')} / ${tG.replace(/\s+/g, ' ')})`);
+  await host.p.goto(host.p.url().replace(/\/informe$/, '/evidencias'));
+  await host.p.waitForURL('**/informe');
+  check(true, 'Con el expediente cerrado solo se puede ver el informe');
   check(host.errors.length === 0 && guest.errors.length === 0, `Sin errores de consola en la correspondencia${[...host.errors, ...guest.errors].length ? ': ' + [...host.errors, ...guest.errors].join(' | ') : ''}`);
 } catch (err) {
   failures++;

@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { CodeBox } from '../coop/CodeBox.tsx';
 import { evaluateCondition, progressToNext, rankFor } from "@deadline/core";
 import { useCase } from "../../cases/CaseProvider.tsx";
 import { useProfile } from "../../profile/ProfileProvider.tsx";
@@ -20,7 +20,7 @@ const OUTCOME = {
 
 /** INFORME FINAL. Tras cerrar el caso, todo el expediente queda abierto para consulta. */
 export function ReportView() {
-  const { c, k, inv, closed, revealed, base, coop } = useCase();
+  const { c, k, inv, closed, revealed, coop } = useCase();
   const { profile } = useProfile();
   if (!inv || !closed || !inv.result) {
     return (
@@ -85,6 +85,18 @@ export function ReportView() {
         </div>
         <Stamp tilt={-8}>{OUTCOME[r.outcome]}</Stamp>
       </header>
+      {coop?.session.mode === "correspondence" &&
+        coop.session.proposal?.status === "agreed" &&
+        coop.session.proposal.from !== coop.session.myRole &&
+        coop.session.outbox && (
+          <div className={s.coopOut}>
+            <p className={s.hand}>
+              Envía este código a tu compañero: al pegarlo en su panel de pareja
+              («Recibir»), su expediente se cierra con este mismo informe.
+            </p>
+            <CodeBox code={coop.session.outbox.code} label={coop.session.outbox.label} />
+          </div>
+        )}
       {ending && revealed && <p className={s.prose}>{ending.text}</p>}
       {!revealed && (
         <p className={s.hand}>
@@ -176,9 +188,9 @@ export function ReportView() {
             <ul className={s.linkList}>
               {sol.decisiveEvidence.map((id) => (
                 <li key={id} data-missed={!k.evidence.has(id) || undefined}>
-                  <Link to={`${base}/evidencias/${id}`}>
+                  <span>
                     {evidenceTitle(c, id)}
-                  </Link>
+                  </span>
                   {!k.evidence.has(id) && " (no la encontraste)"}
                 </li>
               ))}
@@ -190,12 +202,12 @@ export function ReportView() {
             <ul className={s.linkList}>
               {evFound.map((e) => (
                 <li key={e.id}>
-                  <Link to={`${base}/evidencias/${e.id}`}>{e.title}</Link>
+                  <span>{e.title}</span>
                 </li>
               ))}
               {evMissed.map((e) => (
                 <li key={e.id} data-missed>
-                  <Link to={`${base}/evidencias/${e.id}`}>{e.title}</Link> — no
+                  <span>{e.title}</span> — no
                   encontrada
                 </li>
               ))}

@@ -468,3 +468,14 @@ decisivas, los secretos ni las pistas no encontradas; tampoco se abren en
 modo archivo las piezas, personas e interrogatorios que no se llegaron a
 ver. Solo un caso resuelto (total o parcialmente) abre el archivo completo.
 Así un fallo se puede reabrir (D-035) y volver a investigar sin spoilers.
+
+### D-078 · Cerrado es cerrado, y en pareja el mismo informe para los dos
+Un expediente cerrado (resuelto, fallido o por tiempo) ya no se puede
+recorrer: cualquier pestaña lleva al informe final, que es lo único que se
+ve, con la opción de reabrir si procede. En correspondencia, quien firma la
+acusación cierra primero su expediente y su informe (puntuación,
+cronología) viaja dentro del código de la firma; ese código aparece en el
+propio informe para enviarlo, y el compañero, al recibirlo, cierra con el
+mismo informe. Las recompensas ya cobradas en intentos anteriores siguen
+sin pagarse dos veces. En la acusación, bajo motivos y métodos, se dice
+cuántos quedan por descubrir: solo se ofrecen los descubiertos.

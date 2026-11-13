@@ -222,10 +222,10 @@ try {
   check(await visible(p.getByText('Caso resuelto').first()), 'Informe con sello de caso resuelto');
   await p.screenshot({ path: join(shots, 'case-report.png') });
 
-  // Modo archivo: todo consultable, lo omitido marcado
+  // Cerrado es cerrado: cualquier pestaña lleva al informe final
   await goto(`${C}/evidencias`);
-  const missedShown = await p.getByText('No encontrada').first().waitFor({ timeout: 5000 }).then(() => true, () => false);
-  check(missedShown, 'En modo archivo se ven las evidencias no encontradas');
+  await p.waitForURL('**/informe');
+  check((await p.getByRole('link', { name: 'Evidencias' }).count()) === 0, 'Un expediente cerrado solo muestra el informe final');
   check((await p.getByRole('button', { name: 'Acusar' }).count()) === 0, 'Un expediente cerrado no admite otra acusación');
 
   // Archivo y escritorio reflejan el resultado

@@ -46,6 +46,15 @@ export const answerPacket = z.strictObject({
   from: role,
   agree: z.boolean(),
   accusation,
+  /** Informe de quien firma: el otro dispositivo cierra con el mismo informe. */
+  result: z
+    .strictObject({
+      score: z.array(z.strictObject({ label: z.string(), points: z.number().int() })),
+      total: z.number().int(),
+      timelineAccuracy: z.number().min(0).max(1),
+      falseEventsPlaced: z.array(z.string()),
+    })
+    .optional(),
   at: z.number().int(),
 });
 

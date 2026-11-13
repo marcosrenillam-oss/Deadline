@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router';
+import { Link, Navigate, NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router';
 import { formatCaseNumber, formatRemaining } from '@deadline/core';
 import { CaseProvider, useCase } from '../../cases/CaseProvider.tsx';
 import { CRIME_CATEGORY_LABELS, ORIGIN_LABELS } from '../../cases/labels.ts';
@@ -125,6 +125,30 @@ export function Workspace() {
   const tension = tensionOf(remainingMs, closed);
   const expired = inv?.status === 'expired';
   const quiet = toasts.filter((t) => !['evidence', 'contradiction', 'deduction', 'secret'].includes(t.kind));
+  const location = useLocation();
+  // Cerrado es cerrado: solo queda el informe final (y reabrir, si se puede).
+  if (closed && !location.pathname.endsWith('/informe')) return <Navigate to={`${base}/informe`} replace />;
+  if (closed) {
+    return (
+      <main className={`m-room ${sh.room}`} data-tension="closed">
+        <header className={sh.bar}>
+          <Link to="/" className={`m-brass ${sh.back}`} aria-label="Volver al escritorio" onClick={() => sound.play('paper')}>
+            ←
+          </Link>
+          <nav className={sh.tabs} aria-label="Expediente">
+            <span className={`${sh.tab} active`}>Informe final</span>
+          </nav>
+          <PocketWatch remainingMs={0} totalMs={1} closed onClick={() => undefined} />
+        </header>
+        <section className={`m-manila ${sh.folder}`}>
+          <div className={sh.stage}>
+            <Outlet />
+          </div>
+        </section>
+        <TimeUp trigger={expired} />
+      </main>
+    );
+  }
   return (
     <main className={`m-room ${sh.room}`} data-tension={tension}>
       <header className={sh.bar}>
