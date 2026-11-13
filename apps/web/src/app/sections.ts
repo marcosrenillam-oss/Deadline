@@ -57,9 +57,9 @@ export const SECTIONS: readonly SectionDef[] = [
     object: 'Máquina de escribir',
     title: 'Registro de investigaciones',
     description: 'El historial de cada caso abierto, cerrado o reabierto, mecanografiado línea a línea.',
-    contents: ['Historial de investigaciones', 'Registro de actividad', 'Estadísticas personales'],
+    contents: ['Historial de investigaciones', 'Registro de actividad', 'Estadísticas personales', 'Logros', 'Clasificación entre amigos'],
     stage: 7,
-    ready: false,
+    ready: true,
   },
   {
     id: 'settings',

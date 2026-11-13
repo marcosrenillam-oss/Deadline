@@ -307,7 +307,7 @@ async function settleMine(c: CaseFile, s: CoopSession, a: JointAccusation): Prom
   const inv = await getInvestigation(s.investigationIds[s.myRole!]!);
   if (!inv || inv.status !== 'active') return;
   const out = accuse(c, inv, await record(c.id), a, Date.now());
-  await settleCase(out.inv, out.record, out.result.total);
+  await settleCase(c, out.inv, out.record, out.result.total);
 }
 
 /** Mesa compartida: se puntúa una sola vez, con lo que sabe el equipo entero. */
@@ -317,14 +317,14 @@ async function settleTable(c: CaseFile, s: CoopSession, a: JointAccusation): Pro
     const inv = await getInvestigation(ids.shared);
     if (!inv || inv.status !== 'active') return;
     const out = accuse(c, inv, await record(c.id), a, Date.now());
-    await settleCase(out.inv, out.record, out.result.total);
+    await settleCase(c, out.inv, out.record, out.result.total);
     return;
   }
   const [ia, ib] = await Promise.all([getInvestigation(ids.A!), getInvestigation(ids.B!)]);
   if (!ia || !ib || ia.status !== 'active') return;
   const team = mergeShared(c, ia, unshared(ib, emptyShare()), Date.now(), 'B').inv;
   const out = accuse(c, team, await record(c.id), a, Date.now());
-  await settleCase(out.inv, out.record, out.result.total);
+  await settleCase(c, out.inv, out.record, out.result.total);
   await saveInvestigation({ ...ib, status: out.inv.status, accusation: out.inv.accusation!, result: out.inv.result!, closedAt: out.inv.closedAt!, rev: ib.rev + 1, updatedAt: Date.now() });
 }
 

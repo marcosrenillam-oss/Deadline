@@ -11,14 +11,15 @@ const OUTCOME: Record<string, string> = { success: 'Resuelto', partial: 'Resuelt
 
 /** Reapertura e historial de intentos de un expediente cerrado. */
 export function ReopenPanel() {
-  const { c, closed, reopen, attempts, base, coop } = useCase();
+  const { c, record, closed, reopen, attempts, base, coop } = useCase();
   const { profile } = useProfile();
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
   const [confirm, setConfirm] = useState(false);
   const [busy, setBusy] = useState(false);
   if (!closed || coop) return null;
-  const cost = reopenCost(c);
+  const cost = reopenCost(c, record ?? undefined);
+  const free = cost === 0;
   const balance = profile?.points ?? 0;
   const affordable = balance >= cost;
 
@@ -46,11 +47,19 @@ export function ReopenPanel() {
         detalles, hechos, fichas, tu tablero, tu cronología y tus notas; tendrás que volver a interrogar. Los puntos ya cobrados no se vuelven a cobrar.
       </p>
       <p className={s.trayHelp}>
-        Cuesta <strong>{cost} puntos</strong>. Tienes {balance}.
+        {free ? (
+          <>
+            La primera reapertura de cada expediente es <strong>gratuita</strong>. Las siguientes costarán {reopenCost(c, { reopens: 1 })} puntos.
+          </>
+        ) : (
+          <>
+            Cuesta <strong>{cost} puntos</strong>. Tienes {balance}.
+          </>
+        )}
       </p>
       {!confirm ? (
         <button className={s.primary} disabled={!affordable || busy} onClick={() => setConfirm(true)}>
-          Reabrir por {cost} puntos
+          {free ? 'Reabrir gratis' : `Reabrir por ${cost} puntos`}
         </button>
       ) : (
         <div className={s.sealRow}>
@@ -58,7 +67,7 @@ export function ReopenPanel() {
             Cancelar
           </button>
           <button className={s.primary} disabled={busy} onClick={() => void go()}>
-            Confirmar y pagar
+            {free ? 'Confirmar' : 'Confirmar y pagar'}
           </button>
         </div>
       )}

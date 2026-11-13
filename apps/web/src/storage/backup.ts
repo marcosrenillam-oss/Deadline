@@ -17,13 +17,14 @@ import type { CoopSession } from '../cases/coopTypes.ts';
 export async function collectLocalData(): Promise<ArchiveData> {
   const profile = await ensureProfile();
   const db = await getDB();
-  const [settings, investigations, caseRecords, notes, dailyLedger, coopSessions] = await Promise.all([
+  const [settings, investigations, caseRecords, notes, dailyLedger, coopSessions, friends] = await Promise.all([
     db.get('settings', 'device'),
     db.getAll('investigations'),
     db.getAll('caseRecords'),
     db.getAll('notes'),
     db.get('dailyLedger', 'ledger'),
     db.getAll('coopSessions'),
+    db.getAll('friends'),
   ]);
   return {
     settings: normalizeSettings(settings),
@@ -33,6 +34,7 @@ export async function collectLocalData(): Promise<ArchiveData> {
     notes,
     dailyLedger: dailyLedger ?? null,
     coopSessions: coopSessions as unknown as ArchiveData['coopSessions'],
+    friends,
   };
 }
 
@@ -58,7 +60,7 @@ export async function applyArchive(archive: DeadlineArchive, mode: ImportMode): 
   const local = await collectLocalData();
   const next = mergeArchiveData(local, archive.data, mode);
   const db = await getDB();
-  const tx = db.transaction(['settings', 'profile', 'investigations', 'caseRecords', 'notes', 'dailyLedger', 'coopSessions', 'meta'], 'readwrite');
+  const tx = db.transaction(['settings', 'profile', 'investigations', 'caseRecords', 'notes', 'dailyLedger', 'coopSessions', 'friends', 'meta'], 'readwrite');
   if (mode === 'replace') {
     await Promise.all([
       tx.objectStore('investigations').clear(),
@@ -66,6 +68,7 @@ export async function applyArchive(archive: DeadlineArchive, mode: ImportMode): 
       tx.objectStore('notes').clear(),
       tx.objectStore('dailyLedger').clear(),
       tx.objectStore('coopSessions').clear(),
+      tx.objectStore('friends').clear(),
     ]);
   }
   await tx.objectStore('settings').put(next.settings, 'device');
@@ -75,6 +78,7 @@ export async function applyArchive(archive: DeadlineArchive, mode: ImportMode): 
   for (const x of next.notes) await tx.objectStore('notes').put(x);
   if (next.dailyLedger) await tx.objectStore('dailyLedger').put(next.dailyLedger, 'ledger');
   for (const x of next.coopSessions) await tx.objectStore('coopSessions').put(x as unknown as CoopSession);
+  for (const x of next.friends) await tx.objectStore('friends').put(x);
   await tx.objectStore('meta').put({ key: 'lastImportAt', value: Date.now(), updatedAt: Date.now() });
   await tx.done;
   return next;

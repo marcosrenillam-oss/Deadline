@@ -1,16 +1,17 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { useNavigate } from 'react-router';
-import { DAILY_TOTAL, rankFor } from '@deadline/core';
+import { DAILY_TOTAL } from '@deadline/core';
+import { useProgress } from '../../progression/useProgress.ts';
 import { sectionById, type SectionId } from '../../app/sections.ts';
 import { sound, type Sfx } from '../../audio/sound.ts';
 import { haptic } from '../../audio/haptics.ts';
 import { useProfile } from '../../profile/ProfileProvider.tsx';
 import { useSettings } from '../../settings/SettingsProvider.tsx';
 import { useOnline } from '../../platform/hooks.ts';
-import { DESK_MATERIALS, LAMP_MATERIALS, NOTEBOOK_MATERIALS, PHONE_MATERIALS, TYPEWRITER_MATERIALS, pick } from './palettes.ts';
+import { DESK_MATERIALS, LAMP_MATERIALS, NOTEBOOK_MATERIALS, PHONE_MATERIALS, TYPEWRITER_MATERIALS, lampShape, pick } from './palettes.ts';
 import { woodTextureUrl } from './woodTexture.ts';
 import { useDeskData } from './useDeskData.ts';
-import { CoffeeSvg, LampSvg, PhoneSvg, PolaroidsSvg, TypewriterSvg } from './objects/svgObjects.tsx';
+import { BadgeSvg, CoffeeSvg, LampSvg, MagnifierSvg, PhoneSvg, PolaroidsSvg, TypewriterSvg } from './objects/svgObjects.tsx';
 import { CalendarVisual, FolderVisual, GuideNoteVisual, Nameplate, NotebookVisual } from './objects/paperObjects.tsx';
 import { GuideDialog } from './GuideDialog.tsx';
 import styles from './DeskScene.module.css';
@@ -44,6 +45,7 @@ export function DeskScene() {
   const navigate = useNavigate();
   const { settings, update } = useSettings();
   const { profile } = useProfile();
+  const progress = useProgress();
   const data = useDeskData();
   const online = useOnline();
   const [opening, setOpening] = useState<DeskObject | null>(null);
@@ -102,15 +104,13 @@ export function DeskScene() {
   const dailyIndex = data.ledger?.highestUnlocked ?? -1;
   const dailyLabel = dailyIndex >= 0 ? `Diario nº ${dailyIndex + 1} de ${DAILY_TOTAL}` : 'Calendario sin iniciar';
   const investigator = profile?.investigatorNumber ?? '—';
-  const rank = profile
-    ? rankFor({ merit: profile.soloMerit, perfectSolves: 0, accuracy: 0, solvedByDifficulty: { detective: 0, inspector: 0, 'special-unit': 0 } }).label
-    : '';
+  const rank = progress?.soloRank.label ?? '';
   const opened = data.firstLaunchAt ? new Date(data.firstLaunchAt).toLocaleDateString('es-ES') : '—';
   const twLines = [
     'REGISTRO DE INVESTIGACIONES',
     `Oficina abierta el ${opened}`,
     `Investigaciones: ${data.investigations}`,
-    `Casos resueltos: ${data.solved}`,
+    `Resueltos: ${data.solved} · Logros: ${profile?.achievements.length ?? 0}`,
     online ? 'Línea: abierta' : 'Línea: sin conexión',
   ];
 
@@ -149,6 +149,16 @@ export function DeskScene() {
               <PolaroidsSvg />
             </div>
           )}
+          {decor === 'decor-magnifier' && (
+            <div className={styles.decor} data-decor="magnifier" aria-hidden="true">
+              <MagnifierSvg />
+            </div>
+          )}
+          {decor === 'decor-badge' && (
+            <div className={styles.decor} data-decor="badge" aria-hidden="true">
+              <BadgeSvg />
+            </div>
+          )}
 
           <button {...objectProps('folder')} aria-label={`Carpeta de expedientes: ${sectionById('archive').title}`}>
             <FolderVisual investigator={investigator} />
@@ -170,12 +180,12 @@ export function DeskScene() {
             <PhoneSvg m={phone} />
           </button>
 
-          <button {...objectProps('lamp')} data-lamp={lampId} aria-label="Lámpara: ajustes de luz, sonido, lectura, oficina y archivo personal">
+          <button {...objectProps('lamp')} data-lamp={lampShape(lampId)} aria-label="Lámpara: ajustes de luz, sonido, lectura, oficina y archivo personal">
             <LampSvg id={lampId} m={lamp} />
           </button>
           <button
             className={styles.chain}
-            data-lamp={lampId}
+            data-lamp={lampShape(lampId)}
             onClick={toggleLamp}
             aria-pressed={settings.lampOn}
             aria-label={settings.lampOn ? 'Apagar la lámpara' : 'Encender la lámpara'}

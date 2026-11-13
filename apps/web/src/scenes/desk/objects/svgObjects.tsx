@@ -1,4 +1,4 @@
-import type { LampMaterial, PhoneMaterial, TypewriterMaterial } from '../palettes.ts';
+import { lampShape, type LampMaterial, type PhoneMaterial, type TypewriterMaterial } from '../palettes.ts';
 
 /**
  * Objetos dibujados en SVG vistos desde arriba (lámpara, teléfono, máquina
@@ -10,7 +10,7 @@ import type { LampMaterial, PhoneMaterial, TypewriterMaterial } from '../palette
 
 export function LampSvg({ id, m }: { id: string; m: LampMaterial }) {
   const p = `lamp-${id}`;
-  if (id === 'lamp-brass') {
+  if (lampShape(id) === 'lamp-brass') {
     return (
       <svg viewBox="0 0 230 190" width="100%" height="100%" aria-hidden="true">
         <defs>
@@ -276,6 +276,62 @@ export function PolaroidsSvg() {
       </defs>
       {photo(8, 14, -9, 'Muelle 4', 'a')}
       {photo(84, 8, 6, '¿1987?', 'b')}
+    </svg>
+  );
+}
+
+export function MagnifierSvg() {
+  return (
+    <svg viewBox="0 0 150 90" width="100%" height="100%" aria-hidden="true">
+      <defs>
+        <radialGradient id="mag-glass" cx="40%" cy="35%" r="70%">
+          <stop offset="0" stopColor="rgba(255,255,255,0.45)" />
+          <stop offset="0.6" stopColor="rgba(190,205,200,0.18)" />
+          <stop offset="1" stopColor="rgba(120,140,135,0.3)" />
+        </radialGradient>
+        <linearGradient id="mag-handle" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#7a4a26" />
+          <stop offset="0.5" stopColor="#4a2a12" />
+          <stop offset="1" stopColor="#2a1608" />
+        </linearGradient>
+        <linearGradient id="mag-rim" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#ecd398" />
+          <stop offset="1" stopColor="#8e6d34" />
+        </linearGradient>
+      </defs>
+      <g transform="translate(6 7)" opacity="0.5">
+        <circle cx="46" cy="44" r="34" fill="#000" />
+        <rect x="76" y="50" width="66" height="14" rx="7" fill="#000" transform="rotate(14 76 50)" />
+      </g>
+      <rect x="76" y="44" width="66" height="14" rx="7" fill="url(#mag-handle)" transform="rotate(14 76 44)" />
+      <rect x="72" y="44" width="12" height="16" rx="3" fill="url(#mag-rim)" transform="rotate(14 72 44)" />
+      <circle cx="46" cy="40" r="34" fill="url(#mag-glass)" />
+      <circle cx="46" cy="40" r="34" fill="none" stroke="url(#mag-rim)" strokeWidth="6" />
+      <ellipse cx="34" cy="28" rx="12" ry="6" fill="rgba(255,255,255,0.35)" transform="rotate(-35 34 28)" />
+    </svg>
+  );
+}
+
+export function BadgeSvg() {
+  return (
+    <svg viewBox="0 0 130 110" width="100%" height="100%" aria-hidden="true">
+      <defs>
+        <linearGradient id="badge-leather" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#3a2416" />
+          <stop offset="1" stopColor="#1a0f07" />
+        </linearGradient>
+        <radialGradient id="badge-metal" cx="40%" cy="30%" r="75%">
+          <stop offset="0" stopColor="#f6e2a8" />
+          <stop offset="0.5" stopColor="#c49a4a" />
+          <stop offset="1" stopColor="#6e4f1c" />
+        </radialGradient>
+      </defs>
+      <rect x="12" y="10" width="106" height="88" rx="10" fill="rgba(0,0,0,0.5)" transform="translate(5 6)" />
+      <rect x="12" y="10" width="106" height="88" rx="10" fill="url(#badge-leather)" />
+      <rect x="18" y="16" width="94" height="76" rx="7" fill="none" stroke="rgba(214,196,150,0.35)" strokeDasharray="3 3" />
+      <path d="M65 22 L74 34 L89 34 L82 47 L89 60 L74 60 L65 74 L56 60 L41 60 L48 47 L41 34 L56 34 Z" fill="url(#badge-metal)" stroke="#5a3f14" strokeWidth="1.2" />
+      <circle cx="65" cy="47" r="9" fill="none" stroke="#5a3f14" strokeWidth="1.2" />
+      <text x="65" y="86" textAnchor="middle" fontFamily="var(--font-type)" fontSize="7" fill="#d9c08a" letterSpacing="1.5">INSP. JEFE</text>
     </svg>
   );
 }

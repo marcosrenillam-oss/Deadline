@@ -1,5 +1,6 @@
 import { carryOverKnowledge, carryOverWorkspace, newId, reopenCost, startInvestigation, type CaseFile, type CaseRecord, type Investigation, type LocalProfile } from '@deadline/core';
 import { getDB } from '../storage/db.ts';
+import { applyProgression } from '../progression/progressionRepo.ts';
 
 export async function getRecord(caseId: string): Promise<CaseRecord | undefined> {
   return (await getDB()).get('caseRecords', caseId);
@@ -83,7 +84,7 @@ export async function reopenInvestigation(c: CaseFile, now = Date.now()): Promis
     tx.abort();
     throw new Error('Este expediente no está cerrado.');
   }
-  const cost = reopenCost(c);
+  const cost = reopenCost(c, record);
   if (profile.points < cost) {
     tx.abort();
     throw new NotEnoughPoints(cost, profile.points);
@@ -95,7 +96,13 @@ export async function reopenInvestigation(c: CaseFile, now = Date.now()): Promis
     carried: carryOverKnowledge(prev.knowledge),
     workspace: carryOverWorkspace(prev),
   });
-  const nextRecord: CaseRecord = { ...record, attempts: [...record.attempts, inv.id], activeInvestigationId: inv.id, status: record.status === 'solved' ? 'solved' : 'in-progress' };
+  const nextRecord: CaseRecord = {
+    ...record,
+    attempts: [...record.attempts, inv.id],
+    activeInvestigationId: inv.id,
+    status: record.status === 'solved' ? 'solved' : 'in-progress',
+    reopens: (record.reopens ?? 0) + 1,
+  };
   const nextProfile: LocalProfile = { ...profile, points: profile.points - cost, updatedAt: now };
   await tx.objectStore('investigations').put(inv);
   await tx.objectStore('caseRecords').put(nextRecord);
@@ -104,13 +111,17 @@ export async function reopenInvestigation(c: CaseFile, now = Date.now()): Promis
   return { inv, record: nextRecord, profile: nextProfile };
 }
 
-/** Cierra un caso guardando investigación, registro y puntos del perfil a la vez. */
-export async function settleCase(inv: Investigation, record: CaseRecord, points: number): Promise<LocalProfile | undefined> {
+/**
+ * Cierra un caso guardando investigación, registro y puntos del perfil a la
+ * vez; después evalúa logros, ascensos y piezas ganadas.
+ */
+export async function settleCase(c: CaseFile, inv: Investigation, record: CaseRecord, points: number): Promise<LocalProfile | undefined> {
   const db = await getDB();
   const tx = db.transaction(['investigations', 'caseRecords', 'profile'], 'readwrite');
   await tx.objectStore('investigations').put(inv);
   await tx.objectStore('caseRecords').put(record);
   const profile = await tx.objectStore('profile').get('local');
+  const before = profile ? { soloMerit: profile.soloMerit, coopMerit: profile.coopMerit } : undefined;
   let next: LocalProfile | undefined;
   if (profile && points > 0) {
     const coop = inv.mode === 'coop';
@@ -124,5 +135,12 @@ export async function settleCase(inv: Investigation, record: CaseRecord, points:
     await tx.objectStore('profile').put(next, 'local');
   }
   await tx.done;
-  return next;
+  try {
+    const out = await applyProgression({ closure: { c, inv }, ...(before ? { before } : {}) });
+    return out?.profile ?? next;
+  } catch (err) {
+    // La progresión se vuelve a evaluar al arrancar; el cierre ya está guardado.
+    console.error('[progresión] No se pudo evaluar tras el cierre', err);
+    return next;
+  }
 }

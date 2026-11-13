@@ -1,13 +1,14 @@
 import { emptyKnowledge, type SerializedKnowledge } from '../case/conditions.ts';
 import type { CaseFile } from '../case/schema.ts';
-import type { Investigation } from '../investigation/state.ts';
+import type { CaseRecord, Investigation } from '../investigation/state.ts';
 import { REOPEN_COST } from '../progression/rules.ts';
 
 /**
  * REAPERTURA DE EXPEDIENTES.
  *
- * Un expediente cerrado (por acusación o por tiempo) se puede reabrir pagando
- * puntos. La investigación vuelve a empezar con un reloj nuevo, pero se
+ * Un expediente cerrado (por acusación o por tiempo) se puede reabrir. La
+ * primera reapertura de cada expediente es gratuita (D-046); las siguientes
+ * cuestan puntos. La investigación vuelve a empezar con un reloj nuevo, pero se
  * conserva lo que el jugador ya había descubierto: evidencias, detalles,
  * hechos, fichas de cronología y deducciones, además de su tablero, su
  * cronología y sus notas. Lo que se pierde es lo que dependía de la
@@ -15,8 +16,9 @@ import { REOPEN_COST } from '../progression/rules.ts';
  * confesados y marcas narrativas. Hay que volver a interrogar.
  */
 
-export function reopenCost(c: CaseFile): number {
-  return REOPEN_COST[c.difficulty];
+/** La primera reapertura de cada expediente es gratuita; las siguientes se pagan. */
+export function reopenCost(c: CaseFile, record: Pick<CaseRecord, 'reopens'> | undefined): number {
+  return (record?.reopens ?? 0) === 0 ? 0 : REOPEN_COST[c.difficulty];
 }
 
 export function carryOverKnowledge(k: SerializedKnowledge): SerializedKnowledge {

@@ -1,27 +1,8 @@
+import { lazy, Suspense, type ComponentType, type ReactNode } from 'react';
 import { createBrowserRouter, isRouteErrorResponse, useRouteError } from 'react-router';
 import { DeskScene } from '../scenes/desk/DeskScene.tsx';
-import { SectionScene } from '../scenes/section/SectionScene.tsx';
-import { DiagnosticsScene } from '../scenes/diagnostics/DiagnosticsScene.tsx';
-import { SettingsScene } from '../scenes/settings/SettingsScene.tsx';
-import { ArchiveScene } from '../scenes/archive/ArchiveScene.tsx';
-import { NotebookScene } from '../scenes/notebook/NotebookScene.tsx';
-import { CalendarScene } from '../scenes/calendar/CalendarScene.tsx';
-import { CoopScene } from '../scenes/coop/CoopScene.tsx';
-import { ProfileScene } from '../scenes/profile/ProfileScene.tsx';
-import { CoopCaseScene } from '../scenes/coop/CoopCaseScene.tsx';
-import { CaseScene } from '../scenes/case/CaseScene.tsx';
-import { DossierTab } from '../scenes/case/DossierTab.tsx';
-import { EvidenceTab } from '../scenes/case/EvidenceTab.tsx';
-import { EvidenceViewer } from '../scenes/case/EvidenceViewer.tsx';
-import { PeopleTab } from '../scenes/case/PeopleTab.tsx';
-import { InterrogationView } from '../scenes/case/InterrogationView.tsx';
-import { TimelineTab } from '../scenes/case/TimelineTab.tsx';
-import { BoardTab } from '../scenes/case/BoardTab.tsx';
-import { AccusationView } from '../scenes/case/AccusationView.tsx';
-import { ReportView } from '../scenes/case/ReportView.tsx';
 import { BackToDesk } from '../ui/BackToDesk.tsx';
 import surface from '../ui/Surface.module.css';
-import { SECTIONS } from './sections.ts';
 import styles from './router.module.css';
 
 function MissingFile() {
@@ -46,6 +27,34 @@ function MissingFile() {
   );
 }
 
+/**
+ * Carga diferida por pantallas: la mesa va en el paquete inicial; el resto se
+ * descarga al abrirla (y el service worker lo precachea para usarlo offline).
+ */
+function page<T extends Record<string, ComponentType>>(load: () => Promise<T>, name: keyof T, inner = false): ReactNode {
+  const C = lazy(async () => ({ default: (await load())[name] as ComponentType }));
+  // Dentro del expediente el fragmento ya está cargado: sin telón para no parpadear.
+  return (
+    <Suspense fallback={inner ? null : <main className={surface.wood} aria-busy="true" />}>
+      <C />
+    </Suspense>
+  );
+}
+
+const caseScreens = () => import('./caseScreens.ts');
+const caseChildren = () => [
+  { index: true, element: page(caseScreens, 'DossierTab', true) },
+  { path: 'evidencias', element: page(caseScreens, 'EvidenceTab', true) },
+  { path: 'evidencias/:evidenceId', element: page(caseScreens, 'EvidenceViewer', true) },
+  { path: 'personas', element: page(caseScreens, 'PeopleTab', true) },
+  { path: 'personas/:characterId', element: page(caseScreens, 'PeopleTab', true) },
+  { path: 'interrogatorio/:characterId', element: page(caseScreens, 'InterrogationView', true) },
+  { path: 'cronologia', element: page(caseScreens, 'TimelineTab', true) },
+  { path: 'tablero', element: page(caseScreens, 'BoardTab', true) },
+  { path: 'acusacion', element: page(caseScreens, 'AccusationView', true) },
+  { path: 'informe', element: page(caseScreens, 'ReportView', true) },
+];
+
 /** Sin barra final: '/' → '', '/Deadline/' → '/Deadline'. */
 export const BASENAME = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -55,46 +64,16 @@ export const router = createBrowserRouter([
     errorElement: <MissingFile />,
     children: [
       { index: true, element: <DeskScene /> },
-      { path: 'lampara', element: <SettingsScene /> },
-      { path: 'archivo', element: <ArchiveScene /> },
-      { path: 'libreta', element: <NotebookScene /> },
-      { path: 'calendario', element: <CalendarScene /> },
-      { path: 'telefono', element: <CoopScene /> },
-      { path: 'perfil', element: <ProfileScene /> },
-      {
-        path: 'pareja/:sessionId',
-        element: <CoopCaseScene />,
-        children: [
-          { index: true, element: <DossierTab /> },
-          { path: 'evidencias', element: <EvidenceTab /> },
-          { path: 'evidencias/:evidenceId', element: <EvidenceViewer /> },
-          { path: 'personas', element: <PeopleTab /> },
-          { path: 'personas/:characterId', element: <PeopleTab /> },
-          { path: 'interrogatorio/:characterId', element: <InterrogationView /> },
-          { path: 'cronologia', element: <TimelineTab /> },
-          { path: 'tablero', element: <BoardTab /> },
-          { path: 'acusacion', element: <AccusationView /> },
-          { path: 'informe', element: <ReportView /> },
-        ],
-      },
-      {
-        path: 'expediente/:caseId',
-        element: <CaseScene />,
-        children: [
-          { index: true, element: <DossierTab /> },
-          { path: 'evidencias', element: <EvidenceTab /> },
-          { path: 'evidencias/:evidenceId', element: <EvidenceViewer /> },
-          { path: 'personas', element: <PeopleTab /> },
-          { path: 'personas/:characterId', element: <PeopleTab /> },
-          { path: 'interrogatorio/:characterId', element: <InterrogationView /> },
-          { path: 'cronologia', element: <TimelineTab /> },
-          { path: 'tablero', element: <BoardTab /> },
-          { path: 'acusacion', element: <AccusationView /> },
-          { path: 'informe', element: <ReportView /> },
-        ],
-      },
-      ...SECTIONS.filter((s) => !s.ready).map((s) => ({ path: s.path.slice(1), element: <SectionScene id={s.id} /> })),
-      { path: 'diagnostico', element: <DiagnosticsScene /> },
+      { path: 'lampara', element: page(() => import('../scenes/settings/SettingsScene.tsx'), 'SettingsScene') },
+      { path: 'archivo', element: page(() => import('../scenes/archive/ArchiveScene.tsx'), 'ArchiveScene') },
+      { path: 'libreta', element: page(() => import('../scenes/notebook/NotebookScene.tsx'), 'NotebookScene') },
+      { path: 'calendario', element: page(() => import('../scenes/calendar/CalendarScene.tsx'), 'CalendarScene') },
+      { path: 'telefono', element: page(() => import('../scenes/coop/CoopScene.tsx'), 'CoopScene') },
+      { path: 'maquina', element: page(() => import('../scenes/history/HistoryScene.tsx'), 'HistoryScene') },
+      { path: 'perfil', element: page(() => import('../scenes/profile/ProfileScene.tsx'), 'ProfileScene') },
+      { path: 'pareja/:sessionId', element: page(caseScreens, 'CoopCaseScene'), children: caseChildren() },
+      { path: 'expediente/:caseId', element: page(caseScreens, 'CaseScene'), children: caseChildren() },
+      { path: 'diagnostico', element: page(() => import('../scenes/diagnostics/DiagnosticsScene.tsx'), 'DiagnosticsScene') },
     ],
   },
 ], { basename: BASENAME });

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { caseRecordSchema, investigationSchema, noteSchema, type CaseRecord, type Investigation, type Note } from '../investigation/state.ts';
-import { localProfileSchema, type LocalProfile } from '../profile/profile.ts';
+import { friendSchema, localProfileSchema, type Friend, type LocalProfile } from '../profile/profile.ts';
 import { normalizeSettings, type Settings } from '../settings/settings.ts';
 import { dailyLedgerSchema } from '../daily/ledgerSchema.ts';
 import type { DailyLedger } from '../daily/schedule.ts';
@@ -32,6 +32,8 @@ export interface ArchiveData {
   dailyLedger: DailyLedger | null;
   /** Partidas cooperativas (estructura propia de la app; se validan al importar). */
   coopSessions: Array<{ id: string; updatedAt: number } & Record<string, unknown>>;
+  /** Clasificación entre amigos: últimas tarjetas importadas. */
+  friends: Friend[];
 }
 
 const archiveDataSchema = z.strictObject({
@@ -42,6 +44,7 @@ const archiveDataSchema = z.strictObject({
   notes: z.array(noteSchema),
   dailyLedger: dailyLedgerSchema.nullable(),
   coopSessions: z.array(z.looseObject({ id: z.string(), updatedAt: z.number() })).default([]),
+  friends: z.array(friendSchema).default([]),
 });
 
 const archiveSchema = z.strictObject({
@@ -102,6 +105,8 @@ export interface ArchiveSummary {
   solvedCases: number;
   notes: number;
   dailyUnlocked: number;
+  achievements: number;
+  friends: number;
 }
 
 export function summarize(a: DeadlineArchive): ArchiveSummary {
@@ -112,6 +117,8 @@ export function summarize(a: DeadlineArchive): ArchiveSummary {
     solvedCases: a.data.caseRecords.filter((r) => r.status === 'solved').length,
     notes: a.data.notes.filter((n) => !n.deletedAt).length,
     dailyUnlocked: (a.data.dailyLedger?.highestUnlocked ?? -1) + 1,
+    achievements: a.data.profile.achievements.length,
+    friends: a.data.friends.length,
   };
 }
 
@@ -188,6 +195,8 @@ export function mergeArchiveData(local: ArchiveData, incoming: ArchiveData, mode
       bestScore: Math.max(l.bestScore, r.bestScore),
       rewardedKeys: [...new Set([...l.rewardedKeys, ...r.rewardedKeys])].sort(),
     };
+    const reopens = Math.max(l.reopens ?? 0, r.reopens ?? 0);
+    if (reopens > 0) merged.reopens = reopens;
     if (solvedAt.length) merged.solvedAt = Math.min(...solvedAt);
     records.set(r.caseId, merged);
   }
@@ -201,6 +210,8 @@ export function mergeArchiveData(local: ArchiveData, incoming: ArchiveData, mode
   }
 
   const unlocked = [...new Set([...local.profile.unlockedCosmetics, ...incoming.profile.unlockedCosmetics])].sort();
+  const achievements = new Map<string, number>();
+  for (const a of [...local.profile.achievements, ...incoming.profile.achievements]) achievements.set(a.id, Math.min(a.at, achievements.get(a.id) ?? Infinity));
   const newerProfile = incoming.profile.updatedAt > local.profile.updatedAt ? incoming.profile : local.profile;
   const profile: LocalProfile = {
     ...newerProfile,
@@ -211,8 +222,15 @@ export function mergeArchiveData(local: ArchiveData, incoming: ArchiveData, mode
     points: Math.max(local.profile.points, incoming.profile.points),
     soloMerit: Math.max(local.profile.soloMerit, incoming.profile.soloMerit),
     coopMerit: Math.max(local.profile.coopMerit, incoming.profile.coopMerit),
+    achievements: [...achievements].map(([id, at]) => ({ id, at })).sort((a, b) => a.at - b.at),
     equipped: sanitizeLoadout(newerProfile.equipped, unlocked),
   };
+
+  const friends = new Map<string, Friend>();
+  for (const f of [...local.friends, ...incoming.friends]) {
+    const prev = friends.get(f.number);
+    if (!prev || f.card.at > prev.card.at) friends.set(f.number, prev ? { ...f, addedAt: Math.min(prev.addedAt, f.addedAt) } : f);
+  }
 
   return {
     settings: local.settings,
@@ -222,6 +240,7 @@ export function mergeArchiveData(local: ArchiveData, incoming: ArchiveData, mode
     notes: byNewest(local.notes, incoming.notes, (x) => x.id),
     dailyLedger,
     coopSessions: byNewest(local.coopSessions, incoming.coopSessions, (x) => x.id),
+    friends: [...friends.values()],
   };
 }
 

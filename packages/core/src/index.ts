@@ -7,6 +7,8 @@ export * from './timer/timer.ts';
 export * from './daily/schedule.ts';
 export * from './progression/ranks.ts';
 export * from './progression/rules.ts';
+export * from './progression/stats.ts';
+export * from './progression/achievements.ts';
 export * from './settings/settings.ts';
 export * from './profile/profile.ts';
 export * from './sync/queue.ts';

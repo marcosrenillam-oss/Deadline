@@ -1,18 +1,8 @@
 import { useEffect, useState } from 'react';
-import {
-  encodeCode,
-  isValidUsername,
-  normalizeUsername,
-  progressToNext,
-  rankFor,
-  type InvestigatorCard,
-  type LocalProfile,
-  type RankStats,
-} from '@deadline/core';
+import { encodeCode, isValidUsername, normalizeUsername, progressToNext, rankStatsFor, type InvestigatorCard, type LocalProfile, type RankDefinition, type RankStats } from '@deadline/core';
+import { useProgress } from '../../progression/useProgress.ts';
 import { useProfile } from '../../profile/ProfileProvider.tsx';
 import { saveProfile } from '../../storage/profileRepo.ts';
-import { allRecords } from '../../cases/investigationRepo.ts';
-import { listSessions } from '../../cases/coopRepo.ts';
 import { BackToDesk } from '../../ui/BackToDesk.tsx';
 import { PlayerAvatar } from '../../ui/PlayerAvatar.tsx';
 import { Portrait } from '../../ui/Portrait.tsx';
@@ -21,9 +11,24 @@ import { sound } from '../../audio/sound.ts';
 import surface from '../../ui/Surface.module.css';
 import s from './ProfileScene.module.css';
 
-const PRESETS = Array.from({ length: 8 }, (_, i) => `preset:${i + 1}`);
+function Requirements({ stats, next }: { stats: RankStats; next: RankDefinition }) {
+  const r = next.requirement;
+  const parts = [
+    `mérito ${stats.merit}/${r.merit}`,
+    r.perfectSolves ? `actas impecables ${stats.perfectSolves}/${r.perfectSolves}` : '',
+    r.minAccuracy ? `precisión ${Math.round(stats.accuracy * 100)} %/${Math.round(r.minAccuracy * 100)} %` : '',
+    r.solvedByDifficulty.detective ? `nivel Detective ${stats.solvedByDifficulty.detective}/${r.solvedByDifficulty.detective}` : '',
+    r.solvedByDifficulty.inspector ? `nivel Inspector ${stats.solvedByDifficulty.inspector}/${r.solvedByDifficulty.inspector}` : '',
+    r.solvedByDifficulty['special-unit'] ? `Unidad Especial ${stats.solvedByDifficulty['special-unit']}/${r.solvedByDifficulty['special-unit']}` : '',
+  ].filter(Boolean);
+  return (
+    <span className={s.small}>
+      Hacia {next.label}: {parts.join(' · ')}
+    </span>
+  );
+}
 
-const stats = (merit: number): RankStats => ({ merit, perfectSolves: 0, accuracy: 0, solvedByDifficulty: { detective: 0, inspector: 0, 'special-unit': 0 } });
+const PRESETS = Array.from({ length: 8 }, (_, i) => `preset:${i + 1}`);
 
 /** Reduce una foto a 240 px de ancho en el propio dispositivo (no sale de él). */
 async function shrink(file: File): Promise<string> {
@@ -54,23 +59,18 @@ export function ProfileScene() {
   const { profile, reload } = useProfile();
   const [alias, setAlias] = useState('');
   const [msg, setMsg] = useState<string | null>(null);
-  const [solved, setSolved] = useState({ solo: 0, coop: 0 });
   const [card, setCard] = useState<string | null>(null);
+  const progress = useProgress();
 
   useEffect(() => {
     setAlias(profile?.alias ?? '');
   }, [profile?.alias]);
-  useEffect(() => {
-    void Promise.all([allRecords(), listSessions()]).then(([recs]) =>
-      setSolved({ solo: recs.filter((r) => r.mode !== 'coop' && r.status === 'solved').length, coop: recs.filter((r) => r.mode === 'coop' && r.status === 'solved').length }),
-    );
-  }, []);
 
-  if (!profile) return <main className={surface.wood} />;
-  const solo = rankFor(stats(profile.soloMerit));
-  const coop = rankFor(stats(profile.coopMerit));
-  const soloNext = progressToNext(stats(profile.soloMerit));
-  const coopNext = progressToNext(stats(profile.coopMerit));
+  if (!profile || !progress) return <main className={surface.wood} />;
+  const { stats, soloRank: solo, coopRank: coop } = progress;
+  const solved = { solo: stats.solo.solvedCases, coop: stats.coop.solvedCases };
+  const soloNext = progressToNext(rankStatsFor(stats, 'solo', profile.soloMerit));
+  const coopNext = progressToNext(rankStatsFor(stats, 'coop', profile.coopMerit));
 
   const save = async (patch: Partial<LocalProfile>) => {
     await saveProfile({ ...profile, ...patch, updatedAt: Date.now() });
@@ -99,6 +99,8 @@ export function ProfileScene() {
       soloMerit: profile.soloMerit,
       coopMerit: profile.coopMerit,
       solved: solved.solo + solved.coop,
+      perfect: stats.solo.perfect + stats.coop.perfect,
+      ach: profile.achievements.length,
       at: Date.now(),
     };
     setCard(await encodeCode(c));
@@ -124,14 +126,22 @@ export function ProfileScene() {
               <strong>{solo.label}</strong>
               <span className={s.small}>{solo.description}</span>
               {soloNext.next && (
-                <span className={s.bar} style={{ ['--p' as string]: `${Math.round(soloNext.progress * 100)}%` }} aria-label={`Hacia ${soloNext.next.label}: ${Math.round(soloNext.progress * 100)} %`} />
+                <>
+                  <span className={s.bar} style={{ ['--p' as string]: `${Math.round(soloNext.progress * 100)}%` }} aria-label={`Hacia ${soloNext.next.label}: ${Math.round(soloNext.progress * 100)} %`} />
+                  <Requirements stats={rankStatsFor(stats, 'solo', profile.soloMerit)} next={soloNext.next} />
+                </>
               )}
             </div>
             <div className={s.rank}>
               <span className={s.kicker}>Rango en pareja</span>
               <strong>{coop.label}</strong>
               <span className={s.small}>{coop.description}</span>
-              {coopNext.next && <span className={s.bar} style={{ ['--p' as string]: `${Math.round(coopNext.progress * 100)}%` }} />}
+              {coopNext.next && (
+                <>
+                  <span className={s.bar} style={{ ['--p' as string]: `${Math.round(coopNext.progress * 100)}%` }} aria-label={`Hacia ${coopNext.next.label}: ${Math.round(coopNext.progress * 100)} %`} />
+                  <Requirements stats={rankStatsFor(stats, 'coop', profile.coopMerit)} next={coopNext.next} />
+                </>
+              )}
             </div>
           </div>
           <dl className={s.stats}>
@@ -188,7 +198,7 @@ export function ProfileScene() {
           <p className={s.small}>La foto se reduce y se guarda solo en este dispositivo (y en tus copias). Se muestra con el tono del archivo.</p>
 
           <h2 className={s.h2}>Tarjeta de investigador</h2>
-          <p className={s.small}>Un código con tu número, alias, rangos y méritos para que tus amigos te añadan a su clasificación (Etapa 7). Son datos declarados por ti.</p>
+          <p className={s.small}>Un código con tu número, alias, rangos, méritos y logros. Tus amigos lo pegan en la máquina de escribir → Clasificación. Son datos declarados por ti: nadie los verifica. Genera una nueva cuando quieras actualizarla.</p>
           {card ? <CodeBox code={card} label="Tu tarjeta" /> : <button className={s.secondary} onClick={() => void makeCard()}>Generar mi tarjeta</button>}
         </section>
       </div>

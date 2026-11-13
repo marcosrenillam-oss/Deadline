@@ -148,6 +148,8 @@ export const caseRecordSchema = z.strictObject({
    * mantiene una copia para mostrar la previsión de puntos offline.
    */
   rewardedKeys: z.array(z.string()),
+  /** Reaperturas hechas (la primera de cada expediente es gratuita). */
+  reopens: z.number().int().min(0).optional(),
   /** Conocimiento acumulado de intentos anteriores (se conserva al reabrir). */
   carriedKnowledge: serializedKnowledgeSchema.optional(),
 });

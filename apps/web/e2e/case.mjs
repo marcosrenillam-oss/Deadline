@@ -218,6 +218,7 @@ try {
   check(true, 'Acusación completa con confesión: final «La última foto»');
   const total = Number((await p.locator('tr', { hasText: 'Total' }).locator('td').last().innerText()).trim());
   check(total > 800, `Puntuación obtenida: ${total}`);
+  check(await visible(p.getByRole('status').getByText(/Primera firma|Acta impecable|Ascenso|Logro/).first()), 'Al cerrar se anuncia un logro en una tira mecanografiada');
   check(await visible(p.getByText('Caso resuelto').first()), 'Informe con sello de caso resuelto');
   await p.screenshot({ path: join(shots, 'case-report.png') });
 
@@ -233,10 +234,78 @@ try {
   check(true, 'El archivo marca el expediente como resuelto');
   await goto(BASE);
   const solvedOnDesk = await p
-    .getByRole('button', { name: /^Máquina de escribir.*Casos resueltos: 1/ })
+    .getByRole('button', { name: /^Máquina de escribir.*Resueltos: 1/ })
     .waitFor({ timeout: 5000 })
     .then(() => true, () => false);
   check(solvedOnDesk, 'La máquina de escribir registra el caso resuelto');
+
+  // ── Etapa 7: progresión ──────────────────────────────────────────────────
+  const profile = () => p.evaluate(() => new Promise((res) => {
+    const r = indexedDB.open('deadline');
+    r.onsuccess = () => {
+      const q = r.result.transaction('profile').objectStore('profile').get('local');
+      q.onsuccess = () => res(q.result);
+    };
+  }));
+  const prof = await profile();
+  const got = prof.achievements.map((a) => a.id);
+  check(['first-signature', 'clean-record', 'no-crutches'].every((id) => got.includes(id)), `Logros concedidos al cerrar: ${got.join(', ')}`);
+  check(prof.points > total, `Los logros suman puntos gastables (${total} → ${prof.points})`);
+  check(prof.soloMerit === total, `El mérito no incluye los premios de logros (${prof.soloMerit})`);
+
+  await goto(`${BASE}/maquina`);
+  await p.getByRole('heading', { name: 'Registro de investigaciones' }).waitFor();
+  const entry = p.locator('li', { hasText: 'Revelado en negro' }).first();
+  check(await visible(entry.getByText('Resuelto', { exact: true })), 'Historial: el expediente figura como resuelto');
+  await entry.getByRole('button', { name: 'Ver registro de actividad' }).click();
+  check(await visible(p.getByText(/Examina: /)), 'Registro de actividad mecanografiado con nombres de las piezas');
+  check(await visible(p.getByText(/Acusación formal: Resuelto/)), 'El registro termina con la acusación');
+  await p.screenshot({ path: join(shots, 'history-log.png') });
+  await p.getByRole('tab', { name: 'Estadísticas' }).click();
+  const solvedRow = p.locator('tr', { hasText: 'Expedientes resueltos' });
+  check((await solvedRow.locator('td').first().innerText()).trim() === '1', 'Estadísticas: un expediente resuelto');
+  check((await p.locator('tr', { hasText: 'Precisión' }).locator('td').first().innerText()).trim() === '100 %', 'Estadísticas: precisión del 100 %');
+  await p.screenshot({ path: join(shots, 'history-stats.png') });
+  await p.getByRole('tab', { name: 'Logros' }).click();
+  check(await visible(p.locator('li[data-got]', { hasText: 'Primera firma' })), 'Logros: «Primera firma» conseguido');
+  check(await visible(p.getByText('Logro secreto. Se revela al conseguirlo.')), 'Los logros secretos no revelan su condición');
+  await p.screenshot({ path: join(shots, 'history-achievements.png') });
+
+  // Comprar y equipar una pieza de la oficina
+  await goto(`${BASE}/lampara`);
+  await p.getByRole('tab', { name: 'Oficina' }).click();
+  const item = p.locator('li', { hasText: 'Hule negro' });
+  await item.getByRole('button', { name: 'Comprar' }).click();
+  await p.getByText('«Hule negro» ya es tuya').waitFor();
+  const afterBuy = await profile();
+  check(afterBuy.points === prof.points - 250 && afterBuy.unlockedCosmetics.includes('notebook-black'), `Compra de «Hule negro» por 250 puntos (${prof.points} → ${afterBuy.points})`);
+  await p.getByText('Hule negro', { exact: true }).click();
+  await p.waitForTimeout(300);
+  check((await profile()).equipped.notebook === 'notebook-black', 'La pieza comprada se equipa');
+  check((await p.locator('li', { hasText: 'Mesa de la Leyenda' }).getByRole('button', { name: 'Comprar' }).count()) === 0, 'Las piezas de rango no se venden');
+
+  // Clasificación entre amigos con un segundo dispositivo
+  const ctxB = await browser.newContext({ ...devices['iPhone 15 landscape'], viewport: { width: 852, height: 393 } });
+  const b = await ctxB.newPage();
+  await b.goto(`${BASE}/perfil`);
+  await b.getByLabel('Alias').fill('watson_b');
+  await b.getByRole('button', { name: 'Guardar' }).click();
+  await b.getByText('Alias guardado').waitFor();
+  await b.getByRole('button', { name: 'Generar mi tarjeta' }).click();
+  const cardB = await b.getByLabel('Tu tarjeta').inputValue();
+  await ctxB.close();
+  check(cardB.startsWith('DL1.'), 'El segundo dispositivo genera su tarjeta');
+  await goto(`${BASE}/maquina`);
+  await p.getByRole('tab', { name: 'Clasificación' }).click();
+  await p.getByLabel('Pega la tarjeta de un amigo').fill(`Mi tarjeta: ${cardB} ¡a ver si me alcanzas!`);
+  await p.getByRole('button', { name: 'Añadir a la clasificación' }).click();
+  await p.getByText('Añadido: watson_b.').waitFor();
+  const rows = await p.locator('ol li').allInnerTexts();
+  check(rows.length === 2 && rows[0].includes('Tú') && rows[1].includes('watson_b'), 'Clasificación: tú primero, tu amigo detrás');
+  await p.getByLabel('Pega la tarjeta de un amigo').fill(cardB);
+  await p.getByRole('button', { name: 'Añadir a la clasificación' }).click();
+  check(await visible(p.getByText('Ya tienes una tarjeta igual o más reciente')), 'Una tarjeta repetida no duplica al amigo');
+  await p.screenshot({ path: join(shots, 'history-friends.png') });
 
   check(errors.length === 0, `Sin errores de consola${errors.length ? ': ' + errors.join(' | ') : ''}`);
 } catch (err) {

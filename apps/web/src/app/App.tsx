@@ -6,6 +6,8 @@ import { sound } from '../audio/sound.ts';
 import { OrientationGate } from './OrientationGate.tsx';
 import { UpdateNotice } from './UpdateNotice.tsx';
 import { router } from './router.tsx';
+import { AnnouncementLayer } from '../progression/AnnouncementLayer.tsx';
+import { ProgressionReconciler } from '../progression/ProgressionReconciler.tsx';
 
 /** iOS solo permite iniciar el audio dentro de un gesto: el primer toque lo desbloquea. */
 function useAudioUnlock(): void {
@@ -29,6 +31,8 @@ export function App() {
           <RouterProvider router={router} />
         </OrientationGate>
         <UpdateNotice />
+        <AnnouncementLayer />
+        <ProgressionReconciler />
       </ProfileProvider>
     </SettingsProvider>
   );

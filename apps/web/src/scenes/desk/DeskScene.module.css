@@ -249,6 +249,20 @@
   height: 24%;
 }
 
+.decor[data-decor='magnifier'] {
+  left: 55%;
+  top: 4%;
+  width: 13%;
+  height: 16%;
+}
+
+.decor[data-decor='badge'] {
+  left: 56%;
+  top: 2%;
+  width: 11%;
+  height: 19%;
+}
+
 .nameplate {
   position: absolute;
   left: 37%;

@@ -217,6 +217,8 @@ describe('cierre por tiempo y reapertura', () => {
     expect(next.attempt).toBe(2);
     expect(next.log[0]?.type).toBe('reopen');
     expect(next.deadlineAt - next.startedAt).toBe(60 * 60_000);
-    expect(reopenCost(c)).toBe(150);
+    expect(reopenCost(c, undefined)).toBe(0);
+    expect(reopenCost(c, { reopens: 0 })).toBe(0);
+    expect(reopenCost(c, { reopens: 1 })).toBe(150);
   });
 });

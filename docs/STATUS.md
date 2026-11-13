@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-Última actualización: Etapas 5 y 6.
+Última actualización: Etapa 7.
 
 ## Etapas
 
@@ -9,10 +9,10 @@
 | 1 · Arquitectura y estructura | Completada; adaptada a local-first (ver `LOCAL_FIRST.md`) |
 | 2 · The Detective's Desk | **Completada** (pendiente de prueba en iPhone físico) |
 | 3 · Motor de expedientes | **Completada** con un expediente completo (pendiente de prueba en iPhone físico) |
-| 4 · Cronómetros, guardado y offline | Reglas puras listas; integración pendiente |
+| 4 · Cronómetros, guardado y offline | **Completada** |
 | 5 · ~~Cuentas y backend~~ → Perfil local y copias | **Completada**: perfil local, alias, retrato, tarjeta de investigador, copias |
 | 6 · Cooperativo sin servidor | **Completada**: mesa compartida y correspondencia por códigos (pendiente de prueba con dos iPhone reales) |
-| 7 · Progresión y personalización | Cosméticos de serie y equipamiento **hechos**; puntos, logros y desbloqueos pendientes |
+| 7 · Progresión y personalización | **Completada**: estadísticas, rangos completos, 28 logros, piezas desbloqueables, historial, clasificación entre amigos |
 | 8 · Contenido, optimización y pruebas | Pendiente |
 
 ## Implementado y probado
@@ -139,6 +139,23 @@
   deducciones (2 cruzadas), 3 contradicciones (todas exigen compartir), 3
   interrogatorios repartidos, 6 finales. Comprobado: A solo alcanza 8
   evidencias, B solo 5; juntos, todo.
+
+### Etapa 7 · Progresión y personalización
+- Estadísticas calculadas a partir de lo guardado (individual y en pareja):
+  abiertos, intentos, resueltos, actas impecables, precisión, fallos,
+  cierres por tiempo, pistas, tiempos medio y mejor, rachas de diarios,
+  hallazgos.
+- Rangos con todos sus criterios (mérito, actas impecables, precisión,
+  dificultad); la ficha muestra lo que falta para el siguiente.
+- 28 logros (5 secretos) con premio en puntos gastables; algunos conceden
+  piezas de la oficina. Se anuncian con una tira mecanografiada.
+- 13 piezas de oficina nuevas: 5 se compran con puntos, 4 con logros y 4
+  con rangos; dos objetos personales nuevos (lupa y placa).
+- **La máquina de escribir** (`/maquina`): historial de cada intento con su
+  registro de actividad, estadísticas, logros y clasificación entre amigos
+  por tarjetas.
+- Primera reapertura de cada expediente gratuita.
+- Las copias de seguridad incluyen logros y amigos; IndexedDB v4.
 
 ## Pruebas
 

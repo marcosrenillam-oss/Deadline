@@ -105,9 +105,9 @@ try {
   await folder.waitFor();
   await page.getByRole('button', { name: /^Máquina de escribir/ }).click();
   await page.waitForURL('**/maquina');
-  await page.getByText('En preparación · Etapa 7').waitFor({ timeout: 3000 });
-  check(true, 'Las secciones pendientes declaran honestamente su etapa');
-  await page.getByRole('link', { name: /Volver al escritorio/ }).click();
+  await page.getByRole('heading', { name: 'Registro de investigaciones' }).waitFor({ timeout: 5000 });
+  check(await page.getByText(/La hoja está en blanco/).isVisible(), 'La máquina de escribir abre el registro (vacío al empezar)');
+  await page.getByRole('link', { name: /Escritorio/ }).click();
   await folder.waitFor();
 
   // Lámpara → Ajustes
@@ -158,7 +158,7 @@ try {
 
   // Diagnóstico
   await page.goto(BASE + '/diagnostico');
-  await page.getByText('Operativa · v3').waitFor();
+  await page.getByText('Operativa · v4').waitFor();
   check(true, 'IndexedDB operativa');
   await page.getByRole('button', { name: 'Probar escritura local' }).click();
   await page.getByText(/Correcta · /).waitFor();

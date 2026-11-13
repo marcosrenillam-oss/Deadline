@@ -257,3 +257,53 @@ En información dividida, si una pregunta o un detalle de A desbloquearía una
 evidencia de B, A no la recibe: tendrá que pedírsela. El contenido debe
 diseñarse con esto en cuenta; el validador avisa si un papel puede resolver
 solo.
+
+---
+
+## Etapa 7 · Progresión y personalización
+
+### D-046 · La primera reapertura de cada expediente es gratuita
+Decisión del usuario para evitar que alguien sin puntos quede atascado. Las
+siguientes reaperturas cuestan 150 / 300 / 500 según dificultad. Se guarda
+el contador `reopens` en el registro del caso (al fusionar copias gana el
+mayor). Se mantiene D-035 (lo descubierto se cobra al agotarse el tiempo),
+también por decisión del usuario.
+
+### D-047 · Estadísticas calculadas, nunca acumuladas
+Se recalculan a partir de investigaciones y registros guardados. No pueden
+desincronizarse y una copia importada las recompone sola. En la mesa
+compartida se cuenta una vez por partida (`coopSessionId`).
+
+### D-048 · Los rangos usan todos sus criterios
+Antes la placa solo miraba el mérito. Ahora cuentan mérito, actas
+impecables, precisión del culpable en las últimas 20 acusaciones y casos
+resueltos por dificultad, tal como se definieron en la Etapa 1. La ficha
+muestra cuánto falta en cada criterio.
+
+### D-049 · Los logros dan puntos gastables, no mérito
+El mérito (y por tanto el rango) solo sale de resolver casos. Los premios
+de logros van al saldo, que se gasta en reabrir casos y en piezas de la
+oficina. 28 logros, 5 de ellos secretos (no muestran nombre ni condición).
+
+### D-050 · Piezas de oficina: puntos, logros o rangos
+Las de puntos se compran (Lámpara → Oficina, transacción atómica); las de
+logros y rangos se conceden solas al conseguirlos. Las bloqueadas se ven
+con su condición; nunca se pueden equipar.
+
+### D-051 · Clasificación solo entre amigos, por tarjetas
+Sin servidor no hay clasificación global ni verificable. Cada fila es la
+última tarjeta de investigador que te pasaron (código DL1); se sustituye
+solo por una más reciente, la tuya no se puede añadir y la pantalla dice
+que son datos declarados. Viaja en las copias de seguridad.
+
+### D-052 · Avisos de progresión en una sola capa
+Logros, ascensos y piezas nuevas se anuncian con una tira mecanografiada
+en la parte superior, sea cual sea la pantalla, de una en una y tocable
+para cerrar. Al arrancar se reevalúan los logros globales (útil tras
+importar una copia); los de cierre (detalles, contradicciones, preguntas)
+solo al cerrar, porque necesitan el expediente.
+
+### D-053 · Carga diferida por pantallas
+La mesa va en el paquete inicial; el resto de pantallas se descargan al
+abrirlas y el service worker las precachea. El JS inicial pasa de 199 KB a
+~166 KB comprimidos.

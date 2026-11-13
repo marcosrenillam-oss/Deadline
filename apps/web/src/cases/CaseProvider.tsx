@@ -277,7 +277,7 @@ export function CaseProvider({
       const current = invRef.current;
       if (!c || !current || !record || current.status !== 'active') return;
       const s = accuseCase(c, current, record, a, Date.now());
-      await settleCase(s.inv, s.record, s.result.total);
+      await settleCase(c, s.inv, s.record, s.result.total);
       invRef.current = s.inv;
       setInv(s.inv);
       setRecord(s.record);
@@ -307,7 +307,7 @@ export function CaseProvider({
     invRef.current = s.inv;
     setInv(s.inv);
     setRecord(s.record);
-    void settleCase(s.inv, s.record, s.result.total).then(async () => {
+    void settleCase(c, s.inv, s.record, s.result.total).then(async () => {
       setAttempts(await attemptsOf(c.id));
       await reloadProfile();
     });

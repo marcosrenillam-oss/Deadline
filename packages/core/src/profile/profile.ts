@@ -67,6 +67,8 @@ export const localProfileSchema = z.strictObject({
   /** Mérito acumulado, no gastable: determina los rangos (Etapa 7). */
   soloMerit: z.number().int().min(0).default(0),
   coopMerit: z.number().int().min(0).default(0),
+  /** Logros conseguidos, con la fecha en que se consiguieron. */
+  achievements: z.array(z.strictObject({ id: z.string(), at: z.number().int() })).default([]),
   updatedAt: z.number().int(),
 });
 export type LocalProfile = z.infer<typeof localProfileSchema>;
@@ -80,6 +82,7 @@ export function createLocalProfile(now: number, random?: () => number): LocalPro
     points: 0,
     soloMerit: 0,
     coopMerit: 0,
+    achievements: [],
     updatedAt: now,
   };
 }
@@ -97,6 +100,30 @@ export const investigatorCardSchema = z.strictObject({
   soloMerit: z.number().int().min(0),
   coopMerit: z.number().int().min(0),
   solved: z.number().int().min(0),
+  /** Actas impecables y logros (opcionales: tarjetas antiguas no los traen). */
+  perfect: z.number().int().min(0).optional(),
+  ach: z.number().int().min(0).optional(),
   at: z.number().int(),
 });
 export type InvestigatorCard = z.infer<typeof investigatorCardSchema>;
+
+/** Amigo añadido a la clasificación local: su última tarjeta importada. */
+export const friendSchema = z.strictObject({
+  number: z.string().regex(INVESTIGATOR_NUMBER_PATTERN),
+  card: investigatorCardSchema,
+  addedAt: z.number().int(),
+  updatedAt: z.number().int(),
+});
+export type Friend = z.infer<typeof friendSchema>;
+
+/**
+ * Incorpora una tarjeta a la lista de amigos. Una tarjeta más antigua que la
+ * guardada no la sustituye; la propia tarjeta no se puede añadir.
+ */
+export function upsertFriend(friends: readonly Friend[], card: InvestigatorCard, own: string, now: number): { friends: Friend[]; status: 'added' | 'updated' | 'stale' | 'self' } {
+  if (card.n === own) return { friends: [...friends], status: 'self' };
+  const prev = friends.find((f) => f.number === card.n);
+  if (prev && prev.card.at >= card.at) return { friends: [...friends], status: 'stale' };
+  const next: Friend = { number: card.n, card, addedAt: prev?.addedAt ?? now, updatedAt: now };
+  return { friends: [...friends.filter((f) => f.number !== card.n), next], status: prev ? 'updated' : 'added' };
+}

@@ -126,25 +126,38 @@ try {
   check(points >= 150, `Los descubrimientos se cobran al cerrar por tiempo (${points} puntos)`);
   check((await p.getByRole('button', { name: 'Acusar' }).count()) === 0, 'Cerrado: ya no se puede acusar');
 
-  // ── Reapertura ────────────────────────────────────────────────────────────
-  await p.getByRole('button', { name: /Reabrir por 150 puntos/ }).click();
-  await p.getByRole('button', { name: 'Confirmar y pagar' }).click();
+  // ── Reapertura (la primera es gratuita, la segunda se paga) ──────────────
+  check(await visible(p.getByText(/primera reapertura de cada expediente es/)), 'Se anuncia que la primera reapertura es gratuita');
+  await p.getByRole('button', { name: 'Reabrir gratis' }).click();
+  await p.getByRole('button', { name: 'Confirmar', exact: true }).click();
   await p.getByRole('timer').waitFor();
   await p.waitForTimeout(400);
   const timer = await p.getByRole('timer').innerText();
   check(/^(1:00:00|59:5\d)$/.test(timer), `La reapertura empieza con reloj nuevo (${timer})`);
-  const after2 = await idb((db) => new Promise((res) => {
-    const t = db.transaction(['profile', 'investigations']);
+  const readState = () => idb((db) => new Promise((res) => {
+    const t = db.transaction(['profile', 'investigations', 'caseRecords']);
     const pr = t.objectStore('profile').get('local');
     const inv = t.objectStore('investigations').getAll();
-    t.oncomplete = () => res({ points: pr.result.points, attempts: inv.result.map((i) => ({ a: i.attempt, ev: i.knowledge.evidence, asked: i.knowledge.asked })) });
+    const rec = t.objectStore('caseRecords').get('DL-D-0001');
+    t.oncomplete = () => res({ points: pr.result.points, reopens: rec.result.reopens, attempts: inv.result.map((i) => ({ a: i.attempt, ev: i.knowledge.evidence, asked: i.knowledge.asked })) });
   }));
-  check(after2.points === points - 150, `Se cobran 150 puntos (${points} → ${after2.points})`);
+  const after2 = await readState();
+  check(after2.points === points && after2.reopens === 1, `La primera reapertura no cobra puntos (${points} → ${after2.points})`);
   const second = after2.attempts.find((x) => x.a === 2);
   check(!!second && second.ev.includes('ev-alfiler') && second.ev.includes('ev-inventario'), 'Se conservan las evidencias descubiertas');
   check(!!second && second.asked.length === 0, 'Las conversaciones empiezan de cero');
   await goto(D);
   check(await visible(p.getByText(/Intento nº 2/)), 'El historial registra el segundo intento');
+
+  await p.clock.fastForward('01:01:00');
+  await p.getByRole('timer', { name: 'Expediente cerrado' }).waitFor({ timeout: 5000 });
+  await goto(`${D}/informe`);
+  await p.getByRole('button', { name: /Reabrir por 150 puntos/ }).click();
+  await p.getByRole('button', { name: 'Confirmar y pagar' }).click();
+  await p.getByRole('timer').waitFor();
+  await p.waitForTimeout(400);
+  const after3 = await readState();
+  check(after3.points === points - 150 && after3.reopens === 2, `La segunda reapertura cuesta 150 puntos (${points} → ${after3.points})`);
 
   // ── Descarga verificada y juego sin conexión ─────────────────────────────
   await goto(`${BASE}/archivo`);
