@@ -206,8 +206,8 @@ export function ArchivePanel() {
       )}
 
       <Field
-        label="Expedientes sin conexión"
-        hint={offline ? `${formatBytes(offline.bytes)} de recursos verificados. Se descargan desde el archivo; los diarios de los próximos días, solos.` : 'Calculando…'}
+        label="Expedientes en el dispositivo"
+        hint={offline ? `${formatBytes(offline.bytes)} de recursos verificados. Todo el archivo se guarda solo al haber conexión, también los casos nuevos de cada actualización.` : 'Calculando…'}
       >
         <span className={styles.badge}>{offline ? `${offline.ready} de ${offline.total}` : '—'}</span>
       </Field>

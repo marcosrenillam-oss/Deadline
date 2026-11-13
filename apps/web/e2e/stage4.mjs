@@ -159,12 +159,19 @@ try {
   const after3 = await readState();
   check(after3.points === points - 150 && after3.reopens === 2, `La segunda reapertura cuesta 150 puntos (${points} → ${after3.points})`);
 
-  // ── Descarga verificada y juego sin conexión ─────────────────────────────
+  // ── Archivo completo guardado solo y juego sin conexión ──────────────────
   await goto(`${BASE}/archivo`);
+  await p.clock.runFor(3000);
+  check((await p.getByRole('button', { name: /Descargar/ }).count()) === 0, 'No hay que descargar nada a mano');
+  await p.getByText(/Archivo completo en el dispositivo: \d+ expedientes/).waitFor({ timeout: 20000 });
+  const catalogSize = await p.evaluate(async () => (await (await fetch('/content/catalog.json')).json()).cases?.length ?? (await (await fetch('/content/catalog.json')).json()).length);
+  const verified = await idb((db) => new Promise((res) => {
+    const q = db.transaction('caseAssets').objectStore('caseAssets').getAll();
+    q.onsuccess = () => res(q.result.filter((x) => x.state === 'verified').length);
+  }));
+  check(verified === catalogSize, `Todos los expedientes del catálogo se guardan solos y verificados (${verified}/${catalogSize})`);
   const card = p.locator('li', { hasText: 'Revelado en negro' });
-  await card.getByRole('button', { name: /Descargar/ }).click();
-  await card.getByText('✓ Disponible sin conexión').waitFor({ timeout: 15000 });
-  check(true, 'Descarga verificada (huellas SHA-256) de «Revelado en negro»');
+  check(await visible(card.getByText('✓ En el dispositivo')), 'Cada expediente indica que está en el dispositivo');
   const status = await idb((db) => new Promise((res) => {
     const q = db.transaction('caseAssets').objectStore('caseAssets').get('DL-I-0001');
     q.onsuccess = () => res(q.result);
@@ -187,12 +194,17 @@ try {
   check(true, 'Sin conexión: el expediente descargado se abre con sus imágenes');
   await ctx.setOffline(false);
 
-  // ── El sistema borra el almacenamiento (simulado) ────────────────────────
+  // ── El sistema borra el almacenamiento (simulado) y se recupera solo ─────
   await p.evaluate(() => caches.delete('deadline-cases-v1'));
+  await ctx.setOffline(true);
   await goto(`${BASE}/archivo`);
   await p.clock.runFor(4000);
-  await p.locator('li', { hasText: 'Revelado en negro' }).getByRole('button', { name: /Incompleto · Reintentar/ }).waitFor({ timeout: 8000 });
-  check(true, 'Si el sistema borra los recursos, el expediente deja de figurar como disponible');
+  await p.locator('li', { hasText: 'Revelado en negro' }).getByText('Se guardará solo con conexión').waitFor({ timeout: 8000 });
+  check(true, 'Si el sistema borra los recursos, el expediente deja de figurar como guardado');
+  await ctx.setOffline(false);
+  await p.evaluate(() => window.dispatchEvent(new Event('online')));
+  await p.locator('li', { hasText: 'Revelado en negro' }).getByText('✓ En el dispositivo').waitFor({ timeout: 20000 });
+  check(true, 'Al volver la conexión se vuelve a guardar solo');
 
   check(errors.length === 0, `Sin errores de consola${errors.length ? ': ' + errors.join(' | ') : ''}`);
 } catch (err) {

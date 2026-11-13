@@ -351,3 +351,16 @@ dentro de un expediente se espera a que vuelva a la mesa (un aviso breve
 lo indica). La app busca ediciones nuevas al volver a primer plano y cada
 media hora, porque iOS apenas lo hace en una app instalada. Sustituye al
 aviso con «Actualizar / Más tarde».
+
+---
+
+## Rediseño visual (Visual Masterplan)
+
+### D-060 · Todo el archivo se guarda solo en el dispositivo
+Petición del usuario: ningún expediente se descarga a mano. Al arrancar, al
+volver la conexión, al volver a la app y tras cada actualización se
+descargan y verifican (SHA-256) todos los expedientes del catálogo, los
+diarios próximos primero. Si iOS borra algo, se detecta y se vuelve a
+guardar solo. Desaparecen los botones de descarga; solo queda el estado.
+Con 3000 casos el archivo completo rondará los cientos de MB: habrá que
+vigilar el límite de almacenamiento de Safari cuando el catálogo crezca.

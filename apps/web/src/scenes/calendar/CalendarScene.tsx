@@ -71,7 +71,7 @@ export function CalendarScene() {
               <span className={s.caseTitle}>{todayCase.title}</span>
               {todayCase.subtitle && <span className={s.subtitle}>{todayCase.subtitle}</span>}
               <span className={s.meta}>
-                {downloads[todayCase.id]?.state === 'verified' ? '✓ Disponible sin conexión' : 'Se descargará al abrirlo'}
+                {downloads[todayCase.id]?.state === 'verified' ? '✓ En el dispositivo' : 'Guardándose en el dispositivo…'}
               </span>
               {records[todayCase.id] && records[todayCase.id]!.status !== 'unopened' && (
                 <span className={s.stamp}>

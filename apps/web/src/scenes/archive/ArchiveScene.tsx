@@ -2,10 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router';
 import { CRIME_CATEGORIES, DIFFICULTIES, ERAS, ORIGINS, formatCaseNumber, type CaseRecord } from '@deadline/core';
 import { fetchCatalog, type CatalogEntry } from '../../cases/contentRepo.ts';
-import { allStatuses, downloadCase, onDownloadStatus } from '../../cases/downloads.ts';
+import { allStatuses, onDownloadStatus } from '../../cases/downloads.ts';
+import { onArchiveSync, type SyncState } from '../../cases/startup.ts';
 import { syncDailyLedger } from '../../storage/dailyRepo.ts';
-import { formatBytes } from '../../storage/persistence.ts';
-import { useOnline } from '../../platform/hooks.ts';
 import type { CaseAssetStatus } from '../../storage/db.ts';
 import { allRecords } from '../../cases/investigationRepo.ts';
 import { CRIME_CATEGORY_LABELS, DIFFICULTY_LABELS, ERA_LABELS, ORIGIN_LABELS } from '../../cases/labels.ts';
@@ -39,26 +38,20 @@ export function ArchiveScene() {
   const [mode, setMode] = useState<'all' | 'individual' | 'daily'>('all');
   const [dailyUnlocked, setDailyUnlocked] = useState(-1);
   const [downloads, setDownloads] = useState<Record<string, CaseAssetStatus>>({});
-  const [progress, setProgress] = useState<Record<string, number>>({});
-  const online = useOnline();
+  const [sync, setSync] = useState<SyncState>({ running: false, done: 0, total: 0 });
 
   useEffect(() => {
     fetchCatalog().then(setCatalog, (e: unknown) => setError(e instanceof Error ? e.message : String(e)));
     void allRecords().then((rs) => setRecords(Object.fromEntries(rs.map((r) => [r.caseId, r]))));
     void allStatuses().then(setDownloads);
     void syncDailyLedger().then((l) => setDailyUnlocked(l.highestUnlocked));
-    return onDownloadStatus((id, st) => setDownloads((d) => ({ ...d, [id]: st })));
+    const offSync = onArchiveSync(setSync);
+    const offStatus = onDownloadStatus((id, st) => setDownloads((d) => ({ ...d, [id]: st })));
+    return () => {
+      offSync();
+      offStatus();
+    };
   }, []);
-
-  const download = async (e: CatalogEntry) => {
-    setProgress((p) => ({ ...p, [e.id]: 0 }));
-    await downloadCase(e, (done, total) => setProgress((p) => ({ ...p, [e.id]: total ? done / total : 1 })));
-    setProgress((p) => {
-      const next = { ...p };
-      delete next[e.id];
-      return next;
-    });
-  };
 
   const statusOf = (id: string): Exclude<Status, 'all'> => records[id]?.status ?? 'unopened';
 
@@ -133,18 +126,13 @@ export function ArchiveScene() {
           </label>
           {catalog && (
             <div className={s.offlineBox}>
-              <p className={s.note}>
-                Sin conexión: {list.filter((e) => downloads[e.id]?.state === 'verified').length} de {list.length} listos.
+              <p className={s.note} role="status">
+                {sync.running
+                  ? `Guardando el archivo en el dispositivo: ${sync.done} de ${sync.total}…`
+                  : sync.total && sync.done >= sync.total
+                    ? `Archivo completo en el dispositivo: ${sync.total} expedientes, también sin conexión.`
+                    : `En el dispositivo: ${list.filter((e) => downloads[e.id]?.state === 'verified').length} de ${list.length}. El resto se guardará solo al haber conexión.`}
               </p>
-              <button
-                className={s.dlAll}
-                disabled={!online || list.every((e) => downloads[e.id]?.state === 'verified')}
-                onClick={() => void (async () => {
-                  for (const e of list) if (downloads[e.id]?.state !== 'verified') await download(e);
-                })()}
-              >
-                Descargar todos ({formatBytes(list.filter((e) => downloads[e.id]?.state !== 'verified').reduce((n, e) => n + e.assetBytes, 0))})
-              </button>
             </div>
           )}
         </aside>
@@ -174,7 +162,7 @@ export function ArchiveScene() {
                       </span>
                     )}
                   </Link>
-                  <OfflineControl entry={e} status={downloads[e.id]} progress={progress[e.id]} online={online} onDownload={() => void download(e)} />
+                  <OfflineState entry={e} status={downloads[e.id]} />
                 </li>
               );
             })}
@@ -186,25 +174,9 @@ export function ArchiveScene() {
   );
 }
 
-function OfflineControl({ entry, status, progress, online, onDownload }: { entry: CatalogEntry; status: CaseAssetStatus | undefined; progress: number | undefined; online: boolean; onDownload: () => void }) {
-  if (progress !== undefined || status?.state === 'downloading') {
-    return (
-      <div className={s.offline} role="status">
-        <span className={s.bar} style={{ ['--p' as string]: `${Math.round((progress ?? 0) * 100)}%` }} />
-        Descargando…
-      </div>
-    );
-  }
-  if (status?.state === 'verified' && status.contentVersion >= entry.contentVersion) {
-    return <div className={s.offline}>✓ Disponible sin conexión</div>;
-  }
-  const label = status?.state === 'partial' || status?.state === 'corrupt' ? 'Incompleto · Reintentar' : status?.state === 'verified' ? 'Actualizar descarga' : `Descargar (${formatBytes(entry.assetBytes)})`;
-  return (
-    <div className={s.offline}>
-      <button className={s.dl} disabled={!online} onClick={onDownload}>
-        {label}
-      </button>
-      {!online && <span>sin conexión</span>}
-    </div>
-  );
+/** Estado del expediente en el dispositivo: se descarga solo, no hay que pedirlo. */
+function OfflineState({ entry, status }: { entry: CatalogEntry; status: CaseAssetStatus | undefined }) {
+  if (status?.state === 'verified' && status.contentVersion >= entry.contentVersion) return <div className={s.offline}>✓ En el dispositivo</div>;
+  if (status?.state === 'downloading') return <div className={s.offline} role="status">Guardando…</div>;
+  return <div className={s.offline}>Se guardará solo con conexión</div>;
 }
