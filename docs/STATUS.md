@@ -186,11 +186,15 @@
 ### Rediseño visual (Visual Masterplan)
 - **Archivo completo en el dispositivo**: todos los expedientes se guardan
   solos (también los de cada actualización); sin botones de descarga.
-- **Despacho 3D** (WebGL, todo procedural): carpeta, calendario,
-  archivador, teléfono, máquina de escribir, libreta, lámpara con cadenita,
-  corcho en la pared y placa; animación propia por objeto; pulsación larga
-  para ver el nombre; luz de lámpara con sombras, polvo en el haz,
-  parallax con el dedo o el giroscopio; alternativa 2D.
+- **Despacho fotorrealista** (render de Blender con recursos CC0 de Poly
+  Haven y modelos propios, cámara cenital): carpeta, calendario, fichero,
+  teléfono, máquina de escribir, libreta, lámpara de banquero, corcho y
+  placa son el menú, con zonas táctiles de su forma exacta; al abrir, el
+  objeto se levanta y la cámara se acerca; pulsación larga para ver el
+  nombre (en la lámpara, la enciende o apaga); dos renders para la luz;
+  halo y polvo; fecha y placa pintadas en perspectiva; parallax con el dedo
+  o el giroscopio; 648 KB en total, precacheados. Alternativa 2D.
+  Regenerable con `scripts/desk-render/` (ver `ART_CREDITS.md`).
 - **Biblioteca**: estantería de carpetas, separadores por estado, ficha de
   índice con filtros (época, lugar, crimen, dificultad, tipo), ficha previa
   que sale de la estantería y rompe el precinto.
@@ -205,7 +209,10 @@
   su tipo, cronología de fichas con hilo y chinchetas, sello de acusación.
 - **Música** generativa de jazz nocturno con volumen propio, además de
   efectos y ambiente.
-- Pendiente del rediseño: perfil con insignias, sala cooperativa, ajustes
+- Fondo de las pantallas 2D: el mismo despacho desenfocado; madera y cuero
+  reales.
+- Pendiente del rediseño: versiones fotográficas de las piezas de oficina
+  (hoy solo se ven en la mesa 2D), perfil con insignias, sala cooperativa, ajustes
   con aspecto de lámpara, visor de evidencias con giro y zoom de foto, y
   animación de deducción en el corcho.
 

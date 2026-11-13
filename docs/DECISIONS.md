@@ -437,3 +437,24 @@ Informes y declaraciones con clip y pauta, fotografías como polaroid,
 cartas a mano, recortes de prensa rasgados, objetos en bolsa de pruebas
 precintada, planos en papel cuadriculado. Las nuevas sin leer laten
 suavemente.
+
+### D-069 · El despacho pasa a ser fotorrealista (render de Blender)
+Con objetos generados en tiempo real no se llegaba a la calidad de la foto
+de referencia. Por decisión del usuario, la mesa se renderiza con Blender
+(Cycles) usando recursos CC0 de Poly Haven y modelos propios, con cámara
+cenital como la referencia. La app muestra la imagen y mantiene el menú:
+zonas táctiles con la forma exacta de cada objeto (calculada en Blender),
+recorte del objeto que se levanta al abrirlo con la cámara acercándose,
+lámpara encendida y apagada (dos renders), halo y polvo en la luz, y
+textos vivos pintados en perspectiva (fecha del calendario, hoja de la
+máquina, placa). Mantener pulsada la lámpara la enciende o apaga.
+Sustituye a la escena three.js de D-061 (se retira: pesaba ~150 KB y
+quedaba lejos de la referencia). La mesa 2D sigue como gráficos ligeros.
+Limitación: las piezas de oficina (D-050) aún no tienen versión
+fotográfica; se ven en la mesa 2D. Renderizar sus variantes es trabajo
+pendiente.
+
+### D-070 · Las pantallas 2D usan la misma mesa como fondo
+El fondo de biblioteca, calendario, archivo y expediente es el render del
+despacho, desenfocado y en penumbra, y la madera y el cuero son texturas
+reales (Poly Haven, CC0) en lugar de degradados.

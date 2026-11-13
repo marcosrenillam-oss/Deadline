@@ -3,7 +3,7 @@ import { useSettings } from '../../settings/SettingsProvider.tsx';
 import { sound } from '../../audio/sound.ts';
 import { haptic, hapticsSupport } from '../../audio/haptics.ts';
 import { ActionButton, Choice, Field, Slider, Toggle } from '../../ui/Controls.tsx';
-import { motionSupported, requestMotionPermission } from '../desk3d/motion.ts';
+import { motionSupported, requestMotionPermission } from '../deskphoto/motion.ts';
 import styles from './panels.module.css';
 
 const pct = (v: number) => `${Math.round(v * 100)} %`;

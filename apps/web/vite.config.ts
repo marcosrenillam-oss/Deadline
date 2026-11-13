@@ -65,13 +65,13 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,woff2,png,svg,webp}'],
+        globPatterns: ['**/*.{js,css,html,woff2,png,svg,webp}', 'desk/desk.json'],
         navigateFallback: 'index.html',
         cleanupOutdatedCaches: true,
         // Este precache es solo el armazón de la app. Los expedientes se descargan
         // por caso y se verifican (src/cases/downloads.ts).
         globIgnores: ['content/**', 'splash/**'],
-        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         runtimeCaching: [
           {
             // Recursos de expedientes: misma caché que el gestor de descargas.

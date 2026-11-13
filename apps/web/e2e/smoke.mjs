@@ -54,11 +54,11 @@ try {
   await folder.waitFor({ state: 'attached' });
   check(true, 'El escritorio carga en horizontal');
   check((await page.getByRole('dialog').count()) === 0, 'Sin aviso de giro en horizontal');
-  await page.locator('main[data-ready] canvas').waitFor({ timeout: 15000 });
-  check(true, 'El despacho se dibuja en 3D (WebGL)');
-  const canvasBox = await page.locator('main canvas').boundingBox();
+  await page.locator('main[data-ready] img[src*="desk_on"]').waitFor({ timeout: 15000 });
+  check(true, 'El despacho fotorrealista se carga');
+  const plateBox = await page.locator('main img[src*="desk_on"]').boundingBox();
   const vp = page.viewportSize();
-  check(!!canvasBox && canvasBox.width >= vp.width - 1 && canvasBox.height >= vp.height - 1, 'El despacho ocupa toda la pantalla, de borde a borde');
+  check(!!plateBox && plateBox.width >= vp.width - 1 && plateBox.height >= vp.height - 1, 'El despacho ocupa toda la pantalla, de borde a borde');
   for (const name of [/^Carpeta de expedientes/, /^Calendario:/, /^Archivador/, /^Teléfono:/, /^Máquina de escribir:/, /^Lámpara:/, /^Libreta:/, /^Corcho/]) {
     check((await page.getByRole('button', { name }).count()) === 1, `Objeto interactivo accesible: ${name.source}`);
   }
@@ -71,8 +71,9 @@ try {
   await page.screenshot({ path: join(shots, 'desk-landscape.png') });
 
   // Pulsación larga sobre la carpeta: rótulo sin navegar
-  const fx = vp.width * 0.46;
-  const fy = vp.height * 0.7;
+  const folderZone = await page.locator('main svg polygon').first().boundingBox();
+  const fx = folderZone.x + folderZone.width / 2;
+  const fy = folderZone.y + folderZone.height / 2;
   await page.mouse.move(fx, fy);
   await page.mouse.down();
   await page.waitForTimeout(650);
@@ -114,8 +115,8 @@ try {
   check(true, 'El estado de la lámpara persiste tras recargar');
   await tap('Encender la lámpara');
 
-  // Tocar la carpeta en la escena 3D abre la biblioteca (con su animación)
-  await page.locator('main[data-ready] canvas').waitFor();
+  // Tocar la carpeta en la mesa abre la biblioteca (con su animación)
+  await page.locator('main[data-ready] img[src*="desk_on"]').waitFor();
   await page.mouse.click(fx, fy);
   await page.waitForURL('**/archivo', { timeout: 8000 });
   await page.getByRole('button', { name: /Revelado en negro/ }).waitFor({ timeout: 5000 });
@@ -144,7 +145,7 @@ try {
   await page.getByText('Ligeros (2D)').click();
   await page.waitForTimeout(300);
   await page.getByRole('link', { name: /Escritorio/ }).click();
-  check(await visible(page.getByRole('button', { name: /^Carpeta de expedientes/ })) && (await page.locator('main canvas').count()) === 0, 'Con gráficos ligeros aparece la mesa 2D');
+  check(await visible(page.getByRole('button', { name: /^Carpeta de expedientes/ })) && (await page.locator('img[src*="desk_on"]').count()) === 0, 'Con gráficos ligeros aparece la mesa 2D');
   await page.getByRole('button', { name: /^Lámpara:/ }).click();
   await page.waitForURL('**/lampara');
   await page.getByText('Cinematográficos (3D)').click();
@@ -169,7 +170,7 @@ try {
       q.onsuccess = () => res(q.result.equipped.desk);
     };
   }));
-  await page.locator('main[data-ready] canvas').waitFor();
+  await page.locator('main[data-ready] img[src*="desk_on"]').waitFor();
   await page.waitForTimeout(1500);
   await page.screenshot({ path: join(shots, 'desk-mahogany.png') });
   check(deskId === 'desk-mahogany', `La mesa usa el material elegido (${deskId})`);

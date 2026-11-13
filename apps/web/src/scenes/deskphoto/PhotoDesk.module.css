@@ -1,0 +1,315 @@
+/* EL DESPACHO FOTORREALISTA */
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #0d0b09;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
+}
+.host {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 900ms ease-out;
+}
+.scene[data-ready] .host {
+  opacity: 1;
+}
+.stage {
+  position: absolute;
+  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+.scene[data-opening] .stage {
+  transition: transform 900ms cubic-bezier(0.55, 0.05, 0.2, 1);
+}
+.plate,
+.plateOn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+.plateOn {
+  transition: opacity 260ms steps(3);
+}
+.scene[data-lamp='off'] .plateOn {
+  opacity: 0;
+}
+
+/* Halo: un leve parpadeo del filamento */
+.glow {
+  position: absolute;
+  width: 70%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 196, 128, 0.16), rgba(255, 196, 128, 0.04) 40%, transparent 70%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: filament 5s ease-in-out infinite;
+}
+.scene[data-lamp='off'] .glow {
+  opacity: 0;
+}
+@keyframes filament {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  47% {
+    opacity: 0.92;
+  }
+  50% {
+    opacity: 0.98;
+  }
+}
+.dust {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.dust i {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 230, 190, 0.7);
+  box-shadow: 0 0 4px rgba(255, 220, 170, 0.6);
+  left: calc(-30vw + (var(--i) * 4.3vw));
+  top: calc(5vh + var(--i) * 3.2vh);
+  opacity: 0;
+  animation: float calc(7s + var(--i) * 0.6s) linear infinite;
+  animation-delay: calc(var(--i) * -0.9s);
+}
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-3vw, 14vh);
+    opacity: 0;
+  }
+}
+
+/* Textos sobre las superficies */
+.surface {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+.surface:nth-of-type(1),
+.surface:has(.calDay) {
+  width: 300px;
+  height: 336px;
+  display: grid;
+  grid-template-rows: 74px auto auto auto auto;
+  justify-items: center;
+  align-content: start;
+  color: #1e1b17;
+}
+.calMonth {
+  align-self: center;
+  margin-top: 18px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #efe6d2;
+}
+.calDay {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 150px;
+  line-height: 0.95;
+  margin-top: 6px;
+}
+.calWeek {
+  font-family: var(--font-type);
+  font-size: 22px;
+}
+.calLabel {
+  margin-top: 8px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #762d2b;
+}
+.calFresh {
+  font-family: var(--font-hand);
+  font-size: 26px;
+  color: #762d2b;
+  transform: rotate(-6deg);
+}
+.sheet {
+  width: 300px;
+  height: 314px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 26px 22px;
+  font-family: var(--font-type);
+  font-size: 17px;
+  color: rgba(30, 26, 20, 0.86);
+}
+.sheet strong {
+  color: #762d2b;
+  letter-spacing: 0.1em;
+}
+.plaque {
+  width: 400px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  line-height: 1;
+  color: rgba(44, 29, 7, 0.88);
+  text-shadow: 0 1px 0 rgba(255, 240, 200, 0.5);
+}
+.plaque span {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+}
+.plaque small {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Objeto que se levanta */
+.lift {
+  position: absolute;
+  pointer-events: none;
+  filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.6));
+  animation: lift 900ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+@keyframes lift {
+  from {
+    transform: none;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.4));
+  }
+  to {
+    transform: translateY(-4%) scale(1.08) rotate(-1deg);
+  }
+}
+.scene[data-opening]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #0d0b09;
+  pointer-events: none;
+  animation: leave 900ms ease-in both;
+}
+@keyframes leave {
+  0%,
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Zonas táctiles */
+.hits {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hits polygon {
+  fill: transparent;
+  cursor: pointer;
+  transition: fill 160ms ease;
+}
+.hits polygon[data-touched] {
+  fill: rgba(255, 220, 160, 0.1);
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 120% 95% at 50% 50%, transparent 58%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.label {
+  position: fixed;
+  z-index: 10;
+  transform: translate(-50%, calc(-100% - 10px));
+  display: grid;
+  gap: 2px;
+  max-width: min(320px, 60vw);
+  padding: 8px 14px 10px;
+  background: linear-gradient(180deg, #efe8d6, #e2d7bf);
+  color: var(--on-paper);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  animation: label-in 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.label strong {
+  font-family: var(--font-type);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--seal);
+}
+.label span {
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.2;
+}
+@keyframes label-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 2px));
+  }
+}
+
+/* Nota de bienvenida: papel suelto en la esquina */
+.guide {
+  position: absolute;
+  z-index: 5;
+  left: calc(var(--pad-left) + 4px);
+  top: 47%;
+  width: min(150px, 19vw);
+  padding: 8px 10px;
+  text-align: left;
+  font-family: var(--font-hand);
+  font-size: 15px;
+  line-height: 1.1;
+  color: #283563;
+  background: #f1e9d2;
+  background-image: var(--grain);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  transform: rotate(-4deg);
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

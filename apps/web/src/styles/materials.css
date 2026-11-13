@@ -28,16 +28,16 @@
   --dur-object: 460ms;
 }
 
-/* ─── Habitación: pared, friso, luz de lámpara y viñeta ───────────────────── */
+/* ─── Habitación: la misma mesa del despacho, desenfocada, bajo la lámpara ── */
 .m-room {
   position: absolute;
   inset: 0;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 55% 70% at 22% 18%, rgba(var(--lamp), calc(0.16 * var(--light-intensity))) 0%, transparent 70%),
-    radial-gradient(ellipse 130% 100% at 50% 45%, transparent 45%, rgba(0, 0, 0, 0.7) 100%),
-    repeating-linear-gradient(90deg, rgba(200, 190, 150, 0.03) 0 3px, transparent 3px 16px, rgba(0, 0, 0, 0.1) 16px 17px, transparent 17px 32px),
-    linear-gradient(180deg, var(--wall-0), var(--wall-1));
+    radial-gradient(ellipse 60% 75% at 78% 18%, rgba(var(--lamp), calc(0.14 * var(--light-intensity))) 0%, transparent 70%),
+    radial-gradient(ellipse 130% 100% at 50% 45%, transparent 40%, rgba(0, 0, 0, 0.72) 100%),
+    url('/desk/backdrop.webp') center / cover no-repeat,
+    linear-gradient(180deg, #2a1c12, #140e09);
 }
 .m-room::after {
   content: '';
@@ -52,8 +52,9 @@
 /* Borde de la mesa en primer plano (madera) */
 .m-desk-edge {
   background:
-    repeating-linear-gradient(91deg, rgba(0, 0, 0, 0.16) 0 2px, transparent 2px 7px, rgba(255, 255, 255, 0.02) 7px 8px, transparent 8px 19px),
-    linear-gradient(180deg, #4a3020, #2b1d14 60%, #1c130d);
+    linear-gradient(180deg, rgba(255, 220, 180, 0.08), rgba(0, 0, 0, 0.35)),
+    url('/textures/walnut.webp') center / 384px repeat,
+    #2b1d14;
   box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.55);
 }
 
@@ -95,8 +96,9 @@
 .m-leather {
   background-color: var(--leather);
   background-image:
-    radial-gradient(ellipse at 40% 30%, rgba(255, 220, 180, 0.08), transparent 60%),
-    var(--grain);
+    radial-gradient(ellipse at 40% 30%, rgba(255, 220, 180, 0.1), transparent 60%),
+    url('/textures/leather.webp');
+  background-size: auto, 256px;
   box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.35), inset 0 0 0 5px rgba(214, 196, 150, 0.12), var(--shadow-object);
 }
 
