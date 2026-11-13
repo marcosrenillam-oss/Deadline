@@ -9,6 +9,8 @@ import { sound } from '../../audio/sound.ts';
 import { haptic } from '../../audio/haptics.ts';
 import s from './case.module.css';
 
+const pending = (n: number, one: string, many: string) => (n === 1 ? `Queda 1 ${one}` : `Quedan ${n} ${many}`);
+
 /**
  * ACTA DE ACUSACIÓN: culpable(s), motivo, método y prueba definitiva.
  * Se puede acusar en cualquier momento; una acusación errónea cierra el
@@ -162,9 +164,19 @@ export function AccusationView() {
 
       <h2 className={s.h2}>2 · Motivo</h2>
       <Options name="motive" value={motive} onChange={setMotive} options={motives} empty="Aún no tienes base para formular un motivo." />
+      {c.accusation.motives.length > motives.length && (
+        <p className={s.trayHelp}>
+          Solo aparecen los motivos que habéis descubierto. {pending(c.accusation.motives.length - motives.length, 'motivo', 'motivos')} sin descubrir en el expediente.
+        </p>
+      )}
 
       <h2 className={s.h2}>3 · Método</h2>
       <Options name="method" value={method} onChange={setMethod} options={methods} empty="Aún no sabes cómo se hizo." />
+      {c.accusation.methods.length > methods.length && (
+        <p className={s.trayHelp}>
+          Solo aparecen los métodos que habéis descubierto. {pending(c.accusation.methods.length - methods.length, 'método', 'métodos')} sin descubrir en el expediente.
+        </p>
+      )}
 
       <h2 className={s.h2}>4 · Prueba definitiva</h2>
       <Options name="proof" value={proof} onChange={setProof} options={evidence.map((e) => ({ id: e.id, label: e.title }))} empty="No tienes pruebas." />

@@ -1630,3 +1630,10 @@
   padding: 0;
   cursor: zoom-in;
 }
+
+.coopOut {
+  margin: var(--sp-2) 0 var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  border: 2px dashed var(--seal);
+  background: rgba(255, 255, 255, 0.35);
+}

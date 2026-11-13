@@ -289,7 +289,7 @@ export async function receive(c: CaseFile, s: CoopSession, code: string): Promis
     session = { ...session, proposal: { ...mine, status: 'rejected' }, messages: [...session.messages, { from: 'partner', text: 'No estoy de acuerdo con la acusación.', at: pk.at }] };
     return { ok: true, value: { kind: 'answer', added: 0, session: await saveSession(session) } };
   }
-  await settleMine(c, session, pk.accusation);
+  await settleMine(c, session, pk.accusation, pk.result);
   session = { ...session, proposal: { ...mine, status: 'agreed' }, status: 'closed' };
   return { ok: true, value: { kind: 'answer', added: 0, session: await saveSession(session) } };
 }
@@ -303,12 +303,24 @@ async function record(caseId: string): Promise<CaseRecord> {
 }
 
 /** Correspondencia: cierra la investigación de este dispositivo con la acusación acordada. */
-async function settleMine(c: CaseFile, s: CoopSession, a: JointAccusation): Promise<void> {
+async function settleMine(c: CaseFile, s: CoopSession, a: JointAccusation, shared?: SharedResult): Promise<SharedResult | undefined> {
   const inv = await getInvestigation(s.investigationIds[s.myRole!]!);
-  if (!inv || inv.status !== 'active') return;
+  if (!inv || inv.status !== 'active') return undefined;
   const out = accuse(c, inv, await record(c.id), a, Date.now());
-  await settleCase(c, out.inv, out.record, out.result.total);
+  let result = out.inv.result!;
+  let points = out.result.total;
+  if (shared) {
+    // Mismo informe que el compañero que firmó. Las recompensas ya cobradas en
+    // intentos anteriores de este dispositivo siguen sin volver a pagarse.
+    const already = points === 0 && inv.attempt > 1;
+    result = { ...result, score: shared.score, total: already ? 0 : shared.total, timelineAccuracy: shared.timelineAccuracy, falseEventsPlaced: shared.falseEventsPlaced };
+    points = result.total;
+  }
+  await settleCase(c, { ...out.inv, result }, out.record, points);
+  return { score: result.score, total: result.total, timelineAccuracy: result.timelineAccuracy, falseEventsPlaced: result.falseEventsPlaced };
 }
+
+type SharedResult = { score: Array<{ label: string; points: number }>; total: number; timelineAccuracy: number; falseEventsPlaced: string[] };
 
 /** Mesa compartida: se puntúa una sola vez, con lo que sabe el equipo entero. */
 async function settleTable(c: CaseFile, s: CoopSession, a: JointAccusation): Promise<void> {
@@ -351,17 +363,18 @@ export async function answer(c: CaseFile, s: CoopSession, agree: boolean): Promi
     if (agree) await settleTable(c, s, prop.accusation);
     return { session: await saveSession({ ...s, proposal: { ...prop, status: agree ? 'agreed' : 'rejected' }, ...(agree ? { status: 'closed' as const } : {}) }) };
   }
+  // Primero se cierra este lado: su informe viaja en el código para que el otro cierre igual.
+  const result = agree ? await settleMine(c, s, prop.accusation) : undefined;
   const code = await encodeCode(
-    answerPacket.parse({ t: 'answer', sid: s.id, seq: s.seqOut + 1, from: s.myRole, agree, accusation: prop.accusation, at: Date.now() }),
+    answerPacket.parse({ t: 'answer', sid: s.id, seq: s.seqOut + 1, from: s.myRole, agree, accusation: prop.accusation, ...(result ? { result } : {}), at: Date.now() }),
     s.key,
   );
-  if (agree) await settleMine(c, s, prop.accusation);
   return {
     session: await saveSession({
       ...s,
       seqOut: s.seqOut + 1,
       proposal: { ...prop, status: agree ? 'agreed' : 'rejected' },
-      outbox: { code, label: agree ? 'Firma de la acusación para tu compañero' : 'Rechazo para tu compañero' },
+      outbox: { code, label: agree ? 'Firma de la acusación: envíasela a tu compañero para cerrar su expediente' : 'Rechazo para tu compañero' },
       ...(agree ? { status: 'closed' as const } : {}),
     }),
     code,
