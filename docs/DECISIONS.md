@@ -338,9 +338,8 @@ otro jugador.
 ocupaban 6,5 MB por los degradados; en JPEG, 460 KB. iOS las descarga al
 instalar la app, así que no se precachean.
 
-### D-058 · Publicación desde la rama de desarrollo
-El repositorio no tiene rama `main`; el flujo de Pages se dispara también
-con la rama de desarrollo. Pages ya está activado, pero el entorno
-`github-pages` solo admite desplegar desde ramas permitidas: hay que añadir
-la rama de desarrollo a sus reglas (o publicar desde `main`). Es un ajuste
-del repositorio que solo puede hacer su propietario.
+### D-058 · Publicación desde `main`
+El entorno `github-pages` rechazó desplegar desde la rama de desarrollo.
+Por decisión del usuario se publica desde `main`: el trabajo se hace en la
+rama de desarrollo y cada versión verificada se sube también a `main`, lo
+que dispara la publicación automática (compilación, pruebas y despliegue).

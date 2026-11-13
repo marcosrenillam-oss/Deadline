@@ -3,7 +3,7 @@
 # Activación (una sola vez, en GitHub):
 #   Settings → Pages → Build and deployment → Source: "GitHub Actions".
 # Después: pestaña Actions → "Publicar en GitHub Pages" → Run workflow,
-# o hacer push a la rama de desarrollo (o a main, si se crea).
+# o hacer push a la rama main (cada push a main publica la app).
 #
 # El sitio queda en https://<usuario>.github.io/Deadline/
 name: Publicar en GitHub Pages
@@ -11,7 +11,7 @@ name: Publicar en GitHub Pages
 on:
   workflow_dispatch:
   push:
-    branches: [main, claude/deadline-detective-app-ejx239]
+    branches: [main]
 
 permissions:
   contents: read
