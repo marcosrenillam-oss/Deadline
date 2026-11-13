@@ -35,6 +35,19 @@
   display: block;
   pointer-events: none;
 }
+.full {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* Recuadro renderizado de un objeto personalizado o adorno: encaja al píxel */
+.patch {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
 .plateOn {
   transition: opacity 260ms steps(3);
 }

@@ -24,11 +24,12 @@ export function SettingsScene() {
   const current = TABS.find((t) => t.id === tab) ?? TABS[0];
   const { Panel } = current;
   return (
-    <main className={surface.wood}>
+    <main className="m-room">
       <div className={`${surface.safe} ${styles.layout}`}>
         <nav className={styles.side} aria-label="Apartados de ajustes">
           <BackToDesk label="Escritorio" />
           <div role="tablist" aria-orientation="vertical" className={styles.tabs}>
+            <span className={styles.boardTitle} aria-hidden="true">Cuadro de la oficina</span>
             {TABS.map((t) => (
               <button
                 key={t.id}
@@ -52,8 +53,10 @@ export function SettingsScene() {
           role="tabpanel"
           id={`panel-${tab}`}
           aria-labelledby={`tab-${tab}`}
-          className={`${surface.card} ${surface.scene} ${surface.scroll} ${styles.panel}`}
+          className={`${surface.scene} ${surface.scroll} ${styles.panel}`}
         >
+          <span className={styles.screw} data-pos="tl" aria-hidden="true" />
+          <span className={styles.screw} data-pos="tr" aria-hidden="true" />
           <h1 className={styles.title}>{current.id === 'archive' ? 'Archivo personal' : current.label}</h1>
           <Panel />
         </section>

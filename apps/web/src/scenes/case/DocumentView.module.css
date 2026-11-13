@@ -132,7 +132,27 @@
 }
 
 .figure {
-  margin: 0;
+  margin: 0 0 var(--sp-3);
+}
+
+/* Copia fotográfica pegada al documento: se levanta al tocarla */
+.print {
+  display: block;
+  width: min(100%, 520px);
+  padding: 6px 6px 7px;
+  background: #f4eee0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 18px rgba(0, 0, 0, 0.35);
+  transform: rotate(-0.8deg);
+  transition: transform var(--dur-fast, 160ms) var(--ease-out, ease-out);
+  cursor: zoom-in;
+}
+.print:active {
+  transform: rotate(0deg) translateY(-3px) scale(1.01);
+}
+.print img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .figure figcaption {
@@ -185,6 +205,13 @@
   border: 1.5px solid rgba(42, 36, 26, 0.5);
   font-family: var(--font-type);
   font-size: var(--fs-lg);
+}
+
+.zoomBar .lift {
+  width: auto;
+  padding: 0 12px;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
 }
 
 .zoomBar button:disabled {

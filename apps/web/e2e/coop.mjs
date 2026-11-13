@@ -248,7 +248,7 @@ try {
   await host.p.goto(`${BASE}/telefono`);
   await host.p.getByRole('button', { name: 'Nueva investigación' }).click();
   await host.p.getByRole('button', { name: /Punto de rocío/ }).click();
-  await host.p.getByRole('button', { name: 'Seré A · Archivo' }).click();
+  await host.p.getByRole('button', { name: 'Seré A' }).click();
   const invite = await host.p.getByLabel('Invitación').inputValue();
   check(invite.startsWith('DL1.') && invite.length < 400, `Invitación en código (${invite.length} caracteres)`);
   await host.p.screenshot({ path: join(shots, 'coop-invite.png') });

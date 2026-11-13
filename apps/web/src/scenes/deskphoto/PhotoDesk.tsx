@@ -45,6 +45,15 @@ const ROUTE: Partial<Record<Target, string>> = {
   lamp: sectionById('settings').path,
   nameplate: '/perfil',
 };
+/** Personalizaciones renderizadas aparte (scripts/desk-render/variants.py). */
+interface VariantMeta {
+  desk: string[];
+  patches: Partial<Record<'lamp' | 'phone' | 'typewriter' | 'notebook', { box: [number, number, number, number]; lift: [number, number, number, number]; variants: string[] }>>;
+  decor: Record<string, [number, number, number, number]>;
+}
+const PATCH_SLOTS = ['lamp', 'phone', 'typewriter', 'notebook'] as const;
+type PatchSlot = (typeof PATCH_SLOTS)[number];
+
 const ORDER: Target[] = ['folder', 'calendar', 'cabinet', 'phone', 'typewriter', 'notebook', 'lamp', 'board', 'nameplate'];
 const LONG_PRESS_MS = 450;
 const BASE = import.meta.env.BASE_URL;
@@ -70,6 +79,7 @@ export function PhotoDesk({ onFail }: { onFail: () => void }) {
   const data = useDeskData();
   const online = useOnline();
   const [meta, setMeta] = useState<DeskMeta | null>(null);
+  const [variants, setVariants] = useState<VariantMeta | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [box, setBox] = useState({ w: 0, h: 0, x: 0, y: 0 });
   const [label, setLabel] = useState<{ id: Target; text?: string } | null>(null);
@@ -85,7 +95,40 @@ export function PhotoDesk({ onFail }: { onFail: () => void }) {
     fetch(`${BASE}desk/desk.json`)
       .then((r) => (r.ok ? (r.json() as Promise<DeskMeta>) : Promise.reject(new Error(String(r.status)))))
       .then(setMeta, () => onFail());
+    // Sin variantes (o sin red la primera vez) la mesa se ve con su equipo de serie.
+    fetch(`${BASE}desk/var/variants.json`)
+      .then((r) => (r.ok ? (r.json() as Promise<VariantMeta>) : null))
+      .then(setVariants, () => setVariants(null));
   }, [onFail]);
+
+  const equipped = profile?.equipped;
+  const deskVariant = equipped && variants?.desk.includes(equipped.desk) ? equipped.desk : null;
+  const patchFor = (slot: PatchSlot): string | null => {
+    const id = equipped?.[slot];
+    return id && variants?.patches[slot]?.variants.includes(id) ? id : null;
+  };
+  const decor = equipped && variants?.decor[equipped.decor] ? equipped.decor : null;
+  const pct = (b: [number, number, number, number]) =>
+    ({ left: `${b[0] * 100}%`, top: `${b[1] * 100}%`, width: `${(b[2] - b[0]) * 100}%`, height: `${(b[3] - b[1]) * 100}%` }) as CSSProperties;
+
+  /** Una iluminación de la mesa: base (o mesa personalizada), objetos cambiados y adorno. */
+  const layer = (lit: 'on' | 'off') => (
+    <div className={lit === 'on' ? s.plateOn : s.plate} aria-hidden="true">
+      <img
+        className={s.full}
+        src={deskVariant ? `${BASE}desk/var/desk_${deskVariant}_${lit}.webp` : `${BASE}desk/desk_${lit}.webp`}
+        alt=""
+        draggable={false}
+        onLoad={lit === 'on' ? () => setLoaded(true) : undefined}
+      />
+      {PATCH_SLOTS.map((slot) => {
+        const id = patchFor(slot);
+        const box = variants?.patches[slot]?.box;
+        return id && box ? <img key={slot} className={s.patch} src={`${BASE}desk/var/patch_${id}_${lit}.webp`} alt="" draggable={false} style={pct(box)} /> : null;
+      })}
+      {decor && variants && <img className={s.patch} src={`${BASE}desk/var/decor_${decor}_${lit}.webp`} alt="" draggable={false} style={pct(variants.decor[decor]!)} />}
+    </div>
+  );
 
   // La imagen cubre toda la pantalla manteniendo su proporción (como object-fit: cover).
   useEffect(() => {
@@ -220,8 +263,8 @@ export function PhotoDesk({ onFail }: { onFail: () => void }) {
       <div ref={host} className={s.host}>
         {meta && box.w > 0 && (
           <div className={s.stage} style={stageStyle}>
-            <img className={s.plate} src={`${BASE}desk/desk_off.webp`} alt="" draggable={false} />
-            <img className={s.plateOn} src={`${BASE}desk/desk_on.webp`} alt="" draggable={false} onLoad={() => setLoaded(true)} />
+            {layer('off')}
+            {layer('on')}
             {/* Halo de la lámpara y polvo en el haz */}
             <div className={s.glow} style={{ left: `${lamp[0] * 100}%`, top: `${lamp[1] * 100}%` }} aria-hidden="true" />
             {!rm && settings.lampOn && (
@@ -248,7 +291,14 @@ export function PhotoDesk({ onFail }: { onFail: () => void }) {
               </div>
             </div>
             {/* Objeto que se abre: su recorte se levanta sobre la mesa */}
-            {opening && meta.objects[opening]?.crop && (
+            {opening && (PATCH_SLOTS as readonly string[]).includes(opening) && patchFor(opening as PatchSlot) && variants?.patches[opening as PatchSlot]?.lift ? (
+              <img
+                className={s.lift}
+                src={`${BASE}desk/var/lift_${patchFor(opening as PatchSlot)}.webp`}
+                alt=""
+                style={pct(variants.patches[opening as PatchSlot]!.lift)}
+              />
+            ) : opening && meta.objects[opening]?.crop && (
               <img
                 className={s.lift}
                 src={`${BASE}desk/obj_${opening}.webp`}

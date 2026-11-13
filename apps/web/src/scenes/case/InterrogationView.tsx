@@ -4,6 +4,7 @@ import { ask, availableInterrogations, availableTopics, questionsFor, transcript
 import { useCase } from '../../cases/CaseProvider.tsx';
 import { evidenceTitle } from '../../cases/labels.ts';
 import { Portrait } from '../../ui/Portrait.tsx';
+import { portraitUrl } from '../../cases/contentRepo.ts';
 import { sound } from '../../audio/sound.ts';
 import { haptic } from '../../audio/haptics.ts';
 import s from './case.module.css';
@@ -59,7 +60,7 @@ export function InterrogationView() {
         <Link to={`${base}/personas/${subject.id}`} className={s.link}>
           ← Ficha
         </Link>
-        <Portrait character={subject} size={96} />
+        <Portrait character={subject} size={96} src={portraitUrl(c, subject)} />
         <h1 className={s.subjectName}>{subject.name}</h1>
         {it.setting && <p className={s.setting}>{it.setting}</p>}
       </aside>

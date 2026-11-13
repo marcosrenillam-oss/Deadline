@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-Última actualización: rediseño visual (Visual Masterplan), fases 1 a 3.
+Última actualización: rediseño visual (Visual Masterplan) completo: retratos, fotografías, piezas de oficina fotográficas y pantallas restantes.
 
 ## Etapas
 
@@ -211,10 +211,17 @@
   efectos y ambiente.
 - Fondo de las pantallas 2D: el mismo despacho desenfocado; madera y cuero
   reales.
-- Pendiente del rediseño: versiones fotográficas de las piezas de oficina
-  (hoy solo se ven en la mesa 2D), perfil con insignias, sala cooperativa, ajustes
-  con aspecto de lámpara, visor de evidencias con giro y zoom de foto, y
-  animación de deducción en el corcho.
+- **Retratos realistas** de los 28 personajes de los 5 expedientes y
+  **fotografías de pruebas** (15), generados en local con un modelo de
+  pesos abiertos, con el soporte de su época (D-071, D-072).
+- **Piezas de oficina en el despacho fotorrealista**: mesas, lámparas,
+  teléfonos, máquinas, libretas y adornos renderizados con la misma escena
+  y luz (D-073).
+- **Hoja de servicio** con placa, sellos de requisitos e insignias en
+  vitrina (D-074); **corcho** con fotos clavadas e hilo de latón para las
+  deducciones (D-075); **visor de fotografías** con zoom, arrastre y giro;
+  **ajustes** como cuadro de mandos; **sala en pareja** con dos puestos
+  (D-076).
 
 ## Pruebas
 

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { accusableSuspects, methodsAvailable, motivesAvailable } from '@deadline/core';
 import { useCase } from '../../cases/CaseProvider.tsx';
 import { Portrait } from '../../ui/Portrait.tsx';
+import { portraitUrl } from '../../cases/contentRepo.ts';
 import { sound } from '../../audio/sound.ts';
 import { haptic } from '../../audio/haptics.ts';
 import s from './case.module.css';
@@ -144,7 +145,7 @@ export function AccusationView() {
               setCulprits((cs) => (cs.includes(p.id) ? cs.filter((x) => x !== p.id) : [...cs, p.id]));
             }}
           >
-            <Portrait character={p} size={64} />
+            <Portrait character={p} size={64} src={portraitUrl(c, p)} />
             <span>{p.name}</span>
           </button>
         ))}

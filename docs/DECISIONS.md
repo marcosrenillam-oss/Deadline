@@ -450,11 +450,76 @@ textos vivos pintados en perspectiva (fecha del calendario, hoja de la
 máquina, placa). Mantener pulsada la lámpara la enciende o apaga.
 Sustituye a la escena three.js de D-061 (se retira: pesaba ~150 KB y
 quedaba lejos de la referencia). La mesa 2D sigue como gráficos ligeros.
-Limitación: las piezas de oficina (D-050) aún no tienen versión
-fotográfica; se ven en la mesa 2D. Renderizar sus variantes es trabajo
-pendiente.
+Las piezas de oficina (D-050) tienen versión fotográfica desde D-073.
 
 ### D-070 · Las pantallas 2D usan la misma mesa como fondo
 El fondo de biblioteca, calendario, archivo y expediente es el render del
 despacho, desenfocado y en penumbra, y la madera y el cuero son texturas
 reales (Poly Haven, CC0) en lugar de degradados.
+
+### D-071 · Retratos y fotografías de los expedientes, generados en local
+Los personajes inventados tienen retrato y las pruebas clave, fotografía.
+Se generan en el propio entorno de desarrollo, en CPU, con un modelo de
+imagen de pesos abiertos: Realistic Vision 5.1 (Stable Diffusion 1.5,
+licencia CreativeML OpenRAIL-M, que permite este uso) con el VAE
+sd-vae-ft-mse (MIT). No hay servicio de pago ni API externa, y la app no
+ejecuta ningún modelo: recibe imágenes WebP normales dentro del
+expediente, verificadas por SHA-256 y descargadas con él (D-037 y la descarga
+automática del archivo completo). Cada imagen tiene una semilla fija derivada de su
+id, así que se puede regenerar idéntica (`scripts/portraits/`).
+
+El soporte respeta la época: Londres 1987, copia en gelatina de plata;
+Viena 1888, copia a la albúmina sobre cartón de estudio; Nueva Atenas
+2096, registro digital; Roma 64 d. C. y Sevilla 1588 no tienen fotografía,
+así que los retratos son pintura (encáustica de estilo El Fayum y óleo del
+Siglo de Oro). Los objetos romanos se muestran como «Reconstrucción del
+archivo: no es una imagen de época», dicho en el pie.
+
+Se probó antes un retrato 3D con MakeHuman (CC0) en Blender: se descartó
+porque parecían maniquíes, y el usuario pidió personas que parezcan reales.
+
+Las descripciones solo hablan de rasgos inventados (edad, pelo, ropa,
+gesto); ningún retrato se basa en una persona real.
+
+### D-072 · Las imágenes no adelantan pistas
+Las fotografías ilustran lo que el texto de la evidencia ya dice a simple
+vista y nunca un detalle oculto de la lupa (la sangre del candelabro, el
+desgarrón de la manga, el lacre del delfín, la inscripción del violín…).
+Encontrar sigue siendo cosa del jugador.
+
+### D-073 · Las piezas de oficina, en el despacho fotorrealista
+Cada pieza se renderiza con la misma escena y la misma luz
+(`scripts/desk-render/variants.py`): las mesas, como imagen completa
+(encendida y apagada); la lámpara, el teléfono, la máquina y la libreta,
+como un recuadro del render con el material cambiado, que encaja al píxel
+sobre la base y funde 10 px de borde; los adornos (taza de café, lupa,
+instantáneas, placa), como piezas con su propia sombra sobre la mesa. La
+imagen base ya no lleva la taza ni la lupa: «Mesa despejada» es de verdad
+una mesa sin adorno. El recorte que se levanta al abrir un objeto también
+tiene su versión personalizada. En la mesa fotográfica, «Flexo de latón» es
+la lámpara de banquero con pantalla de latón pulido (la mesa 2D mantiene
+la campana).
+
+### D-074 · Hoja de servicio sin barras de progreso
+El perfil es una hoja de servicio: cartera de cuero con la credencial y una
+placa de latón con el rango; los requisitos del siguiente rango son sellos
+que se entintan al cumplirse; los logros son insignias en una vitrina de
+terciopelo (huecos vacíos los pendientes y «?» los secretos). Tocar una
+insignia lee su placa.
+
+### D-075 · El corcho reconoce las deducciones ya establecidas
+Si un hilo une dos tarjetas de evidencia que forman parte de una deducción
+ya establecida, el hilo se vuelve de latón, se tensa con una animación y
+lleva una etiqueta con la deducción; al tenderlo, un sello «Deducción» lo
+celebra. El corcho no establece deducciones nuevas: la mecánica sigue en
+Evidencias → Relacionar (sin cambiar puntuaciones ni fallos). Las tarjetas
+de personas y pruebas llevan su foto clavada.
+
+### D-076 · Visor de fotografías, ajustes y sala en pareja
+Cualquier foto de un documento o retrato se abre en un visor a pantalla
+completa: pellizcar o la rueda amplían, arrastrar mueve, doble toque
+alterna 1×/2,5× y dos botones giran la copia de 90 en 90°. Ajustes tiene
+aspecto propio (cuadro de nogal con interruptores de palanca y placa
+esmaltada atornillada). La sala en pareja muestra dos puestos de trabajo
+(A · Archivo y B · Calle) unidos por el cable del teléfono, y dice con
+claridad que no hay conexión en tiempo real: se intercambian códigos.

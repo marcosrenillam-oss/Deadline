@@ -10,6 +10,7 @@ import {
   type BoardState,
 } from '@deadline/core';
 import { useCase } from '../../cases/CaseProvider.tsx';
+import { assetUrl, portraitUrl } from '../../cases/contentRepo.ts';
 import { Sheet } from '../../ui/Sheet.tsx';
 import { sound } from '../../audio/sound.ts';
 import { haptic } from '../../audio/haptics.ts';
@@ -17,6 +18,8 @@ import s from './board.module.css';
 
 const W = 170;
 const H = 92;
+/** Alto que ocupa en el corcho una tarjeta con foto (para repartir huecos). */
+const SLOT_H = 196;
 type Mode = 'move' | 'connect' | 'delete';
 type Ref = BoardNode['ref'];
 
@@ -33,6 +36,7 @@ export function BoardTab() {
   const [theory, setTheory] = useState('');
   const [live, setLive] = useState<Record<string, { x: number; y: number }>>({});
   const [liveView, setLiveView] = useState<BoardState['viewport'] | null>(null);
+  const [celebrate, setCelebrate] = useState<{ title: string; key: number } | null>(null);
   const corkRef = useRef<HTMLDivElement>(null);
   const drag = useRef<{ kind: 'node' | 'pan'; id?: string; sx: number; sy: number; ox: number; oy: number; moved: boolean } | null>(null);
   if (!inv) return null;
@@ -58,6 +62,29 @@ export function BoardTab() {
     }
   };
 
+  /** Foto de la tarjeta: retrato de la persona o primera imagen de la evidencia. */
+  const photoOf = (ref: Ref): string | undefined => {
+    if (ref.kind === 'character') {
+      const ch = c.characters.find((x) => x.id === ref.id);
+      return ch ? portraitUrl(c, ch) : undefined;
+    }
+    if (ref.kind === 'evidence') {
+      const ev = c.evidence.find((x) => x.id === ref.id);
+      const img = ev?.body.find((b) => b.type === 'image');
+      const id = img && img.type === 'image' ? img.asset : ev?.asset;
+      return id ? assetUrl(c.id, c, id) : undefined;
+    }
+    return undefined;
+  };
+
+  /** Deducción ya establecida que une estas dos tarjetas (el hilo se vuelve de latón). */
+  const deductionBetween = (a: BoardNode, b: BoardNode) => {
+    if (a.ref.kind !== 'evidence' || b.ref.kind !== 'evidence') return undefined;
+    const ia = a.ref.id;
+    const ib = b.ref.id;
+    return c.deductions.find((d) => inv.deductions.includes(d.id) && d.combine.includes(ia) && d.combine.includes(ib));
+  };
+
   const save = (b: BoardState) => patch((i) => patchWorkspace(i, { board: b }, Date.now()));
   const posOf = (n: BoardNode) => live[n.id] ?? { x: n.x, y: n.y };
 
@@ -69,10 +96,10 @@ export function BoardTab() {
     const ox = -view.x / view.zoom;
     const oy = -view.y / view.zoom;
     const stepX = W + 24;
-    const stepY = H + 30;
+    const stepY = SLOT_H + 24;
     const cols = Math.max(1, Math.floor((vw - 20) / stepX));
     const rows = Math.max(1, Math.floor((vh - 20) / stepY));
-    const free = (x: number, y: number) => nodes.every((n) => Math.abs(n.x - x) >= W + 8 || Math.abs(n.y - y) >= H + 8);
+    const free = (x: number, y: number) => nodes.every((n) => Math.abs(n.x - x) >= W + 8 || Math.abs(n.y - y) >= SLOT_H + 8);
     for (let r = 0; r < rows + 6; r++) {
       for (let c = 0; c < cols; c++) {
         const x = Math.round(ox + 16 + c * stepX);
@@ -109,8 +136,17 @@ export function BoardTab() {
       if (!first) return setFirst(id);
       if (first !== id && !board.edges.some((e) => (e.from === first && e.to === id) || (e.from === id && e.to === first))) {
         save({ ...board, edges: [...board.edges, { id: newId(), from: first, to: id, style: 'thread' }] });
-        sound.play('tap');
-        haptic('light');
+        const a = board.nodes.find((n) => n.id === first);
+        const b = board.nodes.find((n) => n.id === id);
+        const d = a && b ? deductionBetween(a, b) : undefined;
+        if (d) {
+          setCelebrate({ title: d.title, key: Date.now() });
+          sound.play('stamp');
+          haptic('confirm');
+        } else {
+          sound.play('tap');
+          haptic('light');
+        }
       }
       setFirst(null);
     }
@@ -205,9 +241,15 @@ export function BoardTab() {
               const y2 = pb.y + 10;
               const sag = Math.min(60, Math.hypot(x2 - x1, y2 - y1) / 6);
               const d = `M${x1} ${y1} Q${(x1 + x2) / 2} ${(y1 + y2) / 2 + sag} ${x2} ${y2}`;
+              const ded = deductionBetween(a, b);
               return (
                 <g key={e.id}>
-                  <path d={d} className={s.thread} />
+                  <path d={d} className={ded ? s.threadDeduced : s.thread} pathLength={1} />
+                  {ded && (
+                    <foreignObject x={(x1 + x2) / 2 - 80} y={(y1 + y2) / 2 + sag / 2 - 14} width={160} height={40} className={s.tagWrap}>
+                      <span className={s.tag}>{ded.title}</span>
+                    </foreignObject>
+                  )}
                   {mode === 'delete' && !closed && (
                     <path
                       d={d}
@@ -237,12 +279,19 @@ export function BoardTab() {
                 onKeyDown={(e) => e.key === 'Enter' && tapNode(n.id)}
               >
                 <span className={s.pin} data-color={n.pinColor} />
+                {photoOf(n.ref) && <img className={s.cardPhoto} src={photoOf(n.ref)} alt="" draggable={false} />}
                 <span className={s.cardKind}>{l.kind}</span>
                 <span className={s.cardText}>{l.text}</span>
               </div>
             );
           })}
         </div>
+        {celebrate && (
+          <div key={celebrate.key} className={s.celebrate} onAnimationEnd={() => setCelebrate(null)} role="status">
+            <span className={s.celebrateStamp}>Deducción</span>
+            <span className={s.celebrateTitle}>{celebrate.title}</span>
+          </div>
+        )}
         {mode === 'connect' && <p className={s.hint}>{first ? 'Ahora toca la segunda tarjeta.' : 'Toca la primera tarjeta que quieres unir.'}</p>}
       </div>
       <Sheet open={adding} onClose={() => setAdding(false)} title="Añadir al tablero">

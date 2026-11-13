@@ -1,10 +1,11 @@
 import type { Character } from '@deadline/core';
+import styles from './Portrait.module.css';
 
 /**
- * Retrato de ficha provisional: silueta generada a partir del personaje
- * (pelo, sombrero, gafas, cuello) sobre el fondo de una foto policial.
- * Los retratos realistas llegarán con la producción artística (Etapa 8);
- * la silueta es honesta: no finge ser una fotografía.
+ * Retrato de ficha. Si el expediente trae retrato (`src`: foto o pintura de
+ * la época, ya descargada con el caso), se muestra con su montura; si no, una
+ * silueta generada a partir del personaje (pelo, sombrero, gafas, cuello) que
+ * no finge ser una fotografía.
  */
 function hash(s: string): number {
   let h = 2166136261;
@@ -14,7 +15,22 @@ function hash(s: string): number {
 
 const HAIR = { short: 0, long: 1, bun: 2, hat: 3, bald: 4 } as const;
 
-export function Portrait({ character, size = 120 }: { character: Pick<Character, 'id' | 'name' | 'age'> & { look?: Character['look'] }; size?: number }) {
+export function Portrait({
+  character,
+  size = 120,
+  src,
+}: {
+  character: Pick<Character, 'id' | 'name' | 'age'> & { look?: Character['look'] };
+  size?: number;
+  src?: string | undefined;
+}) {
+  if (src) {
+    return (
+      <span className={styles.photo} style={{ width: size, height: size * 1.25 }}>
+        <img src={src} alt={`Retrato de ${character.name}`} loading="lazy" decoding="async" draggable={false} />
+      </span>
+    );
+  }
   const h = hash(character.id);
   const look = character.look;
   // El expediente puede fijar la silueta; si no, se deriva del id (estable).

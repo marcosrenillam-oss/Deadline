@@ -12,42 +12,113 @@
   overflow-y: auto;
 }
 
+/* Cuadro de mandos: tablero de nogal con interruptores de palanca */
 .tabs {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 4px;
+  margin-top: var(--sp-2);
+  padding: 10px 8px 12px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(255, 220, 180, 0.06), rgba(0, 0, 0, 0.3)), url('/textures/walnut.webp') center / 320px, #2b1d14;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.45), inset 0 0 0 4px rgba(214, 180, 110, 0.25), 0 10px 24px rgba(0, 0, 0, 0.55);
+}
+.boardTitle {
+  margin: 0 4px 4px;
+  font-family: var(--font-type);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(236, 211, 152, 0.7);
 }
 
-/* Separadores de fichero: pestañas de cartulina. */
 .tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   min-height: var(--touch);
-  padding: 0 var(--sp-3);
+  padding: 0 10px;
+  border-radius: 3px;
   text-align: left;
   font-family: var(--font-type);
   font-weight: 700;
   font-size: var(--fs-sm);
   letter-spacing: 0.06em;
-  color: var(--ivory-dim);
-  border-left: 3px solid transparent;
-  transition: color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  color: #e8d9b4;
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
-
+/* Palanca: abajo apagada, arriba encendida */
+.tab::before {
+  content: '';
+  flex: none;
+  width: 14px;
+  height: 22px;
+  border-radius: 7px;
+  background: linear-gradient(180deg, #1a1410, #3a2e24);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+.tab::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: calc(50% + 1px);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f7e2a8, #b08d4f 60%, #6e521f);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
+  transition: transform var(--dur-med) var(--ease-physical);
+}
 .tab[aria-selected='true'] {
-  color: var(--on-paper);
-  background: linear-gradient(90deg, #d8c7a2, var(--paper));
-  border-left-color: var(--seal);
-  transform: translateX(6px);
-  box-shadow: var(--shadow-paper);
+  color: #2c1d07;
+  background: linear-gradient(180deg, var(--brass-hi), var(--brass-mid) 55%, var(--brass-lo));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 3px 8px rgba(0, 0, 0, 0.5);
 }
-
+.tab[aria-selected='true']::after {
+  transform: translateY(-9px);
+}
 .tab:active {
-  color: var(--ivory);
+  filter: brightness(1.1);
 }
 
 .panel {
+  position: relative;
   min-height: 0;
   max-height: 100%;
-  padding: var(--sp-3) var(--sp-5) var(--sp-4);
+  padding: var(--sp-4) var(--sp-5) var(--sp-4);
+  border-radius: 6px;
+  /* Placa esmaltada color marfil, atornillada al tablero */
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.5), transparent 55%),
+    linear-gradient(180deg, #efe7d3, #e2d6bb);
+  color: var(--on-paper);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6), inset 0 0 0 6px rgba(42, 36, 26, 0.06), 0 2px 2px rgba(0, 0, 0, 0.3), 0 24px 48px rgba(0, 0, 0, 0.6);
+}
+.screw {
+  position: absolute;
+  top: 9px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f2f0ea, #9a958a 60%, #5e5a52);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+.screw::after {
+  content: '';
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  top: 5px;
+  height: 1.5px;
+  background: rgba(40, 36, 30, 0.7);
+  transform: rotate(35deg);
+}
+.screw[data-pos='tl'] {
+  left: 9px;
+}
+.screw[data-pos='tr'] {
+  right: 9px;
 }
 
 .title {

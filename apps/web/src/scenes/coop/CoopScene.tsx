@@ -152,25 +152,41 @@ export function CoopScene() {
                 {catalog.length === 0 && <p className={s.hand}>No hay expedientes cooperativos en tu archivo. Conéctate para actualizarlo.</p>}
               </div>
               {pickedCase && (
-                <>
-                  <h2 className={s.h2}>En este iPhone</h2>
-                  <p className={s.p}>Mesa compartida: os pasáis el teléfono. Cada uno ve solo su carpeta y pone sobre la mesa lo que quiera compartir. Reloj de 120 minutos desde ya.</p>
-                  <button className={s.primary} disabled={busy} onClick={() => void startTable()}>
-                    Empezar en este iPhone
-                  </button>
-                  <h2 className={s.h2}>En dos iPhone</h2>
-                  <p className={s.p}>
-                    Correspondencia: cada uno en su teléfono, sin servidor. Os pasáis códigos por Mensajes, WhatsApp o AirDrop. Elige tu papel; tu compañero tendrá el otro.
-                  </p>
-                  <div className={s.row}>
-                    <button className={s.secondary} disabled={busy} onClick={() => void startInvite('A')}>
-                      Seré A · Archivo
-                    </button>
-                    <button className={s.secondary} disabled={busy} onClick={() => void startInvite('B')}>
-                      Seré B · Calle
+                <div className={s.room}>
+                  <div className={s.station} data-role="shared">
+                    <span className={s.stationLamp} aria-hidden="true" />
+                    <span className={s.stationTag}>Mesa compartida</span>
+                    <h2 className={s.h2}>En este iPhone</h2>
+                    <p className={s.p}>Os pasáis el teléfono. Cada uno ve solo su carpeta y pone sobre la mesa lo que quiera compartir. Reloj de 120 minutos desde ya.</p>
+                    <button className={s.primary} disabled={busy} onClick={() => void startTable()}>
+                      Empezar en este iPhone
                     </button>
                   </div>
-                </>
+                  <div className={s.pair}>
+                    <div className={s.station} data-role="A">
+                      <span className={s.stationLamp} aria-hidden="true" />
+                      <span className={s.stationTag}>Puesto A · Archivo</span>
+                      <p className={s.p}>Documentos, registros y expedientes antiguos.</p>
+                      <button className={s.secondary} disabled={busy} onClick={() => void startInvite('A')}>
+                        Seré A
+                      </button>
+                    </div>
+                    <svg className={s.wire} viewBox="0 0 80 60" aria-hidden="true">
+                      <path d="M0 30 C 20 0, 60 60, 80 30" />
+                    </svg>
+                    <div className={s.station} data-role="B">
+                      <span className={s.stationLamp} aria-hidden="true" />
+                      <span className={s.stationTag}>Puesto B · Calle</span>
+                      <p className={s.p}>Testigos, escenas y lo que se ve a pie de calle.</p>
+                      <button className={s.secondary} disabled={busy} onClick={() => void startInvite('B')}>
+                        Seré B
+                      </button>
+                    </div>
+                  </div>
+                  <p className={s.small}>
+                    En dos iPhone, sin servidor ni conexión en tiempo real: os pasáis códigos por Mensajes, WhatsApp o AirDrop. Elige tu puesto; tu compañero tendrá el otro.
+                  </p>
+                </div>
               )}
             </>
           )}

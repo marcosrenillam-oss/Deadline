@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { Link, useParams } from 'react-router';
 import { availableInterrogations, evaluateCondition, visibleCharacters } from '@deadline/core';
 import { useCase } from '../../cases/CaseProvider.tsx';
 import { characterName, lines } from '../../cases/labels.ts';
 import { Portrait } from '../../ui/Portrait.tsx';
+import { portraitUrl } from '../../cases/contentRepo.ts';
+import { PhotoViewer } from '../../ui/PhotoViewer.tsx';
 import { sound } from '../../audio/sound.ts';
 import s from './case.module.css';
 
@@ -12,6 +15,7 @@ const ROLE: Record<string, string> = { victim: 'Víctima', suspect: 'Sospechoso'
 export function PeopleTab() {
   const { characterId } = useParams();
   const { c, k, inv, closed, base } = useCase();
+  const [viewing, setViewing] = useState(false);
   const people = closed ? c.characters : visibleCharacters(c, k);
   const current = people.find((p) => p.id === characterId) ?? people.find((p) => p.role === 'suspect') ?? people[0];
   if (!current) return null;
@@ -27,7 +31,7 @@ export function PeopleTab() {
         {people.map((p) => (
           <li key={p.id}>
             <Link to={`${base}/personas/${p.id}`} className={s.personCard} aria-current={p.id === current.id ? 'true' : undefined} onClick={() => sound.play('paper')}>
-              <Portrait character={p} size={46} />
+              <Portrait character={p} size={46} src={portraitUrl(c, p)} />
               <span>
                 <span className={s.personName}>{p.name}</span>
                 <span className={s.personRole}>{ROLE[p.role]}</span>
@@ -38,7 +42,13 @@ export function PeopleTab() {
       </ul>
       <article className={`${s.sheet} ${s.scroll} ${s.dossierCard}`}>
         <div className={s.dossierHead}>
-          <Portrait character={current} size={110} />
+          {portraitUrl(c, current) ? (
+            <button type="button" className={s.portraitButton} onClick={() => setViewing(true)} aria-label={`Ver el retrato de ${current.name}`}>
+              <Portrait character={current} size={110} src={portraitUrl(c, current)} />
+            </button>
+          ) : (
+            <Portrait character={current} size={110} />
+          )}
           <div>
             <p className={s.kicker}>{ROLE[current.role]}</p>
             <h1 className={s.title}>{current.name}</h1>
@@ -112,6 +122,7 @@ export function PeopleTab() {
           </>
         )}
       </article>
+      {viewing && portraitUrl(c, current) && <PhotoViewer src={portraitUrl(c, current)!} alt={`Retrato de ${current.name}`} caption={current.name} onClose={() => setViewing(false)} />}
     </div>
   );
 }

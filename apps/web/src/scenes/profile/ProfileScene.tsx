@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { encodeCode, isValidUsername, normalizeUsername, progressToNext, rankStatsFor, type InvestigatorCard, type LocalProfile, type RankDefinition, type RankStats } from '@deadline/core';
+import { ACHIEVEMENTS, encodeCode, isValidUsername, normalizeUsername, progressToNext, rankStatsFor, type InvestigatorCard, type LocalProfile, type RankDefinition, type RankStats } from '@deadline/core';
 import { useProgress } from '../../progression/useProgress.ts';
 import { useProfile } from '../../profile/ProfileProvider.tsx';
 import { saveProfile } from '../../storage/profileRepo.ts';
@@ -11,20 +11,92 @@ import { sound } from '../../audio/sound.ts';
 import surface from '../../ui/Surface.module.css';
 import s from './ProfileScene.module.css';
 
+/** Requisitos del siguiente rango como sellos: entintados cuando se cumplen. Sin barras. */
 function Requirements({ stats, next }: { stats: RankStats; next: RankDefinition }) {
   const r = next.requirement;
-  const parts = [
-    `mérito ${stats.merit}/${r.merit}`,
-    r.perfectSolves ? `actas impecables ${stats.perfectSolves}/${r.perfectSolves}` : '',
-    r.minAccuracy ? `precisión ${Math.round(stats.accuracy * 100)} %/${Math.round(r.minAccuracy * 100)} %` : '',
-    r.solvedByDifficulty.detective ? `nivel Detective ${stats.solvedByDifficulty.detective}/${r.solvedByDifficulty.detective}` : '',
-    r.solvedByDifficulty.inspector ? `nivel Inspector ${stats.solvedByDifficulty.inspector}/${r.solvedByDifficulty.inspector}` : '',
-    r.solvedByDifficulty['special-unit'] ? `Unidad Especial ${stats.solvedByDifficulty['special-unit']}/${r.solvedByDifficulty['special-unit']}` : '',
-  ].filter(Boolean);
+  const items: Array<{ label: string; have: string; met: boolean }> = [
+    { label: 'Mérito', have: `${stats.merit}/${r.merit}`, met: stats.merit >= r.merit },
+  ];
+  if (r.perfectSolves) items.push({ label: 'Actas impecables', have: `${stats.perfectSolves}/${r.perfectSolves}`, met: stats.perfectSolves >= r.perfectSolves });
+  if (r.minAccuracy) items.push({ label: 'Precisión', have: `${Math.round(stats.accuracy * 100)}/${Math.round(r.minAccuracy * 100)} %`, met: stats.accuracy >= r.minAccuracy });
+  const diff: Array<[keyof typeof r.solvedByDifficulty, string]> = [
+    ['detective', 'Nivel Detective'],
+    ['inspector', 'Nivel Inspector'],
+    ['special-unit', 'Unidad Especial'],
+  ];
+  for (const [d, label] of diff) {
+    const need = r.solvedByDifficulty[d];
+    if (need) items.push({ label, have: `${stats.solvedByDifficulty[d]}/${need}`, met: stats.solvedByDifficulty[d] >= need });
+  }
   return (
-    <span className={s.small}>
-      Hacia {next.label}: {parts.join(' · ')}
-    </span>
+    <div className={s.reqs} aria-label={`Requisitos para ${next.label}`}>
+      <span className={s.kicker}>Para ascender a {next.label}</span>
+      <ul className={s.stamps}>
+        {items.map((it) => (
+          <li key={it.label} className={s.stampItem} data-met={it.met || undefined}>
+            <span className={s.stampLabel}>{it.label}</span>
+            <span className={s.stampValue}>{it.have}</span>
+            {it.met && <span className={s.stampInk} aria-label="cumplido">Cumplido</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** Vitrina de insignias: cada logro es una medalla; los que faltan, un hueco en el terciopelo. */
+function Insignias({ got }: { got: Map<string, number> }) {
+  const [open, setOpen] = useState<string | null>(null);
+  const shown = ACHIEVEMENTS.filter((a) => !a.secret || got.has(a.id));
+  const hidden = ACHIEVEMENTS.length - shown.length;
+  const current = ACHIEVEMENTS.find((a) => a.id === open);
+  return (
+    <div className={s.case}>
+      <ul className={s.velvet}>
+        {shown.map((a) => {
+          const at = got.get(a.id);
+          return (
+            <li key={a.id}>
+              <button
+                type="button"
+                className={s.medal}
+                data-got={at ? 'true' : undefined}
+                aria-pressed={open === a.id}
+                aria-label={`${a.label}${at ? ' (conseguida)' : ' (pendiente)'}`}
+                onClick={() => setOpen(open === a.id ? null : a.id)}
+              >
+                <span className={s.ribbon} aria-hidden="true" />
+                <span className={s.disc} aria-hidden="true">
+                  {a.label
+                    .split(/\s+/)
+                    .filter((w) => w.length > 2)
+                    .slice(0, 2)
+                    .map((w) => w[0]!.toUpperCase())
+                    .join('')}
+                </span>
+              </button>
+            </li>
+          );
+        })}
+        {Array.from({ length: hidden }, (_, i) => (
+          <li key={`secret-${i}`}>
+            <span className={s.medal} data-secret="true" aria-label="Insignia secreta sin descubrir">
+              <span className={s.disc} aria-hidden="true">?</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+      <p className={s.caseLabel} aria-live="polite">
+        {current ? (
+          <>
+            <strong>{current.label}</strong> — {current.description}
+            {got.get(current.id) ? ` Conseguida el ${new Date(got.get(current.id)!).toLocaleDateString('es-ES')}.` : ' Aún no conseguida.'}
+          </>
+        ) : (
+          `${got.size} de ${ACHIEVEMENTS.length} insignias. Toca una para leer su placa.`
+        )}
+      </p>
+    </div>
   );
 }
 
@@ -111,37 +183,36 @@ export function ProfileScene() {
       <div className={`${surface.safe} ${s.layout}`}>
         <aside className={s.side}>
           <BackToDesk label="Escritorio" />
-          <div className={s.badge}>
-            <PlayerAvatar profile={profile} size={120} />
-            <span className={s.number}>{profile.investigatorNumber}</span>
-            <span className={s.alias}>{profile.alias ?? 'Sin alias'}</span>
+          <div className={s.wallet}>
+            <div className={s.idCard}>
+              <PlayerAvatar profile={profile} size={96} />
+              <span className={s.idLines}>
+                <span className={s.kicker}>Archivo DEADLINE</span>
+                <span className={s.alias}>{profile.alias ?? 'Sin alias'}</span>
+                <span className={s.number}>{profile.investigatorNumber}</span>
+              </span>
+            </div>
+            <div className={s.shield} aria-label={`Placa: ${solo.label}`}>
+              <span className={s.shieldRank}>{solo.label}</span>
+              <span className={s.shieldNo}>{profile.investigatorNumber.slice(-4)}</span>
+            </div>
           </div>
         </aside>
         <section className={`${s.sheet} ${surface.scroll}`}>
-          <h1 className={s.title}>Ficha del investigador</h1>
+          <h1 className={s.title}>Hoja de servicio</h1>
 
           <div className={s.ranks}>
             <div className={s.rank}>
               <span className={s.kicker}>Rango individual</span>
               <strong>{solo.label}</strong>
               <span className={s.small}>{solo.description}</span>
-              {soloNext.next && (
-                <>
-                  <span className={s.bar} style={{ ['--p' as string]: `${Math.round(soloNext.progress * 100)}%` }} aria-label={`Hacia ${soloNext.next.label}: ${Math.round(soloNext.progress * 100)} %`} />
-                  <Requirements stats={rankStatsFor(stats, 'solo', profile.soloMerit)} next={soloNext.next} />
-                </>
-              )}
+              {soloNext.next && <Requirements stats={rankStatsFor(stats, 'solo', profile.soloMerit)} next={soloNext.next} />}
             </div>
             <div className={s.rank}>
               <span className={s.kicker}>Rango en pareja</span>
               <strong>{coop.label}</strong>
               <span className={s.small}>{coop.description}</span>
-              {coopNext.next && (
-                <>
-                  <span className={s.bar} style={{ ['--p' as string]: `${Math.round(coopNext.progress * 100)}%` }} aria-label={`Hacia ${coopNext.next.label}: ${Math.round(coopNext.progress * 100)} %`} />
-                  <Requirements stats={rankStatsFor(stats, 'coop', profile.coopMerit)} next={coopNext.next} />
-                </>
-              )}
+              {coopNext.next && <Requirements stats={rankStatsFor(stats, 'coop', profile.coopMerit)} next={coopNext.next} />}
             </div>
           </div>
           <dl className={s.stats}>
@@ -164,6 +235,9 @@ export function ProfileScene() {
               </dd>
             </div>
           </dl>
+
+          <h2 className={s.h2}>Insignias</h2>
+          <Insignias got={new Map(profile.achievements.map((a) => [a.id, a.at]))} />
 
           <h2 className={s.h2}>Alias</h2>
           <p className={s.small}>Con él te reconocen tus compañeros en las partidas en pareja. No hay registro central: nadie comprueba que sea único.</p>

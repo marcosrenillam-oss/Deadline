@@ -550,6 +550,7 @@ world.node_tree.links.new(env.outputs['Color'], bg.inputs['Color'])
 
 # ─── Atrezo (Poly Haven) ─────────────────────────────────────────────────────
 PROPS = []
+PROP_ASSETS: dict[str, list] = {}
 for asset, loc, rot, sc, keep, move in [
     ('Camera_01', (0.70, -0.08, TOP), (0, 0, math.radians(110)), 1.0, None, None),
     ('service_pistol', (0.50, 0.02, TOP + 0.016), (math.radians(90), 0, math.radians(-25)), 0.95, ['_a'], None),
@@ -565,6 +566,14 @@ for asset, loc, rot, sc, keep, move in [
     if asset == 'tea_set_01':
         root.location = (loc[0] - 0.15, loc[1] + 0.06, loc[2])
     PROPS.extend(meshes)
+    PROP_ASSETS[asset] = meshes
+
+# Los adornos (taza, lupa…) son personalizables: no van en la imagen base,
+# se renderizan aparte con su sombra (scripts/desk-render/variants.py).
+DECOR_ASSETS = ('tea_set_01', 'magnifying_glass_01')
+for a in DECOR_ASSETS:
+    for o in PROP_ASSETS.get(a, []):
+        o.hide_render = True
 
 # Papeles sueltos y fotos
 p0 = printed('loose_paper', (0.21, 0.29), (0.10, 0.06, TOP + 0.0006), math.radians(-18), 'paper_1.png', 0.9)
@@ -693,6 +702,7 @@ if ONLY in (None, 'cutouts') and not PREVIEW:
         o.is_holdout = False
     scene.render.use_border = False
 
-with open(os.path.join(OUT, 'desk.json'), 'w') as f:
-    json.dump(meta, f, indent=1)
-print('LISTO', OUT)
+if ONLY != 'none':
+    with open(os.path.join(OUT, 'desk.json'), 'w') as f:
+        json.dump(meta, f, indent=1)
+    print('LISTO', OUT)

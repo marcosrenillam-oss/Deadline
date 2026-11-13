@@ -1,6 +1,7 @@
 import { useRef, useState, type MouseEvent } from 'react';
 import { evaluateCondition, parseInline, type CaseFile, type DocBlock, type Evidence, type Knowledge } from '@deadline/core';
 import { assetUrl } from '../../cases/contentRepo.ts';
+import { PhotoViewer } from '../../ui/PhotoViewer.tsx';
 import styles from './DocumentView.module.css';
 
 interface Props {
@@ -22,6 +23,7 @@ interface Props {
  */
 export function DocumentView({ c, evidence, k, lupa, archive, onDetail, onMiss, onImagePoint }: Props) {
   const [zoom, setZoom] = useState(1);
+  const [viewing, setViewing] = useState<{ src: string; alt: string; caption?: string | undefined } | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const src = evidence.asset ? assetUrl(c.id, c, evidence.asset) : undefined;
   const asset = c.assets.find((a) => a.id === evidence.asset);
@@ -99,9 +101,12 @@ export function DocumentView({ c, evidence, k, lupa, archive, onDetail, onMiss, 
         );
       case 'image': {
         const u = assetUrl(c.id, c, b.asset);
+        const alt = c.assets.find((a) => a.id === b.asset)?.alt ?? '';
         return u ? (
           <figure key={key} className={styles.figure}>
-            <img src={u} alt={c.assets.find((a) => a.id === b.asset)?.alt ?? ''} />
+            <button type="button" className={styles.print} onClick={() => setViewing({ src: u, alt, caption: b.caption })} aria-label={`Ver de cerca: ${alt}`}>
+              <img src={u} alt={alt} loading="lazy" decoding="async" draggable={false} />
+            </button>
             {b.caption && <figcaption>{b.caption}</figcaption>}
           </figure>
         ) : null;
@@ -141,6 +146,11 @@ export function DocumentView({ c, evidence, k, lupa, archive, onDetail, onMiss, 
             <button type="button" onClick={() => setZoom((z) => Math.min(4, z + 0.5))} disabled={zoom >= 4} aria-label="Acercar">
               +
             </button>
+            {!lupa && (
+              <button type="button" className={styles.lift} onClick={() => setViewing({ src: src!, alt: asset?.alt ?? evidence.title })}>
+                Ver de cerca
+              </button>
+            )}
           </div>
           <div className={styles.imageScroll}>
             <div className={styles.imageInner} style={{ width: `${zoom * 100}%` }} onClick={onImageClick}>
@@ -158,6 +168,7 @@ export function DocumentView({ c, evidence, k, lupa, archive, onDetail, onMiss, 
         </div>
       )}
       <div className={styles.body}>{evidence.body.map(block)}</div>
+      {viewing && <PhotoViewer src={viewing.src} alt={viewing.alt} caption={viewing.caption} onClose={() => setViewing(null)} />}
     </div>
   );
 }

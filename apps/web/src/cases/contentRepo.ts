@@ -61,6 +61,11 @@ export function assetUrl(caseId: string, c: CaseFile, assetId: string): string |
   return assetUrlFor(caseId, a);
 }
 
+/** Retrato de un personaje (si el expediente lo trae). */
+export function portraitUrl(c: CaseFile, character: { portrait?: string | undefined }): string | undefined {
+  return character.portrait ? assetUrl(c.id, c, character.portrait) : undefined;
+}
+
 export function assetUrlFor(caseId: string, a: { src: string; sha256: string }): string {
   const path = a.src.startsWith('shared/') ? `${BASE}/${a.src}` : `${BASE}/cases/${caseId}/${a.src}`;
   return `${path}?v=${a.sha256.slice(0, 12)}`;
