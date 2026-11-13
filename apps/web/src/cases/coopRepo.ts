@@ -333,7 +333,14 @@ export async function propose(s: CoopSession, from: 'A' | 'B', a: JointAccusatio
   const proposal = { from, accusation: a, at: Date.now(), status: 'pending' as const };
   if (s.mode === 'same-device') return { session: await saveSession({ ...s, proposal }) };
   const code = await encodeCode(proposePacket.parse({ t: 'propose', sid: s.id, seq: s.seqOut + 1, from, accusation: a, at: proposal.at }), s.key);
-  return { session: await saveSession({ ...s, proposal, seqOut: s.seqOut + 1 }), code };
+  return { session: await saveSession({ ...s, proposal, seqOut: s.seqOut + 1, outbox: { code, label: 'Propuesta de acusación para tu compañero' } }), code };
+}
+
+/** Retira mi propuesta pendiente (p. ej. si el código no llegó): se puede volver a proponer. */
+export async function withdraw(s: CoopSession): Promise<CoopSession> {
+  if (!s.proposal || s.proposal.status !== 'pending') return s;
+  const { proposal: _p, outbox: _o, ...rest } = s;
+  return saveSession(rest);
 }
 
 /** Responde a la propuesta del compañero. Si se acepta, el expediente se cierra. */
@@ -349,5 +356,14 @@ export async function answer(c: CaseFile, s: CoopSession, agree: boolean): Promi
     s.key,
   );
   if (agree) await settleMine(c, s, prop.accusation);
-  return { session: await saveSession({ ...s, seqOut: s.seqOut + 1, proposal: { ...prop, status: agree ? 'agreed' : 'rejected' }, ...(agree ? { status: 'closed' as const } : {}) }), code };
+  return {
+    session: await saveSession({
+      ...s,
+      seqOut: s.seqOut + 1,
+      proposal: { ...prop, status: agree ? 'agreed' : 'rejected' },
+      outbox: { code, label: agree ? 'Firma de la acusación para tu compañero' : 'Rechazo para tu compañero' },
+      ...(agree ? { status: 'closed' as const } : {}),
+    }),
+    code,
+  };
 }
