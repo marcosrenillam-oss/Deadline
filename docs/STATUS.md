@@ -213,8 +213,10 @@
   pantallas de arranque, hápticos, hoja de compartir, audio con modo
   silencio, rendimiento de las capas de luz y del `canvas` de madera. Hay
   una lista de comprobación en `IPHONE_TESTING.md`.
-- **Publicación real en GitHub Pages**: requiere que el propietario active
-  Pages (Settings → Pages → Source: GitHub Actions). Ver `DISTRIBUTION.md`.
+- **Publicación real en GitHub Pages**: el flujo ya corre en GitHub y la
+  compilación y las pruebas pasan, pero el despliegue lo rechaza la regla
+  de protección del entorno `github-pages`. Falta permitir la rama (ver
+  `DISTRIBUTION.md`, paso 3).
 - Cooperativo con dos iPhone reales (Mensajes, WhatsApp, AirDrop).
 - WebKit automatizado (no disponible en el entorno de desarrollo).
 

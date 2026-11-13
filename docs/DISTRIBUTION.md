@@ -44,7 +44,14 @@ conviene revisarla antes de publicar):
    partir de ahí, cada push a esa rama (o a `main`, si se crea) publica
    solo. Antes de activar Pages, el paso de despliegue falla aunque la
    compilación y las pruebas pasen: es lo esperado.
-3. Al terminar, la app queda en `https://marcosrenillam-oss.github.io/Deadline/`.
+3. **Settings → Environments → github-pages → Deployment branches and
+   tags**: añadir la regla `claude/deadline-detective-app-ejx239` (o elegir
+   «No restriction»). Sin esto, GitHub rechaza el despliegue con «Branch …
+   is not allowed to deploy to github-pages due to environment protection
+   rules» (comprobado en la primera ejecución del flujo, el 13/11/2026: la
+   compilación y las pruebas pasaron; el despliegue fue rechazado por esta
+   regla). Alternativa: publicar desde una rama `main`.
+4. Al terminar, la app queda en `https://marcosrenillam-oss.github.io/Deadline/`.
 
 El flujo (`.github/workflows/pages.yml`) comprueba tipos, ejecuta las
 pruebas y valida los expedientes antes de publicar: si algo falla, no se

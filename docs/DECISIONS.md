@@ -340,5 +340,7 @@ instalar la app, así que no se precachean.
 
 ### D-058 · Publicación desde la rama de desarrollo
 El repositorio no tiene rama `main`; el flujo de Pages se dispara también
-con la rama de desarrollo. Activar Pages (Settings → Pages → Source: GitHub
-Actions) es un paso que solo puede dar el propietario del repositorio.
+con la rama de desarrollo. Pages ya está activado, pero el entorno
+`github-pages` solo admite desplegar desde ramas permitidas: hay que añadir
+la rama de desarrollo a sus reglas (o publicar desde `main`). Es un ajuste
+del repositorio que solo puede hacer su propietario.
