@@ -37,6 +37,8 @@ interface CaseContextValue {
   k: Knowledge;
   /** El expediente está cerrado (resuelto, fallido o por tiempo): modo archivo, solo lectura. */
   closed: boolean;
+  /** Cerrado con la verdad a la vista: solo si se resolvió (total o parcialmente). Un fallo o el tiempo agotado no la revelan. */
+  revealed: boolean;
   remainingMs: number;
   open: () => Promise<void>;
   /** Ejecuta una acción del motor sobre la investigación activa y la guarda. */
@@ -358,6 +360,7 @@ export function CaseProvider({
       record,
       k: inv ? deserializeKnowledge(inv.knowledge) : emptyKnowledge(),
       closed: !!inv && inv.status !== 'active',
+      revealed: !!inv && inv.status !== 'active' && (inv.result?.outcome === 'success' || inv.result?.outcome === 'partial'),
       remainingMs: timer?.remainingMs ?? 0,
       open,
       run,

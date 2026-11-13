@@ -8,7 +8,7 @@ import s from './case.module.css';
 
 /** 1 · EXPEDIENTE: contexto inicial y lo que ya se sabe. */
 export function DossierTab() {
-  const { c, k, closed, offline, inv, base, coop } = useCase();
+  const { c, k, closed, revealed, offline, inv, base, coop } = useCase();
   const myRole = c.coop?.roles.find((r) => r.id === inv?.role);
   const facts = c.facts.filter((f) => k.facts.has(f.id)).sort((a, b) => Number(b.important) - Number(a.important));
   const objectives = c.objectives.filter((o) => !o.hidden || evaluateCondition(o.completeWhen, k));
@@ -89,7 +89,7 @@ export function DossierTab() {
           )}
           <h2 className={s.h2}>Documentación inicial</h2>
           <ul className={s.linkList}>
-            {c.briefing.initialEvidence.filter((id) => closed || k.evidence.has(id)).map((id) => (
+            {c.briefing.initialEvidence.filter((id) => revealed || k.evidence.has(id)).map((id) => (
               <li key={id}>
                 <Link to={`${base}/evidencias/${id}`}>{c.evidence.find((e) => e.id === id)?.title}</Link>
               </li>

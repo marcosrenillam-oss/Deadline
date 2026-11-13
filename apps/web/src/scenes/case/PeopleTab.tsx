@@ -14,16 +14,16 @@ const ROLE: Record<string, string> = { victim: 'Víctima', suspect: 'Sospechoso'
 /** 3 · PERSONAS: víctima, sospechosos y testigos con su ficha. */
 export function PeopleTab() {
   const { characterId } = useParams();
-  const { c, k, inv, closed, base } = useCase();
+  const { c, k, inv, closed, revealed, base } = useCase();
   const [viewing, setViewing] = useState(false);
-  const people = closed ? c.characters : visibleCharacters(c, k);
+  const people = revealed ? c.characters : visibleCharacters(c, k);
   const current = people.find((p) => p.id === characterId) ?? people.find((p) => p.role === 'suspect') ?? people[0];
   if (!current) return null;
   const canInterrogate = !closed && availableInterrogations(c, k, inv?.role).some((it) => it.characterId === current.id);
   const heard = (inv?.heardLines ?? []).map((id) => ({ id, ...lines(c).get(id) })).filter((l) => l.characterId === current.id);
-  const secrets = c.secrets.filter((x) => x.characterId === current.id && (k.secrets.has(x.id) || closed));
-  const rels = c.relationships.filter((r) => (r.a === current.id || r.b === current.id) && (closed || (evaluateCondition(r.visibleWhen, k) && people.some((p) => p.id === (r.a === current.id ? r.b : r.a)))));
-  const truth = closed ? c.solution.alibiTruths.find((t) => t.characterId === current.id) : undefined;
+  const secrets = c.secrets.filter((x) => x.characterId === current.id && (k.secrets.has(x.id) || revealed));
+  const rels = c.relationships.filter((r) => (r.a === current.id || r.b === current.id) && (revealed || (evaluateCondition(r.visibleWhen, k) && people.some((p) => p.id === (r.a === current.id ? r.b : r.a)))));
+  const truth = revealed ? c.solution.alibiTruths.find((t) => t.characterId === current.id) : undefined;
 
   return (
     <div className={s.people}>
@@ -73,7 +73,7 @@ export function PeopleTab() {
               <dd>{current.alibi.claim}</dd>
             </div>
           )}
-          {current.motive && (closed || evaluateCondition(current.motive.visibleWhen, k)) && (
+          {current.motive && (revealed || evaluateCondition(current.motive.visibleWhen, k)) && (
             <div>
               <dt>Posible motivo</dt>
               <dd>{current.motive.text}</dd>
