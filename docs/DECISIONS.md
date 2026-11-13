@@ -458,3 +458,13 @@ pendiente.
 El fondo de biblioteca, calendario, archivo y expediente es el render del
 despacho, desenfocado y en penumbra, y la madera y el cuero son texturas
 reales (Poly Haven, CC0) en lugar de degradados.
+
+### D-077 · Un caso fallido no revela la verdad
+Por petición del usuario: si la acusación falla o se agota el tiempo, el
+expediente se cierra sin enseñar la solución. El informe muestra la
+acusación hecha, la puntuación y el tiempo, pero no «La verdad», qué
+ocurrió, la reconstrucción, la cronología verdadera, las evidencias
+decisivas, los secretos ni las pistas no encontradas; tampoco se abren en
+modo archivo las piezas, personas e interrogatorios que no se llegaron a
+ver. Solo un caso resuelto (total o parcialmente) abre el archivo completo.
+Así un fallo se puede reabrir (D-035) y volver a investigar sin spoilers.

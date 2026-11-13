@@ -11,11 +11,11 @@ import s from './case.module.css';
 /** Una evidencia abierta sobre la mesa: leer, examinar con lupa, marcar y asociar. */
 export function EvidenceViewer() {
   const { evidenceId = '' } = useParams();
-  const { c, k, inv, closed, run, patch, notify, base } = useCase();
+  const { c, k, inv, closed, revealed, run, patch, notify, base } = useCase();
   const [lupa, setLupa] = useState(false);
   const [assoc, setAssoc] = useState(false);
   const e = c.evidence.find((x) => x.id === evidenceId);
-  const visible = !!e && (closed || k.evidence.has(e.id));
+  const visible = !!e && (revealed || k.evidence.has(e.id));
 
   useEffect(() => {
     if (e && visible && !closed) run((cf, i, now) => examine(cf, i, e.id, now));
@@ -65,7 +65,7 @@ export function EvidenceViewer() {
     });
 
   const foundDetails = e.details.filter((d) => k.details.has(d.id));
-  const missed = closed ? e.details.filter((d) => !k.details.has(d.id)) : [];
+  const missed = revealed ? e.details.filter((d) => !k.details.has(d.id)) : [];
 
   return (
     <div className={s.viewer}>
@@ -105,7 +105,7 @@ export function EvidenceViewer() {
           {e.source ? ` · ${e.source}` : ''}
         </p>
         <h1 className={s.title}>{e.title}</h1>
-        {closed && !k.evidence.has(e.id) && <p className={s.missedNote}>No llegaste a encontrar esta pieza.</p>}
+        {revealed && !k.evidence.has(e.id) && <p className={s.missedNote}>No llegaste a encontrar esta pieza.</p>}
         {lupa && <p className={s.lupaHelp}>Toca cualquier frase o zona de la imagen para examinarla de cerca.</p>}
         {assoc && (
           <div className={s.assoc}>
@@ -124,7 +124,7 @@ export function EvidenceViewer() {
             </div>
           </div>
         )}
-        <DocumentView c={c} evidence={e} k={k} lupa={lupa} archive={closed} onDetail={onDetail} onMiss={onMiss} onImagePoint={onPoint} />
+        <DocumentView c={c} evidence={e} k={k} lupa={lupa} archive={revealed} onDetail={onDetail} onMiss={onMiss} onImagePoint={onPoint} />
         {lupa && loose.length > 0 && (
           <button className={s.primary} onClick={() => loose.forEach((d) => onDetail(d.id))}>
             Examinar a fondo

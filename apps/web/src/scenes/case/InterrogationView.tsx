@@ -13,8 +13,8 @@ const KIND_LABEL = { ask: '', press: 'Insistir', confront: 'Confrontar', present
 /** Interrogatorio: temas, preguntas que dependen de lo que sabes y transcripción. */
 export function InterrogationView() {
   const { characterId = '' } = useParams();
-  const { c, k, inv, closed, run, base } = useCase();
-  const it = availableInterrogations(c, k, inv?.role).find((x) => x.characterId === characterId) ?? (closed ? c.interrogations.find((x) => x.characterId === characterId) : undefined);
+  const { c, k, inv, closed, revealed, run, base } = useCase();
+  const it = availableInterrogations(c, k, inv?.role).find((x) => x.characterId === characterId) ?? (revealed ? c.interrogations.find((x) => x.characterId === characterId) : undefined);
   const [topicId, setTopicId] = useState<string | null>(null);
   const [fresh, setFresh] = useState<number>(-1);
   const logRef = useRef<HTMLDivElement>(null);

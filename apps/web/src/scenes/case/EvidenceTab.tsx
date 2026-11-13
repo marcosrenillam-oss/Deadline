@@ -11,14 +11,14 @@ import s from './case.module.css';
  * las encontradas de las que se pasaron por alto.
  */
 export function EvidenceTab() {
-  const { c, k, inv, closed, run, notify, base } = useCase();
+  const { c, k, inv, closed, revealed, run, notify, base } = useCase();
   const [filter, setFilter] = useState<'all' | 'starred' | 'dismissed'>('all');
   const [relating, setRelating] = useState(false);
   const [picked, setPicked] = useState<string[]>([]);
   const [result, setResult] = useState<{ ok: boolean; title: string; text: string } | null>(null);
   const marks = inv?.evidenceMarks ?? {};
 
-  const list = c.evidence.filter((e) => (closed || k.evidence.has(e.id)) && (filter === 'all' || marks[e.id] === filter));
+  const list = c.evidence.filter((e) => (revealed || k.evidence.has(e.id)) && (filter === 'all' || marks[e.id] === filter));
   const details = c.evidence.flatMap((e) => e.details.filter((d) => k.details.has(d.id)).map((d) => ({ ...d, evidence: e.title })));
 
   const toggle = (id: string) => {
@@ -99,7 +99,7 @@ export function EvidenceTab() {
               <span className={s.cardSummary}>{e.summary}</span>
               {found && !k.examined.has(e.id) && !closed && <span className={s.cardNew}>Sin leer</span>}
               {marks[e.id] === 'starred' && <span className={s.cardStar} aria-label="Destacada">★</span>}
-              {closed && !found && <span className={s.cardMissed}>No encontrada</span>}
+              {revealed && !found && <span className={s.cardMissed}>No encontrada</span>}
             </>
           );
           return (
@@ -108,7 +108,7 @@ export function EvidenceTab() {
               className={s.card}
               data-kind={e.kind}
               data-new={(found && !k.examined.has(e.id) && !closed) || undefined}
-              data-missed={(closed && !found) || undefined}
+              data-missed={(revealed && !found) || undefined}
               data-dismissed={marks[e.id] === 'dismissed' || undefined}
             >
               {relating ? (
