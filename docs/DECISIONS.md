@@ -473,7 +473,10 @@ Viena 1888, copia a la albúmina sobre cartón de estudio; Nueva Atenas
 2096, registro digital; Roma 64 d. C. y Sevilla 1588 no tienen fotografía,
 así que los retratos son pintura (encáustica de estilo El Fayum y óleo del
 Siglo de Oro). Los objetos romanos se muestran como «Reconstrucción del
-archivo: no es una imagen de época», dicho en el pie.
+archivo: no es una imagen de época», dicho en el pie. Por petición del
+usuario, todos los retratos se entregan en blanco y negro, como copias
+antiguas del archivo: lo importante es que se vea a una persona, no el
+hiperrealismo.
 
 Se probó antes un retrato 3D con MakeHuman (CC0) en Blender: se descartó
 porque parecían maniquíes, y el usuario pidió personas que parezcan reales.

@@ -68,6 +68,13 @@ def font(size, bold=False):
     return ImageFont.load_default()
 
 
+def bw(im, rng):
+    """Blanco y negro de archivo (petición del usuario: todos los retratos, como fotos antiguas)."""
+    L = lum(f32(im.convert('RGB')))
+    L = np.clip(0.5 + (L - 0.5) * 1.05, 0, 1)
+    return np.repeat(L[..., None], 3, axis=2)
+
+
 # ─── Estilos ─────────────────────────────────────────────────────────────────
 # La imagen generada ya trae la época (película, albúmina, encáustica, óleo):
 # aquí solo se unifica el soporte físico del archivo, con mano ligera.
@@ -113,7 +120,7 @@ def press(im, rng, meta):
 
 
 def scan(im, rng, meta):
-    a = f32(im.convert('RGB'))
+    a = bw(im, rng)
     rows = (np.arange(a.shape[0]) % 3 == 0).astype(np.float32)[:, None, None] * 0.025
     a = a * (1 - rows)
     out = img(a)
@@ -129,7 +136,7 @@ def scan(im, rng, meta):
 
 
 def painted(im, rng, meta, warm=(1.03, 0.99, 0.9), vig=0.3):
-    a = f32(im.convert('RGB')) * np.array(warm)
+    a = bw(im, rng) * np.array(warm)
     h, w = a.shape[:2]
     a *= vignette(h, w, vig, power=2.0)[..., None]
     a += grain((h, w), rng, 1.6, 0.012)[..., None]
