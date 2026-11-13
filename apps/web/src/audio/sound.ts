@@ -13,6 +13,7 @@ export type Sfx = 'paper' | 'page' | 'tear' | 'key' | 'ding' | 'switch' | 'phone
 export type Ambience = 'rain' | 'night-city' | 'quiet';
 
 interface Config {
+  musicVolume: number;
   sfxVolume: number;
   ambienceVolume: number;
   ambience: Ambience;
@@ -26,7 +27,12 @@ class SoundEngine {
   private noise: AudioBuffer | null = null;
   private ambNodes: AudioNode[] = [];
   private ambTimer: ReturnType<typeof setTimeout> | null = null;
-  private config: Config = { sfxVolume: 0.8, ambienceVolume: 0.5, ambience: 'rain' };
+  private config: Config = { musicVolume: 0.55, sfxVolume: 0.8, ambienceVolume: 0.5, ambience: 'rain' };
+  private musicBus: GainNode | null = null;
+  private musicEcho: DelayNode | null = null;
+  private musicTimer: ReturnType<typeof setInterval> | null = null;
+  private musicNext = 0;
+  private musicStep = 0;
   private playingAmbience: Ambience | null = null;
 
   get unlocked(): boolean {
@@ -45,6 +51,17 @@ class SoundEngine {
       this.sfxBus.connect(this.master);
       this.ambBus = this.ctx.createGain();
       this.ambBus.connect(this.master);
+      // Música: bus propio con un eco discreto (sala de club pequeña).
+      this.musicBus = this.ctx.createGain();
+      this.musicBus.connect(this.master);
+      this.musicEcho = this.ctx.createDelay(1);
+      this.musicEcho.delayTime.value = 0.42;
+      const fb = this.ctx.createGain();
+      fb.gain.value = 0.28;
+      const echoOut = this.ctx.createGain();
+      echoOut.gain.value = 0.35;
+      this.musicEcho.connect(fb).connect(this.musicEcho);
+      this.musicEcho.connect(echoOut).connect(this.musicBus);
       this.noise = this.makeNoise(4);
       this.applyVolumes();
       document.addEventListener('visibilitychange', () => {
@@ -55,12 +72,130 @@ class SoundEngine {
     }
     if (this.ctx.state !== 'running') void this.ctx.resume();
     this.syncAmbience();
+    this.syncMusic();
   }
 
   configure(next: Partial<Config>): void {
     this.config = { ...this.config, ...next };
     this.applyVolumes();
     this.syncAmbience();
+    this.syncMusic();
+  }
+
+  // ─── Música de investigación (generativa) ─────────────────────────────────
+  // Jazz nocturno en La menor: colchón de acordes, contrabajo pulsado,
+  // escobillas y notas sueltas de vibráfono. Se compone en tiempo real con
+  // pequeñas variaciones aleatorias: nunca suena igual, no hay archivos.
+
+  private syncMusic(): void {
+    const on = !!this.ctx && this.config.musicVolume > 0;
+    if (on && !this.musicTimer && this.ctx) {
+      this.musicNext = this.ctx.currentTime + 0.3;
+      this.musicTimer = setInterval(() => this.scheduleMusic(), 200);
+    } else if (!on && this.musicTimer) {
+      clearInterval(this.musicTimer);
+      this.musicTimer = null;
+    }
+  }
+
+  private scheduleMusic(): void {
+    const ctx = this.ctx;
+    if (!ctx || ctx.state !== 'running' || !this.musicBus) return;
+    const beat = 60 / 62;
+    // Am9 · Fmaj7 · Dm9 · E7(b9): dos compases por acorde.
+    const chords = [
+      { root: 110, voices: [220, 261.63, 329.63, 493.88] },
+      { root: 87.31, voices: [174.61, 220, 261.63, 329.63] },
+      { root: 73.42, voices: [174.61, 220, 261.63, 329.63] },
+      { root: 82.41, voices: [207.65, 246.94, 293.66, 349.23] },
+    ];
+    const scale = [440, 523.25, 587.33, 659.25, 783.99, 880];
+    while (this.musicNext < ctx.currentTime + 1.2) {
+      const t = this.musicNext;
+      const step = this.musicStep;
+      const beatInBar = step % 4;
+      const chord = chords[Math.floor(step / 8) % chords.length]!;
+      if (step % 8 === 0) for (const f of chord.voices) this.pad(t, f, beat * 8);
+      if (beatInBar === 0 || beatInBar === 2) this.bass(t, beatInBar === 0 ? chord.root : chord.root * 1.5);
+      else if (Math.random() < 0.3) this.bass(t, chord.root * (Math.random() < 0.5 ? 1.335 : 1.189));
+      if (beatInBar === 1 || beatInBar === 3) this.brush(t, 0.05);
+      else this.brush(t, 0.022);
+      if (Math.random() < 0.22) this.vibes(t + (Math.random() < 0.5 ? 0 : beat / 2), scale[Math.floor(Math.random() * scale.length)]!);
+      this.musicNext += beat;
+      this.musicStep++;
+    }
+  }
+
+  private pad(at: number, freq: number, dur: number): void {
+    const ctx = this.ctx!;
+    const o = ctx.createOscillator();
+    o.type = 'triangle';
+    o.frequency.value = freq;
+    o.detune.value = (Math.random() - 0.5) * 8;
+    const f = ctx.createBiquadFilter();
+    f.type = 'lowpass';
+    f.frequency.value = 900;
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(0.022, at + 1.6);
+    g.gain.setValueAtTime(0.022, at + dur - 1.2);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + dur + 0.8);
+    o.connect(f).connect(g).connect(this.musicBus!);
+    o.start(at);
+    o.stop(at + dur + 1);
+  }
+
+  private bass(at: number, freq: number): void {
+    const ctx = this.ctx!;
+    const o = ctx.createOscillator();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(freq * 1.02, at);
+    o.frequency.exponentialRampToValueAtTime(freq, at + 0.05);
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(0.16, at + 0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + 0.75);
+    o.connect(g).connect(this.musicBus!);
+    o.start(at);
+    o.stop(at + 0.8);
+  }
+
+  private brush(at: number, gain: number): void {
+    const ctx = this.ctx!;
+    const src = ctx.createBufferSource();
+    src.buffer = this.noise;
+    const f = ctx.createBiquadFilter();
+    f.type = 'bandpass';
+    f.frequency.value = 5200;
+    f.Q.value = 0.6;
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(gain, at + 0.05);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + 0.22);
+    src.connect(f).connect(g).connect(this.musicBus!);
+    src.start(at, Math.random() * 3);
+    src.stop(at + 0.25);
+  }
+
+  private vibes(at: number, freq: number): void {
+    const ctx = this.ctx!;
+    for (const [mult, amp] of [
+      [1, 0.05],
+      [4, 0.008],
+    ] as const) {
+      const o = ctx.createOscillator();
+      o.type = 'sine';
+      o.frequency.value = freq * mult;
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, at);
+      g.gain.exponentialRampToValueAtTime(amp, at + 0.008);
+      g.gain.exponentialRampToValueAtTime(0.0001, at + 1.6);
+      o.connect(g);
+      g.connect(this.musicBus!);
+      g.connect(this.musicEcho!);
+      o.start(at);
+      o.stop(at + 1.7);
+    }
   }
 
   play(kind: Sfx): void {
@@ -113,6 +248,7 @@ class SoundEngine {
     // Curva perceptual: el oído percibe el volumen de forma logarítmica.
     this.sfxBus.gain.setTargetAtTime(this.config.sfxVolume ** 2, t, 0.05);
     this.ambBus.gain.setTargetAtTime(this.config.ambienceVolume ** 2 * 0.6, t, 0.4);
+    this.musicBus?.gain.setTargetAtTime(this.config.musicVolume ** 2, t, 0.5);
   }
 
   private makeNoise(seconds: number): AudioBuffer {

@@ -45,7 +45,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     applySettingsToDocument(settings);
-    sound.configure({ sfxVolume: settings.sfxVolume, ambienceVolume: settings.ambienceVolume, ambience: settings.officeAmbience });
+    sound.configure({ musicVolume: settings.musicVolume, sfxVolume: settings.sfxVolume, ambienceVolume: settings.ambienceVolume, ambience: settings.officeAmbience });
     setHapticsEnabled(settings.haptics);
   }, [settings]);
 

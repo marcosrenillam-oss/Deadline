@@ -1472,3 +1472,155 @@
   color: #e9b04a;
   border-left-color: #e9b04a;
 }
+
+/* ─── Evidencias como objetos físicos, según su tipo ─────────────────────── */
+.card[data-new] .cardInner {
+  animation: m-glow 2.4s ease-in-out infinite;
+}
+/* Documentos mecanografiados con clip */
+.card:is([data-kind='report'], [data-kind='record'], [data-kind='document'], [data-kind='transcript'], [data-kind='statement']) .cardInner {
+  background-color: #ece4d0;
+  background-image: repeating-linear-gradient(180deg, transparent 0 17px, rgba(70, 90, 140, 0.1) 17px 18px), var(--fibers), var(--grain);
+}
+.card:is([data-kind='report'], [data-kind='record'], [data-kind='document'], [data-kind='transcript'], [data-kind='statement'])::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: -7px;
+  left: 18px;
+  width: 12px;
+  height: 30px;
+  border: 2px solid #9a9890;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+/* Fotografías: polaroid con imagen virada */
+.card:is([data-kind='photo']) .cardInner {
+  padding: 8px 8px 10px;
+  background: #f1ece1;
+}
+.card:is([data-kind='photo']) .cardKind::before {
+  content: '';
+  display: block;
+  height: 56px;
+  margin: -0px 0 6px;
+  background:
+    radial-gradient(ellipse at 50% 40%, transparent 30%, rgba(0, 0, 0, 0.5) 100%),
+    linear-gradient(180deg, #8c8778, #3c3a33 70%, #24221d),
+    var(--grain);
+  filter: sepia(0.35);
+}
+.card[data-kind='photo'] .cardTitle {
+  font-family: var(--font-hand);
+  font-weight: 400;
+  font-size: 22px;
+  color: #3d4a6b;
+}
+/* Cartas: papel de carta con letra a mano */
+.card[data-kind='letter'] .cardInner {
+  background-color: #efe3c6;
+  background-image: linear-gradient(170deg, rgba(255, 245, 220, 0.4), transparent 40%), var(--fibers), var(--grain);
+}
+.card[data-kind='letter'] .cardSummary {
+  font-family: var(--font-hand);
+  font-size: 17px;
+  color: #3d4a6b;
+}
+/* Recortes de prensa */
+.card[data-kind='press'] .cardInner {
+  background-color: #d9d4c4;
+  background-image: repeating-linear-gradient(90deg, transparent 0 calc(50% - 1px), rgba(0, 0, 0, 0.12) calc(50% - 1px) 50%), var(--grain);
+  clip-path: polygon(0 3%, 6% 0, 15% 2%, 30% 0, 48% 2%, 66% 0, 82% 3%, 100% 0, 99% 50%, 100% 97%, 85% 100%, 70% 98%, 50% 100%, 32% 97%, 14% 100%, 0 98%, 2% 50%);
+}
+.card[data-kind='press'] .cardTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+/* Objetos: bolsa de pruebas con precinto */
+.card:is([data-kind='object'], [data-kind='physical']) .cardInner {
+  background:
+    linear-gradient(180deg, #8f2a26 0 10px, transparent 10px),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.05) 45%, rgba(255, 255, 255, 0.25)),
+    #c9c3b5;
+  padding-top: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.card:is([data-kind='object'], [data-kind='physical']) .cardKind {
+  color: #5a1d1b;
+}
+/* Mapas y planos */
+.card[data-kind='map'] .cardInner {
+  background-color: #dfe6e4;
+  background-image: linear-gradient(rgba(60, 90, 120, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(60, 90, 120, 0.15) 1px, transparent 1px), var(--grain);
+  background-size: 14px 14px, 14px 14px, auto;
+}
+/* Impresiones digitales */
+.card[data-kind='digital'] .cardInner {
+  background-color: #eef0ea;
+  background-image: repeating-linear-gradient(180deg, rgba(120, 160, 120, 0.12) 0 12px, transparent 12px 24px);
+}
+
+/* ─── Cronología: fichas de papel sujetas a un hilo rojo ─────────────────── */
+.track::before {
+  width: 3px;
+  background: linear-gradient(180deg, #9d1f1c, #7a1714);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+}
+.trackItem {
+  background-color: #efe8d6;
+  background-image: var(--grain);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 8px 14px rgba(0, 0, 0, 0.18);
+  transform: rotate(-0.4deg);
+  animation: m-rise 380ms var(--ease-out) both;
+}
+.trackItem:nth-child(even) {
+  transform: rotate(0.5deg);
+}
+.trackItem::before {
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  background: radial-gradient(circle at 35% 30%, #f3dfa6, #b08d4f 55%, #6e521f);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.45);
+}
+
+/* ─── Acusación: el sello cae y la mesa se oscurece ──────────────────────── */
+.accusation[data-sealing]::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background: rgba(5, 4, 3, 0.55);
+  animation: fade-in-dark 900ms ease both;
+  pointer-events: none;
+}
+@keyframes fade-in-dark {
+  from {
+    background: rgba(5, 4, 3, 0);
+  }
+}
+.accusation[data-sealing] .bigStamp {
+  position: fixed;
+  z-index: 6;
+  top: 50%;
+  font-size: clamp(28px, 5vw, 46px);
+  background: rgba(239, 230, 210, 0.92);
+  mix-blend-mode: normal;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  animation: stamp-slam 700ms cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+@keyframes stamp-slam {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-12deg) scale(2.6);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-12deg) scale(0.94);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-12deg) scale(1);
+  }
+}

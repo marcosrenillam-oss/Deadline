@@ -423,3 +423,17 @@ Falso positivo encontrado al revisar capturas: la interfaz refresca su
 «ahora» cada segundo y las acciones guardan la hora exacta, así que en
 partidas normales aparecía el aviso. El cálculo sigue usando el mayor
 instante visto; solo el aviso tiene margen.
+
+### D-067 · Música generativa
+El ajuste de volumen de música existía sin música. Ahora suena un jazz
+nocturno compuesto en tiempo real con Web Audio (acordes, contrabajo,
+escobillas y vibráfono con eco), sin archivos ni licencias, con su propio
+volumen (a cero, silencio) e independiente de efectos y ambiente. Solo
+empieza tras el primer toque (exigencia de iOS) y se suspende en segundo
+plano.
+
+### D-068 · Evidencias con aspecto según su tipo
+Informes y declaraciones con clip y pauta, fotografías como polaroid,
+cartas a mano, recortes de prensa rasgados, objetos en bolsa de pruebas
+precintada, planos en papel cuadriculado. Las nuevas sin leer laten
+suavemente.

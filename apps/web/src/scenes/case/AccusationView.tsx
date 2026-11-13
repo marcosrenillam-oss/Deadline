@@ -118,7 +118,7 @@ export function AccusationView() {
       return;
     }
     await accuse({ culprits, motive, method, proof });
-    setTimeout(() => void navigate(`${base}/informe`), 700);
+    setTimeout(() => void navigate(`${base}/informe`), 1100);
   };
 
   return (

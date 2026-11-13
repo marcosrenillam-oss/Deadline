@@ -103,7 +103,14 @@ export function EvidenceTab() {
             </>
           );
           return (
-            <li key={e.id} className={s.card} data-missed={(closed && !found) || undefined} data-dismissed={marks[e.id] === 'dismissed' || undefined}>
+            <li
+              key={e.id}
+              className={s.card}
+              data-kind={e.kind}
+              data-new={(found && !k.examined.has(e.id) && !closed) || undefined}
+              data-missed={(closed && !found) || undefined}
+              data-dismissed={marks[e.id] === 'dismissed' || undefined}
+            >
               {relating ? (
                 <button className={s.cardInner} aria-pressed={picked.includes(e.id)} onClick={() => toggle(e.id)}>
                   {content}

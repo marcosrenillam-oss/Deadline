@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-Última actualización: Etapa 8 (cierre del plan de 8 etapas).
+Última actualización: rediseño visual (Visual Masterplan), fases 1 a 3.
 
 ## Etapas
 
@@ -183,9 +183,35 @@
 - Guías: pruebas en iPhone (`IPHONE_TESTING.md`) y producción de
   contenido (`CONTENT_PIPELINE.md`).
 
+### Rediseño visual (Visual Masterplan)
+- **Archivo completo en el dispositivo**: todos los expedientes se guardan
+  solos (también los de cada actualización); sin botones de descarga.
+- **Despacho 3D** (WebGL, todo procedural): carpeta, calendario,
+  archivador, teléfono, máquina de escribir, libreta, lámpara con cadenita,
+  corcho en la pared y placa; animación propia por objeto; pulsación larga
+  para ver el nombre; luz de lámpara con sombras, polvo en el haz,
+  parallax con el dedo o el giroscopio; alternativa 2D.
+- **Biblioteca**: estantería de carpetas, separadores por estado, ficha de
+  índice con filtros (época, lugar, crimen, dificultad, tipo), ficha previa
+  que sale de la estantería y rompe el precinto.
+- **Calendario**: taco de sobremesa con hoja que pasa, hoja del mes, tira
+  de los 500 días.
+- **Archivo personal** (nuevo): archivador con cajones de resueltos,
+  cerrados, fallidos y reabribles, con su coste de reapertura.
+- **Expediente**: carpeta abierta con separadores de cartulina,
+  herramientas como objetos, sello de lacre para acusar, reloj de bolsillo
+  con tensión progresiva, último minuto con latido rojo, cierre por tiempo
+  con sello, descubrimientos cinematográficos, evidencias con aspecto según
+  su tipo, cronología de fichas con hilo y chinchetas, sello de acusación.
+- **Música** generativa de jazz nocturno con volumen propio, además de
+  efectos y ambiente.
+- Pendiente del rediseño: perfil con insignias, sala cooperativa, ajustes
+  con aspecto de lámpara, visor de evidencias con giro y zoom de foto, y
+  animación de deducción en el corcho.
+
 ## Pruebas
 
-- `@deadline/core`: 79 pruebas (validador, condiciones, motor, acusación y
+- `@deadline/core`: 80 pruebas (validador, condiciones, motor, acusación y
   puntuación, cronómetro, diarios, rangos, estadísticas, logros, piezas de
   oficina, amigos, ajustes, perfil, copias de seguridad, cooperativo,
   códigos DL1 y partidas completas de DL-D-0002 y DL-C-0002).

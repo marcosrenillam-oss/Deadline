@@ -53,6 +53,19 @@ export function SoundPanel() {
   const { settings, update } = useSettings();
   return (
     <>
+      <Slider
+        label="Música"
+        hint="Jazz nocturno compuesto en el propio iPhone: nunca suena igual. A cero, silencio."
+        value={settings.musicVolume}
+        min={0}
+        max={1}
+        step={0.05}
+        format={pct}
+        onChange={(v) => {
+          sound.unlock();
+          update({ musicVolume: v });
+        }}
+      />
       <Slider label="Efectos" hint="Papel, máquina de escribir, teléfono, sellos." value={settings.sfxVolume} min={0} max={1} step={0.05} format={pct} onChange={(v) => update({ sfxVolume: v })} />
       <Field label="Probar efectos">
         <ActionButton
