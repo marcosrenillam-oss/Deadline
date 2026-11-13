@@ -54,7 +54,13 @@
 }
 
 .sheet[data-side='center'] .inner {
+  /* Altura según el contenido (Safari colapsaba el cuerpo a 0 con height:100%
+     dentro de un diálogo de altura fit-content). */
+  height: auto;
   padding: var(--sp-3) var(--sp-4);
+}
+.sheet[data-side='center'] .body {
+  flex: 0 1 auto;
 }
 
 .head {
