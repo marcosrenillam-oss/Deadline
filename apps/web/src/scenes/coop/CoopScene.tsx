@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import type { CaseFile, InvitePacket } from '@deadline/core';
 import { fetchCatalog, loadCase, type CatalogEntry } from '../../cases/contentRepo.ts';
 import { acceptInvite, completeHandshake, createInvite, createSameDevice, listSessions, readInvite } from '../../cases/coopRepo.ts';
+import { getInvestigation } from '../../cases/investigationRepo.ts';
 import type { CoopSession } from '../../cases/coopTypes.ts';
 import { BackToDesk } from '../../ui/BackToDesk.tsx';
 import { sound } from '../../audio/sound.ts';
@@ -34,7 +35,22 @@ export function CoopScene() {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
-  const reload = () => void listSessions().then(setSessions);
+  /** Partidas abiertas cuyo reloj ya se agotó (se cierran del todo al abrirlas). */
+  const [expired, setExpired] = useState<Set<string>>(new Set());
+  const reload = () =>
+    void listSessions().then(async (list) => {
+      setSessions(list);
+      const now = Date.now();
+      const out = new Set<string>();
+      for (const x of list) {
+        if (x.status !== 'active') continue;
+        const id = x.investigationIds.shared ?? x.investigationIds[x.myRole ?? 'A'] ?? x.investigationIds.A;
+        const inv = id ? await getInvestigation(id) : undefined;
+        if (inv && inv.status === 'active' && inv.deadlineAt <= now) out.add(x.id);
+        else if (inv && inv.status === 'expired') out.add(x.id);
+      }
+      setExpired(out);
+    });
   useEffect(() => {
     reload();
     fetchCatalog().then((cat) => setCatalog(cat.filter((e) => e.mode === 'coop')), () => undefined);
@@ -111,7 +127,8 @@ export function CoopScene() {
                       <Link to={`/pareja/${x.id}`} className={s.session}>
                         <span className={s.sessionTitle}>{titleOf(x.caseId)}</span>
                         <span className={s.small}>
-                          {x.mode === 'same-device' ? 'Mesa compartida' : `Correspondencia con ${x.partner?.a ?? x.partner?.n ?? '—'} · eres ${x.myRole}`} · {STATUS[x.status]}
+                          {x.mode === 'same-device' ? 'Mesa compartida' : `Correspondencia con ${x.partner?.a ?? x.partner?.n ?? '—'} · eres ${x.myRole}`} ·{' '}
+                          {expired.has(x.id) ? 'Tiempo agotado: cooperativa incompleta' : STATUS[x.status]}
                         </span>
                       </Link>
                     )}

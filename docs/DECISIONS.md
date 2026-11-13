@@ -298,8 +298,9 @@ que son datos declarados. Viaja en las copias de seguridad.
 
 ### D-052 · Avisos de progresión en una sola capa
 Logros, ascensos y piezas nuevas se anuncian con una tira mecanografiada
-en la parte superior, sea cual sea la pantalla, de una en una y tocable
-para cerrar. Al arrancar se reevalúan los logros globales (útil tras
+en la parte superior, sea cual sea la pantalla, de una en una; se retiran
+solas a los 5 s y no interceptan toques (nunca tapan un botón del juego;
+todo queda consultable en la máquina de escribir). Al arrancar se reevalúan los logros globales (útil tras
 importar una copia); los de cierre (detalles, contradicciones, preguntas)
 solo al cerrar, porque necesitan el expediente.
 
@@ -307,3 +308,37 @@ solo al cerrar, porque necesitan el expediente.
 La mesa va en el paquete inicial; el resto de pantallas se descargan al
 abrirlas y el service worker las precachea. El JS inicial pasa de 199 KB a
 ~166 KB comprimidos.
+
+---
+
+## Etapa 8 · Contenido, optimización y publicación
+
+### D-054 · Contenido: calidad por encima de cantidad
+El objetivo final (2000 individuales, 500 diarios, 500 cooperativos) no se
+genera de golpe, como pedía el encargo. En esta etapa se añaden dos
+expedientes completos y probados (diario nº 2 y el primer cooperativo de
+expediente compartido) y se deja documentado el proceso para producir el
+resto por tandas (`docs/CONTENT_PIPELINE.md`). Cada expediente nuevo debe
+pasar el validador y tener una prueba de partida completa.
+
+### D-055 · Siluetas fijadas por el autor
+Mientras no haya retratos ilustrados, cada personaje lleva un campo
+opcional `look` (pelo, gafas, barba) que fija su silueta. Antes salía de un
+hash del id y podía dar siluetas incoherentes con el personaje.
+
+### D-056 · Expediente compartido en un solo iPhone: entrega en mano
+En la mesa compartida sin papeles, quien propone la acusación no puede
+firmarla: la pantalla pide pasar el iPhone y que el compañero la revise y
+la firme o la rechace. No se puede verificar quién toca la pantalla (igual
+que en el pase de turno); el paso existe para que la firma sea un acto del
+otro jugador.
+
+### D-057 · Pantallas de arranque en JPEG y fuera del precache
+11 tamaños de iPhone en horizontal, generados con `npm run splash`. En PNG
+ocupaban 6,5 MB por los degradados; en JPEG, 460 KB. iOS las descarga al
+instalar la app, así que no se precachean.
+
+### D-058 · Publicación desde la rama de desarrollo
+El repositorio no tiene rama `main`; el flujo de Pages se dispara también
+con la rama de desarrollo. Activar Pages (Settings → Pages → Source: GitHub
+Actions) es un paso que solo puede dar el propietario del repositorio.

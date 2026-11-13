@@ -1,6 +1,6 @@
 # Estado del proyecto
 
-Última actualización: Etapa 7.
+Última actualización: Etapa 8 (cierre del plan de 8 etapas).
 
 ## Etapas
 
@@ -13,7 +13,7 @@
 | 5 · ~~Cuentas y backend~~ → Perfil local y copias | **Completada**: perfil local, alias, retrato, tarjeta de investigador, copias |
 | 6 · Cooperativo sin servidor | **Completada**: mesa compartida y correspondencia por códigos (pendiente de prueba con dos iPhone reales) |
 | 7 · Progresión y personalización | **Completada**: estadísticas, rangos completos, 28 logros, piezas desbloqueables, historial, clasificación entre amigos |
-| 8 · Contenido, optimización y pruebas | Pendiente |
+| 8 · Contenido, optimización y pruebas | **Completada** dentro de lo que se puede hacer sin iPhone físico ni acceso a la configuración del repositorio (ver «No probado todavía») |
 
 ## Implementado y probado
 
@@ -157,45 +157,65 @@
 - Primera reapertura de cada expediente gratuita.
 - Las copias de seguridad incluyen logros y amigos; IndexedDB v4.
 
+### Etapa 8 · Contenido, optimización y publicación
+- **DL-D-0002 «Una nota falsa»** (Viena, 1888; robo; diario nº 2): 4
+  sospechosos y 1 testigo, 10 evidencias, 3 deducciones, 4 contradicciones,
+  3 secretos, 4 interrogatorios, 6 finales. 0 errores, 0 avisos.
+- **DL-C-0002 «La carta de marear»** (Sevilla, 1588; chantaje; primer
+  cooperativo de expediente compartido, dificultad Inspector): 4
+  sospechosos y 1 testigo, 11 evidencias, 4 deducciones, 3
+  contradicciones, 4 secretos, 5 interrogatorios, 7 finales. 0 errores,
+  0 avisos.
+- Prueba de partida completa en el motor para los dos expedientes nuevos.
+- Mesa compartida con expediente compartido: entrega en mano antes de
+  firmar (antes quien proponía podía firmar su propia propuesta).
+- Siluetas de ficha fijadas por el autor (`look`) en los 28 personajes.
+- Carga diferida por pantallas: JS inicial de ~199 KB a ~166 KB gzip.
+- Pantallas de arranque horizontales para 11 tamaños de iPhone (460 KB,
+  fuera del precache).
+- Avisos de progresión que no interceptan toques.
+- La lista de partidas en pareja marca las que agotaron el tiempo.
+- Flujo de GitHub Pages disparado también por la rama de desarrollo.
+- Guías: pruebas en iPhone (`IPHONE_TESTING.md`) y producción de
+  contenido (`CONTENT_PIPELINE.md`).
+
 ## Pruebas
 
-- `@deadline/core`: 69 pruebas (validador, condiciones, motor, acusación y
-  puntuación, cronómetro, diarios, rangos, ajustes, perfil, cosméticos,
-  copias de seguridad).
-- `@deadline/web`: 9 pruebas (IndexedDB, ajustes, perfil, calendario,
+- `@deadline/core`: 79 pruebas (validador, condiciones, motor, acusación y
+  puntuación, cronómetro, diarios, rangos, estadísticas, logros, piezas de
+  oficina, amigos, ajustes, perfil, copias de seguridad, cooperativo,
+  códigos DL1 y partidas completas de DL-D-0002 y DL-C-0002).
+- `@deadline/web`: 9 pruebas (IndexedDB v4, ajustes, perfil, calendario,
   exportar → restaurar en otro dispositivo, fusionar/reemplazar).
-- E2E (Chromium emulando iPhone 15): 37 comprobaciones — objetos de la mesa,
-  zonas seguras simuladas, nota de bienvenida, lámpara persistente,
-  navegación por objetos, ajustes persistentes, material de la mesa,
-  exportar/importar/rechazar copia manipulada, IndexedDB v2, 404, service
-  worker, arranque offline, giro a vertical y vuelta.
-- E2E del caso (Chromium, iPhone 15 en horizontal): 25 comprobaciones —
-  resolver «Revelado en negro» de principio a fin solo con la interfaz
-  (lupa en texto e imagen, relacionar, interrogar, contradicción,
-  confrontación, cronología, tablero, acusación, final con confesión,
-  informe, modo archivo, reflejo en archivo y escritorio).
-- E2E de la Etapa 4 (reloj simulado): 20 comprobaciones — aviso del diario
-  en la mesa, calendario, origen real, aviso de 10 minutos sin jugar, tapar
-  sin pausar, cierre automático a los 60 minutos, cobro de descubrimientos,
-  reapertura pagando 150 puntos con reloj nuevo y descubrimientos
-  conservados, descarga verificada, apertura sin conexión con imágenes,
-  detección de recursos borrados por el sistema.
-- E2E del cooperativo: 30 comprobaciones — mesa compartida completa
-  (información dividida, poner sobre la mesa, pase de turno, deducciones
-  cruzadas, confesión, acusación conjunta, mérito en pareja) y
-  correspondencia entre dos contextos de navegador aislados (alias, tarjeta,
-  invitación con texto alrededor, relojes alineados, informe firmado,
-  mensaje, idempotencia, código alterado rechazado, propuesta rechazada,
-  propuesta firmada con el mismo final en los dos).
-- Build con `DEADLINE_BASE=/Deadline/`: navegación, alcance del service
-  worker, manifiesto, iconos y enlace profundo sin conexión verificados.
+- Validador de contenido: 5 expedientes, 0 errores, 0 avisos (incluye
+  simulación de alcanzabilidad y, en cooperativos divididos, que ningún
+  papel pueda resolver solo).
+- E2E en Chromium emulando iPhone 15 en horizontal (`npm run test:e2e`):
+  - **Escritorio y ajustes** (32 comprobaciones): objetos de la mesa, zonas
+    seguras, lámpara, navegación, máquina de escribir, ajustes, copias,
+    IndexedDB v4, 404, service worker, arranque offline, giro.
+  - **Caso completo** (42): resolver «Revelado en negro» solo con la
+    interfaz; logros al cerrar con anuncio; mérito sin premios de logros;
+    historial con registro de actividad; estadísticas; logros secretos
+    ocultos; compra y equipamiento de una pieza; piezas de rango no
+    vendibles; clasificación con la tarjeta de un segundo dispositivo.
+  - **Etapa 4** (22): reloj simulado, avisos, tapar sin pausar, cierre por
+    tiempo, primera reapertura gratis, segunda por 150 puntos, descarga
+    verificada, juego sin conexión.
+  - **Cooperativo** (33): mesa compartida con información dividida,
+    expediente compartido con entrega en mano, y correspondencia entre dos
+    contextos de navegador aislados.
+- Build con `DEADLINE_BASE=/Deadline/` verificada.
 
 ## No probado todavía
 
-- **iPhone físico**: Safari/WebKit real, notch real, instalación, hápticos
-  de iOS, hoja de compartir, audio con modo silencio, rendimiento de las
-  capas de luz y del `canvas` de madera.
-- Publicación real en GitHub Pages (el flujo está escrito; hay que activarlo).
+- **iPhone físico**: Safari/WebKit real, notch real, instalación,
+  pantallas de arranque, hápticos, hoja de compartir, audio con modo
+  silencio, rendimiento de las capas de luz y del `canvas` de madera. Hay
+  una lista de comprobación en `IPHONE_TESTING.md`.
+- **Publicación real en GitHub Pages**: requiere que el propietario active
+  Pages (Settings → Pages → Source: GitHub Actions). Ver `DISTRIBUTION.md`.
+- Cooperativo con dos iPhone reales (Mensajes, WhatsApp, AirDrop).
 - WebKit automatizado (no disponible en el entorno de desarrollo).
 
 ## Errores conocidos / deuda
@@ -203,31 +223,20 @@
 - Sin ESLint (incompatible con TypeScript 7 por ahora).
 - `npm audit`: avisos moderados en dependencias de compilación de
   `workbox-build`; no llegan al bundle.
-- Bundle JS ≈ 140 KB gzip; revisar `zod/mini` en la Etapa 8.
-- Cualquier acción hecha milisegundos antes de matar la app (o recargarla
-  por completo) puede no llegar a guardarse: la escritura en IndexedDB es
-  asíncrona y el navegador la aborta. Las pruebas E2E lo detectaron; en uso
-  normal (cambiar de app, bloquear) sí se guarda. Las pruebas esperan a que
-  termine la escritura antes de recargar.
-- Diario, pareja e historial siguen siendo pantallas que indican su etapa.
-- **Arte provisional:** retratos en silueta y evidencias gráficas
-  esquemáticas. Faltan retratos y fotografías con calidad final (Etapa 8;
-  necesita decidir una fuente de imágenes sin coste).
-- **Riesgo de bloqueo en la reapertura:** si un jugador cierra un caso sin
-  descubrir casi nada y no tiene otros casos que resolver, puede no llegar a
-  los puntos de la reapertura. Con 2 expedientes publicados es posible.
-  Opciones a decidir: saldo inicial, primera reapertura gratis o coste
-  menor. No lo he cambiado por mi cuenta.
-- Cooperativo: no se ha probado todavía con dos iPhone reales (compartir
-  por Mensajes/WhatsApp/AirDrop y pegar). Sin lector de QR por ahora.
-- Cooperativo: si el tiempo se agota sin acusación conjunta, cada
-  dispositivo cierra su parte como «cooperativa incompleta»; la lista de
-  partidas del teléfono no lo refleja hasta abrirla.
-- Solo hay un cooperativo escrito (de información dividida); el estilo
-  «compartido» está implementado pero sin caso propio.
-- Solo hay un diario escrito: del día 2 en adelante el calendario dice
-  honestamente «en redacción».
-- La descarga de un expediente con muchas imágenes no se ha medido aún en
-  un iPhone (los dos casos actuales pesan pocos KB).
-- Música por época: no hay piezas todavía.
-- Falta `apple-touch-startup-image` horizontal.
+- El núcleo con zod va entero en el paquete inicial (~166 KB gzip en
+  total). `zod/mini` lo reduciría, pero exige reescribir los esquemas; no
+  compensa ahora.
+- Cualquier acción hecha milisegundos antes de matar la app puede no
+  llegar a guardarse (la escritura en IndexedDB es asíncrona). En uso
+  normal (cambiar de app, bloquear) sí se guarda.
+- **Contenido**: hay 5 de los 3000 expedientes previstos (1 individual, 2
+  diarios, 2 cooperativos). Desde el día 3, el calendario dice
+  honestamente «en redacción». La producción del resto está descrita en
+  `CONTENT_PIPELINE.md`.
+- **Arte provisional**: retratos en silueta y evidencias gráficas
+  esquemáticas. Falta decidir una fuente de ilustración sin coste.
+- Música por época: no hay piezas; solo ambiente sintetizado.
+- Clasificación entre amigos: datos declarados, no verificables (sin
+  servidor no hay otra forma).
+- La descarga de un expediente con muchas imágenes no se ha medido en un
+  iPhone (los actuales pesan pocos KB).

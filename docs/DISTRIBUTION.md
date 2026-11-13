@@ -40,8 +40,10 @@ conviene revisarla antes de publicar):
 1. GitHub → repositorio → **Settings → Pages → Build and deployment →
    Source: GitHub Actions**.
 2. Pestaña **Actions → "Publicar en GitHub Pages" → Run workflow** (rama
-   `claude/deadline-detective-app-ejx239`, que es la predeterminada), o
-   integrar en `main` y hacer push.
+   `claude/deadline-detective-app-ejx239`, que es la predeterminada). A
+   partir de ahí, cada push a esa rama (o a `main`, si se crea) publica
+   solo. Antes de activar Pages, el paso de despliegue falla aunque la
+   compilación y las pruebas pasen: es lo esperado.
 3. Al terminar, la app queda en `https://marcosrenillam-oss.github.io/Deadline/`.
 
 El flujo (`.github/workflows/pages.yml`) comprueba tipos, ejecuta las

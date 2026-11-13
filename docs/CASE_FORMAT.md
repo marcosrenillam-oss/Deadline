@@ -58,7 +58,7 @@ El esquema completo y comentado está en
 | metadatos | id, versión, modo, título, origen, época, lugar, categoría, dificultad, palabras clave, ambiente |
 | `historical` | **Obligatorio si `origin: real`**: hechos documentados, hipótesis, recreación, resolución documentada, fuentes |
 | `briefing` | Expediente inicial: contexto, resumen, antecedentes, conocimiento de partida |
-| `characters` | Retrato, biografía, personalidad, motivo y coartada visibles bajo condición |
+| `characters` | Retrato, biografía, personalidad, motivo y coartada visibles bajo condición. `look` (pelo `short`/`long`/`bun`/`hat`/`bald`, `glasses`, `beard`) fija la silueta provisional de la ficha |
 | `relationships` | Relaciones entre personajes (algunas ocultas) |
 | `evidence` | Documentos en bloques tipados, imagen, **detalles ocultos** (con región en la imagen), efectos al examinar, fiabilidad real |
 | `deductions` | Relaciones que el jugador establece al **comparar** piezas |

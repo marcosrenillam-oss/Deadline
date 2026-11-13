@@ -6,9 +6,9 @@ import { useProfile } from '../profile/ProfileProvider.tsx';
 import s from './AnnouncementLayer.module.css';
 
 const KICKER: Record<Announcement['kind'], string> = { achievement: 'Logro', rank: 'Ascenso', cosmetic: 'Oficina' };
-const SHOW_MS = 6500;
+const SHOW_MS = 5000;
 
-/** Tiras de papel mecanografiadas que anuncian logros y ascensos, de una en una. */
+/** Tiras de papel mecanografiadas que anuncian logros y ascensos, de una en una (se retiran solas). */
 export function AnnouncementLayer() {
   const { reload } = useProfile();
   const [queue, setQueue] = useState<Array<Announcement & { id: number }>>([]);
@@ -35,12 +35,13 @@ export function AnnouncementLayer() {
   if (!current) return null;
   return (
     <div className={s.layer} role="status" aria-live="polite">
-      <button key={current.id} className={s.slip} data-kind={current.kind} onClick={() => setQueue((q) => q.slice(1))} aria-label={`${KICKER[current.kind]}: ${current.title}. ${current.detail}. Tocar para cerrar`}>
+      {/* No intercepta toques: nunca debe tapar un botón del juego. */}
+      <div key={current.id} className={s.slip} data-kind={current.kind}>
         <span className={s.kicker}>{KICKER[current.kind]}</span>
         <strong className={s.title}>{current.title}</strong>
         <span className={s.detail}>{current.detail}</span>
         {queue.length > 1 && <span className={s.more}>+{queue.length - 1}</span>}
-      </button>
+      </div>
     </div>
   );
 }

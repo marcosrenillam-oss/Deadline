@@ -1,13 +1,13 @@
 .layer {
   position: fixed;
-  inset: calc(env(safe-area-inset-top) + 10px) 0 auto 0;
+  inset: calc(env(safe-area-inset-top) + 6px) 0 auto 0;
   display: flex;
   justify-content: center;
   pointer-events: none;
   z-index: 60;
 }
 .slip {
-  pointer-events: auto;
+  pointer-events: none;
   position: relative;
   display: grid;
   gap: 2px;
@@ -24,7 +24,6 @@
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(255, 255, 255, 0.4) inset;
   transform-origin: top center;
   animation: feed 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  cursor: pointer;
 }
 .slip[data-kind='rank'] {
   border-left-color: #b08d4f;

@@ -18,6 +18,7 @@
     "test": "npm run test -w @deadline/core && npm run test -w @deadline/web",
     "test:e2e": "npm run test:e2e -w @deadline/web",
     "icons": "node scripts/generate-icons.mjs",
+    "splash": "node scripts/generate-splash.mjs",
     "validate:content": "npm run validate:content -w @deadline/core",
     "content": "node --experimental-strip-types scripts/build-content.ts"
   }

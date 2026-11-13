@@ -70,7 +70,7 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         // Este precache es solo el armazón de la app. Los expedientes se descargan
         // por caso y se verifican (src/cases/downloads.ts).
-        globIgnores: ['content/**'],
+        globIgnores: ['content/**', 'splash/**'],
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
         runtimeCaching: [
           {
