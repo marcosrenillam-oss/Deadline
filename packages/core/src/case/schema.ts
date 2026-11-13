@@ -90,6 +90,14 @@ export const characterSchema = z.strictObject({
   ageLabel: z.string().optional(),
   occupation: text,
   portrait: id.optional(),
+  /** Silueta provisional de la ficha (mientras no haya retrato ilustrado). */
+  look: z
+    .strictObject({
+      hair: z.enum(['short', 'long', 'bun', 'hat', 'bald']),
+      glasses: z.boolean().default(false),
+      beard: z.boolean().default(false),
+    })
+    .optional(),
   /** Frase de ficha. */
   summary: text,
   biography: text,

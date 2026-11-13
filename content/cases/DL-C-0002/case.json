@@ -1,0 +1,2054 @@
+{
+  "schemaVersion": 1,
+  "id": "DL-C-0002",
+  "contentVersion": 1,
+  "mode": "coop",
+  "title": "La carta de marear",
+  "subtitle": "Alguien sabe lo que vende el cosmógrafo, y quiere cobrarlo",
+  "origin": "fiction",
+  "era": "early-modern",
+  "eraLabel": "Sevilla, 1588",
+  "year": 1588,
+  "location": {
+    "city": "Sevilla",
+    "place": "Casa de la Contratación, en el Alcázar",
+    "country": "Corona de Castilla"
+  },
+  "category": "blackmail",
+  "difficulty": "inspector",
+  "keywords": [
+    "Sevilla",
+    "Casa de la Contratación",
+    "Padrón Real",
+    "cosmógrafo",
+    "chantaje",
+    "flamenco",
+    "Indias",
+    "filigrana"
+  ],
+  "ambience": {
+    "music": "seville-1588",
+    "mood": "tense"
+  },
+  "maxHints": 5,
+  "coop": {
+    "style": "shared",
+    "roles": [
+      {
+        "id": "A",
+        "title": "Alguacil de la Audiencia",
+        "briefing": "Tienes la vara y la calle: puedes entrar en casas y obradores y apretar a quien haga falta. Los dos veis el expediente entero; repartíos los interrogatorios y contaos lo que saquéis."
+      },
+      {
+        "id": "B",
+        "title": "Escribano del crimen",
+        "briefing": "Tienes la pluma y los libros: cuentas, registros, papeles y letras. Los dos veis el expediente entero; repartíos los interrogatorios y contaos lo que saquéis."
+      }
+    ]
+  },
+  "briefing": {
+    "incidentDisplay": "Sevilla, noche del 24 de marzo de 1588",
+    "summary": "Diego de Arriaga, cosmógrafo de la Casa de la Contratación, recibe la segunda carta anónima del mes: si al alba no deja 500 ducados en la capilla de San Pedro, su secreto llegará al Consejo de Indias. Acude a vosotros a escondidas.",
+    "context": "No quiere que intervenga la Casa ni la Inquisición. Os debe un favor y os paga otro. Tenéis hasta el alba para saber quién escribe las cartas.",
+    "background": "En la sala de cartas de la Casa se guarda el Padrón Real, la carta maestra de las costas y rutas de las Indias. Copiarlo para extranjeros se castiga con la pérdida del oficio, y algo peor.",
+    "victim": "ch-arriaga",
+    "initialFacts": [],
+    "initialEvidence": [
+      "ev-encargo",
+      "ev-carta1",
+      "ev-carta2",
+      "ev-registro-papel",
+      "ev-llaves"
+    ],
+    "initialTimeline": [
+      "te-carta1",
+      "te-carta2",
+      "te-encargo",
+      "te-plazo"
+    ]
+  },
+  "characters": [
+    {
+      "id": "ch-arriaga",
+      "name": "Diego de Arriaga",
+      "look": {
+        "hair": "short",
+        "beard": true,
+        "glasses": true
+      },
+      "role": "victim",
+      "age": 52,
+      "occupation": "Cosmógrafo de la Casa de la Contratación",
+      "summary": "Corrige el Padrón Real con lo que cuentan los pilotos que vuelven.",
+      "biography": "Vizcaíno, discípulo de cosmógrafos de la Casa, autor de un tratado de la aguja de marear. Gana menos de lo que gasta su casa de la calle Placentines.",
+      "personality": [
+        "Brillante",
+        "Soberbio",
+        "Asustado"
+      ]
+    },
+    {
+      "id": "ch-tomas",
+      "name": "Tomás Ruiz",
+      "look": {
+        "hair": "short"
+      },
+      "role": "suspect",
+      "age": 19,
+      "occupation": "Aprendiz y copista de Arriaga",
+      "summary": "Rotula los nombres de las costas con la mejor letra de la Casa.",
+      "biography": "Hijo de un calafate de Triana muerto en la mar. Vive y come en casa de su maestro desde los trece años; tiene llave de la sala de cartas para trabajar de madrugada.",
+      "personality": [
+        "Callado",
+        "Paciente",
+        "Resentido"
+      ],
+      "relationToVictim": "Su aprendiz desde hace seis años",
+      "motive": {
+        "text": "Trabaja sin salario y quiere embarcar a las Indias.",
+        "visibleWhen": {
+          "fact": "fa-sin-salario"
+        }
+      },
+      "alibi": {
+        "claim": "La mañana del 11 de marzo no salió de la sala de cartas."
+      }
+    },
+    {
+      "id": "ch-zamudio",
+      "name": "Rodrigo Zamudio",
+      "look": {
+        "hair": "hat",
+        "beard": true
+      },
+      "role": "suspect",
+      "age": 46,
+      "occupation": "Examinador de pilotos",
+      "summary": "Lleva diez años esperando la cátedra que tiene Arriaga.",
+      "biography": "Piloto retirado tras un naufragio en las Azores. Examina a los pilotos de la Carrera de Indias los jueves en la sala de cartas y no oculta su desprecio por «los cosmógrafos de mesa».",
+      "personality": [
+        "Rencoroso",
+        "Íntegro a su manera",
+        "Áspero"
+      ],
+      "relationToVictim": "Su rival en la Casa",
+      "motive": {
+        "text": "Quiere la cátedra de cosmografía de Arriaga."
+      },
+      "alibi": {
+        "claim": "No sabe nada de cartas vendidas ni de chantajes."
+      }
+    },
+    {
+      "id": "ch-leonor",
+      "name": "Leonor de Mendaro",
+      "look": {
+        "hair": "bun"
+      },
+      "role": "suspect",
+      "age": 41,
+      "occupation": "Esposa de Arriaga",
+      "summary": "Lleva las cuentas de una casa que gasta más de lo que entra.",
+      "biography": "De una familia de mercaderes de Bilbao. Aportó una buena dote que su marido ha ido convirtiendo en instrumentos, libros y apariencias. Tienen tres hijas.",
+      "personality": [
+        "Práctica",
+        "Discreta",
+        "Leal hasta el sacrificio"
+      ],
+      "relationToVictim": "Su esposa",
+      "motive": {
+        "text": "Su dote se ha ido en los gastos de su marido."
+      },
+      "alibi": {
+        "claim": "No sabía nada de las cartas."
+      }
+    },
+    {
+      "id": "ch-vanaken",
+      "name": "Joost van Aken",
+      "look": {
+        "hair": "hat",
+        "beard": true
+      },
+      "role": "suspect",
+      "age": 50,
+      "occupation": "Mercader flamenco de lanas y aceite",
+      "summary": "Tiene casa en la calle de la Mar y una urca en el río.",
+      "biography": "Natural de Amberes, asentado en Sevilla desde hace quince años, con carta de naturaleza. Su urca, la Zeemeeuw, hace la ruta de Flandes dos veces al año.",
+      "personality": [
+        "Afable",
+        "Calculador",
+        "Prudente"
+      ],
+      "motive": {
+        "text": "Un cosmógrafo que vende secretos puede venderlos también a otro."
+      },
+      "alibi": {
+        "claim": "Nunca ha comprado una carta de marear española."
+      }
+    },
+    {
+      "id": "ch-sacristan",
+      "name": "Bartolomé Cid",
+      "look": {
+        "hair": "bald"
+      },
+      "role": "witness",
+      "age": 63,
+      "occupation": "Sacristán de la capilla de San Pedro, en la catedral",
+      "summary": "Conoce a cada beata por la tos.",
+      "biography": "Treinta años encendiendo los cirios de la catedral.",
+      "personality": [
+        "Chismoso",
+        "Piadoso"
+      ],
+      "appearsWhen": {
+        "evidence": "ev-sacristan"
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "lo-sala",
+      "name": "Sala de cartas",
+      "description": "En la Casa de la Contratación. Mesas inclinadas, compases, el Padrón Real en su arca."
+    },
+    {
+      "id": "lo-capilla",
+      "name": "Capilla de San Pedro",
+      "description": "En la catedral. El cepillo de las velas está junto a la reja."
+    },
+    {
+      "id": "lo-casa",
+      "name": "Casa de Arriaga",
+      "description": "En la calle Placentines, a dos pasos de la catedral."
+    },
+    {
+      "id": "lo-vanaken",
+      "name": "Casa de van Aken",
+      "description": "En la calle de la Mar, con almacén al río.",
+      "appearsWhen": {
+        "fact": "fa-mozo-entregaba"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "re-tomas",
+      "a": "ch-arriaga",
+      "b": "ch-tomas",
+      "label": "Maestro y aprendiz"
+    },
+    {
+      "id": "re-zamudio",
+      "a": "ch-arriaga",
+      "b": "ch-zamudio",
+      "label": "Rivales en la Casa"
+    },
+    {
+      "id": "re-leonor",
+      "a": "ch-arriaga",
+      "b": "ch-leonor",
+      "label": "Matrimonio"
+    },
+    {
+      "id": "re-vanaken",
+      "a": "ch-arriaga",
+      "b": "ch-vanaken",
+      "label": "Vendedor y comprador de cartas",
+      "visibleWhen": {
+        "secret": "se-vanaken"
+      }
+    },
+    {
+      "id": "re-porte",
+      "a": "ch-tomas",
+      "b": "ch-vanaken",
+      "label": "Le llevaba las copias",
+      "visibleWhen": {
+        "fact": "fa-mozo-entregaba"
+      }
+    }
+  ],
+  "facts": [
+    {
+      "id": "fa-sabe-urca",
+      "text": "Quien escribe sabe que las copias de San Miguel viajaron en la Zeemeeuw: un detalle que Arriaga creía conocer solo él y su comprador.",
+      "important": true
+    },
+    {
+      "id": "fa-alguien-pago",
+      "text": "La segunda carta da por recibidos 200 ducados, pero Arriaga no pagó nada.",
+      "important": true
+    },
+    {
+      "id": "fa-bermellon",
+      "text": "La segunda carta tiene una mancha de bermellón, el rojo con que se trazan los rumbos en la sala de cartas."
+    },
+    {
+      "id": "fa-papel-casa",
+      "text": "Las cartas anónimas están escritas en el papel genovés que solo se entrega en la sala de cartas.",
+      "important": true
+    },
+    {
+      "id": "fa-tres-llaves",
+      "text": "Tienen llave de la sala de cartas Arriaga, Zamudio y el aprendiz Tomás.",
+      "important": true
+    },
+    {
+      "id": "fa-letra-tomas",
+      "text": "La «g» en anzuelo de las cartas anónimas es la misma de los topónimos que rotula Tomás.",
+      "important": true
+    },
+    {
+      "id": "fa-mozo-entregaba",
+      "text": "Las copias para van Aken las llevaba el aprendiz Tomás.",
+      "important": true
+    },
+    {
+      "id": "fa-leonor-pago",
+      "text": "Los primeros 200 ducados los pagó Leonor, empeñando su collar de perlas el 11 de marzo.",
+      "important": true
+    },
+    {
+      "id": "fa-mozo-recogio",
+      "text": "El 11 de marzo, un muchacho con los dedos manchados de rojo recogió el bulto del cepillo de San Pedro.",
+      "important": true
+    },
+    {
+      "id": "fa-dinero-tomas",
+      "text": "El 12 de marzo Tomás pagó 190 ducados por su licencia de pasajero a Nueva España, al día siguiente de la recogida.",
+      "important": true
+    },
+    {
+      "id": "fa-sin-salario",
+      "text": "Arriaga no paga salario a Tomás: solo casa y comida."
+    },
+    {
+      "id": "fa-zamudio-sin-nombres",
+      "text": "El borrador de denuncia de Zamudio no nombra ni barco ni comprador: no conocía los detalles."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-encargo",
+      "kind": "statement",
+      "title": "Lo que cuenta Diego de Arriaga",
+      "source": "Tomado en vuestra posada, a puerta cerrada",
+      "summary": "El cosmógrafo os pide ayuda y os da sus condiciones.",
+      "related": {
+        "characters": [
+          "ch-arriaga"
+        ],
+        "locations": [
+          "lo-capilla"
+        ],
+        "events": [
+          "te-encargo"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—Ni la Casa ni el Santo Oficio. Si esto sale, pierdo el oficio y quizá la cabeza. Ustedes me deben una y les pago otra."
+        },
+        {
+          "type": "typed",
+          "text": "—La primera carta llegó el 5 de marzo, por debajo de la puerta. Pedía 200 ducados para el día 11 en el cepillo de las velas de San Pedro. {{dt-no-pague|No pagué. No tengo 200 ducados, y no se paga a un cobarde que no firma.}}"
+        },
+        {
+          "type": "typed",
+          "text": "—Esta tarde, la segunda. Lean. Y díganme quién demonios sabe lo de la Zeemeeuw."
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-no-pague",
+          "label": "Arriaga no pagó",
+          "description": "El cosmógrafo jura que no dejó ni un maravedí en el cepillo.",
+          "effects": [],
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "ev-carta1",
+      "kind": "letter",
+      "title": "Primera carta anónima",
+      "dated": "5 de marzo de 1588",
+      "source": "Deslizada bajo la puerta de la calle Placentines",
+      "summary": "Pide 200 ducados a cambio de silencio.",
+      "related": {
+        "characters": [
+          "ch-arriaga"
+        ],
+        "locations": [
+          "lo-capilla"
+        ],
+        "events": [
+          "te-carta1",
+          "te-zeemeeuw"
+        ]
+      },
+      "body": [
+        {
+          "type": "handwritten",
+          "text": "Señor cosmógrafo: sé lo que vale el Padrón en Amberes. {{dt-zeemeeuw|Sé de las tres cartas que subieron a bordo de la Zeemeeuw por San Miguel.}} Doscientos ducados en el cepillo de las velas de San Pedro el día 11, en la misa primera, o el Consejo de Indias sabrá lo mismo que yo.",
+          "author": "Sin firma; letra torcida, inclinada hacia atrás"
+        },
+        {
+          "type": "paragraph",
+          "text": "La letra es deliberadamente torpe, como de quien escribe con la otra mano. {{dt-g-carta|Aun así, todas las «g» acaban igual: el rabo se cierra hacia la izquierda en un gancho, como un anzuelo.}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{dt-filigrana|Al trasluz de una vela se ve en el papel una filigrana: una mano abierta con una estrella sobre el dedo corazón.}}"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-zeemeeuw",
+          "label": "La Zeemeeuw, por San Miguel",
+          "description": "El chantajista conoce el barco y la fecha de una venta concreta.",
+          "effects": [
+            {
+              "grantFact": "fa-sabe-urca"
+            },
+            {
+              "unlockTimelineEvent": "te-zeemeeuw"
+            }
+          ],
+          "points": 20
+        },
+        {
+          "id": "dt-g-carta",
+          "label": "Las «g» en anzuelo",
+          "description": "Un vicio de pluma que el disimulo no ha borrado.",
+          "effects": [],
+          "points": 20
+        },
+        {
+          "id": "dt-filigrana",
+          "label": "Filigrana de mano y estrella",
+          "description": "Un papel de un molino concreto.",
+          "effects": [],
+          "points": 15
+        }
+      ],
+      "points": 5
+    },
+    {
+      "id": "ev-carta2",
+      "kind": "letter",
+      "title": "Segunda carta anónima",
+      "dated": "24 de marzo de 1588",
+      "source": "Deslizada bajo la puerta de la calle Placentines",
+      "summary": "Ahora pide 500 ducados.",
+      "related": {
+        "characters": [
+          "ch-arriaga"
+        ],
+        "locations": [
+          "lo-capilla"
+        ],
+        "events": [
+          "te-carta2",
+          "te-plazo"
+        ]
+      },
+      "body": [
+        {
+          "type": "handwritten",
+          "text": "{{dt-recibidos|Recibidos los doscientos, y bien contados.}} Ahora quinientos, en el mismo cepillo, al alba del día 25. Es lo que vale un cosmógrafo con cabeza.",
+          "author": "Sin firma; la misma letra torcida"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{dt-bermellon|En el borde inferior, la huella parcial de un dedo en un rojo vivo y anaranjado: bermellón.}}"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-recibidos",
+          "label": "«Recibidos los doscientos»",
+          "description": "Alguien pagó, y no fue Arriaga.",
+          "effects": [
+            {
+              "grantFact": "fa-alguien-pago"
+            }
+          ],
+          "points": 20
+        },
+        {
+          "id": "dt-bermellon",
+          "label": "Huella de bermellón",
+          "description": "El rojo con que se trazan los rumbos en las cartas de marear.",
+          "effects": [
+            {
+              "grantFact": "fa-bermellon"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "points": 5
+    },
+    {
+      "id": "ev-registro-papel",
+      "kind": "record",
+      "title": "Libro del almacén de la Casa",
+      "source": "Almacén de la Casa de la Contratación",
+      "summary": "Compras y entregas de papel, tinta y pigmentos.",
+      "related": {
+        "characters": [],
+        "locations": [
+          "lo-sala"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Partida",
+            "Procedencia",
+            "Destino"
+          ],
+          "rows": [
+            [
+              "Papel de oficio, 40 resmas",
+              "Molinos de Sevilla",
+              "Escribanías de la Casa"
+            ],
+            [
+              "{{dt-papel-casa|Papel de marca mayor, filigrana de mano y estrella, 2 resmas}}",
+              "Génova, molino de Voltri",
+              "Solo sala de cartas (Padrón y cartas de marear)"
+            ],
+            [
+              "Bermellón, 3 libras",
+              "Almadén",
+              "Sala de cartas"
+            ],
+            [
+              "Tinta de agallas, 6 azumbres",
+              "Sevilla",
+              "Escribanías y sala de cartas"
+            ]
+          ]
+        },
+        {
+          "type": "handwritten",
+          "text": "El papel genovés no sale de la sala de cartas. Orden del Piloto Mayor.",
+          "author": "El almacenero"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-papel-casa",
+          "label": "El papel genovés, solo en la sala de cartas",
+          "description": "Ese papel no se vende en Sevilla.",
+          "effects": [],
+          "points": 15
+        }
+      ]
+    },
+    {
+      "id": "ev-llaves",
+      "kind": "record",
+      "title": "Libro de llaves de la sala de cartas",
+      "source": "Portería de la Casa de la Contratación",
+      "summary": "Quién tiene llave de la sala.",
+      "related": {
+        "characters": [
+          "ch-arriaga",
+          "ch-zamudio",
+          "ch-tomas"
+        ],
+        "locations": [
+          "lo-sala"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Llave",
+            "Titular",
+            "Uso"
+          ],
+          "rows": [
+            [
+              "1",
+              "Diego de Arriaga, cosmógrafo",
+              "A diario"
+            ],
+            [
+              "2",
+              "Rodrigo Zamudio, examinador de pilotos",
+              "Los jueves, exámenes"
+            ],
+            [
+              "3",
+              "{{dt-llaves|Tomás Ruiz, aprendiz, por licencia del cosmógrafo}}",
+              "Madrugadas, copia y rotulación"
+            ]
+          ]
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-llaves",
+          "label": "Tres llaves",
+          "description": "Arriaga, Zamudio y el aprendiz.",
+          "effects": [
+            {
+              "grantFact": "fa-tres-llaves"
+            }
+          ],
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "ev-muestra-letra",
+      "kind": "map",
+      "title": "Copia de la costa de Tierra Firme, rotulada por Tomás",
+      "source": "Mesa de Tomás en la sala de cartas",
+      "summary": "Una carta de marear sin terminar.",
+      "related": {
+        "characters": [
+          "ch-tomas"
+        ],
+        "locations": [
+          "lo-sala"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Pergamino con la costa desde el cabo de la Vela hasta Nombre de Dios. Los rumbos, en negro, verde y bermellón. Los topónimos, en letra redonda, pequeña y perfecta."
+        },
+        {
+          "type": "paragraph",
+          "text": "{{dt-g-topo|«Cartagena», «Santa Marta», «Río Grande de la Magdalena»: en todas las «g», el rabo se cierra hacia la izquierda en un pequeño gancho.}}"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-g-topo",
+          "label": "La «g» de Tomás",
+          "description": "El mismo gancho, en una letra que no intenta disimularse.",
+          "effects": [],
+          "points": 20
+        }
+      ],
+      "decisive": true,
+      "points": 5
+    },
+    {
+      "id": "ev-libro-vanaken",
+      "kind": "record",
+      "title": "Libro secreto de van Aken",
+      "source": "Escritorio de Joost van Aken",
+      "summary": "Compras que no constan en ningún registro de aduanas.",
+      "related": {
+        "characters": [
+          "ch-vanaken",
+          "ch-arriaga",
+          "ch-tomas"
+        ],
+        "locations": [
+          "lo-vanaken"
+        ],
+        "events": [
+          "te-zeemeeuw"
+        ]
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Fecha",
+            "Pieza",
+            "Precio"
+          ],
+          "rows": [
+            [
+              "Abril 1585",
+              "Costa del Brasil",
+              "120 ducados"
+            ],
+            [
+              "Octubre 1586",
+              "Antillas y Tierra Firme",
+              "200 ducados"
+            ],
+            [
+              "San Miguel 1587",
+              "Tres cartas: Nueva España, Tierra Firme, carrera de vuelta",
+              "450 ducados · a bordo de la Zeemeeuw"
+            ]
+          ]
+        },
+        {
+          "type": "handwritten",
+          "text": "{{dt-mozo|Todas entregadas por el mozo del cosmógrafo, Tomás, a cuarenta reales el porte.}}",
+          "author": "Al pie, letra de van Aken"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-mozo",
+          "label": "Las llevaba Tomás",
+          "description": "El aprendiz conocía cada venta, barco incluido.",
+          "effects": [
+            {
+              "grantFact": "fa-mozo-entregaba"
+            }
+          ],
+          "points": 25
+        }
+      ],
+      "points": 10
+    },
+    {
+      "id": "ev-cuentas",
+      "kind": "record",
+      "title": "Libro de cuentas de la casa",
+      "source": "Leonor de Mendaro",
+      "summary": "Gastos de la casa de la calle Placentines.",
+      "related": {
+        "characters": [
+          "ch-leonor"
+        ],
+        "locations": [
+          "lo-casa"
+        ],
+        "events": [
+          "te-pago1"
+        ]
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Fecha",
+            "Partida",
+            "Importe"
+          ],
+          "rows": [
+            [
+              "2 de marzo",
+              "Al librero Díaz, por el Ptolomeo de Ulm",
+              "−60 ducados"
+            ],
+            [
+              "8 de marzo",
+              "Velas, aceite y carbón",
+              "−3 ducados"
+            ],
+            [
+              "{{dt-empeno|11 de marzo}}",
+              "{{dt-empeno-texto|Empeñado el collar de perlas de mi madre en casa de Illescas}}",
+              "+200 ducados"
+            ],
+            [
+              "11 de marzo",
+              "Limosna",
+              "−200 ducados"
+            ]
+          ]
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-empeno",
+          "label": "El 11 de marzo",
+          "description": "El mismo día del primer plazo.",
+          "effects": [],
+          "points": 10
+        },
+        {
+          "id": "dt-empeno-texto",
+          "label": "200 ducados empeñados y una «limosna» de 200",
+          "description": "Leonor consiguió y entregó exactamente lo que pedía la carta.",
+          "effects": [
+            {
+              "unlockTimelineEvent": "te-pago1"
+            }
+          ],
+          "points": 20
+        }
+      ],
+      "points": 5
+    },
+    {
+      "id": "ev-sacristan",
+      "kind": "statement",
+      "title": "Declaración del sacristán de San Pedro",
+      "source": "Tomada en la sacristía de la catedral",
+      "summary": "Lo que vio junto al cepillo de las velas el 11 de marzo.",
+      "autoDiscoverWhen": {
+        "fact": "fa-alguien-pago"
+      },
+      "related": {
+        "characters": [
+          "ch-sacristan"
+        ],
+        "locations": [
+          "lo-capilla"
+        ],
+        "events": [
+          "te-pago1",
+          "te-recogida"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—¿El 11 de marzo? Sí, me acuerdo, porque el cepillo nunca abulta tanto. En la misa primera, una señora con manto de buen paño, de Placentines por el acento, metió un bulto envuelto en un pañuelo."
+        },
+        {
+          "type": "typed",
+          "text": "—{{dt-mozo-tinta|Al cabo de una hora vino un muchacho delgado, de no más de veinte años, con los dedos rojos como un tintorero, y se lo llevó como quien recoge lo suyo.}} Pensé que era su criado."
+        },
+        {
+          "type": "signature",
+          "name": "Bartolomé Cid, sacristán"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-mozo-tinta",
+          "label": "Un muchacho con los dedos rojos",
+          "description": "Quien recogió el dinero trabaja con pigmentos.",
+          "effects": [
+            {
+              "grantFact": "fa-mozo-recogio"
+            },
+            {
+              "unlockTimelineEvent": "te-recogida"
+            }
+          ],
+          "points": 20
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-licencia",
+      "kind": "record",
+      "title": "Libro de asientos de pasajeros a Indias",
+      "source": "Casa de la Contratación",
+      "summary": "Licencias de embarque concedidas en marzo.",
+      "related": {
+        "characters": [
+          "ch-tomas"
+        ],
+        "locations": [],
+        "events": [
+          "te-licencia"
+        ]
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Fecha",
+            "Pasajero",
+            "Destino",
+            "Derechos y fianza"
+          ],
+          "rows": [
+            [
+              "9 de marzo",
+              "Juan de Ugarte, mercader, con su mujer",
+              "Tierra Firme",
+              "230 ducados"
+            ],
+            [
+              "{{dt-licencia|12 de marzo}}",
+              "{{dt-licencia-quien|Tomás Ruiz, natural de Triana, soltero, criado}}",
+              "Nueva España, flota de junio",
+              "190 ducados, en moneda contante"
+            ]
+          ]
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-licencia"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-licencia",
+          "label": "El 12 de marzo",
+          "description": "Al día siguiente de la recogida en San Pedro.",
+          "effects": [],
+          "points": 10
+        },
+        {
+          "id": "dt-licencia-quien",
+          "label": "Tomás paga 190 ducados",
+          "description": "Un aprendiz sin salario paga en moneda contante.",
+          "effects": [],
+          "points": 20
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-borrador",
+      "kind": "document",
+      "title": "Borrador de denuncia al Consejo de Indias",
+      "dated": "20 de febrero de 1588",
+      "source": "Mesa de Zamudio en la sala de exámenes",
+      "summary": "Sin firma y lleno de tachaduras.",
+      "autoDiscoverWhen": {
+        "asked": "q-zamudio-arriaga"
+      },
+      "related": {
+        "characters": [
+          "ch-zamudio",
+          "ch-arriaga"
+        ],
+        "locations": [
+          "lo-sala"
+        ],
+        "events": [
+          "te-borrador"
+        ]
+      },
+      "body": [
+        {
+          "type": "handwritten",
+          "text": "Muy poderosos señores: es público en la Casa que el cosmógrafo Arriaga gasta lo que no gana, y {{dt-borrador-texto|se dice que vende copias del Padrón a extranjeros, sin que yo sepa a quién ni por qué vía}}…",
+          "author": "Letra de Rodrigo Zamudio, firme y derecha"
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-borrador"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-borrador-texto",
+          "label": "«Sin que yo sepa a quién ni por qué vía»",
+          "description": "Zamudio sospechaba, pero no conocía ni el barco ni el comprador.",
+          "effects": [
+            {
+              "grantFact": "fa-zamudio-sin-nombres"
+            }
+          ],
+          "points": 15
+        }
+      ]
+    }
+  ],
+  "deductions": [
+    {
+      "id": "de-papel",
+      "title": "Papel de la sala de cartas",
+      "combine": [
+        "dt-filigrana",
+        "dt-papel-casa"
+      ],
+      "explanation": "La filigrana de mano y estrella es la del papel genovés que no sale de la sala de cartas: quien escribe trabaja allí.",
+      "effects": [
+        {
+          "grantFact": "fa-papel-casa"
+        }
+      ],
+      "points": 30
+    },
+    {
+      "id": "de-letra",
+      "title": "La «g» en anzuelo",
+      "combine": [
+        "dt-g-carta",
+        "dt-g-topo"
+      ],
+      "explanation": "La mano torcida disimula la letra, pero no el vicio de pluma: las «g» de las cartas anónimas se cierran igual que las de los topónimos que rotula Tomás.",
+      "effects": [
+        {
+          "grantFact": "fa-letra-tomas"
+        }
+      ],
+      "points": 40
+    },
+    {
+      "id": "de-pago",
+      "title": "Quién pagó los doscientos",
+      "combine": [
+        "dt-recibidos",
+        "dt-empeno-texto"
+      ],
+      "explanation": "Arriaga no pagó; el mismo día del plazo Leonor empeñó sus perlas por 200 ducados y anotó una «limosna» de 200.",
+      "effects": [
+        {
+          "grantFact": "fa-leonor-pago"
+        }
+      ],
+      "points": 25
+    },
+    {
+      "id": "de-dinero",
+      "title": "De la capilla a la Casa",
+      "combine": [
+        "dt-mozo-tinta",
+        "dt-licencia-quien"
+      ],
+      "explanation": "El muchacho de dedos rojos recogió 200 ducados el día 11; el día 12 el aprendiz sin salario pagó 190 en moneda contante por su licencia.",
+      "effects": [
+        {
+          "grantFact": "fa-dinero-tomas"
+        }
+      ],
+      "points": 40
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "cx-tomas",
+      "title": "Tomás sí trataba con el flamenco",
+      "a": {
+        "line": "ln-tomas-flamenco"
+      },
+      "b": {
+        "detail": "dt-mozo"
+      },
+      "explanation": "Tomás dice no saber ni dónde vive van Aken; el libro del flamenco anota que todas las copias se las llevaba él.",
+      "effects": [],
+      "points": 40
+    },
+    {
+      "id": "cx-leonor",
+      "title": "Leonor sabía de las cartas",
+      "a": {
+        "line": "ln-leonor-nada"
+      },
+      "b": {
+        "detail": "dt-empeno-texto"
+      },
+      "explanation": "Leonor dice no saber nada de cartas; el día del primer plazo empeñó sus perlas y anotó una «limosna» de 200 ducados.",
+      "effects": [],
+      "points": 25
+    },
+    {
+      "id": "cx-zamudio",
+      "title": "Zamudio sí había oído algo",
+      "a": {
+        "line": "ln-zamudio-nada"
+      },
+      "b": {
+        "detail": "dt-borrador-texto"
+      },
+      "explanation": "Zamudio jura no haber oído jamás que Arriaga vendiera nada; en su mesa hay un borrador de denuncia que lo dice.",
+      "effects": [],
+      "points": 25
+    }
+  ],
+  "secrets": [
+    {
+      "id": "se-leonor",
+      "characterId": "ch-leonor",
+      "text": "Leonor encontró la primera carta, empeñó el collar de su madre y pagó en secreto para salvar a su marido y a sus hijas.",
+      "revealedWhen": {
+        "contradiction": "cx-leonor"
+      },
+      "points": 20
+    },
+    {
+      "id": "se-zamudio",
+      "characterId": "ch-zamudio",
+      "text": "Zamudio preparaba una denuncia ante el Consejo de Indias para quedarse con la cátedra: por las buenas, no por chantaje.",
+      "revealedWhen": {
+        "contradiction": "cx-zamudio"
+      },
+      "points": 20
+    },
+    {
+      "id": "se-vanaken",
+      "characterId": "ch-vanaken",
+      "text": "Van Aken lleva tres años comprando copias del Padrón a Arriaga para los cartógrafos de Amberes.",
+      "points": 25
+    },
+    {
+      "id": "se-arriaga",
+      "characterId": "ch-arriaga",
+      "text": "Arriaga vende copias del Padrón Real a un mercader flamenco desde 1585.",
+      "revealedWhen": {
+        "fact": "fa-mozo-entregaba"
+      },
+      "points": 15
+    }
+  ],
+  "interrogations": [
+    {
+      "id": "in-arriaga",
+      "characterId": "ch-arriaga",
+      "setting": "En vuestra posada, con la capa todavía puesta. Mira la puerta cada vez que cruje la escalera.",
+      "opening": [
+        {
+          "text": "Pregunten lo que quieran, pero rápido: al alba alguien abrirá ese cepillo."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-arriaga-secreto",
+          "label": "El secreto",
+          "kind": "personal",
+          "questions": [
+            {
+              "id": "q-arriaga-quien",
+              "prompt": "¿Quién podría saber lo de la Zeemeeuw?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Nadie. No hay nada que saber. Es una calumnia. …Y aun así sabe el nombre del barco.",
+                      "tone": "evasion"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-arriaga-venta",
+              "prompt": "Su aprendiz llevaba las copias a van Aken. Usted vendía el Padrón.",
+              "kind": "confront",
+              "requires": {
+                "fact": "fa-mozo-entregaba"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Arriaga se sienta en la cama como si le hubieran cortado los hilos."
+                    },
+                    {
+                      "text": "Tres cartas al año. El rey paga tarde y poco, y una casa en Placentines no se mantiene con astrolabios. Tomás las llevaba porque nadie mira a un mozo.",
+                      "tone": "admission"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-arriaga-casa",
+          "label": "Su casa",
+          "kind": "person",
+          "questions": [
+            {
+              "id": "q-arriaga-tomas",
+              "prompt": "Hábleme de su aprendiz.",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Tomás es como un hijo. Seis años en mi casa. La mejor letra de la Casa de la Contratación, aunque no lo sepa nadie.",
+                      "tone": "truth"
+                    },
+                    {
+                      "text": "¿Salario? Tiene casa, comida y el mejor maestro de Sevilla. Ya cobrará cuando sea cosmógrafo.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-sin-salario"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-arriaga-leonor",
+              "prompt": "¿Su esposa sabe algo de esto?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Leonor no sabe nada, gracias a Dios. Tiene bastante con las cuentas.",
+                      "tone": "confusion"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-tomas",
+      "characterId": "ch-tomas",
+      "setting": "En la sala de cartas, a la luz de un candil. Tiene las yemas de los dedos rojas.",
+      "opening": [
+        {
+          "text": "El maestro no está. Si vienen a por una carta de marear, no se presta ninguna sin orden del Piloto Mayor."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-tomas-oficio",
+          "label": "Su oficio",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-tomas-oficio",
+              "prompt": "¿En qué trabaja?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Copio las costas y rotulo los nombres. Mire esta de Tierra Firme: la letra es mía, toda.",
+                      "tone": "truth"
+                    },
+                    {
+                      "speaker": "narration",
+                      "text": "Os la tiende con un orgullo que no consigue esconder."
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantEvidence": "ev-muestra-letra"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-tomas-manos",
+              "prompt": "¿Por qué tiene los dedos rojos?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Bermellón. Los rumbos principales se trazan en rojo. No se va ni con lejía.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-tomas-flamenco",
+              "prompt": "¿Conoce a Joost van Aken, el flamenco de la calle de la Mar?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-tomas-flamenco",
+                      "text": "¿Un flamenco? Ni sé dónde vive. Yo no salgo de esta sala más que para dormir.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-tomas-cx",
+              "prompt": "El libro de van Aken dice que todas las copias se las llevaba usted.",
+              "kind": "contradiction",
+              "contradiction": "cx-tomas",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Las llevaba porque me lo mandaba el maestro. Cuarenta reales el porte, y ni uno para mí: el flamenco se los daba a él.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "Yo no he vendido nada. Yo solo llevaba.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-tomas-marzo",
+          "label": "El 11 de marzo",
+          "kind": "alibi",
+          "questions": [
+            {
+              "id": "q-tomas-dia11",
+              "prompt": "¿Dónde estuvo la mañana del 11 de marzo?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-tomas-sala",
+                      "text": "Aquí, como todas las mañanas. Copiando.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "unlockTimelineEvent": "te-falso-tomas"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-tomas-licencia",
+              "prompt": "El 12 de marzo pagó 190 ducados por una licencia para Nueva España.",
+              "kind": "confront",
+              "requires": {
+                "fact": "fa-dinero-tomas"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Ahorros. Seis años ahorrando. ¿Tan raro es que un hijo de calafate quiera ver el mar que dibuja?",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-tomas-final",
+              "prompt": "El papel de la sala, su «g» en anzuelo y los doscientos de San Pedro en su licencia.",
+              "kind": "confront",
+              "requires": {
+                "all": [
+                  {
+                    "fact": "fa-papel-casa"
+                  },
+                  {
+                    "fact": "fa-letra-tomas"
+                  },
+                  {
+                    "fact": "fa-dinero-tomas"
+                  }
+                ]
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Tomás deja la pluma en el tintero con mucho cuidado, como si aún importara no manchar la carta."
+                    },
+                    {
+                      "text": "Seis años rotulando costas que no voy a ver, para que él se las venda a un flamenco y me pague con sopa. Escribí con la izquierda. Pensé que no me reconocería nadie.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "No sabía que pagaría la señora. Si lo hubiera sabido… No. Habría escrito igual.",
+                      "tone": "admission"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "setFlag": "tomas-confiesa"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-zamudio",
+      "characterId": "ch-zamudio",
+      "setting": "En la sala de exámenes, entre un astrolabio desmontado y un piloto que espera turno en el pasillo.",
+      "opening": [
+        {
+          "text": "¿Arriaga en apuros? Por fin una buena noticia en esta Casa."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-zamudio-arriaga",
+          "label": "Arriaga",
+          "kind": "person",
+          "questions": [
+            {
+              "id": "q-zamudio-arriaga",
+              "prompt": "¿Ha oído que Arriaga venda copias del Padrón?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-zamudio-nada",
+                      "text": "¿Yo? Jamás he oído tal cosa. Aunque de un cosmógrafo de mesa no me extrañaría nada.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-zamudio-cx",
+              "prompt": "En su mesa hay un borrador de denuncia que dice justo eso.",
+              "kind": "contradiction",
+              "contradiction": "cx-zamudio",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Una denuncia, sí. Con mi nombre, ante el Consejo, como hace un hombre. No con cartitas bajo la puerta.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "No sé a quién vende ni cómo. Si lo supiera, ya estaría en Madrid.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-zamudio-sala",
+          "label": "La sala de cartas",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-zamudio-llaves",
+              "prompt": "¿Quién entra en la sala de cartas?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Yo los jueves. Arriaga cuando le place. Y su mozo, que tiene llave propia y anda por aquí a horas de lechuzas.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-zamudio-tomas",
+              "prompt": "¿Qué sabe del aprendiz?",
+              "kind": "press",
+              "requires": {
+                "asked": "q-zamudio-llaves"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Que se va. Lo vi en el libro de pasajeros cuando fui a firmar unas fianzas de pilotos: licencia para Nueva España, pagada al contado. Mucho dinero para un mozo sin sueldo.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantEvidence": "ev-licencia"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-leonor",
+      "characterId": "ch-leonor",
+      "setting": "En el estrado de la casa de Placentines, con las tres hijas mandadas arriba.",
+      "opening": [
+        {
+          "text": "Mi marido no está. Si vienen por deudas, siéntense: hay para rato."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-leonor-cartas",
+          "label": "Las cartas",
+          "kind": "document",
+          "questions": [
+            {
+              "id": "q-leonor-cartas",
+              "prompt": "¿Sabe algo de unas cartas anónimas dirigidas a su marido?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-leonor-nada",
+                      "text": "Nada. No sé de ninguna carta. Mi marido no me cuenta sus asuntos.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "unlockTimelineEvent": "te-falso-leonor"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-leonor-cx",
+              "prompt": "El 11 de marzo empeñó sus perlas por 200 ducados y anotó una «limosna» de 200.",
+              "kind": "contradiction",
+              "contradiction": "cx-leonor",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Leonor cierra el libro de cuentas sin prisa."
+                    },
+                    {
+                      "text": "La encontré yo, bajo la puerta, antes que él. No sé qué ha hecho Diego y no quiero saberlo. Tengo tres hijas casaderas.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "Dejé el dinero en el cepillo en la misa primera y no miré atrás. Él no sabe nada.",
+                      "tone": "admission"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-leonor-casa",
+          "label": "La casa",
+          "kind": "personal",
+          "questions": [
+            {
+              "id": "q-leonor-casa",
+              "prompt": "¿Cómo van las cuentas de la casa?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Mal, como siempre. Las llevo yo: mírelas si quiere, no tengo nada que esconder.",
+                      "tone": "neutral"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantEvidence": "ev-cuentas"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-leonor-tomas",
+              "prompt": "¿Y el aprendiz?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Buen muchacho, callado. Aunque este mes ha estrenado camisas de holanda y unos zapatos que no se compran con sopa.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-vanaken",
+      "characterId": "ch-vanaken",
+      "setting": "En el almacén de la calle de la Mar, entre fardos de lana de Segovia. Os ofrece vino de Jerez.",
+      "opening": [
+        {
+          "text": "Alguaciles a estas horas. Espero que sea por un fardo mal declarado y no por algo aburrido."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-vanaken-negocio",
+          "label": "Su negocio",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-vanaken-negocio",
+              "prompt": "¿Compra usted cartas de marear?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Compro lana y aceite, y vendo paños de Flandes. Nunca he comprado una carta de marear española.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-vanaken-zeemeeuw",
+              "prompt": "El chantajista de Arriaga habla de tres cartas a bordo de la Zeemeeuw. Es su urca.",
+              "kind": "present",
+              "presentEvidence": "ev-carta1",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Van Aken lee la carta dos veces. Luego deja la copa."
+                    },
+                    {
+                      "text": "Si alguien chantajea a mi cosmógrafo, me chantajea a mí. Le enseñaré algo que ningún alguacil ha visto: no por honradez, sino porque me conviene que lo encuentren ustedes antes que el Santo Oficio.",
+                      "tone": "admission"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantEvidence": "ev-libro-vanaken"
+                    },
+                    {
+                      "revealSecret": "se-vanaken"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-vanaken-chantaje",
+              "prompt": "¿Y si el chantajista fuera usted?",
+              "kind": "press",
+              "requires": {
+                "secret": "se-vanaken"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "¿Chantajear al único hombre de Sevilla que me vende el Padrón? Eso es matar a la gallina por un huevo. Busquen a alguien que no gane nada si Arriaga sigue vendiendo.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "id": "te-zeemeeuw",
+      "t": -253000,
+      "display": "San Miguel de 1587",
+      "title": "Tres copias del Padrón suben a bordo de la Zeemeeuw",
+      "description": "Llevadas por el aprendiz.",
+      "characters": [
+        "ch-tomas",
+        "ch-vanaken"
+      ],
+      "key": false
+    },
+    {
+      "id": "te-borrador",
+      "t": -47520,
+      "display": "20 de febrero",
+      "title": "Zamudio redacta un borrador de denuncia",
+      "description": "No llega a enviarlo.",
+      "characters": [
+        "ch-zamudio"
+      ],
+      "location": "lo-sala",
+      "key": false
+    },
+    {
+      "id": "te-carta1",
+      "t": -27360,
+      "display": "5 de marzo",
+      "title": "Primera carta anónima: 200 ducados para el día 11",
+      "description": "Bajo la puerta de Placentines.",
+      "characters": [
+        "ch-arriaga"
+      ],
+      "location": "lo-casa",
+      "key": true
+    },
+    {
+      "id": "te-falso-leonor",
+      "t": -19350,
+      "display": "11 de marzo",
+      "title": "Leonor no sale de casa en toda la mañana",
+      "description": "Según Leonor.",
+      "characters": [
+        "ch-leonor"
+      ],
+      "veracity": "false",
+      "claimedBy": "ch-leonor"
+    },
+    {
+      "id": "te-pago1",
+      "t": -19320,
+      "display": "11 de marzo, misa primera",
+      "title": "Leonor deja 200 ducados en el cepillo de San Pedro",
+      "description": "Tras empeñar sus perlas.",
+      "characters": [
+        "ch-leonor"
+      ],
+      "location": "lo-capilla",
+      "key": true
+    },
+    {
+      "id": "te-falso-tomas",
+      "t": -19270,
+      "display": "11 de marzo, por la mañana",
+      "title": "Tomás copia toda la mañana en la sala de cartas",
+      "description": "Según Tomás.",
+      "characters": [
+        "ch-tomas"
+      ],
+      "veracity": "false",
+      "claimedBy": "ch-tomas"
+    },
+    {
+      "id": "te-recogida",
+      "t": -19260,
+      "display": "11 de marzo, una hora después",
+      "title": "Un muchacho de dedos rojos recoge el bulto del cepillo",
+      "description": "Lo ve el sacristán.",
+      "characters": [
+        "ch-tomas"
+      ],
+      "location": "lo-capilla",
+      "key": true
+    },
+    {
+      "id": "te-licencia",
+      "t": -17760,
+      "display": "12 de marzo",
+      "title": "Tomás paga 190 ducados por su licencia a Nueva España",
+      "description": "En moneda contante.",
+      "characters": [
+        "ch-tomas"
+      ],
+      "key": true
+    },
+    {
+      "id": "te-carta2",
+      "t": 0,
+      "display": "24 de marzo, al anochecer",
+      "title": "Segunda carta: «recibidos los doscientos»; ahora 500",
+      "description": "Bajo la misma puerta.",
+      "characters": [
+        "ch-arriaga"
+      ],
+      "location": "lo-casa",
+      "key": true
+    },
+    {
+      "id": "te-encargo",
+      "t": 120,
+      "display": "24 de marzo, 22:00",
+      "title": "Arriaga acude a vosotros en secreto",
+      "description": "Hasta el alba.",
+      "characters": [
+        "ch-arriaga"
+      ],
+      "key": true
+    },
+    {
+      "id": "te-plazo",
+      "t": 600,
+      "display": "25 de marzo, al alba",
+      "title": "Vence el plazo de los 500 ducados",
+      "description": "En el cepillo de San Pedro.",
+      "characters": [],
+      "location": "lo-capilla",
+      "key": true
+    }
+  ],
+  "accusation": {
+    "motives": [
+      {
+        "id": "mo-pasaje",
+        "label": "Pagarse la licencia y el pasaje a las Indias con el dinero de su maestro",
+        "availableWhen": {
+          "fact": "fa-sin-salario"
+        }
+      },
+      {
+        "id": "mo-catedra",
+        "label": "Arruinar a Arriaga para quedarse con su cátedra"
+      },
+      {
+        "id": "mo-dote",
+        "label": "Recuperar la dote que su marido malgastaba"
+      },
+      {
+        "id": "mo-silencio",
+        "label": "Tener al cosmógrafo atado para que no vendiera a otro"
+      }
+    ],
+    "methods": [
+      {
+        "id": "me-cartas",
+        "label": "Escribió las cartas con la mano torcida en papel de la sala de cartas y recogió el pago en el cepillo de San Pedro",
+        "availableWhen": {
+          "fact": "fa-papel-casa"
+        }
+      },
+      {
+        "id": "me-denuncia",
+        "label": "Amenazó con una denuncia firmada ante el Consejo de Indias"
+      },
+      {
+        "id": "me-intermediario",
+        "label": "Se sirvió de un intermediario del puerto para cobrar"
+      }
+    ]
+  },
+  "solution": {
+    "culprits": [
+      "ch-tomas"
+    ],
+    "motive": "mo-pasaje",
+    "method": "me-cartas",
+    "proof": [
+      "ev-muestra-letra",
+      "ev-licencia",
+      "ev-sacristan"
+    ],
+    "whatHappened": "Tomás Ruiz, el aprendiz de Arriaga, escribía las cartas. Llevaba años transportando las copias del Padrón que su maestro vendía a van Aken —por eso sabía lo de la Zeemeeuw— sin cobrar más que casa y comida. Escribió con la mano torcida en el papel genovés de la sala de cartas y exigió 200 ducados. Arriaga no pagó, pero su esposa Leonor encontró la carta y pagó empeñando sus perlas. Tomás recogió el dinero en San Pedro con los dedos manchados de bermellón y al día siguiente pagó su licencia para Nueva España. Animado, pidió 500 más.",
+    "reconstruction": [
+      "Por San Miguel de 1587, Tomás lleva tres copias del Padrón a la urca Zeemeeuw, de van Aken.",
+      "El 5 de marzo desliza bajo la puerta de su maestro una carta escrita con la mano torcida en papel de la sala de cartas: 200 ducados para el día 11.",
+      "Arriaga no paga. Leonor encuentra la carta, empeña el collar de su madre y deja los 200 en el cepillo de San Pedro en la misa primera.",
+      "Una hora después, Tomás, con los dedos rojos de bermellón, recoge el bulto ante el sacristán.",
+      "El 12 de marzo paga 190 ducados por su licencia de pasajero a Nueva España.",
+      "El 24 de marzo, convencido de que su maestro paga, le exige 500 para el alba del día 25.",
+      "Esa noche, Arriaga, que no ha pagado nada, acude a vosotros."
+    ],
+    "decisiveEvidence": [
+      "ev-carta1",
+      "ev-registro-papel",
+      "ev-muestra-letra",
+      "ev-sacristan",
+      "ev-licencia",
+      "ev-libro-vanaken"
+    ],
+    "alibiTruths": [
+      {
+        "characterId": "ch-tomas",
+        "truth": "La mañana del 11 de marzo no estuvo en la sala de cartas: recogió el dinero en San Pedro."
+      },
+      {
+        "characterId": "ch-zamudio",
+        "truth": "Sospechaba de Arriaga y preparaba una denuncia firmada, pero no sabía ni el barco ni el comprador."
+      },
+      {
+        "characterId": "ch-leonor",
+        "truth": "Sí sabía de las cartas: pagó la primera en secreto empeñando sus perlas."
+      },
+      {
+        "characterId": "ch-vanaken",
+        "truth": "Sí compraba cartas de marear, pero el chantaje le perjudicaba más que a nadie."
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "en-confesion",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct",
+        "knowledge": {
+          "flag": "tomas-confiesa"
+        }
+      },
+      "outcome": "success",
+      "title": "Costas que no verá",
+      "text": "Al alba no hay nadie junto al cepillo de San Pedro. Arriaga recupera los 190 ducados de la licencia y desempeña las perlas de Leonor sin mirarla a los ojos. A Tomás no lo denuncia: no puede, sin denunciarse a sí mismo. Lo despide con lo puesto. En junio, la flota de Nueva España zarpa sin él; en agosto, la Zeemeeuw vuelve a Amberes sin cartas."
+    },
+    {
+      "id": "en-exito",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct"
+      },
+      "outcome": "success",
+      "title": "El mozo de los dedos rojos",
+      "text": "Con la letra, el sacristán y el libro de pasajeros, Tomás no tiene salida. Arriaga le hace firmar una retractación y le quita la llave de la sala. Lo que nadie puede quitarle es lo que sabe, y los dos lo saben."
+    },
+    {
+      "id": "en-parcial",
+      "when": {
+        "culprit": "correct"
+      },
+      "outcome": "partial",
+      "title": "Una sospecha sin anclas",
+      "text": "Arriaga cree que es Tomás, pero sin pruebas no se atreve a apretarle. Al alba deja 500 ducados prestados en el cepillo, por si acaso. En junio, el aprendiz embarca a Nueva España con dinero para empezar una vida."
+    },
+    {
+      "id": "en-zamudio",
+      "when": {
+        "culprit": "ch-zamudio"
+      },
+      "outcome": "failure",
+      "title": "El rival",
+      "text": "Arriaga se enfrenta a Zamudio delante de los pilotos. Zamudio, ofendido, envía al día siguiente su denuncia al Consejo de Indias, firmada. Mientras la Casa investiga a Arriaga, las cartas anónimas siguen llegando."
+    },
+    {
+      "id": "en-leonor",
+      "when": {
+        "culprit": "ch-leonor"
+      },
+      "outcome": "failure",
+      "title": "La esposa",
+      "text": "Acusar a Leonor destroza lo poco que quedaba del matrimonio. Ella confiesa haber pagado, no haber escrito. Al alba, alguien recoge los 500 ducados que Arriaga, por miedo, acaba dejando en el cepillo."
+    },
+    {
+      "id": "en-vanaken",
+      "when": {
+        "culprit": "ch-vanaken"
+      },
+      "outcome": "failure",
+      "title": "El comprador",
+      "text": "Van Aken escucha la acusación, sonríe y deja de comprar. Una semana después, la denuncia anónima llega al Consejo de Indias."
+    },
+    {
+      "id": "en-fallo",
+      "when": {},
+      "outcome": "failure",
+      "title": "Quinientos ducados al alba",
+      "text": "La acusación no se sostiene. Al alba, Arriaga deja en el cepillo de San Pedro lo que no tiene. No será la última carta."
+    }
+  ],
+  "hints": [
+    {
+      "id": "hl-papel",
+      "topic": "De dónde sale el papel",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-papel-casa"
+        }
+      },
+      "steps": [
+        "Un papel dice mucho de quien lo usa.",
+        "Mira la primera carta a contraluz.",
+        "Relaciona la filigrana con el libro del almacén de la Casa."
+      ]
+    },
+    {
+      "id": "hl-pago",
+      "topic": "Quién pagó",
+      "relevantWhen": {
+        "all": [
+          {
+            "fact": "fa-alguien-pago"
+          },
+          {
+            "not": {
+              "fact": "fa-leonor-pago"
+            }
+          }
+        ]
+      },
+      "steps": [
+        "Si Arriaga no pagó, alguien de su entorno sí lo hizo.",
+        "Quien lleva las cuentas de la casa lo sabría.",
+        "Pregunta a Leonor por las cuentas y relaciona la partida del 11 de marzo con la segunda carta."
+      ]
+    },
+    {
+      "id": "hl-urca",
+      "topic": "Quién conocía la venta",
+      "relevantWhen": {
+        "all": [
+          {
+            "fact": "fa-sabe-urca"
+          },
+          {
+            "not": {
+              "fact": "fa-mozo-entregaba"
+            }
+          }
+        ]
+      },
+      "steps": [
+        "El chantajista sabe el nombre del barco.",
+        "El comprador también lo sabe, y tiene registros.",
+        "Enseña la primera carta a van Aken."
+      ]
+    },
+    {
+      "id": "hl-letra",
+      "topic": "La mano que escribe",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-letra-tomas"
+        }
+      },
+      "steps": [
+        "Disimular la letra no borra todos los vicios de pluma.",
+        "Alguien en la sala de cartas tiene una letra muy reconocible.",
+        "Pide a Tomás que te enseñe su trabajo y compara sus «g» con las de la carta."
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "id": "ob-papel",
+      "text": "Averigua de dónde sale el papel de las cartas.",
+      "completeWhen": {
+        "fact": "fa-papel-casa"
+      },
+      "points": 30
+    },
+    {
+      "id": "ob-pago",
+      "text": "Descubre quién pagó los primeros doscientos ducados.",
+      "completeWhen": {
+        "fact": "fa-leonor-pago"
+      },
+      "points": 30
+    },
+    {
+      "id": "ob-zamudio",
+      "text": "Averigua qué tramaba el rival de Arriaga.",
+      "completeWhen": {
+        "secret": "se-zamudio"
+      },
+      "points": 25,
+      "hidden": true
+    }
+  ],
+  "assets": []
+}

@@ -203,6 +203,36 @@ try {
   check(t.errors.length === 0, `Sin errores de consola en la mesa compartida${t.errors.length ? ': ' + t.errors.join(' | ') : ''}`);
   await ctx.close();
 
+  // ═══ 1b · MESA COMPARTIDA CON EXPEDIENTE COMPARTIDO ════════════════════
+  {
+    const ctxS = await browser.newContext(device);
+    const sh = phone(await ctxS.newPage());
+    const q = sh.p;
+    await q.goto(`${BASE}/telefono`);
+    await q.getByRole('button', { name: 'Nueva investigación' }).click();
+    await q.getByRole('button', { name: /La carta de marear/ }).click();
+    await q.getByRole('button', { name: 'Empezar en este iPhone' }).click();
+    await q.waitForURL('**/pareja/**');
+    await q.getByRole('navigation', { name: 'Expediente' }).getByRole('link', { name: /^Evidencias/ }).click();
+    check(await visible(q.getByRole('link', { name: /Primera carta anónima/ })), 'Expediente compartido: los dos ven todas las piezas');
+    await q.getByRole('button', { name: 'Acusación conjunta' }).click();
+    await q.getByRole('button', { name: /Rodrigo Zamudio/ }).click();
+    await q.getByText('Arruinar a Arriaga para quedarse con su cátedra').click();
+    await q.getByText('Amenazó con una denuncia firmada').click();
+    await q.getByRole('radiogroup').nth(2).getByText('Primera carta anónima').click();
+    await q.getByRole('button', { name: 'Firmar el acta' }).click();
+    await q.getByRole('button', { name: 'Proponer al compañero' }).click();
+    await q.getByRole('heading', { name: 'Esperando a tu compañero' }).waitFor();
+    check((await q.getByRole('button', { name: 'Firmar la acusación' }).count()) === 0, 'Quien propone no puede firmar su propia propuesta');
+    await q.getByRole('button', { name: 'Soy el compañero: revisar la propuesta' }).click();
+    await q.getByRole('heading', { name: 'Tu compañero propone esta acusación' }).waitFor();
+    await q.getByRole('button', { name: 'Firmar la acusación' }).click();
+    await q.getByRole('heading', { name: 'El rival' }).waitFor({ timeout: 8000 });
+    check(true, 'Expediente compartido: propuesta, entrega en mano, firma y final de la pareja');
+    check(sh.errors.length === 0, `Sin errores de consola en el expediente compartido${sh.errors.length ? ': ' + sh.errors.join(' | ') : ''}`);
+    await ctxS.close();
+  }
+
   // ═══ 2 · CORRESPONDENCIA (dos dispositivos) ═════════════════════════════
   const host = phone(await (await browser.newContext(device)).newPage());
   const guest = phone(await (await browser.newContext(device)).newPage());

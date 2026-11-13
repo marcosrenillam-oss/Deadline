@@ -21,6 +21,7 @@ export function AccusationView() {
   const [proof, setProof] = useState<string>('');
   const [confirm, setConfirm] = useState(false);
   const [sealing, setSealing] = useState(false);
+  const [handedOver, setHandedOver] = useState(false);
 
   if (closed) {
     return (
@@ -35,7 +36,10 @@ export function AccusationView() {
 
   const prop = coop?.session.proposal;
   if (coop && prop?.status === 'pending') {
-    const mine = prop.from === coop.role || (coop.session.mode === 'correspondence' && prop.from === coop.session.myRole);
+    // Mesa compartida con expediente compartido: no hay papeles en pantalla, así
+    // que la propuesta se entrega en mano antes de que el compañero la firme.
+    const sharedTable = coop.session.mode === 'same-device' && !coop.role;
+    const mine = sharedTable ? !handedOver : prop.from === coop.role || (coop.session.mode === 'correspondence' && prop.from === coop.session.myRole);
     const label = (list: Array<{ id: string; label: string }>, id: string) => list.find((x) => x.id === id)?.label ?? id;
     return (
       <article className={`${s.sheet} ${s.scroll} ${s.accusation}`}>
@@ -59,7 +63,14 @@ export function AccusationView() {
             <dd>{c.evidence.find((e) => e.id === prop.accusation.proof)?.title}</dd>
           </div>
         </dl>
-        {mine ? (
+        {mine && sharedTable ? (
+          <>
+            <p className={s.hand}>Pasa el iPhone a tu compañero: tiene que leerla y firmarla él o ella.</p>
+            <button className={s.primary} onClick={() => setHandedOver(true)}>
+              Soy el compañero: revisar la propuesta
+            </button>
+          </>
+        ) : mine ? (
           <p className={s.hand}>
             {coop.session.mode === 'same-device'
               ? `Pasa el turno a ${prop.from === 'A' ? 'B' : 'A'} para que la firme o la rechace.`
@@ -67,7 +78,7 @@ export function AccusationView() {
           </p>
         ) : (
           <div className={s.sealRow}>
-            <button className={s.secondary} onClick={() => void coop.answer(false)}>
+            <button className={s.secondary} onClick={() => (setHandedOver(false), void coop.answer(false))}>
               No estoy de acuerdo
             </button>
             <button

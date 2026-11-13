@@ -74,6 +74,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-selene',
       name: 'Selene Markou',
+      look: { hair: 'bun', glasses: true },
       role: 'victim',
       age: 46,
       occupation: 'Ingeniera jefe de la Torre 7',
@@ -84,6 +85,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-nikos',
       name: 'Nikos Draganis',
+      look: { hair: 'short', beard: true },
       role: 'suspect',
       age: 39,
       occupation: 'Subjefe de turno de la Torre 7',
@@ -97,6 +99,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-irini',
       name: 'Irini Saba',
+      look: { hair: 'long' },
       role: 'suspect',
       age: 33,
       occupation: 'Periodista independiente',
@@ -110,6 +113,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-ladas',
       name: 'Petros Ladas',
+      look: { hair: 'bald', glasses: true },
       role: 'suspect',
       age: 52,
       occupation: 'Jefe de seguridad del consorcio Hydra',

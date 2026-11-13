@@ -145,6 +145,11 @@ export function CoopPanel({ open, onClose, session, setSession, lastCode, onPass
         {!same && session.partner ? ` ${partner} es ${otherRole(role ?? 'A')} · ${roleTitle(otherRole(role ?? 'A'))}.` : ''}
       </p>
       {role && c.coop && <p className={s.hand}>{c.coop.roles.find((r) => r.id === role)?.briefing}</p>}
+      {!role && c.coop && (
+        <p className={s.hand}>
+          {c.coop.roles.map((r) => `${r.title}: ${r.briefing}`).join(' ')}
+        </p>
+      )}
       {error && <p className={s.error}>{error}</p>}
 
       {!closed && role && (

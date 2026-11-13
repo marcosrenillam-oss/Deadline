@@ -76,6 +76,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-rufo',
       name: 'Lucio Vetio Rufo',
+      look: { hair: 'bald' },
       role: 'victim',
       age: 55,
       occupation: 'Prestamista y propietario de ínsulas',
@@ -86,6 +87,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-filon',
       name: 'Filón',
+      look: { hair: 'short', beard: true },
       role: 'suspect',
       age: 40,
       occupation: 'Liberto y administrador de la casa',
@@ -99,6 +101,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-gayo',
       name: 'Gayo Anio Fausto',
+      look: { hair: 'short' },
       role: 'suspect',
       age: 24,
       occupation: 'Sobrino y heredero',
@@ -112,6 +115,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-marcia',
       name: 'Marcia Prisca',
+      look: { hair: 'bun' },
       role: 'suspect',
       age: 38,
       occupation: 'Panadera viuda del Vico Tusco',
@@ -125,6 +129,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-davo',
       name: 'Davo',
+      look: { hair: 'bald', beard: true },
       role: 'witness',
       age: 60,
       occupation: 'Portero (ostiarius) de la casa',
@@ -135,6 +140,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-siro',
       name: 'Siro',
+      look: { hair: 'short' },
       role: 'witness',
       age: 30,
       occupation: 'Esclavo panadero de Marcia Prisca',

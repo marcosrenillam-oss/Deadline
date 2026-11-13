@@ -1,0 +1,1908 @@
+{
+  "schemaVersion": 1,
+  "id": "DL-D-0002",
+  "contentVersion": 1,
+  "mode": "daily",
+  "dailyIndex": 1,
+  "title": "Una nota falsa",
+  "subtitle": "Un Guarneri que dejó de sonar a mitad de concierto",
+  "origin": "fiction",
+  "era": "c19",
+  "eraLabel": "Viena, 1888",
+  "year": 1888,
+  "location": {
+    "city": "Viena",
+    "place": "Palacio von Rauch, en la Herrengasse",
+    "country": "Imperio austrohúngaro"
+  },
+  "category": "robbery",
+  "difficulty": "detective",
+  "keywords": [
+    "Viena",
+    "violín",
+    "Guarneri",
+    "concierto",
+    "luthier",
+    "copia",
+    "marchante",
+    "Linz"
+  ],
+  "ambience": {
+    "music": "vienna-1888-salon",
+    "mood": "opulent"
+  },
+  "maxHints": 4,
+  "briefing": {
+    "incidentDisplay": "Noche del 11 de febrero de 1888",
+    "summary": "A la mañana siguiente de una velada musical, el luthier de la casa abre la vitrina para cambiar las cuerdas del Guarneri del difunto barón von Rauch y descubre que el instrumento es una copia.",
+    "context": "La baronesa Adelheid von Rauch no quiere escándalo: medio Viena estuvo en su salón anoche. Ha pedido a la Dirección de Policía alguien discreto. Te esperan en la sala de música.",
+    "background": "El violín, construido en Cremona hacia 1735 por Giuseppe Guarneri «del Gesù», fue la pasión del barón, muerto hace dos años. La baronesa lo presta a jóvenes violinistas para las veladas de los sábados. La vitrina tiene dos llaves: la suya y la de su secretaria.",
+    "victim": "ch-baronesa",
+    "initialFacts": [
+      "fa-dos-llaves"
+    ],
+    "initialEvidence": [
+      "ev-denuncia",
+      "ev-copia",
+      "ev-programa"
+    ],
+    "initialTimeline": [
+      "te-primera",
+      "te-descanso",
+      "te-segunda",
+      "te-descubrimiento"
+    ]
+  },
+  "characters": [
+    {
+      "id": "ch-baronesa",
+      "name": "Adelheid von Rauch",
+      "look": {
+        "hair": "bun",
+        "glasses": true
+      },
+      "role": "victim",
+      "age": 61,
+      "occupation": "Baronesa viuda y mecenas",
+      "summary": "Su salón de los sábados es el mejor escaparate musical de Viena.",
+      "biography": "Viuda del barón Friedrich von Rauch, banquero y violinista aficionado. Mantiene sus veladas para que los jóvenes toquen el violín de su marido «donde lo oiga quien debe oírlo».",
+      "personality": [
+        "Generosa",
+        "Orgullosa",
+        "Detesta los escándalos"
+      ]
+    },
+    {
+      "id": "ch-lotte",
+      "name": "Lotte Brenner",
+      "look": {
+        "hair": "bun"
+      },
+      "role": "suspect",
+      "age": 29,
+      "occupation": "Dama de compañía y secretaria",
+      "summary": "Lleva la correspondencia, las cuentas y una de las dos llaves de la vitrina.",
+      "biography": "Hija de un maestro de Linz. Lleva siete años al servicio de la baronesa, que confía en ella para todo. Se la ve a menudo en la oficina de telégrafos de la Börsegasse.",
+      "personality": [
+        "Eficiente",
+        "Reservada",
+        "Impaciente con su suerte"
+      ],
+      "relationToVictim": "Su secretaria y mano derecha",
+      "motive": {
+        "text": "Un marchante de Múnich le ofrecía 6.000 florines por el violín, lo bastante para casarse y emigrar.",
+        "visibleWhen": {
+          "fact": "fa-oferta-berg"
+        }
+      },
+      "alibi": {
+        "claim": "Durante el descanso estuvo en la cocina, ocupándose del champán con el servicio."
+      }
+    },
+    {
+      "id": "ch-kranz",
+      "name": "Emil Kranz",
+      "look": {
+        "hair": "long"
+      },
+      "role": "suspect",
+      "age": 22,
+      "occupation": "Violinista, alumno del Conservatorio",
+      "summary": "Tocó el Guarneri anoche. Es la mejor oportunidad de su carrera.",
+      "biography": "Hijo de un sastre de Ottakring, becado en el Conservatorio. La baronesa le prestó el violín para la velada; si gusta, le presentará a Hans Richter.",
+      "personality": [
+        "Brillante",
+        "Nervioso",
+        "Vanidoso"
+      ],
+      "relationToVictim": "Protegido de la baronesa",
+      "motive": {
+        "text": "No tiene un instrumento a la altura de su talento."
+      },
+      "alibi": {
+        "claim": "No soltó el violín en toda la noche."
+      }
+    },
+    {
+      "id": "ch-viktor",
+      "name": "Viktor von Rauch",
+      "look": {
+        "hair": "short",
+        "beard": true
+      },
+      "role": "suspect",
+      "age": 34,
+      "occupation": "Sobrino del barón, teniente de caballería",
+      "summary": "Su tío le dejó un apellido y ningún dinero.",
+      "biography": "Teniente de dragones con más deudas de juego que méritos. Su tía le pasa una asignación que nunca le llega a fin de mes.",
+      "personality": [
+        "Arrogante",
+        "Jugador",
+        "Encantador cuando le conviene"
+      ],
+      "relationToVictim": "Sobrino político",
+      "motive": {
+        "text": "Debe dinero en todos los casinos de Viena.",
+        "visibleWhen": {
+          "fact": "fa-viktor-deudas"
+        }
+      },
+      "alibi": {
+        "claim": "En el descanso estuvo jugando a las cartas en el salón de fumar."
+      }
+    },
+    {
+      "id": "ch-weiss",
+      "name": "Anton Weiss",
+      "look": {
+        "hair": "bald",
+        "glasses": true
+      },
+      "role": "suspect",
+      "age": 57,
+      "occupation": "Luthier, taller en la Gumpendorfer Strasse",
+      "summary": "Cuida el Guarneri desde hace veinte años. Fue él quien descubrió la copia.",
+      "biography": "Uno de los mejores luthiers de Viena, famoso por sus copias de instrumentos italianos, que firma siempre como copias. Su reputación lo es todo para él.",
+      "personality": [
+        "Minucioso",
+        "Orgulloso de su oficio",
+        "Asustadizo"
+      ],
+      "relationToVictim": "Su luthier de confianza",
+      "motive": {
+        "text": "Sabe hacer una copia que engañaría a casi cualquiera."
+      },
+      "alibi": {
+        "claim": "No estuvo en la velada: llegó a la mañana siguiente para cambiar las cuerdas."
+      }
+    },
+    {
+      "id": "ch-johann",
+      "name": "Johann Pichler",
+      "look": {
+        "hair": "short"
+      },
+      "role": "witness",
+      "age": 45,
+      "occupation": "Lacayo de la casa",
+      "summary": "Sirvió el champán durante el descanso.",
+      "biography": "Veinte años de librea en el palacio von Rauch. Ve todo y comenta poco.",
+      "personality": [
+        "Discreto",
+        "Observador"
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "lo-salon",
+      "name": "Sala de música",
+      "description": "Un salón blanco y oro con un Bösendorfer de cola y la vitrina del Guarneri."
+    },
+    {
+      "id": "lo-fumar",
+      "name": "Salón de fumar",
+      "description": "Donde los caballeros juegan a las cartas en los descansos."
+    },
+    {
+      "id": "lo-taller",
+      "name": "Taller de Anton Weiss",
+      "description": "En la Gumpendorfer Strasse, entre virutas de abeto y olor a barniz.",
+      "appearsWhen": {
+        "fact": "fa-marca-weiss"
+      }
+    },
+    {
+      "id": "lo-estacion",
+      "name": "Estación del Oeste",
+      "description": "De allí salen los trenes y los bultos hacia Linz.",
+      "appearsWhen": {
+        "evidence": "ev-resguardo"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "re-lotte",
+      "a": "ch-baronesa",
+      "b": "ch-lotte",
+      "label": "Señora y secretaria"
+    },
+    {
+      "id": "re-kranz",
+      "a": "ch-baronesa",
+      "b": "ch-kranz",
+      "label": "Mecenas y protegido"
+    },
+    {
+      "id": "re-viktor",
+      "a": "ch-baronesa",
+      "b": "ch-viktor",
+      "label": "Tía y sobrino"
+    },
+    {
+      "id": "re-weiss",
+      "a": "ch-baronesa",
+      "b": "ch-weiss",
+      "label": "Clienta y luthier"
+    },
+    {
+      "id": "re-encargo",
+      "a": "ch-lotte",
+      "b": "ch-weiss",
+      "label": "Le encargó la copia",
+      "visibleWhen": {
+        "fact": "fa-copia-lotte"
+      }
+    }
+  ],
+  "facts": [
+    {
+      "id": "fa-dos-llaves",
+      "text": "La vitrina del Guarneri tiene dos llaves: la de la baronesa y la de su secretaria, Lotte Brenner.",
+      "important": true
+    },
+    {
+      "id": "fa-estuche",
+      "text": "También ha desaparecido el estuche de viaje del Guarneri, que se guardaba bajo la vitrina.",
+      "important": true
+    },
+    {
+      "id": "fa-copia-reciente",
+      "text": "El barniz de la copia tiene pocas semanas: es una copia hecha a propósito, no una antigua.",
+      "important": true
+    },
+    {
+      "id": "fa-marca-weiss",
+      "text": "Dentro de la copia hay una marca a lápiz «A. W. 41»: la numeración del taller de Anton Weiss.",
+      "important": true
+    },
+    {
+      "id": "fa-sono-apagado",
+      "text": "En la segunda parte el violín sonaba apagado, según el propio Kranz."
+    },
+    {
+      "id": "fa-kranz-solto",
+      "text": "Kranz dejó el violín sobre la tapa del piano durante el descanso.",
+      "important": true
+    },
+    {
+      "id": "fa-cambio-descanso",
+      "text": "El cambio se hizo durante el descanso, mientras el violín estaba solo sobre el piano.",
+      "important": true
+    },
+    {
+      "id": "fa-lotte-piano",
+      "text": "Durante el descanso, Lotte estuvo junto al piano con un chal grande sobre el brazo.",
+      "important": true
+    },
+    {
+      "id": "fa-copia-lotte",
+      "text": "La copia la encargó Lotte Brenner en noviembre, «por encargo de la señora baronesa».",
+      "important": true
+    },
+    {
+      "id": "fa-baronesa-no",
+      "text": "La baronesa nunca encargó una copia del violín.",
+      "important": true
+    },
+    {
+      "id": "fa-paquete-linz",
+      "text": "A las 7:10 de la mañana Lotte envió un paquete a su hermana de Linz.",
+      "important": true
+    },
+    {
+      "id": "fa-violin-linz",
+      "text": "El paquete enviado a Linz tenía la forma y el peso de un violín en su estuche.",
+      "important": true
+    },
+    {
+      "id": "fa-oferta-berg",
+      "text": "Un marchante de Múnich, Salomon Berg, ofreció a Lotte 6.000 florines por el instrumento «si llega con discreción».",
+      "important": true
+    },
+    {
+      "id": "fa-viktor-deudas",
+      "text": "Viktor von Rauch tiene deudas de juego."
+    },
+    {
+      "id": "fa-viktor-cartas",
+      "text": "Viktor pasó todo el descanso en la mesa de cartas del salón de fumar."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-denuncia",
+      "kind": "report",
+      "title": "Parte del comisario de distrito",
+      "dated": "12 de febrero de 1888",
+      "source": "Dirección de Policía de Viena, I distrito",
+      "summary": "Lo que se sabe del robo.",
+      "related": {
+        "characters": [
+          "ch-baronesa",
+          "ch-weiss"
+        ],
+        "locations": [
+          "lo-salon"
+        ],
+        "events": [
+          "te-descubrimiento"
+        ]
+      },
+      "body": [
+        {
+          "type": "heading",
+          "text": "PARTE · HURTO EN EL PALACIO VON RAUCH"
+        },
+        {
+          "type": "typed",
+          "text": "A las 11 horas, el luthier Anton Weiss, llamado para cambiar las cuerdas del violín Guarneri propiedad de la denunciante, advirtió que el instrumento guardado en la vitrina de la sala de música no es el original sino una copia."
+        },
+        {
+          "type": "typed",
+          "text": "La vitrina no presenta señales de haber sido forzada. Según la denunciante, el violín fue tocado la víspera por el señor Emil Kranz y devuelto a la vitrina al final de la velada. {{dt-estuche|Falta además el estuche de viaje del violín, de cuero negro, que se guardaba en el armarito de debajo.}}"
+        },
+        {
+          "type": "typed",
+          "text": "La denunciante ruega la máxima discreción. Asistieron a la velada cuarenta y dos invitados."
+        },
+        {
+          "type": "signature",
+          "name": "Kommissär Leopold Hrdlicka"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-estuche",
+          "label": "Falta el estuche de viaje",
+          "description": "Quien se llevó el violín pensaba transportarlo.",
+          "effects": [
+            {
+              "grantFact": "fa-estuche"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "points": 5
+    },
+    {
+      "id": "ev-copia",
+      "kind": "object",
+      "title": "El violín de la vitrina",
+      "source": "Sala de música",
+      "summary": "Una copia muy buena del Guarneri del barón.",
+      "related": {
+        "characters": [
+          "ch-weiss"
+        ],
+        "locations": [
+          "lo-salon"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "A primera vista es el Guarneri: el mismo arce flameado del fondo, la misma voluta algo asimétrica, la misma etiqueta «Joseph Guarnerius fecit Cremonae anno 1735 IHS». {{dt-barniz|Al acercarlo a la nariz, huele todavía a barniz de aceite: un barniz de semanas, no de siglo y medio.}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "Mirando por la efe con una lámpara, {{dt-marca|en el interior de la tapa, junto a la barra armónica, hay una inscripción a lápiz: «A. W. 41».}}"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-barniz",
+          "label": "Barniz de pocas semanas",
+          "description": "La copia se hizo hace poco y a propósito.",
+          "effects": [
+            {
+              "grantFact": "fa-copia-reciente"
+            }
+          ],
+          "points": 15
+        },
+        {
+          "id": "dt-marca",
+          "label": "«A. W. 41» a lápiz",
+          "description": "Las iniciales de Anton Weiss y un número de pieza.",
+          "effects": [
+            {
+              "grantFact": "fa-marca-weiss"
+            }
+          ],
+          "points": 20
+        }
+      ],
+      "points": 5
+    },
+    {
+      "id": "ev-programa",
+      "kind": "document",
+      "title": "Programa de la velada",
+      "dated": "Sábado, 11 de febrero de 1888",
+      "source": "Impreso en la casa Waldheim",
+      "summary": "El orden del concierto, con anotaciones de la baronesa.",
+      "related": {
+        "characters": [
+          "ch-kranz",
+          "ch-baronesa"
+        ],
+        "locations": [
+          "lo-salon"
+        ],
+        "events": [
+          "te-primera",
+          "te-descanso",
+          "te-segunda"
+        ]
+      },
+      "body": [
+        {
+          "type": "heading",
+          "text": "VELADA MUSICAL EN CASA DE LA BARONESA VON RAUCH"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Hora",
+            "Obra",
+            "Intérprete"
+          ],
+          "rows": [
+            [
+              "20:30",
+              "Beethoven · Sonata «Primavera»",
+              "E. Kranz, violín (Guarneri del barón)"
+            ],
+            [
+              "21:10",
+              "Brahms · Danzas húngaras 1 y 5",
+              "E. Kranz y F. Lindner, piano"
+            ],
+            [
+              "21:40",
+              "Descanso · champán en la sala",
+              ""
+            ],
+            [
+              "21:55",
+              "Sarasate · Aires gitanos",
+              "E. Kranz"
+            ],
+            [
+              "22:20",
+              "Mendelssohn · Canción sin palabras",
+              "E. Kranz"
+            ]
+          ]
+        },
+        {
+          "type": "handwritten",
+          "text": "El Sarasate, menos brillante que el Beethoven. ¿Cansancio? Hablar con Richter de todos modos.",
+          "author": "Nota de la baronesa al margen"
+        }
+      ]
+    },
+    {
+      "id": "ev-kranz",
+      "kind": "statement",
+      "title": "Declaración de Emil Kranz",
+      "source": "Tomada en la pensión del declarante",
+      "summary": "Lo que notó el violinista en la segunda parte.",
+      "autoDiscoverWhen": {
+        "asked": "q-kranz-noche"
+      },
+      "related": {
+        "characters": [
+          "ch-kranz"
+        ],
+        "locations": [
+          "lo-salon"
+        ],
+        "events": [
+          "te-segunda"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—En la primera parte aquel violín cantaba solo. No he tocado nada igual en mi vida."
+        },
+        {
+          "type": "typed",
+          "text": "—{{dt-apagado|En el Sarasate lo noté apagado. Los agudos no corrían, la cuerda de sol sonaba a madera. Pensé que era el frío de la ventana, o mis nervios.}} No dije nada: ¿quién se queja de un Guarneri?"
+        },
+        {
+          "type": "typed",
+          "text": "—Al terminar se lo di a la señorita Brenner, que lo guardó en la vitrina. Eso fue todo."
+        },
+        {
+          "type": "signature",
+          "name": "Emil Kranz"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-apagado",
+          "label": "Sonaba apagado en la segunda parte",
+          "description": "El violín de la segunda parte no era el de la primera.",
+          "effects": [
+            {
+              "grantFact": "fa-sono-apagado"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "points": 5
+    },
+    {
+      "id": "ev-johann",
+      "kind": "statement",
+      "title": "Declaración de Johann, el lacayo",
+      "source": "Tomada en el office",
+      "summary": "El descanso visto desde detrás de una bandeja.",
+      "autoDiscoverWhen": {
+        "any": [
+          {
+            "asked": "q-kranz-solto"
+          },
+          {
+            "asked": "q-lotte-descanso"
+          }
+        ]
+      },
+      "related": {
+        "characters": [
+          "ch-johann",
+          "ch-kranz",
+          "ch-lotte",
+          "ch-viktor"
+        ],
+        "locations": [
+          "lo-salon",
+          "lo-fumar"
+        ],
+        "events": [
+          "te-descanso",
+          "te-cambio"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—En el descanso serví el champán en la sala. {{dt-piano|El señor Kranz dejó el violín encima de la tapa del piano y se fue derecho a la soprano Lindner, la hermana de la pianista.}} Estuvo con ella un buen cuarto de hora junto a la ventana."
+        },
+        {
+          "type": "typed",
+          "text": "—{{dt-chal|La señorita Brenner no bajó a la cocina; la vi junto al piano, ordenando las partituras, con un chal grande doblado sobre el brazo. Me extrañó: la sala estaba caldeada.}}"
+        },
+        {
+          "type": "typed",
+          "text": "—{{dt-viktor-cartas|El teniente von Rauch no salió del salón de fumar en todo el descanso: le llevé tres copas a la mesa de cartas.}}"
+        },
+        {
+          "type": "signature",
+          "name": "Johann Pichler"
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-cambio"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-piano",
+          "label": "El violín, solo sobre el piano",
+          "description": "Kranz lo dejó desatendido durante el descanso.",
+          "effects": [
+            {
+              "grantFact": "fa-kranz-solto"
+            }
+          ],
+          "points": 15
+        },
+        {
+          "id": "dt-chal",
+          "label": "Lotte, junto al piano y con un chal",
+          "description": "No estaba en la cocina, como dice.",
+          "effects": [
+            {
+              "grantFact": "fa-lotte-piano"
+            }
+          ],
+          "points": 20
+        },
+        {
+          "id": "dt-viktor-cartas",
+          "label": "Viktor no se movió de la mesa de cartas",
+          "description": "Tres copas servidas en el salón de fumar.",
+          "effects": [
+            {
+              "grantFact": "fa-viktor-cartas"
+            }
+          ],
+          "points": 10
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-libro-encargos",
+      "kind": "record",
+      "title": "Libro de encargos del taller Weiss",
+      "source": "Taller de la Gumpendorfer Strasse",
+      "summary": "Pedidos, fechas y firmas de los clientes.",
+      "related": {
+        "characters": [
+          "ch-weiss",
+          "ch-lotte"
+        ],
+        "locations": [
+          "lo-taller"
+        ],
+        "events": [
+          "te-encargo",
+          "te-entrega"
+        ]
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Nº",
+            "Fecha",
+            "Encargo",
+            "Cliente"
+          ],
+          "rows": [
+            [
+              "39",
+              "2 nov. 1887",
+              "Arco de Pernambuco, montura de plata",
+              "Prof. Hellmesberger"
+            ],
+            [
+              "40",
+              "9 nov. 1887",
+              "Viola, copia Gasparo da Salò",
+              "Herr Dr. Koch"
+            ],
+            [
+              "41",
+              "14 nov. 1887",
+              "{{dt-encargo|Violín, copia fiel del Guarneri von Rauch, sin firma de copista}}",
+              "{{dt-firma|L. Brenner, por encargo de la Sra. baronesa}}"
+            ]
+          ]
+        },
+        {
+          "type": "handwritten",
+          "text": "Nº 41 entregado el 28 de enero. Pagado en efectivo, 180 fl.",
+          "author": "Letra de Weiss"
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-encargo"
+        },
+        {
+          "unlockTimelineEvent": "te-entrega"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-encargo",
+          "label": "Copia fiel «sin firma de copista»",
+          "description": "Una copia hecha para pasar por el original.",
+          "effects": [],
+          "points": 15
+        },
+        {
+          "id": "dt-firma",
+          "label": "Firmado por L. Brenner",
+          "description": "La secretaria encargó la copia en nombre de la baronesa.",
+          "effects": [
+            {
+              "grantFact": "fa-copia-lotte"
+            }
+          ],
+          "points": 25
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-portero",
+      "kind": "record",
+      "title": "Libro del portero",
+      "source": "Portería del palacio",
+      "summary": "Entradas y salidas del 11 y el 12 de febrero.",
+      "autoDiscoverWhen": {
+        "fact": "fa-copia-lotte"
+      },
+      "related": {
+        "characters": [
+          "ch-lotte"
+        ],
+        "locations": [
+          "lo-salon"
+        ],
+        "events": [
+          "te-paquete"
+        ]
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Hora",
+            "Asunto"
+          ],
+          "rows": [
+            [
+              "11 feb., 19:45 a 20:20",
+              "Llegada de invitados (lista aparte)"
+            ],
+            [
+              "11 feb., 23:50 a 0:40",
+              "Salida de invitados"
+            ],
+            [
+              "12 feb., 7:10",
+              "{{dt-paquete|Fräulein Brenner sale con un paquete para la estación. Vuelve a las 8:05.}}"
+            ],
+            [
+              "12 feb., 10:55",
+              "Herr Weiss, luthier"
+            ]
+          ]
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-paquete",
+          "label": "Un paquete a primera hora",
+          "description": "Lotte salió hacia la estación a las 7:10.",
+          "effects": [
+            {
+              "grantFact": "fa-paquete-linz"
+            },
+            {
+              "unlockTimelineEvent": "te-paquete"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "points": 5
+    },
+    {
+      "id": "ev-resguardo",
+      "kind": "document",
+      "title": "Resguardo de envío de los ferrocarriles",
+      "source": "Bolso de Lotte Brenner",
+      "summary": "Un bulto facturado en la Estación del Oeste.",
+      "related": {
+        "characters": [
+          "ch-lotte"
+        ],
+        "locations": [
+          "lo-estacion"
+        ],
+        "events": [
+          "te-paquete"
+        ]
+      },
+      "body": [
+        {
+          "type": "heading",
+          "text": "K. K. PRIV. KAISERIN-ELISABETH-BAHN · ENVÍO DE BULTOS"
+        },
+        {
+          "type": "table",
+          "header": [
+            "Campo",
+            "Anotación"
+          ],
+          "rows": [
+            [
+              "Fecha",
+              "12 de febrero de 1888, 7:40"
+            ],
+            [
+              "Destinataria",
+              "Fräulein Marie Brenner, Linz, Landstrasse 17"
+            ],
+            [
+              "Contenido declarado",
+              "Partituras"
+            ],
+            [
+              "Bulto",
+              "{{dt-medidas|Caja de madera, 78 × 26 × 14 cm, 2,3 kg}}"
+            ]
+          ]
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-medidas",
+          "label": "Una caja de 78 cm y 2,3 kg",
+          "description": "Pocas partituras miden eso y pesan tan poco.",
+          "effects": [],
+          "points": 15
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-secante",
+      "kind": "document",
+      "title": "Papel secante del escritorio de Lotte",
+      "source": "Escritorio de la secretaria",
+      "summary": "Lo que la tinta dejó al revés.",
+      "autoDiscoverWhen": {
+        "all": [
+          {
+            "fact": "fa-copia-lotte"
+          },
+          {
+            "fact": "fa-paquete-linz"
+          }
+        ]
+      },
+      "related": {
+        "characters": [
+          "ch-lotte"
+        ],
+        "locations": [],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Leído en un espejo, el secante conserva fragmentos de varias cartas. La mayoría son de la correspondencia de la baronesa. Una no."
+        },
+        {
+          "type": "handwritten",
+          "text": "…Herr Berg, Múnich… {{dt-berg|…acepto los 6.000 florines que ofrece si el instrumento llega con la discreción convenida…}} …mi hermana se lo hará llegar desde Linz… …el pasaje de Bremen para dos…",
+          "author": "Letra de Lotte Brenner, invertida"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-berg",
+          "label": "6.000 florines «con discreción»",
+          "description": "Una venta acordada con un marchante.",
+          "effects": [
+            {
+              "grantFact": "fa-oferta-berg"
+            }
+          ],
+          "points": 25
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-pagare-viktor",
+      "kind": "document",
+      "title": "Papeleta de empeño",
+      "source": "Cartera de Viktor von Rauch",
+      "summary": "Monte de piedad del Dorotheum.",
+      "autoDiscoverWhen": {
+        "asked": "q-viktor-dinero"
+      },
+      "related": {
+        "characters": [
+          "ch-viktor"
+        ],
+        "locations": [],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "heading",
+          "text": "K. K. VERSATZAMT DOROTHEUM"
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-reloj|Un reloj de bolsillo de oro, tapa grabada con el escudo von Rauch. Préstamo: 300 fl. Vence: 1 de marzo de 1888.}}"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-reloj",
+          "label": "Empeñó el reloj de su tío",
+          "description": "Viktor necesita dinero, y lo necesita ya.",
+          "effects": [
+            {
+              "grantFact": "fa-viktor-deudas"
+            }
+          ],
+          "points": 10
+        }
+      ]
+    }
+  ],
+  "deductions": [
+    {
+      "id": "de-descanso",
+      "title": "El cambio fue en el descanso",
+      "combine": [
+        "dt-apagado",
+        "dt-piano"
+      ],
+      "explanation": "El violín sonaba distinto justo después del descanso, y durante el descanso estuvo solo sobre la tapa del piano: fue entonces cuando lo cambiaron.",
+      "effects": [
+        {
+          "grantFact": "fa-cambio-descanso"
+        },
+        {
+          "unlockTimelineEvent": "te-cambio"
+        }
+      ],
+      "points": 30
+    },
+    {
+      "id": "de-copia",
+      "title": "La pieza nº 41",
+      "combine": [
+        "dt-marca",
+        "dt-firma"
+      ],
+      "explanation": "La copia de la vitrina lleva el número 41 del taller Weiss, y el encargo nº 41 lo firmó Lotte Brenner.",
+      "effects": [
+        {
+          "grantFact": "fa-copia-lotte"
+        }
+      ],
+      "points": 30
+    },
+    {
+      "id": "de-paquete",
+      "title": "Partituras de 78 centímetros",
+      "combine": [
+        "dt-estuche",
+        "dt-medidas"
+      ],
+      "explanation": "Falta el estuche de viaje del violín, y a la mañana siguiente Lotte facturó a Linz una caja del tamaño y el peso de un violín en su estuche.",
+      "effects": [
+        {
+          "grantFact": "fa-violin-linz"
+        }
+      ],
+      "points": 40
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "cx-lotte",
+      "title": "Lotte no estaba en la cocina",
+      "a": {
+        "line": "ln-lotte-cocina"
+      },
+      "b": {
+        "detail": "dt-chal"
+      },
+      "explanation": "Lotte dice que pasó el descanso en la cocina con el servicio; el lacayo la vio junto al piano, con un chal doblado sobre el brazo.",
+      "effects": [],
+      "points": 40
+    },
+    {
+      "id": "cx-kranz",
+      "title": "Kranz sí soltó el violín",
+      "a": {
+        "line": "ln-kranz-nunca"
+      },
+      "b": {
+        "detail": "dt-piano"
+      },
+      "explanation": "Kranz asegura que no soltó el violín en toda la noche; el lacayo lo vio dejarlo sobre el piano para ir a hablar con la soprano.",
+      "effects": [],
+      "points": 20
+    },
+    {
+      "id": "cx-weiss",
+      "title": "Weiss sabe quién hizo la copia",
+      "a": {
+        "line": "ln-weiss-quien"
+      },
+      "b": {
+        "detail": "dt-marca"
+      },
+      "explanation": "Weiss dice no tener idea de quién hizo la copia; dentro lleva su propia marca de taller.",
+      "effects": [
+        {
+          "grantEvidence": "ev-libro-encargos"
+        }
+      ],
+      "points": 30
+    },
+    {
+      "id": "cx-viktor",
+      "title": "Viktor sí tiene apuros",
+      "a": {
+        "line": "ln-viktor-dinero"
+      },
+      "b": {
+        "detail": "dt-reloj"
+      },
+      "explanation": "Viktor presume de no necesitar nada de nadie; acaba de empeñar el reloj de su tío.",
+      "effects": [],
+      "points": 15
+    }
+  ],
+  "secrets": [
+    {
+      "id": "se-kranz",
+      "characterId": "ch-kranz",
+      "text": "Kranz dejó el Guarneri sobre el piano para cortejar a la soprano Lindner. Le avergüenza haber descuidado el instrumento que le confiaron.",
+      "revealedWhen": {
+        "contradiction": "cx-kranz"
+      },
+      "points": 20
+    },
+    {
+      "id": "se-weiss",
+      "characterId": "ch-weiss",
+      "text": "Weiss reconoció su copia nada más abrir la vitrina y calló por miedo a que lo tomaran por falsificador.",
+      "revealedWhen": {
+        "contradiction": "cx-weiss"
+      },
+      "points": 25
+    },
+    {
+      "id": "se-viktor",
+      "characterId": "ch-viktor",
+      "text": "Viktor empeñó el reloj de su tío para pagar una deuda de honor. Pensaba recuperarlo antes de que su tía lo echara de menos.",
+      "revealedWhen": {
+        "contradiction": "cx-viktor"
+      },
+      "points": 15
+    }
+  ],
+  "interrogations": [
+    {
+      "id": "in-lotte",
+      "characterId": "ch-lotte",
+      "setting": "En el gabinete de la secretaria, entre carpetas y un jarrón de violetas. Lotte no se ha sentado.",
+      "opening": [
+        {
+          "text": "La señora está deshecha. Pregunte lo que necesite, pero le ruego que sea breve: tengo toda la correspondencia por hacer."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-lotte-velada",
+          "label": "La velada",
+          "kind": "alibi",
+          "questions": [
+            {
+              "id": "q-lotte-descanso",
+              "prompt": "¿Dónde estuvo durante el descanso?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-lotte-cocina",
+                      "text": "En la cocina, con el servicio. Alguien tenía que vigilar que el champán subiera frío.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "unlockTimelineEvent": "te-falso-lotte"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-lotte-vitrina",
+              "prompt": "¿Quién guardó el violín al final?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Yo. Herr Kranz me lo dio al terminar y lo cerré con mi llave. Hacia las once y media.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "unlockTimelineEvent": "te-vitrina"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-lotte-cx",
+              "prompt": "El lacayo la vio junto al piano en el descanso, con un chal en el brazo.",
+              "kind": "contradiction",
+              "contradiction": "cx-lotte",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Lotte se recoloca un mechón que no se había movido."
+                    },
+                    {
+                      "text": "Subí un momento a ordenar las partituras del segundo acto. El chal era de la señora: se lo llevaba.",
+                      "tone": "evasion"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-lotte-copia",
+          "label": "La copia",
+          "kind": "document",
+          "availableWhen": {
+            "any": [
+              {
+                "fact": "fa-marca-weiss"
+              },
+              {
+                "fact": "fa-copia-lotte"
+              }
+            ]
+          },
+          "questions": [
+            {
+              "id": "q-lotte-weiss",
+              "prompt": "¿Ha estado en el taller de Anton Weiss?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Alguna vez, a llevarle recados de la señora. Cuerdas, una crin para el arco. Nada que recuerde.",
+                      "tone": "evasion"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-lotte-encargo",
+              "prompt": "El encargo nº 41 lleva su firma: una copia del Guarneri, «por encargo de la señora baronesa».",
+              "kind": "confront",
+              "requires": {
+                "fact": "fa-copia-lotte"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "La señora quería una copia para las veladas, para no arriesgar el original. Me lo pidió de palabra.",
+                      "tone": "lie"
+                    },
+                    {
+                      "speaker": "narration",
+                      "text": "Desde el salón contiguo, la voz de la baronesa: «Yo no he pedido jamás tal cosa»."
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-baronesa-no"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-lotte-linz",
+          "label": "Linz",
+          "kind": "personal",
+          "availableWhen": {
+            "fact": "fa-paquete-linz"
+          },
+          "questions": [
+            {
+              "id": "q-lotte-paquete",
+              "prompt": "¿Qué llevó a la estación esta mañana a las siete?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Partituras para mi hermana. Da clases de piano en Linz. Aquí tiene el resguardo, si tanto le interesa.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantEvidence": "ev-resguardo"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-lotte-final",
+              "prompt": "Seis mil florines de Herr Berg, de Múnich. Y un pasaje de Bremen para dos.",
+              "kind": "confront",
+              "requires": {
+                "all": [
+                  {
+                    "fact": "fa-oferta-berg"
+                  },
+                  {
+                    "fact": "fa-violin-linz"
+                  }
+                ]
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Lotte se sienta por fin. Mira las violetas."
+                    },
+                    {
+                      "text": "Siete años escribiendo las cartas de otra. Él trabaja en el telégrafo; no tenemos nada. Un violín encerrado en una vitrina, que suena una vez al mes para que la señora reciba felicitaciones…",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "Lo cambié en el descanso. Llevaba la copia bajo el chal desde las nueve. Está en Linz. Mi hermana no sabe nada; no la metan en esto.",
+                      "tone": "admission"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "setFlag": "lotte-confiesa"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-kranz",
+      "characterId": "ch-kranz",
+      "setting": "En su cuarto de la pensión Sacher-Hof, con las ventanas cerradas y el estuche de su propio violín, muy gastado, sobre la cama.",
+      "opening": [
+        {
+          "text": "¿Me acusan a mí? Anoche era el mejor día de mi vida. Hoy me dicen que toqué una falsificación."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-kranz-noche",
+          "label": "El concierto",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-kranz-noche",
+              "prompt": "Cuénteme la velada desde el principio.",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "La baronesa me entregó el violín a las ocho y cuarto. Toqué el Beethoven y las danzas; luego el descanso; luego el Sarasate y Mendelssohn.",
+                      "tone": "truth"
+                    },
+                    {
+                      "text": "Algo pasó en la segunda parte, ¿sabe? Lo he puesto por escrito para el comisario.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-kranz-solto",
+              "prompt": "¿Soltó el violín en algún momento?",
+              "kind": "press",
+              "requires": {
+                "asked": "q-kranz-noche"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-kranz-nunca",
+                      "text": "Jamás. No lo solté en toda la noche: un instrumento así no se deja en ningún sitio.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "unlockTimelineEvent": "te-falso-kranz"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-kranz-cx",
+              "prompt": "El lacayo le vio dejarlo sobre el piano para ir a hablar con la señorita Lindner.",
+              "kind": "contradiction",
+              "contradiction": "cx-kranz",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Kranz enrojece hasta las orejas."
+                    },
+                    {
+                      "text": "Un cuarto de hora. Quizá veinte minutos. Sobre la tapa cerrada del Bösendorfer, en medio de la sala, con cuarenta personas delante. ¿Quién iba a…?",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "Cuando volví, la señorita Brenner estaba ordenando mis partituras junto al piano. Me sonrió. Cogí el violín y seguí tocando.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-lotte-piano"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-viktor",
+      "characterId": "ch-viktor",
+      "setting": "En el salón de fumar, de uniforme, con una copa de coñac a las once de la mañana.",
+      "opening": [
+        {
+          "text": "Un robo en casa de mi tía. Qué vulgaridad. Supongo que viene a preguntarme si necesito dinero."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-viktor-noche",
+          "label": "El descanso",
+          "kind": "alibi",
+          "questions": [
+            {
+              "id": "q-viktor-descanso",
+              "prompt": "¿Dónde estuvo durante el descanso?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Aquí, perdiendo al whist contra el consejero Hofmann. Johann me trajo tres copas; pregúntele.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantEvidence": "ev-johann"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-viktor-dinero",
+          "label": "El dinero",
+          "kind": "personal",
+          "questions": [
+            {
+              "id": "q-viktor-dinero",
+              "prompt": "¿Tiene deudas, teniente?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-viktor-dinero",
+                      "text": "Un oficial de dragones no tiene deudas: tiene compromisos. Y no necesito nada de nadie.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-viktor-cx",
+              "prompt": "Lleva en la cartera una papeleta del Dorotheum: el reloj de su tío.",
+              "kind": "contradiction",
+              "contradiction": "cx-viktor",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Una deuda de honor con un capitán de húsares. Lo recuperaré el día uno. Mi tía no tiene por qué enterarse.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "Y si hubiera querido robarle algo, ¿cree que habría elegido un violín? No sabría ni a quién vendérselo.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-weiss",
+      "characterId": "ch-weiss",
+      "setting": "En la sala de música, junto a la vitrina abierta. Weiss no aparta la vista de la copia.",
+      "opening": [
+        {
+          "text": "Veinte años cuidando ese violín. Lo supe en cuanto lo tuve en las manos: pesa distinto. El original es más ligero."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-weiss-copia",
+          "label": "La copia",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-weiss-copia",
+              "prompt": "¿Quién pudo hacer una copia así?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Es un trabajo muy fino: el arco del fondo, la voluta, hasta el desgaste del barniz junto a la barbada.",
+                      "tone": "truth"
+                    },
+                    {
+                      "id": "ln-weiss-quien",
+                      "text": "No tengo la menor idea de quién la hizo. En Viena hay veinte talleres.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-weiss-cx",
+              "prompt": "Dentro lleva escrito «A. W. 41». Sus iniciales.",
+              "kind": "contradiction",
+              "contradiction": "cx-weiss",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "El luthier se quita las gafas y las limpia con un pañuelo que no las necesita."
+                    },
+                    {
+                      "text": "La hice yo, sí. En noviembre. Me la encargó la señorita Brenner en nombre de la baronesa, para las veladas. Me pareció razonable.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "Cuando abrí la vitrina esta mañana… tuve miedo. Un copista al que le aparece su copia en lugar del original. Aquí tiene mi libro de encargos.",
+                      "tone": "admission"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "id": "te-encargo",
+      "t": -127000,
+      "display": "14 de noviembre de 1887",
+      "title": "Se encarga a Weiss una copia fiel del Guarneri",
+      "description": "Encargo nº 41, sin firma de copista.",
+      "characters": [
+        "ch-lotte",
+        "ch-weiss"
+      ],
+      "location": "lo-taller",
+      "key": true
+    },
+    {
+      "id": "te-entrega",
+      "t": -20000,
+      "display": "28 de enero de 1888",
+      "title": "Weiss entrega la copia nº 41",
+      "description": "Pagada en efectivo.",
+      "characters": [
+        "ch-weiss"
+      ],
+      "location": "lo-taller",
+      "key": false
+    },
+    {
+      "id": "te-primera",
+      "t": -70,
+      "display": "20:30",
+      "title": "Kranz toca el Guarneri en la primera parte",
+      "description": "Beethoven y Brahms.",
+      "characters": [
+        "ch-kranz"
+      ],
+      "location": "lo-salon",
+      "key": true
+    },
+    {
+      "id": "te-descanso",
+      "t": 0,
+      "display": "21:40",
+      "title": "Descanso: champán en la sala",
+      "description": "Quince minutos.",
+      "characters": [],
+      "location": "lo-salon",
+      "key": true
+    },
+    {
+      "id": "te-falso-kranz",
+      "t": 1,
+      "display": "21:40",
+      "title": "Kranz no suelta el violín en todo el descanso",
+      "description": "Según Kranz.",
+      "characters": [
+        "ch-kranz"
+      ],
+      "veracity": "false",
+      "claimedBy": "ch-kranz"
+    },
+    {
+      "id": "te-falso-lotte",
+      "t": 2,
+      "display": "21:40",
+      "title": "Lotte, en la cocina con el servicio",
+      "description": "Según Lotte.",
+      "characters": [
+        "ch-lotte"
+      ],
+      "veracity": "false",
+      "claimedBy": "ch-lotte"
+    },
+    {
+      "id": "te-cambio",
+      "t": 6,
+      "display": "Hacia las 21:45",
+      "title": "El Guarneri, solo sobre el piano, es cambiado por la copia",
+      "description": "Mientras Kranz habla con la soprano.",
+      "characters": [
+        "ch-lotte"
+      ],
+      "location": "lo-salon",
+      "key": true
+    },
+    {
+      "id": "te-segunda",
+      "t": 15,
+      "display": "21:55",
+      "title": "Kranz toca la segunda parte con un violín «apagado»",
+      "description": "Sarasate y Mendelssohn.",
+      "characters": [
+        "ch-kranz"
+      ],
+      "location": "lo-salon",
+      "key": true
+    },
+    {
+      "id": "te-vitrina",
+      "t": 110,
+      "display": "23:30",
+      "title": "Lotte guarda el violín en la vitrina con su llave",
+      "description": "Kranz se lo entrega al terminar.",
+      "characters": [
+        "ch-lotte",
+        "ch-kranz"
+      ],
+      "location": "lo-salon",
+      "key": true
+    },
+    {
+      "id": "te-paquete",
+      "t": 570,
+      "display": "12 de febrero, 7:10",
+      "title": "Lotte factura un bulto a Linz",
+      "description": "«Partituras», 78 cm, 2,3 kg.",
+      "characters": [
+        "ch-lotte"
+      ],
+      "location": "lo-estacion",
+      "key": true
+    },
+    {
+      "id": "te-descubrimiento",
+      "t": 800,
+      "display": "12 de febrero, 11:00",
+      "title": "Weiss descubre la copia al cambiar las cuerdas",
+      "description": "Avisan a la policía.",
+      "characters": [
+        "ch-weiss",
+        "ch-baronesa"
+      ],
+      "location": "lo-salon",
+      "key": true
+    }
+  ],
+  "accusation": {
+    "motives": [
+      {
+        "id": "mo-venta",
+        "label": "Vender el violín a un marchante de Múnich para casarse y emigrar",
+        "availableWhen": {
+          "fact": "fa-oferta-berg"
+        }
+      },
+      {
+        "id": "mo-deudas",
+        "label": "Pagar sus deudas de juego",
+        "availableWhen": {
+          "fact": "fa-viktor-deudas"
+        }
+      },
+      {
+        "id": "mo-ambicion",
+        "label": "Quedarse con un instrumento digno de su talento"
+      },
+      {
+        "id": "mo-oficio",
+        "label": "Demostrar que su copia podía pasar por el original"
+      }
+    ],
+    "methods": [
+      {
+        "id": "me-cambio",
+        "label": "Cambió el violín por la copia durante el descanso y lo envió a Linz en su estuche de viaje",
+        "availableWhen": {
+          "fact": "fa-cambio-descanso"
+        }
+      },
+      {
+        "id": "me-noche",
+        "label": "Abrió la vitrina de madrugada y se llevó el original"
+      },
+      {
+        "id": "me-taller",
+        "label": "Se quedó el original en el taller al cambiar las cuerdas"
+      }
+    ]
+  },
+  "solution": {
+    "culprits": [
+      "ch-lotte"
+    ],
+    "motive": "mo-venta",
+    "method": "me-cambio",
+    "proof": [
+      "ev-libro-encargos",
+      "ev-secante",
+      "ev-resguardo"
+    ],
+    "whatHappened": "Lotte Brenner, la secretaria de la baronesa, robó el Guarneri para vendérselo a un marchante de Múnich por 6.000 florines y emigrar con su prometido. En noviembre encargó al luthier Anton Weiss una copia fiel «por encargo de la señora». En la velada llevó la copia bajo un chal y, durante el descanso, mientras Kranz cortejaba a la soprano, cambió los violines sobre el piano. Kranz tocó la copia en la segunda parte. Lotte la guardó en la vitrina con su llave y, a primera hora de la mañana, facturó el original a Linz en su estuche de viaje, declarado como partituras.",
+    "reconstruction": [
+      "En noviembre, Lotte encarga a Weiss una copia fiel del Guarneri, sin firma de copista, en nombre de la baronesa.",
+      "Weiss la entrega a finales de enero. Lotte la esconde en su gabinete.",
+      "El 11 de febrero, Kranz toca el original en la primera parte de la velada.",
+      "En el descanso, Kranz deja el violín sobre el piano y se va a hablar con la soprano Lindner.",
+      "Lotte, que dice estar en la cocina, se acerca al piano con la copia bajo el chal y cambia los violines.",
+      "En la segunda parte, Kranz nota el violín apagado; la baronesa lo anota como cansancio.",
+      "A las 23:30 Lotte guarda la copia en la vitrina con su llave.",
+      "A las 7:10 sale con el estuche de viaje y factura el original a su hermana de Linz como «partituras».",
+      "A las 11, Weiss reconoce su propia copia en la vitrina."
+    ],
+    "decisiveEvidence": [
+      "ev-copia",
+      "ev-libro-encargos",
+      "ev-johann",
+      "ev-resguardo",
+      "ev-secante"
+    ],
+    "alibiTruths": [
+      {
+        "characterId": "ch-lotte",
+        "truth": "No estuvo en la cocina: estuvo junto al piano durante el descanso, con la copia bajo el chal."
+      },
+      {
+        "characterId": "ch-kranz",
+        "truth": "Sí soltó el violín: lo dejó sobre el piano un cuarto de hora para cortejar a la soprano."
+      },
+      {
+        "characterId": "ch-viktor",
+        "truth": "Pasó todo el descanso en la mesa de cartas. Mintió sobre sus deudas, no sobre el robo."
+      },
+      {
+        "characterId": "ch-weiss",
+        "truth": "No estuvo en la velada. Hizo la copia de buena fe y calló por miedo al reconocerla."
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "en-confesion",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct",
+        "knowledge": {
+          "flag": "lotte-confiesa"
+        }
+      },
+      "outcome": "success",
+      "title": "Da capo",
+      "text": "La policía de Linz recupera el Guarneri en casa de Marie Brenner, todavía en su estuche y con las cuerdas de la velada. La baronesa retira la denuncia contra Lotte a cambio de que abandone Viena; nadie sabe si llegó a Bremen. El sábado siguiente, Emil Kranz vuelve a tocar el Sarasate. Esta vez corre."
+    },
+    {
+      "id": "en-exito",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct"
+      },
+      "outcome": "success",
+      "title": "Partituras para Linz",
+      "text": "El bulto se intercepta en la estación de Linz antes de que nadie lo recoja. Lotte Brenner es detenida y Herr Berg, el marchante, niega haberla conocido nunca. El Guarneri vuelve a su vitrina; la segunda llave, a un cajón cerrado."
+    },
+    {
+      "id": "en-parcial",
+      "when": {
+        "culprit": "correct"
+      },
+      "outcome": "partial",
+      "title": "La llave equivocada",
+      "text": "Lotte Brenner es acusada, pero sin el rastro del violín su abogado sostiene que cualquiera pudo cambiarlo en una sala con cuarenta personas. Queda libre por falta de pruebas. El Guarneri aparece meses después en una subasta de Múnich."
+    },
+    {
+      "id": "en-kranz",
+      "when": {
+        "culprit": "ch-kranz"
+      },
+      "outcome": "failure",
+      "title": "El protegido",
+      "text": "Kranz es detenido ante sus compañeros del Conservatorio. Nada se encuentra en su pensión salvo su viejo violín. Lo sueltan a los tres días, pero Richter ya no quiere oírle. El Guarneri no aparece."
+    },
+    {
+      "id": "en-weiss",
+      "when": {
+        "culprit": "ch-weiss"
+      },
+      "outcome": "failure",
+      "title": "El copista",
+      "text": "Registran el taller de Weiss de arriba abajo. Solo encuentran virutas, barniz y el escándalo, que le cuesta la mitad de sus clientes. El Guarneri no aparece."
+    },
+    {
+      "id": "en-fallo",
+      "when": {},
+      "outcome": "failure",
+      "title": "Una nota en falso",
+      "text": "La acusación no se sostiene. La baronesa paga para que el asunto no llegue a los periódicos y guarda la copia en la vitrina. Nadie, salvo Weiss, nota nunca la diferencia."
+    }
+  ],
+  "hints": [
+    {
+      "id": "hl-cuando",
+      "topic": "Cuándo dejó de ser el original",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-cambio-descanso"
+        }
+      },
+      "steps": [
+        "El violinista notó algo durante el concierto.",
+        "Hubo un momento en que el violín estuvo sin nadie que lo vigilara.",
+        "Relaciona lo que cuenta Kranz de la segunda parte con lo que vio el lacayo en el descanso."
+      ]
+    },
+    {
+      "id": "hl-copia",
+      "topic": "Quién hizo la copia",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-copia-lotte"
+        }
+      },
+      "steps": [
+        "Una copia tan buena no se hace en una noche.",
+        "Mira el interior de la copia con la lupa.",
+        "Señala a Weiss la contradicción entre lo que dice y la marca de su taller."
+      ]
+    },
+    {
+      "id": "hl-adonde",
+      "topic": "Adónde fue el original",
+      "relevantWhen": {
+        "all": [
+          {
+            "fact": "fa-copia-lotte"
+          },
+          {
+            "not": {
+              "fact": "fa-violin-linz"
+            }
+          }
+        ]
+      },
+      "steps": [
+        "Un violín robado hay que sacarlo de la casa.",
+        "El libro del portero registra quién salió con qué.",
+        "Relaciona el estuche que falta con las medidas del bulto facturado a Linz."
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "id": "ob-cuando",
+      "text": "Averigua en qué momento se cambió el violín.",
+      "completeWhen": {
+        "fact": "fa-cambio-descanso"
+      },
+      "points": 30
+    },
+    {
+      "id": "ob-copista",
+      "text": "Descubre quién hizo la copia.",
+      "completeWhen": {
+        "secret": "se-weiss"
+      },
+      "points": 30
+    },
+    {
+      "id": "ob-viktor",
+      "text": "Averigua qué esconde el sobrino.",
+      "completeWhen": {
+        "secret": "se-viktor"
+      },
+      "points": 25,
+      "hidden": true
+    }
+  ],
+  "assets": []
+}

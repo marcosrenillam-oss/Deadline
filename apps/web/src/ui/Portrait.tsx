@@ -12,10 +12,15 @@ function hash(s: string): number {
   return h >>> 0;
 }
 
-export function Portrait({ character, size = 120 }: { character: Pick<Character, 'id' | 'name' | 'age'>; size?: number }) {
+const HAIR = { short: 0, long: 1, bun: 2, hat: 3, bald: 4 } as const;
+
+export function Portrait({ character, size = 120 }: { character: Pick<Character, 'id' | 'name' | 'age'> & { look?: Character['look'] }; size?: number }) {
   const h = hash(character.id);
-  const hair = h % 4; // 0 corto, 1 largo, 2 recogido, 3 sombrero
-  const glasses = (h >> 3) % 3 === 0;
+  const look = character.look;
+  // El expediente puede fijar la silueta; si no, se deriva del id (estable).
+  const hair = look ? HAIR[look.hair] : h % 4; // 0 corto, 1 largo, 2 recogido, 3 sombrero, 4 calvo
+  const glasses = look ? look.glasses : (h >> 3) % 3 === 0;
+  const beard = look?.beard ?? false;
   const collar = (h >> 5) % 3;
   const shade = ['#1d1c1a', '#262420', '#1a1a1c'][(h >> 7) % 3];
   const id = `pt-${character.id}`;
@@ -49,7 +54,9 @@ export function Portrait({ character, size = 120 }: { character: Pick<Character,
           </>
         )}
         {hair === 0 && <path d="M33 46 Q33 28 50 28 Q67 28 67 46 Q60 38 50 38 Q40 38 33 46 Z" />}
+        {beard && <path d="M35 58 Q36 78 50 80 Q64 78 65 58 Q58 66 50 66 Q42 66 35 58 Z" />}
       </g>
+      {hair === 4 && <ellipse cx="50" cy="36" rx="10" ry="5" fill="rgba(255,255,255,0.08)" />}
       {glasses && (
         <g fill="none" stroke="#6f6a60" strokeWidth="1.4">
           <circle cx="43" cy="52" r="5" />

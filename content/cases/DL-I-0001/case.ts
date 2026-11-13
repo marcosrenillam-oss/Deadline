@@ -53,6 +53,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-desmond',
       name: 'Desmond Ashcroft',
+      look: { hair: 'short', glasses: true },
       role: 'victim',
       age: 52,
       occupation: 'Fotógrafo de prensa y moda',
@@ -64,6 +65,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-nora',
       name: 'Nora Kell',
+      look: { hair: 'long' },
       role: 'suspect',
       age: 26,
       occupation: 'Ayudante de fotografía',
@@ -78,6 +80,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-julian',
       name: 'Julian Price',
+      look: { hair: 'short' },
       role: 'suspect',
       age: 49,
       occupation: 'Socio del estudio, gestor comercial',
@@ -92,6 +95,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-imogen',
       name: 'Imogen Ashcroft',
+      look: { hair: 'bun', glasses: true },
       role: 'suspect',
       age: 47,
       occupation: 'Restauradora de libros antiguos',
@@ -106,6 +110,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-callum',
       name: 'Callum Reyes',
+      look: { hair: 'short', beard: true },
       role: 'suspect',
       age: 34,
       occupation: 'Periodista de «The Sunday Courier»',
@@ -121,6 +126,7 @@ const caseFile: CaseFileInput = {
     {
       id: 'ch-okafor',
       name: 'Samuel Okafor',
+      look: { hair: 'bald', glasses: true },
       role: 'witness',
       age: 61,
       occupation: 'Acomodador de la Kingsway Playhouse',
