@@ -313,7 +313,7 @@ try {
     await ph.p.getByRole('radiogroup').nth(2).getByText('Parte de incidencia').click();
     await ph.p.getByRole('button', { name: 'Firmar el acta' }).click();
     await ph.p.getByRole('button', { name: 'Proponer al compañero' }).click();
-    return ph.p.getByLabel('Propuesta de acusación para tu compañero').inputValue();
+    return ph.p.getByLabel('Propuesta de acusación para tu compañero').first().inputValue();
   };
   let proposal = await proposeAs(host, 'Petros Ladas');
   await host.closePanel();

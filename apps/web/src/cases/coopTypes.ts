@@ -26,6 +26,8 @@ export interface CoopSession {
   seqOut: number;
   seenSeqs: number[];
   messages: Array<{ from: 'me' | 'partner' | 'A' | 'B'; text: string; at: number }>;
+  /** Último código que debo enviar a mi compañero (propuesta o respuesta); se conserva si se cierra la app. */
+  outbox?: { code: string; label: string };
   proposal?: { from: 'A' | 'B'; accusation: JointAccusation; at: number; status: 'pending' | 'agreed' | 'rejected' };
   updatedAt: number;
 }
@@ -41,4 +43,6 @@ export interface CoopApi {
   answer: (agree: boolean) => Promise<void>;
   /** Abrir el panel de pareja (compartir, recibir, mensajes, acusación pendiente). */
   openPanel: () => void;
+  /** Retirar mi propuesta pendiente para volver a proponer. */
+  withdraw: () => Promise<void>;
 }

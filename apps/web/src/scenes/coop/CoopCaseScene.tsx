@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router';
 import { CaseProvider } from '../../cases/CaseProvider.tsx';
-import { answer as answerProposal, getSession, otherRole, propose as proposeAccusation, saveSession } from '../../cases/coopRepo.ts';
+import { withdraw as withdrawProposal, answer as answerProposal, getSession, otherRole, propose as proposeAccusation, saveSession } from '../../cases/coopRepo.ts';
 import type { CoopApi, CoopSession } from '../../cases/coopTypes.ts';
 import { loadCase } from '../../cases/contentRepo.ts';
 import { useProfile } from '../../profile/ProfileProvider.tsx';
@@ -53,6 +53,10 @@ export function CoopCaseScene() {
         if (!agree) setPanel(true);
       },
       openPanel: () => setPanel(true),
+      withdraw: async () => {
+        setSession(await withdrawProposal(session));
+        setLastCode(null);
+      },
     };
   }, [session, role, reloadProfile]);
 
@@ -75,7 +79,7 @@ export function CoopCaseScene() {
         onClose={() => setPanel(false)}
         session={session}
         setSession={setSession}
-        lastCode={lastCode}
+        lastCode={lastCode ?? session.outbox ?? null}
         onPass={() => {
           setPanel(false);
           setPassing(true);

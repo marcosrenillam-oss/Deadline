@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { accusableSuspects, methodsAvailable, motivesAvailable } from '@deadline/core';
 import { useCase } from '../../cases/CaseProvider.tsx';
 import { Portrait } from '../../ui/Portrait.tsx';
+import { CodeBox } from '../coop/CodeBox.tsx';
 import { portraitUrl } from '../../cases/contentRepo.ts';
 import { sound } from '../../audio/sound.ts';
 import { haptic } from '../../audio/haptics.ts';
@@ -75,7 +76,7 @@ export function AccusationView() {
           <p className={s.hand}>
             {coop.session.mode === 'same-device'
               ? `Pasa el turno a ${prop.from === 'A' ? 'B' : 'A'} para que la firme o la rechace.`
-              : 'Envía a tu compañero el código de la propuesta (panel de pareja) y recibe su respuesta.'}
+              : 'Envía este código a tu compañero (WhatsApp, Mensajes, AirDrop). Cuando te devuelva su respuesta, pégala en el panel de pareja → «Recibir».'}
           </p>
         ) : (
           <div className={s.sealRow}>
@@ -95,9 +96,17 @@ export function AccusationView() {
             </button>
           </div>
         )}
-        <button className={s.secondary} onClick={coop.openPanel}>
-          Abrir el panel de pareja
-        </button>
+        {mine && coop.session.mode === 'correspondence' && coop.session.outbox && <CodeBox code={coop.session.outbox.code} label={coop.session.outbox.label} />}
+        <div className={s.sealRow}>
+          <button className={s.secondary} onClick={coop.openPanel}>
+            Abrir el panel de pareja
+          </button>
+          {mine && (
+            <button className={s.secondary} onClick={() => void coop.withdraw()}>
+              Retirar y volver a proponer
+            </button>
+          )}
+        </div>
       </article>
     );
   }
