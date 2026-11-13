@@ -406,3 +406,20 @@ La ficha de presentación ya avisa de que el reloj empieza al abrir, así que
 su botón «Romper el precinto» abre la investigación directamente, sin
 pasar por la portada precintada (que sigue existiendo para enlaces
 directos). Lo mismo desde el calendario.
+
+### D-065 · El expediente es una carpeta abierta sobre la mesa
+Sin barra lateral permanente: las cinco secciones son los separadores de
+cartulina de la carpeta; las herramientas son objetos (libreta, lupa para
+contradicciones, sobre de pistas, sello de lacre para acusar) y el
+cronómetro es un reloj de bolsillo. La tensión sube por fases (10 min,
+5 min, último minuto con latido rojo en los bordes) y el cierre por tiempo
+tiene su secuencia con sello. Los descubrimientos importantes (evidencia,
+contradicción, deducción, secreto) oscurecen un instante la mesa y la
+pieza se acerca con su sello, sin bloquear la interacción. Nada de esto
+toca el cálculo del tiempo.
+
+### D-066 · Margen de 5 s antes de avisar de un reloj que retrocede
+Falso positivo encontrado al revisar capturas: la interfaz refresca su
+«ahora» cada segundo y las acciones guardan la hora exacta, así que en
+partidas normales aparecía el aviso. El cálculo sigue usando el mayor
+instante visto; solo el aviso tiene margen.

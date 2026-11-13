@@ -1,0 +1,428 @@
+/*
+ * ENTORNO DE INVESTIGACIÓN — la mesa del caso.
+ * Una carpeta abierta sobre la mesa ocupa la pantalla; sus separadores de
+ * cartulina son la navegación. Las herramientas son objetos: libreta, lupa,
+ * sobre de pistas, sello de acusar y reloj de bolsillo.
+ */
+.room {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
+  padding: max(var(--safe-top), 8px) var(--pad-right) var(--pad-bottom) var(--pad-left);
+  transition: filter 1.2s ease;
+}
+
+.bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  min-height: 50px;
+}
+
+.back {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 34px;
+  margin-bottom: 6px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+/* Separadores de cartulina que salen de la carpeta */
+.tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tab {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 7px 7px 0 0;
+  background: linear-gradient(180deg, #b89a60, #9c7e47);
+  color: #2a1f12;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transform: translateY(4px);
+  transition: transform var(--dur-med) var(--ease-physical), background var(--dur-med);
+}
+.tab:global(.active) {
+  min-height: 38px;
+  background: linear-gradient(180deg, #e0c690, var(--manila));
+  transform: translateY(1px);
+  z-index: 1;
+}
+.badge {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 9px;
+  background: var(--seal);
+  color: var(--ivory);
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+  animation: m-glow 2.4s ease-in-out infinite;
+}
+
+/* Herramientas sobre la mesa */
+.tools {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+  padding-bottom: 6px;
+}
+.tool {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: 42px;
+  min-height: var(--touch);
+  align-content: center;
+  padding: 0;
+  color: var(--ivory-dim);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.tool svg {
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.6));
+}
+.tool:active {
+  transform: translateY(-3px) rotate(-4deg);
+}
+.tool:disabled {
+  opacity: 0.35;
+}
+.toolLabel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  font-family: var(--font-type);
+  font-size: 9px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.tool .badge {
+  position: absolute;
+  top: -2px;
+  right: 2px;
+}
+
+/* Sello de lacre: acusar / informe */
+.seal {
+  display: grid;
+  place-items: center;
+  min-width: 70px;
+  height: 38px;
+  margin-left: 6px;
+  padding: 0 12px;
+  border-radius: 20px;
+  background: radial-gradient(circle at 32% 28%, #a94b46, #762d2b 55%, #4f1b19);
+  color: #efe6d2;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.18), inset 0 0 0 4px rgba(239, 230, 210, 0.15), 0 4px 10px rgba(0, 0, 0, 0.5);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.seal:active {
+  transform: scale(0.94) rotate(-3deg);
+}
+
+/* Reloj de bolsillo */
+.watch {
+  flex: none;
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  margin: 0 0 2px 4px;
+  padding: 0;
+  color: var(--ivory);
+}
+.dial {
+  width: 36px;
+  height: 36px;
+  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.6));
+  transition: transform 300ms var(--ease-out);
+}
+.hand {
+  transition: transform 1s linear;
+}
+.second {
+  transition: transform 300ms cubic-bezier(0.3, 1.8, 0.5, 1);
+}
+.digits {
+  min-width: 56px;
+  text-align: center;
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+.watch[data-tension='warn'] .digits {
+  color: #f0c27a;
+}
+.watch[data-tension='danger'] .digits {
+  color: #ff8a70;
+}
+.watch[data-tension='danger'] .dial {
+  animation: tick 1s steps(1) infinite;
+}
+.watch[data-tension='final'] .digits {
+  color: #ff5a4a;
+  animation: beat 1s ease-in-out infinite;
+}
+.watch[data-tension='final'] .dial {
+  animation: shake 1s ease-in-out infinite;
+}
+.watch[data-tension='closed'] .digits {
+  color: var(--seal-bright);
+  letter-spacing: 0.14em;
+}
+@keyframes tick {
+  50% {
+    transform: rotate(-3deg);
+  }
+}
+@keyframes beat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.12);
+  }
+  30% {
+    transform: scale(1);
+  }
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  20% {
+    transform: rotate(-6deg);
+  }
+  40% {
+    transform: rotate(5deg);
+  }
+}
+
+/* La tensión también se nota en la habitación */
+.room[data-tension='danger'] {
+  filter: saturate(0.9) contrast(1.04);
+}
+.room[data-tension='final'] {
+  filter: saturate(0.82) contrast(1.08);
+}
+
+/* La carpeta abierta: aquí vive cada sección */
+.folder {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  padding: 8px;
+  border-radius: 2px 6px 4px 4px;
+}
+.stage {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+}
+.stage > * {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Descubrimientos */
+.discovery {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  animation: dim 2.1s ease both;
+}
+@keyframes dim {
+  0% {
+    background: rgba(5, 4, 3, 0);
+  }
+  18%,
+  70% {
+    background: rgba(5, 4, 3, 0.55);
+  }
+  100% {
+    background: rgba(5, 4, 3, 0);
+  }
+}
+.discoveryCard {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  max-width: min(440px, 70vw);
+  padding: 22px 26px 20px;
+  text-align: center;
+  animation: come-close 2.1s var(--ease-paper) both;
+}
+@keyframes come-close {
+  0% {
+    transform: translateY(40px) scale(0.7) rotate(-6deg);
+    opacity: 0;
+  }
+  20% {
+    transform: translateY(0) scale(1.06) rotate(-1.5deg);
+    opacity: 1;
+  }
+  72% {
+    transform: scale(1) rotate(-1.5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(32vw, -40vh) scale(0.3) rotate(4deg);
+    opacity: 0;
+  }
+}
+.discoveryStamp {
+  justify-self: center;
+  padding: 3px 12px;
+  border: 3px solid var(--seal-ink);
+  color: var(--seal-ink);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transform: rotate(-4deg) scale(1.4);
+  opacity: 0;
+  animation: stamp-down 2.1s ease both;
+}
+@keyframes stamp-down {
+  0%,
+  14% {
+    transform: rotate(-4deg) scale(1.8);
+    opacity: 0;
+  }
+  24% {
+    transform: rotate(-4deg) scale(0.95);
+    opacity: 1;
+  }
+  30%,
+  100% {
+    transform: rotate(-4deg) scale(1);
+    opacity: 1;
+  }
+}
+.discoveryCard[data-kind='deduction'] .discoveryStamp,
+.discoveryCard[data-kind='secret'] .discoveryStamp {
+  border-color: #2c5a3c;
+  color: #2c5a3c;
+}
+.discoveryText {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-xl);
+  line-height: 1.1;
+}
+
+/* Último minuto */
+.finalVignette {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  box-shadow: inset 0 0 90px 10px rgba(150, 20, 15, 0.55);
+  animation: heartbeat 1s ease-in-out infinite;
+}
+@keyframes heartbeat {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  15% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0.5;
+  }
+}
+
+/* Tiempo agotado */
+.timeUp {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  animation: close-down 2.6s ease both;
+}
+@keyframes close-down {
+  0% {
+    background: rgba(5, 4, 3, 0);
+  }
+  25%,
+  75% {
+    background: rgba(5, 4, 3, 0.75);
+  }
+  100% {
+    background: rgba(5, 4, 3, 0);
+  }
+}
+.timeUpStamp {
+  padding: 8px 26px;
+  border: 5px solid rgba(190, 60, 50, 0.92);
+  color: rgba(220, 80, 66, 0.95);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: clamp(28px, 6vw, 52px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  animation: slam 2.6s ease both;
+}
+@keyframes slam {
+  0%,
+  18% {
+    transform: rotate(-8deg) scale(2.4);
+    opacity: 0;
+  }
+  28% {
+    transform: rotate(-8deg) scale(0.92);
+    opacity: 1;
+  }
+  34%,
+  80% {
+    transform: rotate(-8deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

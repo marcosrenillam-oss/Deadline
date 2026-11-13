@@ -33,9 +33,17 @@ export interface TimerInput {
   serverOffsetMs?: number;
 }
 
+/**
+ * Margen antes de avisar de un reloj que retrocede. La interfaz refresca su
+ * «ahora» una vez por segundo mientras las acciones guardan la hora exacta,
+ * así que un desfase de unos segundos es normal y no debe alarmar. El
+ * cálculo sí usa siempre el mayor instante visto, sin margen.
+ */
+export const CLOCK_ROLLBACK_TOLERANCE_MS = 5_000;
+
 export function readTimer(input: TimerInput): TimerSnapshot {
   const corrected = input.localNow + (input.serverOffsetMs ?? 0);
-  const clockWentBack = corrected < input.lastObservedAt;
+  const clockWentBack = corrected < input.lastObservedAt - CLOCK_ROLLBACK_TOLERANCE_MS;
   const now = Math.max(corrected, input.lastObservedAt, input.startedAt);
   const remainingMs = Math.max(0, input.deadlineAt - now);
   return {

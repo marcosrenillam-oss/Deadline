@@ -95,7 +95,19 @@ try {
   await tap('Apagar la lámpara');
   await page.waitForFunction(() => document.documentElement.dataset.lamp === 'off');
   check(true, 'La cadenita apaga la lámpara');
-  await page.waitForTimeout(300);
+  // Espera a que el ajuste esté escrito en IndexedDB antes de recargar.
+  await page.waitForFunction(
+    () =>
+      new Promise((res) => {
+        const r = indexedDB.open('deadline');
+        r.onsuccess = () => {
+          const q = r.result.transaction('settings').objectStore('settings').get('device');
+          q.onsuccess = () => res(q.result?.lampOn === false);
+        };
+      }),
+    null,
+    { timeout: 10000 },
+  );
   await page.reload();
   await folder.waitFor({ state: 'attached' });
   await page.waitForFunction(() => document.documentElement.dataset.lamp === 'off');

@@ -10,6 +10,9 @@ import { NotebookPanel } from './NotebookPanel.tsx';
 import { ContradictionTool } from './ContradictionTool.tsx';
 import { HintsPanel } from './HintsPanel.tsx';
 import s from './case.module.css';
+import sh from './shell.module.css';
+import { PocketWatch, tensionOf } from './PocketWatch.tsx';
+import { DiscoveryLayer, EnvelopeIcon, FinalMinute, LensIcon, NotebookIcon, PhoneIcon, TimeUp } from './CaseObjects.tsx';
 
 /** Ruta /expediente/:caseId — carga el expediente y muestra portada o espacio de trabajo. */
 export function CaseScene() {
@@ -117,71 +120,79 @@ export function Workspace() {
   const navigate = useNavigate();
   const [panel, setPanel] = useState<'notes' | 'contradiction' | 'hints' | 'pause' | null>(null);
   const unread = c.evidence.filter((e) => k.evidence.has(e.id) && !k.examined.has(e.id)).length;
-  const urgent = !closed && remainingMs < 5 * 60_000;
   const hintsLeft = inv ? c.maxHints - inv.hintsUsed.length : 0;
+  const totalMs = inv ? inv.deadlineAt - inv.startedAt : 1;
+  const tension = tensionOf(remainingMs, closed);
+  const expired = inv?.status === 'expired';
+  const quiet = toasts.filter((t) => !['evidence', 'contradiction', 'deduction', 'secret'].includes(t.kind));
   return (
-    <main className={surface.wood}>
-      <div className={`${surface.safe} ${s.workspace}`}>
-        <nav className={s.rail} aria-label="Expediente">
-          <div className={s.railTop}>
-            <Link to="/" className={s.iconButton} aria-label="Volver al escritorio" onClick={() => sound.play('paper')}>
-              ←
-            </Link>
-            <button
-              className={s.clock}
-              data-urgent={urgent || undefined}
-              role="timer"
-              aria-label={closed ? 'Expediente cerrado' : `Tiempo restante ${formatRemaining(remainingMs)}. Tocar para tapar el expediente`}
-              disabled={closed}
-              onClick={() => setPanel('pause')}
-            >
-              {closed ? 'CERRADO' : formatRemaining(remainingMs)}
-            </button>
-          </div>
+    <main className={`m-room ${sh.room}`} data-tension={tension}>
+      <header className={sh.bar}>
+        <Link to="/" className={`m-brass ${sh.back}`} aria-label="Volver al escritorio" onClick={() => sound.play('paper')}>
+          ←
+        </Link>
+        <nav className={sh.tabs} aria-label="Expediente">
           {TABS.map((t) => (
-            <NavLink key={t.label} to={t.to ? `${base}/${t.to}` : base} end={t.end} className={s.tab} onClick={() => sound.play('page')}>
+            <NavLink key={t.label} to={t.to ? `${base}/${t.to}` : base} end={t.end} className={sh.tab} onClick={() => sound.play('page')}>
               {t.label}
-              {t.to === 'evidencias' && unread > 0 && !closed && <span className={s.badge}>{unread}</span>}
+              {t.to === 'evidencias' && unread > 0 && !closed && <span className={sh.badge}>{unread}</span>}
             </NavLink>
           ))}
+        </nav>
+        <div className={sh.tools}>
           {coop && (
-            <button className={`${s.tab} ${s.coopTab}`} onClick={coop.openPanel}>
-              {coop.role ? `${coop.role} · ${coop.roleTitle}` : 'Pareja'}
-              {coop.session.proposal?.status === 'pending' && coop.session.proposal.from !== coop.role && <span className={s.badge}>!</span>}
+            <button className={sh.tool} onClick={coop.openPanel} aria-label={coop.role ? `${coop.role} · ${coop.roleTitle}` : 'Pareja'}>
+              <PhoneIcon />
+              <span className={sh.toolLabel}>{coop.role ? `Papel ${coop.role}` : 'Pareja'}</span>
+              {coop.session.proposal?.status === 'pending' && coop.session.proposal.from !== coop.role && <span className={sh.badge}>!</span>}
             </button>
           )}
-          <div className={s.tools}>
-            <button className={s.iconButton} onClick={() => setPanel('notes')} aria-label="Libreta" title="Libreta">
-              ✎
-            </button>
-            <button className={s.iconButton} onClick={() => setPanel('contradiction')} aria-label="Señalar una contradicción" title="Contradicción" disabled={closed}>
-              ⚡︎
-            </button>
-            <button className={s.iconButton} onClick={() => setPanel('hints')} aria-label={`Pistas: quedan ${hintsLeft}`} title="Pistas" disabled={closed}>
-              ?<span className={s.miniCount}>{hintsLeft}</span>
-            </button>
-          </div>
+          <button className={sh.tool} onClick={() => (sound.play('page'), setPanel('notes'))} aria-label="Libreta">
+            <NotebookIcon />
+            <span className={sh.toolLabel}>Libreta</span>
+          </button>
+          <button className={sh.tool} onClick={() => (sound.play('tap'), setPanel('contradiction'))} aria-label="Señalar una contradicción" disabled={closed}>
+            <LensIcon />
+            <span className={sh.toolLabel}>Contradecir</span>
+          </button>
+          <button className={sh.tool} onClick={() => (sound.play('paper'), setPanel('hints'))} aria-label={`Pistas: quedan ${hintsLeft}`} disabled={closed}>
+            <EnvelopeIcon />
+            <span className={sh.toolLabel}>Pistas ({hintsLeft})</span>
+          </button>
           {closed ? (
-            <NavLink to={`${base}/informe`} className={`${s.tab} ${s.accuse}`}>
+            <NavLink to={`${base}/informe`} className={sh.seal}>
               Informe final
             </NavLink>
           ) : (
-            <button className={`${s.tab} ${s.accuse}`} onClick={() => void navigate(`${base}/acusacion`)}>
+            <button className={sh.seal} onClick={() => (sound.play('stamp'), void navigate(`${base}/acusacion`))}>
               {coop ? 'Acusación conjunta' : 'Acusar'}
             </button>
           )}
-        </nav>
-        <section className={s.stage}>
+        </div>
+        <PocketWatch remainingMs={remainingMs} totalMs={totalMs} closed={closed} onClick={() => setPanel('pause')} />
+      </header>
+      <section className={`m-manila ${sh.folder}`}>
+        <div className={sh.stage}>
           <Outlet />
-        </section>
-      </div>
+        </div>
+      </section>
       <div className={s.toasts} aria-live="polite">
-        {toasts.map((t) => (
+        {quiet.map((t) => (
           <button key={t.id} className={s.toast} data-kind={t.kind} onClick={() => dismiss(t.id)}>
             {t.text}
           </button>
         ))}
+        {toasts
+          .filter((t) => !quiet.includes(t))
+          .map((t) => (
+            <span key={t.id} className="visually-hidden">
+              {t.text}
+            </span>
+          ))}
       </div>
+      <DiscoveryLayer toasts={toasts} />
+      <FinalMinute active={tension === 'final'} />
+      <TimeUp trigger={expired} />
       <NotebookPanel open={panel === 'notes'} onClose={() => setPanel(null)} caseId={c.id} />
       <ContradictionTool open={panel === 'contradiction'} onClose={() => setPanel(null)} />
       <HintsPanel open={panel === 'hints'} onClose={() => setPanel(null)} />

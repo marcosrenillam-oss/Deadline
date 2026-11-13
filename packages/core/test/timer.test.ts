@@ -24,6 +24,12 @@ describe('cronómetro por marcas de tiempo', () => {
     expect(snap.remainingMs).toBe(20 * 60_000);
   });
 
+  it('un desfase de un segundo entre interfaz y acciones no es un reloj que retrocede', () => {
+    const snap = readTimer({ startedAt: start, deadlineAt: deadline, lastObservedAt: start + 10 * 60_000 + 900, localNow: start + 10 * 60_000 });
+    expect(snap.clockWentBack).toBe(false);
+    expect(snap.remainingMs).toBe(50 * 60_000 - 900);
+  });
+
   it('aplica el desfase con el servidor', () => {
     const snap = readTimer({ startedAt: start, deadlineAt: deadline, lastObservedAt: start, localNow: start, serverOffsetMs: 10 * 60_000 });
     expect(snap.remainingMs).toBe(50 * 60_000);
