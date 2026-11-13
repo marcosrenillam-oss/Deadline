@@ -343,3 +343,11 @@ El entorno `github-pages` rechazó desplegar desde la rama de desarrollo.
 Por decisión del usuario se publica desde `main`: el trabajo se hace en la
 rama de desarrollo y cada versión verificada se sube también a `main`, lo
 que dispara la publicación automática (compilación, pruebas y despliegue).
+
+### D-059 · Las actualizaciones se instalan solas
+Por petición del usuario, una edición nueva publicada se instala sin
+preguntar. Para no interrumpir una investigación, si el jugador está
+dentro de un expediente se espera a que vuelva a la mesa (un aviso breve
+lo indica). La app busca ediciones nuevas al volver a primer plano y cada
+media hora, porque iOS apenas lo hace en una app instalada. Sustituye al
+aviso con «Actualizar / Más tarde».

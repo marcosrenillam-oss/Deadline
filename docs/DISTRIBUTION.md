@@ -39,19 +39,10 @@ conviene revisarla antes de publicar):
 
 1. GitHub → repositorio → **Settings → Pages → Build and deployment →
    Source: GitHub Actions**.
-2. Pestaña **Actions → "Publicar en GitHub Pages" → Run workflow** (rama
-   `claude/deadline-detective-app-ejx239`, que es la predeterminada). A
-   partir de ahí, cada push a esa rama (o a `main`, si se crea) publica
-   solo. Antes de activar Pages, el paso de despliegue falla aunque la
-   compilación y las pruebas pasen: es lo esperado.
-3. **Settings → Environments → github-pages → Deployment branches and
-   tags**: añadir la regla `claude/deadline-detective-app-ejx239` (o elegir
-   «No restriction»). Sin esto, GitHub rechaza el despliegue con «Branch …
-   is not allowed to deploy to github-pages due to environment protection
-   rules» (comprobado en la primera ejecución del flujo, el 13/11/2026: la
-   compilación y las pruebas pasaron; el despliegue fue rechazado por esta
-   regla). Alternativa: publicar desde una rama `main`.
-4. Al terminar, la app queda en `https://marcosrenillam-oss.github.io/Deadline/`.
+2. Se publica desde la rama `main` (D-058): el entorno `github-pages`
+   rechazó desplegar desde la rama de desarrollo. **Estado: publicada el
+   13/11/2026** (primer despliegue correcto desde `main`).
+3. Al terminar, la app queda en `https://marcosrenillam-oss.github.io/Deadline/`.
 
 El flujo (`.github/workflows/pages.yml`) comprueba tipos, ejecuta las
 pruebas y valida los expedientes antes de publicar: si algo falla, no se
@@ -59,11 +50,13 @@ publica.
 
 ### Cómo llegan las actualizaciones
 
-1. Se publica una nueva versión (push / Run workflow).
-2. Al abrir la app, el service worker detecta la nueva edición y muestra
-   *"Hay una nueva edición del archivo"*. El jugador elige cuándo actualizar:
-   nunca se recarga en mitad de una investigación.
-3. Los datos locales se conservan (mismo origen).
+1. Cada push a `main` publica una versión nueva (compila, pasa las pruebas
+   y despliega; si algo falla, no se publica).
+2. La app busca ediciones nuevas al volver a primer plano y cada media hora.
+3. Si hay una, se instala sola (D-059). Dentro de un expediente espera a
+   que el jugador vuelva a la mesa: nunca recarga en mitad de una
+   investigación.
+4. Los datos locales se conservan (mismo origen).
 
 ### Instalar en iPhone
 

@@ -3,6 +3,7 @@
   right: var(--pad-right);
   bottom: var(--pad-bottom);
   z-index: 900;
+  pointer-events: none;
   display: flex;
   align-items: center;
   gap: var(--sp-4);
