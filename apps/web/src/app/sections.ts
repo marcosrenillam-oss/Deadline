@@ -4,7 +4,7 @@
  * nombres y estado de implementación: el escritorio y las pantallas de
  * sección lo leen de aquí.
  */
-export type SectionId = 'archive' | 'daily' | 'coop' | 'history' | 'settings' | 'notebook';
+export type SectionId = 'archive' | 'daily' | 'coop' | 'history' | 'settings' | 'notebook' | 'personal';
 
 export interface SectionDef {
   id: SectionId;
@@ -79,6 +79,16 @@ export const SECTIONS: readonly SectionDef[] = [
     description: 'Notas personales, hipótesis y sospechas. Nada de lo que escribas aquí revela la solución.',
     contents: ['Notas personales', 'Apuntes de investigación', 'Teorías y deducciones', 'Recordatorios'],
     stage: 3,
+    ready: true,
+  },
+  {
+    id: 'personal',
+    path: '/archivo-personal',
+    object: 'Archivador',
+    title: 'Archivo personal',
+    description: 'Tus investigaciones guardadas en cajones: resueltas, cerradas, fallidas y reabribles.',
+    contents: ['Casos resueltos', 'Casos cerrados por tiempo', 'Acusaciones fallidas', 'Casos reabribles', 'Historial de intentos'],
+    stage: 9,
     ready: true,
   },
 ];

@@ -49,13 +49,20 @@ try {
 
   await page.goto(BASE);
   const folder = page.getByRole('button', { name: /^Carpeta de expedientes/ });
-  await folder.waitFor();
+  /** Los objetos del despacho 3D tienen botones equivalentes para VoiceOver y teclado. */
+  const tap = (name) => page.getByRole('button', { name }).dispatchEvent('click');
+  await folder.waitFor({ state: 'attached' });
   check(true, 'El escritorio carga en horizontal');
   check((await page.getByRole('dialog').count()) === 0, 'Sin aviso de giro en horizontal');
-  for (const name of [/^Carpeta de expedientes/, /^Calendario:/, /^Teléfono:/, /^Máquina de escribir:/, /^Lámpara:/, /^Libreta:/]) {
-    check(await visible(page.getByRole('button', { name })), `Objeto interactivo visible: ${name.source}`);
+  await page.locator('main[data-ready] canvas').waitFor({ timeout: 15000 });
+  check(true, 'El despacho se dibuja en 3D (WebGL)');
+  const canvasBox = await page.locator('main canvas').boundingBox();
+  const vp = page.viewportSize();
+  check(!!canvasBox && canvasBox.width >= vp.width - 1 && canvasBox.height >= vp.height - 1, 'El despacho ocupa toda la pantalla, de borde a borde');
+  for (const name of [/^Carpeta de expedientes/, /^Calendario:/, /^Archivador/, /^Teléfono:/, /^Máquina de escribir:/, /^Lámpara:/, /^Libreta:/, /^Corcho/]) {
+    check((await page.getByRole('button', { name }).count()) === 1, `Objeto interactivo accesible: ${name.source}`);
   }
-  check(await visible(page.getByRole('button', { name: /^Placa: Novato, investigador DL-\d{5}-[A-Z]/ })), 'Placa con rango y número de investigador local');
+  check((await page.getByRole('button', { name: /^Placa: Novato, investigador DL-\d{5}-[A-Z]/ }).count()) === 1, 'Placa con rango y número de investigador local');
   const calLabel = await page.getByRole('button', { name: /^Calendario:/ }).getAttribute('aria-label');
   check(/Diario nº 1 de 500/.test(calLabel ?? ''), `El calendario arranca en el diario nº 1 (${calLabel})`);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
@@ -63,58 +70,72 @@ try {
   await page.waitForTimeout(5000); // deja desaparecer el aviso de "listo sin conexión"
   await page.screenshot({ path: join(shots, 'desk-landscape.png') });
 
-  // Zonas seguras simuladas (notch a la izquierda en horizontal)
-  await page.addStyleTag({ content: ':root{--safe-left:59px;--safe-right:59px;--safe-bottom:21px}' });
-  await page.waitForTimeout(200);
-  const lampBox = await page.getByRole('button', { name: /^Lámpara:/ }).boundingBox();
-  const phoneBox = await page.getByRole('button', { name: /^Teléfono:/ }).boundingBox();
-  const vw = page.viewportSize().width;
-  check(!!lampBox && lampBox.x >= 59 - 2, `La lámpara respeta la zona segura izquierda (x=${lampBox?.x.toFixed(0)})`);
-  check(!!phoneBox && phoneBox.x + phoneBox.width <= vw - 59 + 12, `El teléfono respeta la zona segura derecha (fin=${(phoneBox.x + phoneBox.width).toFixed(0)})`);
-  await page.screenshot({ path: join(shots, 'desk-landscape-safe-area.png') });
-  await page.reload();
-  await folder.waitFor();
+  // Pulsación larga sobre la carpeta: rótulo sin navegar
+  const fx = vp.width * 0.46;
+  const fy = vp.height * 0.7;
+  await page.mouse.move(fx, fy);
+  await page.mouse.down();
+  await page.waitForTimeout(650);
+  check(await visible(page.getByRole('status').getByText('Carpeta de expedientes')), 'Mantener pulsado un objeto muestra su nombre');
+  await page.mouse.up();
+  check(new URL(page.url()).pathname === '/', 'La pulsación larga no abre la sección');
 
   // Nota de bienvenida opcional
-  await page.getByRole('button', { name: /Nota de bienvenida/ }).click();
+  await tap(/Nota de bienvenida/);
   await page.getByRole('heading', { name: 'Bienvenido al archivo' }).waitFor();
   await page.screenshot({ path: join(shots, 'desk-guide.png') });
   await page.getByRole('button', { name: 'Retirar la nota' }).click();
   await page.getByRole('button', { name: /Nota de bienvenida/ }).waitFor({ state: 'detached' });
   await page.waitForTimeout(300); // la escritura en IndexedDB es asíncrona
   await page.reload();
-  await folder.waitFor();
+  await folder.waitFor({ state: 'attached' });
   check((await page.getByRole('button', { name: /Nota de bienvenida/ }).count()) === 0, 'La nota retirada no vuelve a aparecer');
 
   // Cadenita de la lámpara
-  await page.getByRole('button', { name: 'Apagar la lámpara' }).click();
-  check((await page.evaluate(() => document.documentElement.dataset.lamp)) === 'off', 'La cadenita apaga la lámpara');
+  await tap('Apagar la lámpara');
+  await page.waitForFunction(() => document.documentElement.dataset.lamp === 'off');
+  check(true, 'La cadenita apaga la lámpara');
   await page.waitForTimeout(300);
   await page.reload();
-  await folder.waitFor();
+  await folder.waitFor({ state: 'attached' });
   await page.waitForFunction(() => document.documentElement.dataset.lamp === 'off');
   check(true, 'El estado de la lámpara persiste tras recargar');
-  await page.getByRole('button', { name: 'Encender la lámpara' }).click();
+  await tap('Encender la lámpara');
 
-  // Objeto → sección (con animación de apertura)
-  await folder.click();
-  await page.waitForURL('**/archivo');
-  await page.getByRole('link', { name: /Revelado en negro/ }).waitFor({ timeout: 5000 });
-  check(true, 'La carpeta abre la Biblioteca con el primer expediente');
-  await page.getByRole('link', { name: /Escritorio/ }).click();
-  await folder.waitFor();
-  await page.getByRole('button', { name: /^Máquina de escribir/ }).click();
+  // Tocar la carpeta en la escena 3D abre la biblioteca (con su animación)
+  await page.locator('main[data-ready] canvas').waitFor();
+  await page.mouse.click(fx, fy);
+  await page.waitForURL('**/archivo', { timeout: 8000 });
+  await page.getByRole('button', { name: /Revelado en negro/ }).waitFor({ timeout: 5000 });
+  check(true, 'Tocar la carpeta del despacho abre la biblioteca con sus expedientes');
+  await page.getByRole('button', { name: /Volver: Despacho/ }).click();
+  await folder.waitFor({ state: 'attached' });
+  await tap(/^Máquina de escribir/);
   await page.waitForURL('**/maquina');
   await page.getByRole('heading', { name: 'Registro de investigaciones' }).waitFor({ timeout: 5000 });
   check(await page.getByText(/La hoja está en blanco/).isVisible(), 'La máquina de escribir abre el registro (vacío al empezar)');
   await page.getByRole('link', { name: /Escritorio/ }).click();
-  await folder.waitFor();
+  await folder.waitFor({ state: 'attached' });
+  await tap(/^Archivador/);
+  await page.waitForURL('**/archivo-personal');
+  await page.getByRole('heading', { name: 'Archivo personal' }).waitFor();
+  check(await visible(page.getByText('Este cajón está vacío.')), 'El archivador abre el archivo personal (vacío al empezar)');
+  await page.getByRole('button', { name: /Volver: Despacho/ }).click();
+  await folder.waitFor({ state: 'attached' });
 
   // Lámpara → Ajustes
-  await page.getByRole('button', { name: /^Lámpara:/ }).click();
+  await tap(/^Lámpara:/);
   await page.waitForURL('**/lampara');
   await page.getByRole('tab', { name: 'Luz' }).waitFor();
   check(true, 'La lámpara abre los Ajustes');
+  // Gráficos ligeros: la mesa 2D sustituye al despacho 3D
+  await page.getByText('Ligeros (2D)').click();
+  await page.waitForTimeout(300);
+  await page.getByRole('link', { name: /Escritorio/ }).click();
+  check(await visible(page.getByRole('button', { name: /^Carpeta de expedientes/ })) && (await page.locator('main canvas').count()) === 0, 'Con gráficos ligeros aparece la mesa 2D');
+  await page.getByRole('button', { name: /^Lámpara:/ }).click();
+  await page.waitForURL('**/lampara');
+  await page.getByText('Cinematográficos (3D)').click();
   await page.getByRole('tab', { name: 'Lectura' }).click();
   const slider = page.getByRole('slider', { name: 'Tamaño del texto' });
   await slider.focus();
@@ -128,9 +149,18 @@ try {
   await page.getByRole('tab', { name: 'Lectura' }).click();
   check((await page.getByRole('slider', { name: 'Tamaño del texto' }).inputValue()) === '1.2', 'Los ajustes persisten tras recargar');
   await page.getByRole('link', { name: /Escritorio/ }).click();
-  await folder.waitFor();
-  const blotter = await page.evaluate(() => getComputedStyle(document.querySelector('main')).getPropertyValue('--blotter').trim());
-  check(blotter === '#4f1a1f', `La mesa usa el material elegido (${blotter})`);
+  await folder.waitFor({ state: 'attached' });
+  const deskId = await page.evaluate(() => new Promise((res) => {
+    const r = indexedDB.open('deadline');
+    r.onsuccess = () => {
+      const q = r.result.transaction('profile').objectStore('profile').get('local');
+      q.onsuccess = () => res(q.result.equipped.desk);
+    };
+  }));
+  await page.locator('main[data-ready] canvas').waitFor();
+  await page.waitForTimeout(1500);
+  await page.screenshot({ path: join(shots, 'desk-mahogany.png') });
+  check(deskId === 'desk-mahogany', `La mesa usa el material elegido (${deskId})`);
   await page.screenshot({ path: join(shots, 'desk-mahogany.png') });
 
   // Archivo personal: exportar → importar
@@ -180,9 +210,9 @@ try {
   await page.waitForFunction(() => !!navigator.serviceWorker.controller);
   await ctx.setOffline(true);
   await page.reload();
-  await page.getByRole('button', { name: /^Carpeta de expedientes/ }).waitFor({ timeout: 5000 });
+  await page.getByRole('button', { name: /^Carpeta de expedientes/ }).waitFor({ state: 'attached', timeout: 5000 });
   const tw = await page.getByRole('button', { name: /^Máquina de escribir/ }).getAttribute('aria-label');
-  check(/sin conexión/.test(tw ?? ''), 'Arranca sin conexión y lo indica en la máquina de escribir');
+  check(/sin conexión/i.test(tw ?? ''), 'Arranca sin conexión y lo indica en la máquina de escribir');
   await page.goto(BASE + '/libreta');
   check(await visible(page.getByRole('heading', { name: 'Libreta del investigador' })), 'Navegación offline a rutas profundas');
   await ctx.setOffline(false);
@@ -200,7 +230,7 @@ try {
   await p.screenshot({ path: join(shots, 'portrait.png') });
   await p.setViewportSize({ width: 852, height: 393 });
   await p.getByRole('dialog').waitFor({ state: 'detached' });
-  check(await visible(p.getByRole('button', { name: /^Carpeta de expedientes/ })), 'Al girar aparece el escritorio sin recargar');
+  check((await p.getByRole('button', { name: /^Carpeta de expedientes/ }).count()) === 1, 'Al girar aparece el escritorio sin recargar');
   await pctx.close();
 } catch (err) {
   failures++;

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link, NavLink, Outlet, useNavigate, useParams } from 'react-router';
+import { useEffect, useRef, useState } from 'react';
+import { Link, NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router';
 import { formatCaseNumber, formatRemaining } from '@deadline/core';
 import { CaseProvider, useCase } from '../../cases/CaseProvider.tsx';
 import { CRIME_CATEGORY_LABELS, ORIGIN_LABELS } from '../../cases/labels.ts';
@@ -50,6 +50,17 @@ function CaseBody() {
 function Cover() {
   const { c, open, base } = useCase();
   const [busy, setBusy] = useState(false);
+  const location = useLocation();
+  // Desde la ficha de la biblioteca ya se ha confirmado: se rompe el precinto al llegar.
+  const breakSeal = (location.state as { breakSeal?: boolean } | null)?.breakSeal === true;
+  const started = useRef(false);
+  useEffect(() => {
+    if (!breakSeal || started.current) return;
+    started.current = true;
+    setBusy(true);
+    void open().finally(() => setBusy(false));
+  }, [breakSeal, open]);
+  if (breakSeal) return <main className={surface.wood} aria-busy="true" />;
   return (
     <main className={surface.wood}>
       <div className={`${surface.safe} ${s.coverLayout}`}>

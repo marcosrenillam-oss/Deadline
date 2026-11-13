@@ -3,6 +3,7 @@ import { useSettings } from '../../settings/SettingsProvider.tsx';
 import { sound } from '../../audio/sound.ts';
 import { haptic, hapticsSupport } from '../../audio/haptics.ts';
 import { ActionButton, Choice, Field, Slider, Toggle } from '../../ui/Controls.tsx';
+import { motionSupported, requestMotionPermission } from '../desk3d/motion.ts';
 import styles from './panels.module.css';
 
 const pct = (v: number) => `${Math.round(v * 100)} %`;
@@ -23,6 +24,27 @@ export function LightPanel() {
           { value: 'cold', label: 'Fluorescente', swatch: 'rgb(198,214,230)' },
         ]}
       />
+      <Choice
+        label="Gráficos del despacho"
+        hint={settings.graphics === 'cinematic' ? 'Despacho en 3D con luz, sombras y reflejos reales.' : 'Mesa en 2D: gasta menos batería y va bien en iPhone antiguos.'}
+        value={settings.graphics}
+        onChange={(v) => update({ graphics: v })}
+        options={[
+          { value: 'cinematic', label: 'Cinematográficos (3D)' },
+          { value: 'light', label: 'Ligeros (2D)' },
+        ]}
+      />
+      {motionSupported() && (
+        <Toggle
+          label="Profundidad con el movimiento del iPhone"
+          hint="Al inclinar el teléfono, el despacho se mueve un poco, como si miraras a través de una ventana. iOS pedirá permiso. Sin activarlo, puedes arrastrar el dedo."
+          checked={settings.deviceMotion}
+          onChange={async (v) => {
+            if (v && !(await requestMotionPermission())) return;
+            update({ deviceMotion: v });
+          }}
+        />
+      )}
     </>
   );
 }

@@ -41,7 +41,7 @@ function reducedMotion(): boolean {
  * La mesa es el menú: cada objeto abre su sección. Vista cenital, lámpara
  * arriba a la izquierda, sombras hacia abajo a la derecha.
  */
-export function DeskScene() {
+export function DeskScene2D() {
   const navigate = useNavigate();
   const { settings, update } = useSettings();
   const { profile } = useProfile();

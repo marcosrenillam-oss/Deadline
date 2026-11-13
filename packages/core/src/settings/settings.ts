@@ -19,6 +19,10 @@ export const settingsSchema = z.strictObject({
   textScale: z.number().min(0.85).max(1.5).default(1),
   /** 'system' respeta prefers-reduced-motion. */
   reducedMotion: z.enum(['system', 'on', 'off']).default('system'),
+  /** Calidad gráfica: despacho en 3D con luz y sombras reales, o versión ligera en 2D. */
+  graphics: z.enum(['cinematic', 'light']).default('cinematic'),
+  /** Profundidad con el movimiento del iPhone (iOS pide permiso al activarlo). */
+  deviceMotion: z.boolean().default(false),
   /** Explicación breve integrada en el escritorio (opcional, se puede cerrar). */
   deskGuideDismissed: z.boolean().default(false),
 });

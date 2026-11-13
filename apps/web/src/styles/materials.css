@@ -1,0 +1,160 @@
+/*
+ * DEADLINE · MATERIALES (sistema visual común)
+ *
+ * Las pantallas 2D comparten los materiales del despacho 3D: madera, pared
+ * verde noche, papel envejecido, cartulina de carpeta, cuero, latón y
+ * corcho. El grano se genera con un filtro SVG (feTurbulence) incrustado:
+ * sin imágenes descargadas y con un coste mínimo de pintado.
+ */
+:root {
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.27 0 0 0 0 0.16 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --fibers: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.012 0.09' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0 0.18 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --cork-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.25 0 0 0 0 0.14 0 0 0 0 0.05 0 0 0 1.4 -0.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+
+  --wall-0: #1d2620;
+  --wall-1: #141a16;
+  --manila: #c9a96a;
+  --manila-dark: #a8864a;
+  --leather: #4a2e1c;
+  --brass-hi: #ecd398;
+  --brass-mid: #b08d4f;
+  --brass-lo: #6e521f;
+  --lamp: 255, 196, 128;
+
+  --shadow-object: 0 2px 2px rgba(0, 0, 0, 0.35), 0 14px 28px rgba(0, 0, 0, 0.55);
+  --shadow-held: 0 6px 10px rgba(0, 0, 0, 0.35), 0 34px 60px rgba(0, 0, 0, 0.65);
+
+  --ease-physical: cubic-bezier(0.34, 1.2, 0.4, 1);
+  --dur-object: 460ms;
+}
+
+/* ─── Habitación: pared, friso, luz de lámpara y viñeta ───────────────────── */
+.m-room {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 55% 70% at 22% 18%, rgba(var(--lamp), calc(0.16 * var(--light-intensity))) 0%, transparent 70%),
+    radial-gradient(ellipse 130% 100% at 50% 45%, transparent 45%, rgba(0, 0, 0, 0.7) 100%),
+    repeating-linear-gradient(90deg, rgba(200, 190, 150, 0.03) 0 3px, transparent 3px 16px, rgba(0, 0, 0, 0.1) 16px 17px, transparent 17px 32px),
+    linear-gradient(180deg, var(--wall-0), var(--wall-1));
+}
+.m-room::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Borde de la mesa en primer plano (madera) */
+.m-desk-edge {
+  background:
+    repeating-linear-gradient(91deg, rgba(0, 0, 0, 0.16) 0 2px, transparent 2px 7px, rgba(255, 255, 255, 0.02) 7px 8px, transparent 8px 19px),
+    linear-gradient(180deg, #4a3020, #2b1d14 60%, #1c130d);
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.55);
+}
+
+/* ─── Papel ─────────────────────────────────────────────────────────────── */
+.m-paper {
+  background-color: #e9e0c8;
+  background-image:
+    radial-gradient(ellipse at 100% 100%, rgba(120, 85, 40, 0.22), transparent 55%),
+    radial-gradient(ellipse at 0% 0%, rgba(255, 255, 255, 0.25), transparent 50%),
+    var(--fibers),
+    var(--grain);
+  color: var(--on-paper);
+  box-shadow: var(--shadow-object);
+}
+
+/* Cartulina de carpeta (manila) */
+.m-manila {
+  background-color: var(--manila);
+  background-image:
+    linear-gradient(170deg, rgba(255, 240, 200, 0.18), transparent 40%, rgba(80, 55, 20, 0.18)),
+    var(--fibers),
+    var(--grain);
+  color: #2a1f12;
+  box-shadow: var(--shadow-object);
+}
+
+/* Ficha de índice pautada */
+.m-index {
+  background-color: #efe8d6;
+  background-image:
+    linear-gradient(180deg, transparent 0 30px, rgba(118, 45, 43, 0.45) 30px 31px, transparent 31px),
+    repeating-linear-gradient(180deg, transparent 0 23px, rgba(70, 90, 140, 0.18) 23px 24px),
+    var(--grain);
+  color: var(--on-paper);
+  box-shadow: var(--shadow-object);
+}
+
+/* Cuero (vade, tapas) */
+.m-leather {
+  background-color: var(--leather);
+  background-image:
+    radial-gradient(ellipse at 40% 30%, rgba(255, 220, 180, 0.08), transparent 60%),
+    var(--grain);
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.35), inset 0 0 0 5px rgba(214, 196, 150, 0.12), var(--shadow-object);
+}
+
+/* Latón grabado */
+.m-brass {
+  background: linear-gradient(180deg, var(--brass-hi), var(--brass-mid) 48%, var(--brass-lo));
+  color: #2c1d07;
+  text-shadow: 0 1px 0 rgba(255, 240, 200, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(0, 0, 0, 0.3), 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Corcho */
+.m-cork {
+  background-color: #9a6b3e;
+  background-image: var(--cork-grain);
+  box-shadow: inset 0 0 0 10px #2b1c11, inset 0 0 0 12px rgba(255, 220, 180, 0.06), inset 0 0 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Metal pintado (archivador) */
+.m-steel {
+  background-color: #4a5038;
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 30%, rgba(0, 0, 0, 0.2)),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.015) 0 1px, transparent 1px 3px),
+    var(--grain);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.4), var(--shadow-object);
+}
+
+/* ─── Movimiento común ───────────────────────────────────────────────────── */
+@keyframes m-drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-24px) rotate(var(--tilt, -2deg)) scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(var(--tilt, 0deg));
+  }
+}
+@keyframes m-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+@keyframes m-glow {
+  0%,
+  100% {
+    box-shadow: var(--shadow-object), 0 0 0 0 rgba(var(--lamp), 0);
+  }
+  50% {
+    box-shadow: var(--shadow-object), 0 0 0 6px rgba(var(--lamp), 0.18);
+  }
+}
+
+:root[data-reduced-motion='on'] *,
+:root[data-reduced-motion='on'] *::before,
+:root[data-reduced-motion='on'] *::after {
+  animation-duration: 1ms !important;
+  transition-duration: 1ms !important;
+}

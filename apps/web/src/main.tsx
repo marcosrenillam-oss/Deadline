@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './styles/fonts.css';
 import './styles/tokens.css';
 import './styles/base.css';
+import './styles/materials.css';
 import { App } from './app/App.tsx';
 import { getMeta, setMeta } from './storage/meta.ts';
 import { startArchiveSync } from './cases/startup.ts';

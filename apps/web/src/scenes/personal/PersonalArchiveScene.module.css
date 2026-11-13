@@ -1,0 +1,208 @@
+/* ARCHIVO PERSONAL — archivador metálico con cuatro cajones. */
+.room {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
+  padding: var(--pad-top) var(--pad-right) var(--pad-bottom) var(--pad-left);
+  color: var(--ivory);
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-xl);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+.body {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(170px, 24%) minmax(0, 1fr);
+  gap: clamp(14px, 3vw, 32px);
+}
+
+.cabinet {
+  align-self: start;
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 4px;
+}
+.drawer {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  min-height: clamp(52px, 15dvh, 70px);
+  padding: 8px;
+  border-radius: 3px;
+  transition: transform var(--dur-object) var(--ease-physical), box-shadow var(--dur-object);
+}
+.drawer[aria-pressed='true'] {
+  transform: translateX(14px) scale(1.02);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.4), 0 18px 30px rgba(0, 0, 0, 0.6);
+}
+.holder {
+  padding: 3px;
+  border-radius: 2px;
+}
+.card {
+  display: block;
+  min-width: 96px;
+  padding: 2px 8px;
+  background: #e9e0c9;
+  color: #2a241a;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.handle {
+  width: 46%;
+  height: 7px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #ecd398, #8e6d34);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+}
+.drawerCount {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  font-family: var(--font-type);
+  font-size: 11px;
+  color: rgba(230, 221, 201, 0.75);
+}
+
+.contents {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.2)),
+    #3d4230;
+  box-shadow: inset 0 10px 24px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(0, 0, 0, 0.4);
+  animation: slide-out 460ms var(--ease-physical);
+}
+@keyframes slide-out {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+}
+.hint {
+  margin: 0;
+  font-family: var(--font-type);
+  font-size: var(--fs-2xs);
+  color: var(--ivory-faint);
+}
+.empty {
+  margin: auto;
+  font-family: var(--font-hand);
+  font-size: 24px;
+  color: var(--ivory-dim);
+}
+.files {
+  list-style: none;
+  margin: 0;
+  padding: 8px 2px 6px;
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.files li {
+  flex: none;
+  animation: m-rise 420ms var(--ease-out) both;
+  animation-delay: calc(var(--i) * 50ms);
+}
+.file {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: clamp(200px, 26vw, 240px);
+  min-height: clamp(200px, 56dvh, 250px);
+  padding: 12px 14px;
+}
+.file[data-drawer='reopen'] {
+  box-shadow: inset 4px 0 0 var(--seal), var(--shadow-object);
+}
+.fileHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--font-type);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+.num {
+  font-weight: 700;
+}
+.era {
+  color: var(--seal);
+  text-transform: uppercase;
+}
+.fileTitle {
+  margin: 4px 0 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.02;
+}
+.stamp {
+  align-self: flex-start;
+  margin: 4px 0;
+}
+.data {
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+.data div {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+}
+.data dt {
+  min-width: 62px;
+  font-family: var(--font-type);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: rgba(42, 31, 18, 0.7);
+}
+.data dd {
+  margin: 0;
+  font-family: var(--font-type);
+}
+.reopen {
+  margin: 4px 0 0;
+  font-family: var(--font-hand);
+  font-size: 19px;
+  color: var(--seal);
+}
+.actions {
+  margin-top: auto;
+  display: flex;
+  gap: 12px;
+}
+.link {
+  min-height: 36px;
+  font-family: var(--font-type);
+  font-size: 12px;
+  color: var(--seal);
+  text-decoration: underline;
+}
+.attempts {
+  margin: 0;
+  padding-left: 18px;
+  font-family: var(--font-type);
+  font-size: 11px;
+}

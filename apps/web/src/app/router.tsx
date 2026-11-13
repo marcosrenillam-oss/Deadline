@@ -1,6 +1,6 @@
 import { lazy, Suspense, type ComponentType, type ReactNode } from 'react';
 import { createBrowserRouter, isRouteErrorResponse, useRouteError } from 'react-router';
-import { DeskScene } from '../scenes/desk/DeskScene.tsx';
+import { DeskScene } from '../scenes/desk/DeskRoot.tsx';
 import { BackToDesk } from '../ui/BackToDesk.tsx';
 import surface from '../ui/Surface.module.css';
 import styles from './router.module.css';
@@ -69,6 +69,7 @@ export const router = createBrowserRouter([
       { path: 'libreta', element: page(() => import('../scenes/notebook/NotebookScene.tsx'), 'NotebookScene') },
       { path: 'calendario', element: page(() => import('../scenes/calendar/CalendarScene.tsx'), 'CalendarScene') },
       { path: 'telefono', element: page(() => import('../scenes/coop/CoopScene.tsx'), 'CoopScene') },
+      { path: 'archivo-personal', element: page(() => import('../scenes/personal/PersonalArchiveScene.tsx'), 'PersonalArchiveScene') },
       { path: 'maquina', element: page(() => import('../scenes/history/HistoryScene.tsx'), 'HistoryScene') },
       { path: 'perfil', element: page(() => import('../scenes/profile/ProfileScene.tsx'), 'ProfileScene') },
       { path: 'pareja/:sessionId', element: page(caseScreens, 'CoopCaseScene'), children: caseChildren() },

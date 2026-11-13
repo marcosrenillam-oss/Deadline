@@ -64,14 +64,16 @@ try {
 
   // ── Diario del día ────────────────────────────────────────────────────────
   await goto(BASE);
-  await p.getByRole('button', { name: /^Calendario:.*Caso del día sin abrir/ }).waitFor();
+  await p.getByRole('button', { name: /^Calendario:.*Caso del día sin abrir/ }).waitFor({ state: 'attached' });
   check(true, 'El calendario de la mesa avisa del caso del día');
-  await p.getByRole('button', { name: /^Calendario:/ }).click();
+  await p.getByRole('button', { name: /^Calendario:/ }).dispatchEvent('click');
   await p.waitForURL('**/calendario');
   await p.getByText('Cenizas en el Celio').waitFor();
   check(await visible(p.getByText('Día 1 de 500')), 'El calendario empieza en el día 1 de 500');
   await p.screenshot({ path: join(shots, 'calendar.png') });
-  await p.getByText('Cenizas en el Celio').click();
+  await p.getByRole('button', { name: 'Día siguiente' }).click();
+  check(await visible(p.getByText(/Se abre el|en redacción/)), 'Los días siguientes aparecen precintados');
+  await p.getByRole('button', { name: 'Hoy', exact: true }).click();
   await p.getByRole('button', { name: /Romper el precinto/ }).click();
   await p.getByRole('timer').waitFor();
   await goto(D);
@@ -199,7 +201,7 @@ try {
   await ctx.setOffline(true);
   await goto(`${BASE}/archivo`);
   await p.clock.runFor(4000);
-  await p.locator('li', { hasText: 'Revelado en negro' }).getByText('Se guardará solo con conexión').waitFor({ timeout: 8000 });
+  await p.locator('li', { hasText: 'Revelado en negro' }).getByText('Se guardará con conexión').waitFor({ timeout: 8000 });
   check(true, 'Si el sistema borra los recursos, el expediente deja de figurar como guardado');
   await ctx.setOffline(false);
   await p.evaluate(() => window.dispatchEvent(new Event('online')));

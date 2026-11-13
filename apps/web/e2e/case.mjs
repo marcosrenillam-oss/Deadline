@@ -230,13 +230,14 @@ try {
 
   // Archivo y escritorio reflejan el resultado
   await goto(`${BASE}/archivo`);
-  await p.getByRole('link', { name: /Revelado en negro/ }).getByText('Resuelto').waitFor();
+  await p.getByRole('button', { name: /Revelado en negro.*Resuelto/ }).waitFor();
   check(true, 'El archivo marca el expediente como resuelto');
   await goto(BASE);
   const solvedOnDesk = await p
     .getByRole('button', { name: /^Máquina de escribir.*Resueltos: 1/ })
-    .waitFor({ timeout: 5000 })
+    .waitFor({ state: 'attached', timeout: 10000 })
     .then(() => true, () => false);
+  if (!solvedOnDesk) console.log('   etiqueta:', await p.getByRole('button', { name: /^Máquina de escribir/ }).getAttribute('aria-label').catch((e) => e.message));
   check(solvedOnDesk, 'La máquina de escribir registra el caso resuelto');
 
   // ── Etapa 7: progresión ──────────────────────────────────────────────────

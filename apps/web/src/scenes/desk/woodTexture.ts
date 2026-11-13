@@ -22,8 +22,17 @@ export async function woodTextureUrl(key: string, m: DeskMaterial): Promise<stri
   const hit = cache.get(key);
   if (hit) return hit;
   if (typeof document === 'undefined') return null;
-  const W = 1600;
-  const H = 800;
+  const canvas = drawWood(m, 1600, 800);
+  if (!canvas) return null;
+  const blob = await new Promise<Blob | null>((res) => canvas.toBlob(res, 'image/webp', 0.86));
+  if (!blob) return null;
+  const url = URL.createObjectURL(blob);
+  cache.set(key, url);
+  return url;
+}
+
+/** Dibuja la madera en un canvas nuevo (lo usan la mesa 2D y la 3D). */
+export function drawWood(m: DeskMaterial, W: number, H: number): HTMLCanvasElement | null {
   const canvas = document.createElement('canvas');
   canvas.width = W;
   canvas.height = H;
@@ -116,10 +125,5 @@ export async function woodTextureUrl(key: string, m: DeskMaterial): Promise<stri
     d[i + 2] = Math.max(0, Math.min(255, d[i + 2]! + n));
   }
   ctx.putImageData(img, 0, 0);
-
-  const blob = await new Promise<Blob | null>((res) => canvas.toBlob(res, 'image/webp', 0.86));
-  if (!blob) return null;
-  const url = URL.createObjectURL(blob);
-  cache.set(key, url);
-  return url;
+  return canvas;
 }

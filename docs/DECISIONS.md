@@ -364,3 +364,45 @@ diarios próximos primero. Si iOS borra algo, se detecta y se vuelve a
 guardar solo. Desaparecen los botones de descarga; solo queda el estado.
 Con 3000 casos el archivo completo rondará los cientos de MB: habrá que
 vigilar el límite de almacenamiento de Safari cuando el catálogo crezca.
+
+### D-061 · El despacho es una escena 3D real (three.js), dibujada en el iPhone
+Para llegar a «el escritorio es el menú» con profundidad, luz y sombras de
+verdad, la mesa se dibuja con WebGL (three.js, ~150 KB comprimidos, en un
+fragmento aparte). Todo es procedural: geometría, materiales y texturas se
+generan en el dispositivo (madera, cuero, papel, corcho, latón,
+fotografías); no se descarga ningún modelo ni imagen de terceros (las
+bibliotecas CC0 tampoco son accesibles desde el entorno de desarrollo).
+- Luz: foco de la lámpara con sombras suaves, resplandor de la pantalla,
+  luna fría, reflejos de entorno procedurales en el metal.
+- Interacción: tocar abre el objeto con su animación propia (la carpeta se
+  levanta y se abre, la hoja del calendario pasa, el cajón del archivador
+  sale, el auricular se levanta, el carro se desplaza, la libreta se abre);
+  mantener pulsado muestra el nombre sin abrir; la cadenita enciende y
+  apaga la lámpara. Sin rótulos permanentes.
+- Movimiento: polvo en el haz de luz, respiración leve de la cámara,
+  parallax arrastrando el dedo o con el giroscopio (permiso pedido desde
+  Ajustes → Luz, nunca al abrir la app).
+- Rendimiento: render bajo demanda, media cadencia en reposo, pausa en
+  segundo plano, escena compartida entre visitas. «Reducir movimiento»
+  quita el polvo, la deriva y el parallax.
+- Alternativa: Ajustes → Luz → Gráficos ligeros (2D), o automática si el
+  dispositivo no tiene WebGL o pierde el contexto.
+- Accesibilidad: cada objeto tiene un botón equivalente para VoiceOver y
+  teclado.
+
+### D-062 · Objetos nuevos en la mesa: archivador y corcho
+El archivador abre el archivo personal (nueva pantalla con cuatro cajones:
+resueltos, cerrados, fallidos y reabribles). El corcho lleva al tablero de
+la investigación en curso más reciente; si no hay ninguna, lo dice.
+
+### D-063 · La ficha previa muestra la dificultad
+El encargo del rediseño pide que la ficha de presentación del caso incluya
+la dificultad y que se pueda filtrar por ella. Sustituye a la regla
+anterior (la dificultad solo se veía tras abrir el caso). Al ser una
+instrucción explícita del usuario, se aplica.
+
+### D-064 · La biblioteca rompe el precinto desde la ficha
+La ficha de presentación ya avisa de que el reloj empieza al abrir, así que
+su botón «Romper el precinto» abre la investigación directamente, sin
+pasar por la portada precintada (que sigue existiendo para enlaces
+directos). Lo mismo desde el calendario.

@@ -1,0 +1,15 @@
+.back {
+  flex: none;
+  min-height: var(--touch);
+  padding: 0 14px;
+  border-radius: 3px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.back:active {
+  transform: translateY(1px) scale(0.98);
+}

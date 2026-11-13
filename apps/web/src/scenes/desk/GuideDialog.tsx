@@ -2,12 +2,16 @@ import { useEffect, useRef } from 'react';
 import styles from './GuideDialog.module.css';
 
 const ITEMS: Array<[string, string]> = [
-  ['La carpeta', 'el archivo de expedientes: casos abiertos, resueltos y por abrir.'],
+  ['La carpeta', 'la biblioteca de expedientes: todos los casos del archivo.'],
+  ['El archivador', 'tu archivo personal: casos resueltos, cerrados, fallidos y reabribles.'],
   ['El calendario', 'el caso del día. Si un día no puedes, pasa al archivo; no se pierde.'],
   ['El teléfono', 'la línea para investigar en pareja.'],
   ['La máquina de escribir', 'el registro de tus investigaciones y tus estadísticas.'],
   ['La libreta', 'tus notas, hipótesis y sospechas.'],
   ['La lámpara', 'luz, sonido, lectura, tu oficina y la copia de tu archivo. Su cadenita la enciende y apaga.'],
+  ['El corcho', 'el tablero de la investigación que tengas en curso.'],
+  ['La placa', 'tu ficha de investigador, con tu rango y tu tarjeta.'],
+  ['Mantén pulsado', 'cualquier objeto para saber qué es sin abrirlo.'],
 ];
 
 /** Explicación opcional e integrada: una nota manuscrita del comisario, nunca un tutorial obligatorio. */
