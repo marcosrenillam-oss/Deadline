@@ -157,6 +157,7 @@ try {
   check(scale === '1.2', `El tamaño de texto se aplica al instante (${scale})`);
   await page.getByRole('tab', { name: 'Oficina' }).click();
   await page.getByText('Caoba de despacho').click();
+  await page.getByText('Rojo sello').click();
   await page.screenshot({ path: join(shots, 'settings-office.png') });
   await page.reload();
   await page.getByRole('tab', { name: 'Lectura' }).click();
@@ -170,10 +171,13 @@ try {
       q.onsuccess = () => res(q.result.equipped.desk);
     };
   }));
-  await page.locator('main[data-ready] img[src*="desk_on"]').waitFor();
+  await page.locator('main[data-ready] img[src*="desk_desk-mahogany_on"]').waitFor();
   await page.waitForTimeout(1500);
-  await page.screenshot({ path: join(shots, 'desk-mahogany.png') });
   check(deskId === 'desk-mahogany', `La mesa usa el material elegido (${deskId})`);
+  check((await page.locator('img[src*="patch_phone-oxblood_on"]').count()) === 1, 'El teléfono rojo sello se ve en el despacho fotográfico');
+  check((await page.locator('img[src*="decor_decor-coffee_on"]').count()) === 1, 'El adorno de serie (taza de café) se ve en la mesa');
+  const loaded = await page.evaluate(() => [...document.querySelectorAll('main img')].filter((i) => /desk\/var\//.test(i.src)).every((i) => i.complete && i.naturalWidth > 0));
+  check(loaded, 'Las imágenes de las personalizaciones cargan');
   await page.screenshot({ path: join(shots, 'desk-mahogany.png') });
 
   // Archivo personal: exportar → importar

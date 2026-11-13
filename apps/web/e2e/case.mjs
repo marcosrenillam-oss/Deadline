@@ -203,7 +203,30 @@ try {
     };
   }));
   check(board.nodes.length === 2 && board.edges.length === 1, 'El tablero guarda tarjetas e hilos');
+  check((await p.locator('[aria-label="Persona: Imogen Ashcroft"] img').count()) === 1, 'La tarjeta de la persona lleva su retrato clavado');
+  // Un hilo entre dos piezas de una deducción ya establecida se vuelve de latón
+  await p.getByRole('button', { name: '+ Añadir' }).click();
+  await picker.getByRole('button', { name: 'Fotografía enmarcada', exact: true }).click();
+  await p.keyboard.press('Escape');
+  await p.getByRole('button', { name: /Evidencia: Hoja de contactos/ }).click();
+  await p.getByRole('button', { name: /Evidencia: Fotografía enmarcada/ }).click();
+  check(await visible(p.getByRole('status').filter({ hasText: 'El paraguas del pato' })), 'Unir en el corcho las piezas de una deducción la celebra con su sello');
+  await p.waitForTimeout(400);
   await p.screenshot({ path: join(shots, 'case-board.png') });
+
+  // Retrato en la ficha y visor de fotografías
+  await goto(`${C}/personas/ch-imogen`);
+  await p.getByRole('button', { name: 'Ver el retrato de Imogen Ashcroft' }).click();
+  const viewer = p.getByRole('dialog', { name: 'Fotografía: Retrato de Imogen Ashcroft' });
+  await viewer.waitFor();
+  await viewer.getByRole('button', { name: 'Girar a la derecha' }).click();
+  await viewer.getByRole('button', { name: 'Acercar' }).click();
+  const tf = await viewer.locator('figure').evaluate((f) => f.style.transform);
+  check(tf.includes('rotate(90deg)') && tf.includes('scale(1.4)'), `El visor gira y amplía la fotografía (${tf})`);
+  await p.screenshot({ path: join(shots, 'photo-viewer.png') });
+  await viewer.getByRole('button', { name: 'Cerrar' }).click();
+  await openEvidence(/Nikon F3/);
+  check(await visible(p.locator('figure button img[alt*="Cámara réflex"]')), 'La evidencia muestra su fotografía de archivo');
 
   // Acusación
   await goto(`${C}/acusacion`);
@@ -271,6 +294,11 @@ try {
   check(await visible(p.locator('li[data-got]', { hasText: 'Primera firma' })), 'Logros: «Primera firma» conseguido');
   check(await visible(p.getByText('Logro secreto. Se revela al conseguirlo.')), 'Los logros secretos no revelan su condición');
   await p.screenshot({ path: join(shots, 'history-achievements.png') });
+  await goto(`${BASE}/perfil`);
+  await p.getByRole('heading', { name: 'Hoja de servicio' }).waitFor();
+  await p.getByRole('button', { name: 'Primera firma (conseguida)' }).click();
+  check(await visible(p.getByText('Resuelve tu primer expediente.', { exact: false })), 'La vitrina de insignias muestra la placa del logro');
+  await p.screenshot({ path: join(shots, 'profile-insignias.png') });
 
   // Comprar y equipar una pieza de la oficina
   await goto(`${BASE}/lampara`);

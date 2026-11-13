@@ -77,12 +77,21 @@ export function BoardTab() {
     return undefined;
   };
 
-  /** Deducción ya establecida que une estas dos tarjetas (el hilo se vuelve de latón). */
+  /** Piezas que representa una tarjeta de evidencia: la propia evidencia y sus detalles. */
+  const piecesOf = (n: BoardNode): Set<string> => {
+    if (n.ref.kind !== 'evidence') return new Set();
+    const id = n.ref.id;
+    const ev = c.evidence.find((x) => x.id === id);
+    return new Set([id, ...(ev?.details.map((d) => d.id) ?? [])]);
+  };
+  /** Deducción ya establecida cuyas piezas reúnen estas dos tarjetas (el hilo se vuelve de latón). */
   const deductionBetween = (a: BoardNode, b: BoardNode) => {
-    if (a.ref.kind !== 'evidence' || b.ref.kind !== 'evidence') return undefined;
-    const ia = a.ref.id;
-    const ib = b.ref.id;
-    return c.deductions.find((d) => inv.deductions.includes(d.id) && d.combine.includes(ia) && d.combine.includes(ib));
+    const pa = piecesOf(a);
+    const pb = piecesOf(b);
+    if (!pa.size || !pb.size) return undefined;
+    return c.deductions.find(
+      (d) => inv.deductions.includes(d.id) && d.combine.some((x) => pa.has(x)) && d.combine.some((x) => pb.has(x)) && d.combine.every((x) => pa.has(x) || pb.has(x)),
+    );
   };
 
   const save = (b: BoardState) => patch((i) => patchWorkspace(i, { board: b }, Date.now()));

@@ -11,7 +11,7 @@
  */
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync, copyFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { validateCase } from '../packages/core/src/case/validate.ts';
 import { toCatalogEntry, type CaseFileInput } from '../packages/core/src/case/schema.ts';
@@ -53,6 +53,7 @@ async function main(): Promise<void> {
       const buf = readFileSync(file);
       asset.bytes = buf.length;
       asset.sha256 = sha256(buf);
+      mkdirSync(dirname(join(out, asset.src)), { recursive: true });
       copyFileSync(file, join(out, asset.src));
     }
 
