@@ -1,0 +1,1548 @@
+{
+  "schemaVersion": 1,
+  "id": "DL-I-0011",
+  "contentVersion": 1,
+  "mode": "individual",
+  "title": "Las losas de la cocina",
+  "subtitle": "Un aduanero rico va a cenar a casa de un matrimonio amigo y desaparece",
+  "origin": "real",
+  "historical": {
+    "documented": [
+      "Patrick O’Connor, aduanero de los muelles de Londres y prestamista con acciones de ferrocarril, desapareció el 9 de agosto de 1849 tras ir a cenar a casa de Frederick y Maria Manning, en Miniver Place, Bermondsey.",
+      "Maria Manning, nacida en Suiza y antigua doncella de una aristócrata, había sido pretendida por O’Connor antes de casarse con Frederick, y seguía viéndole.",
+      "Semanas antes los Manning habían encargado cal viva y comprado una palanca. Un inquilino, el estudiante de medicina William Massey, declaró que Frederick le preguntó qué parte del cráneo era más vulnerable a un golpe.",
+      "La tarde del 9 y el día 10, Maria fue a la pensión de O’Connor, en Mile End, y se llevó acciones de ferrocarril y dinero de sus cajones.",
+      "Cuando la policía fue a casa de los Manning, se habían marchado. El 17 de agosto los agentes notaron mortero fresco entre las losas de la cocina; debajo, enterrado en cal, estaba O’Connor, con un balazo y golpes en la cabeza.",
+      "Maria huyó a Edimburgo e intentó vender allí las acciones de O’Connor; el agente de bolsa avisó a la policía, que gracias al telégrafo sabía a quién buscar. Frederick fue detenido en Jersey.",
+      "Los dos se acusaron mutuamente. Fueron condenados y ahorcados juntos en Horsemonger Lane el 13 de noviembre de 1849. Charles Dickens asistió y escribió a The Times contra las ejecuciones públicas."
+    ],
+    "hypotheses": [
+      "Quién de los dos disparó y quién remató a O’Connor se discutió en el juicio; cada uno culpó al otro."
+    ],
+    "dramatized": [
+      "Las conversaciones del investigador y su orden son una recreación.",
+      "La redacción de recibos, notas y declaraciones está reconstruida para el juego.",
+      "Los retratos son recreaciones artísticas."
+    ],
+    "documentedResolution": "Frederick y Maria Manning fueron condenados por el asesinato de Patrick O’Connor y ahorcados juntos el 13 de noviembre de 1849.",
+    "sources": [
+      "Albert Borowitz, The Woman Who Murdered Black Satin (1981)",
+      "The Times, crónicas del juicio (octubre de 1849)",
+      "Charles Dickens, carta a The Times (14 de noviembre de 1849)"
+    ]
+  },
+  "era": "c19",
+  "eraLabel": "Londres, 1849",
+  "year": 1849,
+  "location": {
+    "city": "Londres",
+    "place": "3 Miniver Place, Bermondsey",
+    "country": "Inglaterra"
+  },
+  "category": "homicide",
+  "difficulty": "inspector",
+  "keywords": [
+    "Manning",
+    "Bermondsey",
+    "O’Connor",
+    "cal viva",
+    "telégrafo",
+    "acciones de ferrocarril",
+    "Dickens",
+    "caso real"
+  ],
+  "ambience": {
+    "music": "victorian-night",
+    "mood": "urban"
+  },
+  "maxHints": 4,
+  "briefing": {
+    "incidentDisplay": "Jueves, 9 de agosto de 1849 · tarde",
+    "summary": "Patrick O’Connor, aduanero de los muelles de Londres, no ha vuelto a su pensión ni a su puesto desde el jueves. Sus amigos saben que iba a cenar a casa de los Manning, un matrimonio de Bermondsey. Los Manning dicen que nunca llegó.",
+    "context": "La Policía Metropolitana le encarga el asunto el día 13. O’Connor era hombre de costumbres fijas y bolsillos llenos: prestaba dinero y tenía acciones de ferrocarril. No es de los que desaparecen.",
+    "background": "En el Londres del cólera de 1849, los muelles son un hervidero de aduaneros, contrabandistas y prestamistas. O’Connor era las tres cosas un poco.",
+    "victim": "ch-oconnor",
+    "initialFacts": [],
+    "initialEvidence": [
+      "ev-aviso",
+      "ev-nota-cena",
+      "ev-pension"
+    ],
+    "initialTimeline": [
+      "te-cena",
+      "te-muerte"
+    ]
+  },
+  "characters": [
+    {
+      "id": "ch-oconnor",
+      "name": "Patrick O’Connor",
+      "look": {
+        "hair": "short",
+        "beard": true
+      },
+      "role": "victim",
+      "age": 50,
+      "occupation": "Aduanero y prestamista",
+      "appearance": "a tall gaunt 50-year-old Irish customs officer in London in 1849, long lined face, greying side whiskers, dark frock coat and tall hat, gold watch chain, shrewd self-satisfied expression",
+      "summary": "Avaro, presumido y enamorado de una mujer casada.",
+      "biography": "Irlandés de Tipperary, aduanero en los muelles de Londres. Presta dinero a interés alto y guarda en su pensión acciones de ferrocarril por valor de miles de libras.",
+      "personality": [
+        "Avaro",
+        "Presumido",
+        "Desconfiado"
+      ]
+    },
+    {
+      "id": "ch-maria",
+      "name": "Maria Manning",
+      "look": {
+        "hair": "bun"
+      },
+      "role": "suspect",
+      "age": 28,
+      "occupation": "Antigua doncella de una dama",
+      "appearance": "a handsome 28-year-old Swiss-born woman in London in 1849, strong dark-browed face, dark hair parted and drawn back, black satin dress with a white collar, proud cold eyes",
+      "summary": "Elegante, decidida y más lista que su marido.",
+      "biography": "Nacida en Suiza, fue doncella de lady Blantyre. Dudó entre O’Connor, rico, y Frederick Manning, que presumía de herencias. Eligió a Frederick, y se arrepintió.",
+      "personality": [
+        "Fría",
+        "Calculadora",
+        "Orgullosa"
+      ],
+      "relationToVictim": "Antigua pretendida y amante",
+      "motive": {
+        "text": "Quería las acciones y el dinero de O’Connor.",
+        "visibleWhen": {
+          "fact": "fa-acciones"
+        }
+      },
+      "alibi": {
+        "claim": "O’Connor no vino a cenar. Ella le esperó y luego fue a su pensión a preguntar por él."
+      }
+    },
+    {
+      "id": "ch-frederick",
+      "name": "Frederick Manning",
+      "look": {
+        "hair": "short"
+      },
+      "role": "suspect",
+      "age": 30,
+      "occupation": "Antiguo guarda de ferrocarril, tabernero arruinado",
+      "appearance": "a heavy 30-year-old English ex-railway guard in 1849, fleshy weak face, light hair, small eyes, shabby brown coat and loose necktie, nervous drinker’s complexion",
+      "summary": "Bebe, se queja y debe dinero.",
+      "biography": "Fue despedido del ferrocarril bajo sospecha de robos en los trenes. Llevó una taberna que se hundió. Vive del dinero de su mujer y de lo que O’Connor les presta.",
+      "personality": [
+        "Débil",
+        "Bebedor",
+        "Resentido"
+      ],
+      "relationToVictim": "Amigo y deudor",
+      "motive": {
+        "text": "Debía dinero a O’Connor y sabía lo de su mujer.",
+        "visibleWhen": {
+          "asked": "q-frederick-oconnor"
+        }
+      },
+      "alibi": {
+        "claim": "Esa tarde estuvo bebiendo por ahí. Cuando volvió, su mujer le dijo que O’Connor no había venido."
+      }
+    },
+    {
+      "id": "ch-massey",
+      "name": "William Massey",
+      "look": {
+        "hair": "short"
+      },
+      "role": "witness",
+      "age": 21,
+      "occupation": "Estudiante de medicina, antiguo inquilino",
+      "appearance": "a nervous 21-year-old London medical student in 1849, thin pale face, untidy fair hair, cheap dark coat, worried eyes",
+      "summary": "Le hicieron preguntas raras.",
+      "biography": "Alquiló una habitación a los Manning en primavera. Se marchó en julio porque la señora se lo pidió: necesitaban el cuarto.",
+      "personality": [
+        "Ingenuo",
+        "Asustado"
+      ]
+    },
+    {
+      "id": "ch-armes",
+      "name": "Ann Armes",
+      "look": {
+        "hair": "bun"
+      },
+      "role": "witness",
+      "age": 45,
+      "occupation": "Patrona de la pensión de O’Connor",
+      "appearance": "a stout 45-year-old London landlady in 1849, round shrewd face, grey hair under a cap, dark dress and shawl, keys at her waist",
+      "summary": "Vio subir a una visita a los cuartos de O’Connor.",
+      "biography": "Tiene una pensión en Greenwood Street, Mile End, donde O’Connor vive desde hace años.",
+      "personality": [
+        "Atenta",
+        "Charlatana"
+      ]
+    },
+    {
+      "id": "ch-barnes",
+      "name": "Agente Henry Barnes",
+      "look": {
+        "hair": "hat"
+      },
+      "role": "witness",
+      "age": 32,
+      "occupation": "Policía Metropolitana",
+      "appearance": "a sturdy 32-year-old Metropolitan Police constable in 1849, honest broad face, side whiskers, dark blue tailcoat uniform and top hat, lantern in hand",
+      "summary": "Un agente que se fija en el suelo.",
+      "biography": "Agente de la división de Bermondsey. Le han mandado registrar la casa vacía de los Manning.",
+      "personality": [
+        "Concienzudo",
+        "Paciente"
+      ]
+    },
+    {
+      "id": "ch-moffat",
+      "name": "Sr. Moffat",
+      "look": {
+        "hair": "short",
+        "beard": true
+      },
+      "role": "witness",
+      "age": 50,
+      "occupation": "Agente de bolsa de Edimburgo",
+      "appearance": "a careful 50-year-old Edinburgh stockbroker in 1849, grey whiskers, spectacles pushed up on his forehead, black coat, ledger under his arm",
+      "summary": "Una señora quería vender unas acciones.",
+      "biography": "Agente de bolsa en Edimburgo. Lee los periódicos de Londres que llegan cada mañana… y los telegramas de la policía.",
+      "personality": [
+        "Prudente",
+        "Minucioso"
+      ],
+      "appearsWhen": {
+        "fact": "fa-huida"
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "lo-miniver",
+      "name": "3 Miniver Place",
+      "description": "Casa adosada de Bermondsey con cocina en la planta baja, enlosada."
+    },
+    {
+      "id": "lo-cocina",
+      "name": "Cocina de los Manning",
+      "description": "Suelo de losas de piedra.",
+      "appearsWhen": {
+        "flag": "losas-levantadas"
+      }
+    },
+    {
+      "id": "lo-pension",
+      "name": "Pensión de Greenwood Street",
+      "description": "En Mile End, donde vivía O’Connor."
+    },
+    {
+      "id": "lo-edimburgo",
+      "name": "Edimburgo",
+      "description": "Adonde huyó Maria.",
+      "appearsWhen": {
+        "fact": "fa-huida"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "re-matrimonio",
+      "a": "ch-maria",
+      "b": "ch-frederick",
+      "label": "Matrimonio"
+    },
+    {
+      "id": "re-amantes",
+      "a": "ch-maria",
+      "b": "ch-oconnor",
+      "label": "Antiguos novios, aún amantes",
+      "visibleWhen": {
+        "asked": "q-armes-visitas"
+      }
+    },
+    {
+      "id": "re-deudor",
+      "a": "ch-frederick",
+      "b": "ch-oconnor",
+      "label": "Deudor y prestamista"
+    }
+  ],
+  "facts": [
+    {
+      "id": "fa-invitado",
+      "text": "O’Connor tenía una invitación escrita de Maria para cenar el jueves 9.",
+      "important": true
+    },
+    {
+      "id": "fa-visto-llegar",
+      "text": "Un conocido vio a O’Connor llamar a la puerta de los Manning a las cinco y cuarto del día 9.",
+      "important": true
+    },
+    {
+      "id": "fa-maria-pension",
+      "text": "Maria estuvo dos veces en los cuartos de O’Connor: la noche del 9 y la tarde del 10.",
+      "important": true
+    },
+    {
+      "id": "fa-acciones",
+      "text": "Faltan de los cajones de O’Connor sus acciones de ferrocarril y su dinero.",
+      "important": true
+    },
+    {
+      "id": "fa-cal",
+      "text": "Los Manning encargaron cal viva y compraron una palanca a finales de julio.",
+      "important": true
+    },
+    {
+      "id": "fa-craneo",
+      "text": "Frederick preguntó a un estudiante de medicina qué parte del cráneo es más vulnerable a un golpe.",
+      "important": true
+    },
+    {
+      "id": "fa-huida",
+      "text": "Los Manning huyeron por separado: ella a Edimburgo, él a Jersey.",
+      "important": true
+    },
+    {
+      "id": "fa-cuerpo",
+      "text": "Bajo las losas de la cocina está O’Connor, enterrado en cal, con un balazo y la cabeza destrozada.",
+      "important": true
+    },
+    {
+      "id": "fa-venta",
+      "text": "En Edimburgo, Maria intentó vender las acciones de ferrocarril de O’Connor.",
+      "important": true
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-aviso",
+      "kind": "statement",
+      "title": "Aviso de los amigos de O’Connor",
+      "dated": "11 de agosto de 1849",
+      "source": "Comisaría de Mile End",
+      "summary": "Le vieron llegar a casa de los Manning.",
+      "related": {
+        "characters": [
+          "ch-oconnor",
+          "ch-maria",
+          "ch-frederick"
+        ],
+        "locations": [
+          "lo-miniver"
+        ],
+        "events": [
+          "te-llegada"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—Patrick no ha vuelto a su pensión ni a la aduana desde el jueves. Iba a cenar a casa de los Manning; nos lo dijo él, contento."
+        },
+        {
+          "type": "typed",
+          "text": "—{{dt-aviso-visto|Un compañero de la aduana, Pierce Walsh, le vio el jueves a las cinco y cuarto en London Bridge, camino de Bermondsey; y un vecino de Miniver Place le vio entrar en la casa.}}"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-aviso-visto",
+          "label": "Le vieron entrar",
+          "description": "O’Connor llegó a casa de los Manning.",
+          "effects": [
+            {
+              "grantFact": "fa-visto-llegar"
+            },
+            {
+              "unlockTimelineEvent": "te-llegada"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-nota-cena",
+      "kind": "letter",
+      "title": "Nota de invitación",
+      "dated": "8 de agosto de 1849",
+      "source": "Hallada en la pensión de O’Connor",
+      "summary": "Una cena para dos… o para tres.",
+      "related": {
+        "characters": [
+          "ch-maria",
+          "ch-oconnor"
+        ],
+        "locations": [
+          "lo-pension"
+        ],
+        "events": [
+          "te-cena"
+        ]
+      },
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Querido amigo:"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{dt-nota-maria|Le esperamos mañana jueves a cenar, a las cinco y media. Habrá ganso. No falte.}}"
+        },
+        {
+          "type": "signature",
+          "name": "Maria Manning"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-nota-maria",
+          "label": "Le invitó ella",
+          "description": "Maria citó a O’Connor el jueves a las cinco y media.",
+          "effects": [
+            {
+              "grantFact": "fa-invitado"
+            }
+          ],
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "ev-pension",
+      "kind": "report",
+      "title": "Registro de los cuartos de O’Connor",
+      "source": "Policía Metropolitana",
+      "summary": "Unos cajones vaciados con llave.",
+      "related": {
+        "characters": [
+          "ch-oconnor"
+        ],
+        "locations": [
+          "lo-pension"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "Los cuartos están en orden. {{dt-pen-cajones|Los cajones de la cómoda, que O’Connor cerraba con llave, se han abierto con su propia llave: no hay forzamiento. Faltan los títulos de acciones de ferrocarril que, según sus amigos, guardaba ahí, y el dinero en efectivo.}}"
+        },
+        {
+          "type": "typed",
+          "text": "Las llaves de O’Connor no están en los cuartos: las llevaba siempre encima."
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-pen-cajones",
+          "label": "Abiertos con su llave",
+          "description": "Quien vació los cajones tenía las llaves que O’Connor llevaba encima.",
+          "effects": [
+            {
+              "grantFact": "fa-acciones"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-armes",
+      "kind": "statement",
+      "title": "Declaración de Ann Armes, patrona de la pensión",
+      "source": "Greenwood Street, Mile End",
+      "summary": "Una señora con muchas prisas.",
+      "autoDiscoverWhen": {
+        "asked": "q-armes-visitas"
+      },
+      "related": {
+        "characters": [
+          "ch-armes",
+          "ch-maria"
+        ],
+        "locations": [
+          "lo-pension"
+        ],
+        "events": [
+          "te-pension-1",
+          "te-pension-2"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—{{dt-armes-noche|El jueves, hacia las seis menos cuarto, vino la señora Manning preguntando por Mr. O’Connor. Le dije que no estaba. Subió a sus cuartos «a esperarle» y estuvo arriba casi dos horas.}}"
+        },
+        {
+          "type": "typed",
+          "text": "—{{dt-armes-tarde|El viernes por la tarde volvió, otra vez sola, otra vez arriba un buen rato. Bajó con el bolso muy abultado.}}"
+        },
+        {
+          "type": "signature",
+          "name": "Ann Armes"
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-pension-1"
+        },
+        {
+          "unlockTimelineEvent": "te-pension-2"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-armes-noche",
+          "label": "A las seis menos cuarto",
+          "description": "Mientras O’Connor «no había llegado» a cenar, Maria estaba ya en sus cuartos.",
+          "effects": [
+            {
+              "grantFact": "fa-maria-pension"
+            }
+          ],
+          "points": 20
+        },
+        {
+          "id": "dt-armes-tarde",
+          "label": "Con el bolso abultado",
+          "description": "Al día siguiente volvió y se llevó algo.",
+          "effects": [],
+          "points": 15
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-ferreteria",
+      "kind": "record",
+      "title": "Libros de la ferretería y del almacén de cal",
+      "source": "Bermondsey",
+      "summary": "Compras de finales de julio.",
+      "autoDiscoverWhen": {
+        "asked": "q-barnes-casa"
+      },
+      "related": {
+        "characters": [
+          "ch-frederick",
+          "ch-maria"
+        ],
+        "locations": [
+          "lo-miniver"
+        ],
+        "events": [
+          "te-compras"
+        ]
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Fecha",
+            "Cliente",
+            "Artículo"
+          ],
+          "rows": [
+            [
+              "25-jul-1849",
+              "Sra. Manning, Miniver Place",
+              "{{dt-ferr-cal|Una fanega de cal viva, «para matar babosas del jardín»}}"
+            ],
+            [
+              "28-jul-1849",
+              "Sr. Manning",
+              "{{dt-ferr-palanca|Una palanca de hierro y una pala}}"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "La casa de Miniver Place no tiene jardín, solo un patio enlosado."
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-compras"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-ferr-cal",
+          "label": "Cal viva sin jardín",
+          "description": "Cal para un jardín que no existe: cal para un cuerpo.",
+          "effects": [
+            {
+              "grantFact": "fa-cal"
+            }
+          ],
+          "points": 15
+        },
+        {
+          "id": "dt-ferr-palanca",
+          "label": "Una palanca y una pala",
+          "description": "Para levantar losas.",
+          "effects": [],
+          "points": 10
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-cocina",
+      "kind": "report",
+      "title": "Informe del agente Barnes",
+      "dated": "17 de agosto de 1849",
+      "source": "Policía Metropolitana, Bermondsey",
+      "summary": "Lo que había bajo el suelo de la cocina.",
+      "autoDiscoverWhen": {
+        "flag": "losas-levantadas"
+      },
+      "related": {
+        "characters": [
+          "ch-barnes",
+          "ch-oconnor"
+        ],
+        "locations": [
+          "lo-cocina"
+        ],
+        "events": [
+          "te-hallazgo"
+        ]
+      },
+      "body": [
+        {
+          "type": "heading",
+          "text": "3 MINIVER PLACE · COCINA"
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-coc-mortero|Entre dos losas de la cocina, el mortero está húmedo y más claro que el resto.}} Levantadas las losas, tierra suelta y cal."
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-coc-cuerpo|A medio metro, el cuerpo de un hombre atado de pies a la cabeza, cubierto de cal viva. Una bala en la cabeza, sobre el ojo derecho, y el cráneo fracturado por una docena de golpes.}} Dentadura postiza que los amigos reconocen: Patrick O’Connor."
+        },
+        {
+          "type": "signature",
+          "name": "H. Barnes, agente"
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-hallazgo"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-coc-mortero",
+          "label": "Mortero fresco",
+          "description": "Alguien había levantado y vuelto a poner esas losas hace poco.",
+          "effects": [],
+          "points": 10
+        },
+        {
+          "id": "dt-coc-cuerpo",
+          "label": "Bala y golpes",
+          "description": "Un disparo y después golpes: alguien remató a O’Connor.",
+          "effects": [
+            {
+              "grantFact": "fa-cuerpo"
+            }
+          ],
+          "points": 25
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-telegrama",
+      "kind": "letter",
+      "title": "Telegrama de la policía de Edimburgo",
+      "dated": "21 de agosto de 1849",
+      "source": "Telégrafo eléctrico, Edimburgo-Londres",
+      "summary": "Una señora intenta vender acciones.",
+      "autoDiscoverWhen": {
+        "asked": "q-moffat"
+      },
+      "related": {
+        "characters": [
+          "ch-maria",
+          "ch-moffat"
+        ],
+        "locations": [
+          "lo-edimburgo"
+        ],
+        "events": [
+          "te-edimburgo"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "{{dt-tel-venta|DETENIDA EN EDIMBURGO MUJER QUE SE HACE LLAMAR SRA SMITH STOP INTENTÓ VENDER ACCIONES FERROCARRIL SHERBORNE YEOVIL A NOMBRE P OCONNOR STOP}} {{dt-tel-equipaje|EN SU EQUIPAJE MÁS TÍTULOS Y DINERO STOP}}"
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-edimburgo"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-tel-venta",
+          "label": "Las acciones de O’Connor",
+          "description": "Maria intentó vender en Edimburgo las acciones robadas de los cajones de O’Connor.",
+          "effects": [
+            {
+              "grantFact": "fa-venta"
+            }
+          ],
+          "points": 20
+        },
+        {
+          "id": "dt-tel-equipaje",
+          "label": "Más títulos y dinero",
+          "description": "Llevaba encima el resto del botín.",
+          "effects": [],
+          "points": 10
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    }
+  ],
+  "deductions": [
+    {
+      "id": "de-cajones",
+      "title": "Las llaves del muerto",
+      "combine": [
+        "dt-pen-cajones",
+        "dt-armes-noche"
+      ],
+      "explanation": "Los cajones se abrieron con las llaves que O’Connor llevaba encima, y a las seis menos cuarto Maria ya estaba en sus cuartos: O’Connor ya no las necesitaba.",
+      "points": 35
+    },
+    {
+      "id": "de-premeditado",
+      "title": "Una tumba preparada",
+      "combine": [
+        "dt-ferr-cal",
+        "fa-craneo"
+      ],
+      "explanation": "Cal viva para un jardín que no existe, una palanca, y preguntas sobre el punto débil del cráneo: la tumba estaba lista dos semanas antes de la cena.",
+      "points": 35
+    },
+    {
+      "id": "de-dos",
+      "title": "Un disparo y doce golpes",
+      "combine": [
+        "dt-coc-cuerpo",
+        "fa-craneo"
+      ],
+      "explanation": "Uno disparó; el otro, que había preguntado dónde golpear el cráneo, le remató con la palanca. Hicieron falta los dos.",
+      "points": 30
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "cx-maria-cena",
+      "title": "Sí vino a cenar",
+      "a": {
+        "line": "ln-maria-novino"
+      },
+      "b": {
+        "detail": "dt-aviso-visto"
+      },
+      "explanation": "Maria dice que O’Connor no se presentó; un vecino le vio entrar en la casa a las cinco y cuarto.",
+      "points": 25
+    },
+    {
+      "id": "cx-maria-pension",
+      "title": "Lo que fue a hacer a la pensión",
+      "a": {
+        "line": "ln-maria-preguntar"
+      },
+      "b": {
+        "detail": "dt-armes-tarde"
+      },
+      "explanation": "Maria dice que fue a la pensión solo a preguntar por él; la patrona la vio subir sola dos veces y bajar con el bolso abultado.",
+      "points": 25
+    },
+    {
+      "id": "cx-frederick-tarde",
+      "title": "Frederick no estaba bebiendo fuera",
+      "a": {
+        "line": "ln-frederick-bar"
+      },
+      "b": {
+        "line": "ln-massey-tarde"
+      },
+      "explanation": "Frederick dice que pasó la tarde en las tabernas; Massey, que pasó a recoger un libro, le vio a las siete en la puerta de su casa, en mangas de camisa y sudando.",
+      "effects": [
+        {
+          "revealSecret": "se-frederick"
+        }
+      ],
+      "points": 25
+    }
+  ],
+  "secrets": [
+    {
+      "id": "se-frederick",
+      "characterId": "ch-frederick",
+      "text": "Frederick estaba en casa: bajó a la cocina cuando oyó el disparo y remató a O’Connor con la palanca. Luego se emborrachó durante dos días.",
+      "points": 25
+    },
+    {
+      "id": "se-maria",
+      "characterId": "ch-maria",
+      "text": "Maria invitó a O’Connor a lavarse las manos en la cocina antes de cenar. Cuando bajó, le disparó por detrás.",
+      "revealedWhen": {
+        "flag": "maria-acusa"
+      },
+      "points": 20
+    }
+  ],
+  "interrogations": [
+    {
+      "id": "in-maria",
+      "characterId": "ch-maria",
+      "setting": "En la comisaría de Edimburgo, y después en Londres. Lleva un vestido de raso negro impecable y habla con un acento que no termina de ser de ninguna parte.",
+      "opening": [
+        {
+          "text": "Me tratan como a una criminal porque soy extranjera. Soy una señora."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-maria-cena",
+          "label": "La cena",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-maria-cena",
+              "prompt": "¿Vino O’Connor a cenar el jueves?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-maria-novino",
+                      "text": "No. Le esperamos con el ganso en la mesa hasta las siete. No se presentó.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-maria-pension",
+              "prompt": "¿Fue usted a su pensión?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-maria-preguntar",
+                      "text": "A preguntar por él, preocupada. Pregunté en la puerta y me fui. Nada más.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-maria-final",
+          "label": "Las acciones",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-maria-acciones",
+              "prompt": "En Edimburgo intentó vender las acciones de O’Connor.",
+              "kind": "confront",
+              "requires": {
+                "fact": "fa-venta"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Me las dio él, en vida. Me quería. Me las regaló.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-maria-cuerpo",
+              "prompt": "Estaba bajo las losas de su cocina, en la cal que usted compró.",
+              "kind": "confront",
+              "requires": {
+                "all": [
+                  {
+                    "fact": "fa-cuerpo"
+                  },
+                  {
+                    "fact": "fa-cal"
+                  }
+                ]
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Maria se alisa el raso de la falda y mira al investigador con desprecio."
+                    },
+                    {
+                      "text": "Fue mi marido. Él le odiaba, y él cavó ese agujero. Yo solo me llevé lo que ya era mío por derecho.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "setFlag": "maria-acusa"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-frederick",
+      "characterId": "ch-frederick",
+      "setting": "En una celda de Jersey, y después de Londres. Huele a coñac y tiene las manos temblorosas.",
+      "opening": [
+        {
+          "text": "Ella. Todo fue ella. Pregunte lo que quiera."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-frederick",
+          "label": "La tarde",
+          "kind": "alibi",
+          "questions": [
+            {
+              "id": "q-frederick-tarde",
+              "prompt": "¿Dónde estaba usted el jueves por la tarde?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-frederick-bar",
+                      "text": "Bebiendo por las tabernas de Bermondsey. Volví de noche y mi mujer ya había limpiado.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-frederick-oconnor",
+              "prompt": "¿Qué relación tenía con O’Connor?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Me prestaba dinero y se metía en mi casa como si fuera suya. Todo el mundo sabía para qué venía.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-frederick-cx",
+              "prompt": "Massey le vio a las siete en la puerta de su casa, en mangas de camisa.",
+              "kind": "contradiction",
+              "contradiction": "cx-frederick-tarde",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Está bien. Estaba en casa. Ella le bajó a la cocina a lavarse las manos y le pegó un tiro por la espalda. Yo bajé al oír el disparo.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "Todavía se movía… Cogí la palanca. No sé cuántas veces. Ella me dijo que acabara.",
+                      "tone": "admission"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-massey",
+      "characterId": "ch-massey",
+      "setting": "En su habitación de estudiante, entre libros de anatomía.",
+      "opening": [
+        {
+          "text": "Yo solo viví allí unos meses. No sé nada de ningún crimen."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-massey",
+          "label": "El señor Manning",
+          "kind": "person",
+          "about": "ch-frederick",
+          "questions": [
+            {
+              "id": "q-massey-preguntas",
+              "prompt": "¿Le preguntó alguna vez algo raro el señor Manning?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Una noche, bebido, me preguntó qué parte del cráneo era más vulnerable a un golpe, y si un hombre podía firmar papeles bajo los efectos del láudano. Creí que era una broma.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-craneo"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-massey-tarde",
+              "prompt": "¿Le vio el jueves 9?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-massey-tarde",
+                      "text": "Sí, pasé a las siete por un libro que me había dejado. Estaba en la puerta, en mangas de camisa, sudando como un caballo. No me dejó entrar.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-armes",
+      "characterId": "ch-armes",
+      "setting": "En el recibidor de su pensión, con los brazos cruzados.",
+      "opening": [
+        {
+          "text": "Mr. O’Connor era un buen inquilino, aunque un poco agarrado. Pregunte."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-armes",
+          "label": "Las visitas",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-armes-visitas",
+              "prompt": "¿Recibía visitas Mr. O’Connor?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Una señora, la Manning. Muchas veces, y no a tomar el té, ya me entiende. Y esta semana, dos veces sin él.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-barnes",
+      "characterId": "ch-barnes",
+      "setting": "En la cocina vacía de Miniver Place, con un farol y una barra de hierro.",
+      "opening": [
+        {
+          "text": "Se han ido con prisa. Han dejado hasta la comida en la despensa."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-barnes",
+          "label": "La casa",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-barnes-casa",
+              "prompt": "¿Qué ha encontrado en la casa?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Restos de cal en el patio y una pala nueva. Para una casa sin jardín es mucha herramienta. Voy a preguntar en las tiendas del barrio.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-barnes-losas",
+              "prompt": "Mire el suelo de la cocina.",
+              "kind": "ask",
+              "requires": {
+                "all": [
+                  {
+                    "fact": "fa-cal"
+                  },
+                  {
+                    "fact": "fa-huida"
+                  }
+                ]
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Barnes se agacha con el farol y pasa el dedo por las juntas de las losas."
+                    },
+                    {
+                      "text": "Aquí. Este mortero está húmedo. Ayúdeme con la palanca.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "setFlag": "losas-levantadas"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-barnes-donde",
+              "prompt": "¿Adónde han ido los Manning?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Cada uno por su lado. Ella cogió un coche con baúles hacia la estación de King’s Cross; él vendió los muebles a un trapero y desapareció.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-huida"
+                    },
+                    {
+                      "unlockTimelineEvent": "te-huida"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-moffat",
+      "characterId": "ch-moffat",
+      "setting": "En su despacho de Edimburgo, con el periódico de Londres abierto.",
+      "opening": [
+        {
+          "text": "Una señora muy elegante, con acento extranjero. Demasiadas prisas para vender."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-moffat",
+          "label": "La venta",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-moffat",
+              "prompt": "¿Qué quería vender la señora?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Acciones del ferrocarril de Sherborne a Yeovil, a nombre de un tal P. O’Connor. Dijo ser su sobrina. Había leído el nombre en el periódico de esta mañana. Llamé a la policía, que ya tenía un telegrama de Londres.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "id": "te-compras",
+      "t": -21600,
+      "display": "Finales de julio",
+      "title": "Los Manning compran cal viva, una palanca y una pala",
+      "description": "«Para las babosas del jardín».",
+      "characters": [
+        "ch-maria",
+        "ch-frederick"
+      ],
+      "location": "lo-miniver",
+      "key": true
+    },
+    {
+      "id": "te-cena",
+      "t": -1440,
+      "display": "8 de agosto",
+      "title": "Maria invita a O’Connor a cenar el jueves",
+      "description": "A las cinco y media.",
+      "characters": [
+        "ch-maria",
+        "ch-oconnor"
+      ],
+      "key": true
+    },
+    {
+      "id": "te-llegada",
+      "t": -25,
+      "display": "9 de agosto, 17:15",
+      "title": "O’Connor llega a casa de los Manning",
+      "description": "Un vecino le ve entrar.",
+      "characters": [
+        "ch-oconnor"
+      ],
+      "location": "lo-miniver",
+      "key": true
+    },
+    {
+      "id": "te-falso-novino",
+      "t": -10,
+      "display": "9 de agosto, 17:30",
+      "title": "O’Connor no se presenta a la cena",
+      "description": "Según Maria.",
+      "characters": [
+        "ch-maria"
+      ],
+      "veracity": "false",
+      "claimedBy": "ch-maria"
+    },
+    {
+      "id": "te-muerte",
+      "t": 0,
+      "display": "9 de agosto, hacia las 17:40",
+      "title": "Muerte de O’Connor en la cocina de los Manning",
+      "description": "Un disparo y una palanca.",
+      "characters": [
+        "ch-oconnor",
+        "ch-maria",
+        "ch-frederick"
+      ],
+      "location": "lo-cocina",
+      "key": true
+    },
+    {
+      "id": "te-pension-1",
+      "t": 5,
+      "display": "9 de agosto, 17:45",
+      "title": "Maria sube a los cuartos de O’Connor en Mile End",
+      "description": "Y pasa allí casi dos horas.",
+      "characters": [
+        "ch-maria"
+      ],
+      "location": "lo-pension",
+      "key": true
+    },
+    {
+      "id": "te-pension-2",
+      "t": 1440,
+      "display": "10 de agosto, tarde",
+      "title": "Maria vuelve a la pensión y sale con el bolso abultado",
+      "description": "Otra vez sola, otra vez un buen rato arriba.",
+      "characters": [
+        "ch-maria"
+      ],
+      "location": "lo-pension",
+      "key": true
+    },
+    {
+      "id": "te-huida",
+      "t": 5760,
+      "display": "13 de agosto",
+      "title": "Los Manning huyen, cada uno por su lado",
+      "description": "Ella a Edimburgo; él a Jersey.",
+      "characters": [
+        "ch-maria",
+        "ch-frederick"
+      ],
+      "key": true
+    },
+    {
+      "id": "te-hallazgo",
+      "t": 11520,
+      "display": "17 de agosto",
+      "title": "La policía levanta las losas de la cocina",
+      "description": "O’Connor, en cal viva.",
+      "characters": [
+        "ch-barnes"
+      ],
+      "location": "lo-cocina",
+      "key": true
+    },
+    {
+      "id": "te-edimburgo",
+      "t": 17280,
+      "display": "21 de agosto",
+      "title": "Maria, detenida en Edimburgo al vender las acciones",
+      "description": "Gracias al telégrafo.",
+      "characters": [
+        "ch-maria",
+        "ch-moffat"
+      ],
+      "location": "lo-edimburgo",
+      "key": true
+    }
+  ],
+  "accusation": {
+    "motives": [
+      {
+        "id": "mo-acciones",
+        "label": "Robarle las acciones de ferrocarril y el dinero que guardaba en sus cajones",
+        "availableWhen": {
+          "fact": "fa-acciones"
+        }
+      },
+      {
+        "id": "mo-celos",
+        "label": "Celos del marido engañado",
+        "availableWhen": {
+          "asked": "q-frederick-oconnor"
+        }
+      },
+      {
+        "id": "mo-deuda",
+        "label": "Librarse de una deuda"
+      },
+      {
+        "id": "mo-pelea",
+        "label": "Una pelea durante la cena"
+      }
+    ],
+    "methods": [
+      {
+        "id": "me-cocina",
+        "label": "Le hicieron bajar a la cocina, ella le disparó y él le remató con la palanca; lo enterraron en cal bajo las losas preparadas de antemano",
+        "availableWhen": {
+          "all": [
+            {
+              "fact": "fa-cuerpo"
+            },
+            {
+              "fact": "fa-cal"
+            }
+          ]
+        }
+      },
+      {
+        "id": "me-veneno",
+        "label": "Láudano en la cena y después lo enterraron"
+      },
+      {
+        "id": "me-calle",
+        "label": "Le asaltaron en la calle al volver a Mile End"
+      },
+      {
+        "id": "me-rio",
+        "label": "Lo arrojaron al Támesis"
+      }
+    ]
+  },
+  "solution": {
+    "culprits": [
+      "ch-maria",
+      "ch-frederick"
+    ],
+    "motive": "mo-acciones",
+    "method": "me-cocina",
+    "proof": [
+      "ev-cocina",
+      "ev-armes",
+      "ev-telegrama"
+    ],
+    "whatHappened": "Frederick y Maria Manning mataron a Patrick O’Connor el 9 de agosto de 1849 para robarle sus acciones de ferrocarril y su dinero. Semanas antes compraron cal viva, una palanca y una pala, y Frederick preguntó a un estudiante dónde era más vulnerable el cráneo. Maria invitó a O’Connor a cenar. Cuando llegó, a las cinco y cuarto, le hizo bajar a la cocina a lavarse las manos y le disparó por la espalda; Frederick le remató con la palanca. Lo enterraron en cal bajo las losas de la cocina. Esa misma tarde, con sus llaves, Maria vació sus cajones en la pensión de Mile End, y volvió al día siguiente. Huyeron por separado; Maria fue detenida en Edimburgo intentando vender las acciones, y él en Jersey.",
+    "reconstruction": [
+      "Finales de julio: compran cal viva, palanca y pala. Frederick pregunta a Massey por el cráneo.",
+      "8 de agosto: Maria invita a O’Connor a cenar.",
+      "9 de agosto, 17:15: O’Connor llega a Miniver Place.",
+      "Maria le hace bajar a la cocina y le dispara; Frederick le remata con la palanca.",
+      "Lo entierran en cal bajo las losas. Maria coge sus llaves y va a su pensión.",
+      "10 de agosto: Maria vuelve a la pensión y se lleva las acciones y el dinero.",
+      "13 de agosto: huyen por separado. El 17, la policía levanta las losas.",
+      "21 de agosto: el telégrafo y un agente de bolsa detienen a Maria en Edimburgo."
+    ],
+    "decisiveEvidence": [
+      "ev-aviso",
+      "ev-pension",
+      "ev-armes",
+      "ev-ferreteria",
+      "ev-cocina",
+      "ev-telegrama"
+    ],
+    "alibiTruths": [
+      {
+        "characterId": "ch-maria",
+        "truth": "O’Connor sí vino a cenar; ella fue a su pensión con sus llaves, ya muerto él, a vaciar sus cajones."
+      },
+      {
+        "characterId": "ch-frederick",
+        "truth": "No estaba en las tabernas: estaba en casa y remató a O’Connor con la palanca."
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "en-horsemonger",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct",
+        "knowledge": {
+          "flag": "maria-acusa"
+        }
+      },
+      "outcome": "success",
+      "title": "Raso negro",
+      "text": "En el juicio cada uno culpa al otro, y el jurado condena a los dos. El 13 de noviembre de 1849 son ahorcados juntos en Horsemonger Lane ante treinta mil personas. Maria sube al cadalso vestida de raso negro, y durante años ninguna dama de Londres quiere ponerse ese tejido. Entre el público está Charles Dickens, que esa misma noche escribe a The Times contra las ejecuciones públicas."
+    },
+    {
+      "id": "en-exito",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct"
+      },
+      "outcome": "success",
+      "title": "El matrimonio de Bermondsey",
+      "text": "La acusación señala a los dos y explica el cómo y el porqué. El asesinato de Bermondsey llena los periódicos durante meses."
+    },
+    {
+      "id": "en-maria",
+      "when": {
+        "culprit": "ch-maria"
+      },
+      "outcome": "partial",
+      "title": "La mitad del matrimonio",
+      "text": "Maria es condenada; Frederick jura que estaba en las tabernas y su abogado siembra la duda. Nadie explica quién empuñó la palanca."
+    },
+    {
+      "id": "en-frederick",
+      "when": {
+        "culprit": "ch-frederick"
+      },
+      "outcome": "partial",
+      "title": "El marido",
+      "text": "Frederick es condenado y Maria, que se llevó las acciones, se presenta como una esposa engañada. El jurado duda."
+    },
+    {
+      "id": "en-fallo",
+      "when": {},
+      "outcome": "failure",
+      "title": "Desaparecido",
+      "text": "Patrick O’Connor figura como desaparecido. En la cocina de Miniver Place, los nuevos inquilinos se quejan de un olor que no se va."
+    }
+  ],
+  "hints": [
+    {
+      "id": "hl-cena",
+      "topic": "¿Llegó a la cena?",
+      "relevantWhen": {
+        "not": {
+          "contradiction": "cx-maria-cena"
+        }
+      },
+      "steps": [
+        "Lee el aviso de sus amigos: alguien le vio.",
+        "Pregunta a Maria si vino a cenar.",
+        "Señala la contradicción con el vecino que le vio entrar."
+      ]
+    },
+    {
+      "id": "hl-losas",
+      "topic": "Dónde está",
+      "relevantWhen": {
+        "not": {
+          "flag": "losas-levantadas"
+        }
+      },
+      "steps": [
+        "¿Para qué querían cal en una casa sin jardín?",
+        "Pregunta al agente Barnes por la casa y adónde han ido.",
+        "Cuando sepas lo de la cal y la huida, pídele que mire el suelo de la cocina."
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "id": "ob-pension",
+      "text": "Averigua quién vació los cajones de O’Connor.",
+      "completeWhen": {
+        "fact": "fa-maria-pension"
+      },
+      "points": 25
+    },
+    {
+      "id": "ob-cuerpo",
+      "text": "Encuentra a Patrick O’Connor.",
+      "completeWhen": {
+        "fact": "fa-cuerpo"
+      },
+      "points": 25
+    },
+    {
+      "id": "ob-frederick",
+      "text": "Descubre dónde estaba Frederick esa tarde.",
+      "completeWhen": {
+        "secret": "se-frederick"
+      },
+      "points": 20,
+      "hidden": true
+    }
+  ],
+  "assets": []
+}
