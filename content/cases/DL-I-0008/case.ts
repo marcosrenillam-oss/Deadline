@@ -1,0 +1,762 @@
+import type { CaseFileInput } from '../../../packages/core/src/case/schema.ts';
+
+/**
+ * DL-I-0008 · LAS TARTAS DE LA TORRE
+ * Londres, 1613-1615 · Envenenamiento · Caso real · Unidad Especial
+ *
+ * Caso real: la muerte de sir Thomas Overbury, preso en la Torre de Londres,
+ * y el escándalo que dos años después llevó a juicio a Frances Howard,
+ * condesa de Somerset, y a su marido, Robert Carr, favorito de Jacobo I.
+ * Lo documentado sigue las fuentes; la redacción de las notas y las
+ * conversaciones del investigador son una recreación.
+ */
+const caseFile: CaseFileInput = {
+  schemaVersion: 1,
+  id: 'DL-I-0008',
+  contentVersion: 1,
+  mode: 'individual',
+  title: 'Las tartas de la Torre',
+  subtitle: 'Un preso de la Torre de Londres muere lentamente mientras su enemiga se casa',
+  origin: 'real',
+  historical: {
+    documented: [
+      'Sir Thomas Overbury, poeta y consejero de Robert Carr, vizconde de Rochester y favorito del rey Jacobo I, se opuso con dureza a que Carr se casara con Frances Howard, que buscaba anular su matrimonio con el conde de Essex.',
+      'En abril de 1613 Overbury rechazó una embajada a Rusia y fue encerrado en la Torre de Londres por desacato. Poco después se nombró nuevo teniente de la Torre a sir Gervase Helwys y se puso como carcelero de Overbury a Richard Weston, antiguo criado de Anne Turner, confidente de Frances.',
+      'Overbury enfermó durante meses en la Torre y murió el 15 de septiembre de 1613. Fue enterrado a toda prisa. En diciembre, Frances Howard, con el matrimonio anulado, se casó con Carr, ya conde de Somerset.',
+      'En 1615 se supo, a través del agente inglés en los Países Bajos, que un aprendiz de boticario moribundo en Flesinga había confesado haber puesto a Overbury una lavativa envenenada por veinte libras.',
+      'Helwys reconoció por escrito que en 1613 había sorprendido a Weston con un frasco de veneno («¿Se lo doy ya, señor?») y que no lo denunció.',
+      'El boticario James Franklin admitió haber proporcionado venenos a Anne Turner por encargo de Frances. Se leyeron en el juicio cartas de Frances a Turner.',
+      'Weston, Anne Turner, Helwys y Franklin fueron ahorcados en 1615. Frances Howard se declaró culpable en 1616; Robert Carr fue condenado. El rey les perdonó la vida y fueron liberados en 1622.',
+    ],
+    hypotheses: [
+      'Si Robert Carr supo del envenenamiento es discutido; él siempre lo negó.',
+      'Algunos historiadores sospechan que en la caída de los Somerset pesó también una maniobra política para apartar al favorito.',
+    ],
+    dramatized: [
+      'La redacción concreta de cartas, notas y recibos está reconstruida para el juego.',
+      'Las conversaciones del investigador y el orden de sus pesquisas son una recreación.',
+      'Los retratos son recreaciones artísticas.',
+    ],
+    documentedResolution:
+      'Frances Howard, condesa de Somerset, se declaró culpable de haber procurado el envenenamiento de sir Thomas Overbury, ejecutado por medio del carcelero Richard Weston, Anne Turner y el boticario Franklin. Fue condenada a muerte y perdonada por el rey.',
+    sources: ['Anne Somerset, Unnatural Murder: Poison at the Court of James I (1997)', 'Alastair Bellany, The Politics of Court Scandal in Early Modern England (2002)', 'State Trials, vol. II (1615-1616)'],
+  },
+  era: 'early-modern',
+  eraLabel: 'Londres, 1613',
+  year: 1613,
+  location: { city: 'Londres', place: 'Torre de Londres', country: 'Inglaterra' },
+  category: 'conspiracy',
+  difficulty: 'special-unit',
+  keywords: ['Overbury', 'Torre de Londres', 'Frances Howard', 'Somerset', 'Jacobo I', 'veneno', 'corte', 'caso real'],
+  ambience: { music: 'seville-1588', mood: 'opulent' },
+  maxHints: 4,
+
+  briefing: {
+    incidentDisplay: '15 de septiembre de 1613',
+    summary:
+      'Sir Thomas Overbury murió en una celda de la Torre de Londres tras cinco meses de vómitos y fiebres. Lo enterraron el mismo día, sin que nadie de su familia viera el cuerpo. Tres meses después, la mujer a la que más se había opuesto se casaba con su mejor amigo, el favorito del rey.',
+    context:
+      'Verano de 1615. Desde Bruselas ha llegado un rumor: un aprendiz de boticario moribundo en Flesinga ha confesado algo sobre Overbury. El presidente del Tribunal Supremo, sir Edward Coke, le encarga averiguar qué pasó en la Torre. Pisa terreno peligroso: los implicados están en lo más alto de la corte.',
+    background:
+      'Robert Carr, de humilde origen escocés, es el hombre más poderoso de Inglaterra después del rey. Overbury era su cerebro: le escribía las cartas y le decía qué pensar. Hasta que Carr se enamoró de Frances Howard, casada con el conde de Essex.',
+    victim: 'ch-overbury',
+    initialFacts: [],
+    initialEvidence: ['ev-entierro', 'ev-trumbull', 'ev-carta-overbury'],
+    initialTimeline: ['te-torre', 'te-muerte', 'te-boda'],
+  },
+
+  characters: [
+    {
+      id: 'ch-overbury',
+      name: 'Sir Thomas Overbury',
+      look: { hair: 'short', beard: true },
+      role: 'victim',
+      age: 32,
+      occupation: 'Poeta y consejero de Robert Carr',
+      appearance:
+        'a sharp-featured 32-year-old Jacobean English courtier in 1613, thin intelligent face, pointed reddish beard and moustache, short curled hair, starched white ruff, dark doublet, sardonic eyes',
+      summary: 'Brillante, arrogante y con demasiados secretos.',
+      biography: 'Escritor de moda y hombre de confianza de Carr, al que conoce desde joven. Despreciaba a Frances Howard y lo decía en voz alta. Sabía cosas de ella que podían arruinar la anulación de su matrimonio.',
+      personality: ['Brillante', 'Arrogante', 'Imprudente'],
+    },
+    {
+      id: 'ch-frances',
+      name: 'Frances Howard',
+      look: { hair: 'long' },
+      role: 'suspect',
+      age: 25,
+      occupation: 'Condesa de Somerset',
+      appearance:
+        'a beautiful 25-year-old Jacobean English noblewoman in 1613, pale oval face, long fair hair loose over her shoulders with pearls, wide lace collar, rich embroidered gown, cool determined blue eyes',
+      summary: 'La mujer más hermosa de la corte, y la más murmurada.',
+      biography: 'De la poderosa familia Howard. Casada a los trece años con el conde de Essex, consiguió la anulación alegando que el matrimonio nunca se consumó. Se casó con Carr en diciembre de 1613, con la bendición del rey.',
+      personality: ['Decidida', 'Orgullosa', 'Apasionada'],
+      relationToVictim: 'Enemiga declarada',
+      motive: { text: 'Overbury se oponía a su boda con Carr y conocía secretos que podían hundir la anulación.', visibleWhen: { fact: 'fa-obstaculo' } },
+      alibi: { claim: 'Le enviaba tartas y gelatinas por compasión, para que Robert viera que no le guardaba rencor.' },
+    },
+    {
+      id: 'ch-carr',
+      name: 'Robert Carr',
+      look: { hair: 'short', beard: true },
+      role: 'suspect',
+      age: 28,
+      occupation: 'Conde de Somerset, favorito del rey',
+      appearance:
+        'a strikingly handsome 28-year-old Scottish courtier in 1613, fine features, fair curled hair, small neat beard, enormous lace ruff, jewelled doublet, vain uncertain expression',
+      summary: 'El favorito. Guapo, ambicioso y no muy listo.',
+      biography: 'Paje escocés que se rompió una pierna en un torneo ante el rey y se ganó su cariño. Ahora es conde, tesorero y secretario. Sin Overbury, sus cartas ya no son tan brillantes.',
+      personality: ['Vanidoso', 'Indeciso', 'Leal a medias'],
+      relationToVictim: 'Su amigo y protector',
+      motive: { text: 'Overbury podía chantajearle con las cartas que le escribía y con lo que sabía de su boda.', visibleWhen: { asked: 'q-carr-cartas' } },
+      alibi: { claim: 'Intentaba sacar a Thomas de la Torre: le enviaba polvos medicinales y pedía su libertad al rey.' },
+    },
+    {
+      id: 'ch-weston',
+      name: 'Richard Weston',
+      look: { hair: 'bald', beard: true },
+      role: 'suspect',
+      age: 60,
+      occupation: 'Carcelero de Overbury en la Torre',
+      appearance:
+        'a coarse 60-year-old Jacobean English jailer in 1613, weathered heavy face, bald head, grizzled beard, plain leather jerkin, ring of keys at his belt, furtive frightened eyes',
+      summary: 'Le traía la comida a Overbury cada día.',
+      biography: 'Antiguo criado de un médico y de su viuda, Anne Turner. Fue nombrado guardián personal de Overbury días después de que este entrara en la Torre.',
+      personality: ['Obediente', 'Codicioso', 'Asustadizo'],
+      relationToVictim: 'Su carcelero',
+      motive: { text: 'Le pagaron, y bien.', visibleWhen: { fact: 'fa-pago-weston' } },
+      alibi: { claim: 'Solo le llevaba lo que le mandaban de fuera, como manda el oficio.' },
+    },
+    {
+      id: 'ch-turner',
+      name: 'Anne Turner',
+      look: { hair: 'bun' },
+      role: 'witness',
+      age: 36,
+      occupation: 'Viuda de un médico; modista de la corte',
+      appearance:
+        'a fashionable 36-year-old Jacobean English widow in 1613, pretty sharp face, auburn hair dressed high, large ruff starched yellow with saffron, low-cut bodice, knowing smile',
+      summary: 'Confidente de Frances. Puso de moda la gola almidonada en amarillo.',
+      biography: 'Viuda de un médico. Amiga íntima de Frances desde hace años; la acompañó a ver al astrólogo Simon Forman.',
+      personality: ['Coqueta', 'Leal', 'Supersticiosa'],
+    },
+    {
+      id: 'ch-helwys',
+      name: 'Sir Gervase Helwys',
+      look: { hair: 'short', beard: true },
+      role: 'witness',
+      age: 52,
+      occupation: 'Teniente de la Torre de Londres',
+      appearance:
+        'a grave 52-year-old Jacobean English gentleman in 1613, long tired face, grey pointed beard, plain black doublet with a small white ruff, worried conscientious eyes',
+      summary: 'Compró su cargo justo antes de que Overbury entrara en la Torre.',
+      biography: 'Caballero de Lincolnshire que obtuvo el puesto de teniente de la Torre en mayo de 1613, por recomendación del conde de Northampton, tío de Frances.',
+      personality: ['Pusilánime', 'Escrupuloso a destiempo'],
+    },
+    {
+      id: 'ch-franklin',
+      name: 'James Franklin',
+      look: { hair: 'short' },
+      role: 'witness',
+      age: 50,
+      occupation: 'Boticario',
+      appearance:
+        'a sly 50-year-old Jacobean English apothecary in 1613, crooked thin face, stringy grey hair, stained leather apron over a brown doublet, shifty eyes',
+      summary: 'Vende de todo, y no pregunta.',
+      biography: 'Boticario de mala fama en Londres. Anne Turner le compraba remedios y otras cosas.',
+      personality: ['Charlatán', 'Cobarde'],
+      appearsWhen: { fact: 'fa-frasco' },
+    },
+  ],
+
+  locations: [
+    { id: 'lo-torre', name: 'Torre de Londres', description: 'La celda de Overbury, en la Torre Sangrienta.' },
+    { id: 'lo-whitehall', name: 'Palacio de Whitehall', description: 'Donde viven y mandan el rey y su favorito.' },
+    { id: 'lo-turner', name: 'Casa de Anne Turner', description: 'En Paternoster Row.', appearsWhen: { asked: 'q-weston-quien' } },
+    { id: 'lo-flesinga', name: 'Flesinga', description: 'Puerto de los Países Bajos con guarnición inglesa.' },
+  ],
+
+  relationships: [
+    { id: 're-amigos', a: 'ch-overbury', b: 'ch-carr', label: 'Amigos íntimos' },
+    { id: 're-amantes', a: 'ch-carr', b: 'ch-frances', label: 'Amantes y luego esposos' },
+    { id: 're-confidente', a: 'ch-turner', b: 'ch-frances', label: 'Confidente' },
+    { id: 're-criado', a: 'ch-weston', b: 'ch-turner', label: 'Antiguo criado', visibleWhen: { asked: 'q-weston-quien' } },
+    { id: 're-teniente', a: 'ch-helwys', b: 'ch-weston', label: 'Su superior en la Torre' },
+  ],
+
+  facts: [
+    { id: 'fa-obstaculo', text: 'Overbury se oponía a la boda de Carr con Frances y amenazaba con hablar de ella.', important: true },
+    { id: 'fa-trampa', text: 'La embajada a Rusia fue una trampa: rechazarla le llevó a la Torre.' },
+    { id: 'fa-weston-turner', text: 'El carcelero Weston fue criado de Anne Turner, la confidente de Frances.', important: true },
+    { id: 'fa-helwys-howard', text: 'El teniente de la Torre obtuvo el cargo por recomendación del tío de Frances.', important: true },
+    { id: 'fa-frasco', text: 'Helwys sorprendió a Weston con un frasco para Overbury y no lo denunció.', important: true },
+    { id: 'fa-tartas', text: 'Frances enviaba a Overbury tartas y gelatinas que Weston le servía; Helwys recibió instrucciones de no comerlas.', important: true },
+    { id: 'fa-venenos', text: 'Franklin vendió a Anne Turner, por encargo de Frances, arsénico, sublimado de mercurio y otros venenos.', important: true },
+    { id: 'fa-lavativa', text: 'Un aprendiz de boticario puso a Overbury una lavativa con sublimado por veinte libras el día antes de su muerte.', important: true },
+    { id: 'fa-pago-weston', text: 'Weston recibió dinero de Anne Turner por su servicio en la Torre.' },
+    { id: 'fa-entierro', text: 'Overbury fue enterrado el mismo día de su muerte, sin que su familia viera el cuerpo, cubierto de llagas.', important: true },
+    { id: 'fa-carr-polvos', text: 'Carr enviaba a Overbury polvos «medicinales» que le hacían vomitar; él dice que era para fingir enfermedad y conseguir su liberación.' },
+  ],
+
+  evidence: [
+    {
+      id: 'ev-entierro',
+      kind: 'record',
+      title: 'Registro de entierros de la capilla de San Pedro',
+      dated: '15 de septiembre de 1613',
+      source: 'Capilla de San Pedro ad Vincula, Torre de Londres',
+      summary: 'Un entierro a toda prisa.',
+      related: { characters: ['ch-overbury', 'ch-helwys'], locations: ['lo-torre'], events: ['te-muerte'] },
+      body: [
+        { type: 'typed', text: 'Sir Thomas Overbury, preso, muerto esta mañana. Enterrado esta tarde en la capilla.' },
+        {
+          type: 'handwritten',
+          text: '{{dt-ent-prisa|Por orden del teniente, sin esperar a la familia ni a los médicos del rey. El cuerpo estaba cubierto de llagas y ampollas; se envolvió en una sábana sin lavarlo.}}',
+          author: 'Nota del sacristán',
+        },
+      ],
+      details: [{ id: 'dt-ent-prisa', label: 'Enterrado sin examen', description: 'Alguien no quiso que nadie viera el cuerpo.', effects: [{ grantFact: 'fa-entierro' }], points: 15 }],
+    },
+    {
+      id: 'ev-trumbull',
+      kind: 'letter',
+      title: 'Despacho de William Trumbull desde Bruselas',
+      dated: 'Junio de 1615',
+      source: 'Agente del rey en los Países Bajos',
+      summary: 'Lo que confesó un muchacho en Flesinga.',
+      related: { characters: ['ch-overbury'], locations: ['lo-flesinga'], events: ['te-lavativa'] },
+      body: [
+        { type: 'paragraph', text: 'Al secretario de Estado:' },
+        {
+          type: 'paragraph',
+          text: 'Un aprendiz de boticario inglés, moribundo en Flesinga, ha confesado al capellán lo siguiente: {{dt-trum-lavativa|que en septiembre de 1613 puso a sir Thomas Overbury, en la Torre, una lavativa con sublimado de mercurio, y que por ello recibió veinte libras}}. Tras la muerte del caballero huyó a estos países por miedo.',
+        },
+        { type: 'paragraph', text: '{{dt-trum-quien|No ha querido decir quién le pagó; solo que el dinero se lo dieron en una casa de Paternoster Row.}}' },
+        { type: 'signature', name: 'W. Trumbull' },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-lavativa' }],
+      details: [
+        { id: 'dt-trum-lavativa', label: 'Una lavativa envenenada', description: 'El golpe final se lo dio un aprendiz pagado, la víspera de su muerte.', effects: [{ grantFact: 'fa-lavativa' }], points: 20 },
+        { id: 'dt-trum-quien', label: 'Paternoster Row', description: 'El dinero salió de una casa de Paternoster Row.', effects: [], points: 10 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-carta-overbury',
+      kind: 'letter',
+      title: 'Carta de Overbury a Carr',
+      dated: 'Primavera de 1613',
+      source: 'Hallada entre los papeles de Overbury',
+      summary: 'Lo que Overbury pensaba de la boda.',
+      related: { characters: ['ch-overbury', 'ch-carr', 'ch-frances'], locations: [], events: [] },
+      body: [
+        { type: 'paragraph', text: 'Robin:' },
+        {
+          type: 'paragraph',
+          text: '{{dt-carta-mujer|Si te casas con esa mujer te pierdes. Es una ramera, y su familia te comerá vivo.}} Recuerda quién te ha hecho lo que eres.',
+        },
+        { type: 'paragraph', text: '{{dt-carta-amenaza|Tengo tus cartas, y sé lo que sé de ella y de sus visitas al doctor Forman. Si das ese paso, no esperes que calle.}}' },
+        { type: 'signature', name: 'Tom' },
+      ],
+      details: [
+        { id: 'dt-carta-mujer', label: 'Contra la boda', description: 'Overbury se oponía con violencia.', effects: [], points: 10 },
+        { id: 'dt-carta-amenaza', label: '«No esperes que calle»', description: 'Overbury amenazaba con hacer públicos secretos que hundirían la anulación del matrimonio de Frances.', effects: [{ grantFact: 'fa-obstaculo' }], points: 20 },
+      ],
+      decisive: true,
+    },
+    {
+      id: 'ev-helwys',
+      kind: 'letter',
+      title: 'Declaración escrita de sir Gervase Helwys',
+      dated: 'Septiembre de 1615',
+      source: 'Entregada a sir Edward Coke',
+      summary: 'Lo que el teniente vio, y calló.',
+      autoDiscoverWhen: { asked: 'q-helwys-weston' },
+      related: { characters: ['ch-helwys', 'ch-weston'], locations: ['lo-torre'], events: ['te-frasco'] },
+      body: [
+        {
+          type: 'paragraph',
+          text: '{{dt-hel-frasco|Un día de mayo de 1613 me crucé en la escalera con Weston, que llevaba la cena del preso y un frasco pequeño. Me preguntó: «¿Se lo doy ya, señor?». Le pregunté qué era y se asustó.}}',
+        },
+        { type: 'paragraph', text: 'Le hice ver la gravedad de lo que hacía y me prometió no hacerlo. {{dt-hel-callo|No lo denuncié: temí a los que estaban detrás, gente demasiado alta para un teniente.}}' },
+        { type: 'paragraph', text: '{{dt-hel-tartas|Después llegaron tartas y gelatinas de parte de la condesa, con una nota para mí: que mi mujer y mis hijos no las tocaran.}}' },
+        { type: 'signature', name: 'G. Helwys' },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-frasco' }],
+      details: [
+        { id: 'dt-hel-frasco', label: '«¿Se lo doy ya?»', description: 'El carcelero llevaba veneno a Overbury desde el principio.', effects: [{ grantFact: 'fa-frasco' }], points: 20 },
+        { id: 'dt-hel-callo', label: 'Calló por miedo', description: 'El teniente sabía que alguien poderoso estaba detrás.', effects: [], points: 10 },
+        { id: 'dt-hel-tartas', label: 'Tartas que nadie debía comer', description: 'Las tartas de la condesa eran para Overbury y solo para él.', effects: [{ grantFact: 'fa-tartas' }], points: 20 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-nombramientos',
+      kind: 'record',
+      title: 'Nombramientos de la Torre, 1613',
+      source: 'Archivo del Consejo Privado',
+      summary: 'Quién llegó a la Torre con Overbury.',
+      autoDiscoverWhen: { asked: 'q-weston-quien' },
+      related: { characters: ['ch-helwys', 'ch-weston'], locations: ['lo-torre'], events: ['te-torre'] },
+      body: [
+        {
+          type: 'table',
+          header: ['Fecha', 'Cargo', 'Nombrado', 'Recomendado por'],
+          rows: [
+            ['{{dt-nom-helwys-f|6 de mayo de 1613}}', 'Teniente de la Torre', 'Sir Gervase Helwys', '{{dt-nom-helwys|Conde de Northampton (tío de lady Frances)}}'],
+            ['{{dt-nom-weston-f|7 de mayo de 1613}}', 'Guardián de sir T. Overbury', 'Richard Weston', '{{dt-nom-weston|Sir G. Helwys, a petición de la Sra. Anne Turner}}'],
+          ],
+        },
+      ],
+      details: [
+        { id: 'dt-nom-helwys-f', label: 'Una semana después', description: 'El teniente se cambió a los pocos días de entrar Overbury.', effects: [], points: 5 },
+        { id: 'dt-nom-helwys', label: 'Recomendado por los Howard', description: 'El tío de Frances puso al teniente.', effects: [{ grantFact: 'fa-helwys-howard' }], points: 15 },
+        { id: 'dt-nom-weston-f', label: 'Al día siguiente', description: 'El carcelero llegó al día siguiente.', effects: [], points: 5 },
+        { id: 'dt-nom-weston', label: 'A petición de Anne Turner', description: 'La confidente de Frances eligió al carcelero.', effects: [{ grantFact: 'fa-weston-turner' }], points: 15 },
+      ],
+      decisive: true,
+    },
+    {
+      id: 'ev-cartas-turner',
+      kind: 'letter',
+      title: 'Cartas de Frances a Anne Turner',
+      source: 'Halladas en casa de Anne Turner, Paternoster Row',
+      summary: '«Dulce Turner».',
+      autoDiscoverWhen: { asked: 'q-turner-cartas' },
+      related: { characters: ['ch-frances', 'ch-turner', 'ch-franklin'], locations: ['lo-turner'], events: ['te-venenos'] },
+      body: [
+        { type: 'paragraph', text: 'Dulce Turner:' },
+        {
+          type: 'paragraph',
+          text: '{{dt-ct-cosas|Las cosas que me mandaste no hacen el efecto que esperábamos; él sigue vivo y escribiendo. Busca otras más fuertes; que Franklin no se haga el remolón, que se le paga.}}',
+        },
+        { type: 'paragraph', text: '{{dt-ct-weston|Dale a nuestro hombre de la Torre lo prometido, y dile que no se impaciente.}}' },
+        { type: 'signature', name: 'Tu Frances' },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-venenos' }],
+      details: [
+        { id: 'dt-ct-cosas', label: '«Otras más fuertes»', description: 'Frances pedía venenos más potentes porque Overbury no moría.', effects: [], points: 20 },
+        { id: 'dt-ct-weston', label: 'El hombre de la Torre', description: 'Frances mandaba pagar al carcelero.', effects: [{ grantFact: 'fa-pago-weston' }], points: 15 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-franklin',
+      kind: 'statement',
+      title: 'Confesión del boticario James Franklin',
+      source: 'Tomada por sir Edward Coke',
+      summary: 'Qué vendió, y a quién.',
+      autoDiscoverWhen: { asked: 'q-franklin' },
+      related: { characters: ['ch-franklin', 'ch-turner', 'ch-frances'], locations: ['lo-turner'], events: ['te-venenos'] },
+      body: [
+        {
+          type: 'typed',
+          text: '—{{dt-fra-lista|A la señora Turner le di agua fuerte, arsénico blanco, sublimado de mercurio, polvo de diamante y cantáridas. Siete u ocho clases de veneno.}}',
+        },
+        { type: 'typed', text: '—{{dt-fra-condesa|La condesa en persona me preguntó cuál era el más lento, el que no deja rastro. Me pagó en oro.}}' },
+        { type: 'signature', name: 'James Franklin (firma con su marca)' },
+      ],
+      details: [
+        { id: 'dt-fra-lista', label: 'Siete venenos', description: 'Un arsenal entero para un solo preso.', effects: [], points: 10 },
+        { id: 'dt-fra-condesa', label: 'La condesa en persona', description: 'Frances trató directamente con el boticario.', effects: [{ grantFact: 'fa-venenos' }], points: 20 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+  ],
+
+  deductions: [
+    {
+      id: 'de-carceleros',
+      title: 'La Torre, tomada',
+      combine: ['dt-nom-helwys', 'dt-nom-weston'],
+      explanation: 'A la semana de entrar Overbury, el tío de Frances puso al teniente, y la confidente de Frances, al carcelero. Desde entonces, todo lo que comía Overbury pasaba por sus manos.',
+      points: 30,
+    },
+    {
+      id: 'de-tartas',
+      title: 'Las tartas de la condesa',
+      combine: ['dt-hel-tartas', 'dt-ct-cosas'],
+      explanation: 'Frances mandaba tartas que nadie más debía tocar y se quejaba a Turner de que «las cosas» no hacían efecto: las tartas llevaban veneno.',
+      points: 40,
+    },
+    {
+      id: 'de-final',
+      title: 'De Paternoster Row a la Torre',
+      combine: ['dt-trum-quien', 'dt-ct-weston'],
+      explanation: 'El aprendiz cobró en Paternoster Row, en casa de Anne Turner, la misma que pagaba al carcelero por orden de Frances.',
+      points: 30,
+    },
+  ],
+
+  contradictions: [
+    {
+      id: 'cx-frances-tartas',
+      title: 'Tartas por compasión',
+      a: { line: 'ln-frances-compasion' },
+      b: { detail: 'dt-hel-tartas' },
+      explanation: 'Frances dice que mandaba tartas por compasión; con ellas iba una nota para que solo las comiera el preso.',
+      points: 30,
+    },
+    {
+      id: 'cx-weston-solo',
+      title: 'Weston no solo llevaba la comida',
+      a: { line: 'ln-weston-comida' },
+      b: { detail: 'dt-hel-frasco' },
+      explanation: 'Weston dice que solo servía lo que llegaba de fuera; el teniente le sorprendió con un frasco preguntando si «se lo daba ya».',
+      effects: [{ revealSecret: 'se-weston' }],
+      points: 25,
+    },
+    {
+      id: 'cx-turner-franklin',
+      title: 'Turner sí trataba con Franklin',
+      a: { line: 'ln-turner-remedios' },
+      b: { detail: 'dt-fra-lista' },
+      explanation: 'Turner dice que solo compraba a Franklin remedios de belleza; él le vendió siete venenos.',
+      points: 25,
+    },
+  ],
+
+  secrets: [
+    { id: 'se-weston', characterId: 'ch-weston', text: 'Weston cobró de Anne Turner por echar en la comida de Overbury lo que le daban, durante meses. Cuando el preso tardaba en morir, le apremiaban desde Paternoster Row.', points: 25 },
+    { id: 'se-carr', characterId: 'ch-carr', text: 'Carr enviaba a Overbury polvos que le hacían vomitar para que pareciera enfermo y el rey le liberase… o eso dijo. Nunca se probó que supiera de los venenos de su mujer.', revealedWhen: { fact: 'fa-carr-polvos' }, points: 20 },
+  ],
+
+  interrogations: [
+    {
+      id: 'in-frances',
+      characterId: 'ch-frances',
+      setting: 'En sus aposentos de Whitehall, con un vestido de seda verde y la gola amarilla de moda. Embarazada de varios meses. Le recibe de pie.',
+      opening: [{ text: 'Sir Edward Coke manda a sus perros a casa del conde de Somerset. Qué valiente. Pregunte.' }],
+      topics: [
+        {
+          id: 'tp-frances-overbury',
+          label: 'Overbury',
+          kind: 'victim',
+          questions: [
+            {
+              id: 'q-frances-overbury',
+              prompt: '¿Qué pensaba usted de sir Thomas Overbury?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Que era un hombre insolente que se creía el dueño de mi marido. No le quería, no lo niego. Pero Dios se lo llevó, no yo.', tone: 'evasion' }] }],
+            },
+            {
+              id: 'q-frances-tartas',
+              prompt: '¿Le enviaba usted algo a la Torre?',
+              kind: 'ask',
+              responses: [{ lines: [{ id: 'ln-frances-compasion', text: 'Tartas, gelatinas, vino. Por caridad cristiana, y para que Robert viera que no le guardaba rencor.', tone: 'lie' }] }],
+            },
+            {
+              id: 'q-frances-cx',
+              prompt: 'Con las tartas iba una nota al teniente: que nadie de su familia las tocara.',
+              kind: 'contradiction',
+              contradiction: 'cx-frances-tartas',
+              responses: [
+                {
+                  lines: [
+                    { speaker: 'narration', text: 'Frances se lleva una mano al vientre y se sienta, por fin.' },
+                    { text: 'Eran para él. ¿A quién se le ocurre comerse el regalo de otro?', tone: 'evasion' },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'tp-frances-final',
+          label: 'Lo que se sabe',
+          kind: 'other',
+          questions: [
+            {
+              id: 'q-frances-final',
+              prompt: 'Franklin dice que usted le preguntó por el veneno más lento. Sus cartas a Turner piden «cosas más fuertes».',
+              kind: 'confront',
+              requires: { all: [{ fact: 'fa-venenos' }, { fact: 'fa-tartas' }] },
+              responses: [
+                {
+                  lines: [
+                    { speaker: 'narration', text: 'Un silencio largo. En la antecámara, alguien ríe y se calla.' },
+                    { text: 'Iba a destruirnos. A Robert, a mí, a mi familia. Habría contado al mundo lo de Forman, las cartas, todo. Nadie más iba a impedirlo.', tone: 'admission' },
+                    { text: 'Robert no sabía nada. Escríbalo así: Robert no sabía nada.', tone: 'admission' },
+                  ],
+                  effects: [{ setFlag: 'frances-confiesa' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-carr',
+      characterId: 'ch-carr',
+      setting: 'En la galería de Whitehall, entre retratos. Juega con un anillo y mira hacia la puerta del rey.',
+      opening: [{ text: 'Thomas era mi amigo. Lo que pasó en la Torre fue una desgracia. Mi conciencia está tranquila.' }],
+      topics: [
+        {
+          id: 'tp-carr-amigo',
+          label: 'Su amigo',
+          kind: 'victim',
+          questions: [
+            {
+              id: 'q-carr-torre',
+              prompt: '¿Por qué acabó Overbury en la Torre?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [{ text: 'Rechazó una embajada en Rusia. Un honor. Le dije que la rechazara… quiero decir, que la aceptara. Se negó, y el rey se ofendió.', tone: 'evasion' }],
+                  effects: [{ grantFact: 'fa-trampa' }, { unlockTimelineEvent: 'te-torre' }],
+                },
+              ],
+            },
+            {
+              id: 'q-carr-cartas',
+              prompt: '¿Tenía Overbury cartas suyas?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Cientos. Me ayudaba con la correspondencia. Eso no es ningún secreto.', tone: 'evasion' }] }],
+            },
+            {
+              id: 'q-carr-polvos',
+              prompt: '¿Le mandaba usted algo a la Torre?',
+              kind: 'ask',
+              requires: { fact: 'fa-entierro' },
+              responses: [
+                {
+                  lines: [{ text: 'Unos polvos para que vomitara y pareciera enfermo, y así poder pedir al rey su libertad. Era un plan nuestro. Nada más.', tone: 'admission' }],
+                  effects: [{ grantFact: 'fa-carr-polvos' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-weston',
+      characterId: 'ch-weston',
+      setting: 'En una celda de la Torre, la misma galería donde sirvió. Huele a miedo.',
+      opening: [{ text: 'Yo era un criado. Un criado hace lo que le mandan.' }],
+      topics: [
+        {
+          id: 'tp-weston-servicio',
+          label: 'Su servicio',
+          kind: 'events',
+          questions: [
+            {
+              id: 'q-weston-comida',
+              prompt: '¿Qué le daba a Overbury?',
+              kind: 'ask',
+              responses: [{ lines: [{ id: 'ln-weston-comida', text: 'La comida de la Torre y lo que mandaban de fuera. Yo solo lo subía, señor.', tone: 'lie' }] }],
+            },
+            {
+              id: 'q-weston-quien',
+              prompt: '¿Quién le consiguió este puesto?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'La señora Turner, a la que serví años, se lo pidió al teniente. Una señora muy buena conmigo.', tone: 'truth' }] }],
+            },
+            {
+              id: 'q-weston-cx',
+              prompt: 'El teniente le sorprendió con un frasco: «¿Se lo doy ya, señor?».',
+              kind: 'contradiction',
+              contradiction: 'cx-weston-solo',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Me lo daba la señora Turner. Me decía que eran medicinas, y luego me decía que no, que no tuviera miedo, que eran para que se fuera tranquilo.', tone: 'admission' },
+                    { text: 'Me pagaban. Cuando tardaba, venían a reñirme.', tone: 'admission' },
+                  ],
+                  effects: [{ grantFact: 'fa-pago-weston' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-turner',
+      characterId: 'ch-turner',
+      setting: 'En su casa de Paternoster Row, entre almidones amarillos y retales de seda.',
+      opening: [{ text: 'Soy una viuda que vive de su oficio. Visto a las mejores damas de Londres. No sé qué quiere de mí.' }],
+      topics: [
+        {
+          id: 'tp-turner-franklin',
+          label: 'El boticario',
+          kind: 'other',
+          questions: [
+            {
+              id: 'q-turner-franklin',
+              prompt: '¿Qué le compraba a James Franklin?',
+              kind: 'ask',
+              requires: { fact: 'fa-frasco' },
+              responses: [{ lines: [{ id: 'ln-turner-remedios', text: 'Remedios de belleza: aguas para la piel, polvos para los ojos. Lo que compra cualquier dama.', tone: 'lie' }] }],
+            },
+            {
+              id: 'q-turner-cartas',
+              prompt: '¿Guarda usted cartas de la condesa?',
+              kind: 'ask',
+              requires: { fact: 'fa-weston-turner' },
+              responses: [{ lines: [{ text: 'Somos amigas desde niñas. Claro que me escribe. Mírelas si quiere, no hay nada que esconder… nada.', tone: 'evasion' }] }],
+            },
+            {
+              id: 'q-turner-cx',
+              prompt: 'Franklin le vendió siete clases de veneno.',
+              kind: 'contradiction',
+              contradiction: 'cx-turner-franklin',
+              responses: [{ lines: [{ text: 'Yo hice lo que me pidió mi señora. Ella me lo pedía llorando, por amor. ¿Qué iba a hacer?', tone: 'admission' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-helwys',
+      characterId: 'ch-helwys',
+      setting: 'En sus dependencias de la Torre. Tiene ojeras de muchas noches.',
+      opening: [{ text: 'Llevo dos años esperando esta visita. Pregunte, por Dios.' }],
+      topics: [
+        {
+          id: 'tp-helwys',
+          label: 'El carcelero',
+          kind: 'person',
+          about: 'ch-weston',
+          questions: [
+            {
+              id: 'q-helwys-weston',
+              prompt: '¿Vio usted algo raro en Weston?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Lo he puesto por escrito para sir Edward. Léalo. No tengo valor para decirlo en voz alta.', tone: 'admission' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-franklin',
+      characterId: 'ch-franklin',
+      setting: 'En la trastienda de su botica, entre tarros con lagartos y raíces.',
+      opening: [{ text: 'Si viene a por remedios, tengo de todo. Si viene a por otra cosa, no sé nada.' }],
+      topics: [
+        {
+          id: 'tp-franklin',
+          label: 'Las ventas',
+          kind: 'other',
+          questions: [
+            {
+              id: 'q-franklin',
+              prompt: 'Weston llevaba un frasco a la Torre. ¿De dónde salió?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Ya sabía yo que esto acabaría en la horca. Está bien: hablaré, pero que conste que confesé por mi voluntad.', tone: 'admission' }] }],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+
+  // t = minutos respecto a la muerte (mañana del 15 de septiembre de 1613)
+  timeline: [
+    { id: 'te-torre', t: -204480, display: '21 de abril de 1613', title: 'Overbury rechaza la embajada y entra en la Torre', description: 'Por desacato al rey.', characters: ['ch-overbury', 'ch-carr'], location: 'lo-torre', key: true },
+    { id: 'te-frasco', t: -184320, display: 'Mayo de 1613', title: 'Helwys sorprende a Weston con un frasco para el preso', description: '«¿Se lo doy ya, señor?».', characters: ['ch-helwys', 'ch-weston'], location: 'lo-torre', key: true },
+    { id: 'te-venenos', t: -129600, display: 'Junio-agosto', title: 'Franklin vende venenos a Turner por encargo de Frances', description: 'Arsénico, sublimado, cantáridas…', characters: ['ch-franklin', 'ch-turner', 'ch-frances'], key: true },
+    { id: 'te-falso-caridad', t: -100000, display: 'Verano', title: 'Frances envía tartas por caridad cristiana', description: 'Según Frances.', characters: ['ch-frances'], veracity: 'false', claimedBy: 'ch-frances' },
+    { id: 'te-lavativa', t: -1440, display: '14 de septiembre', title: 'Un aprendiz pone a Overbury una lavativa con sublimado', description: 'Cobra veinte libras en Paternoster Row.', characters: ['ch-overbury'], location: 'lo-torre', key: true },
+    { id: 'te-muerte', t: 0, display: '15 de septiembre, mañana', title: 'Muerte de sir Thomas Overbury', description: 'Enterrado esa misma tarde.', characters: ['ch-overbury'], location: 'lo-torre', key: true },
+    { id: 'te-boda', t: 145440, display: '26 de diciembre de 1613', title: 'Frances Howard se casa con Robert Carr', description: 'Con el rey como anfitrión.', characters: ['ch-frances', 'ch-carr'], location: 'lo-whitehall', key: true },
+  ],
+
+  accusation: {
+    suspects: ['ch-frances', 'ch-carr', 'ch-weston', 'ch-helwys'],
+    motives: [
+      { id: 'mo-boda', label: 'Silenciar al hombre que se oponía a su boda y podía hundir la anulación con lo que sabía', availableWhen: { fact: 'fa-obstaculo' } },
+      { id: 'mo-dinero', label: 'Cobrar del que pagaba por el servicio en la Torre', availableWhen: { fact: 'fa-pago-weston' } },
+      { id: 'mo-cartas', label: 'Recuperar las cartas comprometedoras del favorito', availableWhen: { asked: 'q-carr-cartas' } },
+      { id: 'mo-rey', label: 'Obedecer una orden secreta del rey' },
+    ],
+    methods: [
+      { id: 'me-torre', label: 'Hizo poner a sus hombres en la Torre y le envenenó durante meses con tartas y comidas, hasta rematarlo con una lavativa de sublimado', availableWhen: { all: [{ fact: 'fa-tartas' }, { fact: 'fa-lavativa' }] } },
+      { id: 'me-polvos', label: 'Los polvos «medicinales» del favorito', availableWhen: { fact: 'fa-carr-polvos' } },
+      { id: 'me-enfermedad', label: 'No hubo veneno: murió de fiebres en la Torre' },
+      { id: 'me-estrangulado', label: 'Lo estrangularon en su celda y fingieron una enfermedad' },
+    ],
+  },
+
+  solution: {
+    culprits: ['ch-frances'],
+    motive: 'mo-boda',
+    method: 'me-torre',
+    proof: ['ev-cartas-turner', 'ev-franklin', 'ev-helwys'],
+    whatHappened:
+      'Frances Howard hizo envenenar a sir Thomas Overbury en la Torre de Londres porque se oponía a su boda con Robert Carr y amenazaba con revelar lo que sabía de ella. A la semana de entrar Overbury en la Torre, su tío Northampton colocó al nuevo teniente, Helwys, y su confidente Anne Turner, al carcelero Weston, su antiguo criado. Frances compró, por medio de Turner, siete clases de veneno al boticario Franklin. Weston los echó en la comida; ella mandaba tartas y gelatinas envenenadas que nadie más debía tocar. Como Overbury no moría, pidió «cosas más fuertes». La víspera de su muerte, un aprendiz de boticario pagado en casa de Turner le puso una lavativa de sublimado de mercurio. Lo enterraron el mismo día. Tres meses después, Frances se casaba con Carr.',
+    reconstruction: [
+      'Abril de 1613: Overbury rechaza la embajada a Rusia y entra en la Torre.',
+      'Mayo: un teniente puesto por el tío de Frances y un carcelero puesto por Anne Turner toman la Torre.',
+      'Helwys sorprende a Weston con un frasco y calla.',
+      'Verano: Franklin vende venenos a Turner; Frances manda tartas y gelatinas solo para el preso.',
+      'Overbury enferma pero no muere; Frances pide «cosas más fuertes».',
+      '14 de septiembre: un aprendiz pagado en Paternoster Row le pone una lavativa con sublimado.',
+      '15 de septiembre: Overbury muere y le entierran esa tarde, sin examen.',
+      'Diciembre: Frances se casa con Carr. En 1615, la confesión de Flesinga lo destapa todo.',
+    ],
+    decisiveEvidence: ['ev-carta-overbury', 'ev-nombramientos', 'ev-helwys', 'ev-cartas-turner', 'ev-franklin', 'ev-trumbull'],
+    alibiTruths: [
+      { characterId: 'ch-frances', truth: 'No eran regalos de caridad: las tartas iban envenenadas y solo él debía comerlas.' },
+      { characterId: 'ch-weston', truth: 'No solo subía la comida: echaba en ella lo que le daba Anne Turner, a sueldo.' },
+      { characterId: 'ch-carr', truth: 'Sus polvos hacían vomitar, pero no consta que supiera de los venenos de su mujer.' },
+    ],
+  },
+
+  endings: [
+    {
+      id: 'en-coke',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct', knowledge: { flag: 'frances-confiesa' } },
+      outcome: 'success',
+      title: 'El juicio de los condes',
+      text: 'Weston, Anne Turner, el teniente Helwys y el boticario Franklin mueren en la horca en el otoño de 1615. Anne Turner sube al cadalso con su gola amarilla, y la moda muere con ella. En mayo de 1616, ante sus pares, Frances Howard se declara culpable. Carr lo niega todo y es condenado igualmente. El rey Jacobo les perdona la vida; pasan seis años en la Torre, la misma donde murió Overbury.',
+    },
+    {
+      id: 'en-exito',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct' },
+      outcome: 'success',
+      title: 'La condesa',
+      text: 'La acusación llega a lo más alto de la corte y se sostiene. Lo que el rey haga con ella ya no está en vuestras manos.',
+    },
+    { id: 'en-weston', when: { culprit: 'ch-weston' }, outcome: 'partial', title: 'La mano, no la cabeza', text: 'Weston es ahorcado. Era el que servía las tartas, no el que las mandaba. En Whitehall, nadie pierde el sueño.' },
+    { id: 'en-carr', when: { culprit: 'ch-carr' }, outcome: 'partial', title: 'El favorito', text: 'Acusáis a Carr. Sus polvos eran para fingir una enfermedad; el veneno venía de otra parte. La corte se divide y el caso se enreda.' },
+    { id: 'en-fallo', when: {}, outcome: 'failure', title: 'Fiebres de la Torre', text: 'Overbury murió de fiebres, dice el informe. La condesa de Somerset da a luz una niña en diciembre, y la corte entera va a felicitarla.' },
+  ],
+
+  hints: [
+    {
+      id: 'hl-torre',
+      topic: 'Quién mandaba en la Torre',
+      relevantWhen: { not: { fact: 'fa-weston-turner' } },
+      steps: ['¿Quién llevaba la comida a Overbury?', 'Pregunta al carcelero Weston cómo consiguió su puesto.', 'Lee los nombramientos de la Torre de 1613.'],
+    },
+    {
+      id: 'hl-frasco',
+      topic: 'Lo que vio el teniente',
+      relevantWhen: { not: { fact: 'fa-frasco' } },
+      steps: ['El teniente de la Torre lleva dos años sin dormir.', 'Pregúntale por Weston.', 'Lee su declaración escrita.'],
+    },
+    {
+      id: 'hl-veneno',
+      topic: 'De dónde salió el veneno',
+      relevantWhen: { not: { fact: 'fa-venenos' } },
+      steps: ['Weston no compraba venenos: se los daban.', 'Pregunta a Anne Turner por sus compras y por sus cartas.', 'Tras el frasco de Weston, el boticario Franklin querrá salvarse.'],
+    },
+  ],
+
+  objectives: [
+    { id: 'ob-torre', text: 'Averigua cómo llegaron sus carceleros a la Torre.', completeWhen: { all: [{ fact: 'fa-helwys-howard' }, { fact: 'fa-weston-turner' }] }, points: 25 },
+    { id: 'ob-veneno', text: 'Sigue el veneno desde la botica hasta la celda.', completeWhen: { all: [{ fact: 'fa-venenos' }, { fact: 'fa-tartas' }] }, points: 30 },
+    { id: 'ob-carr', text: 'Averigua qué mandaba Carr a la Torre.', completeWhen: { fact: 'fa-carr-polvos' }, points: 15, hidden: true },
+  ],
+
+  assets: [],
+};
+
+export default caseFile;
