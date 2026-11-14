@@ -1,0 +1,1681 @@
+{
+  "schemaVersion": 1,
+  "id": "DL-I-0005",
+  "contentVersion": 1,
+  "mode": "individual",
+  "title": "¿A quién aprovecha?",
+  "subtitle": "Un rico de provincias muere en Roma y su hijo es acusado de matarlo",
+  "origin": "real",
+  "historical": {
+    "documented": [
+      "En el año 81 a. C. Sexto Roscio, rico propietario de Ameria (Umbría), fue asesinado de noche en Roma, junto a los baños de Palacina, al volver de una cena.",
+      "La noticia llegó a Ameria al amanecer, llevada en una carreta ligera por Malio Glaucia, liberto y cliente de Tito Roscio Magno, pariente y enemigo de la víctima. No se la comunicó al hijo, sino a Tito Roscio Capitón, otro pariente enemistado.",
+      "Días después, el nombre de Sexto Roscio apareció en las listas de proscripción de Sila, aunque el plazo para añadir nombres había terminado. Sus bienes, valorados en seis millones de sestercios, se subastaron por dos mil y los compró Crisógono, poderoso liberto de Sila.",
+      "Capitón recibió tres de las fincas; Magno se instaló en las demás como administrador de Crisógono. El hijo fue expulsado de su casa.",
+      "Los decuriones de Ameria enviaron una delegación a Sila para protestar; Capitón formaba parte de ella y logró que no llegara a hablar con Sila.",
+      "El hijo, refugiado en casa de Cecilia Metela, fue acusado de parricidio por Erucio. Los esclavos que acompañaban al padre aquella noche habían pasado a ser de Crisógono, que se negó a entregarlos para interrogarlos.",
+      "Cicerón le defendió en el 80 a. C. con la pregunta del juez Lucio Casio: «cui bono?», ¿a quién aprovecha? El hijo fue absuelto."
+    ],
+    "hypotheses": [
+      "Que Magno y Capitón organizaran el asesinato es la tesis de Cicerón; no consta que fueran juzgados.",
+      "El grado de implicación de Crisógono, y si Sila llegó a saber algo, son discutidos."
+    ],
+    "dramatized": [
+      "Las conversaciones del investigador y el orden de las pesquisas son una recreación, a partir del discurso de Cicerón.",
+      "Las cifras redondas, los documentos y su redacción están reconstruidos para el juego.",
+      "Los retratos son recreaciones artísticas."
+    ],
+    "documentedResolution": "Sexto Roscio hijo fue absuelto de parricidio en el 80 a. C. Según la defensa de Cicerón, el asesinato lo organizaron Tito Roscio Magno y Tito Roscio Capitón para quedarse con sus bienes, con la protección de Crisógono.",
+    "sources": [
+      "Cicerón, Pro Sexto Roscio Amerino (80 a. C.)",
+      "Plutarco, Vida de Cicerón, 3",
+      "Andrew R. Dyck (ed.), Cicero: Pro Sexto Roscio (2010)"
+    ]
+  },
+  "era": "antiquity",
+  "eraLabel": "Roma, 81 a. C.",
+  "year": -81,
+  "location": {
+    "city": "Roma",
+    "place": "Baños de Palacina y Ameria",
+    "country": "República romana"
+  },
+  "category": "homicide",
+  "difficulty": "special-unit",
+  "keywords": [
+    "Roma",
+    "Cicerón",
+    "Sila",
+    "proscripciones",
+    "parricidio",
+    "Ameria",
+    "Crisógono",
+    "cui bono",
+    "caso real"
+  ],
+  "ambience": {
+    "music": "rome-64-fire",
+    "mood": "tense"
+  },
+  "maxHints": 4,
+  "briefing": {
+    "incidentDisplay": "Una noche del año 81 a. C.",
+    "summary": "Sexto Roscio, el hombre más rico de Ameria, fue apuñalado en Roma al volver de una cena. Ahora acusan a su hijo de parricidio: la pena es morir cosido en un saco con un perro, un gallo, una víbora y un mono, y arrojado al río.",
+    "context": "Un joven abogado llamado Marco Tulio Cicerón ha aceptado la defensa, que nadie más se atreve a asumir: detrás del asunto hay un liberto de Sila. Le pide que averigüe lo que pasó antes del juicio. Recuerde la pregunta del viejo juez Casio: ¿a quién aprovecha?",
+    "background": "Sila es dictador. Sus listas de proscritos convierten en legal matar a cualquiera de los nombres escritos en ellas y subastar sus bienes. Se suponía que el plazo para añadir nombres había terminado.",
+    "victim": "ch-padre",
+    "initialFacts": [],
+    "initialEvidence": [
+      "ev-acusacion",
+      "ev-subasta",
+      "ev-termas"
+    ],
+    "initialTimeline": [
+      "te-cena",
+      "te-muerte",
+      "te-subasta"
+    ]
+  },
+  "characters": [
+    {
+      "id": "ch-padre",
+      "name": "Sexto Roscio",
+      "look": {
+        "hair": "short"
+      },
+      "role": "victim",
+      "age": 60,
+      "occupation": "Propietario de Ameria",
+      "appearance": "a dignified 60-year-old Roman provincial landowner, weathered intelligent face, short grey hair, clean shaven, white toga over a tunic, calm authoritative gaze",
+      "summary": "Trece fincas junto al Tíber y amigos en las mejores casas de Roma.",
+      "biography": "De la nobleza municipal de Ameria. Partidario de la nobleza romana, visitaba a menudo la capital, donde le recibían los Metelos y los Escipiones. Llevaba años de pleitos con sus parientes, los dos Titos Roscios.",
+      "personality": [
+        "Hospitalario",
+        "Firme",
+        "Pleiteador"
+      ]
+    },
+    {
+      "id": "ch-hijo",
+      "name": "Sexto Roscio hijo",
+      "look": {
+        "hair": "short",
+        "beard": true
+      },
+      "role": "suspect",
+      "age": 40,
+      "occupation": "Administrador de las fincas de su padre",
+      "appearance": "a rough 40-year-old Roman countryman, sunburnt plain face, short dark beard, simple brown tunic and woollen cloak, bewildered anxious eyes",
+      "summary": "Un hombre de campo que apenas ha pisado Roma.",
+      "biography": "Lleva toda la vida ocupándose de las fincas de su padre en Ameria. No tiene amigos en Roma ni dinero propio. Desde que lo echaron de su casa vive del favor de Cecilia Metela.",
+      "personality": [
+        "Rústico",
+        "Leal",
+        "Asustado"
+      ],
+      "relationToVictim": "Su hijo",
+      "motive": {
+        "text": "Según la acusación, su padre le odiaba, lo tenía desterrado en el campo y pensaba desheredarle.",
+        "visibleWhen": {
+          "asked": "q-erucio-motivo"
+        }
+      },
+      "alibi": {
+        "claim": "Aquella noche estaba en Ameria, a cincuenta y seis millas de Roma."
+      }
+    },
+    {
+      "id": "ch-magno",
+      "name": "Tito Roscio Magno",
+      "look": {
+        "hair": "short"
+      },
+      "role": "suspect",
+      "age": 45,
+      "occupation": "Pariente de la víctima, residente en Roma",
+      "appearance": "a hard-faced 45-year-old Roman man, broad jaw, cropped dark hair, heavy brows, fine white toga worn carelessly, gold ring, mocking confident smile",
+      "summary": "Un pariente pendenciero que vive en Roma.",
+      "biography": "Primo lejano de la víctima, con quien estaba enfrentado por pleitos de tierras. Vive en Roma desde hace años y conoce a los que mandan. Tiene fama de gladiador de los negocios.",
+      "personality": [
+        "Insolente",
+        "Hábil",
+        "Violento"
+      ],
+      "relationToVictim": "Pariente enemistado",
+      "motive": {
+        "text": "Se ha instalado en las fincas de la víctima como administrador de Crisógono.",
+        "visibleWhen": {
+          "fact": "fa-reparto"
+        }
+      },
+      "alibi": {
+        "claim": "Estaba en Roma, en su casa, como cualquier noche. Supo la noticia al día siguiente."
+      }
+    },
+    {
+      "id": "ch-capito",
+      "name": "Tito Roscio Capitón",
+      "look": {
+        "hair": "short"
+      },
+      "role": "suspect",
+      "age": 55,
+      "occupation": "Notable de Ameria",
+      "appearance": "a sly 55-year-old Roman provincial notable, thin lined face, thinning grey hair, narrow eyes, toga with a purple border, ingratiating smile",
+      "summary": "Un viejo zorro de la política de Ameria.",
+      "biography": "Pariente y enemigo de la víctima, influyente entre los decuriones de Ameria. Conoce bien los caminos de Roma y a sus libertos.",
+      "personality": [
+        "Astuto",
+        "Adulador",
+        "Codicioso"
+      ],
+      "relationToVictim": "Pariente enemistado",
+      "motive": {
+        "text": "Ha recibido tres de las mejores fincas de la víctima.",
+        "visibleWhen": {
+          "fact": "fa-reparto"
+        }
+      },
+      "alibi": {
+        "claim": "Estaba en Ameria. Se enteró al amanecer, como todos."
+      }
+    },
+    {
+      "id": "ch-glaucia",
+      "name": "Malio Glaucia",
+      "look": {
+        "hair": "short"
+      },
+      "role": "witness",
+      "age": 35,
+      "occupation": "Liberto y cliente de Magno",
+      "appearance": "a wiry 35-year-old Roman freedman, narrow ferret face, short hair, plain travelling tunic and dusty cloak, shifty eyes",
+      "summary": "Hizo cincuenta y seis millas en una noche.",
+      "biography": "Antiguo esclavo de la casa de Magno, ahora liberto y hombre para todo de su patrón.",
+      "personality": [
+        "Escurridizo",
+        "Leal a su patrón"
+      ]
+    },
+    {
+      "id": "ch-crisogono",
+      "name": "Lucio Cornelio Crisógono",
+      "look": {
+        "hair": "short"
+      },
+      "role": "witness",
+      "age": 38,
+      "occupation": "Liberto de Sila",
+      "appearance": "an elegant 38-year-old Greek-born Roman freedman, smooth handsome face, carefully curled dark hair, rich embroidered tunic and many rings, arrogant languid expression",
+      "summary": "El hombre al que nadie en Roma se atreve a nombrar.",
+      "biography": "Antiguo esclavo griego de Sila, liberto y favorito del dictador. Se ha hecho inmensamente rico comprando en las subastas de los proscritos.",
+      "personality": [
+        "Soberbio",
+        "Intocable"
+      ]
+    },
+    {
+      "id": "ch-erucio",
+      "name": "Gayo Erucio",
+      "look": {
+        "hair": "short"
+      },
+      "role": "other",
+      "age": 45,
+      "occupation": "Acusador profesional",
+      "appearance": "a loud fleshy 45-year-old Roman prosecutor, red face, oiled dark hair, toga draped with theatrical care, smug sneering expression",
+      "summary": "Acusa por encargo, y cobra bien.",
+      "biography": "Conocido en el foro por aceptar cualquier acusación que se pague. Da el caso por ganado: nadie se atreverá a defender al acusado.",
+      "personality": [
+        "Arrogante",
+        "Teatral"
+      ]
+    },
+    {
+      "id": "ch-metela",
+      "name": "Cecilia Metela",
+      "look": {
+        "hair": "bun"
+      },
+      "role": "witness",
+      "age": 50,
+      "occupation": "Matrona de la familia de los Metelos",
+      "appearance": "a noble 50-year-old Roman matron, strong aristocratic face, grey hair dressed in waves and a bun, fine stola and palla, steady proud eyes",
+      "summary": "Le ha dado refugio al hijo.",
+      "biography": "Hija y hermana de cónsules. Amiga de la familia de Sexto Roscio. Ha acogido al hijo cuando nadie más se atrevía.",
+      "personality": [
+        "Valiente",
+        "Directa"
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "lo-banos",
+      "name": "Baños de Palacina",
+      "description": "En Roma, junto al Circo Flaminio. Allí cayó Sexto Roscio."
+    },
+    {
+      "id": "lo-ameria",
+      "name": "Ameria",
+      "description": "Ciudad de Umbría, a cincuenta y seis millas de Roma."
+    },
+    {
+      "id": "lo-fincas",
+      "name": "Fincas del Tíber",
+      "description": "Trece fincas de la familia Roscio, a orillas del río."
+    },
+    {
+      "id": "lo-volterra",
+      "name": "Campamento de Sila en Volaterra",
+      "description": "Donde la delegación de Ameria fue a protestar.",
+      "appearsWhen": {
+        "fact": "fa-delegacion"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "re-padre",
+      "a": "ch-hijo",
+      "b": "ch-padre",
+      "label": "Hijo"
+    },
+    {
+      "id": "re-magno",
+      "a": "ch-magno",
+      "b": "ch-padre",
+      "label": "Parientes enemistados"
+    },
+    {
+      "id": "re-capito",
+      "a": "ch-capito",
+      "b": "ch-padre",
+      "label": "Parientes enemistados"
+    },
+    {
+      "id": "re-glaucia",
+      "a": "ch-glaucia",
+      "b": "ch-magno",
+      "label": "Liberto y patrón"
+    },
+    {
+      "id": "re-crisogono",
+      "a": "ch-magno",
+      "b": "ch-crisogono",
+      "label": "Socios",
+      "visibleWhen": {
+        "fact": "fa-reparto"
+      }
+    }
+  ],
+  "facts": [
+    {
+      "id": "fa-hijo-ameria",
+      "text": "El hijo estaba en Ameria aquella noche, y no tiene ni amigos ni dinero en Roma para pagar a un sicario.",
+      "important": true
+    },
+    {
+      "id": "fa-glaucia-noche",
+      "text": "Malio Glaucia, liberto de Magno, llevó la noticia a Ameria en una sola noche, en carreta ligera.",
+      "important": true
+    },
+    {
+      "id": "fa-a-capito",
+      "text": "Glaucia dio la noticia a Capitón, no al hijo, y le enseñó el puñal ensangrentado.",
+      "important": true
+    },
+    {
+      "id": "fa-proscripcion-tarde",
+      "text": "El nombre de Sexto Roscio se añadió a las listas de proscripción después del plazo y después de muerto.",
+      "important": true
+    },
+    {
+      "id": "fa-subasta-precio",
+      "text": "Bienes valorados en seis millones de sestercios se vendieron por dos mil a Crisógono.",
+      "important": true
+    },
+    {
+      "id": "fa-reparto",
+      "text": "Capitón recibió tres fincas y Magno administra las demás para Crisógono.",
+      "important": true
+    },
+    {
+      "id": "fa-delegacion",
+      "text": "Capitón se coló en la delegación de Ameria ante Sila e impidió que llegara a protestar.",
+      "important": true
+    },
+    {
+      "id": "fa-esclavos",
+      "text": "Los esclavos que iban con la víctima esa noche son ahora de Crisógono, que se niega a entregarlos.",
+      "important": true
+    },
+    {
+      "id": "fa-padre-confiaba",
+      "text": "El padre confiaba al hijo sus mejores fincas: no lo tenía «desterrado», sino al mando."
+    },
+    {
+      "id": "fa-magno-sabia",
+      "text": "Magno estaba en Roma y supo de la muerte antes que nadie.",
+      "important": true
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-acusacion",
+      "kind": "document",
+      "title": "Escrito de acusación de Erucio",
+      "source": "Tribunal de asesinatos (quaestio de sicariis)",
+      "summary": "Por qué acusan al hijo.",
+      "related": {
+        "characters": [
+          "ch-hijo",
+          "ch-padre"
+        ],
+        "locations": [],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "heading",
+          "text": "ACUSACIÓN DE PARRICIDIO"
+        },
+        {
+          "type": "typed",
+          "text": "Sexto Roscio hijo mató o hizo matar a su padre. {{dt-acus-odio|Su padre le odiaba: lo tenía relegado a las fincas, lejos de Roma, y había decidido desheredarle.}}"
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-acus-sin|No se presenta testigo del hecho ni se indica quién dio el golpe.}}"
+        },
+        {
+          "type": "signature",
+          "name": "Gayo Erucio, acusador"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-acus-odio",
+          "label": "El supuesto odio",
+          "description": "Todo el caso de la acusación descansa en que el padre odiaba al hijo.",
+          "effects": [],
+          "points": 10
+        },
+        {
+          "id": "dt-acus-sin",
+          "label": "Sin testigos",
+          "description": "La acusación no dice quién mató ni cómo.",
+          "effects": [],
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "ev-subasta",
+      "kind": "record",
+      "title": "Acta de la subasta de los bienes de Sexto Roscio",
+      "source": "Tablas públicas del erario",
+      "summary": "Trece fincas por casi nada.",
+      "related": {
+        "characters": [
+          "ch-crisogono",
+          "ch-padre"
+        ],
+        "locations": [
+          "lo-fincas"
+        ],
+        "events": [
+          "te-subasta"
+        ]
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Bien",
+            "Valor estimado",
+            "Precio",
+            "Comprador"
+          ],
+          "rows": [
+            [
+              "{{dt-sub-fincas|Trece fincas a orillas del Tíber, casa, esclavos y ajuar}}",
+              "6.000.000 HS",
+              "{{dt-sub-precio|2.000 HS}}",
+              "L. Cornelio Crisógono"
+            ]
+          ]
+        },
+        {
+          "type": "typed",
+          "text": "Bienes de Sexto Roscio de Ameria, proscrito."
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-sub-fincas",
+          "label": "La fortuna entera",
+          "description": "Todo lo de la víctima salió a subasta: el hijo no heredó nada.",
+          "effects": [],
+          "points": 5
+        },
+        {
+          "id": "dt-sub-precio",
+          "label": "Dos mil sestercios",
+          "description": "Una fortuna de seis millones, regalada a un liberto de Sila.",
+          "effects": [
+            {
+              "grantFact": "fa-subasta-precio"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-termas",
+      "kind": "statement",
+      "title": "Testimonio de un bañero de Palacina",
+      "source": "Recogido en el barrio",
+      "summary": "Lo que se vio aquella noche.",
+      "related": {
+        "characters": [
+          "ch-padre"
+        ],
+        "locations": [
+          "lo-banos"
+        ],
+        "events": [
+          "te-cena",
+          "te-muerte"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—El viejo venía de cenar, ya de noche, con dos esclavos con antorchas. Lo esperaban en la esquina de los baños, en la sombra."
+        },
+        {
+          "type": "typed",
+          "text": "—{{dt-banos-esclavos|Los esclavos no gritaron ni pidieron ayuda. Uno salió corriendo; el otro se quedó mirando.}} Yo no vi caras, señor."
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-banos-esclavos",
+          "label": "Dos esclavos lo vieron todo",
+          "description": "Hay dos testigos directos del crimen: los esclavos de la víctima.",
+          "effects": [],
+          "points": 15
+        }
+      ]
+    },
+    {
+      "id": "ev-listas",
+      "kind": "record",
+      "title": "Copia de las tablas de proscripción",
+      "source": "Foro, junto a los Rostra",
+      "summary": "Cuándo apareció su nombre.",
+      "autoDiscoverWhen": {
+        "asked": "q-metela-listas"
+      },
+      "related": {
+        "characters": [
+          "ch-padre"
+        ],
+        "locations": [],
+        "events": [
+          "te-proscripcion"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "Ley Valeria: las listas se cierran a las calendas de junio. Después, no pueden añadirse nombres."
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-listas-tarde|El nombre de «Sex. Roscius Amerinus» figura escrito al final, con otra mano y otra tinta, en una tabla añadida en septiembre: después del cierre y después de su muerte.}}"
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-proscripcion"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-listas-tarde",
+          "label": "Proscrito después de muerto",
+          "description": "Alguien lo hizo proscribir después de matarlo, para quedarse con sus bienes como si fuera legal.",
+          "effects": [
+            {
+              "grantFact": "fa-proscripcion-tarde"
+            }
+          ],
+          "points": 20
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-decuriones",
+      "kind": "document",
+      "title": "Decreto de los decuriones de Ameria",
+      "source": "Archivo municipal de Ameria",
+      "summary": "La ciudad protestó. ¿Qué pasó con la protesta?",
+      "autoDiscoverWhen": {
+        "asked": "q-metela-ameria"
+      },
+      "related": {
+        "characters": [
+          "ch-capito",
+          "ch-padre"
+        ],
+        "locations": [
+          "lo-ameria",
+          "lo-volterra"
+        ],
+        "events": [
+          "te-delegacion"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "Los decuriones de Ameria, sabiendo que Sexto Roscio fue siempre partidario de la nobleza y nunca enemigo de Sila, envían diez de los principales de la ciudad a pedir que se borre su nombre y se devuelvan sus bienes a su hijo."
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-dec-capito|Entre los diez: Tito Roscio Capitón.}}"
+        },
+        {
+          "type": "handwritten",
+          "text": "{{dt-dec-vuelta|Los legados vuelven sin haber visto a Sila: Crisógono los recibió y les prometió arreglarlo. Capitón insistió en que no había que molestar al dictador. Nada se ha arreglado.}}",
+          "author": "Nota al margen"
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-delegacion"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-dec-capito",
+          "label": "Capitón en la delegación",
+          "description": "Un interesado en el reparto viajó con los que pedían anularlo.",
+          "effects": [],
+          "points": 10
+        },
+        {
+          "id": "dt-dec-vuelta",
+          "label": "No llegaron a Sila",
+          "description": "Capitón y Crisógono frenaron la protesta.",
+          "effects": [
+            {
+              "grantFact": "fa-delegacion"
+            }
+          ],
+          "points": 15
+        }
+      ]
+    },
+    {
+      "id": "ev-catastro",
+      "kind": "record",
+      "title": "Registro de las fincas tras la subasta",
+      "source": "Censo de Ameria",
+      "summary": "Quién se quedó con qué.",
+      "autoDiscoverWhen": {
+        "asked": "q-capito-fincas"
+      },
+      "related": {
+        "characters": [
+          "ch-capito",
+          "ch-magno",
+          "ch-crisogono"
+        ],
+        "locations": [
+          "lo-fincas"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Finca",
+            "Poseedor actual"
+          ],
+          "rows": [
+            [
+              "{{dt-cat-capito|Tres fincas junto al Tíber, las mejores}}",
+              "T. Roscio Capitón (cedidas por Crisógono)"
+            ],
+            [
+              "{{dt-cat-magno|Las otras diez}}",
+              "L. Cornelio Crisógono · administrador: T. Roscio Magno"
+            ]
+          ]
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-cat-capito",
+          "label": "Tres fincas para Capitón",
+          "description": "Capitón ha cobrado su parte.",
+          "effects": [],
+          "points": 10
+        },
+        {
+          "id": "dt-cat-magno",
+          "label": "Magno, administrador",
+          "description": "Magno vive en las fincas de su enemigo muerto.",
+          "effects": [
+            {
+              "grantFact": "fa-reparto"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-carreta",
+      "kind": "statement",
+      "title": "Declaración de un posadero de la vía Flaminia",
+      "source": "Posada de Ocrículo, a medio camino",
+      "summary": "Alguien cambió de mulas en plena noche.",
+      "autoDiscoverWhen": {
+        "asked": "q-glaucia-viaje"
+      },
+      "related": {
+        "characters": [
+          "ch-glaucia"
+        ],
+        "locations": [],
+        "events": [
+          "te-glaucia"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—Era plena noche, mucho antes del canto del gallo. {{dt-carreta-hora|Un hombre en carreta ligera, solo, pidió mulas frescas y pagó el doble para no esperar. Venía de Roma y llevaba prisa de muerte.}}"
+        },
+        {
+          "type": "typed",
+          "text": "—Lo conozco: es Glaucia, el liberto de Tito Roscio Magno."
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-glaucia"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-carreta-hora",
+          "label": "Salió de Roma en plena noche",
+          "description": "Glaucia salió de Roma pocas horas después del crimen: quien le mandó lo supo enseguida.",
+          "effects": [
+            {
+              "grantFact": "fa-glaucia-noche"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-carta-padre",
+      "kind": "letter",
+      "title": "Carta del padre a su hijo",
+      "source": "Entregada por Cecilia Metela",
+      "summary": "Lo que el padre pensaba de su hijo.",
+      "autoDiscoverWhen": {
+        "asked": "q-hijo-padre"
+      },
+      "related": {
+        "characters": [
+          "ch-padre",
+          "ch-hijo"
+        ],
+        "locations": [
+          "lo-fincas"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Sexto, hijo:"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{dt-carta-confia|A nadie más que a ti confiaría la finca de Casia y la de la ribera. Los Titos andan otra vez con pleitos; no les dejes pasar el ganado por el vado.}} Volveré de Roma después de las fiestas."
+        },
+        {
+          "type": "signature",
+          "name": "Tu padre"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-carta-confia",
+          "label": "Le confiaba sus fincas",
+          "description": "El padre no tenía «desterrado» a su hijo: le confiaba lo mejor que tenía.",
+          "effects": [
+            {
+              "grantFact": "fa-padre-confiaba"
+            }
+          ],
+          "points": 15
+        }
+      ]
+    }
+  ],
+  "deductions": [
+    {
+      "id": "de-cui-bono",
+      "title": "¿A quién aprovecha?",
+      "combine": [
+        "dt-sub-precio",
+        "dt-cat-magno"
+      ],
+      "explanation": "El hijo lo perdió todo. Quienes ganaron fueron Crisógono, que compró por dos mil lo que valía seis millones, y los dos Titos Roscios, que se repartieron las fincas.",
+      "points": 30
+    },
+    {
+      "id": "de-noticia",
+      "title": "Quién supo primero",
+      "combine": [
+        "dt-carreta-hora",
+        "fa-a-capito"
+      ],
+      "explanation": "El liberto de Magno salió de Roma en plena noche, pocas horas después del crimen, y fue derecho a Capitón, no al hijo: Magno sabía del crimen al instante y Capitón esperaba la noticia.",
+      "effects": [
+        {
+          "grantFact": "fa-magno-sabia"
+        }
+      ],
+      "points": 40
+    },
+    {
+      "id": "de-legalizar",
+      "title": "Un crimen legalizado después",
+      "combine": [
+        "dt-listas-tarde",
+        "dt-sub-precio"
+      ],
+      "explanation": "Lo mataron primero y lo proscribieron después, fuera de plazo, para que el robo de sus bienes pareciera legal.",
+      "points": 30
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "cx-erucio-odio",
+      "title": "El padre no odiaba al hijo",
+      "a": {
+        "line": "ln-erucio-odio"
+      },
+      "b": {
+        "detail": "dt-carta-confia"
+      },
+      "explanation": "La acusación dice que el padre tenía al hijo desterrado en el campo por odio; en su carta le confía sus mejores fincas.",
+      "points": 25
+    },
+    {
+      "id": "cx-magno-noticia",
+      "title": "Magno lo supo esa misma noche",
+      "a": {
+        "line": "ln-magno-dia"
+      },
+      "b": {
+        "detail": "dt-carreta-hora"
+      },
+      "explanation": "Magno dice que supo la noticia al día siguiente; su liberto ya galopaba hacia Ameria en plena noche.",
+      "effects": [
+        {
+          "grantFact": "fa-magno-sabia"
+        }
+      ],
+      "points": 30
+    },
+    {
+      "id": "cx-capito-amanecer",
+      "title": "A Capitón le llevaron la noticia a él",
+      "a": {
+        "line": "ln-capito-todos"
+      },
+      "b": {
+        "line": "ln-glaucia-capito"
+      },
+      "explanation": "Capitón dice que se enteró como todos; Glaucia admite que fue directo a su casa, antes que a nadie, y le enseñó el puñal.",
+      "points": 25
+    }
+  ],
+  "secrets": [
+    {
+      "id": "se-esclavos",
+      "characterId": "ch-crisogono",
+      "text": "Los dos esclavos que iban con la víctima vieron a los asesinos; por eso Crisógono los compró con la hacienda y no los deja declarar.",
+      "revealedWhen": {
+        "fact": "fa-esclavos"
+      },
+      "points": 20
+    },
+    {
+      "id": "se-capito",
+      "characterId": "ch-capito",
+      "text": "Capitón se apuntó a la delegación de Ameria para hacerla fracasar desde dentro: había pactado con Crisógono sus tres fincas.",
+      "revealedWhen": {
+        "fact": "fa-delegacion"
+      },
+      "points": 20
+    }
+  ],
+  "interrogations": [
+    {
+      "id": "in-hijo",
+      "characterId": "ch-hijo",
+      "setting": "En una habitación de la casa de Cecilia Metela, en el Palatino. Lleva una túnica prestada y no sabe dónde poner las manos.",
+      "opening": [
+        {
+          "text": "Me lo han quitado todo, hasta mi padre. Y ahora quieren coserme en un saco. Pregunte."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-hijo-noche",
+          "label": "Aquella noche",
+          "kind": "alibi",
+          "questions": [
+            {
+              "id": "q-hijo-noche",
+              "prompt": "¿Dónde estaba cuando mataron a su padre?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "En Ameria, en la finca, como siempre. Pregunte a cualquiera del pueblo. Hace años que no voy a Roma más que de paso.",
+                      "tone": "truth"
+                    },
+                    {
+                      "text": "¿Y a quién iba a pagar yo en Roma? No conozco a nadie, y el dinero era de mi padre.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-hijo-ameria"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-hijo-noticia",
+              "prompt": "¿Cómo se enteró?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Por la mañana, por la plaza. Me lo dijeron unos vecinos. Para entonces, en casa de Capitón ya lo sabían desde el alba.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-hijo-padre",
+          "label": "Su padre",
+          "kind": "victim",
+          "questions": [
+            {
+              "id": "q-hijo-padre",
+              "prompt": "¿Le odiaba su padre, como dice la acusación?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "¿Odiarme? Me dejaba al mando de sus mejores tierras. Tengo sus cartas; las guarda doña Cecilia.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-hijo-titos",
+              "prompt": "¿Tenía enemigos?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Los dos Titos. Pleitos de lindes, de ganado, de herencias, desde hace veinte años. Ahora uno vive en mi casa y el otro se ha quedado mis tres mejores fincas.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-magno",
+      "characterId": "ch-magno",
+      "setting": "En el atrio de la casa de Sexto Roscio en Ameria, donde ahora vive él. Se sienta en la silla del difunto.",
+      "opening": [
+        {
+          "text": "¿El abogado del parricida manda preguntas? Qué atrevido es ese Cicerón. Venga."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-magno-noche",
+          "label": "La muerte",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-magno-noticia",
+              "prompt": "¿Cuándo supo usted que habían matado a su pariente?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-magno-dia",
+                      "text": "Al día siguiente, como todo el mundo en Roma. Una desgracia.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-magno-cx",
+              "prompt": "Su liberto Glaucia salió hacia Ameria en plena noche, pocas horas después del crimen.",
+              "kind": "contradiction",
+              "contradiction": "cx-magno-noticia",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Magno se ríe, pero tarda un instante de más."
+                    },
+                    {
+                      "text": "Glaucia va y viene. Me enteraría por la noche, entonces. ¿Qué importa? Mandé a avisar a la familia: lo correcto.",
+                      "tone": "evasion"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-magno-familia",
+              "prompt": "¿A la familia? Glaucia no fue a casa del hijo, sino a la de Capitón.",
+              "kind": "confront",
+              "requires": {
+                "all": [
+                  {
+                    "fact": "fa-a-capito"
+                  },
+                  {
+                    "fact": "fa-magno-sabia"
+                  }
+                ]
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Capitón es familia. Y mire alrededor: quien vive aquí ahora soy yo, y quien puede hablar con Crisógono también. Su cliente es hombre muerto, abogado.",
+                      "tone": "evasion"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "setFlag": "magno-amenaza"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-magno-fincas",
+          "label": "Las fincas",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-magno-fincas",
+              "prompt": "¿Por qué vive usted en la casa de la víctima?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Las administro por cuenta de su legítimo dueño, el muy ilustre Lucio Cornelio Crisógono, que las compró en pública subasta. Todo legal.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-capito",
+      "characterId": "ch-capito",
+      "setting": "En su villa de Ameria, entre esclavos que sirven vino. Sonríe todo el rato.",
+      "opening": [
+        {
+          "text": "Un asunto triste. Sexto y yo discutíamos, como discuten los parientes, pero ¡de ahí a…!"
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-capito-noticia",
+          "label": "La noticia",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-capito-noticia",
+              "prompt": "¿Cómo se enteró de la muerte?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-capito-todos",
+                      "text": "Por la mañana, en el foro, como todos los de Ameria.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-capito-fincas",
+          "label": "Las fincas y la delegación",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-capito-fincas",
+              "prompt": "¿Ha sacado algo de la subasta?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "El ilustre Crisógono tuvo la bondad de cederme tres finquitas que lindan con las mías. Por los servicios prestados a la ciudad.",
+                      "tone": "evasion"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-capito-delegacion",
+              "prompt": "Usted fue con la delegación a ver a Sila. ¿Por qué no llegaron a verle?",
+              "kind": "confront",
+              "requires": {
+                "fact": "fa-delegacion"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Crisógono nos aseguró que él lo arreglaría. ¿Para qué molestar al dictador en plena campaña? Hice lo que convenía a la ciudad.",
+                      "tone": "evasion"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-glaucia",
+      "characterId": "ch-glaucia",
+      "setting": "En una taberna de la vía Flaminia, a la salida de Roma. Mira la puerta sin parar.",
+      "opening": [
+        {
+          "text": "Yo solo llevo recados. Si buscas a alguien que mande, no es Glaucia."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-glaucia-viaje",
+          "label": "El viaje",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-glaucia-viaje",
+              "prompt": "¿Cuándo salió de Roma hacia Ameria?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "A primera hora. Muy de mañana. Quizá de madrugada. No me acuerdo bien.",
+                      "tone": "evasion"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-glaucia-quien",
+              "prompt": "¿A quién le llevó la noticia en Ameria?",
+              "kind": "press",
+              "requires": {
+                "fact": "fa-glaucia-noche"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-glaucia-capito",
+                      "text": "Mi patrón me mandó a casa de Capitón. Llegué al alba y le conté lo que había pasado.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "Le enseñé el puñal, todavía con sangre. Me lo habían dado para que lo viera, para que supiera que estaba hecho.",
+                      "tone": "admission"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-a-capito"
+                    },
+                    {
+                      "unlockTimelineEvent": "te-capito"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-crisogono",
+      "characterId": "ch-crisogono",
+      "setting": "En su palacio del Palatino, entre vasos de Corinto y músicos. No se levanta.",
+      "opening": [
+        {
+          "text": "Me dicen que un abogado de provincias pregunta por mis compras. Tengo un minuto."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-crisogono-esclavos",
+          "label": "Los esclavos",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-crisogono-esclavos",
+              "prompt": "Los dos esclavos que iban con Sexto Roscio aquella noche ahora son suyos. Que declaren.",
+              "kind": "ask",
+              "requires": {
+                "detail": "dt-banos-esclavos"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Mis esclavos no se prestan para entretener a abogados. Son mi propiedad. Y su cliente, una vez cosido en su saco, ya no necesitará testigos.",
+                      "tone": "evasion"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-esclavos"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-metela",
+      "characterId": "ch-metela",
+      "setting": "En el peristilo de su casa del Palatino. No baja la voz.",
+      "opening": [
+        {
+          "text": "Si los Metelos no protegemos a nuestros amigos, ¿quién lo hará? Pregunte lo que necesite."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-metela-caso",
+          "label": "El caso",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-metela-listas",
+              "prompt": "¿Estaba Sexto Roscio en las listas de proscripción?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "¿Él? Fue siempre de los nuestros, partidario de la nobleza. Mire las tablas del foro y verá cuándo apareció su nombre.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-metela-ameria",
+              "prompt": "¿Protestó alguien en Ameria?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "La ciudad entera. Mandaron una delegación a Sila. Pregunte quién iba en ella, y por qué volvió con las manos vacías.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-erucio",
+      "characterId": "ch-erucio",
+      "setting": "En el pórtico del tribunal, rodeado de clientes. Habla alto, para que le oigan.",
+      "opening": [
+        {
+          "text": "¿El investigador del abogadillo de Arpino? Pregunte, pregunte. El caso está ganado."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-erucio",
+          "label": "La acusación",
+          "kind": "document",
+          "questions": [
+            {
+              "id": "q-erucio-motivo",
+              "prompt": "¿Qué motivo tenía el hijo, según la acusación?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-erucio-odio",
+                      "text": "Su padre le aborrecía. Lo tenía desterrado en el campo, con los bueyes, y pensaba desheredarlo. Matarlo era su única herencia.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "id": "te-cena",
+      "t": -60,
+      "display": "Noche",
+      "title": "Sexto Roscio sale de cenar en casa de unos amigos",
+      "description": "Con dos esclavos y antorchas.",
+      "characters": [
+        "ch-padre"
+      ],
+      "key": true
+    },
+    {
+      "id": "te-muerte",
+      "t": 0,
+      "display": "Noche",
+      "title": "Asesinato de Sexto Roscio junto a los baños de Palacina",
+      "description": "Le esperaban en la sombra.",
+      "characters": [
+        "ch-padre"
+      ],
+      "location": "lo-banos",
+      "key": true
+    },
+    {
+      "id": "te-falso-hijo",
+      "t": 5,
+      "display": "Noche",
+      "title": "El hijo hace matar a su padre por sicarios",
+      "description": "Según la acusación.",
+      "characters": [
+        "ch-hijo"
+      ],
+      "veracity": "false",
+      "claimedBy": "ch-hijo"
+    },
+    {
+      "id": "te-glaucia",
+      "t": 120,
+      "display": "Esa misma noche",
+      "title": "Glaucia, liberto de Magno, sale de Roma en carreta ligera",
+      "description": "Cincuenta y seis millas sin parar.",
+      "characters": [
+        "ch-glaucia",
+        "ch-magno"
+      ],
+      "key": true
+    },
+    {
+      "id": "te-capito",
+      "t": 600,
+      "display": "Al amanecer",
+      "title": "Glaucia da la noticia a Capitón y le enseña el puñal",
+      "description": "En Ameria, antes que a nadie.",
+      "characters": [
+        "ch-glaucia",
+        "ch-capito"
+      ],
+      "location": "lo-ameria",
+      "key": true
+    },
+    {
+      "id": "te-proscripcion",
+      "t": 14400,
+      "display": "Días después",
+      "title": "El nombre de Sexto Roscio aparece en las listas de proscripción",
+      "description": "Fuera de plazo y ya muerto.",
+      "characters": [
+        "ch-padre"
+      ],
+      "key": true
+    },
+    {
+      "id": "te-subasta",
+      "t": 21600,
+      "display": "Días después",
+      "title": "Crisógono compra por dos mil sestercios toda la hacienda",
+      "description": "Tres fincas para Capitón; Magno administra el resto.",
+      "characters": [
+        "ch-crisogono",
+        "ch-capito",
+        "ch-magno"
+      ],
+      "key": true
+    },
+    {
+      "id": "te-delegacion",
+      "t": 43200,
+      "display": "Semanas después",
+      "title": "La delegación de Ameria vuelve sin ver a Sila",
+      "description": "Capitón iba en ella.",
+      "characters": [
+        "ch-capito",
+        "ch-crisogono"
+      ],
+      "location": "lo-volterra",
+      "key": true
+    }
+  ],
+  "accusation": {
+    "suspects": [
+      "ch-hijo",
+      "ch-magno",
+      "ch-capito",
+      "ch-crisogono"
+    ],
+    "motives": [
+      {
+        "id": "mo-hacienda",
+        "label": "Quedarse con la hacienda de la víctima, legalizando el robo con una proscripción fuera de plazo",
+        "availableWhen": {
+          "fact": "fa-proscripcion-tarde"
+        }
+      },
+      {
+        "id": "mo-pleitos",
+        "label": "Venganza por veinte años de pleitos familiares"
+      },
+      {
+        "id": "mo-herencia",
+        "label": "Heredar antes de ser desheredado",
+        "availableWhen": {
+          "asked": "q-erucio-motivo"
+        }
+      },
+      {
+        "id": "mo-politica",
+        "label": "Castigar a un enemigo político de Sila"
+      }
+    ],
+    "methods": [
+      {
+        "id": "me-encargo",
+        "label": "Magno lo hizo apuñalar en Roma y avisó esa misma noche a Capitón, en Ameria, para repartirse la presa",
+        "availableWhen": {
+          "fact": "fa-magno-sabia"
+        }
+      },
+      {
+        "id": "me-sicarios-hijo",
+        "label": "El hijo pagó a unos sicarios desde Ameria"
+      },
+      {
+        "id": "me-proscripcion",
+        "label": "Los soldados de Sila lo ejecutaron como proscrito"
+      },
+      {
+        "id": "me-esclavos",
+        "label": "Sus propios esclavos lo mataron"
+      }
+    ]
+  },
+  "solution": {
+    "culprits": [
+      "ch-magno",
+      "ch-capito"
+    ],
+    "motive": "mo-hacienda",
+    "method": "me-encargo",
+    "proof": [
+      "ev-carreta",
+      "ev-catastro",
+      "ev-listas"
+    ],
+    "whatHappened": "Tito Roscio Magno, que vivía en Roma, hizo apuñalar a Sexto Roscio una noche, al volver de una cena, junto a los baños de Palacina. Esa misma noche mandó a su liberto Malio Glaucia en carreta ligera a Ameria, que llegó al alba a casa de Tito Roscio Capitón, su socio, con el puñal ensangrentado. Ya muerto, hicieron añadir el nombre de la víctima, fuera de plazo, a las listas de proscripción de Sila; Crisógono compró por dos mil sestercios una hacienda de seis millones, cedió tres fincas a Capitón y puso a Magno a administrar las demás. Capitón saboteó la protesta de Ameria. Para cerrar el asunto, acusaron de parricidio al hijo, el único que podía reclamar, mientras Crisógono escondía a los esclavos testigos.",
+    "reconstruction": [
+      "Sexto Roscio sale de una cena en Roma con dos esclavos.",
+      "Junto a los baños de Palacina, unos sicarios a sueldo de Magno lo apuñalan.",
+      "Esa noche, Glaucia sale de Roma en carreta ligera y cambia de mulas en Ocrículo.",
+      "Al alba llega a Ameria, a casa de Capitón, y le enseña el puñal.",
+      "Días después, el nombre del muerto aparece en las listas de proscripción, fuera de plazo.",
+      "Crisógono compra la hacienda por dos mil sestercios; Capitón recibe tres fincas y Magno administra el resto.",
+      "Capitón frena la delegación de Ameria. El hijo, desposeído, es acusado de parricidio."
+    ],
+    "decisiveEvidence": [
+      "ev-subasta",
+      "ev-listas",
+      "ev-catastro",
+      "ev-carreta"
+    ],
+    "alibiTruths": [
+      {
+        "characterId": "ch-hijo",
+        "truth": "Estaba de verdad en Ameria y no tenía medios ni contactos en Roma."
+      },
+      {
+        "characterId": "ch-magno",
+        "truth": "Estaba en Roma, sí, y supo del crimen en el acto: mandó a Glaucia a Ameria esa misma noche."
+      },
+      {
+        "characterId": "ch-capito",
+        "truth": "No se enteró «como todos»: Glaucia fue derecho a su casa al alba."
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "en-cicero",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct",
+        "knowledge": {
+          "fact": "fa-esclavos"
+        }
+      },
+      "outcome": "success",
+      "title": "Cui bono",
+      "text": "Cicerón sube a la tribuna con vuestro informe y pregunta lo que el tribunal no se atreve a preguntar: ¿a quién aprovechó esta muerte? Nombra a los dos Titos y, con una osadía que hace contener la respiración a la sala, a Crisógono, «el liberto del dictador». Sexto Roscio hijo es absuelto. Cicerón tiene veintiséis años y acaba de hacerse famoso; al poco, prudentemente, se marcha una temporada a Grecia."
+    },
+    {
+      "id": "en-exito",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct"
+      },
+      "outcome": "success",
+      "title": "Absuelto",
+      "text": "El tribunal escucha cómo se repartieron la presa los dos parientes, y absuelve al hijo. A Magno y Capitón nadie los juzga: protege a sus socios un nombre que en Roma no se pronuncia."
+    },
+    {
+      "id": "en-magno",
+      "when": {
+        "culprit": "ch-magno"
+      },
+      "outcome": "partial",
+      "title": "Media historia",
+      "text": "Señaláis bien a uno, pero no a los dos que se repartieron la presa, o no explicáis cómo. El hijo se salva por los pelos."
+    },
+    {
+      "id": "en-hijo",
+      "when": {
+        "culprit": "ch-hijo"
+      },
+      "outcome": "failure",
+      "title": "El saco",
+      "text": "Dais la razón a la acusación. Sexto Roscio hijo es condenado por parricidio. Las fincas del Tíber siguen dando vino a otros dueños."
+    },
+    {
+      "id": "en-fallo",
+      "when": {},
+      "outcome": "failure",
+      "title": "Proscrito",
+      "text": "Sexto Roscio queda en la historia como un proscrito más de Sila, y su hijo como un mendigo en casa ajena."
+    }
+  ],
+  "hints": [
+    {
+      "id": "hl-quien-gana",
+      "topic": "¿A quién aprovecha?",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-reparto"
+        }
+      },
+      "steps": [
+        "El hijo no heredó nada. ¿Quién se quedó con las fincas?",
+        "Lee el acta de la subasta.",
+        "Pregunta a Capitón qué sacó de ella."
+      ]
+    },
+    {
+      "id": "hl-noticia",
+      "topic": "La noticia",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-magno-sabia"
+        }
+      },
+      "steps": [
+        "¿Cómo llegó la noticia del crimen a Ameria, y a quién?",
+        "Pregunta a Glaucia por su viaje.",
+        "Contrasta lo que dice Magno de cuándo se enteró con lo que cuenta el posadero."
+      ]
+    },
+    {
+      "id": "hl-listas",
+      "topic": "La proscripción",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-proscripcion-tarde"
+        }
+      },
+      "steps": [
+        "Si era un proscrito, matarlo era legal.",
+        "¿Cuándo apareció su nombre?",
+        "Pregunta a Cecilia Metela por las listas."
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "id": "ob-hijo",
+      "text": "Demuestra que el hijo no pudo hacerlo.",
+      "completeWhen": {
+        "all": [
+          {
+            "fact": "fa-hijo-ameria"
+          },
+          {
+            "fact": "fa-padre-confiaba"
+          }
+        ]
+      },
+      "points": 30
+    },
+    {
+      "id": "ob-listas",
+      "text": "Descubre cuándo apareció su nombre en las listas.",
+      "completeWhen": {
+        "fact": "fa-proscripcion-tarde"
+      },
+      "points": 20
+    },
+    {
+      "id": "ob-esclavos",
+      "text": "Pide los esclavos testigos.",
+      "completeWhen": {
+        "fact": "fa-esclavos"
+      },
+      "points": 20,
+      "hidden": true
+    }
+  ],
+  "assets": []
+}
