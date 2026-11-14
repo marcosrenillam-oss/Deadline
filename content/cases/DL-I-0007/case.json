@@ -1,0 +1,1698 @@
+{
+  "schemaVersion": 1,
+  "id": "DL-I-0007",
+  "contentVersion": 1,
+  "mode": "individual",
+  "title": "El libro de apuestas",
+  "subtitle": "Un jugador con suerte muere entre convulsiones tras ganar en las carreras",
+  "origin": "real",
+  "historical": {
+    "documented": [
+      "John Parsons Cook, joven aficionado a las carreras, ganó una suma importante en las carreras de Shrewsbury el 13 de noviembre de 1855 con su caballo Polestar.",
+      "Esa noche, en Shrewsbury, se sintió mal después de beber un brandy con William Palmer, médico de Rugeley y jugador. Dijo a su amigo Ishmael Fisher que Palmer le había «drogado» («dosed»).",
+      "Cook se alojó después en el Talbot Arms de Rugeley, frente a la casa de Palmer, que le atendió como médico. Empeoró tras tomar caldos, café y píldoras que Palmer le traía.",
+      "Palmer estaba arruinado: debía grandes sumas a prestamistas con letras en las que había falsificado la firma de su madre.",
+      "El lunes 19 de noviembre Palmer cobró en Londres, a través del agente George Herring, las ganancias de Cook, y las aplicó a sus propias deudas.",
+      "El martes 20 Palmer compró estricnina en Rugeley: el ayudante de farmacia Charles Newton declaró habérsela vendido.",
+      "Esa noche, tras unas píldoras que le dio Palmer, Cook murió con convulsiones violentas y el cuerpo arqueado, como describió la camarera Elizabeth Mills.",
+      "El padrastro de Cook, William Vernon Stevens, exigió una autopsia. Palmer empujó al médico durante la autopsia, intentó sobornar al cochero que llevaba los frascos a Londres y consiguió que el jefe de Correos, Samuel Cheshire, le dejara leer la carta del perito al juez de instrucción. El libro de apuestas de Cook desapareció.",
+      "El toxicólogo Alfred Swaine Taylor no halló estricnina en los restos, pero los síntomas, la compra y la conducta de Palmer convencieron al jurado. Palmer fue ahorcado en Stafford el 14 de junio de 1856."
+    ],
+    "hypotheses": [
+      "Se sospechó que Palmer había envenenado también a su esposa y a su hermano, asegurados por grandes sumas; no fue juzgado por ello.",
+      "La ausencia de estricnina en el análisis alimentó un largo debate científico sobre la prueba."
+    ],
+    "dramatized": [
+      "Las conversaciones del investigador y el orden de sus preguntas son una recreación.",
+      "La redacción concreta de recibos, notas y cartas está reconstruida para el juego.",
+      "Los retratos son recreaciones artísticas."
+    ],
+    "documentedResolution": "William Palmer fue declarado culpable de envenenar a John Parsons Cook con estricnina y ahorcado en Stafford el 14 de junio de 1856.",
+    "sources": [
+      "The Times Report of the Trial of William Palmer (1856)",
+      "Dave Cooper y Rob Johnson, The Rugeley Poisoner (2004)",
+      "Ian A. Burney, Poison, Detection and the Victorian Imagination (2006)"
+    ]
+  },
+  "era": "c19",
+  "eraLabel": "Rugeley, 1855",
+  "year": 1855,
+  "location": {
+    "city": "Rugeley",
+    "place": "Hotel Talbot Arms",
+    "country": "Inglaterra"
+  },
+  "category": "homicide",
+  "difficulty": "inspector",
+  "keywords": [
+    "Palmer",
+    "Rugeley",
+    "estricnina",
+    "carreras",
+    "apuestas",
+    "Talbot Arms",
+    "Cook",
+    "caso real"
+  ],
+  "ambience": {
+    "music": "victorian-night",
+    "mood": "tense"
+  },
+  "maxHints": 4,
+  "briefing": {
+    "incidentDisplay": "Miércoles, 21 de noviembre de 1855 · 1:00",
+    "summary": "John Parsons Cook, de veintiocho años, ha muerto en una habitación del Talbot Arms entre convulsiones terribles. Una semana antes había ganado en las carreras de Shrewsbury. Su médico, y su mejor amigo en el hipódromo, era el doctor William Palmer, que vive enfrente.",
+    "context": "El padrastro de Cook ha llegado de Londres, no encuentra el dinero de las apuestas ni el libro donde Cook las apuntaba, y pide que alguien mire más allá del certificado de «apoplejía». El juez de instrucción le autoriza a hacerlo.",
+    "background": "Rugeley es un pueblo de caballos, cerveza y apuestas. Palmer es querido: generoso, simpático, médico de medio pueblo. También se dice que nunca ha tenido tanta mala suerte en las carreras.",
+    "victim": "ch-cook",
+    "initialFacts": [],
+    "initialEvidence": [
+      "ev-certificado",
+      "ev-stevens",
+      "ev-carreras"
+    ],
+    "initialTimeline": [
+      "te-polestar",
+      "te-muerte"
+    ]
+  },
+  "characters": [
+    {
+      "id": "ch-cook",
+      "name": "John Parsons Cook",
+      "look": {
+        "hair": "short"
+      },
+      "role": "victim",
+      "age": 28,
+      "occupation": "Jugador y propietario de caballos",
+      "appearance": "a pale slender 28-year-old English gentleman in 1855, delicate face, fair wavy hair, light side whiskers, dark frock coat and loose cravat, friendly weary eyes",
+      "summary": "Heredó un dinero y lo gastaba en caballos.",
+      "biography": "Estudió leyes y lo dejó por las carreras. De salud delicada, alegre y confiado. Palmer era su compañero de hipódromo y su médico.",
+      "personality": [
+        "Confiado",
+        "Jovial",
+        "Imprudente"
+      ]
+    },
+    {
+      "id": "ch-palmer",
+      "name": "William Palmer",
+      "look": {
+        "hair": "bald"
+      },
+      "role": "suspect",
+      "age": 31,
+      "occupation": "Médico de Rugeley",
+      "appearance": "a stout ruddy 31-year-old English country doctor in 1855, round smooth face, receding light brown hair, small side whiskers, black frock coat, broad affable smile, calculating light eyes",
+      "summary": "Simpático, generoso y arruinado.",
+      "biography": "Médico formado en Londres que dejó la consulta por los caballos. Viudo desde 1854. Cría caballos de carreras que pierden. Debe a prestamistas de Londres sumas que no puede devolver.",
+      "personality": [
+        "Afable",
+        "Calculador",
+        "Muy sereno"
+      ],
+      "relationToVictim": "Amigo y médico",
+      "motive": {
+        "text": "Debía miles de libras a prestamistas y se quedó con las ganancias de Cook.",
+        "visibleWhen": {
+          "fact": "fa-cobro"
+        }
+      },
+      "alibi": {
+        "claim": "Cuidó a Cook como a un hermano. Murió de un ataque, como dice el certificado."
+      }
+    },
+    {
+      "id": "ch-bamford",
+      "name": "William Bamford",
+      "look": {
+        "hair": "bald",
+        "glasses": true
+      },
+      "role": "suspect",
+      "age": 82,
+      "occupation": "Médico anciano de Rugeley",
+      "appearance": "a frail 82-year-old English country doctor in 1855, wrinkled kindly face, bald head with white tufts, small round spectacles, old-fashioned black coat and white neckcloth, vague gentle expression",
+      "summary": "Firmó el certificado. Las píldoras eran suyas.",
+      "biography": "Médico del pueblo durante sesenta años. Palmer le pidió que viera a Cook y recetara unas píldoras de calomelanos y morfina. Ve mal y oye peor.",
+      "personality": [
+        "Bondadoso",
+        "Despistado"
+      ],
+      "relationToVictim": "Le recetó píldoras",
+      "motive": {
+        "text": "Ninguno conocido: si algo hubo, fue un descuido con la dosis.",
+        "visibleWhen": {
+          "asked": "q-bamford-pildoras"
+        }
+      },
+      "alibi": {
+        "claim": "Dio sus píldoras a Palmer, cerradas, para que se las llevara a Cook."
+      }
+    },
+    {
+      "id": "ch-stevens",
+      "name": "William Vernon Stevens",
+      "look": {
+        "hair": "short",
+        "beard": true
+      },
+      "role": "witness",
+      "age": 60,
+      "occupation": "Padrastro de Cook",
+      "appearance": "a stern 60-year-old London gentleman in 1855, grey side whiskers, thinning grey hair, dark overcoat, top hat in hand, grieving suspicious eyes",
+      "summary": "No se cree el certificado.",
+      "biography": "Comerciante de Londres, viudo de la madre de Cook. Le quería como a un hijo y desconfiaba de sus amigos del hipódromo.",
+      "personality": [
+        "Desconfiado",
+        "Tenaz"
+      ]
+    },
+    {
+      "id": "ch-mills",
+      "name": "Elizabeth Mills",
+      "look": {
+        "hair": "bun"
+      },
+      "role": "witness",
+      "age": 25,
+      "occupation": "Camarera del Talbot Arms",
+      "appearance": "a 25-year-old English inn chambermaid in 1855, pleasant frightened face, brown hair under a white cap, dark dress and white apron",
+      "summary": "Estuvo junto a la cama de Cook las últimas noches.",
+      "biography": "Camarera del hotel. Subía los caldos y el café que mandaba el doctor Palmer.",
+      "personality": [
+        "Compasiva",
+        "Asustada"
+      ]
+    },
+    {
+      "id": "ch-newton",
+      "name": "Charles Newton",
+      "look": {
+        "hair": "short"
+      },
+      "role": "witness",
+      "age": 20,
+      "occupation": "Ayudante de farmacia",
+      "appearance": "a nervous 20-year-old English chemist’s assistant in 1855, thin pale face, short neat hair, white apron over a dark waistcoat, anxious eyes",
+      "summary": "Vendió algo que no quiere recordar.",
+      "biography": "Ayudante en la farmacia de Mr. Salt, en Rugeley. Palmer era cliente habitual.",
+      "personality": [
+        "Nervioso",
+        "Honrado"
+      ],
+      "appearsWhen": {
+        "asked": "q-mills-convulsiones"
+      }
+    },
+    {
+      "id": "ch-taylor",
+      "name": "Alfred Swaine Taylor",
+      "look": {
+        "hair": "short"
+      },
+      "role": "witness",
+      "age": 49,
+      "occupation": "Toxicólogo del Guy’s Hospital",
+      "appearance": "a serious 49-year-old Victorian toxicologist in 1855, long scholarly face, neat dark hair going grey, clean shaven, dark frock coat and high white collar, precise cautious expression",
+      "summary": "El químico más citado de los tribunales ingleses.",
+      "biography": "Profesor de jurisprudencia médica en Guy’s. Ha recibido en Londres los frascos de la autopsia de Cook.",
+      "personality": [
+        "Riguroso",
+        "Prudente"
+      ],
+      "appearsWhen": {
+        "fact": "fa-autopsia-sabotaje"
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "lo-talbot",
+      "name": "Talbot Arms",
+      "description": "Hotel de Rugeley, frente a la casa de Palmer."
+    },
+    {
+      "id": "lo-shrewsbury",
+      "name": "Raven Hotel, Shrewsbury",
+      "description": "Donde se celebró la victoria de Polestar."
+    },
+    {
+      "id": "lo-farmacia",
+      "name": "Farmacia de Mr. Salt",
+      "description": "En la calle mayor de Rugeley."
+    },
+    {
+      "id": "lo-londres",
+      "name": "Tattersall’s, Londres",
+      "description": "Donde se cobran las apuestas.",
+      "appearsWhen": {
+        "evidence": "ev-herring"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "re-amigos",
+      "a": "ch-palmer",
+      "b": "ch-cook",
+      "label": "Amigos del hipódromo; médico y paciente"
+    },
+    {
+      "id": "re-padrastro",
+      "a": "ch-stevens",
+      "b": "ch-cook",
+      "label": "Padrastro"
+    },
+    {
+      "id": "re-bamford",
+      "a": "ch-bamford",
+      "b": "ch-palmer",
+      "label": "Colegas"
+    }
+  ],
+  "facts": [
+    {
+      "id": "fa-ganancias",
+      "text": "Cook ganó con Polestar en Shrewsbury: unas 2.000 libras por cobrar en Londres y dinero en efectivo.",
+      "important": true
+    },
+    {
+      "id": "fa-shrewsbury",
+      "text": "En Shrewsbury, tras un brandy con Palmer, Cook vomitó y dijo que Palmer le había «drogado».",
+      "important": true
+    },
+    {
+      "id": "fa-deudas",
+      "text": "Palmer debía miles de libras a prestamistas con letras que llevaban la firma falsificada de su madre.",
+      "important": true
+    },
+    {
+      "id": "fa-cobro",
+      "text": "El lunes 19 Palmer hizo cobrar en Londres las apuestas de Cook y pagó con ellas sus propias deudas.",
+      "important": true
+    },
+    {
+      "id": "fa-estricnina",
+      "text": "El martes 20 por la noche Palmer compró estricnina en Rugeley.",
+      "important": true
+    },
+    {
+      "id": "fa-sintomas",
+      "text": "Cook murió con el cuerpo arqueado, rígido, consciente hasta el final: los síntomas del tétanos que produce la estricnina.",
+      "important": true
+    },
+    {
+      "id": "fa-pildoras-palmer",
+      "text": "Las píldoras de la última noche se las dio Palmer con su mano, no Bamford.",
+      "important": true
+    },
+    {
+      "id": "fa-libro",
+      "text": "El libro de apuestas de Cook desapareció de su habitación tras su muerte.",
+      "important": true
+    },
+    {
+      "id": "fa-autopsia-sabotaje",
+      "text": "Palmer empujó al médico durante la autopsia y quiso sobornar al cochero que llevaba los frascos a Londres.",
+      "important": true
+    },
+    {
+      "id": "fa-correos",
+      "text": "Palmer leyó en secreto, gracias al jefe de Correos, la carta del perito al juez de instrucción."
+    },
+    {
+      "id": "fa-sin-rastro",
+      "text": "El análisis de Taylor no encuentra estricnina en los restos, que llegaron revueltos.",
+      "important": true
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-certificado",
+      "kind": "document",
+      "title": "Certificado de defunción",
+      "dated": "21 de noviembre de 1855",
+      "source": "Firmado por el Dr. W. Bamford",
+      "summary": "Apoplejía.",
+      "related": {
+        "characters": [
+          "ch-cook",
+          "ch-bamford",
+          "ch-palmer"
+        ],
+        "locations": [
+          "lo-talbot"
+        ],
+        "events": [
+          "te-muerte"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "John Parsons Cook, 28 años. Causa de la muerte: apoplejía."
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-cert-dictado|Nota del Dr. Bamford: «El Dr. Palmer, que le atendía, me indicó la causa; yo no le vi en el momento de la muerte».}}"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-cert-dictado",
+          "label": "Causa dictada por Palmer",
+          "description": "El certificado lo firma Bamford, pero la causa la puso Palmer.",
+          "effects": [],
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "ev-stevens",
+      "kind": "letter",
+      "title": "Carta del padrastro al juez de instrucción",
+      "dated": "24 de noviembre de 1855",
+      "source": "William Vernon Stevens",
+      "summary": "Faltan el dinero y el libro.",
+      "related": {
+        "characters": [
+          "ch-stevens",
+          "ch-cook",
+          "ch-palmer"
+        ],
+        "locations": [
+          "lo-talbot"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "paragraph",
+          "text": "Señor juez:"
+        },
+        {
+          "type": "paragraph",
+          "text": "Mi hijastro ganó en Shrewsbury más de dos mil libras. {{dt-stev-libro|En su habitación no hay ni un chelín, y falta el libro donde apuntaba sus apuestas: nunca se separaba de él.}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "{{dt-stev-palmer|El doctor Palmer me dice que John le debía a él cuatro mil libras en pagarés, y que me los reclamará a mí.}} Pido una autopsia."
+        },
+        {
+          "type": "signature",
+          "name": "W. V. Stevens"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-stev-libro",
+          "label": "El libro desaparecido",
+          "description": "Sin el libro, nadie puede saber qué cobró quién.",
+          "effects": [
+            {
+              "grantFact": "fa-libro"
+            }
+          ],
+          "points": 15
+        },
+        {
+          "id": "dt-stev-palmer",
+          "label": "Palmer reclama dinero",
+          "description": "El amigo del muerto pretende además cobrar a la familia.",
+          "effects": [],
+          "points": 10
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-carreras",
+      "kind": "press",
+      "title": "Crónica de las carreras de Shrewsbury",
+      "dated": "14 de noviembre de 1855",
+      "source": "Bell’s Life in London",
+      "summary": "La gran tarde de Polestar.",
+      "related": {
+        "characters": [
+          "ch-cook"
+        ],
+        "locations": [
+          "lo-shrewsbury"
+        ],
+        "events": [
+          "te-polestar"
+        ]
+      },
+      "body": [
+        {
+          "type": "heading",
+          "text": "SHREWSBURY HANDICAP"
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-carr-polestar|Polestar, de Mr. J. P. Cook, gana con facilidad, a cinco contra uno. Su dueño, que había apostado fuerte, celebra en el Raven una victoria que, según se dice, le reporta más de dos mil libras.}}"
+        },
+        {
+          "type": "typed",
+          "text": "Mal día, en cambio, para Mr. W. Palmer, de Rugeley, cuyo caballo The Chicken llega sin opciones."
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-carr-polestar",
+          "label": "Más de dos mil libras",
+          "description": "Cook ganó mucho dinero una semana antes de morir.",
+          "effects": [
+            {
+              "grantFact": "fa-ganancias"
+            }
+          ],
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "ev-fisher",
+      "kind": "statement",
+      "title": "Declaración de Ishmael Fisher",
+      "source": "Amigo de Cook, agente de vinos",
+      "summary": "La noche del Raven.",
+      "autoDiscoverWhen": {
+        "asked": "q-stevens-amigos"
+      },
+      "related": {
+        "characters": [
+          "ch-cook",
+          "ch-palmer"
+        ],
+        "locations": [
+          "lo-shrewsbury"
+        ],
+        "events": [
+          "te-brandy"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—Cook bebió un brandy que le sirvió Palmer y gritó que le quemaba la garganta. Vomitó toda la noche. {{dt-fisher-dosed|Me dijo: «Ese maldito Palmer me ha drogado». Me dio a guardar su dinero esa noche, y al día siguiente se lo devolví.}}"
+        },
+        {
+          "type": "signature",
+          "name": "Ishmael Fisher"
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-brandy"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-fisher-dosed",
+          "label": "«Me ha drogado»",
+          "description": "Cook sospechó de Palmer una semana antes de morir.",
+          "effects": [
+            {
+              "grantFact": "fa-shrewsbury"
+            }
+          ],
+          "points": 20
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-letras",
+      "kind": "record",
+      "title": "Letras de Palmer en manos de un prestamista",
+      "source": "Thomas Pratt, prestamista de Londres",
+      "summary": "Lo que debía Palmer, y con qué firma.",
+      "autoDiscoverWhen": {
+        "asked": "q-palmer-dinero"
+      },
+      "related": {
+        "characters": [
+          "ch-palmer"
+        ],
+        "locations": [
+          "lo-londres"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Vencimiento",
+            "Importe",
+            "Aval"
+          ],
+          "rows": [
+            [
+              "Noviembre de 1855",
+              "{{dt-letras-importe|2.000 £}}",
+              "{{dt-letras-madre|Sarah Palmer (madre del deudor)}}"
+            ],
+            [
+              "Diciembre de 1855",
+              "2.000 £",
+              "Sarah Palmer"
+            ]
+          ]
+        },
+        {
+          "type": "handwritten",
+          "text": "{{dt-letras-falsa|La señora Palmer niega haber firmado nunca ninguna letra.}}",
+          "author": "Nota de Pratt"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-letras-importe",
+          "label": "Vencían ya",
+          "description": "Palmer tenía que pagar miles de libras ese mismo mes.",
+          "effects": [],
+          "points": 10
+        },
+        {
+          "id": "dt-letras-madre",
+          "label": "Aval de su madre",
+          "description": "Las letras llevan la firma de su madre.",
+          "effects": [],
+          "points": 5
+        },
+        {
+          "id": "dt-letras-falsa",
+          "label": "Firma falsificada",
+          "description": "Si no pagaba, el prestamista iría a su madre y saldría a la luz la falsificación.",
+          "effects": [
+            {
+              "grantFact": "fa-deudas"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-herring",
+      "kind": "statement",
+      "title": "Declaración de George Herring, agente de apuestas",
+      "source": "Londres",
+      "summary": "Quién cobró las ganancias de Cook.",
+      "autoDiscoverWhen": {
+        "fact": "fa-deudas"
+      },
+      "related": {
+        "characters": [
+          "ch-palmer",
+          "ch-cook"
+        ],
+        "locations": [
+          "lo-londres"
+        ],
+        "events": [
+          "te-cobro"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—El lunes 19 recibí del doctor Palmer una lista de las apuestas de Mr. Cook para cobrar en Tattersall’s. {{dt-herring-pagos|Me dio instrucciones de pagar con ese dinero a sus prestamistas, Pratt y Padwick. Así lo hice.}}"
+        },
+        {
+          "type": "typed",
+          "text": "—Dijo que Mr. Cook estaba enfermo y se lo había encargado. No me enseñó ninguna autorización escrita."
+        },
+        {
+          "type": "signature",
+          "name": "George Herring"
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-cobro"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-herring-pagos",
+          "label": "Pagó sus deudas",
+          "description": "El dinero de Cook fue a los prestamistas de Palmer mientras Cook agonizaba.",
+          "effects": [
+            {
+              "grantFact": "fa-cobro"
+            }
+          ],
+          "points": 20
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-farmacia",
+      "kind": "record",
+      "title": "Venta de venenos de la farmacia de Mr. Salt",
+      "source": "Rugeley",
+      "summary": "Lo que compró el doctor el martes.",
+      "autoDiscoverWhen": {
+        "asked": "q-newton-venta"
+      },
+      "related": {
+        "characters": [
+          "ch-palmer",
+          "ch-newton"
+        ],
+        "locations": [
+          "lo-farmacia"
+        ],
+        "events": [
+          "te-compra"
+        ]
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Fecha",
+            "Cliente",
+            "Producto"
+          ],
+          "rows": [
+            [
+              "{{dt-farm-fecha|Martes 20-nov, 21:00}}",
+              "Dr. W. Palmer",
+              "{{dt-farm-producto|Estricnina, 3 granos}}"
+            ]
+          ]
+        },
+        {
+          "type": "handwritten",
+          "text": "Dijo que era para envenenar perros que le molestaban.",
+          "author": "C. Newton"
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-compra"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-farm-fecha",
+          "label": "La víspera de la muerte",
+          "description": "Tres horas antes de las últimas píldoras.",
+          "effects": [],
+          "points": 10
+        },
+        {
+          "id": "dt-farm-producto",
+          "label": "Estricnina",
+          "description": "Un veneno que mata con convulsiones, el cuerpo arqueado y la mente lúcida.",
+          "effects": [
+            {
+              "grantFact": "fa-estricnina"
+            }
+          ],
+          "points": 20
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-autopsia",
+      "kind": "report",
+      "title": "Notas de la autopsia y del envío a Londres",
+      "dated": "26 de noviembre de 1855",
+      "source": "Dr. John Harland y ayudantes",
+      "summary": "Una autopsia con un espectador muy interesado.",
+      "autoDiscoverWhen": {
+        "asked": "q-stevens-autopsia"
+      },
+      "related": {
+        "characters": [
+          "ch-palmer",
+          "ch-cook"
+        ],
+        "locations": [
+          "lo-talbot"
+        ],
+        "events": [
+          "te-autopsia"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "Asisten el Dr. Harland, dos estudiantes y, a petición propia, el Dr. Palmer."
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-aut-empujon|Al pasar el estómago al frasco, el Dr. Palmer empuja al ayudante «por accidente» y parte del contenido se pierde. Luego el frasco desaparece de la mesa y aparece junto a la puerta, con el corte del sello.}}"
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-aut-cochero|El cochero que lleva los frascos a la estación declara que el doctor le ofreció diez libras por volcar el coche.}}"
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-autopsia"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-aut-empujon",
+          "label": "El frasco tocado",
+          "description": "Palmer estropeó a propósito las muestras.",
+          "effects": [],
+          "points": 15
+        },
+        {
+          "id": "dt-aut-cochero",
+          "label": "Soborno al cochero",
+          "description": "Quiso que los frascos no llegaran nunca a Londres.",
+          "effects": [
+            {
+              "grantFact": "fa-autopsia-sabotaje"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-taylor",
+      "kind": "report",
+      "title": "Informe del profesor Taylor",
+      "source": "Guy’s Hospital, Londres",
+      "summary": "Lo que dicen la química y los síntomas.",
+      "autoDiscoverWhen": {
+        "asked": "q-taylor"
+      },
+      "related": {
+        "characters": [
+          "ch-taylor",
+          "ch-cook"
+        ],
+        "locations": [],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "{{dt-tay-nada|Los órganos llegaron revueltos y el estómago, vacío y lavado. No he podido aislar estricnina, que en dosis pequeñas se descompone y se pierde.}} Hallo trazas de antimonio."
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-tay-sintomas|Pero los síntomas descritos —espasmos con el cuerpo arqueado sobre la nuca y los talones, mandíbula rígida, conciencia lúcida hasta el final, muerte rápida— son los de la estricnina y de ninguna enfermedad conocida. La apoplejía no da convulsiones así.}}"
+        },
+        {
+          "type": "signature",
+          "name": "A. S. Taylor"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-tay-nada",
+          "label": "Sin estricnina en el frasco",
+          "description": "La química no basta: las muestras estaban estropeadas.",
+          "effects": [
+            {
+              "grantFact": "fa-sin-rastro"
+            }
+          ],
+          "points": 10
+        },
+        {
+          "id": "dt-tay-sintomas",
+          "label": "Síntomas de estricnina",
+          "description": "El modo de morir delata el veneno aunque el análisis falle.",
+          "effects": [],
+          "points": 20
+        }
+      ],
+      "decisive": true
+    }
+  ],
+  "deductions": [
+    {
+      "id": "de-dinero",
+      "title": "El dinero de un moribundo",
+      "combine": [
+        "dt-letras-falsa",
+        "dt-herring-pagos"
+      ],
+      "explanation": "Palmer tenía que pagar letras con la firma falsificada de su madre; mientras Cook agonizaba, hizo cobrar sus ganancias y pagó con ellas a sus prestamistas. Muerto Cook, nadie podría reclamar.",
+      "points": 40
+    },
+    {
+      "id": "de-veneno",
+      "title": "La estricnina de la víspera",
+      "combine": [
+        "dt-farm-producto",
+        "dt-tay-sintomas"
+      ],
+      "explanation": "Palmer compró estricnina tres horas antes de las últimas píldoras, y Cook murió con los síntomas exactos de la estricnina.",
+      "points": 40
+    },
+    {
+      "id": "de-sabotaje",
+      "title": "Un médico que estropea una autopsia",
+      "combine": [
+        "dt-aut-empujon",
+        "dt-tay-nada"
+      ],
+      "explanation": "Si el análisis no encuentra veneno es porque Palmer revolvió las muestras: la falta de rastro es obra suya, no prueba de inocencia.",
+      "points": 25
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "cx-palmer-apoplejia",
+      "title": "No fue una apoplejía",
+      "a": {
+        "line": "ln-palmer-apoplejia"
+      },
+      "b": {
+        "line": "ln-mills-arco"
+      },
+      "explanation": "Palmer dice que Cook murió de un ataque, tranquilo; la camarera le vio arqueado sobre la cabeza y los talones, gritando, consciente.",
+      "effects": [
+        {
+          "grantFact": "fa-sintomas"
+        }
+      ],
+      "points": 25
+    },
+    {
+      "id": "cx-palmer-pildoras",
+      "title": "Las píldoras las dio Palmer",
+      "a": {
+        "line": "ln-palmer-bamford"
+      },
+      "b": {
+        "line": "ln-mills-pildoras"
+      },
+      "explanation": "Palmer dice que la última noche Cook tomó las píldoras de Bamford; la camarera le vio sacarlas de su propio bolsillo y dárselas él.",
+      "effects": [
+        {
+          "grantFact": "fa-pildoras-palmer"
+        }
+      ],
+      "points": 30
+    },
+    {
+      "id": "cx-palmer-libro",
+      "title": "El libro no se perdió solo",
+      "a": {
+        "line": "ln-palmer-libro"
+      },
+      "b": {
+        "line": "ln-mills-libro"
+      },
+      "explanation": "Palmer dice que no ha visto el libro de apuestas; la camarera le vio registrar la habitación y meterse algo en el bolsillo, la misma noche de la muerte.",
+      "points": 20
+    }
+  ],
+  "secrets": [
+    {
+      "id": "se-correos",
+      "characterId": "ch-palmer",
+      "text": "Palmer consiguió que el jefe de Correos, Samuel Cheshire, le dejara leer la carta de Taylor al juez de instrucción, y luego mandó al juez un regalo de caza y una nota para que cerrara el caso como muerte natural.",
+      "revealedWhen": {
+        "fact": "fa-correos"
+      },
+      "points": 25
+    },
+    {
+      "id": "se-bamford",
+      "characterId": "ch-bamford",
+      "text": "El anciano Bamford nunca vio a Cook en sus convulsiones. Firmó lo que Palmer le dictó, porque confiaba en él.",
+      "revealedWhen": {
+        "asked": "q-bamford-certificado"
+      },
+      "points": 15
+    }
+  ],
+  "interrogations": [
+    {
+      "id": "in-palmer",
+      "characterId": "ch-palmer",
+      "setting": "En el salón de su casa, frente al Talbot Arms. Le ofrece un jerez antes de que pregunte nada. No acepte.",
+      "opening": [
+        {
+          "text": "Pobre John. Era como un hermano. Pregunte lo que quiera, inspector: aquí no hay nada que esconder."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-palmer-muerte",
+          "label": "La muerte",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-palmer-muerte",
+              "prompt": "¿De qué murió Cook?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-palmer-apoplejia",
+                      "text": "De un ataque, una apoplejía. Tenía una salud delicadísima. Se fue tranquilo, en sus brazos de usted o en los míos, lo mismo da.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-palmer-pildoras",
+              "prompt": "¿Qué tomó Cook la última noche?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-palmer-bamford",
+                      "text": "Las píldoras del doctor Bamford, de calomelanos y morfina. Yo solo se las llevé, cerradas, en su cajita.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-palmer-estricnina",
+              "prompt": "¿Para qué compró estricnina el martes por la noche?",
+              "kind": "confront",
+              "requires": {
+                "fact": "fa-estricnina"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Para unos perros que me destrozan los arriates. Todo el mundo compra estricnina en el campo.",
+                      "tone": "evasion"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tp-palmer-dinero",
+          "label": "El dinero",
+          "kind": "personal",
+          "questions": [
+            {
+              "id": "q-palmer-dinero",
+              "prompt": "¿Cómo van sus asuntos?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Como los de cualquier hombre de caballos: unos años bien, otros menos. Algún pagaré en Londres, nada que no se arregle.",
+                      "tone": "evasion"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-palmer-libro",
+              "prompt": "¿Dónde está el libro de apuestas de Cook?",
+              "kind": "ask",
+              "requires": {
+                "fact": "fa-libro"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-palmer-libro",
+                      "text": "No lo he visto. Lo perdería él en Shrewsbury; iba siempre con prisas.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-palmer-final",
+              "prompt": "Cobró las ganancias de Cook para pagar sus letras falsas, compró estricnina la víspera y le dio las píldoras con su mano.",
+              "kind": "confront",
+              "requires": {
+                "all": [
+                  {
+                    "fact": "fa-cobro"
+                  },
+                  {
+                    "fact": "fa-estricnina"
+                  },
+                  {
+                    "fact": "fa-pildoras-palmer"
+                  }
+                ]
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Palmer sigue sonriendo, pero deja el vaso en la mesa."
+                    },
+                    {
+                      "text": "Demuéstrelo. Su químico de Londres no ha encontrado ni un grano de estricnina en John. Ni uno.",
+                      "tone": "evasion"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "setFlag": "palmer-reta"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-mills",
+      "characterId": "ch-mills",
+      "setting": "En la cocina del Talbot Arms. Tiene las manos rojas de fregar y no quiere subir a esa habitación.",
+      "opening": [
+        {
+          "text": "No he podido dormir desde entonces, señor. Todavía le oigo."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-mills-noche",
+          "label": "La última noche",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-mills-convulsiones",
+              "prompt": "¿Cómo murió Mr. Cook?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Gritando. Pidió que le levantaran. Se le agarrotaron los brazos y las piernas, y la espalda se le arqueó hasta que solo tocaba la cama con la cabeza y los talones.",
+                      "tone": "truth"
+                    },
+                    {
+                      "id": "ln-mills-arco",
+                      "text": "Estaba despierto, del todo. Sabía lo que le pasaba. Duró unos minutos y luego se quedó rígido.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "unlockTimelineEvent": "te-pildoras"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-mills-pildoras",
+              "prompt": "¿Quién le dio las píldoras esa noche?",
+              "kind": "ask",
+              "requires": {
+                "asked": "q-mills-convulsiones"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-mills-pildoras",
+                      "text": "El doctor Palmer. Llegó a las once, se las sacó del bolsillo del chaleco, sueltas, y se las dio con su mano. Mr. Cook no las quería.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-mills-libro",
+              "prompt": "¿Vio a alguien en la habitación después de la muerte?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-mills-libro",
+                      "text": "Al doctor Palmer, registrando los bolsillos del abrigo y debajo de la almohada. Se guardó algo, no sé qué. Dijo que buscaba una carta.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-stevens",
+      "characterId": "ch-stevens",
+      "setting": "En un reservado del Talbot Arms, con el abrigo puesto, como quien no piensa quedarse.",
+      "opening": [
+        {
+          "text": "A John lo han matado. Lo sé como sé que es de noche. Ayúdeme a demostrarlo."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-stevens",
+          "label": "John",
+          "kind": "victim",
+          "questions": [
+            {
+              "id": "q-stevens-amigos",
+              "prompt": "¿Con quién estuvo en Shrewsbury?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Con Palmer, siempre con Palmer. Y con un amigo decente, Ishmael Fisher, que me ha escrito cosas que debería leer usted.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-stevens-autopsia",
+              "prompt": "¿Hubo autopsia?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "La exigí yo. Y Palmer se empeñó en estar presente. Pregunte cómo fue; le pondrá los pelos de punta.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-bamford",
+      "characterId": "ch-bamford",
+      "setting": "En su consulta, entre frascos de otro siglo. Se pone las gafas y se las quita.",
+      "opening": [
+        {
+          "text": "¿Mis píldoras? Las mismas que receto desde hace cincuenta años. Inofensivas."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-bamford",
+          "label": "Las píldoras",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-bamford-pildoras",
+              "prompt": "¿Qué píldoras recetó a Cook?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Calomelanos y un poco de morfina, para dormir. Las preparé yo mismo, las metí en su cajita sellada y se las di al doctor Palmer para que se las llevara.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-bamford-certificado",
+              "prompt": "¿Vio usted morir a Cook?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "No… llegué después. El doctor Palmer me dijo que había sido una apoplejía y yo lo escribí. Es médico, ¿por qué iba a dudar?",
+                      "tone": "admission"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-newton",
+      "characterId": "ch-newton",
+      "setting": "En la trastienda de la farmacia, entre cajones con etiquetas en latín.",
+      "opening": [
+        {
+          "text": "Mr. Salt no sabe que he venido a hablar con usted. Mr. Palmer y él son amigos."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-newton",
+          "label": "La venta",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-newton-venta",
+              "prompt": "¿Vendió algo a Palmer el martes?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Vino a las nueve, cuando ya cerrábamos. Pidió tres granos de estricnina. Lo apunté, como mandan.",
+                      "tone": "truth"
+                    },
+                    {
+                      "text": "Me preguntó, como de paso, qué efecto hacía la estricnina en un perro, y si se encontraba luego en el estómago.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-taylor",
+      "characterId": "ch-taylor",
+      "setting": "En su laboratorio de Guy’s, rodeado de frascos rotulados. Le preocupan los periódicos.",
+      "opening": [
+        {
+          "text": "Me han traído unos órganos que alguien se ha esforzado mucho en estropear."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-taylor",
+          "label": "El análisis",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-taylor",
+              "prompt": "¿Murió Cook envenenado?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "La química me falla aquí, y lo diré en el juicio. Pero si me describe usted cómo murió, le diré cómo le mataron. Lea mi informe.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-taylor-carta",
+              "prompt": "¿Alguien conocía el contenido de su carta al juez?",
+              "kind": "ask",
+              "requires": {
+                "fact": "fa-autopsia-sabotaje"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Me escribe el juez de instrucción que Palmer le mandó un faisán y una nota citando mis conclusiones antes de que nadie las conociera. Alguien en Correos de Rugeley abre las cartas.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-correos"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "id": "te-polestar",
+      "t": -11040,
+      "display": "Martes 13, tarde",
+      "title": "Polestar gana en Shrewsbury; Cook gana más de dos mil libras",
+      "description": "Palmer pierde con su caballo.",
+      "characters": [
+        "ch-cook",
+        "ch-palmer"
+      ],
+      "location": "lo-shrewsbury",
+      "key": true
+    },
+    {
+      "id": "te-brandy",
+      "t": -10740,
+      "display": "Martes 13, noche",
+      "title": "Cook enferma tras un brandy con Palmer",
+      "description": "«Ese maldito Palmer me ha drogado».",
+      "characters": [
+        "ch-cook",
+        "ch-palmer"
+      ],
+      "location": "lo-shrewsbury",
+      "key": true
+    },
+    {
+      "id": "te-cobro",
+      "t": -2400,
+      "display": "Lunes 19",
+      "title": "Palmer hace cobrar en Londres las ganancias de Cook",
+      "description": "Y paga con ellas a sus prestamistas.",
+      "characters": [
+        "ch-palmer"
+      ],
+      "location": "lo-londres",
+      "key": true
+    },
+    {
+      "id": "te-compra",
+      "t": -240,
+      "display": "Martes 20, 21:00",
+      "title": "Palmer compra estricnina en la farmacia de Rugeley",
+      "description": "«Para unos perros».",
+      "characters": [
+        "ch-palmer",
+        "ch-newton"
+      ],
+      "location": "lo-farmacia",
+      "key": true
+    },
+    {
+      "id": "te-falso-bamford",
+      "t": -120,
+      "display": "Martes 20, 23:00",
+      "title": "Cook toma las píldoras selladas del Dr. Bamford",
+      "description": "Según Palmer.",
+      "characters": [
+        "ch-cook",
+        "ch-bamford"
+      ],
+      "veracity": "false",
+      "claimedBy": "ch-palmer"
+    },
+    {
+      "id": "te-pildoras",
+      "t": -110,
+      "display": "Martes 20, 23:00",
+      "title": "Palmer da a Cook unas píldoras de su propio bolsillo",
+      "description": "La camarera lo ve.",
+      "characters": [
+        "ch-palmer",
+        "ch-cook",
+        "ch-mills"
+      ],
+      "location": "lo-talbot",
+      "key": true
+    },
+    {
+      "id": "te-muerte",
+      "t": 0,
+      "display": "Miércoles 21, 1:00",
+      "title": "Muerte de John Parsons Cook entre convulsiones",
+      "description": "Consciente hasta el final.",
+      "characters": [
+        "ch-cook"
+      ],
+      "location": "lo-talbot",
+      "key": true
+    },
+    {
+      "id": "te-autopsia",
+      "t": 7620,
+      "display": "Lunes 26",
+      "title": "Autopsia: Palmer empuja al ayudante y quiere sobornar al cochero",
+      "description": "Los frascos llegan a Londres revueltos.",
+      "characters": [
+        "ch-palmer"
+      ],
+      "location": "lo-talbot",
+      "key": true
+    }
+  ],
+  "accusation": {
+    "motives": [
+      {
+        "id": "mo-deudas",
+        "label": "Quedarse con las ganancias de Cook para pagar sus letras falsificadas antes de que se descubrieran",
+        "availableWhen": {
+          "all": [
+            {
+              "fact": "fa-deudas"
+            },
+            {
+              "fact": "fa-cobro"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mo-celos",
+        "label": "Envidia por la victoria de Polestar"
+      },
+      {
+        "id": "mo-pagares",
+        "label": "Cobrar a la familia los pagarés que Cook le debía",
+        "availableWhen": {
+          "detail": "dt-stev-palmer"
+        }
+      },
+      {
+        "id": "mo-error",
+        "label": "Ninguno: un error en la dosis de morfina"
+      }
+    ],
+    "methods": [
+      {
+        "id": "me-estricnina",
+        "label": "Le debilitó durante días con antimonio y le mató con estricnina en unas píldoras que le dio con su mano",
+        "availableWhen": {
+          "all": [
+            {
+              "fact": "fa-estricnina"
+            },
+            {
+              "fact": "fa-pildoras-palmer"
+            }
+          ]
+        }
+      },
+      {
+        "id": "me-morfina",
+        "label": "Una sobredosis de morfina en las píldoras de Bamford"
+      },
+      {
+        "id": "me-brandy",
+        "label": "Un único brandy envenenado en Shrewsbury"
+      },
+      {
+        "id": "me-natural",
+        "label": "No hubo veneno: apoplejía"
+      }
+    ]
+  },
+  "solution": {
+    "culprits": [
+      "ch-palmer"
+    ],
+    "motive": "mo-deudas",
+    "method": "me-estricnina",
+    "proof": [
+      "ev-farmacia",
+      "ev-herring",
+      "ev-taylor"
+    ],
+    "whatHappened": "William Palmer, médico de Rugeley arruinado, envenenó a su amigo John Parsons Cook para quedarse con sus ganancias de Shrewsbury. Debía miles de libras con letras en las que había falsificado la firma de su madre, y vencían ese mes. Desde la noche del brandy en Shrewsbury fue debilitando a Cook con antimonio en caldos y café. El lunes 19 hizo cobrar en Londres sus apuestas y pagó con ellas a sus prestamistas. El martes compró estricnina y a las once le dio a Cook, de su bolsillo, unas píldoras que no eran las de Bamford. Cook murió a la una con convulsiones de tétanos. Palmer se llevó el libro de apuestas, dictó al viejo Bamford un certificado de apoplejía, estropeó la autopsia y quiso sobornar al cochero de los frascos.",
+    "reconstruction": [
+      "Martes 13: Polestar gana en Shrewsbury. Esa noche, tras un brandy de Palmer, Cook vomita y dice que le ha drogado.",
+      "Del 15 al 19: en el Talbot Arms, Palmer le manda caldos y café; Cook empeora.",
+      "Lunes 19: Palmer hace cobrar las apuestas de Cook en Londres y paga a sus prestamistas.",
+      "Martes 20, a las nueve: compra tres granos de estricnina.",
+      "A las once, le da a Cook unas píldoras de su bolsillo.",
+      "Hacia la una, Cook muere con el cuerpo arqueado y consciente.",
+      "Palmer registra la habitación, se lleva el libro de apuestas y dicta a Bamford «apoplejía».",
+      "En la autopsia empuja al ayudante; quiere sobornar al cochero; lee en Correos la carta del perito."
+    ],
+    "decisiveEvidence": [
+      "ev-fisher",
+      "ev-letras",
+      "ev-herring",
+      "ev-farmacia",
+      "ev-autopsia",
+      "ev-taylor"
+    ],
+    "alibiTruths": [
+      {
+        "characterId": "ch-palmer",
+        "truth": "No le cuidó: le envenenó, y la última dosis se la dio con su mano, no en la cajita de Bamford."
+      },
+      {
+        "characterId": "ch-bamford",
+        "truth": "Sus píldoras eran inofensivas y Palmer nunca se las dio a Cook."
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "en-stafford",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct",
+        "knowledge": {
+          "fact": "fa-autopsia-sabotaje"
+        }
+      },
+      "outcome": "success",
+      "title": "El envenenador de Rugeley",
+      "text": "Tan grande es el escándalo que el Parlamento aprueba una ley para juzgar a Palmer en Londres, lejos de sus vecinos. En el Old Bailey, el jurado escucha a la camarera, al ayudante de farmacia y al profesor Taylor, y le condena aunque no haya un grano de estricnina en los frascos. Palmer muere en la horca de Stafford el 14 de junio de 1856 ante treinta mil personas. Dicen que, al subir al cadalso, preguntó si era seguro."
+    },
+    {
+      "id": "en-exito",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct"
+      },
+      "outcome": "success",
+      "title": "Sin rastro, pero culpable",
+      "text": "La acusación demuestra cómo y por qué, aunque la química no encuentre el veneno. Palmer es condenado."
+    },
+    {
+      "id": "en-parcial",
+      "when": {
+        "culprit": "correct"
+      },
+      "outcome": "partial",
+      "title": "Una sospecha fundada",
+      "text": "Acusáis a Palmer, pero sin explicar bien el veneno o el dinero. Su abogado repite una y otra vez que en los frascos no hay estricnina."
+    },
+    {
+      "id": "en-bamford",
+      "when": {
+        "culprit": "ch-bamford"
+      },
+      "outcome": "failure",
+      "title": "El anciano",
+      "text": "Acusáis al viejo Bamford por unas píldoras que nunca llegaron a Cook. Palmer le visita en la cárcel y le lleva una botella de oporto."
+    },
+    {
+      "id": "en-fallo",
+      "when": {},
+      "outcome": "failure",
+      "title": "Apoplejía",
+      "text": "El certificado se queda como está. Palmer salda sus deudas de noviembre y, en Rugeley, nadie vuelve a preguntar por el libro de apuestas."
+    }
+  ],
+  "hints": [
+    {
+      "id": "hl-sintomas",
+      "topic": "Cómo murió",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-sintomas"
+        }
+      },
+      "steps": [
+        "El certificado dice apoplejía. ¿Quién vio morir a Cook?",
+        "Habla con la camarera, Elizabeth Mills.",
+        "Contrasta lo que ella describe con lo que dice Palmer."
+      ]
+    },
+    {
+      "id": "hl-dinero",
+      "topic": "El dinero",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-cobro"
+        }
+      },
+      "steps": [
+        "Pregunta a Palmer por sus asuntos.",
+        "Lee las letras del prestamista: ¿quién firma el aval?",
+        "Mira quién cobró las apuestas de Cook en Londres."
+      ]
+    },
+    {
+      "id": "hl-veneno",
+      "topic": "El veneno",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-estricnina"
+        }
+      },
+      "steps": [
+        "Tras oír a la camarera, alguien en la farmacia querrá hablar.",
+        "Pregunta a Charles Newton qué vendió el martes.",
+        "Pon esa compra junto a los síntomas que describe Taylor."
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "id": "ob-sintomas",
+      "text": "Averigua cómo murió de verdad Cook.",
+      "completeWhen": {
+        "fact": "fa-sintomas"
+      },
+      "points": 20
+    },
+    {
+      "id": "ob-dinero",
+      "text": "Sigue el rastro de las ganancias de Polestar.",
+      "completeWhen": {
+        "fact": "fa-cobro"
+      },
+      "points": 30
+    },
+    {
+      "id": "ob-correos",
+      "text": "Descubre cómo sabía Palmer lo que decía el perito.",
+      "completeWhen": {
+        "fact": "fa-correos"
+      },
+      "points": 20,
+      "hidden": true
+    }
+  ],
+  "assets": []
+}
