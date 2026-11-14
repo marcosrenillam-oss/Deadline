@@ -171,6 +171,39 @@
   animation: m-rise var(--dur-slow) var(--ease-out) both;
   animation-delay: calc(var(--i) * 45ms);
 }
+.folders li {
+  content-visibility: auto;
+  contain-intrinsic-size: 190px 240px;
+}
+.folders li.eraMark {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+  width: 112px;
+  padding: 0 14px 10px;
+  border-left: 2px solid rgba(214, 180, 110, 0.55);
+  background: linear-gradient(90deg, rgba(214, 180, 110, 0.1), transparent 80%);
+  contain-intrinsic-size: 112px 240px;
+}
+.eraName {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  line-height: 1.1;
+  color: var(--brass-hi);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+}
+.eraYears {
+  font-family: var(--font-type);
+  font-size: var(--fs-xs);
+  color: var(--ivory);
+}
+.eraCount {
+  font-family: var(--font-type);
+  font-size: var(--fs-xs);
+  color: var(--ivory-dim);
+}
 .note {
   margin: auto;
   font-family: var(--font-type);

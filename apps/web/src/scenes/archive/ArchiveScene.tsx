@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { useNavigate } from 'react-router';
 import { CRIME_CATEGORIES, DIFFICULTIES, ERAS, formatCaseNumber, timeLimitMinutes, type CaseFile, type CaseRecord } from '@deadline/core';
 import { fetchCatalog, loadCase, type CatalogEntry } from '../../cases/contentRepo.ts';
@@ -117,7 +117,7 @@ export function ArchiveScene({ coop = false }: { coop?: boolean } = {}) {
       .filter((i) => !category || i.e.category === category)
       .filter((i) => !place || i.e.city === place)
       .filter((i) => !difficulty || i.e.difficulty === difficulty)
-      .sort((a, b) => Number(a.locked) - Number(b.locked) || (a.e.dailyIndex ?? -1) - (b.e.dailyIndex ?? -1) || a.e.number - b.e.number);
+      .sort((a, b) => ERAS.indexOf(a.e.era) - ERAS.indexOf(b.e.era) || a.e.year - b.e.year || (a.e.dailyIndex ?? -1) - (b.e.dailyIndex ?? -1) || a.e.number - b.e.number);
   }, [items, q, shelf, mode, era, category, place, difficulty]);
 
   const activeFilters = [era, category, place, difficulty, mode].filter(Boolean).length;
@@ -198,11 +198,24 @@ export function ArchiveScene({ coop = false }: { coop?: boolean } = {}) {
         {!catalog && !error && <p className={s.note}>Abriendo el archivo…</p>}
         {catalog && list.length === 0 && <p className={s.note}>Ninguna carpeta en esta balda con estos filtros.</p>}
         <ul className={s.folders}>
-          {list.map((item, i) => (
-            <li key={item.e.id} style={{ '--i': i, '--tilt': `${((item.e.number * 37) % 7) - 3}deg` } as CSSProperties}>
-              <Folder item={item} stored={downloads[item.e.id]} picked={picked?.item.e.id === item.e.id} onPick={pick} />
-            </li>
-          ))}
+          {list.map((item, i) => {
+            const first = i === 0 || list[i - 1]!.e.era !== item.e.era;
+            const group = first ? list.filter((x) => x.e.era === item.e.era) : [];
+            return (
+              <Fragment key={item.e.id}>
+                {first && (
+                  <li className={s.eraMark} style={{ '--i': i } as CSSProperties} aria-label={`${ERA_LABELS[item.e.era]}: ${group.length} expedientes`}>
+                    <span className={s.eraName}>{ERA_LABELS[item.e.era]}</span>
+                    <span className={s.eraYears}>{yearSpan(group[0]!.e.year, group[group.length - 1]!.e.year)}</span>
+                    <span className={s.eraCount}>{group.length} {group.length === 1 ? 'carpeta' : 'carpetas'}</span>
+                  </li>
+                )}
+                <li style={{ '--i': Math.min(i, 24), '--tilt': `${((item.e.number * 37) % 7) - 3}deg` } as CSSProperties}>
+                  <Folder item={item} stored={downloads[item.e.id]} picked={picked?.item.e.id === item.e.id} onPick={pick} />
+                </li>
+              </Fragment>
+            );
+          })}
         </ul>
         <div className={`m-desk-edge ${s.plank}`} aria-hidden="true" />
       </section>
@@ -229,6 +242,11 @@ export function ArchiveScene({ coop = false }: { coop?: boolean } = {}) {
       )}
     </main>
   );
+}
+
+const yearLabel = (y: number) => (y < 0 ? `${-y} a. C.` : y < 1000 ? `${y} d. C.` : String(y));
+function yearSpan(a: number, b: number): string {
+  return a === b ? yearLabel(a) : `${yearLabel(a)} – ${yearLabel(b)}`;
 }
 
 function Folder({ item, stored, picked, onPick }: { item: Item; stored: CaseAssetStatus | undefined; picked: boolean; onPick: (i: Item, el: HTMLElement) => void }) {
