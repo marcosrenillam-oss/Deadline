@@ -65,7 +65,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,woff2,png,svg,webp}', 'desk/desk.json'],
+        globPatterns: ['**/*.{js,css,html,woff2,png,svg,webp}', 'desk/desk.json', 'desk/var/variants.json'],
         navigateFallback: 'index.html',
         cleanupOutdatedCaches: true,
         // Este precache es solo el armazón de la app. Los expedientes se descargan

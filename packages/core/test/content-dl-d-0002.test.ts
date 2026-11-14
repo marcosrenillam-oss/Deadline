@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { caseFileSchema } from '../src/case/schema.ts';
 import { ask, compare, examine, findDetail, knowledgeOf, pointContradiction, startInvestigation } from '../src/engine/engine.ts';
 import { accuse } from '../src/engine/resolution.ts';
-import raw from '../../../content/cases/DL-D-0002/case.ts';
+import raw from '../../../content/cases/DL-D-0002/case.json';
 
 const c = caseFileSchema.parse(raw);
 const T = 1_800_000_000_000;

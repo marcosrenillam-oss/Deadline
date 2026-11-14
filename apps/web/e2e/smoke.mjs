@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 /**
  * Prueba de humo end-to-end sobre la build de producción (vite preview).
  * Emula un iPhone 15 en horizontal y en vertical con Chromium.
@@ -171,13 +172,17 @@ try {
       q.onsuccess = () => res(q.result.equipped.desk);
     };
   }));
-  await page.locator('main[data-ready] img[src*="desk_desk-mahogany_on"]').waitFor();
+  // Las piezas fotográficas solo existen si se renderizaron sus variantes (desk/var).
+  const hasVariants = existsSync(join(here, '..', 'public', 'desk', 'var', 'variants.json'));
+  await page.locator(`main[data-ready] img[src*="${hasVariants ? 'desk_desk-mahogany_on' : 'desk_on'}"]`).waitFor();
   await page.waitForTimeout(1500);
   check(deskId === 'desk-mahogany', `La mesa usa el material elegido (${deskId})`);
-  check((await page.locator('img[src*="patch_phone-oxblood_on"]').count()) === 1, 'El teléfono rojo sello se ve en el despacho fotográfico');
-  check((await page.locator('img[src*="decor_decor-coffee_on"]').count()) === 1, 'El adorno de serie (taza de café) se ve en la mesa');
-  const loaded = await page.evaluate(() => [...document.querySelectorAll('main img')].filter((i) => /desk\/var\//.test(i.src)).every((i) => i.complete && i.naturalWidth > 0));
-  check(loaded, 'Las imágenes de las personalizaciones cargan');
+  if (hasVariants) {
+    check((await page.locator('img[src*="patch_phone-oxblood_on"]').count()) === 1, 'El teléfono rojo sello se ve en el despacho fotográfico');
+    check((await page.locator('img[src*="decor_decor-coffee_on"]').count()) === 1, 'El adorno de serie (taza de café) se ve en la mesa');
+    const loaded = await page.evaluate(() => [...document.querySelectorAll('main img')].filter((i) => /desk\/var\//.test(i.src)).every((i) => i.complete && i.naturalWidth > 0));
+    check(loaded, 'Las imágenes de las personalizaciones cargan');
+  }
   await page.screenshot({ path: join(shots, 'desk-mahogany.png') });
 
   // Archivo personal: exportar → importar

@@ -22,6 +22,8 @@ interface DeskMeta {
   objects: Record<Target, { hull: Pt[]; crop?: [number, number, number, number] }>;
   surfaces: { calendar: [Pt, Pt, Pt, Pt]; typewriter: [Pt, Pt, Pt, Pt]; nameplate: [Pt, Pt, Pt, Pt] };
   lamp: Pt;
+  /** Hay piezas de oficina renderizadas (desk/var/variants.json). */
+  variants?: boolean;
 }
 
 const META: Record<Target, { name: string; hint: string; sfx: Sfx[] }> = {
@@ -94,11 +96,14 @@ export function PhotoDesk({ onFail }: { onFail: () => void }) {
   useEffect(() => {
     fetch(`${BASE}desk/desk.json`)
       .then((r) => (r.ok ? (r.json() as Promise<DeskMeta>) : Promise.reject(new Error(String(r.status)))))
-      .then(setMeta, () => onFail());
-    // Sin variantes (o sin red la primera vez) la mesa se ve con su equipo de serie.
-    fetch(`${BASE}desk/var/variants.json`)
-      .then((r) => (r.ok ? (r.json() as Promise<VariantMeta>) : null))
-      .then(setVariants, () => setVariants(null));
+      .then((m) => {
+        setMeta(m);
+        // Sin variantes renderizadas la mesa se ve con su equipo de serie.
+        if (m.variants)
+          fetch(`${BASE}desk/var/variants.json`)
+            .then((r) => (r.ok ? (r.json() as Promise<VariantMeta>) : null))
+            .then(setVariants, () => setVariants(null));
+      }, () => onFail());
   }, [onFail]);
 
   const equipped = profile?.equipped;

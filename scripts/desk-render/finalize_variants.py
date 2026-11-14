@@ -45,4 +45,9 @@ for png in sorted(glob.glob(os.path.join(SRC, '*.png'))):
     total += os.path.getsize(dest)
     print(f'{name + ".webp":42s} {os.path.getsize(dest) // 1024:4d} KB')
 shutil.copy(os.path.join(SRC, 'variants.json'), os.path.join(OUT, 'variants.json'))
+# La app solo pide las variantes si desk.json dice que existen (sin peticiones fallidas).
+dj = os.path.join(OUT, '..', 'desk.json')
+meta = json.load(open(dj))
+meta['variants'] = True
+json.dump(meta, open(dj, 'w'), indent=1)
 print(f'Total {total // 1024} KB')
