@@ -1,0 +1,762 @@
+import type { CaseFileInput } from '../../../packages/core/src/case/schema.ts';
+
+/**
+ * DL-C-0004 · NOVIAS EN LA BAÑERA  (cooperativo, información dividida)
+ * Londres, Blackpool y Herne Bay, 1912-1915 · Homicidio · Caso real · Inspector
+ *
+ * Caso real: George Joseph Smith ahogó a tres mujeres con las que se había
+ * casado con nombres falsos. Cada muerte, por separado, parecía un accidente.
+ * Las unió un recorte de periódico que leyeron en Blackpool el padre de una
+ * víctima y el dueño de una pensión, y el inspector Arthur Neil, de Scotland
+ * Yard, con el patólogo Bernard Spilsbury.
+ *
+ * Reparto: A, en Londres, tiene la muerte de Highgate (Margaret Lofty). B,
+ * desde la correspondencia y los archivos de provincias, las de Blackpool y
+ * Herne Bay. El cómo sale de A; el patrón y el móvil, de B.
+ */
+const caseFile: CaseFileInput = {
+  schemaVersion: 1,
+  id: 'DL-C-0004',
+  contentVersion: 1,
+  mode: 'coop',
+  title: 'Novias en la bañera',
+  subtitle: 'Una recién casada muere en el baño al día siguiente de la boda. No es la primera',
+  origin: 'real',
+  historical: {
+    documented: [
+      'Margaret Lofty se casó con «John Lloyd» el 17 de diciembre de 1914 y murió ahogada en la bañera de una pensión de Bismarck Road, en Highgate (Londres), al día siguiente. Su vida estaba asegurada en 700 libras a favor del marido.',
+      'La casera, Louisa Blatch, oyó chapoteo, un ruido de manos en la bañera y un suspiro; poco después, el señor Lloyd tocaba en el armonio del salón el himno «Nearer, My God, to Thee». Luego salió a comprar tomates.',
+      'El periódico News of the World publicó la noticia: «Encontrada muerta en el baño. Trágico destino de una novia al día siguiente de la boda».',
+      'En Blackpool la leyeron Charles Burnham, cuya hija Alice había muerto en la bañera un año antes, en diciembre de 1913, poco después de casarse con un tal George Smith, y Joseph Crossley, dueño de la pensión donde murió. Ambos escribieron a la policía.',
+      'En 1912, en Herne Bay, Bessie Mundy había muerto igual en la bañera tras casarse con «Henry Williams», a quien días antes había nombrado heredero por testamento. Él la había llevado al médico diciendo que sufría ataques.',
+      'Los tres maridos eran el mismo hombre, George Joseph Smith. El inspector Arthur Neil lo detuvo el 1 de febrero de 1915.',
+      'El patólogo Bernard Spilsbury examinó los cuerpos exhumados y sostuvo que tirar de pronto de los pies de una persona sentada en la bañera hace que el agua le entre de golpe en la nariz y la boca y pierda el conocimiento al instante, sin lucha. Un experimento con una voluntaria casi acaba en tragedia.',
+      'Smith fue juzgado en el Old Bailey en 1915 por la muerte de Bessie Mundy, con las otras dos como prueba del «sistema», condenado y ahorcado el 13 de agosto de 1915 en Maidstone.',
+    ],
+    hypotheses: ['Se sospecha que Smith tuvo más víctimas de estafa matrimonial, no necesariamente de asesinato.'],
+    dramatized: [
+      'Los investigadores que manejan los jugadores, sus conversaciones y el reparto de papeles son una recreación.',
+      'La redacción de cartas, pólizas y notas está reconstruida para el juego.',
+      'Los retratos son recreaciones artísticas.',
+    ],
+    documentedResolution:
+      'George Joseph Smith fue condenado por el asesinato de Bessie Mundy, con las muertes de Alice Burnham y Margaret Lofty admitidas como prueba de un mismo sistema, y ahorcado el 13 de agosto de 1915.',
+    sources: ['Eric R. Watson (ed.), Trial of George Joseph Smith, Notable British Trials (1922)', 'Arthur Fowler Neil, Forty Years of Man-Hunting (1932)', 'Jane Robins, The Magnificent Spilsbury and the Case of the Brides in the Bath (2010)'],
+  },
+  era: 'c20',
+  eraLabel: 'Londres, 1914',
+  year: 1914,
+  location: { city: 'Londres', place: 'Pensión de Bismarck Road, Highgate', country: 'Reino Unido' },
+  category: 'homicide',
+  difficulty: 'inspector',
+  keywords: ['Brides in the Bath', 'Smith', 'bañera', 'Highgate', 'Blackpool', 'Herne Bay', 'Spilsbury', 'seguro', 'caso real'],
+  ambience: { music: 'london-1987-rain', mood: 'cold' },
+  maxHints: 5,
+
+  coop: {
+    style: 'split',
+    roles: [
+      {
+        id: 'A',
+        title: 'Scotland Yard, Londres',
+        briefing:
+          'Llevas la muerte de Margaret Lofty en Highgate: la pensión, la casera, el médico, el seguro y, si hace falta, el patólogo. Lo que veas no lo verá tu compañero si no se lo pasas.',
+      },
+      {
+        id: 'B',
+        title: 'Archivo de provincias',
+        briefing:
+          'Te llegan las cartas de Blackpool y tienes acceso a los archivos de juzgados y registros de fuera de Londres. Lo que veas no lo verá tu compañero si no se lo pasas.',
+      },
+    ],
+  },
+
+  briefing: {
+    incidentDisplay: 'Viernes, 18 de diciembre de 1914 · tarde',
+    summary:
+      'Margaret Lofty, de treinta y ocho años, se casó el jueves con un tal John Lloyd. El viernes por la tarde la encontraron muerta en la bañera de su pensión de Highgate. El forense dijo que se desmayó y se ahogó. Caso cerrado, hasta que llegaron dos cartas de Blackpool.',
+    context:
+      'Enero de 1915. Los periódicos dieron la noticia como una tragedia de Navidad. Ahora, un padre y el dueño de una pensión de Blackpool escriben a Scotland Yard: lo mismo les pasó a ellos hace un año. El inspector Arthur Neil quiere saber si es casualidad.',
+    background:
+      'En plena guerra, con medio país en el frente, las solteronas de clase media son presa fácil de los cazadotes que ponen anuncios matrimoniales en los periódicos.',
+    victim: 'ch-margaret',
+    initialFacts: [],
+    initialEvidence: ['ev-noticia', 'ev-encuesta-lofty', 'ev-carta-crossley'],
+    initialTimeline: ['te-boda-lofty', 'te-muerte'],
+  },
+
+  characters: [
+    {
+      id: 'ch-margaret',
+      name: 'Margaret Lofty',
+      look: { hair: 'bun' },
+      role: 'victim',
+      age: 38,
+      occupation: 'Dama de compañía',
+      appearance:
+        'a gentle 38-year-old Edwardian English spinster in 1914, plain kind face, brown hair in a modest bun, high-necked blouse with a small brooch, shy hopeful smile',
+      summary: 'Hija de un clérigo. Se casó en secreto.',
+      biography: 'Hija de un clérigo de Bristol, soltera, sin apenas dinero. Conoció a John Lloyd en Bath y se casó con él sin decírselo a su familia, que no lo habría aprobado.',
+      personality: ['Tímida', 'Romántica', 'Confiada'],
+    },
+    {
+      id: 'ch-lloyd',
+      name: '«John Lloyd»',
+      look: { hair: 'short', beard: true },
+      role: 'suspect',
+      age: 42,
+      occupation: 'Dice ser agente inmobiliario',
+      appearance:
+        'a 42-year-old Edwardian English man in 1914, strong jaw, dark hair parted in the middle, thick dark moustache, intense staring dark eyes, cheap but neat suit and bowler hat, smooth confident manner',
+      summary: 'Un marido muy correcto con una mirada que no se olvida.',
+      biography: 'Se presenta como agente inmobiliario. Ha llorado en la encuesta del forense y ha pedido un funeral modesto. Tiene un notable gusto por las pólizas de seguro.',
+      personality: ['Encantador', 'Frío', 'Tacaño'],
+      relationToVictim: 'Su marido de un día',
+      motive: { text: 'Era el beneficiario del seguro de vida de su esposa.', visibleWhen: { fact: 'fa-seguro-lofty' } },
+      alibi: { claim: 'Estaba en el salón tocando el armonio mientras ella se bañaba. Luego salió a comprar tomates.' },
+    },
+    {
+      id: 'ch-blatch',
+      name: 'Louisa Blatch',
+      look: { hair: 'bun' },
+      role: 'suspect',
+      age: 50,
+      occupation: 'Dueña de la pensión de Bismarck Road',
+      appearance:
+        'a stern 50-year-old Edwardian London landlady in 1914, thin severe face, grey hair in a tight bun, black dress with a white collar, keys at her waist, observant suspicious eyes',
+      summary: 'Lo oyó todo desde la cocina.',
+      biography: 'Lleva una pensión decente en Highgate. Al señor Lloyd no le gustó el baño de otra pensión y eligió esta porque tenía bañera.',
+      personality: ['Severa', 'Observadora', 'Precisa'],
+      relationToVictim: 'Su casera',
+      motive: { text: 'Ninguno: si algo hubo, fue no subir a tiempo.', visibleWhen: { asked: 'q-blatch-ruidos' } },
+      alibi: { claim: 'Estaba en la cocina, planchando.' },
+    },
+    {
+      id: 'ch-alice',
+      name: 'Alice Burnham',
+      look: { hair: 'bun' },
+      role: 'other',
+      age: 25,
+      occupation: 'Enfermera',
+      appearance:
+        'a plump cheerful 25-year-old Edwardian English nurse in 1913, round face, fair hair under a small hat, high-collared blouse, warm smile',
+      summary: 'Murió en una bañera de Blackpool en 1913.',
+      biography: 'Enfermera de Buckinghamshire. Se casó con «George Smith» en Portsmouth en noviembre de 1913 y murió en Blackpool en diciembre, en la pensión de Joseph Crossley.',
+      personality: ['Alegre', 'Decidida'],
+      appearsWhen: { evidence: 'ev-carta-crossley' },
+    },
+    {
+      id: 'ch-bessie',
+      name: 'Bessie Mundy',
+      look: { hair: 'bun' },
+      role: 'other',
+      age: 33,
+      occupation: 'Heredera de una renta',
+      appearance:
+        'a timid 33-year-old Edwardian English woman in 1912, long pale face, light brown hair in a bun, plain dark dress, anxious eyes',
+      summary: 'Murió en una bañera de Herne Bay en 1912.',
+      biography: 'Hija de un director de banco, con una renta de 2.500 libras en fideicomiso. Se casó con «Henry Williams» en 1910; él la abandonó llevándose dinero y volvió a encontrarla en 1912.',
+      personality: ['Ingenua', 'Solitaria'],
+      appearsWhen: { evidence: 'ev-herne' },
+    },
+    {
+      id: 'ch-crossley',
+      name: 'Joseph Crossley',
+      look: { hair: 'short', beard: true },
+      role: 'witness',
+      age: 50,
+      occupation: 'Dueño de una pensión en Blackpool',
+      appearance:
+        'a bluff 50-year-old Lancashire boarding-house keeper in 1914, broad red face, thick grey moustache, flat cap, waistcoat with watch chain, honest stubborn eyes',
+      summary: 'Recortó una noticia del periódico.',
+      biography: 'Lleva con su mujer una pensión en Regent Road, Blackpool. Un huésped de diciembre de 1913 no se le ha ido de la cabeza.',
+      personality: ['Testarudo', 'Franco'],
+    },
+    {
+      id: 'ch-burnham',
+      name: 'Charles Burnham',
+      look: { hair: 'short', beard: true },
+      role: 'witness',
+      age: 60,
+      occupation: 'Frutero, padre de Alice',
+      appearance:
+        'a grieving 60-year-old English fruit grower in 1914, lined weathered face, white beard, rough tweed coat, sad stubborn eyes',
+      summary: 'Nunca se fió de su yerno.',
+      biography: 'Padre de Alice Burnham. Se opuso a la boda; el yerno le escribió una carta insultante cuando le pidió referencias.',
+      personality: ['Desconfiado', 'Dolido'],
+    },
+    {
+      id: 'ch-spilsbury',
+      name: 'Bernard Spilsbury',
+      look: { hair: 'short' },
+      role: 'witness',
+      age: 37,
+      occupation: 'Patólogo del Ministerio del Interior',
+      appearance:
+        'a tall handsome 37-year-old English pathologist in 1915, clean shaven, neatly parted dark hair, dark suit with a white carnation, cool confident gaze',
+      summary: 'Tiene una teoría y una bañera.',
+      biography: 'El patólogo más famoso de Inglaterra desde el caso Crippen. Ha examinado los cuerpos exhumados y ha pedido que le traigan una bañera.',
+      personality: ['Frío', 'Seguro', 'Meticuloso'],
+      appearsWhen: { fact: 'fa-sin-lucha' },
+    },
+  ],
+
+  locations: [
+    { id: 'lo-highgate', name: 'Pensión de Bismarck Road', description: 'Highgate, Londres. Baño en el primer piso, salón con armonio en la planta baja.' },
+    { id: 'lo-blackpool', name: 'Pensión de Regent Road', description: 'Blackpool, en la costa de Lancashire.', appearsWhen: { evidence: 'ev-carta-crossley' } },
+    { id: 'lo-herne', name: 'Casa de High Street, Herne Bay', description: 'En Kent, junto al mar.', appearsWhen: { evidence: 'ev-herne' } },
+  ],
+
+  relationships: [
+    { id: 're-lofty', a: 'ch-lloyd', b: 'ch-margaret', label: 'Matrimonio de un día' },
+    { id: 're-alice', a: 'ch-lloyd', b: 'ch-alice', label: '«George Smith», su marido', visibleWhen: { fact: 'fa-mismo-hombre' } },
+    { id: 're-bessie', a: 'ch-lloyd', b: 'ch-bessie', label: '«Henry Williams», su marido', visibleWhen: { fact: 'fa-mismo-hombre' } },
+    { id: 're-burnham', a: 'ch-burnham', b: 'ch-alice', label: 'Padre e hija' },
+  ],
+
+  facts: [
+    { id: 'fa-sin-lucha', text: 'Margaret no tenía marcas de lucha: el forense habló de un desmayo.', important: true },
+    { id: 'fa-seguro-lofty', text: 'La vida de Margaret estaba asegurada en 700 libras a favor de su marido desde hacía días.', important: true },
+    { id: 'fa-medico-lofty', text: 'El día de la boda, Lloyd llevó a Margaret al médico diciendo que tenía dolores de cabeza.', important: true },
+    { id: 'fa-armonio', text: 'Tras el chapoteo y un suspiro, Lloyd tocó el armonio y salió a comprar tomates; al volver «descubrió» el cuerpo.', important: true },
+    { id: 'fa-blackpool', text: 'En Blackpool, en 1913, Alice Burnham murió igual en la bañera, semanas después de casarse con «George Smith».', important: true },
+    { id: 'fa-seguro-alice', text: 'Alice estaba asegurada en 500 libras a favor de su marido.', important: true },
+    { id: 'fa-herne', text: 'En Herne Bay, en 1912, Bessie Mundy murió igual en la bañera, tras nombrar heredero a su marido «Henry Williams».', important: true },
+    { id: 'fa-medico-antes', text: 'Antes de cada muerte, el marido llevó a su esposa al médico por ataques o dolores de cabeza que ella no notaba.', important: true },
+    { id: 'fa-mismo-hombre', text: 'John Lloyd, George Smith y Henry Williams son el mismo hombre: George Joseph Smith.', important: true },
+    { id: 'fa-pies', text: 'Un tirón de los pies hace que el agua entre de golpe y la víctima pierda el conocimiento al instante, sin lucha.', important: true },
+    { id: 'fa-banera-pequena', text: 'En las tres bañeras, una mujer no puede ahogarse por un desmayo: son demasiado cortas para quedar con la cabeza bajo el agua.' },
+    { id: 'fa-patron', text: 'Tres bodas, tres seguros o testamentos, tres visitas al médico, tres bañeras.', important: true },
+  ],
+
+  evidence: [
+    {
+      id: 'ev-noticia',
+      kind: 'press',
+      title: 'Recorte del News of the World',
+      dated: 'Enero de 1915',
+      source: 'News of the World',
+      summary: 'La noticia que leyeron en Blackpool.',
+      holder: 'both',
+      related: { characters: ['ch-margaret', 'ch-lloyd'], locations: ['lo-highgate'], events: ['te-muerte'] },
+      body: [
+        { type: 'heading', text: 'ENCONTRADA MUERTA EN EL BAÑO' },
+        { type: 'typed', text: 'Trágico destino de una novia al día siguiente de la boda.' },
+        {
+          type: 'typed',
+          text: 'La señora Margaret Lloyd, de 38 años, apareció muerta en la bañera de una pensión de Highgate el 18 de diciembre. {{dt-noticia-forense|El forense atribuyó la muerte a un síncope por el agua caliente, tras una gripe.}} Su desconsolado esposo, el señor John Lloyd, declaró que…',
+        },
+      ],
+      details: [{ id: 'dt-noticia-forense', label: 'Un síncope', description: 'La explicación oficial: un desmayo en el agua caliente.', effects: [], points: 5 }],
+    },
+    {
+      id: 'ev-encuesta-lofty',
+      kind: 'transcript',
+      title: 'Encuesta del forense de Highgate',
+      dated: '21 de diciembre de 1914',
+      source: 'Juzgado de instrucción de Islington',
+      summary: 'Lo que se dijo ante el forense.',
+      holder: 'A',
+      related: { characters: ['ch-margaret', 'ch-lloyd', 'ch-blatch'], locations: ['lo-highgate'], events: ['te-muerte'] },
+      body: [
+        {
+          type: 'typed',
+          text: 'Dr. Bates: {{dt-enc-medico|«El jueves el señor Lloyd me trajo a su esposa por un dolor de cabeza y algo de fiebre. Le receté un calmante.»}} {{dt-enc-marcas|«El cuerpo no tiene golpes ni arañazos. Ninguna señal de lucha.»}}',
+        },
+        { type: 'typed', text: 'Veredicto: muerte accidental por ahogamiento, a consecuencia de un desmayo.' },
+      ],
+      details: [
+        { id: 'dt-enc-medico', label: 'Al médico la víspera', description: 'El marido llevó a Margaret al médico justo antes de la muerte.', effects: [{ grantFact: 'fa-medico-lofty' }], points: 15 },
+        { id: 'dt-enc-marcas', label: 'Sin lucha', description: 'Una mujer sana que se ahoga sin defenderse.', effects: [{ grantFact: 'fa-sin-lucha' }], points: 10 },
+      ],
+    },
+    {
+      id: 'ev-poliza-lofty',
+      kind: 'record',
+      title: 'Póliza de seguro de vida de Margaret Lofty',
+      source: 'Yorkshire Insurance Company',
+      summary: 'Firmada días antes de la boda.',
+      holder: 'A',
+      autoDiscoverWhen: { asked: 'q-lloyd-dinero' },
+      related: { characters: ['ch-margaret', 'ch-lloyd'], locations: [], events: ['te-poliza-lofty'] },
+      body: [
+        {
+          type: 'table',
+          header: ['Asegurada', 'Capital', 'Beneficiario', 'Fecha'],
+          rows: [['Margaret Lofty', '{{dt-pol-capital|700 £}}', '{{dt-pol-benef|Su futuro esposo, John Lloyd}}', '4 de diciembre de 1914']],
+        },
+        { type: 'handwritten', text: 'El Sr. Lloyd reclamó el pago el 4 de enero, con el certificado de defunción.', author: 'Nota de la compañía' },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-poliza-lofty' }],
+      details: [
+        { id: 'dt-pol-capital', label: '700 libras', description: 'Una fortuna para una dama de compañía sin dinero.', effects: [], points: 5 },
+        { id: 'dt-pol-benef', label: 'A nombre del marido', description: 'Asegurada a favor de un hombre con el que aún no se había casado.', effects: [{ grantFact: 'fa-seguro-lofty' }], points: 15 },
+      ],
+      decisive: true,
+    },
+    {
+      id: 'ev-spilsbury',
+      kind: 'report',
+      title: 'Informe y experimento de Spilsbury',
+      dated: 'Febrero de 1915',
+      source: 'Ministerio del Interior',
+      summary: 'Cómo se ahoga a alguien sin lucha.',
+      holder: 'A',
+      autoDiscoverWhen: { asked: 'q-spilsbury' },
+      related: { characters: ['ch-spilsbury'], locations: [], events: [] },
+      body: [
+        { type: 'heading', text: 'LAS BAÑERAS' },
+        {
+          type: 'typed',
+          text: '{{dt-spil-corta|La bañera de Highgate mide 1,68 m por dentro; la señora Lofty, 1,60. Sentada, un desmayo la deja con la cabeza fuera o apoyada en el respaldo, no bajo el agua.}}',
+        },
+        {
+          type: 'typed',
+          text: '{{dt-spil-pies|Si alguien levanta de pronto los pies de una persona sentada, la cabeza se hunde, el agua entra de golpe en la nariz y la garganta, y la víctima pierde el conocimiento casi al instante, sin poder agarrarse. No quedan marcas.}}',
+        },
+        { type: 'typed', text: 'En una prueba con una nadadora experta vestida, el inspector Neil le levantó los pies: perdió el conocimiento y costó reanimarla.' },
+        { type: 'signature', name: 'B. H. Spilsbury' },
+      ],
+      details: [
+        { id: 'dt-spil-corta', label: 'Una bañera demasiado corta', description: 'No se puede ahogar por un desmayo en una bañera así.', effects: [{ grantFact: 'fa-banera-pequena' }], points: 15 },
+        { id: 'dt-spil-pies', label: 'Un tirón de los pies', description: 'Así se ahoga a alguien en un segundo, sin lucha ni marcas.', effects: [{ grantFact: 'fa-pies' }], points: 25 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-carta-crossley',
+      kind: 'letter',
+      title: 'Carta de Joseph Crossley a Scotland Yard',
+      dated: 'Enero de 1915',
+      source: 'Regent Road, Blackpool',
+      summary: 'Con el recorte del periódico grapado.',
+      holder: 'B',
+      related: { characters: ['ch-crossley', 'ch-alice'], locations: ['lo-blackpool'], events: ['te-blackpool'] },
+      body: [
+        { type: 'paragraph', text: 'Señores:' },
+        {
+          type: 'paragraph',
+          text: '{{dt-cros-igual|Les mando este recorte porque en diciembre de 1913 pasó lo mismo en mi casa: una recién casada, la señora Smith, apareció muerta en la bañera a los pocos días de llegar.}}',
+        },
+        {
+          type: 'paragraph',
+          text: 'El marido escogió mi casa después de ver otra, porque la mía tenía bañera. {{dt-cros-ataud|Pidió el ataúd más barato y se fue esa misma noche. Mi mujer le dijo: «Tú eres un hombre sin corazón».}}',
+        },
+        { type: 'signature', name: 'Joseph Crossley' },
+      ],
+      details: [
+        { id: 'dt-cros-igual', label: 'Lo mismo en Blackpool', description: 'Otra recién casada muerta en una bañera un año antes.', effects: [{ grantFact: 'fa-blackpool' }, { unlockTimelineEvent: 'te-blackpool' }], points: 20 },
+        { id: 'dt-cros-ataud', label: 'El ataúd más barato', description: 'Un viudo con muchísima prisa y ninguna pena.', effects: [], points: 5 },
+      ],
+      decisive: true,
+    },
+    {
+      id: 'ev-burnham',
+      kind: 'letter',
+      title: 'Carta de Charles Burnham',
+      source: 'Aston Clinton, Buckinghamshire',
+      summary: 'Un padre que nunca se fió.',
+      holder: 'B',
+      autoDiscoverWhen: { asked: 'q-crossley-familia' },
+      related: { characters: ['ch-burnham', 'ch-alice'], locations: [], events: ['te-poliza-alice'] },
+      body: [
+        {
+          type: 'paragraph',
+          text: '{{dt-bur-seguro|Mi hija se aseguró la vida en 500 libras a favor de su marido, George Smith, días antes de morir, y le hizo testamento.}} Él me escribió una carta insultante cuando le pedí referencias.',
+        },
+        { type: 'paragraph', text: '{{dt-bur-medico|En Blackpool la llevó al médico el mismo día que llegaron, por un dolor de cabeza. Alice no había tenido un dolor de cabeza en su vida.}}' },
+        { type: 'signature', name: 'Charles Burnham' },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-poliza-alice' }],
+      details: [
+        { id: 'dt-bur-seguro', label: 'Un seguro de 500 libras', description: 'Alice también estaba asegurada a favor de su marido.', effects: [{ grantFact: 'fa-seguro-alice' }], points: 15 },
+        { id: 'dt-bur-medico', label: 'Al médico al llegar', description: 'Otra visita al médico por unos dolores que ella no tenía.', effects: [], points: 15 },
+      ],
+      decisive: true,
+    },
+    {
+      id: 'ev-herne',
+      kind: 'transcript',
+      title: 'Encuesta del forense de Herne Bay',
+      dated: 'Julio de 1912',
+      source: 'Juzgado de instrucción de Kent',
+      summary: 'Una muerte de hace dos años, en otra costa.',
+      holder: 'B',
+      autoDiscoverWhen: { asked: 'q-burnham-otros' },
+      related: { characters: ['ch-bessie'], locations: ['lo-herne'], events: ['te-herne'] },
+      body: [
+        {
+          type: 'typed',
+          text: 'Bessie Williams (de soltera Mundy), muerta en la bañera el 13 de julio de 1912. {{dt-herne-ataques|Su esposo, Henry Williams, la llevó días antes al Dr. French diciendo que sufría ataques de epilepsia; ella no recordaba ninguno.}}',
+        },
+        {
+          type: 'typed',
+          text: '{{dt-herne-testamento|El 8 de julio ambos hicieron testamento uno a favor del otro. Ella tenía una renta de 2.500 libras.}} {{dt-herne-banera|La bañera se había comprado días antes; el marido regateó el precio y la devolvió después del entierro.}}',
+        },
+        { type: 'typed', text: 'Veredicto: muerte por ahogamiento durante un ataque epiléptico.' },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-herne' }],
+      details: [
+        { id: 'dt-herne-ataques', label: 'Unos ataques inventados', description: 'Primero, el médico; después, la bañera.', effects: [{ grantFact: 'fa-medico-antes' }], points: 15 },
+        { id: 'dt-herne-testamento', label: 'Testamento a su favor', description: 'Bessie le dejó su renta cinco días antes de morir.', effects: [{ grantFact: 'fa-herne' }], points: 20 },
+        { id: 'dt-herne-banera', label: 'La bañera devuelta', description: 'Compró la bañera para la ocasión.', effects: [], points: 10 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-registros',
+      kind: 'record',
+      title: 'Cotejo de firmas de los registros civiles',
+      source: 'Registro General, Somerset House',
+      summary: 'Tres bodas, tres nombres, una mano.',
+      holder: 'B',
+      autoDiscoverWhen: { fact: 'fa-herne' },
+      related: { characters: ['ch-lloyd'], locations: [], events: [] },
+      body: [
+        {
+          type: 'table',
+          header: ['Boda', 'Novio', 'Novia'],
+          rows: [
+            ['26-ago-1910, Weymouth', 'Henry Williams', 'Bessie Mundy'],
+            ['4-nov-1913, Portsmouth', 'George Joseph Smith', 'Alice Burnham'],
+            ['17-dic-1914, Bath', 'John Lloyd', 'Margaret Lofty'],
+          ],
+        },
+        { type: 'paragraph', text: '{{dt-reg-mano|Las tres firmas del novio tienen la misma inclinación, la misma «J» volada y el mismo trazo final. Son de la misma persona.}}' },
+      ],
+      details: [{ id: 'dt-reg-mano', label: 'La misma mano', description: 'Williams, Smith y Lloyd son un solo hombre.', effects: [{ grantFact: 'fa-mismo-hombre' }], points: 25 }],
+      decisive: true,
+      points: 10,
+    },
+  ],
+
+  deductions: [
+    {
+      id: 'de-patron',
+      title: 'Tres novias, un sistema',
+      combine: ['dt-pol-benef', 'dt-herne-testamento'],
+      explanation: 'Cada esposa se aseguraba o testaba a favor del marido días antes de la boda o de la muerte, iba al médico por una dolencia que no tenía y moría en la bañera. No son accidentes: es un método.',
+      effects: [{ grantFact: 'fa-patron' }],
+      points: 40,
+    },
+    {
+      id: 'de-banera',
+      title: 'No fue un desmayo',
+      combine: ['dt-spil-corta', 'dt-enc-marcas'],
+      explanation: 'En una bañera tan corta un desmayo no hunde la cabeza; y sin marcas de lucha, alguien tuvo que hundirla de golpe tirando de los pies.',
+      points: 30,
+    },
+    {
+      id: 'de-medico',
+      title: 'Preparar el diagnóstico',
+      combine: ['dt-enc-medico', 'dt-bur-medico'],
+      explanation: 'En Highgate y en Blackpool, el marido llevó a su esposa al médico nada más llegar por dolores que ella no tenía: así el forense tendría un «desmayo» explicado.',
+      effects: [{ grantFact: 'fa-medico-antes' }],
+      points: 25,
+    },
+  ],
+
+  contradictions: [
+    {
+      id: 'cx-lloyd-salon',
+      title: 'El armonio y los tomates',
+      a: { line: 'ln-lloyd-armonio' },
+      b: { line: 'ln-blatch-orden' },
+      explanation: 'Lloyd dice que estuvo en el salón tocando todo el rato; la casera oyó primero el chapoteo y el suspiro arriba, y solo después el armonio.',
+      effects: [{ grantFact: 'fa-armonio' }],
+      points: 25,
+    },
+    {
+      id: 'cx-lloyd-primera',
+      title: 'No era su primera esposa',
+      a: { line: 'ln-lloyd-soltero' },
+      b: { detail: 'dt-reg-mano' },
+      explanation: 'Lloyd jura que Margaret era su primera esposa; su firma aparece en dos bodas anteriores con otros nombres.',
+      points: 30,
+    },
+  ],
+
+  secrets: [
+    { id: 'se-lloyd', characterId: 'ch-lloyd', text: 'George Joseph Smith lleva años casándose con nombres falsos con mujeres solas a las que despoja de sus ahorros. Con las tres últimas no le bastó el dinero: quiso el seguro y la herencia.', revealedWhen: { fact: 'fa-mismo-hombre' }, points: 25 },
+    { id: 'se-blatch', characterId: 'ch-blatch', text: 'La señorita Blatch notó que el señor Lloyd había preguntado, antes de alquilar, por el tamaño de la bañera, y no lo contó al forense porque nadie se lo preguntó.', revealedWhen: { asked: 'q-blatch-banera' }, points: 15 },
+  ],
+
+  interrogations: [
+    {
+      id: 'in-lloyd',
+      characterId: 'ch-lloyd',
+      holder: 'A',
+      setting: 'En la comisaría de Kentish Town, tras su detención. Tiene las manos cruzadas sobre el sombrero y no aparta la mirada.',
+      opening: [{ text: 'Me han arrancado a mi esposa y ahora me acusan. Pregunte. No tengo nada que temer.' }],
+      topics: [
+        {
+          id: 'tp-lloyd-tarde',
+          label: 'La tarde del baño',
+          kind: 'alibi',
+          questions: [
+            {
+              id: 'q-lloyd-tarde',
+              prompt: '¿Dónde estaba usted mientras su esposa se bañaba?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { id: 'ln-lloyd-armonio', text: 'En el salón, tocando el armonio, todo el rato. Después salí a comprar tomates para la cena. Al volver, la llamé y no contestó.', tone: 'lie' },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 'q-lloyd-dinero',
+              prompt: '¿Tenía su esposa algún seguro?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Uno pequeño, por prudencia. Cualquier marido responsable lo haría. Aquí tiene los papeles.', tone: 'evasion' }] }],
+            },
+          ],
+        },
+        {
+          id: 'tp-lloyd-pasado',
+          label: 'Su pasado',
+          kind: 'personal',
+          questions: [
+            {
+              id: 'q-lloyd-soltero',
+              prompt: '¿Había estado casado antes?',
+              kind: 'ask',
+              responses: [{ lines: [{ id: 'ln-lloyd-soltero', text: 'Nunca. Margaret fue mi primera y única esposa. Llevaba años esperando a la mujer adecuada.', tone: 'lie' }] }],
+            },
+            {
+              id: 'q-lloyd-cx',
+              prompt: 'Su firma aparece en dos bodas más: como Henry Williams y como George Smith.',
+              kind: 'contradiction',
+              contradiction: 'cx-lloyd-primera',
+              responses: [
+                {
+                  lines: [
+                    { speaker: 'narration', text: 'Smith se levanta de golpe y golpea la mesa.' },
+                    { text: '¡Bigamia, sí! Eso lo admito. Me he casado más de la cuenta. ¡Pero no he matado a nadie! Lo de las bañeras es una desgracia que me persigue.', tone: 'admission' },
+                  ],
+                  effects: [{ setFlag: 'smith-bigamia' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-blatch',
+      characterId: 'ch-blatch',
+      holder: 'A',
+      setting: 'En la cocina de la pensión de Bismarck Road, entre la plancha y la tetera. Habla con precisión de reloj.',
+      opening: [{ text: 'Ya se lo dije al forense, pero el forense tenía prisa. A usted se lo cuento entero.' }],
+      topics: [
+        {
+          id: 'tp-blatch-tarde',
+          label: 'Aquella tarde',
+          kind: 'events',
+          questions: [
+            {
+              id: 'q-blatch-ruidos',
+              prompt: '¿Qué oyó aquella tarde?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'La señora subió a bañarse hacia las siete y media. Al poco, desde la cocina, oí chapoteo arriba, como de alguien que se mueve en el agua.', tone: 'truth' },
+                    { id: 'ln-blatch-orden', text: 'Luego un ruido de manos contra los lados de la bañera, y un suspiro. Después, nada. Y unos minutos más tarde, el armonio del salón: «Nearer, My God, to Thee».', tone: 'truth' },
+                    { text: 'Luego le oí salir por la puerta de la calle, y volver con tomates.', tone: 'truth' },
+                  ],
+                  effects: [{ unlockTimelineEvent: 'te-armonio' }],
+                },
+              ],
+            },
+            {
+              id: 'q-blatch-banera',
+              prompt: '¿Por qué alquilaron aquí?',
+              kind: 'ask',
+              requires: { asked: 'q-blatch-ruidos' },
+              responses: [{ lines: [{ text: 'El señor Lloyd vio otra pensión antes, pero no tenía bañera. Lo primero que preguntó aquí fue si había baño, y fue a verlo antes que el dormitorio.', tone: 'truth' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-spilsbury',
+      characterId: 'ch-spilsbury',
+      holder: 'A',
+      setting: 'En una sala de la comisaría de Kentish Town, junto a tres bañeras traídas de Highgate, Blackpool y Herne Bay.',
+      opening: [{ text: 'Una mujer sana no se ahoga en una bañera en la que no cabe tumbada. Déjeme enseñárselo.' }],
+      topics: [
+        {
+          id: 'tp-spilsbury',
+          label: 'Las bañeras',
+          kind: 'other',
+          questions: [
+            {
+              id: 'q-spilsbury',
+              prompt: '¿Cómo pudo morir sin lucha?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Hay una manera. Lo he puesto en mi informe, con la prueba que hizo el inspector Neil. No la repita en casa.', tone: 'truth' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-crossley',
+      characterId: 'ch-crossley',
+      holder: 'B',
+      setting: 'En la conferencia telefónica desde Blackpool. Se le oye respirar fuerte.',
+      opening: [{ text: 'Lo supe en cuanto lo leí. Es él. Le reconocería por los ojos.' }],
+      topics: [
+        {
+          id: 'tp-crossley',
+          label: 'El huésped de 1913',
+          kind: 'events',
+          questions: [
+            {
+              id: 'q-crossley-familia',
+              prompt: '¿Sabe algo de la familia de la señora Smith?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Su padre, Charles Burnham, vino al entierro y no se quitó la sospecha de encima. Le he escrito también. Él le contará lo del seguro.', tone: 'truth' }] }],
+            },
+            {
+              id: 'q-crossley-noche',
+              prompt: '¿Qué pasó aquella noche?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'La señora subió a bañarse. Al rato, el agua empezó a filtrarse por el techo de la cocina. El marido bajó al poco con unos huevos que había salido a comprar.', tone: 'truth' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-burnham',
+      characterId: 'ch-burnham',
+      holder: 'B',
+      setting: 'En la cocina de su granja de Buckinghamshire, con la carta del yerno sobre la mesa.',
+      opening: [{ text: 'Alice era lista, pero estaba enamorada. Con eso basta.' }],
+      topics: [
+        {
+          id: 'tp-burnham',
+          label: 'El yerno',
+          kind: 'person',
+          about: 'ch-lloyd',
+          questions: [
+            {
+              id: 'q-burnham-otros',
+              prompt: '¿Sabe si su yerno tuvo otras esposas?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Un detective que pagué yo mismo dio con una pista en Kent: una señora Williams que murió en Herne Bay, en 1912. En la bañera. Pidan el expediente al forense de allí.', tone: 'truth' }] }],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+
+  // t = minutos respecto a la muerte (hacia las 19:40 del 18 de diciembre de 1914)
+  timeline: [
+    { id: 'te-herne', t: -1265760, display: '13 de julio de 1912', title: 'Bessie Mundy muere en la bañera en Herne Bay', description: 'Cinco días después de testar a favor de «Henry Williams».', characters: ['ch-bessie'], location: 'lo-herne', key: true },
+    { id: 'te-poliza-alice', t: -548640, display: 'Noviembre de 1913', title: 'Alice Burnham se asegura en 500 libras a favor de su marido', description: 'Tras casarse con «George Smith».', characters: ['ch-alice'], key: true },
+    { id: 'te-blackpool', t: -527040, display: '12 de diciembre de 1913', title: 'Alice Burnham muere en la bañera en Blackpool', description: 'En la pensión de Joseph Crossley.', characters: ['ch-alice', 'ch-crossley'], location: 'lo-blackpool', key: true },
+    { id: 'te-poliza-lofty', t: -20160, display: '4 de diciembre de 1914', title: 'Margaret Lofty se asegura en 700 libras a favor de «John Lloyd»', description: 'Antes de la boda.', characters: ['ch-margaret'], key: true },
+    { id: 'te-boda-lofty', t: -1500, display: '17 de diciembre', title: 'Boda en Bath; llegada a Highgate y visita al médico', description: 'Por un dolor de cabeza.', characters: ['ch-margaret', 'ch-lloyd'], key: true },
+    { id: 'te-falso-desmayo', t: -2, display: '18 de diciembre, 19:38', title: 'Margaret se desmaya en el agua caliente mientras su marido toca el armonio', description: 'Según Lloyd y el forense.', characters: ['ch-margaret'], veracity: 'false', claimedBy: 'ch-lloyd' },
+    { id: 'te-muerte', t: 0, display: '18 de diciembre, hacia las 19:40', title: 'Muerte de Margaret Lofty en la bañera', description: 'Chapoteo, manos, un suspiro.', characters: ['ch-margaret'], location: 'lo-highgate', key: true },
+    { id: 'te-armonio', t: 5, display: '18 de diciembre, 19:45', title: 'Lloyd toca el armonio y sale a comprar tomates', description: '«Nearer, My God, to Thee».', characters: ['ch-lloyd', 'ch-blatch'], location: 'lo-highgate', key: true },
+  ],
+
+  accusation: {
+    motives: [
+      { id: 'mo-seguros', label: 'Cobrar los seguros y herencias de esposas con las que se casaba con nombre falso', availableWhen: { fact: 'fa-patron' } },
+      { id: 'mo-celos', label: 'Celos de una esposa que no le quería' },
+      { id: 'mo-bigamia', label: 'Ocultar su bigamia', availableWhen: { flag: 'smith-bigamia' } },
+      { id: 'mo-ninguno', label: 'Ninguno: fue una desgracia' },
+    ],
+    methods: [
+      { id: 'me-pies', label: 'Entró en el baño, le levantó los pies de golpe para hundirle la cabeza y salió a fabricarse una coartada', availableWhen: { fact: 'fa-pies' } },
+      { id: 'me-desmayo', label: 'Un desmayo por el agua caliente' },
+      { id: 'me-veneno', label: 'Un calmante que la dejó inconsciente en el agua', availableWhen: { fact: 'fa-medico-lofty' } },
+      { id: 'me-golpe', label: 'Un golpe en la cabeza contra la bañera' },
+    ],
+  },
+
+  solution: {
+    culprits: ['ch-lloyd'],
+    motive: 'mo-seguros',
+    method: 'me-pies',
+    proof: ['ev-spilsbury', 'ev-registros', 'ev-herne'],
+    whatHappened:
+      'George Joseph Smith, que usaba los nombres de Henry Williams, George Smith y John Lloyd, se casaba con mujeres solas, las hacía asegurarse o testar a su favor, las llevaba al médico por una dolencia que no tenían y las ahogaba en la bañera. Con Margaret Lofty eligió una pensión con baño, la aseguró en 700 libras antes de la boda y la llevó al médico por un dolor de cabeza. El 18 de diciembre entró en el baño mientras ella se bañaba y le levantó de golpe los pies: el agua le entró en la nariz y la boca y perdió el conocimiento sin poder defenderse. Bajó, tocó el armonio para que le oyeran y salió a comprar tomates. Lo mismo había hecho con Alice Burnham en Blackpool en 1913 y con Bessie Mundy en Herne Bay en 1912.',
+    reconstruction: [
+      'Julio de 1912, Herne Bay: Bessie Mundy testa a favor de «Henry Williams», va al médico por unos ataques y muere en la bañera.',
+      'Diciembre de 1913, Blackpool: Alice Burnham, asegurada en 500 libras a favor de «George Smith», muere igual en la pensión de Crossley.',
+      '4 de diciembre de 1914: Margaret Lofty se asegura en 700 libras a favor de «John Lloyd».',
+      '17 de diciembre: boda en Bath; en Highgate escogen una pensión con bañera y van al médico por un dolor de cabeza.',
+      '18 de diciembre, hacia las 19:40: Lloyd entra en el baño y le levanta los pies.',
+      'Baja, toca el armonio y sale a comprar tomates. Vuelve y «descubre» el cuerpo.',
+      'Enero de 1915: el News of the World llega a Blackpool. Crossley y Burnham escriben a Scotland Yard.',
+    ],
+    decisiveEvidence: ['ev-poliza-lofty', 'ev-spilsbury', 'ev-carta-crossley', 'ev-burnham', 'ev-herne', 'ev-registros'],
+    alibiTruths: [
+      { characterId: 'ch-lloyd', truth: 'No estuvo todo el rato en el salón: el armonio sonó después del chapoteo y el suspiro. Tocó para que le oyeran.' },
+      { characterId: 'ch-blatch', truth: 'Estaba en la cocina, como dijo, y lo oyó todo en el orden que contó.' },
+    ],
+  },
+
+  endings: [
+    {
+      id: 'en-neil',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct', knowledge: { all: [{ fact: 'fa-mismo-hombre' }, { fact: 'fa-pies' }] } },
+      outcome: 'success',
+      title: 'El sistema',
+      text: 'En junio de 1915, en el Old Bailey, el juez admite las tres muertes como prueba de un mismo sistema: por primera vez, un jurado inglés oye hablar de un asesino por patrón. Spilsbury explica las bañeras; Smith le grita desde el banquillo que es un sinvergüenza. El jurado tarda veinte minutos. George Joseph Smith es ahorcado en Maidstone el 13 de agosto de 1915.',
+    },
+    {
+      id: 'en-exito',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct' },
+      outcome: 'success',
+      title: 'Tres bañeras',
+      text: 'La acusación une las tres muertes y explica cómo. Smith es condenado.',
+    },
+    { id: 'en-parcial', when: { culprit: 'correct' }, outcome: 'partial', title: 'Solo un bígamo', text: 'Acusáis a Lloyd, pero sin explicar cómo ni por qué. Le condenan por bigamia: unos años de cárcel, y volverá a poner anuncios.' },
+    { id: 'en-blatch', when: { culprit: 'ch-blatch' }, outcome: 'failure', title: 'La casera', text: 'La señorita Blatch no tenía nada que ganar y lo oyó todo desde la cocina. Lloyd cobra las 700 libras y se muda a otra ciudad.' },
+    { id: 'en-fallo', when: {}, outcome: 'failure', title: 'Un desmayo', text: 'Las cartas de Blackpool se archivan. En algún lugar de Inglaterra, una mujer sola contesta a un anuncio matrimonial.' },
+  ],
+
+  hints: [
+    {
+      id: 'hl-patron',
+      topic: '¿Casualidad?',
+      relevantWhen: { not: { fact: 'fa-patron' } },
+      steps: ['A tiene el seguro de Margaret; B, las muertes de Blackpool y Herne Bay.', 'B: tira del hilo de Crossley y de Burnham hasta Herne Bay.', 'Poned en común la póliza de Margaret y el testamento de Bessie.'],
+    },
+    {
+      id: 'hl-identidad',
+      topic: 'Tres maridos',
+      relevantWhen: { not: { fact: 'fa-mismo-hombre' } },
+      steps: ['¿Son tres hombres distintos?', 'B: busca los registros de las tres bodas.', 'A: pregunta a Lloyd si se había casado antes.'],
+    },
+    {
+      id: 'hl-como',
+      topic: 'Sin lucha',
+      relevantWhen: { not: { fact: 'fa-pies' } },
+      steps: ['¿Cómo se ahoga a alguien sin que se defienda?', 'A: el patólogo tiene las tres bañeras.', 'Pregúntale a Spilsbury.'],
+    },
+  ],
+
+  objectives: [
+    { id: 'ob-patron', text: 'Unid las tres muertes.', completeWhen: { fact: 'fa-patron' }, points: 30 },
+    { id: 'ob-identidad', text: 'Descubrid quién es John Lloyd.', completeWhen: { fact: 'fa-mismo-hombre' }, points: 30 },
+    { id: 'ob-blatch', text: 'Averiguad por qué eligió esa pensión.', completeWhen: { secret: 'se-blatch' }, points: 15, hidden: true },
+  ],
+
+  assets: [],
+};
+
+export default caseFile;
