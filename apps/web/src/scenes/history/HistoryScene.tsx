@@ -187,6 +187,18 @@ function StatsTab() {
   ];
   return (
     <>
+      <div className={s.gauges}>
+        <Gauge label="Precisión individual" value={stats.solo.recentAccuracy} text={pct(stats.solo.recentAccuracy)} />
+        <Gauge label="Precisión en pareja" value={stats.coop.recentAccuracy} text={pct(stats.coop.recentAccuracy)} />
+        <Gauge label="Racha de casos del día" value={Math.min(1, stats.daily.currentStreak / 7)} text={`${stats.daily.currentStreak} d`} />
+      </div>
+      <div className={s.plaques}>
+        <Plaque label="Resueltos" value={stats.solo.solvedCases + stats.coop.solvedCases} />
+        <Plaque label="Actas impecables" value={stats.solo.perfect + stats.coop.perfect} />
+        <Plaque label="Pruebas halladas" value={stats.discoveries.evidence} />
+        <Plaque label="Detalles con lupa" value={stats.discoveries.details} />
+      </div>
+      <h2 className={s.h2}>Libro de cuentas</h2>
       <table className={s.table}>
         <thead>
           <tr>
@@ -223,6 +235,53 @@ function StatsTab() {
   );
 }
 
+/** Manómetro de latón: la aguja sube hasta su valor al abrir la hoja. */
+function Gauge({ label, value, text }: { label: string; value: number; text: string }) {
+  const angle = -90 + Math.max(0, Math.min(1, value)) * 180;
+  return (
+    <figure className={s.gauge}>
+      <svg viewBox="0 0 120 72" aria-hidden="true">
+        <path d="M10 64 A50 50 0 0 1 110 64" fill="none" stroke="#2a2118" strokeWidth="10" strokeLinecap="round" />
+        <path d="M10 64 A50 50 0 0 1 110 64" fill="none" stroke="url(#brassArc)" strokeWidth="6" strokeLinecap="round" />
+        <defs>
+          <linearGradient id="brassArc" x1="0" x2="1">
+            <stop offset="0" stopColor="#8a3632" />
+            <stop offset="0.5" stopColor="#c9a35a" />
+            <stop offset="1" stopColor="#2c5a3c" />
+          </linearGradient>
+        </defs>
+        {Array.from({ length: 11 }, (_, i) => {
+          const a = Math.PI - (i / 10) * Math.PI;
+          return <line key={i} x1={60 + Math.cos(a) * 40} y1={64 - Math.sin(a) * 40} x2={60 + Math.cos(a) * 46} y2={64 - Math.sin(a) * 46} stroke="#3b2a10" strokeWidth={i % 5 ? 1 : 2} />;
+        })}
+        <g className={s.needle} style={{ '--a': `${angle}deg` } as CSSProperties}>
+          <line x1="60" y1="64" x2="60" y2="22" stroke="#7a1d1d" strokeWidth="2.5" strokeLinecap="round" />
+        </g>
+        <circle cx="60" cy="64" r="5" fill="#c9a35a" stroke="#6e521f" />
+      </svg>
+      <figcaption>
+        <strong>{text}</strong>
+        <span>{label}</span>
+      </figcaption>
+    </figure>
+  );
+}
+
+/** Placa grabada con una cifra y palotes a mano (hasta 20). */
+function Plaque({ label, value }: { label: string; value: number }) {
+  return (
+    <div className={s.plaque}>
+      <span className={s.plaqueValue}>{value}</span>
+      <span className={s.plaqueLabel}>{label}</span>
+      <span className={s.tally} aria-hidden="true">
+        {Array.from({ length: Math.min(value, 20) }, (_, i) => (
+          <i key={i} data-cross={(i + 1) % 5 === 0 || undefined} style={{ '--i': i } as CSSProperties} />
+        ))}
+      </span>
+    </div>
+  );
+}
+
 function AchievementsTab() {
   const { profile } = useProfile();
   const progress = useProgress();
@@ -241,6 +300,7 @@ function AchievementsTab() {
           const prog = !at && a.progress ? a.progress(ctx) : null;
           return (
             <li key={a.id} className={s.achievement} data-got={at ? 'true' : undefined}>
+              <span className={s.medal} aria-hidden="true" />
               <strong>{a.label}</strong>
               {a.secret && <span className={s.secret}>secreto</span>}
               <span>{a.description}</span>
@@ -253,6 +313,7 @@ function AchievementsTab() {
         })}
         {Array.from({ length: secretsLeft }, (_, i) => (
           <li key={`secret-${i}`} className={s.achievement} data-hidden="true">
+            <span className={s.medal} aria-hidden="true" />
             <strong>· · ·</strong>
             <span>Logro secreto. Se revela al conseguirlo.</span>
           </li>

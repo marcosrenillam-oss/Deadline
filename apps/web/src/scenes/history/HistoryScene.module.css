@@ -332,3 +332,150 @@
 .board .remove {
   color: rgba(242, 236, 220, 0.6);
 }
+
+/* Estadísticas: manómetros, placas con palotes y libro de cuentas */
+.gauges {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 6px 0 12px;
+}
+.gauge {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  padding: 8px 6px 6px;
+  border-radius: 10px;
+  background: radial-gradient(circle at 50% 30%, #f6eed8, #e4d6b4);
+  box-shadow: inset 0 0 0 3px #b08d4f, inset 0 0 0 5px #6e521f, 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+.gauge svg {
+  width: 100%;
+  max-width: 150px;
+}
+.needle {
+  transform-origin: 60px 64px;
+  transform: rotate(var(--a));
+  animation: needle 1.4s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+@keyframes needle {
+  from {
+    transform: rotate(-90deg);
+  }
+}
+.gauge figcaption {
+  display: grid;
+  justify-items: center;
+  font-family: var(--font-type);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-paper-soft);
+}
+.gauge strong {
+  font-size: 18px;
+  color: var(--on-paper);
+}
+.plaques {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.plaque {
+  display: grid;
+  gap: 2px;
+  padding: 8px 10px;
+  background: linear-gradient(180deg, var(--brass-hi), var(--brass-mid) 55%, var(--brass-lo));
+  color: #2c1d07;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+.plaqueValue {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(255, 240, 200, 0.6);
+}
+.plaqueLabel {
+  font-family: var(--font-type);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  min-height: 16px;
+}
+.tally i {
+  width: 2px;
+  height: 14px;
+  background: #3b2a10;
+  border-radius: 1px;
+  transform: rotate(4deg);
+  animation: m-rise 300ms both;
+  animation-delay: calc(var(--i) * 60ms + 400ms);
+}
+.tally i[data-cross] {
+  width: 14px;
+  height: 2px;
+  margin: 6px 4px 0 -16px;
+  transform: rotate(-30deg);
+}
+.table {
+  background: repeating-linear-gradient(180deg, transparent 0 27px, rgba(61, 74, 107, 0.16) 27px 28px);
+  border-left: 2px solid rgba(178, 34, 34, 0.45);
+}
+
+/* Logros: medallas */
+.medal {
+  float: left;
+  width: 34px;
+  height: 34px;
+  margin: 0 10px 4px 0;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(42, 36, 26, 0.35);
+}
+.achievement[data-got] .medal {
+  border: 0;
+  background: radial-gradient(circle at 35% 30%, #fbecc0, #d0aa5c 45%, #7f5c22 85%);
+  box-shadow: inset 0 0 0 3px rgba(120, 85, 30, 0.6), 0 3px 5px rgba(0, 0, 0, 0.4);
+  animation: medal-in 600ms var(--ease-physical) both;
+}
+@keyframes medal-in {
+  from {
+    transform: scale(0.4) rotate(-40deg);
+    opacity: 0;
+  }
+}
+
+/* Historial: cada investigación, una ficha con su sello */
+.entry {
+  position: relative;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  background: #f4eedf;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  animation: m-rise 420ms var(--ease-out) both;
+}
+.entry[data-outcome='success'],
+.entry[data-outcome='partial'] {
+  border-left: 5px solid #2c5a3c;
+}
+.entry[data-outcome='failure'],
+.entry[data-outcome='expired'] {
+  border-left: 5px solid var(--seal);
+}
+.entry[data-outcome='active'] {
+  border-left: 5px solid #b08d4f;
+}
+@media (max-width: 720px) {
+  .gauges {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .plaques {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
