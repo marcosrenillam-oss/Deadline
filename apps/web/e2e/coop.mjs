@@ -355,6 +355,20 @@ try {
   await host.p.goto(host.p.url().replace(/\/informe$/, '/evidencias'));
   await host.p.waitForURL('**/informe');
   check(true, 'Con el expediente cerrado solo se puede ver el informe');
+  // Desde el teléfono, la partida cerrada solo abre el informe: no se puede volver a acusar
+  for (const q of [host, guest]) {
+    await q.p.goto(`${BASE}/telefono`);
+    const item = q.p.getByRole('link', { name: /Punto de rocío/ }).first();
+    const label = await item.innerText();
+    await item.click();
+    await q.p.waitForURL('**/informe');
+    const accuse = await q.p.getByRole('button', { name: 'Acusación conjunta' }).count();
+    await q.p.goto(q.p.url().replace(/\/informe$/, '/acusacion'));
+    await q.p.waitForURL('**/informe');
+    check(accuse === 0 && /Cerrada/.test(label), `Partida cerrada en el teléfono: «${label.replace(/\s+/g, ' ')}», solo informe y sin acusar`);
+    await q.p.goto(`${BASE}/archivo-personal`);
+    check(await visible(q.p.getByText('Punto de rocío')), 'La partida en pareja aparece en el archivo personal');
+  }
   check(host.errors.length === 0 && guest.errors.length === 0, `Sin errores de consola en la correspondencia${[...host.errors, ...guest.errors].length ? ': ' + [...host.errors, ...guest.errors].join(' | ') : ''}`);
 } catch (err) {
   failures++;

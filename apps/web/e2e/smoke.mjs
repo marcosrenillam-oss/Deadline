@@ -149,7 +149,7 @@ try {
   check(await visible(page.getByRole('button', { name: /^Carpeta de expedientes/ })) && (await page.locator('img[src*="desk_on"]').count()) === 0, 'Con gráficos ligeros aparece la mesa 2D');
   await page.getByRole('button', { name: /^Lámpara:/ }).click();
   await page.waitForURL('**/lampara');
-  await page.getByText('Cinematográficos (3D)').click();
+  await page.getByText('Fotográficos').click();
   await page.getByRole('tab', { name: 'Lectura' }).click();
   const slider = page.getByRole('slider', { name: 'Tamaño del texto' });
   await slider.focus();

@@ -845,8 +845,8 @@
   align-items: center;
   gap: var(--sp-2);
   padding: 4px var(--sp-2) 4px 4px;
-  background: rgba(230, 221, 201, 0.1);
-  color: var(--ivory-dim);
+  background: rgba(42, 36, 26, 0.06);
+  color: var(--on-paper);
   min-height: 60px;
 }
 
@@ -857,6 +857,7 @@
 
 .personName {
   display: block;
+  color: var(--on-paper);
   font-family: var(--font-display);
   font-weight: 600;
   font-size: var(--fs-md);
@@ -865,6 +866,7 @@
 
 .personRole {
   display: block;
+  color: var(--on-paper-soft);
   font-family: var(--font-type);
   font-size: var(--fs-2xs);
   letter-spacing: 0.12em;
@@ -913,6 +915,7 @@
 
 .subjectName {
   margin: 0;
+  color: var(--on-paper);
   font-family: var(--font-display);
   font-weight: 600;
   font-size: var(--fs-xl);
@@ -924,7 +927,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-size: var(--fs-sm);
-  color: var(--ivory-dim);
+  color: var(--on-paper-soft);
 }
 
 .transcript {

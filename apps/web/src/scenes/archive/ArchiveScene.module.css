@@ -440,3 +440,20 @@
   color: var(--on-paper-soft);
   text-decoration: underline;
 }
+
+/* iPhone pequeños (SE, mini): la cabecera no se sale de la pantalla */
+@media (max-width: 720px) {
+  .header {
+    gap: var(--sp-2);
+  }
+  .title {
+    font-size: var(--fs-lg);
+  }
+  .search {
+    min-width: 70px;
+  }
+  .indexBtn {
+    padding: 0 8px;
+    font-size: 11px;
+  }
+}

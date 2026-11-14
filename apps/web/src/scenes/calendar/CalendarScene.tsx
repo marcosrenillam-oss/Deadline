@@ -116,7 +116,10 @@ export function CalendarScene() {
             </div>
             <div className={s.pageCase}>
               {st === 'locked' ? (
-                <p className={s.hand}>Se abre el {fmt(dateOf(selected), { day: 'numeric', month: 'long' })}. El expediente ya está en tu archivo, precintado.</p>
+                <p className={s.hand}>
+                  Se abre el {fmt(dateOf(selected), { day: 'numeric', month: 'long' })}.{' '}
+                  {e ? 'El expediente ya está en tu archivo, precintado.' : 'Su expediente aún está en redacción: llegará solo con una próxima edición del archivo.'}
+                </p>
               ) : st === 'drafting' ? (
                 <p className={s.hand}>Este expediente todavía está en redacción. Llegará solo con una próxima edición del archivo.</p>
               ) : e ? (

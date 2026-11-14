@@ -26,11 +26,11 @@ export function LightPanel() {
       />
       <Choice
         label="Gráficos del despacho"
-        hint={settings.graphics === 'cinematic' ? 'Despacho en 3D con luz, sombras y reflejos reales.' : 'Mesa en 2D: gasta menos batería y va bien en iPhone antiguos.'}
+        hint={settings.graphics === 'cinematic' ? 'Despacho fotográfico: la mesa renderizada con luz, sombras y reflejos reales.' : 'Mesa en 2D: gasta menos batería y va bien en iPhone antiguos.'}
         value={settings.graphics}
         onChange={(v) => update({ graphics: v })}
         options={[
-          { value: 'cinematic', label: 'Cinematográficos (3D)' },
+          { value: 'cinematic', label: 'Fotográficos' },
           { value: 'light', label: 'Ligeros (2D)' },
         ]}
       />
