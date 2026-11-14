@@ -160,10 +160,13 @@ def main():
     for p in cast['people']:
         if only and p['id'] not in str(only).split(','):
             continue
-        src = os.path.join(RAW, f"{p['id']}.png")
+        src = os.path.join(RAW, p['case'], f"{p['id']}.png")
         if not os.path.exists(src):
             print('· falta', src)
             continue
+        dest = os.path.join(ROOT, 'content', 'cases', p['case'], 'portraits', f"{p['id']}.webp")
+        if not ARGS.get('force') and os.path.exists(dest) and os.path.getmtime(dest) >= os.path.getmtime(src):
+            continue  # ya acabado
         rng = np.random.default_rng(zlib.crc32(p['id'].encode()))
         style = cast['cases'][p['case']]['style']
         im = cover(Image.open(src), OUT_W, OUT_H)

@@ -31,6 +31,26 @@
    "backdrop": "#1f1a16",
    "prompt": "Spanish Golden Age oil painting portrait, Seville 1588, in the style of Alonso Sanchez Coello, {who}, dark plain background, chiaroscuro, realistic face, aged varnish, canvas texture",
    "negative": "photograph, frame, modern"
+  },
+  "DL-I-0002": {
+   "style": "albumen",
+   "prompt": "antique cabinet card studio portrait photograph, Boston, 1849, {who}, albumen print, sepia tone, soft studio window light, plain painted backdrop, natural skin texture, realistic",
+   "negative": "oval frame, ornate border, color"
+  },
+  "DL-C-0003": {
+   "style": "albumen",
+   "prompt": "antique cabinet card studio portrait photograph, Somerset, 1860, {who}, albumen print, sepia tone, soft studio window light, plain painted backdrop, natural skin texture, realistic",
+   "negative": "oval frame, ornate border, color"
+  },
+  "DL-I-0003": {
+   "style": "albumen",
+   "prompt": "antique cabinet card studio portrait photograph, Corrèze, 1840, {who}, albumen print, sepia tone, soft studio window light, plain painted backdrop, natural skin texture, realistic",
+   "negative": "oval frame, ornate border, color"
+  },
+  "DL-I-0004": {
+   "style": "press",
+   "prompt": "vintage black and white photograph, Londres, 1910, head and shoulders portrait of {who}, film grain, natural light, realistic skin texture, sharp focus on the eyes",
+   "negative": "color"
   }
  },
  "people": [
@@ -547,6 +567,136 @@
    "shirt": "#e6dece",
    "weight": 0.35,
    "prompt": "a 63-year-old Spanish cathedral sacristan, bald, clean shaven with grey stubble, black cassock with a plain white collar, wrinkled observant face"
+  },
+  {
+   "case": "DL-I-0002",
+   "id": "ch-parkman",
+   "prompt": "a tall gaunt 59-year-old Boston gentleman in 1849, long thin face, prominent jaw, receding grey hair, black frock coat, high white collar and black stock, stern restless eyes"
+  },
+  {
+   "case": "DL-I-0002",
+   "id": "ch-webster",
+   "prompt": "a plump 56-year-old American chemistry professor in 1849, round face, small round spectacles, short dark hair going grey, clean shaven, dark frock coat and white cravat, nervous polite smile"
+  },
+  {
+   "case": "DL-I-0002",
+   "id": "ch-littlefield",
+   "prompt": "a 37-year-old American college janitor in 1849, lean weathered face, short dark hair, sideburns, rough wool jacket over a waistcoat, watchful suspicious eyes"
+  },
+  {
+   "case": "DL-I-0002",
+   "id": "ch-keep",
+   "prompt": "a 49-year-old Boston dentist in 1849, neat side whiskers, short grey-brown hair, dark coat, white collar, careful serious expression"
+  },
+  {
+   "case": "DL-I-0002",
+   "id": "ch-tukey",
+   "prompt": "a 35-year-old Boston city marshal in 1849, strong square face, thick dark hair, full moustache, dark frock coat with a badge, tired determined eyes"
+  },
+  {
+   "case": "DL-C-0003",
+   "id": "ch-saville",
+   "prompt": "a cheerful 3-year-old Victorian boy in 1860, chubby round face, light curly hair, white smock with a lace collar, small toy in his hands"
+  },
+  {
+   "case": "DL-C-0003",
+   "id": "ch-constance",
+   "prompt": "a sturdy 16-year-old Victorian girl in 1860, broad pale face, small deep-set eyes, heavy dark hair pulled back plainly, high-necked dark dress with a white collar, sullen guarded expression"
+  },
+  {
+   "case": "DL-C-0003",
+   "id": "ch-gough",
+   "prompt": "a pretty 22-year-old Victorian nursemaid in 1860, neat oval face, dark hair under a white frilled cap, plain grey dress and white apron, composed careful expression"
+  },
+  {
+   "case": "DL-C-0003",
+   "id": "ch-samuel",
+   "prompt": "a stern 59-year-old Victorian gentleman in 1860, long stern face, thick grey side whiskers, receding grey hair, black frock coat and dark cravat, cold proud expression"
+  },
+  {
+   "case": "DL-C-0003",
+   "id": "ch-william",
+   "prompt": "a shy slender 15-year-old Victorian boy in 1860, thin pale face, dark untidy hair, dark school jacket with a white collar, timid downcast eyes"
+  },
+  {
+   "case": "DL-C-0003",
+   "id": "ch-cox",
+   "prompt": "a 22-year-old Victorian housemaid in 1860, round honest face, light brown hair under a white cap, plain print dress with rolled sleeves and a white apron"
+  },
+  {
+   "case": "DL-C-0003",
+   "id": "ch-holley",
+   "prompt": "a robust 50-year-old Victorian village washerwoman in 1860, red weathered face, strong arms, grey hair under a plain bonnet, coarse apron, indignant expression"
+  },
+  {
+   "case": "DL-C-0003",
+   "id": "ch-parsons",
+   "prompt": "a 46-year-old Victorian country surgeon in 1860, thoughtful bearded face, short brown hair going grey, dark coat and waistcoat, a watch chain, grave expression"
+  },
+  {
+   "case": "DL-I-0003",
+   "id": "ch-charles",
+   "prompt": "a 28-year-old French provincial ironmaster in 1839, heavy coarse face, thick dark hair, side whiskers, dark wool coat and loosely tied cravat, awkward stiff pose"
+  },
+  {
+   "case": "DL-I-0003",
+   "id": "ch-marie",
+   "prompt": "a slender 24-year-old French woman in 1840, pale oval face, large dark intelligent eyes, dark hair parted in the middle and drawn into a low bun, black mourning dress with a high lace collar"
+  },
+  {
+   "case": "DL-I-0003",
+   "id": "ch-denis",
+   "prompt": "a 30-year-old French clerk in 1840, thin sharp face, small dark eyes, slicked dark hair, threadbare dark coat and high collar, sly guarded expression"
+  },
+  {
+   "case": "DL-I-0003",
+   "id": "ch-anna",
+   "prompt": "a 26-year-old French lady companion in 1840, plain honest face, light brown hair in a tight bun under a small white cap, simple dark dress with a white collar, anxious eyes"
+  },
+  {
+   "case": "DL-I-0003",
+   "id": "ch-madre",
+   "prompt": "a stern 57-year-old French provincial widow in 1840, deeply lined face, thin pressed lips, grey hair under a white lace widow cap, black dress and shawl"
+  },
+  {
+   "case": "DL-I-0003",
+   "id": "ch-orfila",
+   "prompt": "a 52-year-old Spanish-born French toxicologist in 1840, broad intelligent face, dark curly hair going grey, clean shaven, dark coat with a high white collar and black cravat, confident gaze"
+  },
+  {
+   "case": "DL-I-0004",
+   "id": "ch-belle",
+   "prompt": "a buxom 37-year-old Edwardian music hall singer in 1909, round lively face, large dark eyes, abundant dark hair piled high, big feathered hat, ruffled high-necked blouse, a glittering brooch, theatrical confident smile"
+  },
+  {
+   "case": "DL-I-0004",
+   "id": "ch-crippen",
+   "prompt": "a small slight 47-year-old American doctor in London in 1910, thinning sandy hair, large bulging eyes behind thick gold-rimmed spectacles, drooping sandy moustache, neat three-piece suit with a high collar and bow tie, mild polite expression"
+  },
+  {
+   "case": "DL-I-0004",
+   "id": "ch-ethel",
+   "prompt": "a slim pale 27-year-old Edwardian London typist in 1910, delicate oval face, large sad grey eyes, light brown hair swept up into a soft bun, plain high-collared white blouse, shy nervous expression"
+  },
+  {
+   "case": "DL-I-0004",
+   "id": "ch-clara",
+   "prompt": "a plump 45-year-old Edwardian former music hall artiste in 1910, kind round face, greying curled hair under a wide flowered hat, fur stole, worried motherly expression"
+  },
+  {
+   "case": "DL-I-0004",
+   "id": "ch-dew",
+   "prompt": "a solid 47-year-old Scotland Yard chief inspector in 1910, square weathered face, thick walrus moustache, bowler hat, dark overcoat with a high collar, patient shrewd eyes"
+  },
+  {
+   "case": "DL-I-0004",
+   "id": "ch-kendall",
+   "prompt": "a 36-year-old British ocean liner captain in 1910, alert keen face, neat dark beard, peaked captain cap with gold braid, double-breasted navy uniform"
+  },
+  {
+   "case": "DL-I-0004",
+   "id": "ch-spilsbury",
+   "prompt": "a tall handsome 33-year-old Edwardian pathologist in 1910, clean shaven, neatly parted dark hair, high white collar and dark suit, a carnation in the buttonhole, cool confident gaze"
   }
  ],
  "images": [

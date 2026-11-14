@@ -38,6 +38,7 @@ def add_asset(src, entry):
 
 
 CREDIT = 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.'
+CREDIT_REAL = 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.'
 CREDIT_IMG = 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).'
 
 
@@ -60,8 +61,10 @@ def main():
                 continue
             aid = 'pt-' + p['id'][3:]
             w, h = size_of(f)
+            real = data.get('origin') == 'real'
+            alt = f"Recreación artística del retrato de {names.get(p['id'], p['id'])}." if real else f"Retrato de {names.get(p['id'], p['id'])}."
             src = add_asset(src, {'id': aid, 'src': f"portraits/{p['id']}.webp", 'width': w, 'height': h,
-                                  'alt': f"Retrato de {names.get(p['id'], p['id'])}.", 'credit': CREDIT})
+                                  'alt': alt, 'credit': CREDIT_REAL if real else CREDIT})
             m = re.search(r"(?<![A-Za-z])id: " + re.escape(ts(p['id'])) + r",\n", src)
             assert m, p['id']
             block_end = src.find('\n    },', m.end())
