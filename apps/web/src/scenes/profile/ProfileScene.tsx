@@ -7,6 +7,7 @@ import { BackToDesk } from '../../ui/BackToDesk.tsx';
 import { PlayerAvatar } from '../../ui/PlayerAvatar.tsx';
 import { Portrait } from '../../ui/Portrait.tsx';
 import { CodeBox } from '../coop/CodeBox.tsx';
+import { getAccount, logout, syncProgress, type Account } from '../../account/accountRepo.ts';
 import { sound } from '../../audio/sound.ts';
 import surface from '../../ui/Surface.module.css';
 import s from './ProfileScene.module.css';
@@ -98,6 +99,58 @@ function Insignias({ got }: { got: Map<string, number> }) {
         )}
       </p>
     </div>
+  );
+}
+
+/** Cuenta en el archivo central: copia del progreso para no perder nada. */
+function AccountSection() {
+  const [acc, setAcc] = useState<Account | undefined | null>(null);
+  const [msg, setMsg] = useState<string | null>(null);
+  const load = () => void getAccount().then(setAcc);
+  useEffect(load, []);
+  if (acc === null) return null;
+  return (
+    <>
+      <h2 className={s.h2}>Credencial</h2>
+      {acc ? (
+        <>
+          <p className={s.small}>
+            Conectado como <strong>{acc.username}</strong>.{' '}
+            {acc.lastSyncAt ? `Última copia en el archivo central: ${new Date(acc.lastSyncAt).toLocaleString('es-ES')}.` : 'Aún no se ha subido ninguna copia.'} Tu
+            progreso se guarda solo al abrir y al salir de la app.
+          </p>
+          <div className={s.row}>
+            <button
+              className={s.secondary}
+              onClick={async () => {
+                setMsg('Guardando…');
+                const r = await syncProgress();
+                setMsg(r === 'synced' ? 'Copia guardada en el archivo central.' : r === 'unauthorized' ? 'La sesión caducó: vuelve a entrar.' : 'Sin conexión: se guardará cuando vuelva.');
+                load();
+              }}
+            >
+              Guardar ahora
+            </button>
+            <button className={s.secondary} onClick={async () => (await logout(), setMsg('Sesión cerrada en este iPhone. Tu progreso sigue aquí y en el archivo central.'), load())}>
+              Cerrar sesión
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <p className={s.small}>Sin cuenta, tu progreso vive solo en este iPhone. Con una credencial (usuario y contraseña) se guarda también en el archivo central.</p>
+          <div className={s.row}>
+            <button className={s.primary} onClick={() => window.dispatchEvent(new CustomEvent('deadline:account', { detail: 'create' }))}>
+              Crear credencial
+            </button>
+            <button className={s.secondary} onClick={() => window.dispatchEvent(new CustomEvent('deadline:account', { detail: 'login' }))}>
+              Ya tengo cuenta
+            </button>
+          </div>
+        </>
+      )}
+      {msg && <p className={s.hand}>{msg}</p>}
+    </>
   );
 }
 
@@ -240,6 +293,8 @@ export function ProfileScene() {
 
           <h2 className={s.h2}>Insignias</h2>
           <Insignias got={new Map(profile.achievements.map((a) => [a.id, a.at]))} />
+
+          <AccountSection />
 
           <h2 className={s.h2}>Alias</h2>
           <p className={s.small}>Con él te reconocen tus compañeros en las partidas en pareja. No hay registro central: nadie comprueba que sea único.</p>

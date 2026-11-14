@@ -8,6 +8,7 @@ import { UpdateNotice } from './UpdateNotice.tsx';
 import { router } from './router.tsx';
 import { AnnouncementLayer } from '../progression/AnnouncementLayer.tsx';
 import { ProgressionReconciler } from '../progression/ProgressionReconciler.tsx';
+import { AccountGate, AccountSync } from '../account/AccountGate.tsx';
 
 /** iOS solo permite iniciar el audio dentro de un gesto: el primer toque lo desbloquea. */
 function useAudioUnlock(): void {
@@ -33,6 +34,8 @@ export function App() {
         <UpdateNotice />
         <AnnouncementLayer />
         <ProgressionReconciler />
+        <AccountSync />
+        <AccountGate />
       </ProfileProvider>
     </SettingsProvider>
   );

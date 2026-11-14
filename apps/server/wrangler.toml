@@ -1,0 +1,21 @@
+# Servidor de DEADLINE en Cloudflare Workers (plan gratuito).
+# Cuentas con usuario y contraseña, copia del progreso y salas en tiempo real
+# para jugar en pareja. Todo en Durable Objects con SQLite.
+name = "deadline-archivo"
+main = "src/index.ts"
+compatibility_date = "2025-06-01"
+
+[[durable_objects.bindings]]
+name = "VAULT"
+class_name = "Vault"
+
+[[durable_objects.bindings]]
+name = "ROOMS"
+class_name = "Room"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Vault", "Room"]
+
+[vars]
+ALLOWED_ORIGINS = "https://marcosrenillam-oss.github.io,http://localhost:5173,http://localhost:4173,http://localhost:4177,http://localhost:4179"
