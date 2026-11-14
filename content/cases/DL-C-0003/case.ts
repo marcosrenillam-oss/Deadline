@@ -1,0 +1,862 @@
+import type { CaseFileInput } from '../../../packages/core/src/case/schema.ts';
+
+/**
+ * DL-C-0003 · EL CAMISÓN QUE FALTA  (cooperativo, información dividida)
+ * Road (Somerset), junio de 1860 · Homicidio · Caso real · Inspector
+ *
+ * Caso real: el crimen de Road Hill House. Un niño de tres años desaparece
+ * de su cuna y aparece muerto en la letrina del jardín. El inspector
+ * Jonathan Whicher, de Scotland Yard, acusó a la hermanastra del niño,
+ * Constance Kent, por un camisón desaparecido; los jueces la soltaron y la
+ * opinión se volvió contra él. Cinco años después, Constance confesó.
+ *
+ * Reparto: A trabaja como el inspector de Scotland Yard (la casa, la familia
+ * que duerme arriba, el médico); B como la policía del condado (los criados,
+ * la colada, los papeles del pueblo). El móvil sale de los papeles de B; el
+ * cómo, de lo que ve A. Solo juntos se sostiene la acusación.
+ */
+const caseFile: CaseFileInput = {
+  schemaVersion: 1,
+  id: 'DL-C-0003',
+  contentVersion: 1,
+  mode: 'coop',
+  title: 'El camisón que falta',
+  subtitle: 'Un niño desaparece de su cuna en una casa cerrada por dentro',
+  origin: 'real',
+  historical: {
+    documented: [
+      'En la noche del 29 al 30 de junio de 1860, Francis Saville Kent, de tres años, desapareció de su cuna en Road Hill House, en el pueblo de Road (Somerset, junto a Wiltshire). Dormía en el cuarto de la niñera, Elizabeth Gough.',
+      'Fue hallado muerto esa mañana en la letrina exterior de los criados, envuelto en una manta de su cuna. La ventana del salón estaba abierta y sus contraventanas, que se cerraban por dentro, desatrancadas.',
+      'En la letrina se encontró un trozo de franela de pecho, una prenda de mujer.',
+      'El inspector Jonathan Whicher, de Scotland Yard, llegó en julio. Concluyó que el crimen se cometió desde dentro de la casa y sospechó de Constance Kent, de dieciséis años, hija del primer matrimonio de Samuel Kent.',
+      'De los tres camisones de Constance, uno desapareció después del crimen. La criada Sarah Cox contó que, mientras preparaba el cesto de la colada, Constance le pidió que fuera a buscarle un vaso de agua. La lavandera, la señora Holley, echó en falta un camisón.',
+      'En 1856, Constance había huido de casa con su hermano William, vestida de chico y con el pelo cortado.',
+      'Whicher hizo detener a Constance el 16 de julio de 1860; los magistrados la soltaron por falta de pruebas, y la prensa y la opinión se volvieron contra el inspector. La niñera también fue detenida y soltada.',
+      'En 1865 Constance Kent confesó el crimen ante un clérigo anglicano, Arthur Wagner, y se declaró culpable. Su condena a muerte se conmutó por cadena perpetua; cumplió veinte años y emigró a Australia, donde trabajó como enfermera.',
+    ],
+    hypotheses: [
+      'Algunos autores dudan de que Constance actuara sola; se ha apuntado a su hermano William, y en la época se habló de una relación entre Samuel Kent y la niñera.',
+      'La confesión de Constance no encaja del todo con las heridas descritas por el médico.',
+    ],
+    dramatized: [
+      'Los investigadores que manejan los jugadores, sus conversaciones y el orden de las pesquisas son una recreación.',
+      'La redacción de libros, cartas e informes está reconstruida para el juego.',
+      'Los retratos son recreaciones artísticas, no fotografías de las personas reales.',
+    ],
+    documentedResolution:
+      'Constance Kent confesó en 1865 haber matado a su medio hermano Francis Saville Kent y fue condenada; el inspector Whicher, desacreditado en 1860, tenía razón.',
+    sources: [
+      'Kate Summerscale, The Suspicions of Mr Whicher (2008)',
+      'J. W. Stapleton, The Great Crime of 1860 (1861)',
+      'Informes del inspector Jonathan Whicher, The National Archives (MEPO 3/61)',
+    ],
+  },
+  era: 'c19',
+  eraLabel: 'Somerset, 1860',
+  year: 1860,
+  location: { city: 'Road', place: 'Road Hill House', country: 'Inglaterra' },
+  category: 'homicide',
+  difficulty: 'inspector',
+  keywords: ['Road Hill House', 'Whicher', 'Constance Kent', 'camisón', 'colada', 'Scotland Yard', 'Somerset', 'caso real'],
+  ambience: { music: 'victorian-night', mood: 'rural' },
+  maxHints: 5,
+
+  coop: {
+    style: 'split',
+    roles: [
+      {
+        id: 'A',
+        title: 'Inspector de Scotland Yard',
+        briefing:
+          'Llegas de Londres. Tienes la casa: la familia que duerme arriba, la niñera y el médico que examinó al niño y la ropa de la noche. Lo que veas no lo verá tu compañero si no se lo pasas.',
+      },
+      {
+        id: 'B',
+        title: 'Policía del condado',
+        briefing:
+          'Eres de aquí. Tienes a los criados, la colada, el pueblo y los papeles: libros, cartas, el colegio. Puedes hablar con el señor Kent y con su hijo William. Lo que veas no lo verá tu compañero si no se lo pasas.',
+      },
+    ],
+  },
+
+  briefing: {
+    incidentDisplay: 'Sábado, 30 de junio de 1860 · madrugada',
+    summary:
+      'Saville Kent, de tres años, desapareció de su cuna durante la noche. A las ocho lo encontraron muerto en la letrina del jardín, envuelto en una manta de su propia cama. Nadie forzó la casa.',
+    context:
+      'Han pasado dos semanas, la policía del condado no ha avanzado y el Ministerio del Interior ha mandado a un inspector de Scotland Yard. Los periódicos acusan a la niñera, al padre, a un vagabundo. El pueblo quiere un culpable; vosotros, el bueno.',
+    background:
+      'Samuel Kent, inspector de fábricas, vive en Road Hill House con su segunda esposa, Mary, antigua institutriz de la casa, los tres hijos de ella y cuatro hijos del primer matrimonio, entre ellos Constance, de dieciséis años, y William, de quince.',
+    victim: 'ch-saville',
+    initialFacts: [],
+    initialEvidence: ['ev-parte', 'ev-medico', 'ev-colada'],
+    initialTimeline: ['te-acuesta', 'te-muerte', 'te-hallazgo'],
+  },
+
+  characters: [
+    {
+      id: 'ch-saville',
+      name: 'Francis Saville Kent',
+      look: { hair: 'short' },
+      role: 'victim',
+      age: 3,
+      occupation: 'Hijo menor del segundo matrimonio',
+      appearance:
+        'a cheerful 3-year-old Victorian boy in 1860, chubby round face, light curly hair, white smock with a lace collar, small toy in his hands',
+      summary: 'El favorito de su padre y de su madrastra.',
+      biography: 'Hijo de Samuel y de su segunda esposa, Mary. Dormía en el cuarto de la niñera, en su cuna, junto a la cama de su hermanita.',
+      personality: ['Alegre', 'Mimado'],
+    },
+    {
+      id: 'ch-constance',
+      name: 'Constance Kent',
+      look: { hair: 'bun' },
+      role: 'suspect',
+      age: 16,
+      occupation: 'Hija del primer matrimonio de Samuel Kent',
+      appearance:
+        'a sturdy 16-year-old Victorian girl in 1860, broad pale face, small deep-set eyes, heavy dark hair pulled back plainly, high-necked dark dress with a white collar, sullen guarded expression',
+      summary: 'Callada, fuerte, y con una historia de rebeldía.',
+      biography: 'Hija de la primera señora Kent, que murió en 1852. Pasa el curso en un internado y los veranos en casa. Su madrastra fue su institutriz.',
+      personality: ['Reservada', 'Testaruda', 'Muy contenida'],
+      relationToVictim: 'Su medio hermana',
+      motive: { text: 'Resiente a su madrastra y a la «segunda familia», que han ocupado el lugar de su madre.', visibleWhen: { fact: 'fa-resentimiento' } },
+      alibi: { claim: 'Durmió toda la noche en su cuarto, sola, y no oyó nada.' },
+    },
+    {
+      id: 'ch-gough',
+      name: 'Elizabeth Gough',
+      look: { hair: 'bun' },
+      role: 'suspect',
+      age: 22,
+      occupation: 'Niñera',
+      appearance:
+        'a pretty 22-year-old Victorian nursemaid in 1860, neat oval face, dark hair under a white frilled cap, plain grey dress and white apron, composed careful expression',
+      summary: 'Dormía en el mismo cuarto que el niño.',
+      biography: 'Niñera de la casa desde hace pocos meses. Duerme con los dos pequeños. El pueblo murmura sobre ella y el señor.',
+      personality: ['Serena', 'Precisa', 'Reservada'],
+      relationToVictim: 'Su niñera',
+      motive: { text: 'Los rumores dicen que el niño la vio con el señor Kent y que la iba a delatar.', visibleWhen: { asked: 'q-gough-rumores' } },
+      alibi: { claim: 'Durmió toda la noche; a las cinco vio la cuna vacía y pensó que la señora se lo había llevado.' },
+    },
+    {
+      id: 'ch-samuel',
+      name: 'Samuel Saville Kent',
+      look: { hair: 'short', beard: true },
+      role: 'suspect',
+      age: 59,
+      occupation: 'Subinspector de fábricas',
+      appearance:
+        'a stern 59-year-old Victorian gentleman in 1860, long stern face, thick grey side whiskers, receding grey hair, black frock coat and dark cravat, cold proud expression',
+      summary: 'Un caballero orgulloso al que el pueblo detesta.',
+      biography: 'Funcionario del Estado, vigila el trabajo en las fábricas textiles de la zona. Se casó con la institutriz de sus hijos al poco de enviudar.',
+      personality: ['Orgulloso', 'Autoritario', 'Protector con su casa'],
+      relationToVictim: 'Su padre',
+      motive: { text: 'El pueblo dice que el niño le sorprendió con la niñera.', visibleWhen: { asked: 'q-gough-rumores' } },
+      alibi: { claim: 'Durmió con su esposa. Al amanecer fue en coche a Trowbridge a avisar a la policía.' },
+    },
+    {
+      id: 'ch-william',
+      name: 'William Kent',
+      look: { hair: 'short' },
+      role: 'witness',
+      age: 15,
+      occupation: 'Hijo del primer matrimonio',
+      appearance:
+        'a shy slender 15-year-old Victorian boy in 1860, thin pale face, dark untidy hair, dark school jacket with a white collar, timid downcast eyes',
+      summary: 'El aliado de Constance.',
+      biography: 'Hermano de Constance, un año menor. Tímido, aficionado a la naturaleza. La sigue a todas partes.',
+      personality: ['Tímido', 'Leal a su hermana'],
+    },
+    {
+      id: 'ch-cox',
+      name: 'Sarah Cox',
+      look: { hair: 'bun' },
+      role: 'witness',
+      age: 22,
+      occupation: 'Criada de la casa',
+      appearance:
+        'a 22-year-old Victorian housemaid in 1860, round honest face, light brown hair under a white cap, plain print dress with rolled sleeves and a white apron',
+      summary: 'Prepara el cesto de la colada cada lunes.',
+      biography: 'Criada de la casa. Cada lunes recoge la ropa sucia de todos, la apunta en el libro y la deja en el cesto para la lavandera.',
+      personality: ['Ordenada', 'Nerviosa'],
+    },
+    {
+      id: 'ch-holley',
+      name: 'Hester Holley',
+      look: { hair: 'hat' },
+      role: 'witness',
+      age: 50,
+      occupation: 'Lavandera del pueblo',
+      appearance:
+        'a robust 50-year-old Victorian village washerwoman in 1860, red weathered face, strong arms, grey hair under a plain bonnet, coarse apron, indignant expression',
+      summary: 'La han acusado de robar un camisón.',
+      biography: 'Lava la ropa de Road Hill House desde hace años con ayuda de sus hijas. Honrada y orgullosa de serlo.',
+      personality: ['Indignada', 'Franca'],
+    },
+    {
+      id: 'ch-parsons',
+      name: 'Joshua Parsons',
+      look: { hair: 'short', beard: true },
+      role: 'witness',
+      age: 46,
+      occupation: 'Cirujano del pueblo',
+      appearance:
+        'a 46-year-old Victorian country surgeon in 1860, thoughtful bearded face, short brown hair going grey, dark coat and waistcoat, a watch chain, grave expression',
+      summary: 'Examinó al niño y la ropa de la casa.',
+      biography: 'Médico de la familia. Examinó el cuerpo la misma mañana y, a petición de la policía, la ropa de dormir de los habitantes de la casa.',
+      personality: ['Cuidadoso', 'Grave'],
+    },
+  ],
+
+  locations: [
+    { id: 'lo-casa', name: 'Road Hill House', description: 'Casa georgiana de tres plantas, con jardín, cochera y una letrina para los criados.' },
+    { id: 'lo-cuarto', name: 'Cuarto de la niñera', description: 'En el primer piso: la cama de Elizabeth Gough, la cuna de Saville y la cama de su hermanita.' },
+    { id: 'lo-salon', name: 'Salón', description: 'En la planta baja, con una ventana de guillotina que da al jardín.' },
+    { id: 'lo-letrina', name: 'Letrina de los criados', description: 'Una caseta al fondo del jardín, junto a los arbustos.' },
+    { id: 'lo-lavadero', name: 'Pasillo de la colada', description: 'Donde se deja el cesto de la ropa sucia los lunes.' },
+  ],
+
+  relationships: [
+    { id: 're-padre', a: 'ch-samuel', b: 'ch-saville', label: 'Padre e hijo' },
+    { id: 're-hermanos', a: 'ch-constance', b: 'ch-william', label: 'Hermanos y aliados' },
+    { id: 're-medio', a: 'ch-constance', b: 'ch-saville', label: 'Medio hermanos' },
+    { id: 're-ninera', a: 'ch-gough', b: 'ch-saville', label: 'Niñera' },
+  ],
+
+  facts: [
+    { id: 'fa-dentro', text: 'La ventana del salón se abrió desde dentro: el asesino es de la casa.', important: true },
+    { id: 'fa-manta', text: 'Quien sacó al niño colocó las mantas de la cuna como estaban: no quería despertar a nadie y conocía el cuarto.' },
+    { id: 'fa-franela', text: 'En la letrina apareció un trozo de franela de pecho de mujer.' },
+    { id: 'fa-medico-hora', text: 'El niño murió en la letrina, hacia la una de la madrugada, de una herida de cuchillo.', important: true },
+    { id: 'fa-camison-limpio', text: 'El camisón que Constance entregó como el de esa noche estaba impecable, sin una arruga de una semana de uso.', important: true },
+    { id: 'fa-tres-camisones', text: 'Constance tenía tres camisones, según el libro de la colada.', important: true },
+    { id: 'fa-camison-falta', text: 'Del cesto de la colada desapareció un camisón de Constance.', important: true },
+    { id: 'fa-vaso-agua', text: 'Mientras Sarah preparaba el cesto, Constance le pidió un vaso de agua y se quedó sola junto a la ropa.', important: true },
+    { id: 'fa-holley-inocente', text: 'La lavandera no robó el camisón: el cesto le llegó ya sin él.', important: true },
+    { id: 'fa-fuga', text: 'En 1856 Constance huyó de casa con William, vestida de chico; se cortó el pelo y lo tiró a la letrina.', important: true },
+    { id: 'fa-resentimiento', text: 'Constance escribió a una compañera que su madrastra prefería a «la segunda familia» y que despreciaba a la primera.', important: true },
+    { id: 'fa-cocina', text: 'La primera noche, el señor Kent encerró a dos policías en la cocina «para que vigilaran la casa».' },
+    { id: 'fa-gough-cuna', text: 'La niñera vio la cuna vacía a las cinco y no dio la alarma hasta las siete y cuarto.' },
+  ],
+
+  evidence: [
+    {
+      id: 'ev-parte',
+      kind: 'report',
+      title: 'Parte de la policía del condado',
+      dated: '30 de junio de 1860',
+      source: 'Policía de Wiltshire, comisaría de Trowbridge',
+      summary: 'Lo que se sabe de la noche.',
+      holder: 'both',
+      related: { characters: ['ch-saville', 'ch-gough', 'ch-samuel'], locations: ['lo-casa', 'lo-salon', 'lo-letrina'], events: ['te-muerte', 'te-hallazgo'] },
+      body: [
+        { type: 'heading', text: 'ROAD HILL HOUSE · MUERTE DE UN NIÑO' },
+        { type: 'typed', text: 'La niñera echó en falta al niño al amanecer. A las 8:00, dos vecinos que lo buscaban lo encontraron en la letrina de los criados, envuelto en una manta de su cuna.' },
+        {
+          type: 'typed',
+          text: 'La ventana del salón estaba subida unos centímetros. {{dt-parte-contraventana|Sus contraventanas se atrancan por dentro con una barra de hierro, y la barra estaba quitada; fuera, en el césped húmedo, no hay pisadas.}}',
+        },
+        { type: 'typed', text: '{{dt-parte-franela|En la letrina, además, un trozo de franela de pecho, prenda de mujer, manchada.}}' },
+        { type: 'signature', name: 'Superintendente John Foley' },
+      ],
+      details: [
+        { id: 'dt-parte-contraventana', label: 'Abierta desde dentro', description: 'Nadie entró: alguien de la casa salió por esa ventana y quiso que pareciera lo contrario.', effects: [{ grantFact: 'fa-dentro' }], points: 15 },
+        { id: 'dt-parte-franela', label: 'Una franela de mujer', description: 'Una prenda que ninguna mujer de la casa reconoce como suya.', effects: [{ grantFact: 'fa-franela' }], points: 5 },
+      ],
+      decisive: true,
+    },
+    {
+      id: 'ev-medico',
+      kind: 'report',
+      title: 'Informe del cirujano Joshua Parsons',
+      source: 'Examen del cuerpo y de la ropa de dormir de la casa',
+      summary: 'La herida, la hora y la ropa.',
+      holder: 'A',
+      related: { characters: ['ch-parsons', 'ch-saville', 'ch-constance'], locations: ['lo-letrina'], events: ['te-muerte'] },
+      body: [
+        { type: 'heading', text: 'EXAMEN MÉDICO · 30 DE JUNIO' },
+        {
+          type: 'typed',
+          text: '{{dt-med-hora|El niño llevaba muerto unas cinco horas: murió hacia la una de la madrugada. La sangre está en la letrina, no en la casa: lo mataron allí, con un cuchillo.}} No sufrió golpes previos.',
+        },
+        {
+          type: 'typed',
+          text: 'Por indicación de la policía examiné la ropa de dormir de los habitantes de la casa. {{dt-med-limpio|El camisón que la señorita Constance me entregó como el que llevaba esa noche estaba muy limpio, recién planchado: no parecía usado en toda una semana.}}',
+        },
+        { type: 'signature', name: 'J. Parsons, cirujano' },
+      ],
+      details: [
+        { id: 'dt-med-hora', label: 'A la una, en la letrina', description: 'Lo sacaron de la casa vivo y lo mataron fuera.', effects: [{ grantFact: 'fa-medico-hora' }], points: 15 },
+        { id: 'dt-med-limpio', label: 'Un camisón demasiado limpio', description: 'Lo que Constance entregó no es lo que llevó toda la semana.', effects: [{ grantFact: 'fa-camison-limpio' }], points: 20 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-cuna',
+      kind: 'physical',
+      title: 'La cuna de Saville',
+      source: 'Cuarto de la niñera',
+      summary: 'Cómo quedó la cama del niño.',
+      holder: 'A',
+      autoDiscoverWhen: { asked: 'q-gough-noche' },
+      related: { characters: ['ch-gough', 'ch-saville'], locations: ['lo-cuarto'], events: [] },
+      body: [
+        {
+          type: 'typed',
+          text: '{{dt-cuna-mantas|Las sábanas y la colcha están dobladas hacia atrás con cuidado, como quien levanta a un niño dormido para no despertar a los demás.}} Falta una manta: la que lo envolvía en la letrina.',
+        },
+      ],
+      details: [{ id: 'dt-cuna-mantas', label: 'Con cuidado', description: 'Quien se lo llevó conocía el cuarto y no quería despertar a nadie.', effects: [{ grantFact: 'fa-manta' }], points: 10 }],
+    },
+    {
+      id: 'ev-colada',
+      kind: 'record',
+      title: 'Libro de la colada de Road Hill House',
+      source: 'Cuarto de la plancha',
+      summary: 'Lo que salió de la casa el lunes 2 de julio.',
+      holder: 'B',
+      related: { characters: ['ch-cox', 'ch-holley', 'ch-constance'], locations: ['lo-lavadero'], events: ['te-colada'] },
+      body: [
+        {
+          type: 'table',
+          header: ['Prenda', 'Persona', 'Lunes 2 de julio'],
+          rows: [
+            ['Camisones', '{{dt-col-tres|Srta. Constance}}', '1 (de 3: uno puesto, otro en el cajón)'],
+            ['Camisones', 'Srta. Elizabeth', '1'],
+            ['Camisones', 'Elizabeth Gough', '1'],
+          ],
+        },
+        { type: 'handwritten', text: 'Recibido por la Sra. Holley el martes 3: {{dt-col-falta|falta 1 camisón de señorita. Avisado a la casa.}}', author: 'Anotación de la lavandera' },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-colada' }],
+      details: [
+        { id: 'dt-col-tres', label: 'Tres camisones', description: 'Constance tiene tres camisones: uno puesto, uno en el cajón, uno en la colada.', effects: [{ grantFact: 'fa-tres-camisones' }], points: 10 },
+        { id: 'dt-col-falta', label: 'Uno desaparece', description: 'El camisón apuntado en el libro no llegó a la lavandera.', effects: [{ grantFact: 'fa-camison-falta' }, { unlockTimelineEvent: 'te-falta' }], points: 20 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-carta-amiga',
+      kind: 'letter',
+      title: 'Carta de Constance a una compañera del internado',
+      dated: 'Primavera de 1860',
+      source: 'Entregada por la familia de Emma Moody, en Warminster',
+      summary: 'Lo que Constance contaba de su casa.',
+      holder: 'B',
+      autoDiscoverWhen: { asked: 'q-william-colegio' },
+      related: { characters: ['ch-constance', 'ch-saville'], locations: [], events: [] },
+      body: [
+        { type: 'paragraph', text: 'Querida Emma:' },
+        {
+          type: 'paragraph',
+          text: 'Vuelvo a casa en vacaciones, qué remedio. {{dt-amiga-segunda|Allí todo es para la segunda familia: los pequeños tienen lo mejor y a nosotros se nos trata como a criados. Ella se burla de mamá, que era una dama, delante de nosotros.}}',
+        },
+        { type: 'paragraph', text: 'William dice que algún día nos iremos de verdad.' },
+        { type: 'signature', name: 'Constance' },
+      ],
+      details: [{ id: 'dt-amiga-segunda', label: '«La segunda familia»', description: 'Constance vive con rencor el lugar que ocupan su madrastra y sus hijos.', effects: [{ grantFact: 'fa-resentimiento' }], points: 20 }],
+      decisive: true,
+    },
+    {
+      id: 'ev-registro-holley',
+      kind: 'report',
+      title: 'Registro de la casa de la lavandera',
+      source: 'Policía del condado',
+      summary: 'Buscaron el camisón en casa de la señora Holley.',
+      holder: 'B',
+      autoDiscoverWhen: { asked: 'q-holley-camison' },
+      related: { characters: ['ch-holley'], locations: [], events: [] },
+      body: [
+        {
+          type: 'typed',
+          text: 'A petición del señor Kent, se registra la casa de la lavandera Holley y de sus hijas. {{dt-holley-nada|No aparece ningún camisón de la casa. Las vecinas confirman que el cesto llegó atado y que la Sra. Holley contó las prendas delante de ellas.}}',
+        },
+      ],
+      details: [{ id: 'dt-holley-nada', label: 'Llegó ya sin él', description: 'El camisón desapareció antes de salir de la casa.', effects: [{ grantFact: 'fa-holley-inocente' }], points: 15 }],
+    },
+  ],
+
+  deductions: [
+    {
+      id: 'de-camison',
+      title: 'El camisón cambiado',
+      combine: ['dt-med-limpio', 'dt-col-falta'],
+      explanation: 'El camisón que Constance enseñó al médico estaba recién planchado; el que llevaba esa noche entró en el cesto de la colada y desapareció antes de llegar a la lavandera.',
+      points: 40,
+    },
+    {
+      id: 'de-cesto',
+      title: 'Quién lo sacó del cesto',
+      combine: ['fa-vaso-agua', 'dt-holley-nada'],
+      explanation: 'La lavandera recibió el cesto sin el camisón; el único momento en que alguien estuvo sola con él fue cuando Constance mandó a Sarah a por un vaso de agua.',
+      points: 30,
+    },
+    {
+      id: 'de-letrina',
+      title: 'Una casa cerrada por dentro',
+      combine: ['dt-parte-contraventana', 'dt-med-hora'],
+      explanation: 'El niño salió vivo por la ventana del salón, abierta desde dentro, y murió en la letrina a la una: alguien de la casa lo sacó y lo mató allí.',
+      points: 30,
+    },
+  ],
+
+  contradictions: [
+    {
+      id: 'cx-constance-camisones',
+      title: 'El tercer camisón',
+      a: { line: 'ln-constance-dos' },
+      b: { detail: 'dt-col-tres' },
+      explanation: 'Constance dice que solo tiene dos camisones; el libro de la colada le apunta tres.',
+      effects: [{ grantFact: 'fa-tres-camisones' }],
+      points: 30,
+    },
+    {
+      id: 'cx-gough-cinco',
+      title: 'Dos horas sin dar la alarma',
+      a: { line: 'ln-gough-enseguida' },
+      b: { line: 'ln-gough-cinco' },
+      explanation: 'La niñera dice que avisó en cuanto vio la cuna vacía; ella misma cuenta que la vio a las cinco y no dijo nada hasta las siete y cuarto.',
+      effects: [{ revealSecret: 'se-gough' }],
+      points: 20,
+    },
+  ],
+
+  secrets: [
+    { id: 'se-gough', characterId: 'ch-gough', text: 'Elizabeth Gough vio la cuna vacía a las cinco y supuso que la señora se había llevado al niño, como otras veces; no se atrevió a ir a su cuarto a preguntar. Calló la hora por miedo a que la culparan.', points: 20 },
+    { id: 'se-samuel', characterId: 'ch-samuel', text: 'La primera noche, Samuel Kent encerró a dos policías en la cocina, dejando la casa sin vigilar: quería que nadie molestara a su familia, y nunca lo ha explicado.', revealedWhen: { fact: 'fa-cocina' }, points: 20 },
+  ],
+
+  interrogations: [
+    {
+      id: 'in-constance',
+      characterId: 'ch-constance',
+      holder: 'A',
+      setting: 'En la biblioteca de la casa. Se sienta muy recta, con las manos juntas, y mira al inspector sin pestañear.',
+      opening: [{ text: 'Ya he contestado a la policía del condado. Dormí, y no oí nada.' }],
+      topics: [
+        {
+          id: 'tp-constance-noche',
+          label: 'La noche',
+          kind: 'alibi',
+          questions: [
+            {
+              id: 'q-constance-noche',
+              prompt: '¿Qué hizo usted esa noche?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Me acosté a las diez y media, leí un poco y dormí hasta que me despertaron con el revuelo.', tone: 'lie' }] }],
+            },
+            {
+              id: 'q-constance-saville',
+              prompt: '¿Quería a su hermanito?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Era un niño alegre. Jugaba con él a veces.', tone: 'evasion' }] }],
+            },
+          ],
+        },
+        {
+          id: 'tp-constance-ropa',
+          label: 'La ropa de dormir',
+          kind: 'personal',
+          questions: [
+            {
+              id: 'q-constance-camisones',
+              prompt: '¿Cuántos camisones tiene usted?',
+              kind: 'ask',
+              requires: { fact: 'fa-camison-limpio' },
+              responses: [{ lines: [{ id: 'ln-constance-dos', text: 'Dos. Uno lo llevaba esa noche y se lo di al doctor; el otro estaba en la colada.', tone: 'lie' }] }],
+            },
+            {
+              id: 'q-constance-cx',
+              prompt: 'El libro de la colada le apunta tres.',
+              kind: 'contradiction',
+              contradiction: 'cx-constance-camisones',
+              responses: [
+                {
+                  lines: [
+                    { speaker: 'narration', text: 'Constance tarda en contestar. Se alisa la falda.' },
+                    { text: 'Tres, entonces. Uno se perdería en la lavandería. Esa mujer pierde la ropa.', tone: 'evasion' },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 'q-constance-cesto',
+              prompt: 'Usted pidió un vaso de agua a Sarah y se quedó sola junto al cesto. El camisón desapareció de allí.',
+              kind: 'confront',
+              requires: { all: [{ fact: 'fa-vaso-agua' }, { fact: 'fa-camison-falta' }] },
+              responses: [
+                {
+                  lines: [
+                    { text: 'Tenía sed.', tone: 'evasion' },
+                    { speaker: 'narration', text: 'Durante el resto de la entrevista, Constance no vuelve a decir una palabra. Mira por la ventana, hacia el jardín.' },
+                  ],
+                  effects: [{ setFlag: 'constance-calla' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-gough',
+      characterId: 'ch-gough',
+      holder: 'A',
+      setting: 'En el cuarto de los niños, junto a la cuna vacía, que nadie ha querido mover.',
+      opening: [{ text: 'Ya lo he contado diez veces. Me lo contarán a mí en sueños.' }],
+      topics: [
+        {
+          id: 'tp-gough-noche',
+          label: 'La noche',
+          kind: 'events',
+          questions: [
+            {
+              id: 'q-gough-noche',
+              prompt: '¿Cuándo vio que el niño no estaba?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { id: 'ln-gough-enseguida', text: 'En cuanto me desperté vi la cuna vacía y avisé a la señora.', tone: 'lie' },
+                    { text: 'Mire usted las mantas: así las encontré, dobladas con cuidado.', tone: 'truth' },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 'q-gough-hora',
+              prompt: '¿A qué hora se despertó?',
+              kind: 'press',
+              requires: { asked: 'q-gough-noche' },
+              responses: [
+                {
+                  lines: [{ id: 'ln-gough-cinco', text: 'Hacia las cinco. Vi la cuna vacía, pensé que la señora se lo había llevado a su cama, como otras veces, y me volví a dormir. A las siete y cuarto fui a buscarlo.', tone: 'truth' }],
+                  effects: [{ grantFact: 'fa-gough-cuna' }, { unlockTimelineEvent: 'te-gough-cuna' }],
+                },
+              ],
+            },
+            {
+              id: 'q-gough-cx',
+              prompt: 'Entonces no avisó enseguida: pasaron más de dos horas.',
+              kind: 'contradiction',
+              contradiction: 'cx-gough-cinco',
+              responses: [
+                {
+                  lines: [{ text: 'No me atreví a llamar al cuarto de los señores a esas horas. Y luego… luego ya era tarde para decirlo. Pensaban que había sido yo.', tone: 'admission' }],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'tp-gough-rumores',
+          label: 'Lo que dice el pueblo',
+          kind: 'personal',
+          questions: [
+            {
+              id: 'q-gough-rumores',
+              prompt: 'En el pueblo dicen que usted y el señor Kent…',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'El pueblo dice lo que le divierte. El señor no ha subido nunca a ese cuarto de noche. Y la franela de la letrina no es mía: pruébemela si quiere.', tone: 'truth' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-parsons',
+      characterId: 'ch-parsons',
+      holder: 'A',
+      setting: 'En su consulta, con el informe delante y las gafas en la mano.',
+      opening: [{ text: 'En veinte años de oficio no había visto nada igual. Pregunte.' }],
+      topics: [
+        {
+          id: 'tp-parsons-ropa',
+          label: 'La ropa',
+          kind: 'other',
+          questions: [
+            {
+              id: 'q-parsons-camison',
+              prompt: '¿Qué le llamó la atención del camisón de Constance?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Que estaba demasiado limpio. Una muchacha que lo lleva desde el lunes no lo devuelve así, con los pliegues de la plancha. Ese camisón no se había usado esa noche.', tone: 'truth' }] }],
+            },
+            {
+              id: 'q-parsons-franela',
+              prompt: '¿Y la franela de la letrina?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Es de una mujer de pecho amplio; a la niñera le está grande. Pudo llevar años en esa letrina. Yo no me fiaría de ella.', tone: 'truth' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-samuel',
+      characterId: 'ch-samuel',
+      holder: 'B',
+      setting: 'En su despacho, de pie junto a la chimenea apagada. No le ofrece asiento.',
+      opening: [{ text: 'Mi casa ha sido profanada y ahora la profanan ustedes. Sean breves.' }],
+      topics: [
+        {
+          id: 'tp-samuel-familia',
+          label: 'La familia',
+          kind: 'person',
+          about: 'ch-constance',
+          questions: [
+            {
+              id: 'q-samuel-fuga',
+              prompt: '¿Ha tenido problemas con sus hijos mayores?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Chiquilladas. En 1856 Constance y William se escaparon: ella se vistió de chico, se cortó el pelo y lo tiró a la letrina. Los encontraron en una posada de Bath.', tone: 'truth' },
+                    { text: 'Constance dijo entonces que lo hizo para irse lejos de «ella». Se le pasó.', tone: 'evasion' },
+                  ],
+                  effects: [{ grantFact: 'fa-fuga' }, { unlockTimelineEvent: 'te-fuga' }],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'tp-samuel-noche',
+          label: 'Aquella noche',
+          kind: 'alibi',
+          questions: [
+            {
+              id: 'q-samuel-trowbridge',
+              prompt: '¿Por qué fue usted mismo a Trowbridge, en vez de mandar a un criado?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Porque es mi hijo y yo no espero a nadie. Pregunte en el peaje: pasé a las ocho y media.', tone: 'truth' }] }],
+            },
+            {
+              id: 'q-samuel-cocina',
+              prompt: '¿Por qué encerró a los policías en la cocina la primera noche?',
+              kind: 'ask',
+              requires: { asked: 'q-cox-noche' },
+              responses: [
+                {
+                  lines: [{ text: 'Para que vigilaran la planta baja y no anduvieran por los dormitorios de mis hijas. No pienso dar más explicaciones.', tone: 'evasion' }],
+                  effects: [{ grantFact: 'fa-cocina' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-william',
+      characterId: 'ch-william',
+      holder: 'B',
+      setting: 'En el jardín, junto a un frasco con escarabajos. Esquiva la mirada y la letrina.',
+      opening: [{ text: 'Yo no sé nada. Estaba dormido.' }],
+      topics: [
+        {
+          id: 'tp-william-hermana',
+          label: 'Constance',
+          kind: 'person',
+          about: 'ch-constance',
+          questions: [
+            {
+              id: 'q-william-colegio',
+              prompt: '¿Cómo está tu hermana en el colegio? ¿Tiene amigas?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Una, Emma Moody, en Warminster. Se escriben mucho. Constance le cuenta todo lo de casa… lo que no puede decir aquí.', tone: 'truth' }] }],
+            },
+            {
+              id: 'q-william-noche',
+              prompt: '¿Oíste algo esa noche?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'No. Nada. Mi cuarto está lejos.', tone: 'evasion' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-cox',
+      characterId: 'ch-cox',
+      holder: 'B',
+      setting: 'En el cuarto de la plancha, entre sábanas dobladas.',
+      opening: [{ text: 'Yo solo hago la colada, señor. Y me tienen loca con ese camisón.' }],
+      topics: [
+        {
+          id: 'tp-cox-colada',
+          label: 'La colada',
+          kind: 'events',
+          questions: [
+            {
+              id: 'q-cox-cesto',
+              prompt: '¿Pasó algo mientras preparaba el cesto el lunes?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'La señorita Constance bajó a preguntarme si su camisón estaba en el cesto. Le dije que sí, que lo había apuntado.', tone: 'truth' },
+                    { text: 'Luego me pidió que le subiera un vaso de agua del comedor. Fui y volví. Ella se quedó allí, junto al cesto, un par de minutos.', tone: 'truth' },
+                  ],
+                  effects: [{ grantFact: 'fa-vaso-agua' }],
+                },
+              ],
+            },
+            {
+              id: 'q-cox-noche',
+              prompt: '¿Pasó algo raro la primera noche, después del crimen?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'El señor cerró la cocina con llave con dos policías dentro. Estuvieron toda la noche encerrados, aporreando la puerta de vez en cuando.', tone: 'truth' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-holley',
+      characterId: 'ch-holley',
+      holder: 'B',
+      setting: 'En su lavadero del pueblo, entre tinas humeantes. Tiene los brazos en jarras.',
+      opening: [{ text: '¡Treinta años lavando ropa de señores y ahora resulta que soy una ladrona!' }],
+      topics: [
+        {
+          id: 'tp-holley-camison',
+          label: 'El camisón',
+          kind: 'events',
+          questions: [
+            {
+              id: 'q-holley-camison',
+              prompt: '¿Qué pasó con el camisón que falta?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Que no vino. Conté las prendas el martes delante de mis hijas y de la vecina, como siempre, y faltaba uno. Lo apunté y lo dije.', tone: 'truth' },
+                    { text: 'Y el señor Kent me mandó a la policía a revolverme la casa. Que la revuelvan otra vez si quieren.', tone: 'truth' },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+
+  // t = minutos respecto a la muerte (hacia la 1:00 del 30 de junio de 1860)
+  timeline: [
+    { id: 'te-fuga', t: -2102400, display: 'Julio de 1856', title: 'Constance y William huyen de casa', description: 'Ella, vestida de chico y con el pelo cortado, que tira a la letrina.', characters: ['ch-constance', 'ch-william'], key: true },
+    { id: 'te-acuesta', t: -240, display: '29 de junio, 21:00', title: 'La niñera acuesta a Saville en su cuna', description: 'En el cuarto de los niños, junto a su cama.', characters: ['ch-gough', 'ch-saville'], location: 'lo-cuarto', key: true },
+    { id: 'te-falso-duerme', t: -10, display: '30 de junio, madrugada', title: 'Constance duerme en su cuarto toda la noche', description: 'Según Constance.', characters: ['ch-constance'], veracity: 'false', claimedBy: 'ch-constance' },
+    { id: 'te-muerte', t: 0, display: '30 de junio, hacia la 1:00', title: 'Muerte de Saville Kent en la letrina', description: 'Lo han sacado por la ventana del salón.', characters: ['ch-saville'], location: 'lo-letrina', key: true },
+    { id: 'te-gough-cuna', t: 240, display: '30 de junio, 5:00', title: 'La niñera ve la cuna vacía y se vuelve a dormir', description: 'Cree que el niño está con su madre.', characters: ['ch-gough'], location: 'lo-cuarto', key: true },
+    { id: 'te-hallazgo', t: 420, display: '30 de junio, 8:00', title: 'Hallan al niño en la letrina de los criados', description: 'Envuelto en una manta de su cuna.', characters: ['ch-saville'], location: 'lo-letrina', key: true },
+    { id: 'te-colada', t: 2820, display: 'Lunes 2 de julio', title: 'Constance pide un vaso de agua junto al cesto de la colada', description: 'Sarah Cox la deja sola un par de minutos.', characters: ['ch-constance', 'ch-cox'], location: 'lo-lavadero', key: true },
+    { id: 'te-falta', t: 4260, display: 'Martes 3 de julio', title: 'La lavandera echa en falta un camisón', description: 'Lo anota en el libro.', characters: ['ch-holley'], key: true },
+  ],
+
+  accusation: {
+    motives: [
+      { id: 'mo-rencor', label: 'Rencor contra su madrastra y «la segunda familia», que ocupaba el lugar de su madre', availableWhen: { fact: 'fa-resentimiento' } },
+      { id: 'mo-silencio', label: 'Silenciar al niño, que había visto algo entre la niñera y el señor', availableWhen: { asked: 'q-gough-rumores' } },
+      { id: 'mo-celos-ninera', label: 'Celos de la niñera hacia la madre del niño' },
+      { id: 'mo-locura', label: 'Un arrebato sin motivo, en sueños' },
+    ],
+    methods: [
+      {
+        id: 'me-ventana',
+        label: 'Lo sacó dormido de la cuna, salió por la ventana del salón, lo mató en la letrina y luego hizo desaparecer su camisón manchado',
+        availableWhen: { all: [{ fact: 'fa-medico-hora' }, { fact: 'fa-dentro' }] },
+      },
+      { id: 'me-cuarto', label: 'Lo mató en el cuarto de los niños y lo bajó por la escalera de servicio' },
+      { id: 'me-extrano', label: 'Un extraño entró por la ventana del salón y se lo llevó' },
+      { id: 'me-asfixia', label: 'Lo asfixió por accidente al acallarlo y luego fingió el crimen' },
+    ],
+  },
+
+  solution: {
+    culprits: ['ch-constance'],
+    motive: 'mo-rencor',
+    method: 'me-ventana',
+    proof: ['ev-colada', 'ev-medico', 'ev-carta-amiga'],
+    whatHappened:
+      'Constance Kent, de dieciséis años, sacó de su cuna a su medio hermano Saville en la madrugada del 30 de junio de 1860, mientras la niñera dormía. Bajó con él, abrió desde dentro las contraventanas del salón, salió al jardín y lo mató en la letrina de los criados hacia la una. Su camisón quedó manchado: lo escondió y entregó al médico otro limpio como si fuera el de esa noche. El lunes, para que no faltara ninguno en la cuenta, dejó en el cesto de la colada el tercero y, cuando Sarah fue a por un vaso de agua, lo volvió a sacar. El camisón manchado nunca apareció. Rencor hacia su madrastra y hacia la segunda familia de su padre, que vivía como un despojo de su madre.',
+    reconstruction: [
+      '1856: Constance, a los doce años, huye de casa vestida de chico y tira su pelo a la letrina.',
+      '29 de junio de 1860: la niñera acuesta a Saville en su cuna, en su propio cuarto.',
+      'De madrugada, Constance saca al niño dormido, dejando las mantas dobladas con cuidado.',
+      'Abre desde dentro las contraventanas del salón y sale al jardín.',
+      'Hacia la una lo mata en la letrina de los criados.',
+      'A las cinco, la niñera ve la cuna vacía y cree que el niño está con su madre. A las ocho lo encuentran.',
+      'Constance entrega al médico un camisón limpio. El lunes deja otro en el cesto de la colada y lo recupera mientras Sarah va a por agua.',
+      'El martes, la lavandera echa en falta un camisón. Cinco años después, Constance confiesa.',
+    ],
+    decisiveEvidence: ['ev-parte', 'ev-medico', 'ev-colada', 'ev-carta-amiga'],
+    alibiTruths: [
+      { characterId: 'ch-constance', truth: 'No durmió: sacó al niño de la cuna y salió con él al jardín por la ventana del salón.' },
+      { characterId: 'ch-gough', truth: 'Dormía de verdad. Calló que vio la cuna vacía a las cinco por miedo a que la culparan.' },
+      { characterId: 'ch-samuel', truth: 'Durmió con su esposa y fue a Trowbridge por la mañana. Encerró a los policías para proteger a su familia, no para ocultar un crimen suyo.' },
+    ],
+  },
+
+  endings: [
+    {
+      id: 'en-whicher',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct', knowledge: { all: [{ fact: 'fa-vaso-agua' }, { fact: 'fa-camison-limpio' }] } },
+      outcome: 'success',
+      title: 'Tenía razón',
+      text: 'Lleváis a Constance ante los magistrados con el camisón que falta. Los jueces la sueltan por falta de pruebas, el país entero se burla de «la teoría del camisón» y el inspector de Scotland Yard vuelve a Londres desacreditado. En abril de 1865, Constance Kent entra en un juzgado de Wiltshire y confiesa. Sois los únicos a los que no les sorprende.',
+    },
+    {
+      id: 'en-exito',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct' },
+      outcome: 'success',
+      title: 'La hermana',
+      text: 'La acusación apunta a Constance y explica el cómo y el porqué. No basta para retenerla en 1860, pero queda escrita. Cinco años después, ella misma la firma.',
+    },
+    { id: 'en-parcial', when: { culprit: 'correct' }, outcome: 'partial', title: 'Una sospecha', text: 'Señaláis a Constance, pero sin poder contar cómo ni por qué. Los magistrados la sueltan en una hora, y el pueblo vuelve a mirar a la niñera.' },
+    { id: 'en-gough', when: { culprit: 'ch-gough' }, outcome: 'failure', title: 'La niñera', text: 'Elizabeth Gough es detenida y soltada sin cargos. Su nombre queda manchado para siempre; el camisón sigue sin aparecer.' },
+    { id: 'en-samuel', when: { culprit: 'ch-samuel' }, outcome: 'failure', title: 'El padre', text: 'Acusáis al señor Kent con los rumores del pueblo. No hay una sola prueba. Él os denuncia ante el Ministerio y vuestra carrera termina allí.' },
+    { id: 'en-fallo', when: {}, outcome: 'failure', title: 'Un vagabundo', text: 'El caso se cierra con la teoría del vagabundo que entró por la ventana. La ventana se abrió desde dentro, pero eso ya no le importa a nadie.' },
+  ],
+
+  hints: [
+    {
+      id: 'hl-dentro',
+      topic: 'Por dónde salió',
+      relevantWhen: { not: { fact: 'fa-dentro' } },
+      steps: ['Lee el parte con atención: la ventana del salón.', '¿Por qué lado se atrancan las contraventanas?', 'El asesino estaba ya dentro de la casa.'],
+    },
+    {
+      id: 'hl-camison',
+      topic: 'La ropa de esa noche',
+      relevantWhen: { not: { fact: 'fa-camison-falta' } },
+      steps: ['Quien mató en la letrina se manchó.', 'El inspector (A) tiene el examen médico de la ropa; la policía del condado (B), el libro de la colada.', 'Poned en común lo que dice el médico del camisón de Constance y lo que dice la lavandera.'],
+    },
+    {
+      id: 'hl-cesto',
+      topic: 'El cesto',
+      relevantWhen: { all: [{ fact: 'fa-camison-falta' }, { not: { fact: 'fa-vaso-agua' } }] },
+      steps: ['El camisón no llegó a la lavandera.', '¿Quién preparó el cesto?', 'B: pregunta a Sarah Cox qué pasó mientras lo preparaba.'],
+    },
+    {
+      id: 'hl-motivo',
+      topic: 'El porqué',
+      relevantWhen: { not: { fact: 'fa-resentimiento' } },
+      steps: ['¿Qué sentía Constance por su madrastra?', 'B: William sabe a quién escribe su hermana.', 'Pregúntale por el colegio y busca esa carta.'],
+    },
+  ],
+
+  objectives: [
+    { id: 'ob-dentro', text: 'Demostrad que el asesino era de la casa.', completeWhen: { fact: 'fa-dentro' }, points: 20 },
+    { id: 'ob-camison', text: 'Seguid el rastro del camisón que falta.', completeWhen: { all: [{ fact: 'fa-camison-falta' }, { fact: 'fa-vaso-agua' }] }, points: 30 },
+    { id: 'ob-gough', text: 'Averiguad qué callaba la niñera.', completeWhen: { secret: 'se-gough' }, points: 20, hidden: true },
+  ],
+
+  assets: [],
+};
+
+export default caseFile;
