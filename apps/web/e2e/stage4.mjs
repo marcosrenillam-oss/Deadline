@@ -76,7 +76,7 @@ try {
   await p.getByRole('button', { name: 'Hoy', exact: true }).click();
   await p.getByRole('button', { name: /Romper el precinto/ }).click();
   await p.getByRole('timer').waitFor();
-  await goto(D);
+  await goto(`${D}/expediente`);
   await p.getByRole('heading', { name: 'Hechos documentados' }).waitFor();
   check(await visible(p.getByText('Inspirado en hechos reales').first()), 'El diario muestra su origen real');
   check(await visible(p.getByRole('heading', { name: 'Recreación narrativa' })), 'Separa los hechos documentados de la recreación');
@@ -148,7 +148,7 @@ try {
   const second = after2.attempts.find((x) => x.a === 2);
   check(!!second && second.ev.includes('ev-alfiler') && second.ev.includes('ev-inventario'), 'Se conservan las evidencias descubiertas');
   check(!!second && second.asked.length === 0, 'Las conversaciones empiezan de cero');
-  await goto(D);
+  await goto(`${D}/expediente`);
   check(await visible(p.getByText(/Intento nº 2/)), 'El historial registra el segundo intento');
 
   await p.clock.fastForward('01:01:00');

@@ -108,7 +108,8 @@ function Cover() {
 }
 
 const TABS = [
-  { to: '', label: 'Expediente', end: true },
+  { to: '', label: 'Corcho', end: true },
+  { to: 'expediente', label: 'Expediente' },
   { to: 'evidencias', label: 'Evidencias' },
   { to: 'personas', label: 'Personas' },
   { to: 'cronologia', label: 'Cronología' },

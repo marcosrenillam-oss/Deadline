@@ -547,3 +547,19 @@ propio informe para enviarlo, y el compañero, al recibirlo, cierra con el
 mismo informe. Las recompensas ya cobradas en intentos anteriores siguen
 sin pagarse dos veces. En la acusación, bajo motivos y métodos, se dice
 cuántos quedan por descubrir: solo se ofrecen los descubiertos.
+
+### D-079 · El expediente se abre en un corcho vivo
+La pantalla principal del caso ya no es una hoja de texto: es un corcho que
+se desliza en horizontal con todo lo que se sabe clavado a mano. Las
+personas son polaroids con su retrato, las pruebas fichas con su foto y su
+tipo, los hechos importantes notas adhesivas y los lugares tarjetas; hilos
+rojos unen las relaciones conocidas y de latón las deducciones
+establecidas. Lo que aparece por primera vez cae del aire y se clava (cada
+investigación recuerda lo ya visto). Tocar cualquier pieza la acerca a
+pantalla con su información y su acción (ficha, interrogar, examinar). El
+texto completo del expediente sigue en la pestaña «Expediente».
+
+### D-080 · En pareja, el expediente se elige en la estantería
+El teléfono lleva a la misma estantería de carpetas que el modo solo,
+filtrada a los expedientes en pareja; la ficha de la carpeta tiene
+«Investigar en pareja» y vuelve al teléfono para elegir cómo jugar.

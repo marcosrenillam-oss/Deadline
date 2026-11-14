@@ -43,7 +43,8 @@ function page<T extends Record<string, ComponentType>>(load: () => Promise<T>, n
 
 const caseScreens = () => import('./caseScreens.ts');
 const caseChildren = () => [
-  { index: true, element: page(caseScreens, 'DossierTab', true) },
+  { index: true, element: page(caseScreens, 'CaseWall', true) },
+  { path: 'expediente', element: page(caseScreens, 'DossierTab', true) },
   { path: 'evidencias', element: page(caseScreens, 'EvidenceTab', true) },
   { path: 'evidencias/:evidenceId', element: page(caseScreens, 'EvidenceViewer', true) },
   { path: 'personas', element: page(caseScreens, 'PeopleTab', true) },

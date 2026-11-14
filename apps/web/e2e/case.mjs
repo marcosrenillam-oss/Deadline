@@ -214,6 +214,21 @@ try {
   await p.waitForTimeout(400);
   await p.screenshot({ path: join(shots, 'case-board.png') });
 
+  // El corcho del caso: personas y pruebas clavadas; tocar una pieza la acerca
+  await goto(C);
+  const wall = p.getByLabel('Corcho del caso');
+  await wall.waitFor();
+  check((await wall.locator('[data-pin^="person:"] img').count()) >= 4, 'El corcho muestra a las personas con su retrato');
+  check((await wall.locator('[data-pin^="evidence:"]').count()) >= 8, 'El corcho muestra las pruebas descubiertas');
+  check((await wall.locator('path').count()) >= 1, 'Los hilos unen lo relacionado');
+  await wall.getByRole('button', { name: /^Imogen Ashcroft/ }).click();
+  const lifted = p.getByRole('dialog', { name: 'Pieza del corcho' });
+  await lifted.getByRole('button', { name: 'Ficha completa' }).waitFor();
+  check(true, 'Tocar una pieza la acerca con su información');
+  await p.screenshot({ path: join(shots, 'case-wall-lift.png') });
+  await lifted.getByRole('button', { name: 'Ficha completa' }).click();
+  await p.waitForURL('**/personas/ch-imogen');
+
   // Retrato en la ficha y visor de fotografías
   await goto(`${C}/personas/ch-imogen`);
   await p.getByRole('button', { name: 'Ver el retrato de Imogen Ashcroft' }).click();
