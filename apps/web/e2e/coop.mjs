@@ -98,7 +98,9 @@ try {
   const { p } = t;
   await p.goto(`${BASE}/telefono`);
   await p.getByRole('button', { name: 'Nueva investigación' }).click();
-  await p.getByRole('button', { name: /Punto de rocío/ }).click();
+  await p.getByRole('button', { name: /Punto de rocío/ }).first().click();
+  await p.getByRole('button', { name: 'Investigar en pareja' }).click();
+  await p.waitForURL('**/telefono?caso=*');
   await p.getByRole('button', { name: 'Empezar en este iPhone' }).click();
   await p.waitForURL('**/pareja/**');
   await p.getByRole('heading', { name: /Tu papel · A/ }).waitFor();
@@ -210,7 +212,9 @@ try {
     const q = sh.p;
     await q.goto(`${BASE}/telefono`);
     await q.getByRole('button', { name: 'Nueva investigación' }).click();
-    await q.getByRole('button', { name: /La carta de marear/ }).click();
+    await q.getByRole('button', { name: /La carta de marear/ }).first().click();
+  await q.getByRole('button', { name: 'Investigar en pareja' }).click();
+  await q.waitForURL('**/telefono?caso=*');
     await q.getByRole('button', { name: 'Empezar en este iPhone' }).click();
     await q.waitForURL('**/pareja/**');
     await q.getByRole('navigation', { name: 'Expediente' }).getByRole('link', { name: /^Evidencias/ }).click();
@@ -247,7 +251,9 @@ try {
 
   await host.p.goto(`${BASE}/telefono`);
   await host.p.getByRole('button', { name: 'Nueva investigación' }).click();
-  await host.p.getByRole('button', { name: /Punto de rocío/ }).click();
+  await host.p.getByRole('button', { name: /Punto de rocío/ }).first().click();
+  await host.p.getByRole('button', { name: 'Investigar en pareja' }).click();
+  await host.p.waitForURL('**/telefono?caso=*');
   await host.p.getByRole('button', { name: 'Seré A' }).click();
   const invite = await host.p.getByLabel('Invitación').inputValue();
   check(invite.startsWith('DL1.') && invite.length < 400, `Invitación en código (${invite.length} caracteres)`);

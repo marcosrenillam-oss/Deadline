@@ -69,6 +69,7 @@ export const router = createBrowserRouter([
       { path: 'libreta', element: page(() => import('../scenes/notebook/NotebookScene.tsx'), 'NotebookScene') },
       { path: 'calendario', element: page(() => import('../scenes/calendar/CalendarScene.tsx'), 'CalendarScene') },
       { path: 'telefono', element: page(() => import('../scenes/coop/CoopScene.tsx'), 'CoopScene') },
+      { path: 'telefono/expedientes', element: page(() => import('../scenes/archive/ArchiveScene.tsx'), 'CoopShelfScene') },
       { path: 'archivo-personal', element: page(() => import('../scenes/personal/PersonalArchiveScene.tsx'), 'PersonalArchiveScene') },
       { path: 'maquina', element: page(() => import('../scenes/history/HistoryScene.tsx'), 'HistoryScene') },
       { path: 'perfil', element: page(() => import('../scenes/profile/ProfileScene.tsx'), 'ProfileScene') },

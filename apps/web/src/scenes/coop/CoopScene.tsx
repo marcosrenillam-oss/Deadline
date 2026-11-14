@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate, useSearchParams } from 'react-router';
 import type { CaseFile, InvitePacket } from '@deadline/core';
 import { fetchCatalog, loadCase, portraitUrl, type CatalogEntry } from '../../cases/contentRepo.ts';
 import { formatCaseNumber, timeLimitMinutes } from '@deadline/core';
@@ -54,6 +54,16 @@ export function CoopScene() {
       }
       setExpired(out);
     });
+  // Vuelta desde la estantería con un expediente elegido: /telefono?caso=DL-C-0001
+  const [params] = useSearchParams();
+  useEffect(() => {
+    const caso = params.get('caso');
+    if (caso) {
+      setPicked(caso);
+      setView({ v: 'new' });
+    }
+  }, [params]);
+
   useEffect(() => {
     reload();
     fetchCatalog().then((cat) => setCatalog(cat.filter((e) => e.mode === 'coop')), () => undefined);
@@ -108,7 +118,11 @@ export function CoopScene() {
           <button className={s.sideButton} aria-pressed={view.v === 'list'} onClick={() => (reload(), go({ v: 'list' }))}>
             Mis partidas
           </button>
-          <button className={s.sideButton} aria-pressed={view.v === 'new' || view.v === 'host'} onClick={() => go({ v: 'new' })}>
+          <button
+            className={s.sideButton}
+            aria-pressed={view.v === 'new' || view.v === 'host'}
+            onClick={() => (picked ? go({ v: 'new' }) : (sound.play('paper'), void navigate('/telefono/expedientes')))}
+          >
             Nueva investigación
           </button>
           <button className={s.sideButton} aria-pressed={view.v === 'join' || view.v.startsWith('guest')} onClick={() => go({ v: 'join' })}>
@@ -149,16 +163,9 @@ export function CoopScene() {
           {view.v === 'new' && (
             <>
               <p className={s.p}>Los expedientes cooperativos están escritos para dos: en los de información dividida, cada uno ve una mitad del caso.</p>
-              <div className={s.cases}>
-                {catalog.map((e) => (
-                  <button key={e.id} className={s.caseCard} aria-pressed={picked === e.id} onClick={() => setPicked(e.id)}>
-                    <span className={s.era}>{e.eraLabel}</span>
-                    <span className={s.sessionTitle}>{e.title}</span>
-                    {e.subtitle && <span className={s.small}>{e.subtitle}</span>}
-                  </button>
-                ))}
-                {catalog.length === 0 && <p className={s.hand}>No hay expedientes cooperativos en tu archivo. Conéctate para actualizarlo.</p>}
-              </div>
+              <button className={s.secondary} onClick={() => (sound.play('paper'), void navigate('/telefono/expedientes'))}>
+                {pickedCase ? 'Elegir otro expediente en la estantería' : 'Elegir expediente en la estantería'}
+              </button>
               {pickedCase && (
                 <article className={`m-manila ${s.ficha}`} aria-label={`Ficha de ${pickedCase.title}`}>
                   <p className={s.era}>

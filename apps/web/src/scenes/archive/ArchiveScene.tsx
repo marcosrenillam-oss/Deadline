@@ -43,7 +43,12 @@ interface Item {
  * crimen y dificultad. Al tocar una carpeta, sale de la estantería y se
  * abre su ficha de presentación: desde ahí se rompe el precinto.
  */
-export function ArchiveScene() {
+/** Estantería de los expedientes en pareja (se llega desde el teléfono). */
+export function CoopShelfScene() {
+  return <ArchiveScene coop />;
+}
+
+export function ArchiveScene({ coop = false }: { coop?: boolean } = {}) {
   const navigate = useNavigate();
   const [catalog, setCatalog] = useState<CatalogEntry[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -77,12 +82,12 @@ export function ArchiveScene() {
   const items = useMemo<Item[]>(() => {
     if (!catalog) return [];
     return catalog
-      .filter((e) => e.mode !== 'coop')
+      .filter((e) => (coop ? e.mode === 'coop' : e.mode !== 'coop'))
       .map((e) => {
         const locked = e.mode === 'daily' && (e.dailyIndex ?? 0) > dailyUnlocked;
         return { e, status: records[e.id]?.status ?? 'unopened', locked, ...(locked ? { unlockDay: (e.dailyIndex ?? 0) + 1 } : {}) };
       });
-  }, [catalog, records, dailyUnlocked]);
+  }, [catalog, records, dailyUnlocked, coop]);
 
   const places = useMemo(() => [...new Set(items.map((i) => i.e.city))].sort(), [items]);
 
@@ -140,8 +145,8 @@ export function ArchiveScene() {
   return (
     <main className={`m-room ${s.room}`}>
       <header className={s.header}>
-        <BrassBack />
-        <h1 className={s.title}>Archivo de expedientes</h1>
+        {coop ? <BrassBack to="/telefono" label="Teléfono" /> : <BrassBack />}
+        <h1 className={s.title}>{coop ? 'Expedientes en pareja' : 'Archivo de expedientes'}</h1>
         <label className={s.search}>
           <span className="visually-hidden">Buscar</span>
           <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Título, nº, lugar, palabra…" />
@@ -166,6 +171,7 @@ export function ArchiveScene() {
           {select('Lugar', place, setPlace, places, Object.fromEntries(places.map((p) => [p, p])), 'Todos')}
           {select('Crimen', category, setCategory, CRIME_CATEGORIES, CRIME_CATEGORY_LABELS, 'Todos')}
           {select('Dificultad', difficulty, setDifficulty, DIFFICULTIES, DIFFICULTY_LABELS)}
+          {!coop && (
           <label className={s.field}>
             <span>Tipo</span>
             <select value={mode} onChange={(e) => setMode(e.target.value as typeof mode)}>
@@ -174,6 +180,7 @@ export function ArchiveScene() {
               <option value="daily">Diarios</option>
             </select>
           </label>
+          )}
           {activeFilters > 0 && (
             <button className={s.clear} onClick={() => (setEra(''), setCategory(''), setPlace(''), setDifficulty(''), setMode(''))}>
               Quitar filtros
@@ -210,7 +217,10 @@ export function ArchiveScene() {
           from={picked.from}
           record={records[picked.item.e.id]}
           onClose={() => setPicked(null)}
-          onOpen={(breakSeal) => navigate(`/expediente/${picked.item.e.id}`, breakSeal ? { state: { breakSeal: true } } : undefined)}
+          coop={coop}
+          onOpen={(breakSeal) =>
+            coop ? navigate(`/telefono?caso=${picked.item.e.id}`) : navigate(`/expediente/${picked.item.e.id}`, breakSeal ? { state: { breakSeal: true } } : undefined)
+          }
         />
       )}
     </main>
@@ -258,7 +268,21 @@ function Folder({ item, stored, picked, onPick }: { item: Item; stored: CaseAsse
 }
 
 /** Ficha de presentación: la carpeta sale de la estantería y se abre. */
-function CaseSheet({ item, from, record, onClose, onOpen }: { item: Item; from: DOMRect; record: CaseRecord | undefined; onClose: () => void; onOpen: (breakSeal: boolean) => void }) {
+function CaseSheet({
+  item,
+  from,
+  record,
+  coop,
+  onClose,
+  onOpen,
+}: {
+  item: Item;
+  from: DOMRect;
+  record: CaseRecord | undefined;
+  coop: boolean;
+  onClose: () => void;
+  onOpen: (breakSeal: boolean) => void;
+}) {
   const { e, status, locked } = item;
   const [c, setC] = useState<CaseFile | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -325,7 +349,14 @@ function CaseSheet({ item, from, record, onClose, onOpen }: { item: Item; from: 
               </div>
             )}
           </dl>
-          {locked ? (
+          {coop ? (
+            <>
+              <p className={s.warn}>Para dos detectives. El reloj empieza cuando elijáis cómo jugarlo: en este iPhone o cada uno en el suyo.</p>
+              <button className={s.sealBtn} onClick={() => (sound.play('phone'), haptic('confirm'), onOpen(false))}>
+                Investigar en pareja
+              </button>
+            </>
+          ) : locked ? (
             <p className={s.lockedNote}>Este caso del día se desbloquea el día {item.unlockDay} de tu calendario.</p>
           ) : opened ? (
             <button className={s.primary} onClick={() => (sound.play('paper'), onOpen(false))}>
