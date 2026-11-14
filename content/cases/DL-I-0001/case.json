@@ -680,11 +680,6 @@
       },
       "body": [
         {
-          "type": "image",
-          "asset": "im-camara",
-          "caption": "Fotografía de la Policía Metropolitana: la cámara tal como se encontró."
-        },
-        {
           "type": "paragraph",
           "text": "Cámara réflex de 35 mm con motor y un respaldo que imprime la fecha y la hora en cada fotograma. Un cable la une a un temporizador de intervalos."
         },
@@ -3070,17 +3065,6 @@
       "width": 988,
       "height": 796,
       "alt": "Fotografía en blanco y negro de una mujer que ríe bajo la lluvia en un paseo marítimo, con un paraguas abierto de mango de madera tallado en forma de cabeza de pato.",
-      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
-    },
-    {
-      "id": "im-camara",
-      "kind": "image",
-      "src": "img/img-camara.webp",
-      "bytes": 34282,
-      "sha256": "a88a51f12ae6cb1d0123ac42658a9519ed898fabc5e258fb0c6946817f10c149",
-      "width": 988,
-      "height": 796,
-      "alt": "Cámara réflex de 35 mm con motor, montada en un trípode, con un cable que la une a una pequeña caja temporizadora.",
       "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
     },
     {

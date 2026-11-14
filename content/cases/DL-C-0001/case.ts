@@ -307,6 +307,7 @@ const caseFile: CaseFileInput = {
       source: 'Unidad de Calle',
       summary: 'Lo que había junto al cuerpo.',
       body: [
+        { type: 'image', asset: 'im-torre', caption: 'Unidad de Calle: interior de la Torre 7, del nivel 2 al 9.' },
         { type: 'typed', text: 'Cuerpo sobre la rejilla del nivel 2, bajo la pasarela del nivel 9. Barandilla del nivel 9 intacta y a la altura reglamentaria: no es fácil caerse por accidente.' },
         { type: 'typed', text: 'Bolso de trabajo cerrado junto al cuerpo. {{dt-baliza|En un bolsillo interior, una baliza de seguimiento del tamaño de una moneda, con número de serie de Hydra.}}' },
         { type: 'typed', text: '{{dt-sin-tarjeta|No lleva encima su tarjeta de acceso: ni en el bolso, ni en la ropa, ni en el nivel 9.}}' },
@@ -338,6 +339,7 @@ const caseFile: CaseFileInput = {
       source: 'Memoria del dron (batería propia)',
       summary: 'El dron siguió volando durante el apagón.',
       body: [
+        { type: 'image', asset: 'im-dron', caption: 'Fotograma de la memoria del dron MK-7 (cámara de mantenimiento, infrarrojo).' },
         {
           type: 'table',
           header: ['Hora', 'Nivel', 'Lo que se ve (infrarrojo)'],
@@ -360,6 +362,7 @@ const caseFile: CaseFileInput = {
       source: 'Vestuario de la sala de control',
       summary: 'La taquilla de Nikos Draganis.',
       body: [
+        { type: 'image', asset: 'im-taquilla', caption: 'Unidad de Calle: la taquilla 12 al abrirla.' },
         {
           type: 'paragraph',
           text: 'Chaqueta de mantenimiento de Hydra, con banda naranja, colgada y aún húmeda de condensación. {{dt-manga|La manga derecha tiene un desgarrón reciente; faltan fibras del ribete naranja.}}',
@@ -723,6 +726,9 @@ const caseFile: CaseFileInput = {
   ],
 
   assets: [
+    { id: 'im-taquilla', kind: 'image', src: 'img/img-taquilla.webp', bytes: 0, sha256: '', width: 960, height: 768, alt: 'Taquilla metálica abierta en un vestuario industrial, con una chaqueta de mantenimiento gris con banda naranja colgada.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
+    { id: 'im-torre', kind: 'image', src: 'img/img-torre.webp', bytes: 0, sha256: '', width: 960, height: 768, alt: 'Interior de una enorme torre cilíndrica de condensación de agua, con pasarelas circulares a varios niveles, tuberías y luz azulada.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
+    { id: 'im-dron', kind: 'image', src: 'img/img-dron.webp', bytes: 0, sha256: '', width: 960, height: 768, alt: 'Imagen granulada en infrarrojo desde lo alto: pasarelas metálicas en el interior de una torre de agua, con una silueta borrosa en una plataforma.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
     { id: 'pt-ladas', kind: 'image', src: 'portraits/ch-ladas.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Petros Ladas.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
     { id: 'pt-irini', kind: 'image', src: 'portraits/ch-irini.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Irini Saba.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
     { id: 'pt-nikos', kind: 'image', src: 'portraits/ch-nikos.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Nikos Draganis.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },

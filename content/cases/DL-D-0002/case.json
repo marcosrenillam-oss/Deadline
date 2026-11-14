@@ -358,6 +358,11 @@
       },
       "body": [
         {
+          "type": "image",
+          "asset": "im-sala",
+          "caption": "La sala de música del palacio von Rauch."
+        },
+        {
           "type": "heading",
           "text": "PARTE · HURTO EN EL PALACIO VON RAUCH"
         },
@@ -1911,6 +1916,17 @@
     }
   ],
   "assets": [
+    {
+      "id": "im-sala",
+      "kind": "image",
+      "src": "img/img-sala.webp",
+      "bytes": 49366,
+      "sha256": "c7e83b62f023b5c2ca9dda2a11b1fc274451b62e3bc8638e4997014802a57c33",
+      "width": 988,
+      "height": 796,
+      "alt": "Gran sala de música con un piano de cola, sillas doradas en filas y una vitrina junto a la pared.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
+    },
     {
       "id": "pt-johann",
       "kind": "image",

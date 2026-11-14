@@ -662,6 +662,11 @@
       "summary": "Lo que había junto al cuerpo.",
       "body": [
         {
+          "type": "image",
+          "asset": "im-torre",
+          "caption": "Unidad de Calle: interior de la Torre 7, del nivel 2 al 9."
+        },
+        {
           "type": "typed",
           "text": "Cuerpo sobre la rejilla del nivel 2, bajo la pasarela del nivel 9. Barandilla del nivel 9 intacta y a la altura reglamentaria: no es fácil caerse por accidente."
         },
@@ -741,6 +746,11 @@
       "summary": "El dron siguió volando durante el apagón.",
       "body": [
         {
+          "type": "image",
+          "asset": "im-dron",
+          "caption": "Fotograma de la memoria del dron MK-7 (cámara de mantenimiento, infrarrojo)."
+        },
+        {
           "type": "table",
           "header": [
             "Hora",
@@ -797,6 +807,11 @@
       "source": "Vestuario de la sala de control",
       "summary": "La taquilla de Nikos Draganis.",
       "body": [
+        {
+          "type": "image",
+          "asset": "im-taquilla",
+          "caption": "Unidad de Calle: la taquilla 12 al abrirla."
+        },
         {
           "type": "paragraph",
           "text": "Chaqueta de mantenimiento de Hydra, con banda naranja, colgada y aún húmeda de condensación. {{dt-manga|La manga derecha tiene un desgarrón reciente; faltan fibras del ribete naranja.}}"
@@ -1658,6 +1673,39 @@
     }
   ],
   "assets": [
+    {
+      "id": "im-taquilla",
+      "kind": "image",
+      "src": "img/img-taquilla.webp",
+      "bytes": 32952,
+      "sha256": "587c72bfe3eb1d887eace79127ea032ffe8691875c0aeea400e749f9646fa199",
+      "width": 960,
+      "height": 768,
+      "alt": "Taquilla metálica abierta en un vestuario industrial, con una chaqueta de mantenimiento gris con banda naranja colgada.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
+    },
+    {
+      "id": "im-torre",
+      "kind": "image",
+      "src": "img/img-torre.webp",
+      "bytes": 74846,
+      "sha256": "7cdc1a2ede4e6c0583a6a651492bfdaf39b17f438b871e10aac6cba5bc2edc99",
+      "width": 960,
+      "height": 768,
+      "alt": "Interior de una enorme torre cilíndrica de condensación de agua, con pasarelas circulares a varios niveles, tuberías y luz azulada.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
+    },
+    {
+      "id": "im-dron",
+      "kind": "image",
+      "src": "img/img-dron.webp",
+      "bytes": 64288,
+      "sha256": "04f8d46ea164910f12fdc3ed49a01ac0cf42338641914fd24cdcd1def8f4e8d9",
+      "width": 960,
+      "height": 768,
+      "alt": "Imagen granulada en infrarrojo desde lo alto: pasarelas metálicas en el interior de una torre de agua, con una silueta borrosa en una plataforma.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
+    },
     {
       "id": "pt-ladas",
       "kind": "image",

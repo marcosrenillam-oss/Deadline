@@ -300,7 +300,6 @@ const caseFile: CaseFileInput = {
       summary: 'Cámara con motor y respaldo de datos, conectada a un temporizador.',
       related: { characters: ['ch-desmond'], locations: ['lo-estudio'], events: [] },
       body: [
-        { type: 'image', asset: 'im-camara', caption: 'Fotografía de la Policía Metropolitana: la cámara tal como se encontró.' },
         {
           type: 'paragraph',
           text: 'Cámara réflex de 35 mm con motor y un respaldo que imprime la fecha y la hora en cada fotograma. Un cable la une a un temporizador de intervalos.',
@@ -1398,7 +1397,6 @@ const caseFile: CaseFileInput = {
   assets: [
     { id: 'im-negativos', kind: 'image', src: 'img/img-negativos.webp', bytes: 0, sha256: '', width: 988, height: 796, alt: 'Caja de cartón llena de negativos en fundas de papel cristal, con etiquetas escritas a mano.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
     { id: 'im-brighton', kind: 'image', src: 'img/img-brighton.webp', bytes: 0, sha256: '', width: 988, height: 796, alt: 'Fotografía en blanco y negro de una mujer que ríe bajo la lluvia en un paseo marítimo, con un paraguas abierto de mango de madera tallado en forma de cabeza de pato.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
-    { id: 'im-camara', kind: 'image', src: 'img/img-camara.webp', bytes: 0, sha256: '', width: 988, height: 796, alt: 'Cámara réflex de 35 mm con motor, montada en un trípode, con un cable que la une a una pequeña caja temporizadora.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
     { id: 'im-estudio', kind: 'image', src: 'img/img-estudio.webp', bytes: 0, sha256: '', width: 988, height: 796, alt: 'Estudio fotográfico en penumbra: un trípode junto a la ventana, mesas de trabajo y, al fondo, la puerta del cuarto oscuro con su lámpara de aviso.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
     { id: 'pt-okafor', kind: 'image', src: 'portraits/ch-okafor.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Retrato de Samuel Okafor.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
     { id: 'pt-callum', kind: 'image', src: 'portraits/ch-callum.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Retrato de Callum Reyes.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },

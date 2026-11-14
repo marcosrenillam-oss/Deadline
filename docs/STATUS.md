@@ -212,7 +212,7 @@
 - Fondo de las pantallas 2D: el mismo despacho desenfocado; madera y cuero
   reales.
 - **Retratos realistas** de los 28 personajes de los 5 expedientes y
-  **fotografías de pruebas** (15), generados en local con un modelo de
+  **fotografías de pruebas** (11), generados en local con un modelo de
   pesos abiertos, con el soporte de su época (D-071, D-072).
 - **Piezas de oficina en el despacho fotorrealista**: mesas, lámparas,
   teléfonos, máquinas, libretas y adornos renderizados con la misma escena

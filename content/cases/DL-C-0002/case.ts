@@ -197,6 +197,7 @@ const caseFile: CaseFileInput = {
       summary: 'El cosmógrafo os pide ayuda y os da sus condiciones.',
       related: { characters: ['ch-arriaga'], locations: ['lo-capilla'], events: ['te-encargo'] },
       body: [
+        { type: 'image', asset: 'im-sala-cartas', caption: 'La sala de cartas de la Casa de la Contratación.' },
         { type: 'typed', text: '—Ni la Casa ni el Santo Oficio. Si esto sale, pierdo el oficio y quizá la cabeza. Ustedes me deben una y les pago otra.' },
         {
           type: 'typed',
@@ -302,6 +303,7 @@ const caseFile: CaseFileInput = {
       summary: 'Una carta de marear sin terminar.',
       related: { characters: ['ch-tomas'], locations: ['lo-sala'], events: [] },
       body: [
+        { type: 'image', asset: 'im-carta', caption: 'La copia de Tomás, sobre su mesa de la sala de cartas.' },
         { type: 'paragraph', text: 'Pergamino con la costa desde el cabo de la Vela hasta Nombre de Dios. Los rumbos, en negro, verde y bermellón. Los topónimos, en letra redonda, pequeña y perfecta.' },
         { type: 'paragraph', text: '{{dt-g-topo|«Cartagena», «Santa Marta», «Río Grande de la Magdalena»: en todas las «g», el rabo se cierra hacia la izquierda en un pequeño gancho.}}' },
       ],
@@ -918,6 +920,8 @@ const caseFile: CaseFileInput = {
   ],
 
   assets: [
+    { id: 'im-sala-cartas', kind: 'image', src: 'img/img-sala-cartas.webp', bytes: 0, sha256: '', width: 980, height: 788, alt: 'Sala abovedada con una gran mesa cubierta de cartas de marear, un globo terráqueo, estanterías con rollos y luz de ventana.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
+    { id: 'im-carta', kind: 'image', src: 'img/img-carta.webp', bytes: 0, sha256: '', width: 980, height: 788, alt: 'Carta de marear sin terminar sobre pergamino, con la costa dibujada, líneas de rumbo en negro, verde y bermellón y nombres en letra pequeña.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
     { id: 'pt-sacristan', kind: 'image', src: 'portraits/ch-sacristan.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Bartolomé Cid.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
     { id: 'pt-vanaken', kind: 'image', src: 'portraits/ch-vanaken.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Joost van Aken.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
     { id: 'pt-leonor', kind: 'image', src: 'portraits/ch-leonor.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Leonor de Mendaro.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },

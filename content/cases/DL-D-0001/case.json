@@ -582,6 +582,11 @@
       },
       "body": [
         {
+          "type": "image",
+          "asset": "im-alfiler",
+          "caption": "Reconstrucción del archivo: no es una imagen de época."
+        },
+        {
           "type": "paragraph",
           "text": "Alfiler de hueso pulido, largo como un dedo, rematado por una cabeza de ámbar del norte tallada en forma de piña. El ámbar se paga en Roma casi como el oro. Es la pareja de otro: estos alfileres se llevan de dos en dos."
         }
@@ -866,6 +871,11 @@
         ]
       },
       "body": [
+        {
+          "type": "image",
+          "asset": "im-horno",
+          "caption": "Reconstrucción del archivo: no es una imagen de época."
+        },
         {
           "type": "paragraph",
           "text": "Entre las cenizas de la boca del horno, los marcos calcinados de varias tablillas de madera, con la cera derretida. En uno de ellos, {{dt-sello-ceniza|una gota de lacre ennegrecida conserva medio delfín grabado.}}"
@@ -1829,6 +1839,28 @@
     }
   ],
   "assets": [
+    {
+      "id": "im-horno",
+      "kind": "image",
+      "src": "img/img-horno.webp",
+      "bytes": 75710,
+      "sha256": "43d6fd6883735a1015dda11353116926e92ff93061da15ac030ebd4505a53205",
+      "width": 980,
+      "height": 788,
+      "alt": "Boca de un horno de pan romano de ladrillo, llena de cenizas y restos de madera carbonizada.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
+    },
+    {
+      "id": "im-alfiler",
+      "kind": "image",
+      "src": "img/img-alfiler.webp",
+      "bytes": 127580,
+      "sha256": "d7989783542023939908b239744ea6949719b8e087cdcbda7d97ce0c24e64740",
+      "width": 980,
+      "height": 788,
+      "alt": "Alfiler de hueso pulido con una cabeza de ámbar tallada en forma de piña, sobre un paño oscuro.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
+    },
     {
       "id": "pt-siro",
       "kind": "image",

@@ -225,8 +225,8 @@ try {
   check(tf.includes('rotate(90deg)') && tf.includes('scale(1.4)'), `El visor gira y amplía la fotografía (${tf})`);
   await p.screenshot({ path: join(shots, 'photo-viewer.png') });
   await viewer.getByRole('button', { name: 'Cerrar' }).click();
-  await openEvidence(/Nikon F3/);
-  check(await visible(p.locator('figure button img[alt*="Cámara réflex"]')), 'La evidencia muestra su fotografía de archivo');
+  await openEvidence(/Fotografía enmarcada/);
+  check(await visible(p.locator('figure button img[alt*="paraguas"]')), 'La evidencia muestra su fotografía de archivo');
 
   // Acusación
   await goto(`${C}/acusacion`);

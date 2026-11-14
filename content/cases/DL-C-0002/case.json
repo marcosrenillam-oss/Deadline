@@ -355,6 +355,11 @@
       },
       "body": [
         {
+          "type": "image",
+          "asset": "im-sala-cartas",
+          "caption": "La sala de cartas de la Casa de la Contratación."
+        },
+        {
           "type": "typed",
           "text": "—Ni la Casa ni el Santo Oficio. Si esto sale, pierdo el oficio y quizá la cabeza. Ustedes me deben una y les pago otra."
         },
@@ -633,6 +638,11 @@
         "events": []
       },
       "body": [
+        {
+          "type": "image",
+          "asset": "im-carta",
+          "caption": "La copia de Tomás, sobre su mesa de la sala de cartas."
+        },
         {
           "type": "paragraph",
           "text": "Pergamino con la costa desde el cabo de la Vela hasta Nombre de Dios. Los rumbos, en negro, verde y bermellón. Los topónimos, en letra redonda, pequeña y perfecta."
@@ -2057,6 +2067,28 @@
     }
   ],
   "assets": [
+    {
+      "id": "im-sala-cartas",
+      "kind": "image",
+      "src": "img/img-sala-cartas.webp",
+      "bytes": 72322,
+      "sha256": "8ff1472f67902c1efb37e5b592ec0fbd56ef2e41d493dc4e932be65f1b0356b4",
+      "width": 980,
+      "height": 788,
+      "alt": "Sala abovedada con una gran mesa cubierta de cartas de marear, un globo terráqueo, estanterías con rollos y luz de ventana.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
+    },
+    {
+      "id": "im-carta",
+      "kind": "image",
+      "src": "img/img-carta.webp",
+      "bytes": 84848,
+      "sha256": "73c7529008578e808503088dcf3c27b4429dae42bdd2cef544d3d504e614a058",
+      "width": 980,
+      "height": 788,
+      "alt": "Carta de marear sin terminar sobre pergamino, con la costa dibujada, líneas de rumbo en negro, verde y bermellón y nombres en letra pequeña.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
+    },
     {
       "id": "pt-sacristan",
       "kind": "image",

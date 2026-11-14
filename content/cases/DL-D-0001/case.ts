@@ -269,6 +269,7 @@ const caseFile: CaseFileInput = {
       summary: 'Un adorno caro, perdido en el lugar del crimen.',
       related: { characters: [], locations: ['lo-tablinum'], events: [] },
       body: [
+        { type: 'image', asset: 'im-alfiler', caption: 'Reconstrucción del archivo: no es una imagen de época.' },
         {
           type: 'paragraph',
           text: 'Alfiler de hueso pulido, largo como un dedo, rematado por una cabeza de ámbar del norte tallada en forma de piña. El ámbar se paga en Roma casi como el oro. Es la pareja de otro: estos alfileres se llevan de dos en dos.',
@@ -377,6 +378,7 @@ const caseFile: CaseFileInput = {
       autoDiscoverWhen: { fact: 'fa-tablillas-horno' },
       related: { characters: ['ch-marcia'], locations: ['lo-horno'], events: ['te-tablillas'] },
       body: [
+        { type: 'image', asset: 'im-horno', caption: 'Reconstrucción del archivo: no es una imagen de época.' },
         {
           type: 'paragraph',
           text: 'Entre las cenizas de la boca del horno, los marcos calcinados de varias tablillas de madera, con la cera derretida. En uno de ellos, {{dt-sello-ceniza|una gota de lacre ennegrecida conserva medio delfín grabado.}}',
@@ -825,6 +827,8 @@ const caseFile: CaseFileInput = {
   ],
 
   assets: [
+    { id: 'im-horno', kind: 'image', src: 'img/img-horno.webp', bytes: 0, sha256: '', width: 980, height: 788, alt: 'Boca de un horno de pan romano de ladrillo, llena de cenizas y restos de madera carbonizada.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
+    { id: 'im-alfiler', kind: 'image', src: 'img/img-alfiler.webp', bytes: 0, sha256: '', width: 980, height: 788, alt: 'Alfiler de hueso pulido con una cabeza de ámbar tallada en forma de piña, sobre un paño oscuro.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
     { id: 'pt-siro', kind: 'image', src: 'portraits/ch-siro.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Siro.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
     { id: 'pt-davo', kind: 'image', src: 'portraits/ch-davo.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Davo.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
     { id: 'pt-marcia', kind: 'image', src: 'portraits/ch-marcia.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Marcia Prisca.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },

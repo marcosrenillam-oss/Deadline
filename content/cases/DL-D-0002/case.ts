@@ -182,6 +182,7 @@ const caseFile: CaseFileInput = {
       summary: 'Lo que se sabe del robo.',
       related: { characters: ['ch-baronesa', 'ch-weiss'], locations: ['lo-salon'], events: ['te-descubrimiento'] },
       body: [
+        { type: 'image', asset: 'im-sala', caption: 'La sala de música del palacio von Rauch.' },
         { type: 'heading', text: 'PARTE · HURTO EN EL PALACIO VON RAUCH' },
         {
           type: 'typed',
@@ -835,6 +836,7 @@ const caseFile: CaseFileInput = {
   ],
 
   assets: [
+    { id: 'im-sala', kind: 'image', src: 'img/img-sala.webp', bytes: 0, sha256: '', width: 988, height: 796, alt: 'Gran sala de música con un piano de cola, sillas doradas en filas y una vitrina junto a la pared.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
     { id: 'pt-johann', kind: 'image', src: 'portraits/ch-johann.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Retrato de Johann Pichler.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
     { id: 'pt-weiss', kind: 'image', src: 'portraits/ch-weiss.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Retrato de Anton Weiss.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
     { id: 'pt-viktor', kind: 'image', src: 'portraits/ch-viktor.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Retrato de Viktor von Rauch.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },

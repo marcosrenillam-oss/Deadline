@@ -561,15 +561,6 @@
   },
   {
    "case": "DL-I-0001",
-   "id": "img-camara",
-   "evidence": "ev-camara",
-   "caption": "Fotografía de la Policía Metropolitana: la cámara tal como se encontró.",
-   "alt": "Cámara réflex de 35 mm con motor, montada en un trípode, con un cable que la une a una pequeña caja temporizadora.",
-   "prompt": "1987 black and white police evidence photograph, a 35mm SLR camera with motor drive and data back mounted on a tripod, a coiled cable connecting it to a small intervalometer timer box, studio window behind, Kodak Tri-X grain, documentary, realistic",
-   "negative": "color, people, person, face, text, letters"
-  },
-  {
-   "case": "DL-I-0001",
    "id": "img-brighton",
    "evidence": "ev-foto-pared",
    "caption": "La copia enmarcada, fotografiada por la policía.",
@@ -585,15 +576,6 @@
    "alt": "Caja de cartón llena de negativos en fundas de papel cristal, con etiquetas escritas a mano.",
    "prompt": "1987 black and white evidence photograph, an open cardboard archive box full of photographic negatives in glassine sleeves, handwritten labels, on a desk, Kodak Tri-X grain, realistic",
    "negative": "color, people, person, face, text, letters"
-  },
-  {
-   "case": "DL-D-0002",
-   "id": "img-vitrina",
-   "evidence": "ev-copia",
-   "caption": "Fotografía de la policía de Viena, tomada el 12 de febrero.",
-   "alt": "Violín en una vitrina de cristal sobre un pie de madera, en una sala de música con un piano de cola al fondo.",
-   "prompt": "antique 1888 albumen photograph, sepia, a violin lying on velvet inside a glass display cabinet with carved wooden stand, Viennese palace music room, grand piano in the background, tall windows, realistic, plate camera",
-   "negative": "people, person, text, color, modern"
   },
   {
    "case": "DL-D-0002",
@@ -615,30 +597,12 @@
   },
   {
    "case": "DL-D-0001",
-   "id": "img-tablillas",
-   "evidence": "ev-codex",
-   "caption": "Reconstrucción del archivo: no es una imagen de época.",
-   "alt": "Tablillas de madera enceradas unidas con cordel, con letras grabadas en la cera, y un estilo de bronce.",
-   "prompt": "museum documentary photograph, ancient Roman wax writing tablets, hinged wooden frames tied with cord, dark wax with scratched Latin cursive writing, a bronze stylus beside them, on a wooden table, oil lamp light, realistic",
-   "negative": "people, modern, paper"
-  },
-  {
-   "case": "DL-D-0001",
    "id": "img-horno",
    "evidence": "ev-cenizas",
    "caption": "Reconstrucción del archivo: no es una imagen de época.",
    "alt": "Boca de un horno de pan romano de ladrillo, llena de cenizas y restos de madera carbonizada.",
    "prompt": "documentary photograph, the mouth of an ancient Roman brick bread oven full of grey ashes and charred wooden fragments, soot, dim light, realistic, Pompeii bakery style",
    "negative": "people, fire, flames, modern"
-  },
-  {
-   "case": "DL-D-0001",
-   "id": "img-atrio",
-   "evidence": "ev-informe",
-   "caption": "Reconstrucción del archivo: el atrio de la casa de Rufo al amanecer.",
-   "alt": "Atrio de una casa romana con columnas y el estanque central, las paredes pintadas manchadas de hollín y luz de amanecer brumosa.",
-   "prompt": "photorealistic reconstruction, atrium of a wealthy ancient Roman house on the Caelian hill at dawn, impluvium pool, columns, frescoed walls stained with black soot, smoky orange sky through the roof opening, distant fire haze, empty, realistic",
-   "negative": "people, person, modern"
   },
   {
    "case": "DL-C-0002",
