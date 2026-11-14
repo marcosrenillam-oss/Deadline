@@ -248,7 +248,7 @@ const caseFile: CaseFileInput = {
         { type: 'signature', name: 'Ann Gray (con su marca)' },
       ],
       details: [
-        { id: 'dt-den-fuera', label: 'Los mandaron fuera', description: 'Burke quiso la habitación vacía esa noche.', effects: [{ grantFact: 'fa-grays-fuera' }], points: 10 },
+        { id: 'dt-den-fuera', label: 'Los mandaron fuera', description: 'Burke quiso la habitación vacía esa noche.', effects: [{ grantFact: 'fa-grays-fuera' }, { unlockTimelineEvent: 'te-fuera' }], points: 10 },
         { id: 'dt-den-paja', label: 'El cuerpo bajo la paja', description: 'La invitada estaba muerta en la habitación de Burke.', effects: [{ grantFact: 'fa-cuerpo-paja' }, { unlockTimelineEvent: 'te-paja' }], points: 20 },
         { id: 'dt-den-dinero', label: 'Diez libras a la semana', description: 'Un soborno imposible para gente así: el silencio valía mucho.', effects: [{ grantFact: 'fa-soborno' }], points: 15 },
       ],

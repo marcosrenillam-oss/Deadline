@@ -408,6 +408,9 @@
           "effects": [
             {
               "grantFact": "fa-grays-fuera"
+            },
+            {
+              "unlockTimelineEvent": "te-fuera"
             }
           ],
           "points": 10
