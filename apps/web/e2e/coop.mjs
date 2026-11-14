@@ -44,10 +44,22 @@ function phone(p) {
   return {
     p,
     errors,
+    async cork() {
+      const back = p.getByRole('link', { name: '← Volver al corcho' });
+      if (await back.count()) await back.click();
+      await p.getByLabel('Corcho del caso').waitFor();
+    },
+    /** Como un jugador: vuelve al corcho, toca la pieza y la examina. */
     async evidence(name) {
-      await p.getByRole('navigation', { name: 'Expediente' }).getByRole('link', { name: /^Evidencias/ }).click();
-      await p.getByRole('link', { name }).first().click();
+      await this.cork();
+      await p.getByLabel('Corcho del caso').getByRole('button', { name: new RegExp('Prueba: ' + name.source) }).first().click();
+      await p.getByRole('dialog', { name: 'Pieza del corcho' }).getByRole('button', { name: /Examinar la prueba/ }).click();
       await p.getByRole('button', { name: /Examinar con lupa|Lupa activa/ }).waitFor();
+    },
+    async person(name) {
+      await this.cork();
+      await p.getByLabel('Corcho del caso').getByRole('button', { name }).first().click();
+      await p.getByRole('dialog', { name: 'Pieza del corcho' }).getByRole('button', { name: 'Ficha completa' }).click();
     },
     async tap(text, exact = false) {
       const b = p.getByRole('button', { name: 'Examinar con lupa' });
@@ -56,7 +68,7 @@ function phone(p) {
       await pause();
     },
     async relate(a, b) {
-      await p.getByRole('navigation', { name: 'Expediente' }).getByRole('link', { name: /^Evidencias/ }).click();
+      await p.getByRole('button', { name: 'Relacionar pruebas' }).click();
       // Si el modo «relacionar» sigue activo de la vez anterior, no hace falta volver a abrirlo.
       const open = p.getByRole('button', { name: 'Relacionar piezas' });
       await p.getByRole('button', { name: /^(Relacionar piezas|Terminar)$/ }).waitFor();
@@ -81,11 +93,13 @@ function phone(p) {
       );
     },
     async panel() {
-      await p.getByRole('button', { name: /Papel [AB]/ }).click();
+      // Si el panel ya está abierto (se abre solo al proponer), no se vuelve a tocar el teléfono.
+      if (!(await p.getByRole('dialog').count())) await p.getByRole('button', { name: /Papel [AB]/ }).click();
       await p.getByRole('dialog').waitFor();
     },
     async closePanel() {
       await p.keyboard.press('Escape');
+      await p.getByRole('dialog').waitFor({ state: 'detached', timeout: 3000 }).catch(() => p.keyboard.press('Escape'));
       await pause();
     },
   };
@@ -105,8 +119,8 @@ try {
   await p.waitForURL('**/pareja/**');
   await p.getByRole('heading', { name: /Tu papel · A/ }).waitFor();
   check(/2:00:00|1:59:5\d/.test(await p.getByRole('timer').innerText()), 'Partida en pareja con reloj de 120 minutos');
-  await p.getByRole('navigation', { name: 'Expediente' }).getByRole('link', { name: /^Evidencias/ }).click();
-  await p.getByRole('link', { name: /Registro de accesos/ }).waitFor();
+  await t.cork();
+  await p.getByLabel('Corcho del caso').getByRole('button', { name: /Registro de accesos/ }).first().waitFor();
   check((await p.getByRole('link', { name: /Informe de la escena/ }).count()) === 0, 'A no ve las piezas de B (información dividida)');
 
   // A: accesos y consola
@@ -135,8 +149,8 @@ try {
   await p.getByRole('button', { name: 'Soy B: continuar' }).click();
   await p.getByRole('heading', { name: /Tu papel · B/ }).waitFor();
   check(true, 'Pantalla de pase de turno y cambio a B');
-  await p.getByRole('navigation', { name: 'Expediente' }).getByRole('link', { name: /^Evidencias/ }).click();
-  check(await visible(p.getByRole('link', { name: /Actividad de la consola/ })), 'B recibe lo que A puso sobre la mesa');
+  await t.cork();
+  check(await visible(p.getByLabel('Corcho del caso').getByRole('button', { name: /Actividad de la consola/ })), 'B recibe lo que A puso sobre la mesa (aparece clavado en su corcho)');
 
   // B: escena, dron, deducciones cruzadas
   await t.evidence(/Informe de la escena/);
@@ -149,8 +163,7 @@ try {
   check(await t.knows('facts', 'fa-coartada-falsa'), 'Deducción cruzada: la coartada de Draganis es una macro');
 
   // B: Draganis, taquilla, forense
-  await p.getByRole('navigation', { name: 'Expediente' }).getByRole('link', { name: 'Personas' }).click();
-  await p.getByRole('link', { name: /Nikos Draganis/ }).click();
+  await t.person(/Nikos Draganis/);
   await p.getByRole('link', { name: 'Interrogar' }).click();
   await p.getByRole('button', { name: /¿Dónde estaba anoche/ }).click();
   await p.getByRole('button', { name: /chaqueta de mantenimiento/ }).click();
@@ -160,8 +173,7 @@ try {
   await t.tap('Bajo las uñas de la mano derecha');
   await t.relate(/Fibras naranjas bajo las uñas/, /Un desgarrón en la manga/);
   check(await t.knows('facts', 'fa-chaqueta'), 'Las fibras llevan a la chaqueta de la taquilla 12');
-  await p.getByRole('navigation', { name: 'Expediente' }).getByRole('link', { name: 'Personas' }).click();
-  await p.getByRole('link', { name: /Nikos Draganis/ }).click();
+  await t.person(/Nikos Draganis/);
   await p.getByRole('link', { name: 'Interrogar' }).click();
   await p.getByRole('tab', { name: /Selene Markou/ }).click();
   await p.getByRole('button', { name: /Una macro tecleaba por usted/ }).click();
@@ -170,6 +182,7 @@ try {
 
   // B propone la acusación conjunta
   await p.getByRole('button', { name: 'Acusación conjunta' }).click();
+    await p.getByRole('heading', { name: /Proponer la acusación conjunta|Tu compañero propone|Esperando a tu compañero/ }).waitFor();
   await p.getByRole('button', { name: /Nikos Draganis/ }).click();
   await p.getByText('Impedir que salieran a la luz').click();
   await p.getByText('La empujó desde la pasarela').click();
@@ -185,6 +198,7 @@ try {
   await p.getByRole('button', { name: 'Soy A: continuar' }).click();
   await p.getByRole('heading', { name: /Tu papel · A/ }).waitFor();
   await p.getByRole('button', { name: 'Acusación conjunta' }).click();
+    await p.getByRole('heading', { name: /Proponer la acusación conjunta|Tu compañero propone|Esperando a tu compañero/ }).waitFor();
   await p.getByRole('heading', { name: 'Tu compañero propone esta acusación' }).waitFor();
   await p.screenshot({ path: join(shots, 'coop-proposal.png') });
   await p.getByRole('button', { name: 'Firmar la acusación' }).click();
@@ -217,9 +231,9 @@ try {
   await q.waitForURL('**/telefono?caso=*');
     await q.getByRole('button', { name: 'Empezar en este iPhone' }).click();
     await q.waitForURL('**/pareja/**');
-    await q.getByRole('navigation', { name: 'Expediente' }).getByRole('link', { name: /^Evidencias/ }).click();
-    check(await visible(q.getByRole('link', { name: /Primera carta anónima/ })), 'Expediente compartido: los dos ven todas las piezas');
+    check(await visible(q.getByLabel('Corcho del caso').getByRole('button', { name: /Primera carta anónima/ })), 'Expediente compartido: los dos ven todas las piezas en el corcho');
     await q.getByRole('button', { name: 'Acusación conjunta' }).click();
+    await q.getByRole('heading', { name: /Proponer la acusación conjunta|Tu compañero propone|Esperando a tu compañero/ }).waitFor();
     await q.getByRole('button', { name: /Rodrigo Zamudio/ }).click();
     await q.getByText('Arruinar a Arriaga para quedarse con su cátedra').click();
     await q.getByText('Amenazó con una denuncia firmada').click();
@@ -311,6 +325,7 @@ try {
   // Propuesta rechazada
   const proposeAs = async (ph, culprit, unpick) => {
     await ph.p.getByRole('button', { name: 'Acusación conjunta' }).click();
+    await ph.p.getByRole('heading', { name: /Proponer la acusación conjunta|Tu compañero propone|Esperando a tu compañero/ }).waitFor();
     // Tras un rechazo, el acta conserva la selección anterior para poder corregirla.
     if (unpick) await ph.p.getByRole('button', { name: new RegExp(unpick), pressed: true }).click();
     await ph.p.getByRole('button', { name: new RegExp(culprit) }).click();
@@ -378,7 +393,7 @@ try {
   check(host.errors.length === 0 && guest.errors.length === 0, `Sin errores de consola en la correspondencia${[...host.errors, ...guest.errors].length ? ': ' + [...host.errors, ...guest.errors].join(' | ') : ''}`);
 } catch (err) {
   failures++;
-  console.log('✘ Error inesperado:', err.message.split('\n').slice(0, 4).join(' | '));
+  console.log('✘ Error inesperado:', err.message.split('\n').slice(0, 14).join(' | '));
 } finally {
   await browser.close();
   process.kill(-server.pid, 'SIGTERM');

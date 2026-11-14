@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router';
+import { CaseWall } from './CaseWall.tsx';
 import { formatCaseNumber, formatRemaining } from '@deadline/core';
 import { CaseProvider, useCase } from '../../cases/CaseProvider.tsx';
 import { CRIME_CATEGORY_LABELS, ORIGIN_LABELS } from '../../cases/labels.ts';
@@ -12,7 +13,7 @@ import { HintsPanel } from './HintsPanel.tsx';
 import s from './case.module.css';
 import sh from './shell.module.css';
 import { PocketWatch, tensionOf } from './PocketWatch.tsx';
-import { DiscoveryLayer, EnvelopeIcon, FinalMinute, LensIcon, NotebookIcon, PhoneIcon, TimeUp } from './CaseObjects.tsx';
+import { ThreadIcon, DiscoveryLayer, EnvelopeIcon, FinalMinute, LensIcon, NotebookIcon, PhoneIcon, TimeUp } from './CaseObjects.tsx';
 
 /** Ruta /expediente/:caseId — carga el expediente y muestra portada o espacio de trabajo. */
 export function CaseScene() {
@@ -107,15 +108,6 @@ function Cover() {
   );
 }
 
-const TABS = [
-  { to: '', label: 'Corcho', end: true },
-  { to: 'expediente', label: 'Expediente' },
-  { to: 'evidencias', label: 'Evidencias' },
-  { to: 'personas', label: 'Personas' },
-  { to: 'cronologia', label: 'Cronología' },
-  { to: 'tablero', label: 'Tablero' },
-];
-
 export function Workspace() {
   const { c, inv, k, closed, remainingMs, toasts, dismiss, base, coop } = useCase();
   const navigate = useNavigate();
@@ -127,6 +119,7 @@ export function Workspace() {
   const expired = inv?.status === 'expired';
   const quiet = toasts.filter((t) => !['evidence', 'contradiction', 'deduction', 'secret'].includes(t.kind));
   const location = useLocation();
+  const atCork = location.pathname.replace(/\/$/, '') === base;
   // Cerrado es cerrado: solo queda el informe final (y reabrir, si se puede).
   if (closed && !location.pathname.endsWith('/informe')) return <Navigate to={`${base}/informe`} replace />;
   if (closed) {
@@ -156,14 +149,11 @@ export function Workspace() {
         <Link to="/" className={`m-brass ${sh.back}`} aria-label="Volver al escritorio" onClick={() => sound.play('paper')}>
           ←
         </Link>
-        <nav className={sh.tabs} aria-label="Expediente">
-          {TABS.map((t) => (
-            <NavLink key={t.label} to={t.to ? `${base}/${t.to}` : base} end={t.end} className={sh.tab} onClick={() => sound.play('page')}>
-              {t.label}
-              {t.to === 'evidencias' && unread > 0 && !closed && <span className={sh.badge}>{unread}</span>}
-            </NavLink>
-          ))}
-        </nav>
+        <div className={sh.caseName}>
+          <span className={sh.caseKicker}>{c.eraLabel}</span>
+          <span className={sh.caseTitle}>{c.title}</span>
+          {unread > 0 && <span className={sh.badge} aria-label={`${unread} pruebas sin leer`}>{unread}</span>}
+        </div>
         <div className={sh.tools}>
           {coop && (
             <button className={sh.tool} onClick={coop.openPanel} aria-label={coop.role ? `${coop.role} · ${coop.roleTitle}` : 'Pareja'}>
@@ -172,6 +162,10 @@ export function Workspace() {
               {coop.session.proposal?.status === 'pending' && coop.session.proposal.from !== coop.role && <span className={sh.badge}>!</span>}
             </button>
           )}
+          <button className={sh.tool} onClick={() => (sound.play('tap'), void navigate(`${base}/evidencias`))} aria-label="Relacionar pruebas" disabled={closed}>
+            <ThreadIcon />
+            <span className={sh.toolLabel}>Relacionar</span>
+          </button>
           <button className={sh.tool} onClick={() => (sound.play('page'), setPanel('notes'))} aria-label="Libreta">
             <NotebookIcon />
             <span className={sh.toolLabel}>Libreta</span>
@@ -196,11 +190,20 @@ export function Workspace() {
         </div>
         <PocketWatch remainingMs={remainingMs} totalMs={totalMs} closed={closed} onClick={() => setPanel('pause')} />
       </header>
-      <section className={`m-manila ${sh.folder}`}>
-        <div className={sh.stage}>
-          <Outlet />
-        </div>
+      {/* El corcho es el caso: siempre detrás; lo que se abre, encima */}
+      <section className={sh.corkStage} inert={!atCork} aria-hidden={!atCork || undefined}>
+        <CaseWall />
       </section>
+      {!atCork && (
+        <section className={`m-manila ${sh.folder} ${sh.overlay}`} aria-label="Pieza abierta">
+          <Link to={base} className={sh.toCork} onClick={() => sound.play('paper')}>
+            ← Volver al corcho
+          </Link>
+          <div className={sh.stage}>
+            <Outlet />
+          </div>
+        </section>
+      )}
       <div className={s.toasts} aria-live="polite">
         {quiet.map((t) => (
           <button key={t.id} className={s.toast} data-kind={t.kind} onClick={() => dismiss(t.id)}>

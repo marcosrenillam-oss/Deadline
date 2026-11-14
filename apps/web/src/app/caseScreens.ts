@@ -1,7 +1,7 @@
 /** Pantallas del expediente (individual y en pareja): un único fragmento cargado a la vez. */
 export { CaseScene } from '../scenes/case/CaseScene.tsx';
 export { CoopCaseScene } from '../scenes/coop/CoopCaseScene.tsx';
-export { CaseWall } from '../scenes/case/CaseWall.tsx';
+export { CaseWall, CaseHome } from '../scenes/case/CaseWall.tsx';
 export { DossierTab } from '../scenes/case/DossierTab.tsx';
 export { EvidenceTab } from '../scenes/case/EvidenceTab.tsx';
 export { EvidenceViewer } from '../scenes/case/EvidenceViewer.tsx';

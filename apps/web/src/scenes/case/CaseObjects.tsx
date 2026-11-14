@@ -28,6 +28,17 @@ export function LensIcon() {
   );
 }
 
+/** Hilo rojo entre dos chinchetas: relacionar piezas. */
+export function ThreadIcon() {
+  return (
+    <svg viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M9 28 C 16 10, 24 34, 31 12" fill="none" stroke="#b11f1f" strokeWidth="2.4" strokeLinecap="round" />
+      <circle cx="9" cy="28" r="4.5" fill="#d23b2f" stroke="#5a0d0d" />
+      <circle cx="31" cy="12" r="4.5" fill="#d8b25a" stroke="#6e521f" />
+    </svg>
+  );
+}
+
 export function EnvelopeIcon() {
   return (
     <svg viewBox="0 0 40 40" aria-hidden="true">

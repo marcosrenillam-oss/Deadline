@@ -573,3 +573,16 @@ en el archivo personal, un pasillo de archivadores sin fondo, y el cajón se
 abre hacia el jugador. La máquina de escribir saca la hoja del rodillo al
 cambiar de apartado y la clasificación es un letrero de paletas, como el de
 una estación, cuyas letras giran hasta su sitio.
+
+### D-082 · El caso es solo el corcho
+Por petición del usuario desaparecen las pestañas del expediente. El caso
+es un corcho que se ve entero y pequeño al entrar; se acerca pellizcando,
+con la rueda o con doble toque, se mueve arrastrando y tiene botones de
+acercar, alejar y ver entero. Todo lo descubierto está clavado (personas,
+pruebas, hechos, lugares, la carpeta del caso y la tarjeta de cronología)
+y lo nuevo se clava solo con su animación. Tocar una pieza la acerca; sus
+acciones abren la prueba, la ficha, el interrogatorio o la cronología
+encima del corcho, con «← Volver al corcho». En la barra quedan las
+herramientas: relacionar pruebas, libreta, contradicción, pistas, acusar y
+el reloj. El tablero manual de hilos se retira de la navegación: el corcho
+ya pone solos los hilos de relaciones y deducciones.
