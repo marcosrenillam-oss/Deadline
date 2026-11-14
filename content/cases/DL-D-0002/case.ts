@@ -55,6 +55,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-baronesa',
+      portrait: 'pt-baronesa',
       name: 'Adelheid von Rauch',
       look: { hair: 'bun', glasses: true },
       role: 'victim',
@@ -66,6 +67,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-lotte',
+      portrait: 'pt-lotte',
       name: 'Lotte Brenner',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -80,6 +82,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-kranz',
+      portrait: 'pt-kranz',
       name: 'Emil Kranz',
       look: { hair: 'long' },
       role: 'suspect',
@@ -94,6 +97,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-viktor',
+      portrait: 'pt-viktor',
       name: 'Viktor von Rauch',
       look: { hair: 'short', beard: true },
       role: 'suspect',
@@ -108,6 +112,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-weiss',
+      portrait: 'pt-weiss',
       name: 'Anton Weiss',
       look: { hair: 'bald', glasses: true },
       role: 'suspect',
@@ -122,6 +127,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-johann',
+      portrait: 'pt-johann',
       name: 'Johann Pichler',
       look: { hair: 'short' },
       role: 'witness',
@@ -828,7 +834,14 @@ const caseFile: CaseFileInput = {
     { id: 'ob-viktor', text: 'Averigua qué esconde el sobrino.', completeWhen: { secret: 'se-viktor' }, points: 25, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-johann', kind: 'image', src: 'portraits/ch-johann.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Retrato de Johann Pichler.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-weiss', kind: 'image', src: 'portraits/ch-weiss.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Retrato de Anton Weiss.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-viktor', kind: 'image', src: 'portraits/ch-viktor.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Retrato de Viktor von Rauch.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-kranz', kind: 'image', src: 'portraits/ch-kranz.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Retrato de Emil Kranz.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-lotte', kind: 'image', src: 'portraits/ch-lotte.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Retrato de Lotte Brenner.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-baronesa', kind: 'image', src: 'portraits/ch-baronesa.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Retrato de Adelheid von Rauch.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+  ],
 };
 
 export default caseFile;

@@ -74,6 +74,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-arriaga',
+      portrait: 'pt-arriaga',
       name: 'Diego de Arriaga',
       look: { hair: 'short', beard: true, glasses: true },
       role: 'victim',
@@ -85,6 +86,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-tomas',
+      portrait: 'pt-tomas',
       name: 'Tomás Ruiz',
       look: { hair: 'short' },
       role: 'suspect',
@@ -99,6 +101,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-zamudio',
+      portrait: 'pt-zamudio',
       name: 'Rodrigo Zamudio',
       look: { hair: 'hat', beard: true },
       role: 'suspect',
@@ -113,6 +116,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-leonor',
+      portrait: 'pt-leonor',
       name: 'Leonor de Mendaro',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -127,6 +131,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-vanaken',
+      portrait: 'pt-vanaken',
       name: 'Joost van Aken',
       look: { hair: 'hat', beard: true },
       role: 'suspect',
@@ -140,6 +145,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-sacristan',
+      portrait: 'pt-sacristan',
       name: 'Bartolomé Cid',
       look: { hair: 'bald' },
       role: 'witness',
@@ -911,7 +917,14 @@ const caseFile: CaseFileInput = {
     { id: 'ob-zamudio', text: 'Averigua qué tramaba el rival de Arriaga.', completeWhen: { secret: 'se-zamudio' }, points: 25, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-sacristan', kind: 'image', src: 'portraits/ch-sacristan.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Bartolomé Cid.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-vanaken', kind: 'image', src: 'portraits/ch-vanaken.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Joost van Aken.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-leonor', kind: 'image', src: 'portraits/ch-leonor.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Leonor de Mendaro.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-zamudio', kind: 'image', src: 'portraits/ch-zamudio.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Rodrigo Zamudio.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-tomas', kind: 'image', src: 'portraits/ch-tomas.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Tomás Ruiz.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-arriaga', kind: 'image', src: 'portraits/ch-arriaga.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Diego de Arriaga.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+  ],
 };
 
 export default caseFile;

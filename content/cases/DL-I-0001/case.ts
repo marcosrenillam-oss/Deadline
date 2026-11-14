@@ -52,6 +52,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-desmond',
+      portrait: 'pt-desmond',
       name: 'Desmond Ashcroft',
       look: { hair: 'short', glasses: true },
       role: 'victim',
@@ -64,6 +65,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-nora',
+      portrait: 'pt-nora',
       name: 'Nora Kell',
       look: { hair: 'long' },
       role: 'suspect',
@@ -79,6 +81,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-julian',
+      portrait: 'pt-julian',
       name: 'Julian Price',
       look: { hair: 'short' },
       role: 'suspect',
@@ -94,6 +97,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-imogen',
+      portrait: 'pt-imogen',
       name: 'Imogen Ashcroft',
       look: { hair: 'bun', glasses: true },
       role: 'suspect',
@@ -109,6 +113,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-callum',
+      portrait: 'pt-callum',
       name: 'Callum Reyes',
       look: { hair: 'short', beard: true },
       role: 'suspect',
@@ -125,6 +130,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-okafor',
+      portrait: 'pt-okafor',
       name: 'Samuel Okafor',
       look: { hair: 'bald', glasses: true },
       role: 'witness',
@@ -198,6 +204,7 @@ const caseFile: CaseFileInput = {
       summary: 'Primer informe en el lugar de los hechos.',
       related: { characters: ['ch-desmond', 'ch-nora'], locations: ['lo-estudio', 'lo-cuarto-oscuro'], events: ['te-hallazgo'] },
       body: [
+        { type: 'image', asset: 'im-estudio', caption: 'Fotografía de la Policía Metropolitana: el estudio a las 08:50.' },
         { type: 'heading', text: 'INFORME DE INCIDENTE Nº WEC/87/11/0412' },
         { type: 'field', label: 'Agente', value: 'P.C. 4471 Gareth Rhodes' },
         { type: 'field', label: 'Aviso', value: '08:26 · llamada de la Srta. Nora Kell desde el estudio' },
@@ -293,6 +300,7 @@ const caseFile: CaseFileInput = {
       summary: 'Cámara con motor y respaldo de datos, conectada a un temporizador.',
       related: { characters: ['ch-desmond'], locations: ['lo-estudio'], events: [] },
       body: [
+        { type: 'image', asset: 'im-camara', caption: 'Fotografía de la Policía Metropolitana: la cámara tal como se encontró.' },
         {
           type: 'paragraph',
           text: 'Cámara réflex de 35 mm con motor y un respaldo que imprime la fecha y la hora en cada fotograma. Un cable la une a un temporizador de intervalos.',
@@ -383,6 +391,7 @@ const caseFile: CaseFileInput = {
       summary: 'Una mujer bajo la lluvia en Brighton.',
       related: { characters: ['ch-imogen', 'ch-desmond'], locations: ['lo-estudio'], events: [] },
       body: [
+        { type: 'image', asset: 'im-brighton', caption: 'La copia enmarcada, fotografiada por la policía.' },
         {
           type: 'paragraph',
           text: 'Copia en blanco y negro, 30 × 40 cm. Una mujer ríe bajo la lluvia en el paseo marítimo de Brighton. Sostiene un paraguas abierto cuyo mango, tallado en madera, tiene forma de cabeza de pato.',
@@ -566,6 +575,7 @@ const caseFile: CaseFileInput = {
       summary: 'Lo que Nora fue a buscar el viernes.',
       related: { characters: ['ch-nora', 'ch-desmond'], locations: [], events: ['te-nora-vuelve'] },
       body: [
+        { type: 'image', asset: 'im-negativos', caption: 'La caja, fotografiada al recibirla.' },
         {
           type: 'paragraph',
           text: 'Caja de cartón con 214 negativos en fundas, rotulados a mano «N. K.». Entre ellos, los originales de «Lluvia en Brixton», la serie que Ashcroft expuso en la galería Hayward en 1986 con su firma.',
@@ -1386,6 +1396,16 @@ const caseFile: CaseFileInput = {
   ],
 
   assets: [
+    { id: 'im-negativos', kind: 'image', src: 'img/img-negativos.webp', bytes: 0, sha256: '', width: 988, height: 796, alt: 'Caja de cartón llena de negativos en fundas de papel cristal, con etiquetas escritas a mano.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
+    { id: 'im-brighton', kind: 'image', src: 'img/img-brighton.webp', bytes: 0, sha256: '', width: 988, height: 796, alt: 'Fotografía en blanco y negro de una mujer que ríe bajo la lluvia en un paseo marítimo, con un paraguas abierto de mango de madera tallado en forma de cabeza de pato.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
+    { id: 'im-camara', kind: 'image', src: 'img/img-camara.webp', bytes: 0, sha256: '', width: 988, height: 796, alt: 'Cámara réflex de 35 mm con motor, montada en un trípode, con un cable que la une a una pequeña caja temporizadora.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
+    { id: 'im-estudio', kind: 'image', src: 'img/img-estudio.webp', bytes: 0, sha256: '', width: 988, height: 796, alt: 'Estudio fotográfico en penumbra: un trípode junto a la ventana, mesas de trabajo y, al fondo, la puerta del cuarto oscuro con su lámpara de aviso.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M).' },
+    { id: 'pt-okafor', kind: 'image', src: 'portraits/ch-okafor.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Retrato de Samuel Okafor.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-callum', kind: 'image', src: 'portraits/ch-callum.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Retrato de Callum Reyes.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-imogen', kind: 'image', src: 'portraits/ch-imogen.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Retrato de Imogen Ashcroft.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-julian', kind: 'image', src: 'portraits/ch-julian.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Retrato de Julian Price.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-nora', kind: 'image', src: 'portraits/ch-nora.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Retrato de Nora Kell.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-desmond', kind: 'image', src: 'portraits/ch-desmond.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Retrato de Desmond Ashcroft.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
     { id: 'as-contactos', kind: 'image', src: 'contactos.svg', bytes: 0, sha256: '', width: 1200, height: 980, alt: 'Hoja de contactos con 36 fotogramas del estudio, cada uno con la hora impresa en naranja.' },
     { id: 'as-croquis', kind: 'image', src: 'croquis.svg', bytes: 0, sha256: '', width: 1000, height: 700, alt: 'Croquis a mano de la planta del estudio: cocina, archivo, mesa, portal, cámara y cuarto oscuro.' },
   ],

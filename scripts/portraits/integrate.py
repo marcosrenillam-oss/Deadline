@@ -49,6 +49,8 @@ def main():
         by_case.setdefault(i['case'], {'people': [], 'images': []})['images'].append(i)
     for case, items in by_case.items():
         path = os.path.join(ROOT, 'content', 'cases', case, 'case.ts')
+        if not os.path.exists(path):
+            continue  # p. ej. imágenes del despacho (DESK)
         src = open(path).read()
         data = json.load(open(os.path.join(ROOT, 'content', 'cases', case, 'case.json')))
         names = {c['id']: c['name'] for c in data['characters']}

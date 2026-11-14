@@ -71,6 +71,7 @@
   "characters": [
     {
       "id": "ch-selene",
+      "portrait": "pt-selene",
       "name": "Selene Markou",
       "look": {
         "hair": "bun",
@@ -89,6 +90,7 @@
     },
     {
       "id": "ch-nikos",
+      "portrait": "pt-nikos",
       "name": "Nikos Draganis",
       "look": {
         "hair": "short",
@@ -117,6 +119,7 @@
     },
     {
       "id": "ch-irini",
+      "portrait": "pt-irini",
       "name": "Irini Saba",
       "look": {
         "hair": "long"
@@ -144,6 +147,7 @@
     },
     {
       "id": "ch-ladas",
+      "portrait": "pt-ladas",
       "name": "Petros Ladas",
       "look": {
         "hair": "bald",
@@ -1653,5 +1657,50 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-ladas",
+      "kind": "image",
+      "src": "portraits/ch-ladas.webp",
+      "bytes": 25144,
+      "sha256": "416bd86284fca78c6bca55de46c60bb857d04a74188ee761ed8c19354a0e811d",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Petros Ladas.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-irini",
+      "kind": "image",
+      "src": "portraits/ch-irini.webp",
+      "bytes": 28120,
+      "sha256": "0d02ad966bc81f70a569b9a367d14e749ec245b6e530f8ab01aa4c0032238c8d",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Irini Saba.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-nikos",
+      "kind": "image",
+      "src": "portraits/ch-nikos.webp",
+      "bytes": 19082,
+      "sha256": "30d94154dd292ab80b1cc969d7b72beef92bc858a91685b77112b652f2fe783f",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Nikos Draganis.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-selene",
+      "kind": "image",
+      "src": "portraits/ch-selene.webp",
+      "bytes": 20646,
+      "sha256": "11744b26c58bba9c852a6dc67eced63b374a9252a66b5e5947842de805cb5be0",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Selene Markou.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    }
+  ]
 }

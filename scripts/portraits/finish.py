@@ -192,6 +192,8 @@ def finish_images():
         src = os.path.join(RAW, f"{it['id']}.png")
         if not os.path.exists(src):
             continue
+        if it['case'] not in CASES():
+            continue  # imágenes del despacho: las monta polaroids.py
         rng = np.random.default_rng(zlib.crc32(it['id'].encode()))
         style = CASES()[it['case']]['style']
         im = Image.open(src).convert('RGB')

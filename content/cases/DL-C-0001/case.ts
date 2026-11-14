@@ -73,6 +73,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-selene',
+      portrait: 'pt-selene',
       name: 'Selene Markou',
       look: { hair: 'bun', glasses: true },
       role: 'victim',
@@ -84,6 +85,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-nikos',
+      portrait: 'pt-nikos',
       name: 'Nikos Draganis',
       look: { hair: 'short', beard: true },
       role: 'suspect',
@@ -98,6 +100,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-irini',
+      portrait: 'pt-irini',
       name: 'Irini Saba',
       look: { hair: 'long' },
       role: 'suspect',
@@ -112,6 +115,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-ladas',
+      portrait: 'pt-ladas',
       name: 'Petros Ladas',
       look: { hair: 'bald', glasses: true },
       role: 'suspect',
@@ -718,7 +722,12 @@ const caseFile: CaseFileInput = {
     { id: 'ob-motivo', text: 'Recuperad lo que había en la carpeta borrada.', completeWhen: { fact: 'fa-motivo' }, points: 40, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-ladas', kind: 'image', src: 'portraits/ch-ladas.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Petros Ladas.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-irini', kind: 'image', src: 'portraits/ch-irini.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Irini Saba.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-nikos', kind: 'image', src: 'portraits/ch-nikos.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Nikos Draganis.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-selene', kind: 'image', src: 'portraits/ch-selene.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Selene Markou.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+  ],
 };
 
 export default caseFile;

@@ -70,6 +70,7 @@
   "characters": [
     {
       "id": "ch-arriaga",
+      "portrait": "pt-arriaga",
       "name": "Diego de Arriaga",
       "look": {
         "hair": "short",
@@ -89,6 +90,7 @@
     },
     {
       "id": "ch-tomas",
+      "portrait": "pt-tomas",
       "name": "Tomás Ruiz",
       "look": {
         "hair": "short"
@@ -116,6 +118,7 @@
     },
     {
       "id": "ch-zamudio",
+      "portrait": "pt-zamudio",
       "name": "Rodrigo Zamudio",
       "look": {
         "hair": "hat",
@@ -141,6 +144,7 @@
     },
     {
       "id": "ch-leonor",
+      "portrait": "pt-leonor",
       "name": "Leonor de Mendaro",
       "look": {
         "hair": "bun"
@@ -165,6 +169,7 @@
     },
     {
       "id": "ch-vanaken",
+      "portrait": "pt-vanaken",
       "name": "Joost van Aken",
       "look": {
         "hair": "hat",
@@ -189,6 +194,7 @@
     },
     {
       "id": "ch-sacristan",
+      "portrait": "pt-sacristan",
       "name": "Bartolomé Cid",
       "look": {
         "hair": "bald"
@@ -2050,5 +2056,72 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-sacristan",
+      "kind": "image",
+      "src": "portraits/ch-sacristan.webp",
+      "bytes": 17080,
+      "sha256": "818210ee1665a0faaa7ac1d5d6942b924717dc3f62902459720a6cd0e4136ece",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Bartolomé Cid.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-vanaken",
+      "kind": "image",
+      "src": "portraits/ch-vanaken.webp",
+      "bytes": 11374,
+      "sha256": "156e6e1ead879f0711593633d001c98a6004b7b2ae9d0b0de6a9ad6587c9e291",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Joost van Aken.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-leonor",
+      "kind": "image",
+      "src": "portraits/ch-leonor.webp",
+      "bytes": 20022,
+      "sha256": "c269bf3fdbb3678b2405a81cd7e5244a4c50f07be1dff4a9616e304f7f4c66d2",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Leonor de Mendaro.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-zamudio",
+      "kind": "image",
+      "src": "portraits/ch-zamudio.webp",
+      "bytes": 14158,
+      "sha256": "8d6c6f95a838601ef34bef5bbd13bc8e8efa78ec96b0b4cfac47710665dabab8",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Rodrigo Zamudio.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-tomas",
+      "kind": "image",
+      "src": "portraits/ch-tomas.webp",
+      "bytes": 21662,
+      "sha256": "d43bab2d7bcdd1fc7c9a1dfbd21d2c9e91e8e5679fbbe1d7140bf601270ca81a",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Tomás Ruiz.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-arriaga",
+      "kind": "image",
+      "src": "portraits/ch-arriaga.webp",
+      "bytes": 20618,
+      "sha256": "1c10b0c343c131de86e1e097335576be11bf9d6fa2292bf8cd6dc83f06486a14",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Diego de Arriaga.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    }
+  ]
 }

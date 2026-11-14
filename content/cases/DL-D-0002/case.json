@@ -56,6 +56,7 @@
   "characters": [
     {
       "id": "ch-baronesa",
+      "portrait": "pt-baronesa",
       "name": "Adelheid von Rauch",
       "look": {
         "hair": "bun",
@@ -74,6 +75,7 @@
     },
     {
       "id": "ch-lotte",
+      "portrait": "pt-lotte",
       "name": "Lotte Brenner",
       "look": {
         "hair": "bun"
@@ -101,6 +103,7 @@
     },
     {
       "id": "ch-kranz",
+      "portrait": "pt-kranz",
       "name": "Emil Kranz",
       "look": {
         "hair": "long"
@@ -125,6 +128,7 @@
     },
     {
       "id": "ch-viktor",
+      "portrait": "pt-viktor",
       "name": "Viktor von Rauch",
       "look": {
         "hair": "short",
@@ -153,6 +157,7 @@
     },
     {
       "id": "ch-weiss",
+      "portrait": "pt-weiss",
       "name": "Anton Weiss",
       "look": {
         "hair": "bald",
@@ -178,6 +183,7 @@
     },
     {
       "id": "ch-johann",
+      "portrait": "pt-johann",
       "name": "Johann Pichler",
       "look": {
         "hair": "short"
@@ -1904,5 +1910,72 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-johann",
+      "kind": "image",
+      "src": "portraits/ch-johann.webp",
+      "bytes": 13822,
+      "sha256": "2eaddf09af3caf4e93cf128b4a8e82cbff0a9fedb9ccec50f8c779e7c1ff6a79",
+      "width": 480,
+      "height": 627,
+      "alt": "Retrato de Johann Pichler.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-weiss",
+      "kind": "image",
+      "src": "portraits/ch-weiss.webp",
+      "bytes": 11396,
+      "sha256": "3278b046c10030bbedd68c74bc7b04179e30a2ffb63f0548c8e65b377f77a4fd",
+      "width": 480,
+      "height": 627,
+      "alt": "Retrato de Anton Weiss.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-viktor",
+      "kind": "image",
+      "src": "portraits/ch-viktor.webp",
+      "bytes": 12654,
+      "sha256": "5148a436e815622bb08da7dc99acfe5908b1014b92418d3a013b211f13a19178",
+      "width": 480,
+      "height": 627,
+      "alt": "Retrato de Viktor von Rauch.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-kranz",
+      "kind": "image",
+      "src": "portraits/ch-kranz.webp",
+      "bytes": 13110,
+      "sha256": "9ffedecba5bd907e4a6bfa92442b55abd024e995a00ef6a8f1d0d9998890885a",
+      "width": 480,
+      "height": 627,
+      "alt": "Retrato de Emil Kranz.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-lotte",
+      "kind": "image",
+      "src": "portraits/ch-lotte.webp",
+      "bytes": 11432,
+      "sha256": "f281f5133df8408da2885ce3fc4e12211a3695d11c288e0db5822b68f1f442d4",
+      "width": 480,
+      "height": 627,
+      "alt": "Retrato de Lotte Brenner.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-baronesa",
+      "kind": "image",
+      "src": "portraits/ch-baronesa.webp",
+      "bytes": 16900,
+      "sha256": "384605e066342ee8681cc7f32d74f8d83c9ab156cc4c89c27cd7abe88d447cdd",
+      "width": 480,
+      "height": 627,
+      "alt": "Retrato de Adelheid von Rauch.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    }
+  ]
 }

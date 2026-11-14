@@ -75,6 +75,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-rufo',
+      portrait: 'pt-rufo',
       name: 'Lucio Vetio Rufo',
       look: { hair: 'bald' },
       role: 'victim',
@@ -86,6 +87,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-filon',
+      portrait: 'pt-filon',
       name: 'Filón',
       look: { hair: 'short', beard: true },
       role: 'suspect',
@@ -100,6 +102,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-gayo',
+      portrait: 'pt-gayo',
       name: 'Gayo Anio Fausto',
       look: { hair: 'short' },
       role: 'suspect',
@@ -114,6 +117,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-marcia',
+      portrait: 'pt-marcia',
       name: 'Marcia Prisca',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -128,6 +132,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-davo',
+      portrait: 'pt-davo',
       name: 'Davo',
       look: { hair: 'bald', beard: true },
       role: 'witness',
@@ -139,6 +144,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-siro',
+      portrait: 'pt-siro',
       name: 'Siro',
       look: { hair: 'short' },
       role: 'witness',
@@ -818,7 +824,14 @@ const caseFile: CaseFileInput = {
     { id: 'ob-gayo', text: 'Descubre dónde pasó la noche el heredero.', completeWhen: { secret: 'se-gayo' }, points: 30, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-siro', kind: 'image', src: 'portraits/ch-siro.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Siro.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-davo', kind: 'image', src: 'portraits/ch-davo.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Davo.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-marcia', kind: 'image', src: 'portraits/ch-marcia.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Marcia Prisca.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-gayo', kind: 'image', src: 'portraits/ch-gayo.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Gayo Anio Fausto.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-filon', kind: 'image', src: 'portraits/ch-filon.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Filón.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+    { id: 'pt-rufo', kind: 'image', src: 'portraits/ch-rufo.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Retrato de Lucio Vetio Rufo.', credit: 'Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada.' },
+  ],
 };
 
 export default caseFile;

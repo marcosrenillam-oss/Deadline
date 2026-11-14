@@ -78,6 +78,7 @@
   "characters": [
     {
       "id": "ch-rufo",
+      "portrait": "pt-rufo",
       "name": "Lucio Vetio Rufo",
       "look": {
         "hair": "bald"
@@ -95,6 +96,7 @@
     },
     {
       "id": "ch-filon",
+      "portrait": "pt-filon",
       "name": "Filón",
       "look": {
         "hair": "short",
@@ -123,6 +125,7 @@
     },
     {
       "id": "ch-gayo",
+      "portrait": "pt-gayo",
       "name": "Gayo Anio Fausto",
       "look": {
         "hair": "short"
@@ -150,6 +153,7 @@
     },
     {
       "id": "ch-marcia",
+      "portrait": "pt-marcia",
       "name": "Marcia Prisca",
       "look": {
         "hair": "bun"
@@ -186,6 +190,7 @@
     },
     {
       "id": "ch-davo",
+      "portrait": "pt-davo",
       "name": "Davo",
       "look": {
         "hair": "bald",
@@ -203,6 +208,7 @@
     },
     {
       "id": "ch-siro",
+      "portrait": "pt-siro",
       "name": "Siro",
       "look": {
         "hair": "short"
@@ -1822,5 +1828,72 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-siro",
+      "kind": "image",
+      "src": "portraits/ch-siro.webp",
+      "bytes": 21416,
+      "sha256": "c640d2ecedb9e62eb76b30a7e033dcd4b7a6eac6495eae7cf76d04506631f459",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Siro.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-davo",
+      "kind": "image",
+      "src": "portraits/ch-davo.webp",
+      "bytes": 21988,
+      "sha256": "8cf000bddbf746b8fcdac599d2d9e742c33f49e4dd10a0e9f18e5b7c3423ac33",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Davo.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-marcia",
+      "kind": "image",
+      "src": "portraits/ch-marcia.webp",
+      "bytes": 29546,
+      "sha256": "75c4a48a30fe8de15e6935343ed15d8f2dcf7641ddd65e0c277bcc449574a503",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Marcia Prisca.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-gayo",
+      "kind": "image",
+      "src": "portraits/ch-gayo.webp",
+      "bytes": 28262,
+      "sha256": "89caa28cf175d350fe72111e6329e594e54815bad1abee67634a91c9085a9167",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Gayo Anio Fausto.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-filon",
+      "kind": "image",
+      "src": "portraits/ch-filon.webp",
+      "bytes": 35240,
+      "sha256": "f523969ca68384854251743f53586e6844fa44eb1e98e4217b9ff178f408eb91",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Filón.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-rufo",
+      "kind": "image",
+      "src": "portraits/ch-rufo.webp",
+      "bytes": 32822,
+      "sha256": "9db5ee7ad8a4e03793a0cd7ed8e35cc3ec97153f994245691bcb378830884d25",
+      "width": 480,
+      "height": 600,
+      "alt": "Retrato de Lucio Vetio Rufo.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    }
+  ]
 }

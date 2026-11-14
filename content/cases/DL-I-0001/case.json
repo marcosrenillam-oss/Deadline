@@ -54,6 +54,7 @@
   "characters": [
     {
       "id": "ch-desmond",
+      "portrait": "pt-desmond",
       "name": "Desmond Ashcroft",
       "look": {
         "hair": "short",
@@ -72,6 +73,7 @@
     },
     {
       "id": "ch-nora",
+      "portrait": "pt-nora",
       "name": "Nora Kell",
       "look": {
         "hair": "long"
@@ -99,6 +101,7 @@
     },
     {
       "id": "ch-julian",
+      "portrait": "pt-julian",
       "name": "Julian Price",
       "look": {
         "hair": "short"
@@ -126,6 +129,7 @@
     },
     {
       "id": "ch-imogen",
+      "portrait": "pt-imogen",
       "name": "Imogen Ashcroft",
       "look": {
         "hair": "bun",
@@ -154,6 +158,7 @@
     },
     {
       "id": "ch-callum",
+      "portrait": "pt-callum",
       "name": "Callum Reyes",
       "look": {
         "hair": "short",
@@ -185,6 +190,7 @@
     },
     {
       "id": "ch-okafor",
+      "portrait": "pt-okafor",
       "name": "Samuel Okafor",
       "look": {
         "hair": "bald",
@@ -433,6 +439,11 @@
       },
       "body": [
         {
+          "type": "image",
+          "asset": "im-estudio",
+          "caption": "Fotografía de la Policía Metropolitana: el estudio a las 08:50."
+        },
+        {
           "type": "heading",
           "text": "INFORME DE INCIDENTE Nº WEC/87/11/0412"
         },
@@ -669,6 +680,11 @@
       },
       "body": [
         {
+          "type": "image",
+          "asset": "im-camara",
+          "caption": "Fotografía de la Policía Metropolitana: la cámara tal como se encontró."
+        },
+        {
           "type": "paragraph",
           "text": "Cámara réflex de 35 mm con motor y un respaldo que imprime la fecha y la hora en cada fotograma. Un cable la une a un temporizador de intervalos."
         },
@@ -853,6 +869,11 @@
         "events": []
       },
       "body": [
+        {
+          "type": "image",
+          "asset": "im-brighton",
+          "caption": "La copia enmarcada, fotografiada por la policía."
+        },
         {
           "type": "paragraph",
           "text": "Copia en blanco y negro, 30 × 40 cm. Una mujer ríe bajo la lluvia en el paseo marítimo de Brighton. Sostiene un paraguas abierto cuyo mango, tallado en madera, tiene forma de cabeza de pato."
@@ -1334,6 +1355,11 @@
         ]
       },
       "body": [
+        {
+          "type": "image",
+          "asset": "im-negativos",
+          "caption": "La caja, fotografiada al recibirla."
+        },
         {
           "type": "paragraph",
           "text": "Caja de cartón con 214 negativos en fundas, rotulados a mano «N. K.». Entre ellos, los originales de «Lluvia en Brixton», la serie que Ashcroft expuso en la galería Hayward en 1986 con su firma."
@@ -3024,6 +3050,116 @@
     }
   ],
   "assets": [
+    {
+      "id": "im-negativos",
+      "kind": "image",
+      "src": "img/img-negativos.webp",
+      "bytes": 49218,
+      "sha256": "6b9bf6557e33cc357d2771dbed5d70f3ce16cdf33ffabec9e340234cb0510c11",
+      "width": 988,
+      "height": 796,
+      "alt": "Caja de cartón llena de negativos en fundas de papel cristal, con etiquetas escritas a mano.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
+    },
+    {
+      "id": "im-brighton",
+      "kind": "image",
+      "src": "img/img-brighton.webp",
+      "bytes": 62186,
+      "sha256": "b31ede2451a063cd04ab6033ccc07bc13da72be9c4fb64fdb37ed51e2523e1e9",
+      "width": 988,
+      "height": 796,
+      "alt": "Fotografía en blanco y negro de una mujer que ríe bajo la lluvia en un paseo marítimo, con un paraguas abierto de mango de madera tallado en forma de cabeza de pato.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
+    },
+    {
+      "id": "im-camara",
+      "kind": "image",
+      "src": "img/img-camara.webp",
+      "bytes": 34282,
+      "sha256": "a88a51f12ae6cb1d0123ac42658a9519ed898fabc5e258fb0c6946817f10c149",
+      "width": 988,
+      "height": 796,
+      "alt": "Cámara réflex de 35 mm con motor, montada en un trípode, con un cable que la une a una pequeña caja temporizadora.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
+    },
+    {
+      "id": "im-estudio",
+      "kind": "image",
+      "src": "img/img-estudio.webp",
+      "bytes": 47934,
+      "sha256": "f8d776b1628d4c1967cbe961b5b7cd67f036137c68a67742cc2252e82a0b2292",
+      "width": 988,
+      "height": 796,
+      "alt": "Estudio fotográfico en penumbra: un trípode junto a la ventana, mesas de trabajo y, al fondo, la puerta del cuarto oscuro con su lámpara de aviso.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M)."
+    },
+    {
+      "id": "pt-okafor",
+      "kind": "image",
+      "src": "portraits/ch-okafor.webp",
+      "bytes": 19492,
+      "sha256": "d82766feaa657d1ebdd46ec646656b3c506806492290a29b787ad2d6e30604e4",
+      "width": 480,
+      "height": 593,
+      "alt": "Retrato de Samuel Okafor.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-callum",
+      "kind": "image",
+      "src": "portraits/ch-callum.webp",
+      "bytes": 22464,
+      "sha256": "8e0ca82b878bc2e96a398b119ef15f9b34faab71e0aaee39f24d8645337e3307",
+      "width": 480,
+      "height": 593,
+      "alt": "Retrato de Callum Reyes.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-imogen",
+      "kind": "image",
+      "src": "portraits/ch-imogen.webp",
+      "bytes": 29592,
+      "sha256": "226f367eecc7b42f5af209481c9bfe4d1d6b06c1613b9436c52b0ec6ec4672f2",
+      "width": 480,
+      "height": 593,
+      "alt": "Retrato de Imogen Ashcroft.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-julian",
+      "kind": "image",
+      "src": "portraits/ch-julian.webp",
+      "bytes": 19082,
+      "sha256": "ad548f31376aa148c55cd693618191854b526a4190160c7f9e665a63bb498a8f",
+      "width": 480,
+      "height": 593,
+      "alt": "Retrato de Julian Price.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-nora",
+      "kind": "image",
+      "src": "portraits/ch-nora.webp",
+      "bytes": 31282,
+      "sha256": "70bc6a56dfd7b50f39ec961342900117b12a9dc63af14e886eda6f95ffea03f6",
+      "width": 480,
+      "height": 593,
+      "alt": "Retrato de Nora Kell.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
+    {
+      "id": "pt-desmond",
+      "kind": "image",
+      "src": "portraits/ch-desmond.webp",
+      "bytes": 33994,
+      "sha256": "d8a412cca0d1ab21f22eef60439fc2ce1855af06053d62dca6a862db22085420",
+      "width": 480,
+      "height": 593,
+      "alt": "Retrato de Desmond Ashcroft.",
+      "credit": "Generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). Persona inventada."
+    },
     {
       "id": "as-contactos",
       "kind": "image",
