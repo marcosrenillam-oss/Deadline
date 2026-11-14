@@ -156,7 +156,7 @@ export function AccusationView() {
               setCulprits((cs) => (cs.includes(p.id) ? cs.filter((x) => x !== p.id) : [...cs, p.id]));
             }}
           >
-            <Portrait character={p} size={64} src={portraitUrl(c, p)} />
+            <Portrait character={p} size={64} src={portraitUrl(c, p)} recreation={c.origin === 'real'} />
             <span>{p.name}</span>
           </button>
         ))}

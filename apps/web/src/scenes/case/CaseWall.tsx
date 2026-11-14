@@ -279,7 +279,7 @@ export function CaseWall() {
       return (
         <button key={key} className={s.polaroid} data-role={p.role} {...common} aria-label={`${p.name}, ${ROLE[p.role]}`}>
           <span className={s.pinHead} />
-          <Portrait character={p} size={86} src={portraitUrl(c, p)} />
+          <Portrait character={p} size={86} src={portraitUrl(c, p)} recreation={c.origin === 'real'} />
           <span className={s.caption}>{p.name}</span>
           <span className={s.sub}>{ROLE[p.role]}</span>
         </button>
@@ -426,7 +426,7 @@ function Lifted({ pin, from, onClose, go }: { pin: Pin; from: DOMRect; onClose: 
     const canAsk = !closed && availableInterrogations(c, k, inv?.role).some((it) => it.characterId === p.id);
     body = (
       <div className={s.liftPerson}>
-        <Portrait character={p} size={170} src={portraitUrl(c, p)} />
+        <Portrait character={p} size={170} src={portraitUrl(c, p)} recreation={c.origin === 'real'} />
         <div>
           <p className={s.kindLabel}>{ROLE[p.role]}</p>
           <h2 className={s.liftTitle}>{p.name}</h2>

@@ -60,7 +60,7 @@ export function InterrogationView() {
         <Link to={`${base}/personas/${subject.id}`} className={s.link}>
           ← Ficha
         </Link>
-        <Portrait character={subject} size={96} src={portraitUrl(c, subject)} />
+        <Portrait character={subject} size={96} src={portraitUrl(c, subject)} recreation={c.origin === 'real'} />
         <h1 className={s.subjectName}>{subject.name}</h1>
         {it.setting && <p className={s.setting}>{it.setting}</p>}
       </aside>

@@ -231,7 +231,7 @@ export function CoopScene() {
                           .filter((ch) => ch.role !== 'investigator')
                           .map((ch) => (
                             <li key={ch.id}>
-                              <Portrait character={ch} size={44} src={portraitUrl(pickedFile, ch)} />
+                              <Portrait character={ch} size={44} src={portraitUrl(pickedFile, ch)} recreation={pickedFile.origin === 'real'} />
                               <span>{ch.name}</span>
                             </li>
                           ))}

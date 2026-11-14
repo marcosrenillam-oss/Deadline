@@ -31,7 +31,7 @@ export function PeopleTab() {
         {people.map((p) => (
           <li key={p.id}>
             <Link to={`${base}/personas/${p.id}`} className={s.personCard} aria-current={p.id === current.id ? 'true' : undefined} onClick={() => sound.play('paper')}>
-              <Portrait character={p} size={46} src={portraitUrl(c, p)} />
+              <Portrait character={p} size={46} src={portraitUrl(c, p)} recreation={c.origin === 'real'} />
               <span>
                 <span className={s.personName}>{p.name}</span>
                 <span className={s.personRole}>{ROLE[p.role]}</span>
@@ -44,7 +44,7 @@ export function PeopleTab() {
         <div className={s.dossierHead}>
           {portraitUrl(c, current) ? (
             <button type="button" className={s.portraitButton} onClick={() => setViewing(true)} aria-label={`Ver el retrato de ${current.name}`}>
-              <Portrait character={current} size={110} src={portraitUrl(c, current)} />
+              <Portrait character={current} size={110} src={portraitUrl(c, current)} recreation={c.origin === 'real'} />
             </button>
           ) : (
             <Portrait character={current} size={110} />

@@ -100,7 +100,8 @@ export const characterSchema = z.strictObject({
     .optional(),
   /**
    * Aspecto físico, en inglés, para generar el retrato (rasgos, pelo, ropa de
-   * la época, gesto). Siempre una persona inventada, nunca alguien real.
+   * la época, gesto). En casos reales, el retrato es una recreación artística
+   * y la interfaz lo rotula así (D-084); nunca se presenta como su fotografía.
    */
   appearance: z.string().optional(),
   /** Frase de ficha. */

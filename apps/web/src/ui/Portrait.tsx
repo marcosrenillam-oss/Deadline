@@ -19,15 +19,23 @@ export function Portrait({
   character,
   size = 120,
   src,
+  recreation = false,
 }: {
   character: Pick<Character, 'id' | 'name' | 'age'> & { look?: Character['look'] };
   size?: number;
   src?: string | undefined;
+  /** Persona real: el retrato es una recreación artística y se rotula como tal. */
+  recreation?: boolean;
 }) {
   if (src) {
     return (
       <span className={styles.photo} style={{ width: size, height: size * 1.25 }}>
-        <img src={src} alt={`Retrato de ${character.name}`} loading="lazy" decoding="async" draggable={false} />
+        <img src={src} alt={recreation ? `Recreación artística del retrato de ${character.name}` : `Retrato de ${character.name}`} loading="lazy" decoding="async" draggable={false} />
+        {recreation && size >= 90 && (
+          <span className={styles.recreation} aria-hidden="true">
+            Recreación
+          </span>
+        )}
       </span>
     );
   }

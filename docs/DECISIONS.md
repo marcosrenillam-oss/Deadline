@@ -605,3 +605,12 @@ gratuito) con Durable Objects y SQLite (`apps/server`, desplegado en
   mismos códigos firmados) y guarda los últimos 300 para quien se reconecte.
   Al firmar, el caso se cierra a la vez en los dos con el mismo informe.
   Sin conexión siguen funcionando los códigos a mano.
+
+## D-084 · Casos reales: archivo cronológico y retratos rotulados
+
+- El archivo se ordena por época y, dentro de cada una, por año; un separador
+  con el nombre de la época, sus años y el número de carpetas abre cada tramo.
+- En los casos con `origin: 'real'` los retratos generados son recreaciones:
+  la foto lleva el rótulo «Recreación» (en tamaños grandes) y su texto
+  alternativo lo dice siempre. El bloque `historical` separa lo documentado,
+  las hipótesis y lo dramatizado, y cita fuentes.
