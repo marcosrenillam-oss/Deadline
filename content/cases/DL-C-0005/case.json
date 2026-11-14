@@ -1,0 +1,1469 @@
+{
+  "schemaVersion": 1,
+  "id": "DL-C-0005",
+  "contentVersion": 1,
+  "mode": "coop",
+  "title": "Diez libras por un cuerpo",
+  "subtitle": "Una mendiga irlandesa desaparece la noche de Halloween en una casa de huéspedes",
+  "origin": "real",
+  "historical": {
+    "documented": [
+      "En la noche del 31 de octubre de 1828, Mary Docherty, una mujer irlandesa pobre, fue invitada a celebrar Halloween en casa de William Burke, en el West Port de Edimburgo, y no se la volvió a ver con vida.",
+      "Esa noche Burke pidió a sus inquilinos, James y Ann Gray, que durmieran en casa de William Hare. Al día siguiente Ann Gray encontró el cuerpo de una mujer bajo la paja, al pie de la cama.",
+      "A los Gray les ofrecieron dinero, diez libras a la semana según su declaración, para que callaran. Fueron a la policía.",
+      "Cuando llegó la policía el cuerpo ya no estaba: lo habían llevado en un baúl de té a la escuela de anatomía del doctor Robert Knox, en Surgeons’ Square, donde fue hallado y reconocido.",
+      "Un vecino, Hugh Alston, oyó de madrugada ruido de lucha y una voz de mujer que gritaba «¡Asesinato!».",
+      "Burke y Hare habían matado a dieciséis personas en un año, asfixiándolas para no dejar marcas, y vendido sus cuerpos a la escuela de Knox por entre siete y diez libras.",
+      "Hare declaró contra Burke a cambio de inmunidad. Burke fue ahorcado el 28 de enero de 1829 y su cuerpo, disecado en público. Para Helen McDougal, su compañera, el veredicto fue «no probado». Knox nunca fue acusado."
+    ],
+    "hypotheses": [
+      "Cuánto sabían el doctor Knox y sus ayudantes sobre la procedencia de los cuerpos fue objeto de gran escándalo y nunca se juzgó."
+    ],
+    "dramatized": [
+      "Los investigadores que manejan los jugadores, sus conversaciones y el reparto de papeles son una recreación.",
+      "La redacción del libro de pagos, las notas y algunos detalles concretos están reconstruidos para el juego.",
+      "Los retratos son recreaciones artísticas."
+    ],
+    "documentedResolution": "William Burke fue condenado por el asesinato de Mary Docherty, cometido junto a William Hare, que se libró declarando contra él. Burke fue ahorcado el 28 de enero de 1829.",
+    "sources": [
+      "West Port Murders, informe del juicio (Edimburgo, 1829)",
+      "Owen Dudley Edwards, Burke and Hare (1980)",
+      "Lisa Rosner, The Anatomy Murders (2010)"
+    ]
+  },
+  "era": "c19",
+  "eraLabel": "Edimburgo, 1828",
+  "year": 1828,
+  "location": {
+    "city": "Edimburgo",
+    "place": "Casa de huéspedes del West Port",
+    "country": "Escocia"
+  },
+  "category": "homicide",
+  "difficulty": "inspector",
+  "keywords": [
+    "Burke",
+    "Hare",
+    "Edimburgo",
+    "West Port",
+    "Knox",
+    "anatomía",
+    "ladrones de cuerpos",
+    "Halloween",
+    "caso real"
+  ],
+  "ambience": {
+    "music": "victorian-night",
+    "mood": "urban"
+  },
+  "maxHints": 5,
+  "coop": {
+    "style": "split",
+    "roles": [
+      {
+        "id": "A",
+        "title": "Policía de Edimburgo",
+        "briefing": "Llevas la denuncia de los Gray: la casa del West Port, los vecinos y la pareja de Burke. Lo que veas no lo verá tu compañero si no se lo pasas."
+      },
+      {
+        "id": "B",
+        "title": "Escuela de anatomía",
+        "briefing": "Entras en Surgeons’ Square con orden del fiscal: el cuerpo, los registros de compras, el portero y el médico de la policía. Puedes hablar con William Hare, que quiere hacer un trato. Lo que veas no lo verá tu compañero si no se lo pasas."
+      }
+    ]
+  },
+  "briefing": {
+    "incidentDisplay": "Viernes, 31 de octubre de 1828 · noche de Halloween",
+    "summary": "Una pareja de inquilinos, los Gray, ha entrado en comisaría a las siete de la tarde del sábado: dicen que han visto el cuerpo de una mujer bajo la paja en casa de su casero, William Burke, y que les han ofrecido dinero por callar. Cuando la policía ha llegado, no había nada.",
+    "context": "Edimburgo es la capital europea de la anatomía, y sus escuelas necesitan cadáveres que la ley no les da. Los ladrones de tumbas los suministran de noche. El fiscal os manda a dos: uno a la casa y otro a las escuelas.",
+    "background": "El West Port es un barrio de mendigos, temporeros irlandeses y casas de huéspedes con camas por días. Nadie echa de menos a nadie.",
+    "victim": "ch-docherty",
+    "initialFacts": [],
+    "initialEvidence": [
+      "ev-denuncia",
+      "ev-casa",
+      "ev-libro-knox"
+    ],
+    "initialTimeline": [
+      "te-invitacion",
+      "te-muerte"
+    ]
+  },
+  "characters": [
+    {
+      "id": "ch-docherty",
+      "name": "Mary Docherty",
+      "look": {
+        "hair": "hat"
+      },
+      "role": "victim",
+      "age": 45,
+      "occupation": "Mendiga irlandesa",
+      "appearance": "a poor 45-year-old Irish woman in Edinburgh in 1828, thin careworn face, grey-streaked dark hair under a ragged shawl and bonnet, patched dress, gentle tired eyes, old engraving style",
+      "summary": "Había venido a Edimburgo a buscar a su hijo.",
+      "biography": "Llegó del condado de Donegal buscando a un hijo que trabajaba de temporero. Burke la conoció esa mañana en una tienda y la invitó a casa diciéndole que su madre también se apellidaba Docherty.",
+      "personality": [
+        "Confiada",
+        "Alegre"
+      ]
+    },
+    {
+      "id": "ch-burke",
+      "name": "William Burke",
+      "look": {
+        "hair": "short"
+      },
+      "role": "suspect",
+      "age": 36,
+      "occupation": "Zapatero remendón",
+      "appearance": "a stocky 36-year-old Irish labourer in Edinburgh in 1828, round amiable face, short dark hair, side whiskers, worn blue coat and neckerchief, pleasant smile, old engraving style",
+      "summary": "Simpático, religioso a ratos, nunca le falta dinero.",
+      "biography": "Irlandés del Ulster. Trabajó en el canal de la Unión y ahora remienda zapatos. Vive con Helen McDougal en una habitación que realquila a inquilinos.",
+      "personality": [
+        "Simpático",
+        "Bebedor",
+        "Sangre fría"
+      ],
+      "relationToVictim": "La invitó a su casa",
+      "motive": {
+        "text": "Vendía cuerpos a la escuela de anatomía.",
+        "visibleWhen": {
+          "fact": "fa-pagos"
+        }
+      },
+      "alibi": {
+        "claim": "La mujer se fue de madrugada. El cuerpo que vieron los Gray era otro, que compró a un ladrón de tumbas."
+      }
+    },
+    {
+      "id": "ch-hare",
+      "name": "William Hare",
+      "look": {
+        "hair": "short"
+      },
+      "role": "suspect",
+      "age": 24,
+      "occupation": "Dueño de la casa de huéspedes",
+      "appearance": "a rough 24-year-old Irish lodging-house keeper in Edinburgh in 1828, gaunt brutish face, untidy dark hair, scarred brow, ragged coat, sly grin, old engraving style",
+      "summary": "Ríe mucho y no mira a los ojos.",
+      "biography": "Lleva con su mujer, Margaret, una casa de camas en Tanner’s Close. Es socio de Burke en negocios que no explica.",
+      "personality": [
+        "Brutal",
+        "Astuto",
+        "Cobarde"
+      ],
+      "relationToVictim": "Estuvo en la fiesta",
+      "motive": {
+        "text": "Compartía con Burke lo que pagaba la escuela.",
+        "visibleWhen": {
+          "fact": "fa-pagos"
+        }
+      },
+      "alibi": {
+        "claim": "Bebió y bailó en la fiesta y se fue a dormir. Si quiere saber lo demás, le propone un trato."
+      }
+    },
+    {
+      "id": "ch-mcdougal",
+      "name": "Helen McDougal",
+      "look": {
+        "hair": "bun"
+      },
+      "role": "suspect",
+      "age": 33,
+      "occupation": "Compañera de Burke",
+      "appearance": "a hard-faced 33-year-old Scottish woman in Edinburgh in 1828, thin sharp features, dark hair under a cap, shawl over a worn dress, suspicious defiant eyes, old engraving style",
+      "summary": "Ofreció dinero a los Gray.",
+      "biography": "Vive con Burke desde hace años. Fue ella quien, al ver a Ann Gray salir de la habitación con cara de espanto, le ofreció dinero.",
+      "personality": [
+        "Desafiante",
+        "Leal a Burke"
+      ],
+      "relationToVictim": "Estuvo en la fiesta",
+      "motive": {
+        "text": "Vivía de lo que Burke traía a casa.",
+        "visibleWhen": {
+          "fact": "fa-soborno"
+        }
+      },
+      "alibi": {
+        "claim": "Durmió en la cama de la habitación y no vio nada."
+      }
+    },
+    {
+      "id": "ch-gray",
+      "name": "Ann Gray",
+      "look": {
+        "hair": "bun"
+      },
+      "role": "witness",
+      "age": 30,
+      "occupation": "Inquilina de Burke",
+      "appearance": "a frightened 30-year-old working-class Scottish woman in 1828, pale thin face, light hair under a plain cap, worn shawl, wide terrified eyes, old engraving style",
+      "summary": "Levantó la paja.",
+      "biography": "Ella y su marido, James, se alojaban con Burke desde hacía unos días. Pobres de solemnidad, rechazaron un soborno que les habría dado de comer un año.",
+      "personality": [
+        "Asustada",
+        "Honrada"
+      ]
+    },
+    {
+      "id": "ch-alston",
+      "name": "Hugh Alston",
+      "look": {
+        "hair": "short"
+      },
+      "role": "witness",
+      "age": 55,
+      "occupation": "Tendero, vecino del West Port",
+      "appearance": "a cautious 55-year-old Edinburgh grocer in 1828, lined honest face, grey hair, apron over a waistcoat, worried eyes, old engraving style",
+      "summary": "Oyó un grito a medianoche.",
+      "biography": "Vive en el mismo pasillo que Burke. La noche de Halloween volvía tarde.",
+      "personality": [
+        "Prudente",
+        "Honrado"
+      ]
+    },
+    {
+      "id": "ch-paterson",
+      "name": "David Paterson",
+      "look": {
+        "hair": "short"
+      },
+      "role": "witness",
+      "age": 30,
+      "occupation": "Portero de la escuela del Dr. Knox",
+      "appearance": "a sly 30-year-old Edinburgh anatomy school porter in 1828, narrow face, slicked hair, dark coat, keys at his belt, evasive eyes, old engraving style",
+      "summary": "Recibe los paquetes de noche.",
+      "biography": "Portero y hombre de confianza de la escuela de anatomía de Knox, en el número 10 de Surgeons’ Square. Paga a los proveedores.",
+      "personality": [
+        "Evasivo",
+        "Interesado"
+      ]
+    },
+    {
+      "id": "ch-knox",
+      "name": "Robert Knox",
+      "look": {
+        "hair": "bald"
+      },
+      "role": "witness",
+      "age": 37,
+      "occupation": "Anatomista",
+      "appearance": "a striking 37-year-old Scottish anatomist in 1828, bald head, one eye clouded from smallpox, pitted skin, elegant black coat and high white cravat, arrogant clever expression, old engraving style",
+      "summary": "El profesor de anatomía más popular de Edimburgo.",
+      "biography": "Cirujano del ejército en Waterloo, brillante y elegante. Llena su aula con cuatrocientos alumnos. Necesita un cadáver fresco cada pocos días.",
+      "personality": [
+        "Brillante",
+        "Arrogante",
+        "Indiferente"
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "lo-casa",
+      "name": "Habitación de Burke",
+      "description": "Una sola habitación en un pasillo del West Port, con una cama y paja en un rincón."
+    },
+    {
+      "id": "lo-escuela",
+      "name": "Escuela del Dr. Knox",
+      "description": "10 Surgeons’ Square: aula, sala de disección y un sótano frío."
+    },
+    {
+      "id": "lo-tanners",
+      "name": "Casa de Hare, Tanner’s Close",
+      "description": "Casa de camas a dos calles."
+    }
+  ],
+  "relationships": [
+    {
+      "id": "re-socios",
+      "a": "ch-burke",
+      "b": "ch-hare",
+      "label": "Socios"
+    },
+    {
+      "id": "re-pareja",
+      "a": "ch-burke",
+      "b": "ch-mcdougal",
+      "label": "Pareja"
+    },
+    {
+      "id": "re-gray",
+      "a": "ch-gray",
+      "b": "ch-burke",
+      "label": "Inquilina"
+    },
+    {
+      "id": "re-proveedor",
+      "a": "ch-burke",
+      "b": "ch-paterson",
+      "label": "Proveedor de la escuela",
+      "visibleWhen": {
+        "fact": "fa-pagos"
+      }
+    }
+  ],
+  "facts": [
+    {
+      "id": "fa-docherty-casa",
+      "text": "Mary Docherty pasó la noche de Halloween en casa de Burke y nadie la vio salir.",
+      "important": true
+    },
+    {
+      "id": "fa-grays-fuera",
+      "text": "Burke mandó a dormir fuera a los Gray esa noche.",
+      "important": true
+    },
+    {
+      "id": "fa-cuerpo-paja",
+      "text": "Ann Gray vio el cuerpo de una mujer desnuda bajo la paja de la habitación.",
+      "important": true
+    },
+    {
+      "id": "fa-soborno",
+      "text": "Helen McDougal ofreció a los Gray diez libras a la semana por callar.",
+      "important": true
+    },
+    {
+      "id": "fa-grito",
+      "text": "Un vecino oyó de madrugada ruido de lucha y a una mujer gritar «¡Asesinato!»; después, silencio.",
+      "important": true
+    },
+    {
+      "id": "fa-baul",
+      "text": "Un baúl de té salió de casa de Burke el sábado por la tarde hacia Surgeons’ Square.",
+      "important": true
+    },
+    {
+      "id": "fa-cuerpo-knox",
+      "text": "En la escuela de Knox apareció el cuerpo de una mujer, fresco, sin enterrar nunca: Ann Gray lo reconoce.",
+      "important": true
+    },
+    {
+      "id": "fa-sin-marcas",
+      "text": "El cuerpo no tiene heridas, solo leves señales en la cara y el cuello: compatible con asfixia, apretando boca y nariz.",
+      "important": true
+    },
+    {
+      "id": "fa-pagos",
+      "text": "Burke y Hare han vendido a la escuela de Knox más de una docena de cuerpos en un año, siempre frescos, nunca desenterrados.",
+      "important": true
+    },
+    {
+      "id": "fa-hare-trato",
+      "text": "Hare ofrece contar cómo mataban a cambio de no ser juzgado.",
+      "important": true
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-denuncia",
+      "kind": "statement",
+      "title": "Denuncia de James y Ann Gray",
+      "dated": "1 de noviembre de 1828",
+      "source": "Comisaría de policía de Edimburgo",
+      "summary": "Lo que vieron en casa de Burke.",
+      "holder": "both",
+      "related": {
+        "characters": [
+          "ch-gray",
+          "ch-burke",
+          "ch-mcdougal",
+          "ch-docherty"
+        ],
+        "locations": [
+          "lo-casa"
+        ],
+        "events": [
+          "te-invitacion",
+          "te-paja"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—{{dt-den-fuera|El viernes Burke nos dijo que esa noche durmiéramos en casa de Hare, que tenía una invitada, una irlandesa vieja.}} Por la mañana, ella ya no estaba. Dijeron que la habían echado por pendenciera."
+        },
+        {
+          "type": "typed",
+          "text": "—{{dt-den-paja|Burke no nos dejaba acercarnos a la paja del rincón. Cuando salió, levanté la paja buscando mis medias y vi un brazo. Era ella, desnuda, con sangre en la boca.}}"
+        },
+        {
+          "type": "typed",
+          "text": "—{{dt-den-dinero|La mujer de Burke nos ofreció diez libras a la semana si callábamos. Mi marido le dijo que su conciencia no estaba en venta.}}"
+        },
+        {
+          "type": "signature",
+          "name": "Ann Gray (con su marca)"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-den-fuera",
+          "label": "Los mandaron fuera",
+          "description": "Burke quiso la habitación vacía esa noche.",
+          "effects": [
+            {
+              "grantFact": "fa-grays-fuera"
+            }
+          ],
+          "points": 10
+        },
+        {
+          "id": "dt-den-paja",
+          "label": "El cuerpo bajo la paja",
+          "description": "La invitada estaba muerta en la habitación de Burke.",
+          "effects": [
+            {
+              "grantFact": "fa-cuerpo-paja"
+            },
+            {
+              "unlockTimelineEvent": "te-paja"
+            }
+          ],
+          "points": 20
+        },
+        {
+          "id": "dt-den-dinero",
+          "label": "Diez libras a la semana",
+          "description": "Un soborno imposible para gente así: el silencio valía mucho.",
+          "effects": [
+            {
+              "grantFact": "fa-soborno"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-casa",
+      "kind": "report",
+      "title": "Registro de la habitación de Burke",
+      "source": "Policía de Edimburgo",
+      "summary": "Lo que quedaba cuando llegó la policía.",
+      "holder": "A",
+      "related": {
+        "characters": [
+          "ch-burke"
+        ],
+        "locations": [
+          "lo-casa"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "La paja del rincón está removida. No hay cuerpo."
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-casa-ropa|Bajo la cama, un vestido de rayas manchado de sangre por el cuello, que Ann Gray reconoce como el de la invitada.}} En la cama, manchas de sangre en la paja del jergón."
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-casa-ropa",
+          "label": "El vestido de la invitada",
+          "description": "La ropa de Mary Docherty se quedó en la habitación; ella no se fue andando.",
+          "effects": [
+            {
+              "grantFact": "fa-docherty-casa"
+            }
+          ],
+          "points": 15
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-portador",
+      "kind": "statement",
+      "title": "Declaración de un mozo de cuerda",
+      "source": "West Port",
+      "summary": "Un baúl pesado, un sábado por la tarde.",
+      "holder": "A",
+      "autoDiscoverWhen": {
+        "asked": "q-alston"
+      },
+      "related": {
+        "characters": [
+          "ch-burke",
+          "ch-hare"
+        ],
+        "locations": [
+          "lo-casa",
+          "lo-escuela"
+        ],
+        "events": [
+          "te-baul"
+        ]
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "—{{dt-port-baul|El sábado, a las seis, Burke y Hare me pagaron por llevar un baúl de té desde su pasillo hasta Surgeons’ Square. Pesaba como un muerto, con perdón.}} Ellos venían detrás, con la mujer de Burke."
+        }
+      ],
+      "onExamine": [
+        {
+          "unlockTimelineEvent": "te-baul"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-port-baul",
+          "label": "Un baúl a Surgeons’ Square",
+          "description": "El cuerpo salió de la casa en un baúl hacia una escuela de anatomía, una hora antes de que llegara la policía.",
+          "effects": [
+            {
+              "grantFact": "fa-baul"
+            }
+          ],
+          "points": 20
+        }
+      ],
+      "decisive": true
+    },
+    {
+      "id": "ev-libro-knox",
+      "kind": "record",
+      "title": "Libro de compras de la escuela del Dr. Knox",
+      "source": "10 Surgeons’ Square",
+      "summary": "Quién trae los cuerpos y cuánto cobra.",
+      "holder": "B",
+      "related": {
+        "characters": [
+          "ch-knox",
+          "ch-paterson"
+        ],
+        "locations": [
+          "lo-escuela"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "table",
+          "header": [
+            "Fecha",
+            "Proveedor",
+            "Sujeto",
+            "Pagado"
+          ],
+          "rows": [
+            [
+              "nov-1827",
+              "«John y William»",
+              "Varón, anciano",
+              "7 £ 10 s"
+            ],
+            [
+              "feb-1828",
+              "«John y William»",
+              "Mujer",
+              "10 £"
+            ],
+            [
+              "abr-1828",
+              "«John y William»",
+              "Mujer joven",
+              "10 £"
+            ],
+            [
+              "… (13 entradas más) …",
+              "«John y William»",
+              "…",
+              "…"
+            ],
+            [
+              "{{dt-libro-ultima|1-nov-1828}}",
+              "«John y William»",
+              "Mujer, fresca",
+              "{{dt-libro-precio|5 £ a cuenta; 5 £ el lunes}}"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "{{dt-libro-frescos|Al margen, de otra mano: «Siempre frescos. Ninguno con tierra».}}"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-libro-ultima",
+          "label": "1 de noviembre",
+          "description": "Una mujer entregada al día siguiente de Halloween.",
+          "effects": [],
+          "points": 10
+        },
+        {
+          "id": "dt-libro-precio",
+          "label": "Diez libras",
+          "description": "Lo mismo que ofrecieron a los Gray por semana: el negocio da para sobornos.",
+          "effects": [],
+          "points": 10
+        },
+        {
+          "id": "dt-libro-frescos",
+          "label": "«Ninguno con tierra»",
+          "description": "Los cuerpos de «John y William» nunca se habían enterrado: no eran robados de tumbas.",
+          "effects": [
+            {
+              "grantFact": "fa-pagos"
+            }
+          ],
+          "points": 20
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    },
+    {
+      "id": "ev-cuerpo",
+      "kind": "report",
+      "title": "Examen del cuerpo por el Dr. Christison",
+      "source": "Médico de la policía",
+      "summary": "La mujer del baúl.",
+      "holder": "B",
+      "autoDiscoverWhen": {
+        "asked": "q-paterson"
+      },
+      "related": {
+        "characters": [
+          "ch-docherty"
+        ],
+        "locations": [
+          "lo-escuela"
+        ],
+        "events": []
+      },
+      "body": [
+        {
+          "type": "typed",
+          "text": "{{dt-cuerpo-fresco|Mujer de unos cuarenta y cinco años, muerta hace menos de dos días. No ha sido enterrada nunca: ni tierra, ni marcas de mortaja.}}"
+        },
+        {
+          "type": "typed",
+          "text": "{{dt-cuerpo-marcas|No hay heridas. Pequeñas magulladuras en la cara, alrededor de la boca, y bajo la barbilla; los ojos inyectados. Compatible con una asfixia por compresión de boca y nariz, con alguien encima del pecho.}}"
+        },
+        {
+          "type": "signature",
+          "name": "R. Christison"
+        }
+      ],
+      "details": [
+        {
+          "id": "dt-cuerpo-fresco",
+          "label": "Nunca enterrada",
+          "description": "No es un cadáver robado: murió hace un día.",
+          "effects": [
+            {
+              "grantFact": "fa-cuerpo-knox"
+            }
+          ],
+          "points": 15
+        },
+        {
+          "id": "dt-cuerpo-marcas",
+          "label": "Asfixia sin heridas",
+          "description": "La mataron sin dejar marcas visibles, para que el cuerpo valiera más.",
+          "effects": [
+            {
+              "grantFact": "fa-sin-marcas"
+            }
+          ],
+          "points": 20
+        }
+      ],
+      "decisive": true,
+      "points": 10
+    }
+  ],
+  "deductions": [
+    {
+      "id": "de-baul",
+      "title": "De la paja al baúl",
+      "combine": [
+        "dt-port-baul",
+        "dt-libro-ultima"
+      ],
+      "explanation": "El baúl salió del West Port el sábado a las seis y la escuela anotó ese día una mujer fresca de «John y William»: el cuerpo de la paja es el del baúl.",
+      "points": 30
+    },
+    {
+      "id": "de-burking",
+      "title": "Asfixiar para vender",
+      "combine": [
+        "fa-grito",
+        "dt-cuerpo-marcas"
+      ],
+      "explanation": "Un grito de «¡Asesinato!», ruido de lucha y luego silencio; el cuerpo sin heridas, con marcas en boca y barbilla: la ahogaron con las manos para que llegara intacta a la mesa de disección.",
+      "points": 40
+    },
+    {
+      "id": "de-negocio",
+      "title": "Un negocio, no un crimen",
+      "combine": [
+        "dt-libro-frescos",
+        "dt-den-dinero"
+      ],
+      "explanation": "Más de quince cuerpos frescos en un año, nunca enterrados, a diez libras: matar era su oficio, y por eso podían ofrecer diez libras a la semana por un silencio.",
+      "points": 30
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "cx-burke-salio",
+      "title": "Mary no se fue",
+      "a": {
+        "line": "ln-burke-salio"
+      },
+      "b": {
+        "detail": "dt-casa-ropa"
+      },
+      "explanation": "Burke dice que la mujer se marchó de madrugada; su vestido ensangrentado estaba bajo la cama.",
+      "points": 25
+    },
+    {
+      "id": "cx-burke-tumba",
+      "title": "Ese cuerpo no salió de una tumba",
+      "a": {
+        "line": "ln-burke-tumba"
+      },
+      "b": {
+        "detail": "dt-cuerpo-fresco"
+      },
+      "explanation": "Burke dice que el cuerpo lo compró a un ladrón de tumbas; el médico dice que nunca fue enterrado.",
+      "points": 30
+    },
+    {
+      "id": "cx-mcdougal-dormia",
+      "title": "Helen McDougal no dormía",
+      "a": {
+        "line": "ln-mcdougal-dormia"
+      },
+      "b": {
+        "line": "ln-alston-voces"
+      },
+      "explanation": "Helen dice que durmió sin oír nada; el vecino oyó voces de mujer en la habitación justo después del grito, y una de ellas decía «Calla, que ya está».",
+      "effects": [
+        {
+          "revealSecret": "se-mcdougal"
+        }
+      ],
+      "points": 20
+    }
+  ],
+  "secrets": [
+    {
+      "id": "se-mcdougal",
+      "characterId": "ch-mcdougal",
+      "text": "Helen McDougal estaba en la habitación cuando Burke y Hare mataron a Mary Docherty, y salió al pasillo para que nadie entrara.",
+      "points": 20
+    },
+    {
+      "id": "se-knox",
+      "characterId": "ch-knox",
+      "text": "En la escuela de Knox nadie preguntaba de dónde venían cuerpos tan frescos, nunca enterrados. Pagaban más por los mejores.",
+      "revealedWhen": {
+        "fact": "fa-pagos"
+      },
+      "points": 15
+    }
+  ],
+  "interrogations": [
+    {
+      "id": "in-burke",
+      "characterId": "ch-burke",
+      "holder": "A",
+      "setting": "En la comisaría de Edimburgo. Se santigua cuando entra y sonríe con todos los dientes.",
+      "opening": [
+        {
+          "text": "Todo esto es un malentendido, caballero. Yo soy un pobre zapatero."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-burke",
+          "label": "La invitada",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-burke-invitada",
+              "prompt": "¿Dónde está la mujer que invitó en Halloween?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Estuvo bailando y bebiendo con nosotros hasta tarde. Era una buena mujer, de mi tierra.",
+                      "tone": "truth"
+                    },
+                    {
+                      "id": "ln-burke-salio",
+                      "text": "Se fue de madrugada, a las siete, a buscar a su hijo. Se la vio salir.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "unlockTimelineEvent": "te-invitacion"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-burke-cuerpo",
+              "prompt": "¿Y el cuerpo de la paja?",
+              "kind": "press",
+              "requires": {
+                "fact": "fa-cuerpo-paja"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-burke-tumba",
+                      "text": "Era otro. Lo compré a un ladrón de tumbas para venderlo a los médicos. Eso es un delito pequeño, no un asesinato.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-mcdougal",
+      "characterId": "ch-mcdougal",
+      "holder": "A",
+      "setting": "En una celda de la comisaría, con el chal cruzado sobre el pecho.",
+      "opening": [
+        {
+          "text": "Yo no sé nada. Yo dormía."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-mcdougal",
+          "label": "La noche",
+          "kind": "alibi",
+          "questions": [
+            {
+              "id": "q-mcdougal-noche",
+              "prompt": "¿Qué pasó de madrugada en su habitación?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "id": "ln-mcdougal-dormia",
+                      "text": "Nada. Me fui a dormir y no oí nada en toda la noche. Bebí mucho.",
+                      "tone": "lie"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-mcdougal-dinero",
+              "prompt": "¿Por qué ofreció dinero a los Gray?",
+              "kind": "ask",
+              "requires": {
+                "fact": "fa-soborno"
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Para que no armaran escándalo por un muerto comprado. La policía siempre se ensaña con los pobres.",
+                      "tone": "evasion"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-gray",
+      "characterId": "ch-gray",
+      "holder": "A",
+      "setting": "En la comisaría, con su marido al lado. No ha dormido.",
+      "opening": [
+        {
+          "text": "Les juro que lo vi. No estoy loca."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-gray",
+          "label": "La invitada",
+          "kind": "victim",
+          "questions": [
+            {
+              "id": "q-gray-mujer",
+              "prompt": "¿Cómo era la mujer?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Bajita, irlandesa, cantaba mucho. Llevaba un vestido de rayas, gastado. Y se reía como una niña.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-alston",
+      "characterId": "ch-alston",
+      "holder": "A",
+      "setting": "En la trastienda de su tienda, nervioso por si le ven hablar con la policía.",
+      "opening": [
+        {
+          "text": "En el West Port uno aprende a no oír. Pero aquello… aquello lo oí."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-alston",
+          "label": "Aquella noche",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-alston",
+              "prompt": "¿Oyó algo la noche de Halloween?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Hacia la medianoche, al pasar por el pasillo de Burke, oí golpes, como de lucha, y una mujer que gritaba «¡Asesinato!». Fui a buscar a un guardia y no encontré ninguno.",
+                      "tone": "truth"
+                    },
+                    {
+                      "id": "ln-alston-voces",
+                      "text": "Al volver, ya no gritaba nadie. Solo oí a una mujer en la habitación que decía «Calla, que ya está», y unas risas de hombre.",
+                      "tone": "truth"
+                    },
+                    {
+                      "text": "El sábado por la tarde vi salir a Burke y a Hare detrás de un mozo con un baúl.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-grito"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-paterson",
+      "characterId": "ch-paterson",
+      "holder": "B",
+      "setting": "En el vestíbulo de la escuela, entre esqueletos colgados. Mira hacia la escalera del sótano.",
+      "opening": [
+        {
+          "text": "Esto es una escuela respetable. Lo que entra, entra legalmente… más o menos."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-paterson",
+          "label": "El baúl",
+          "kind": "events",
+          "questions": [
+            {
+              "id": "q-paterson",
+              "prompt": "¿Qué entró aquí el sábado por la tarde?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Un baúl de té, de los de siempre. John y William. Les di cinco libras a cuenta, como es costumbre. Está abajo, en el sótano. Ya lo ha visto el médico de la policía.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-paterson-proveedores",
+              "prompt": "¿Quiénes son «John y William»?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "William Burke y William Hare, del West Port. Nuestros mejores proveedores: siempre a tiempo, siempre frescos. Nunca pregunté de dónde.",
+                      "tone": "truth"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-hare",
+      "characterId": "ch-hare",
+      "holder": "B",
+      "setting": "En una sala del juzgado, con su abogado. Sonríe de lado y se rasca la cicatriz de la frente.",
+      "opening": [
+        {
+          "text": "Sé cosas que les interesan. Pero un hombre tiene que cuidar de su cuello, ¿verdad?"
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-hare",
+          "label": "El trato",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-hare-trato",
+              "prompt": "¿Qué ofrece?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Si el fiscal me da su palabra de que no me juzgan, les cuento cómo se hacía. Todo. Y quién lo hacía.",
+                      "tone": "truth"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "grantFact": "fa-hare-trato"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "q-hare-como",
+              "prompt": "Cuéntelo, entonces. ¿Cómo murió Mary Docherty?",
+              "kind": "press",
+              "requires": {
+                "all": [
+                  {
+                    "fact": "fa-hare-trato"
+                  },
+                  {
+                    "fact": "fa-sin-marcas"
+                  }
+                ]
+              },
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "speaker": "narration",
+                      "text": "Hare se inclina hacia delante, encantado de que por fin le pregunten."
+                    },
+                    {
+                      "text": "Burke se le echó encima cuando ya estaba borracha en el suelo. Le tapó la boca y la nariz con la mano y se le sentó en el pecho. Así no quedan marcas, y el doctor paga más.",
+                      "tone": "admission"
+                    },
+                    {
+                      "text": "Yo estaba en la silla. Mirando. Yo no la toqué.",
+                      "tone": "lie"
+                    }
+                  ],
+                  "effects": [
+                    {
+                      "setFlag": "hare-cuenta"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in-knox",
+      "characterId": "ch-knox",
+      "holder": "B",
+      "setting": "En su aula vacía, de pie en la tarima, como si diera clase.",
+      "opening": [
+        {
+          "text": "Yo enseño anatomía, caballero. No pregunto la biografía de mis cadáveres."
+        }
+      ],
+      "topics": [
+        {
+          "id": "tp-knox",
+          "label": "Los cuerpos",
+          "kind": "other",
+          "questions": [
+            {
+              "id": "q-knox",
+              "prompt": "¿No le extrañó que llegaran tan frescos?",
+              "kind": "ask",
+              "responses": [
+                {
+                  "lines": [
+                    {
+                      "text": "Me alegró. ¿Sabe cuántos cirujanos ignorantes matan a sus pacientes por no haber diseccionado nunca un cuerpo fresco? Pagaba lo que valían. El resto no era asunto mío.",
+                      "tone": "evasion"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "id": "te-invitacion",
+      "t": -900,
+      "display": "31 de octubre, mañana",
+      "title": "Burke invita a Mary Docherty a su casa por Halloween",
+      "description": "«Mi madre también era una Docherty».",
+      "characters": [
+        "ch-burke",
+        "ch-docherty"
+      ],
+      "location": "lo-casa",
+      "key": true
+    },
+    {
+      "id": "te-fuera",
+      "t": -180,
+      "display": "31 de octubre, noche",
+      "title": "Burke manda a los Gray a dormir a casa de Hare",
+      "description": "Fiesta con bebida y baile.",
+      "characters": [
+        "ch-burke",
+        "ch-gray"
+      ],
+      "key": true
+    },
+    {
+      "id": "te-muerte",
+      "t": 0,
+      "display": "Hacia la medianoche",
+      "title": "Muerte de Mary Docherty en la habitación de Burke",
+      "description": "Un grito de «¡Asesinato!» y luego silencio.",
+      "characters": [
+        "ch-docherty",
+        "ch-burke",
+        "ch-hare"
+      ],
+      "location": "lo-casa",
+      "key": true
+    },
+    {
+      "id": "te-falso-salio",
+      "t": 420,
+      "display": "1 de noviembre, 7:00",
+      "title": "Mary Docherty se marcha de casa de Burke",
+      "description": "Según Burke.",
+      "characters": [
+        "ch-docherty"
+      ],
+      "veracity": "false",
+      "claimedBy": "ch-burke"
+    },
+    {
+      "id": "te-paja",
+      "t": 900,
+      "display": "1 de noviembre, tarde",
+      "title": "Ann Gray encuentra el cuerpo bajo la paja",
+      "description": "Le ofrecen diez libras a la semana.",
+      "characters": [
+        "ch-gray",
+        "ch-mcdougal"
+      ],
+      "location": "lo-casa",
+      "key": true
+    },
+    {
+      "id": "te-baul",
+      "t": 1080,
+      "display": "1 de noviembre, 18:00",
+      "title": "Un baúl de té sale hacia Surgeons’ Square",
+      "description": "Con Burke y Hare detrás.",
+      "characters": [
+        "ch-burke",
+        "ch-hare"
+      ],
+      "location": "lo-escuela",
+      "key": true
+    }
+  ],
+  "accusation": {
+    "suspects": [
+      "ch-burke",
+      "ch-hare",
+      "ch-mcdougal"
+    ],
+    "motives": [
+      {
+        "id": "mo-vender",
+        "label": "Vender su cuerpo a la escuela de anatomía, como habían hecho con más de una docena",
+        "availableWhen": {
+          "all": [
+            {
+              "fact": "fa-pagos"
+            },
+            {
+              "fact": "fa-docherty-casa"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mo-robo",
+        "label": "Robarle lo poco que llevaba"
+      },
+      {
+        "id": "mo-pelea",
+        "label": "Una pelea de borrachos que acabó mal"
+      },
+      {
+        "id": "mo-silencio",
+        "label": "Callarla porque había visto algo",
+        "availableWhen": {
+          "fact": "fa-cuerpo-paja"
+        }
+      }
+    ],
+    "methods": [
+      {
+        "id": "me-burking",
+        "label": "La emborracharon y la asfixiaron tapándole boca y nariz y aplastándole el pecho, para no dejar marcas",
+        "availableWhen": {
+          "all": [
+            {
+              "fact": "fa-grito"
+            },
+            {
+              "fact": "fa-sin-marcas"
+            }
+          ]
+        }
+      },
+      {
+        "id": "me-golpe",
+        "label": "La golpearon en la cabeza durante la fiesta"
+      },
+      {
+        "id": "me-cuchillo",
+        "label": "La apuñalaron y lavaron el cuerpo"
+      },
+      {
+        "id": "me-natural",
+        "label": "Murió de borrachera y la vendieron"
+      }
+    ]
+  },
+  "solution": {
+    "culprits": [
+      "ch-burke",
+      "ch-hare"
+    ],
+    "motive": "mo-vender",
+    "method": "me-burking",
+    "proof": [
+      "ev-cuerpo",
+      "ev-libro-knox",
+      "ev-portador"
+    ],
+    "whatHappened": "William Burke y William Hare mataron a Mary Docherty la noche de Halloween de 1828 para vender su cuerpo a la escuela de anatomía del doctor Knox, como habían hecho con más de una docena de personas en un año. Burke la invitó a su casa, mandó a dormir fuera a sus inquilinos y la emborrachó con Hare. Hacia la medianoche, Burke se le echó encima, le tapó la boca y la nariz y le aplastó el pecho mientras Hare miraba: así el cuerpo no tenía heridas y valía más. Escondieron el cuerpo bajo la paja; cuando Ann Gray lo descubrió, Helen McDougal le ofreció dinero. El sábado por la tarde lo llevaron en un baúl de té a Surgeons’ Square y cobraron cinco libras a cuenta.",
+    "reconstruction": [
+      "Mañana del 31 de octubre: Burke conoce a Mary Docherty en una tienda y la invita a casa.",
+      "Por la noche, manda a los Gray a dormir a casa de Hare. Fiesta con Hare y las mujeres.",
+      "Hacia la medianoche, Burke la asfixia mientras Hare mira. Un vecino oye «¡Asesinato!».",
+      "Esconden el cuerpo bajo la paja de la habitación.",
+      "Sábado por la tarde: Ann Gray lo encuentra; Helen McDougal les ofrece dinero por callar.",
+      "A las seis, un mozo lleva el baúl a la escuela de Knox. Los Gray van a la policía.",
+      "En el sótano de la escuela aparece el cuerpo, nunca enterrado."
+    ],
+    "decisiveEvidence": [
+      "ev-denuncia",
+      "ev-casa",
+      "ev-portador",
+      "ev-libro-knox",
+      "ev-cuerpo"
+    ],
+    "alibiTruths": [
+      {
+        "characterId": "ch-burke",
+        "truth": "Mary no se fue de madrugada, y el cuerpo no era de ninguna tumba: era ella, asfixiada por él."
+      },
+      {
+        "characterId": "ch-hare",
+        "truth": "No solo miraba: era socio en todo y cobraba la mitad."
+      },
+      {
+        "characterId": "ch-mcdougal",
+        "truth": "No dormía: estaba en la habitación y vigiló la puerta."
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "en-burke",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct",
+        "knowledge": {
+          "flag": "hare-cuenta"
+        }
+      },
+      "outcome": "success",
+      "title": "Burking",
+      "text": "Hare consigue su trato y declara contra su socio. Burke es condenado y ahorcado el 28 de enero de 1829 ante veinticinco mil personas, y al día siguiente su cuerpo es disecado en público en la universidad. Hare sale libre de Escocia entre insultos. El idioma inglés gana un verbo: «to burke», asfixiar sin dejar marcas. Y en 1832 una ley permite a las escuelas usar los cuerpos que nadie reclama, para que nadie vuelva a matar por diez libras."
+    },
+    {
+      "id": "en-exito",
+      "when": {
+        "culprit": "correct",
+        "motive": "correct",
+        "method": "correct",
+        "proof": "correct"
+      },
+      "outcome": "success",
+      "title": "West Port",
+      "text": "La acusación une la casa, el baúl y la escuela. Burke y Hare son detenidos. Edimburgo entera hace cola para ver la habitación."
+    },
+    {
+      "id": "en-burke-solo",
+      "when": {
+        "culprit": "ch-burke"
+      },
+      "outcome": "partial",
+      "title": "Uno de dos",
+      "text": "Burke es acusado; su socio, al que nadie señala, desaparece de Tanner’s Close una noche."
+    },
+    {
+      "id": "en-mcdougal",
+      "when": {
+        "culprit": "ch-mcdougal"
+      },
+      "outcome": "failure",
+      "title": "La mujer equivocada",
+      "text": "Helen McDougal es juzgada y el jurado declara «no probado». Burke y Hare siguen en el West Port, buscando invitados."
+    },
+    {
+      "id": "en-fallo",
+      "when": {},
+      "outcome": "failure",
+      "title": "Un cuerpo robado",
+      "text": "Se habla de un cadáver robado de una tumba, un delito menor. La escuela de Knox sigue comprando cuerpos frescos."
+    }
+  ],
+  "hints": [
+    {
+      "id": "hl-cuerpo",
+      "topic": "Dónde está el cuerpo",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-cuerpo-knox"
+        }
+      },
+      "steps": [
+        "A: alguien vio salir algo de la casa el sábado. Pregunta al vecino.",
+        "B: pregunta al portero qué entró el sábado.",
+        "Poned en común el baúl y el libro de la escuela."
+      ]
+    },
+    {
+      "id": "hl-como",
+      "topic": "Sin heridas",
+      "relevantWhen": {
+        "not": {
+          "fact": "fa-sin-marcas"
+        }
+      },
+      "steps": [
+        "B: el médico de la policía ha visto el cuerpo.",
+        "A: el vecino oyó algo a medianoche.",
+        "Juntad el grito y las marcas de la cara."
+      ]
+    },
+    {
+      "id": "hl-hare",
+      "topic": "El socio",
+      "relevantWhen": {
+        "all": [
+          {
+            "fact": "fa-sin-marcas"
+          },
+          {
+            "not": {
+              "flag": "hare-cuenta"
+            }
+          }
+        ]
+      },
+      "steps": [
+        "Uno de los dos socios tiene miedo a la horca.",
+        "B: Hare quiere un trato; escúchale.",
+        "Cuando sepáis cómo murió, pregúntale por Mary Docherty."
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "id": "ob-cuerpo",
+      "text": "Encontrad el cuerpo de Mary Docherty.",
+      "completeWhen": {
+        "fact": "fa-cuerpo-knox"
+      },
+      "points": 25
+    },
+    {
+      "id": "ob-negocio",
+      "text": "Descubrid el negocio de «John y William».",
+      "completeWhen": {
+        "fact": "fa-pagos"
+      },
+      "points": 25
+    },
+    {
+      "id": "ob-mcdougal",
+      "text": "Averiguad qué hizo Helen McDougal esa noche.",
+      "completeWhen": {
+        "secret": "se-mcdougal"
+      },
+      "points": 15,
+      "hidden": true
+    }
+  ],
+  "assets": []
+}
