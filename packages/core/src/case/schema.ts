@@ -98,6 +98,11 @@ export const characterSchema = z.strictObject({
       beard: z.boolean().default(false),
     })
     .optional(),
+  /**
+   * Aspecto físico, en inglés, para generar el retrato (rasgos, pelo, ropa de
+   * la época, gesto). Siempre una persona inventada, nunca alguien real.
+   */
+  appearance: z.string().optional(),
   /** Frase de ficha. */
   summary: text,
   biography: text,

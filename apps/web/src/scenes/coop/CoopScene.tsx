@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import type { CaseFile, InvitePacket } from '@deadline/core';
-import { fetchCatalog, loadCase, type CatalogEntry } from '../../cases/contentRepo.ts';
+import { fetchCatalog, loadCase, portraitUrl, type CatalogEntry } from '../../cases/contentRepo.ts';
+import { formatCaseNumber, timeLimitMinutes } from '@deadline/core';
+import { CRIME_CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../cases/labels.ts';
+import { Portrait } from '../../ui/Portrait.tsx';
 import { acceptInvite, completeHandshake, createInvite, createSameDevice, listSessions, readInvite } from '../../cases/coopRepo.ts';
 import { getInvestigation } from '../../cases/investigationRepo.ts';
 import type { CoopSession } from '../../cases/coopTypes.ts';
@@ -91,6 +94,11 @@ export function CoopScene() {
   };
 
   const pickedCase = catalog.find((e) => e.id === picked);
+  const [pickedFile, setPickedFile] = useState<CaseFile | null>(null);
+  useEffect(() => {
+    setPickedFile(null);
+    if (picked) void loadCase(picked).then(setPickedFile, () => setPickedFile(null));
+  }, [picked]);
 
   return (
     <main className={surface.wood}>
@@ -151,6 +159,32 @@ export function CoopScene() {
                 ))}
                 {catalog.length === 0 && <p className={s.hand}>No hay expedientes cooperativos en tu archivo. Conéctate para actualizarlo.</p>}
               </div>
+              {pickedCase && (
+                <article className={`m-manila ${s.ficha}`} aria-label={`Ficha de ${pickedCase.title}`}>
+                  <p className={s.era}>
+                    {formatCaseNumber(pickedCase.id)} · {pickedCase.eraLabel} · {DIFFICULTY_LABELS[pickedCase.difficulty]}
+                  </p>
+                  <h2 className={s.fichaTitle}>{pickedCase.title}</h2>
+                  <p className={s.p}>{pickedFile ? pickedFile.briefing.summary : 'Sacando el expediente del archivo…'}</p>
+                  {pickedFile && (
+                    <>
+                      <p className={s.small}>
+                        {CRIME_CATEGORY_LABELS[pickedCase.category]} · {pickedCase.place}, {pickedCase.city} · {timeLimitMinutes(pickedFile)} minutos para los dos
+                      </p>
+                      <ul className={s.faces} aria-label="Personas del caso">
+                        {pickedFile.characters
+                          .filter((ch) => ch.role !== 'investigator')
+                          .map((ch) => (
+                            <li key={ch.id}>
+                              <Portrait character={ch} size={44} src={portraitUrl(pickedFile, ch)} />
+                              <span>{ch.name}</span>
+                            </li>
+                          ))}
+                      </ul>
+                    </>
+                  )}
+                </article>
+              )}
               {pickedCase && (
                 <div className={s.room}>
                   <div className={s.station} data-role="shared">

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { useNavigate } from 'react-router';
 import { REOPEN_COST, formatCaseNumber, type CaseCatalogEntry, type CaseRecord, type Investigation } from '@deadline/core';
 import { fetchCatalog } from '../../cases/contentRepo.ts';
+import { listSessions } from '../../cases/coopRepo.ts';
 import { getDB } from '../../storage/db.ts';
 import { BrassBack } from '../../ui/BrassBack.tsx';
 import { Stamp } from '../../ui/Stamp.tsx';
@@ -24,6 +25,8 @@ interface Row {
   record: CaseRecord;
   last: Investigation | undefined;
   attempts: Investigation[];
+  /** Ruta del informe si no es la del expediente individual (partidas en pareja). */
+  report?: string;
 }
 
 /**
@@ -43,12 +46,16 @@ export function PersonalArchiveScene() {
       const [catalog, records, invs] = await Promise.all([fetchCatalog().catch(() => db.getAll('catalog')), db.getAll('caseRecords'), db.getAll('investigations')]);
       const byCase = new Map<string, Investigation[]>();
       for (const i of invs) byCase.set(i.caseId, [...(byCase.get(i.caseId) ?? []), i]);
+      const sessions = await listSessions();
       const out: Row[] = [];
       for (const r of records) {
         const e = catalog.find((x) => x.id === r.caseId);
-        if (!e || e.mode === 'coop') continue;
+        if (!e) continue;
         const attempts = (byCase.get(r.caseId) ?? []).sort((a, b) => b.attempt - a.attempt);
-        out.push({ e, record: r, last: attempts[0], attempts });
+        const last = attempts[0];
+        // Partidas en pareja: el informe vive en su mesa (/pareja/<sesión>/informe).
+        const session = e.mode === 'coop' && last ? sessions.find((x) => Object.values(x.investigationIds).includes(last.id)) : undefined;
+        out.push({ e, record: r, last, attempts, ...(session ? { report: `/pareja/${session.id}/informe` } : {}) });
       }
       setRows(out);
     })();
@@ -65,7 +72,7 @@ export function PersonalArchiveScene() {
       case 'failed':
         return !active && outcome === 'failure';
       case 'reopen':
-        return !active && !!row.last?.result;
+        return !active && !!row.last?.result && row.e.mode !== 'coop';
     }
   };
   const counts = useMemo(() => Object.fromEntries(DRAWERS.map((d) => [d.id, rows?.filter((r) => inDrawer(r, d.id)).length ?? 0])), [rows]);
@@ -116,7 +123,10 @@ export function PersonalArchiveScene() {
                   <article className={`m-manila ${s.file}`} data-drawer={drawer}>
                     <header className={s.fileHead}>
                       <span className={s.num}>{row.e.mode === 'daily' ? `Diario nº ${(row.e.dailyIndex ?? 0) + 1}` : formatCaseNumber(row.e.id)}</span>
-                      <span className={s.era}>{row.e.eraLabel}</span>
+                      <span className={s.era}>
+                        {row.e.eraLabel}
+                        {row.e.mode === 'coop' ? ' · En pareja' : ''}
+                      </span>
                     </header>
                     <h2 className={s.fileTitle}>{row.e.title}</h2>
                     {r && (
@@ -146,7 +156,7 @@ export function PersonalArchiveScene() {
                     </dl>
                     {drawer === 'reopen' && <p className={s.reopen}>{cost === 0 ? 'Primera reapertura: gratis' : `Reabrir: ${cost} puntos`}</p>}
                     <div className={s.actions}>
-                      <button className={s.link} onClick={() => (sound.play('paper'), navigate(`/expediente/${row.e.id}/informe`))}>
+                      <button className={s.link} onClick={() => (sound.play('paper'), navigate(row.report ?? `/expediente/${row.e.id}/informe`))}>
                         {drawer === 'reopen' ? 'Reabrir o ver informe' : 'Ver informe'}
                       </button>
                       {row.attempts.length > 1 && (

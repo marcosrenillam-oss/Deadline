@@ -361,3 +361,37 @@
   stroke-dasharray: 3 2;
   filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.6));
 }
+
+/* Ficha del expediente cooperativo elegido */
+.ficha {
+  display: grid;
+  gap: 4px;
+  margin-top: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  transform: rotate(-0.4deg);
+  animation: m-rise 400ms var(--ease-physical) both;
+}
+.fichaTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-xl);
+}
+.faces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.faces li {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  width: 64px;
+  font-family: var(--font-type);
+  font-size: 10px;
+  line-height: 1.2;
+  text-align: center;
+}

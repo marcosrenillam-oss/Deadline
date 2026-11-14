@@ -59,6 +59,8 @@ def main():
         case = cast['cases'][p['case']]
         prompt = case['prompt'].format(who=p['prompt'])
         n = int(ARGS.get('variants', 1))
+        if n == 1 and not ARGS.get('force') and os.path.exists(os.path.join(OUT, p['id'] + '.png')):
+            continue  # ya generado: solo se hacen los que faltan
         for v in range(n):
             im = generate(pipe, p['id'], prompt, case.get('negative', '') + ', ' + p.get('negative', ''),
                           steps=steps, guidance=case.get('guidance', 6.0), seed_offset=p.get('seed', 0) + v * 7919)
@@ -66,6 +68,8 @@ def main():
             im.save(os.path.join(OUT, name))
     for item in cast.get('images', []):
         if only and item['id'] not in only:
+            continue
+        if not ARGS.get('force') and os.path.exists(os.path.join(OUT, item['id'] + '.png')):
             continue
         prompt = item['prompt']
         im = generate(pipe, item['id'], prompt, item.get('negative', ''), width=item.get('width', 640),

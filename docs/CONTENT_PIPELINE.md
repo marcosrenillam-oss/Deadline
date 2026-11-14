@@ -53,3 +53,16 @@ generan como SVG en el propio repositorio. Para un arte final sin costes
 recurrentes, las opciones son ilustración propia, obras de dominio público
 (museos con licencia CC0) para los casos históricos, o un encargo único.
 Es una decisión de producto pendiente.
+
+## Retratos e imágenes de cada expediente nuevo
+
+Todo personaje (salvo el investigador) lleva retrato. Al escribir un caso,
+rellena `appearance` de cada personaje (aspecto en inglés: rasgos, pelo,
+ropa de la época, gesto; siempre inventado). Después:
+
+```bash
+scripts/portraits/make_all.sh   # reparto automático → genera lo que falte → acabado → integra → npm run content
+```
+
+Solo se generan los retratos que faltan (los existentes no se repiten). Ver
+`docs/ART_CREDITS.md` para el modelo y su licencia.
