@@ -1,0 +1,808 @@
+import type { CaseFileInput } from '../../../packages/core/src/case/schema.ts';
+
+/**
+ * DL-I-0006 · EL CRIMEN DE LA CALLE FUENCARRAL
+ * Madrid, julio de 1888 · Homicidio · Caso real · Unidad Especial
+ *
+ * Caso real: el asesinato de doña Luciana Borcino, viuda, en su piso de la
+ * calle Fuencarral, y el proceso contra su criada, Higinia Balaguer, el
+ * primer gran juicio seguido por la prensa en España. Lo documentado
+ * (víctima, incendio, criada y perro aturdidos en la casa, hijo preso en la
+ * Cárcel Modelo, director de la cárcel conocido de la criada, declaraciones
+ * contradictorias, condenas) sigue las fuentes; las pistas materiales
+ * concretas del juego y las conversaciones son una recreación.
+ */
+const caseFile: CaseFileInput = {
+  schemaVersion: 1,
+  id: 'DL-I-0006',
+  contentVersion: 1,
+  mode: 'individual',
+  title: 'El crimen de la calle Fuencarral',
+  subtitle: 'Una viuda aparece quemada en su cama y la criada no sabe qué contar',
+  origin: 'real',
+  historical: {
+    documented: [
+      'En la madrugada del 2 de julio de 1888, doña Luciana Borcino, viuda acomodada, fue asesinada en su piso de la calle Fuencarral, en Madrid. Su cuerpo apareció apuñalado y quemado: alguien había prendido fuego al dormitorio.',
+      'En la casa se halló a la criada, Higinia Balaguer, que llevaba pocos días a su servicio, aturdida, junto al perro de la señora, también atontado.',
+      'El hijo de la víctima, José Vázquez Varela, de mala fama, cumplía condena por robo en la Cárcel Modelo. Corrió el rumor de que salía de noche con la complicidad del director, José Millán Astray, en cuya casa había servido Higinia.',
+      'Higinia Balaguer dio muchas versiones contradictorias: un desconocido, el propio hijo de la señora, una antigua compañera de servicio, Dolores Ávila.',
+      'El proceso fue seguido día a día por la prensa; Benito Pérez Galdós escribió sobre él como cronista.',
+      'Higinia Balaguer fue condenada a muerte y ejecutada a garrote vil el 19 de julio de 1890, en la última ejecución pública de Madrid. Dolores Ávila fue condenada a dieciocho años de prisión. José Vázquez Varela fue absuelto. Millán Astray perdió la dirección de la cárcel.',
+    ],
+    hypotheses: [
+      'Parte de la opinión de la época creyó que el verdadero culpable era el hijo, con ayuda de la dirección de la cárcel, y que Higinia cargó con el crimen.',
+      'Nunca se aclaró del todo qué papel tuvo Dolores Ávila ni de dónde salieron todas las versiones de Higinia.',
+    ],
+    dramatized: [
+      'Las pistas materiales concretas del juego (el frasco, la lata de petróleo, la papeleta de empeño, el libro de la cárcel, las horas exactas) son una recreación para la investigación, no detalles del sumario.',
+      'Las conversaciones del investigador y su orden son una recreación.',
+      'Los retratos son recreaciones artísticas.',
+    ],
+    documentedResolution:
+      'Higinia Balaguer fue condenada por el asesinato y robo de Luciana Borcino y ejecutada en 1890; Dolores Ávila, condenada como cómplice. El hijo de la víctima fue absuelto.',
+    sources: [
+      'Benito Pérez Galdós, crónicas para La Prensa de Buenos Aires (1888-1889), recogidas como «El crimen de la calle de Fuencarral»',
+      'Prensa de Madrid: El Imparcial, El Liberal, La Correspondencia de España (1888-1890)',
+    ],
+  },
+  era: 'c19',
+  eraLabel: 'Madrid, 1888',
+  year: 1888,
+  location: { city: 'Madrid', place: 'Calle Fuencarral, piso principal', country: 'España' },
+  category: 'homicide',
+  difficulty: 'special-unit',
+  keywords: ['Madrid', 'Fuencarral', 'Higinia Balaguer', 'Luciana Borcino', 'Cárcel Modelo', 'Millán Astray', 'Galdós', 'caso real'],
+  ambience: { music: 'victorian-night', mood: 'urban' },
+  maxHints: 4,
+
+  briefing: {
+    incidentDisplay: 'Lunes, 2 de julio de 1888 · madrugada',
+    summary:
+      'Los vecinos de un piso de la calle Fuencarral olieron a humo al amanecer. Al forzar la puerta encontraron a doña Luciana Borcino muerta en su cama, apuñalada y medio quemada, y a la criada nueva tirada en la cocina, atontada, con el perro de la señora en el mismo estado.',
+    context:
+      'El juez de instrucción del distrito de la Universidad le ha encargado ordenar el sumario. Media España ya tiene su culpable: unos la criada, otros el hijo de la víctima, que está preso… o eso dicen.',
+    background:
+      'Doña Luciana, viuda, vive de sus rentas. Su único hijo, José, «Varela», es un calavera con causas por robo que cumple condena en la recién inaugurada Cárcel Modelo. La criada, Higinia, entró en la casa hace una semana.',
+    victim: 'ch-luciana',
+    initialFacts: [],
+    initialEvidence: ['ev-bomberos', 'ev-autopsia', 'ev-declaracion1'],
+    initialTimeline: ['te-acuesta', 'te-muerte', 'te-humo'],
+  },
+
+  characters: [
+    {
+      id: 'ch-luciana',
+      name: 'Luciana Borcino',
+      look: { hair: 'bun' },
+      role: 'victim',
+      age: 50,
+      occupation: 'Viuda rentista',
+      appearance:
+        'a stout 50-year-old Spanish widow in Madrid in 1888, severe round face, dark hair streaked with grey pulled into a tight bun, black silk mourning dress with a high collar and a cameo brooch, stern tired eyes',
+      summary: 'Viuda acomodada, desconfiada con el servicio.',
+      biography: 'Viuda de un hombre de negocios gallego. Vive sola con una criada y un perro. Guarda dinero y títulos en casa, y sufre por su hijo, al que ha sacado de muchos líos.',
+      personality: ['Desconfiada', 'Ahorradora', 'Severa'],
+    },
+    {
+      id: 'ch-higinia',
+      name: 'Higinia Balaguer',
+      look: { hair: 'bun' },
+      role: 'suspect',
+      age: 27,
+      occupation: 'Criada',
+      appearance:
+        'a 27-year-old Spanish housemaid in Madrid in 1888, plain sharp face, dark eyes, black hair pulled back under a dark kerchief, simple dark dress and grey shawl, calm defiant expression',
+      summary: 'Llegó a la casa hace una semana.',
+      biography: 'Aragonesa, criada en varias casas de Madrid. Sirvió en la del director de la Cárcel Modelo, José Millán Astray, antes de entrar con doña Luciana.',
+      personality: ['Fría', 'Fantasiosa', 'Muy cambiante'],
+      relationToVictim: 'Su criada',
+      motive: { text: 'La señora guardaba dinero y títulos en casa; Higinia no tenía nada.', visibleWhen: { fact: 'fa-dinero-casa' } },
+      alibi: { claim: 'Un hombre entró de noche, la amenazó, la obligó a beber algo y mató a la señora.' },
+    },
+    {
+      id: 'ch-varela',
+      name: 'José Vázquez Varela',
+      look: { hair: 'short' },
+      role: 'suspect',
+      age: 25,
+      occupation: 'Hijo de la víctima, preso',
+      appearance:
+        'a dissolute 25-year-old Spanish young man in Madrid in 1888, handsome but puffy face, slicked black hair, thin moustache, prison-grey jacket over a once-fine waistcoat, insolent smile',
+      summary: 'El hijo calavera, preso por robo.',
+      biography: 'Único hijo de doña Luciana. Juergas, deudas, pequeños robos. Desde la primavera cumple condena en la Cárcel Modelo. Su madre le pagaba los abogados.',
+      personality: ['Insolente', 'Derrochador', 'Rencoroso'],
+      relationToVictim: 'Su hijo',
+      motive: { text: 'Su madre le había cortado el dinero y es su heredero.', visibleWhen: { asked: 'q-varela-madre' } },
+      alibi: { claim: 'Estaba encerrado en la Cárcel Modelo. ¿Cómo iba a salir?' },
+    },
+    {
+      id: 'ch-dolores',
+      name: 'Dolores Ávila',
+      look: { hair: 'bun' },
+      role: 'suspect',
+      age: 40,
+      occupation: 'Antigua criada, sin colocación',
+      appearance:
+        'a gaunt 40-year-old Spanish former housemaid in Madrid in 1888, hollow cheeks, sharp nose, greying dark hair under a black kerchief, worn shawl, wary hostile eyes',
+      summary: 'Amiga de Higinia de los tiempos de servir.',
+      biography: 'Sirvió en varias casas del barrio. Ahora vive de lo que puede en una buhardilla de la calle del Divino Pastor. Higinia la visita a menudo.',
+      personality: ['Desconfiada', 'Astuta'],
+      relationToVictim: 'Ninguna conocida',
+      motive: { text: 'Necesitaba dinero, y su amiga tenía acceso a una casa donde lo había.', visibleWhen: { fact: 'fa-empeno' } },
+      alibi: { claim: 'Aquella noche no salió de su buhardilla.' },
+    },
+    {
+      id: 'ch-millan',
+      name: 'José Millán Astray',
+      look: { hair: 'short', beard: true },
+      role: 'witness',
+      age: 38,
+      occupation: 'Director de la Cárcel Modelo',
+      appearance:
+        'a 38-year-old Spanish prison director in Madrid in 1888, broad face, thick dark moustache and short beard, receding dark hair, dark frock coat with an official badge, guarded authoritative expression',
+      summary: 'Conoce a la criada y al preso.',
+      biography: 'Abogado y funcionario, director de la nueva Cárcel Modelo de Madrid. Higinia sirvió en su casa. Se rumorea que trata con demasiada familiaridad a algunos presos.',
+      personality: ['Autoritario', 'Evasivo', 'Orgulloso'],
+    },
+    {
+      id: 'ch-portera',
+      name: 'La portera del número 109',
+      look: { hair: 'bun' },
+      role: 'witness',
+      age: 55,
+      occupation: 'Portera',
+      appearance:
+        'a plump 55-year-old Madrid concierge in 1888, shrewd round face, grey hair in a bun, black apron over a dark dress, sharp gossiping eyes',
+      summary: 'Lo ve todo desde su garita.',
+      biography: 'Cuida el portal desde hace veinte años y conoce a todos los que entran y salen.',
+      personality: ['Curiosa', 'Locuaz'],
+    },
+  ],
+
+  locations: [
+    { id: 'lo-piso', name: 'Piso de doña Luciana', description: 'Piso principal de la calle Fuencarral: sala, gabinete, dormitorio, cocina.' },
+    { id: 'lo-dormitorio', name: 'Dormitorio', description: 'Donde apareció el cuerpo, entre colchones quemados.' },
+    { id: 'lo-modelo', name: 'Cárcel Modelo', description: 'La nueva cárcel celular de Madrid, en la Moncloa.' },
+    { id: 'lo-buhardilla', name: 'Buhardilla de Dolores', description: 'En la calle del Divino Pastor.', appearsWhen: { asked: 'q-higinia-dolores' } },
+  ],
+
+  relationships: [
+    { id: 're-madre', a: 'ch-varela', b: 'ch-luciana', label: 'Madre e hijo' },
+    { id: 're-criada', a: 'ch-higinia', b: 'ch-luciana', label: 'Criada y señora' },
+    { id: 're-millan', a: 'ch-higinia', b: 'ch-millan', label: 'Sirvió en su casa' },
+    { id: 're-preso', a: 'ch-millan', b: 'ch-varela', label: 'Director y preso' },
+    { id: 're-amigas', a: 'ch-higinia', b: 'ch-dolores', label: 'Amigas', visibleWhen: { asked: 'q-higinia-dolores' } },
+  ],
+
+  facts: [
+    { id: 'fa-muerta-antes', text: 'Doña Luciana estaba muerta antes del fuego: el incendio quiso borrar el crimen.', important: true },
+    { id: 'fa-sin-forzar', text: 'La puerta del piso no estaba forzada y la portera no vio entrar a nadie de noche.', important: true },
+    { id: 'fa-petroleo', text: 'El fuego se prendió con petróleo de la lata de la cocina.', important: true },
+    { id: 'fa-dinero-casa', text: 'La señora guardaba dinero y títulos en un baúl del gabinete, que apareció abierto y vacío.', important: true },
+    { id: 'fa-versiones', text: 'Higinia ha dado tres versiones distintas del culpable.', important: true },
+    { id: 'fa-laudano', text: 'El perro y la criada tomaron láudano del botiquín de la casa; a la criada, en una dosis que no adormece.', important: true },
+    { id: 'fa-empeno', text: 'El 2 de julio, Dolores Ávila empeñó un reloj de oro de doña Luciana.', important: true },
+    { id: 'fa-varela-celda', text: 'Según el libro de la cárcel, Varela estaba en su celda en el recuento de la noche y en el de la mañana.', important: true },
+    { id: 'fa-salidas', text: 'Varela salió alguna noche de la cárcel con permiso irregular del director, pero no la del crimen.' },
+    { id: 'fa-higinia-millan', text: 'Higinia sirvió en casa del director de la cárcel antes de entrar con doña Luciana.' },
+    { id: 'fa-ropa', text: 'La ropa de Higinia tenía salpicaduras de sangre lavadas a medias.', important: true },
+  ],
+
+  evidence: [
+    {
+      id: 'ev-bomberos',
+      kind: 'report',
+      title: 'Parte de los bomberos y de la policía',
+      dated: '2 de julio de 1888',
+      source: 'Inspección del distrito',
+      summary: 'Lo que se encontró al entrar.',
+      related: { characters: ['ch-luciana', 'ch-higinia'], locations: ['lo-piso', 'lo-dormitorio'], events: ['te-humo'] },
+      body: [
+        { type: 'heading', text: 'FUENCARRAL · INCENDIO Y MUERTE' },
+        { type: 'typed', text: 'A las seis y media los vecinos avisan de humo en el principal. Se fuerza la puerta, que estaba cerrada con llave y sin señales de violencia.' },
+        { type: 'typed', text: 'En el dormitorio, la dueña muerta en la cama, con colchones y ropas ardiendo. {{dt-bomb-olor|Fuerte olor a petróleo; la lata de la cocina está vacía junto a la cama.}}' },
+        {
+          type: 'typed',
+          text: '{{dt-bomb-baul|En el gabinete, un baúl abierto y revuelto.}} En la cocina, la criada en el suelo, aturdida, y el perro de la señora, tumbado y sin fuerzas.',
+        },
+        { type: 'signature', name: 'Inspector del distrito de la Universidad' },
+      ],
+      details: [
+        { id: 'dt-bomb-olor', label: 'Petróleo de la casa', description: 'El fuego se prendió con la lata de petróleo de la propia cocina.', effects: [{ grantFact: 'fa-petroleo' }], points: 10 },
+        { id: 'dt-bomb-baul', label: 'Un baúl vaciado', description: 'Alguien buscó y se llevó algo del gabinete.', effects: [], points: 10 },
+      ],
+    },
+    {
+      id: 'ev-autopsia',
+      kind: 'report',
+      title: 'Informe de los médicos forenses',
+      source: 'Juzgado de la Universidad',
+      summary: 'Cómo murió doña Luciana.',
+      related: { characters: ['ch-luciana'], locations: ['lo-dormitorio'], events: ['te-muerte'] },
+      body: [
+        {
+          type: 'typed',
+          text: 'Varias heridas de arma blanca en el pecho y el cuello, mortales. {{dt-aut-antes|No hay hollín en las vías respiratorias: cuando se prendió el fuego, la víctima ya no respiraba.}}',
+        },
+        { type: 'typed', text: '{{dt-aut-hora|La muerte se sitúa entre la medianoche y las dos.}} El fuego se prendió más tarde: los colchones ardieron lentamente, sin llama viva, varias horas.' },
+        { type: 'signature', name: 'Médicos forenses del Juzgado' },
+      ],
+      details: [
+        { id: 'dt-aut-antes', label: 'Muerta antes del fuego', description: 'El incendio no la mató: se prendió para borrar huellas.', effects: [{ grantFact: 'fa-muerta-antes' }], points: 15 },
+        { id: 'dt-aut-hora', label: 'Entre las doce y las dos', description: 'Hora de la muerte; el fuego, horas después.', effects: [], points: 10 },
+      ],
+      decisive: true,
+    },
+    {
+      id: 'ev-declaracion1',
+      kind: 'statement',
+      title: 'Primera declaración de Higinia Balaguer',
+      dated: '2 de julio de 1888',
+      source: 'Tomada en el piso',
+      summary: 'La versión del desconocido.',
+      related: { characters: ['ch-higinia'], locations: ['lo-piso'], events: ['te-falso-desconocido'] },
+      body: [
+        {
+          type: 'typed',
+          text: '—{{dt-dec1-hombre|Entró un hombre de noche, con la cara tapada. Me puso un cuchillo al cuello y me hizo beber de un frasco. Luego no me acuerdo de nada.}}',
+        },
+        { type: 'typed', text: '—No sé quién era. Alto. Con capa.' },
+        { type: 'signature', name: 'Higinia Balaguer (firma con una cruz)' },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-falso-desconocido' }],
+      details: [{ id: 'dt-dec1-hombre', label: 'El desconocido', description: 'Primera versión: un hombre embozado.', effects: [], points: 5 }],
+    },
+    {
+      id: 'ev-declaraciones',
+      kind: 'transcript',
+      title: 'Declaraciones posteriores de Higinia',
+      source: 'Sumario, julio-agosto de 1888',
+      summary: 'Cada semana, un culpable distinto.',
+      autoDiscoverWhen: { asked: 'q-higinia-hombre' },
+      related: { characters: ['ch-higinia', 'ch-varela', 'ch-dolores'], locations: [], events: [] },
+      body: [
+        { type: 'typed', text: '6 de julio: «{{dt-decs-varela|Fue el señorito José, el hijo. Entró con llave. Yo le abrí la puerta del gabinete porque me amenazó.}}»' },
+        { type: 'typed', text: '20 de julio: «{{dt-decs-dolores|Estaba también Dolores Ávila. Ella se llevó el dinero y el reloj.}}»' },
+        { type: 'typed', text: 'Agosto: vuelve a hablar del hombre de la capa. Luego, de nuevo, del hijo.' },
+      ],
+      details: [
+        { id: 'dt-decs-varela', label: 'Acusa al hijo', description: 'Segunda versión: José Vázquez Varela, que estaba preso.', effects: [{ grantFact: 'fa-versiones' }], points: 10 },
+        { id: 'dt-decs-dolores', label: 'Nombra a Dolores', description: 'Tercera versión: una amiga se llevó el dinero y el reloj.', effects: [], points: 10 },
+      ],
+    },
+    {
+      id: 'ev-botiquin',
+      kind: 'physical',
+      title: 'Frasco de láudano del botiquín',
+      source: 'Cocina de doña Luciana',
+      summary: 'El «frasco del hombre de la capa».',
+      autoDiscoverWhen: { asked: 'q-portera-perro' },
+      related: { characters: ['ch-higinia'], locations: ['lo-piso'], events: [] },
+      body: [
+        { type: 'typed', text: 'Frasco de láudano de Sydenham, de la farmacia de la calle de San Bernardo, con la etiqueta de doña Luciana.' },
+        {
+          type: 'typed',
+          text: '{{dt-bot-dosis|Falta una cantidad pequeña. Según los forenses, la criada tomó una dosis que marea y da vómitos, pero no duerme a nadie; el perro, en cambio, recibió bastante en un plato de leche.}}',
+        },
+      ],
+      details: [{ id: 'dt-bot-dosis', label: 'Una dosis que no duerme', description: 'El frasco era de la casa, no de un desconocido, y la criada tomó lo justo para aparentar.', effects: [{ grantFact: 'fa-laudano' }], points: 20 }],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-libro-carcel',
+      kind: 'record',
+      title: 'Libro de recuentos de la Cárcel Modelo',
+      source: 'Dirección de la Cárcel Modelo',
+      summary: 'Dónde estaba el hijo esa noche.',
+      autoDiscoverWhen: { asked: 'q-millan-libro' },
+      related: { characters: ['ch-varela', 'ch-millan'], locations: ['lo-modelo'], events: ['te-recuento'] },
+      body: [
+        {
+          type: 'table',
+          header: ['Fecha', 'Recuento', 'Celda 112 (J. Vázquez Varela)'],
+          rows: [
+            ['1 de julio', '21:00', 'Presente'],
+            ['{{dt-carcel-noche|2 de julio}}', '{{dt-carcel-noche-h|1:00 (ronda de noche)}}', '{{dt-carcel-noche-p|Presente · firma el oficial de guardia}}'],
+            ['2 de julio', '6:00', 'Presente'],
+            ['{{dt-carcel-otra|14 de junio}}', '22:00', '{{dt-carcel-otra-p|Ausente · «con permiso del Sr. Director»}}'],
+          ],
+        },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-recuento' }],
+      details: [
+        { id: 'dt-carcel-noche', label: 'La noche del crimen', description: 'El libro registra la ronda de noche del 2 de julio.', effects: [], points: 5 },
+        { id: 'dt-carcel-noche-h', label: 'Ronda de la una', description: 'A la hora del crimen hubo ronda de celdas.', effects: [], points: 5 },
+        { id: 'dt-carcel-noche-p', label: 'Presente a la una', description: 'A la una, en plena hora del crimen, Varela estaba en su celda.', effects: [{ grantFact: 'fa-varela-celda' }], points: 20 },
+        { id: 'dt-carcel-otra', label: 'Otra noche', description: 'Hubo una noche distinta en que salió.', effects: [], points: 5 },
+        { id: 'dt-carcel-otra-p', label: 'Salidas irregulares', description: 'El director le dejaba salir alguna noche: no la del crimen.', effects: [{ grantFact: 'fa-salidas' }], points: 10 },
+      ],
+      decisive: true,
+    },
+    {
+      id: 'ev-papeleta',
+      kind: 'document',
+      title: 'Papeleta del Monte de Piedad',
+      dated: '2 de julio de 1888',
+      source: 'Hallada en la buhardilla de Dolores Ávila',
+      summary: 'Un reloj de oro empeñado esa misma mañana.',
+      autoDiscoverWhen: { asked: 'q-dolores-registro' },
+      related: { characters: ['ch-dolores', 'ch-luciana'], locations: ['lo-buhardilla'], events: ['te-empeno'] },
+      body: [
+        { type: 'typed', text: 'MONTE DE PIEDAD DE MADRID · Empeño nº 48.211' },
+        { type: 'typed', text: '{{dt-pap-reloj|Reloj de señora, oro, con iniciales «L. B.» grabadas en la tapa.}} Prestado: 60 pesetas. {{dt-pap-quien|Empeñante: Dolores Ávila. Hora: 10:15 de la mañana del 2 de julio.}}' },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-empeno' }],
+      details: [
+        { id: 'dt-pap-reloj', label: 'Iniciales L. B.', description: 'El reloj es de Luciana Borcino.', effects: [], points: 15 },
+        { id: 'dt-pap-quien', label: 'Empeñado por Dolores', description: 'A las pocas horas del crimen, Dolores ya tenía el reloj de la víctima.', effects: [{ grantFact: 'fa-empeno' }], points: 20 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-ropa',
+      kind: 'physical',
+      title: 'Ropa de Higinia',
+      source: 'Baúl de la criada',
+      summary: 'Una falda y un delantal recién lavados.',
+      autoDiscoverWhen: { fact: 'fa-laudano' },
+      related: { characters: ['ch-higinia'], locations: ['lo-piso'], events: [] },
+      body: [
+        {
+          type: 'typed',
+          text: 'En el baúl de la criada, húmedos todavía, una falda y un delantal. {{dt-ropa-sangre|En los bajos de la falda quedan cercos rojizos que el agua no ha quitado: sangre.}}',
+        },
+      ],
+      details: [{ id: 'dt-ropa-sangre', label: 'Sangre lavada a medias', description: 'Quien llevaba esa falda estuvo cerca de la víctima mientras sangraba.', effects: [{ grantFact: 'fa-ropa' }], points: 20 }],
+      decisive: true,
+    },
+  ],
+
+  deductions: [
+    {
+      id: 'de-dentro',
+      title: 'Nadie entró',
+      combine: ['fa-sin-forzar', 'dt-bot-dosis'],
+      explanation: 'La puerta no se forzó y la portera no vio entrar a nadie; el «frasco del desconocido» es el láudano de la casa, tomado en dosis que no duerme. El hombre de la capa no existió.',
+      points: 30,
+    },
+    {
+      id: 'de-fuego',
+      title: 'El fuego como tapadera',
+      combine: ['dt-aut-antes', 'dt-bomb-olor'],
+      explanation: 'La señora estaba muerta antes del fuego, prendido horas después con el petróleo de la cocina: alguien que estaba en la casa quiso borrar el crimen.',
+      points: 25,
+    },
+    {
+      id: 'de-reloj',
+      title: 'Del baúl al Monte de Piedad',
+      combine: ['dt-bomb-baul', 'dt-pap-quien'],
+      explanation: 'El baúl del gabinete apareció vacío; a las diez y cuarto de esa mañana, la amiga de la criada empeñaba el reloj de la víctima.',
+      points: 30,
+    },
+    {
+      id: 'de-hijo',
+      title: 'El hijo estaba en su celda',
+      combine: ['dt-carcel-noche-p', 'dt-aut-hora'],
+      explanation: 'La señora murió entre las doce y las dos; a la una, en la ronda de noche, Varela estaba en su celda.',
+      points: 30,
+    },
+  ],
+
+  contradictions: [
+    {
+      id: 'cx-higinia-dormida',
+      title: 'Una dosis que no duerme',
+      a: { line: 'ln-higinia-dormida' },
+      b: { detail: 'dt-bot-dosis' },
+      explanation: 'Higinia dice que la durmieron con el frasco; tomó una dosis que solo marea.',
+      points: 25,
+    },
+    {
+      id: 'cx-higinia-hijo',
+      title: 'El hijo no pudo estar allí',
+      a: { line: 'ln-higinia-hijo' },
+      b: { detail: 'dt-carcel-noche-p' },
+      explanation: 'Higinia jura que vio entrar al hijo a la una; el libro de la cárcel lo sitúa en su celda a esa hora.',
+      points: 30,
+    },
+    {
+      id: 'cx-dolores-noche',
+      title: 'Dolores tenía el reloj al amanecer',
+      a: { line: 'ln-dolores-buhardilla' },
+      b: { detail: 'dt-pap-quien' },
+      explanation: 'Dolores dice que no salió de casa ni sabe nada; a las diez y cuarto empeñaba el reloj de la víctima.',
+      effects: [{ revealSecret: 'se-dolores' }],
+      points: 25,
+    },
+  ],
+
+  secrets: [
+    { id: 'se-dolores', characterId: 'ch-dolores', text: 'Dolores esperó a Higinia esa madrugada en el portal de al lado. Higinia le bajó el dinero, los títulos y el reloj en un hatillo y volvió a subir para prender el fuego.', points: 25 },
+    { id: 'se-millan', characterId: 'ch-millan', text: 'Millán Astray dejaba salir de noche a algunos presos de confianza, entre ellos Varela, y lo ocultó por miedo al escándalo. La noche del crimen, sin embargo, Varela no salió.', revealedWhen: { fact: 'fa-salidas' }, points: 20 },
+  ],
+
+  interrogations: [
+    {
+      id: 'in-higinia',
+      characterId: 'ch-higinia',
+      setting: 'En la sala de declaraciones del juzgado. Habla despacio, mirando al techo, como quien recuerda o inventa.',
+      opening: [{ text: 'Ya lo he dicho. Pero si usted quiere, lo digo otra vez.' }],
+      topics: [
+        {
+          id: 'tp-higinia-noche',
+          label: 'La noche',
+          kind: 'events',
+          questions: [
+            {
+              id: 'q-higinia-hombre',
+              prompt: '¿Qué pasó esa noche?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Un hombre con capa me puso un cuchillo y me hizo beber de un frasco.', tone: 'lie' },
+                    { id: 'ln-higinia-dormida', text: 'Me quedé dormida como un tronco hasta que llegaron los bomberos. No vi nada más.', tone: 'lie' },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 'q-higinia-cx-dosis',
+              prompt: 'Lo que usted tomó no duerme a nadie: solo marea.',
+              kind: 'contradiction',
+              contradiction: 'cx-higinia-dormida',
+              responses: [
+                {
+                  lines: [
+                    { speaker: 'narration', text: 'Higinia sonríe apenas, como si le hubieran pillado en un juego.' },
+                    { text: 'Entonces le diré la verdad. No fue un desconocido. Fue el señorito José, el hijo. Entró a la una con su llave.', tone: 'lie' },
+                    { id: 'ln-higinia-hijo', text: 'Le vi entrar a la una en punto: el reloj de la sala dio la hora. Me mandó callar.', tone: 'lie' },
+                  ],
+                  effects: [{ grantFact: 'fa-versiones' }],
+                },
+              ],
+            },
+            {
+              id: 'q-higinia-cx-hijo',
+              prompt: 'A la una, José Vázquez Varela estaba en su celda, según el libro de la cárcel.',
+              kind: 'contradiction',
+              contradiction: 'cx-higinia-hijo',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Los libros dicen lo que quiere el director. Pregunte al director.', tone: 'evasion' },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'tp-higinia-amigas',
+          label: 'Sus amistades',
+          kind: 'personal',
+          questions: [
+            {
+              id: 'q-higinia-dolores',
+              prompt: '¿A quién conoce en Madrid?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'A muchas. A Dolores Ávila, que sirvió conmigo. Vive en el Divino Pastor, en una buhardilla. Pobre mujer.', tone: 'truth' },
+                    { text: 'Y al señor Millán Astray, en cuya casa estuve. Un caballero.', tone: 'truth' },
+                  ],
+                  effects: [{ grantFact: 'fa-higinia-millan' }],
+                },
+              ],
+            },
+            {
+              id: 'q-higinia-final',
+              prompt: 'Su falda tiene sangre lavada, y Dolores empeñó el reloj de la señora a las diez de esa mañana.',
+              kind: 'confront',
+              requires: { all: [{ fact: 'fa-ropa' }, { fact: 'fa-empeno' }] },
+              responses: [
+                {
+                  lines: [
+                    { speaker: 'narration', text: 'Por primera vez Higinia baja la vista del techo.' },
+                    { text: 'La señora me llamó ladrona el sábado y me iba a echar sin pagarme. Dolores dijo que había dinero en el baúl, que era fácil.', tone: 'admission' },
+                    { text: 'Luego… luego ya no era fácil. Y el fuego lo tenía que tapar todo.', tone: 'admission' },
+                  ],
+                  effects: [{ setFlag: 'higinia-admite' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-varela',
+      characterId: 'ch-varela',
+      setting: 'En el locutorio de la Cárcel Modelo, tras una reja. Fuma un cigarrillo que no debería tener.',
+      opening: [{ text: '¿Ahora me acusan de matar a mi madre? Desde aquí dentro. Tiene gracia.' }],
+      topics: [
+        {
+          id: 'tp-varela-madre',
+          label: 'Su madre',
+          kind: 'victim',
+          questions: [
+            {
+              id: 'q-varela-madre',
+              prompt: '¿Cómo se llevaba con su madre?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Mal. Me había cortado el grifo. Pero era mi madre y yo su único heredero: ¿para qué iba a matarla, si todo iba a ser mío?', tone: 'truth' }] }],
+            },
+          ],
+        },
+        {
+          id: 'tp-varela-noche',
+          label: 'La noche',
+          kind: 'alibi',
+          questions: [
+            {
+              id: 'q-varela-noche',
+              prompt: '¿Salió de la cárcel aquella noche?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Aquella noche no. Dormí aquí, en mi celda; el oficial me vio en la ronda de la una, pregúntele.', tone: 'truth' },
+                    { text: 'Otras noches… eso pregúnteselo a don José. Yo no he dicho nada.', tone: 'evasion' },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-millan',
+      characterId: 'ch-millan',
+      setting: 'En su despacho de la Cárcel Modelo, con el retrato de la Reina regente detrás.',
+      opening: [{ text: 'La prensa me crucifica por conocer a una criada. Pregunte, y acabemos.' }],
+      topics: [
+        {
+          id: 'tp-millan-carcel',
+          label: 'El preso',
+          kind: 'person',
+          about: 'ch-varela',
+          questions: [
+            {
+              id: 'q-millan-libro',
+              prompt: '¿Dónde estaba Varela la noche del 1 al 2 de julio?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'En su celda. Aquí tiene el libro de recuentos: ronda de las nueve, de la una y de las seis.', tone: 'truth' }] }],
+            },
+            {
+              id: 'q-millan-salidas',
+              prompt: 'Este libro registra otra noche en que salió «con permiso del señor director».',
+              kind: 'confront',
+              requires: { fact: 'fa-salidas' },
+              responses: [
+                {
+                  lines: [{ text: 'Algún permiso humanitario a presos de buena familia, sí. Por diligencias propias, a ver a un abogado. No la noche del crimen. Y le ruego discreción.', tone: 'admission' }],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'tp-millan-higinia',
+          label: 'La criada',
+          kind: 'person',
+          about: 'ch-higinia',
+          questions: [
+            {
+              id: 'q-millan-higinia',
+              prompt: '¿Conocía usted a Higinia Balaguer?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Sirvió en mi casa una temporada. Mentía con una naturalidad que daba miedo; mi mujer la despidió. No la recomendé a nadie.', tone: 'truth' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-dolores',
+      characterId: 'ch-dolores',
+      setting: 'En su buhardilla del Divino Pastor, entre una cama, una silla y una palangana.',
+      opening: [{ text: 'Yo no conozco a ninguna doña Luciana. A Higinia sí, como todo el mundo.' }],
+      topics: [
+        {
+          id: 'tp-dolores-noche',
+          label: 'La noche',
+          kind: 'alibi',
+          questions: [
+            {
+              id: 'q-dolores-noche',
+              prompt: '¿Dónde estuvo la noche del 1 al 2 de julio?',
+              kind: 'ask',
+              responses: [{ lines: [{ id: 'ln-dolores-buhardilla', text: 'Aquí, durmiendo. No salí hasta el mediodía siguiente.', tone: 'lie' }] }],
+            },
+            {
+              id: 'q-dolores-registro',
+              prompt: '¿Le importa que miremos sus cosas?',
+              kind: 'press',
+              requires: { asked: 'q-dolores-noche' },
+              responses: [{ lines: [{ text: 'Miren lo que quieran. Aquí no hay nada de nadie.', tone: 'lie' }] }],
+            },
+            {
+              id: 'q-dolores-cx',
+              prompt: 'A las diez y cuarto empeñaba usted en el Monte de Piedad el reloj de la señora.',
+              kind: 'contradiction',
+              contradiction: 'cx-dolores-noche',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Me lo dio Higinia. Me dijo que era suyo, de una herencia.', tone: 'lie' },
+                    { speaker: 'narration', text: 'Dolores mira la puerta, luego al investigador, y se sienta en la cama.' },
+                    { text: 'Está bien. La esperé abajo, en el portal de al lado. Bajó con un hatillo. Yo no subí; yo no vi nada.', tone: 'admission' },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-portera',
+      characterId: 'ch-portera',
+      setting: 'En su garita del portal, con el brasero apagado y un periódico abierto por el crimen.',
+      opening: [{ text: 'Desde que pasó, aquí no para de venir gente. Pregunte usted, que a usted sí le contesto.' }],
+      topics: [
+        {
+          id: 'tp-portera-noche',
+          label: 'Aquella noche',
+          kind: 'events',
+          questions: [
+            {
+              id: 'q-portera-noche',
+              prompt: '¿Entró alguien de noche?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Nadie. Cerré a las once, como siempre, y tengo el sueño ligero. Ni hombres con capa ni señoritos.', tone: 'truth' },
+                    { text: 'Lo que sí oí, ya de madrugada, fue a alguien bajar y volver a subir la escalera, despacio. Pasos de mujer.', tone: 'truth' },
+                  ],
+                  effects: [{ grantFact: 'fa-sin-forzar' }, { unlockTimelineEvent: 'te-escalera' }],
+                },
+              ],
+            },
+            {
+              id: 'q-portera-perro',
+              prompt: '¿Y el perro?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [{ text: 'Ese chucho ladra a todo el que sube. Esa noche, ni un ladrido. Le dieron algo, dicen; del botiquín de la señora, que lo tenía en la cocina.', tone: 'truth' }],
+                  effects: [{ unlockTimelineEvent: 'te-perro' }],
+                },
+              ],
+            },
+            {
+              id: 'q-portera-dinero',
+              prompt: '¿Guardaba dinero la señora en casa?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [{ text: 'En el baúl del gabinete: billetes, títulos y su reloj de oro. Lo sabía todo el barrio, y la criada nueva lo supo al segundo día.', tone: 'truth' }],
+                  effects: [{ grantFact: 'fa-dinero-casa' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+
+  // t = minutos respecto a la muerte (hacia la 1:00 del 2 de julio de 1888)
+  timeline: [
+    { id: 'te-acuesta', t: -120, display: '1 de julio, 23:00', title: 'Doña Luciana se acuesta; la portera cierra el portal', description: 'Nadie más entra en la casa.', characters: ['ch-luciana', 'ch-portera'], location: 'lo-piso', key: true },
+    { id: 'te-perro', t: -30, display: 'Antes de la una', title: 'El perro recibe láudano en un plato de leche', description: 'No vuelve a ladrar en toda la noche.', characters: ['ch-higinia'], location: 'lo-piso', key: true },
+    { id: 'te-falso-desconocido', t: -5, display: 'Medianoche', title: 'Un desconocido con capa entra y obliga a beber a la criada', description: 'Según la primera versión de Higinia.', characters: ['ch-higinia'], veracity: 'false', claimedBy: 'ch-higinia' },
+    { id: 'te-muerte', t: 0, display: '2 de julio, hacia la 1:00', title: 'Muerte de doña Luciana Borcino', description: 'Apuñalada en su cama.', characters: ['ch-luciana'], location: 'lo-dormitorio', key: true },
+    { id: 'te-recuento', t: 0, display: '2 de julio, 1:00', title: 'Ronda de noche en la Cárcel Modelo: Varela, en su celda', description: 'Firma el oficial de guardia.', characters: ['ch-varela'], location: 'lo-modelo', key: true },
+    { id: 'te-escalera', t: 180, display: 'Madrugada', title: 'Higinia baja un hatillo a Dolores y vuelve a subir', description: 'La portera oye pasos de mujer.', characters: ['ch-higinia', 'ch-dolores'], key: true },
+    { id: 'te-humo', t: 330, display: '6:30', title: 'Los vecinos huelen el humo y se fuerza la puerta', description: 'Colchones ardiendo con petróleo.', characters: ['ch-luciana', 'ch-higinia'], location: 'lo-piso', key: true },
+    { id: 'te-empeno', t: 555, display: '10:15', title: 'Dolores Ávila empeña el reloj de la víctima', description: 'En el Monte de Piedad.', characters: ['ch-dolores'], key: true },
+  ],
+
+  accusation: {
+    suspects: ['ch-higinia', 'ch-varela', 'ch-dolores', 'ch-millan'],
+    motives: [
+      { id: 'mo-robo', label: 'Robar el dinero, los títulos y el reloj del baúl de la señora', availableWhen: { fact: 'fa-dinero-casa' } },
+      { id: 'mo-herencia', label: 'Heredar de una madre que le había cortado el dinero', availableWhen: { asked: 'q-varela-madre' } },
+      { id: 'mo-venganza', label: 'Vengarse de una señora que la acusó de ladrona', availableWhen: { flag: 'higinia-admite' } },
+      { id: 'mo-encargo', label: 'Un encargo del director de la cárcel' },
+    ],
+    methods: [
+      { id: 'me-dentro', label: 'La criada, desde dentro: drogó al perro, apuñaló a la señora, bajó el botín a su cómplice y prendió fuego al cuarto con petróleo', availableWhen: { all: [{ fact: 'fa-muerta-antes' }, { fact: 'fa-laudano' }] } },
+      { id: 'me-hijo', label: 'El hijo salió de la cárcel, entró con su llave y la mató' },
+      { id: 'me-desconocido', label: 'Un ladrón embozado entró de noche y drogó a la criada' },
+      { id: 'me-incendio', label: 'Un incendio accidental con la lámpara' },
+    ],
+  },
+
+  solution: {
+    culprits: ['ch-higinia', 'ch-dolores'],
+    motive: 'mo-robo',
+    method: 'me-dentro',
+    proof: ['ev-papeleta', 'ev-botiquin', 'ev-ropa'],
+    whatHappened:
+      'Higinia Balaguer, criada de doña Luciana Borcino desde hacía una semana, mató a su señora para robarle, de acuerdo con su amiga Dolores Ávila. Esa noche dio láudano al perro en un plato de leche para que no ladrara, apuñaló a doña Luciana en su cama hacia la una y vació el baúl del gabinete. De madrugada bajó el botín —dinero, títulos y el reloj de oro— a Dolores, que esperaba en un portal cercano, y volvió a subir. Roció la cama con el petróleo de la cocina y le prendió fuego para borrar el crimen; tomó un poco de láudano y se tumbó en la cocina para fingir que la habían drogado. Después culpó a un desconocido, al hijo preso y a cualquiera menos a sí misma. Dolores empeñó el reloj esa misma mañana.',
+    reconstruction: [
+      'A las once, doña Luciana se acuesta y la portera cierra el portal.',
+      'Higinia da al perro láudano del botiquín en un plato de leche.',
+      'Hacia la una, apuñala a la señora en su cama y vacía el baúl del gabinete.',
+      'De madrugada baja un hatillo a Dolores Ávila, que la espera en un portal cercano, y vuelve a subir.',
+      'Rocía la cama con petróleo de la cocina y le prende fuego.',
+      'Toma un poco de láudano y se tumba en la cocina para fingir que la drogaron.',
+      'A las seis y media los vecinos huelen el humo y fuerzan la puerta.',
+      'A las diez y cuarto, Dolores empeña el reloj de la víctima en el Monte de Piedad.',
+    ],
+    decisiveEvidence: ['ev-autopsia', 'ev-botiquin', 'ev-libro-carcel', 'ev-papeleta', 'ev-ropa'],
+    alibiTruths: [
+      { characterId: 'ch-higinia', truth: 'No hubo desconocido ni hijo: estuvo despierta toda la noche y tomó el láudano a propósito.' },
+      { characterId: 'ch-varela', truth: 'Estaba de verdad en su celda a la hora del crimen; otras noches sí había salido.' },
+      { characterId: 'ch-dolores', truth: 'Salió de su buhardilla de madrugada para recoger el botín en un portal cercano.' },
+    ],
+  },
+
+  endings: [
+    {
+      id: 'en-galdos',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct', knowledge: { fact: 'fa-varela-celda' } },
+      outcome: 'success',
+      title: 'La verdad y el ruido',
+      text: 'El jurado condena a Higinia Balaguer a muerte y a Dolores Ávila a dieciocho años. El 19 de julio de 1890, ante una multitud, Higinia muere en el garrote junto a la Cárcel Modelo: es la última ejecución pública de Madrid. El libro de recuentos que ordenasteis libra al hijo; no libra al director, que pierde su puesto. Galdós escribe que el pueblo de Madrid quería un culpable de levita, y tuvo uno de delantal.',
+    },
+    {
+      id: 'en-exito',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct' },
+      outcome: 'success',
+      title: 'La criada y su amiga',
+      text: 'La acusación se sostiene. Aun así, media España seguirá creyendo que el hijo salió aquella noche de la cárcel.',
+    },
+    { id: 'en-higinia', when: { culprit: 'ch-higinia' }, outcome: 'partial', title: 'Sin la cómplice', text: 'Higinia carga sola con el crimen; el hatillo, el reloj y quien lo empeñó quedan fuera del sumario.' },
+    { id: 'en-varela', when: { culprit: 'ch-varela' }, outcome: 'failure', title: 'El señorito', text: 'Acusáis al hijo con la palabra de Higinia. El libro de la cárcel lo sitúa en su celda: el caso se hunde, y la criada sonríe.' },
+    { id: 'en-fallo', when: {}, outcome: 'failure', title: 'El hombre de la capa', text: 'El sumario se cierra con un desconocido embozado que nadie vio entrar. En los cafés de Madrid se sigue apostando por el culpable.' },
+  ],
+
+  hints: [
+    {
+      id: 'hl-desconocido',
+      topic: 'El hombre de la capa',
+      relevantWhen: { not: { fact: 'fa-laudano' } },
+      steps: ['¿Pudo entrar alguien de noche?', 'Habla con la portera: del portal y del perro.', 'Examina el frasco del botiquín: ¿cuánto tomó la criada?'],
+    },
+    {
+      id: 'hl-hijo',
+      topic: 'El hijo preso',
+      relevantWhen: { not: { fact: 'fa-varela-celda' } },
+      steps: ['Higinia acusa al hijo. ¿Podía salir de la cárcel?', 'Pregunta al director de la Cárcel Modelo.', 'Mira la ronda de la una en el libro de recuentos.'],
+    },
+    {
+      id: 'hl-botin',
+      topic: 'Lo que faltaba del baúl',
+      relevantWhen: { not: { fact: 'fa-empeno' } },
+      steps: ['¿A quién conoce Higinia en Madrid?', 'Visita a Dolores Ávila y pregúntale por esa noche.', 'Registra su buhardilla.'],
+    },
+  ],
+
+  objectives: [
+    { id: 'ob-desconocido', text: 'Averigua si existió el hombre de la capa.', completeWhen: { fact: 'fa-laudano' }, points: 20 },
+    { id: 'ob-hijo', text: 'Comprueba dónde estaba el hijo a la hora del crimen.', completeWhen: { fact: 'fa-varela-celda' }, points: 30 },
+    { id: 'ob-director', text: 'Descubre qué ocultaba el director de la cárcel.', completeWhen: { fact: 'fa-salidas' }, points: 20, hidden: true },
+  ],
+
+  assets: [],
+};
+
+export default caseFile;
