@@ -10,6 +10,7 @@ import { sound } from '../../audio/sound.ts';
 import { haptic } from '../../audio/haptics.ts';
 import { formatDuration } from '../../cases/labels.ts';
 import s from './PersonalArchiveScene.module.css';
+import { Ambience } from '../../ui/Ambience.tsx';
 
 type Drawer = 'solved' | 'closed' | 'failed' | 'reopen';
 const DRAWERS: Array<{ id: Drawer; label: string; hint: string }> = [
@@ -80,6 +81,9 @@ export function PersonalArchiveScene() {
 
   return (
     <main className={`m-room ${s.room}`}>
+      <Ambience />
+      {/* El archivo central se pierde al fondo: filas de archivadores sin fin */}
+      <div className={s.endless} aria-hidden="true" />
       <header className={s.header}>
         <BrassBack />
         <h1 className={s.title}>Archivo personal</h1>

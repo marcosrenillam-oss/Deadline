@@ -1,7 +1,10 @@
 /* La máquina de escribir: una hoja mecanografiada que sale del carro. */
 .sheet {
+  position: relative;
   min-height: 0;
   max-height: 100%;
+  /* La hoja sale del rodillo de la máquina al cambiar de apartado */
+  animation: feed 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
   padding: var(--sp-3) var(--sp-5) var(--sp-5);
   color: var(--on-paper);
   background:
@@ -250,4 +253,82 @@
   height: var(--touch);
   font-size: 22px;
   color: var(--on-paper-soft);
+}
+
+@keyframes feed {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(-14px);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+}
+
+/* Clasificación: letrero de paletas negro, como el de una estación */
+.board {
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #1b1a18, #0f0e0d);
+  box-shadow: inset 0 0 0 2px #2c2a26, inset 0 0 0 4px rgba(214, 180, 110, 0.25), 0 10px 22px rgba(0, 0, 0, 0.45);
+}
+.board li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #f2ecdc;
+}
+.board li[data-me] {
+  background: rgba(214, 180, 110, 0.14);
+}
+.board .meta {
+  color: rgba(242, 236, 220, 0.6);
+}
+.flaps {
+  display: inline-flex;
+  gap: 2px;
+}
+.flap {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  min-width: 0.95em;
+  height: 1.45em;
+  padding: 0 1px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #2b2a27 0 49%, #11100f 49% 51%, #262522 51%);
+  color: #f6f0e0;
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: 0.92em;
+  line-height: 1;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  transform-origin: 50% 50%;
+  animation: flip 520ms cubic-bezier(0.3, 1.4, 0.5, 1) both;
+  animation-delay: calc(var(--i) * 28ms + 120ms);
+}
+@keyframes flip {
+  0% {
+    transform: rotateX(90deg);
+    color: transparent;
+  }
+  40% {
+    transform: rotateX(-30deg);
+    color: transparent;
+  }
+  100% {
+    transform: rotateX(0);
+  }
+}
+.board .who strong {
+  font-family: var(--font-type);
+  font-size: 13px;
+}
+.board .merit .flap {
+  color: #f0c27a;
+}
+.board .pos .flap {
+  background: linear-gradient(180deg, #6a1f1f 0 49%, #3e0f10 49% 51%, #5e1b1b 51%);
+}
+.board .remove {
+  color: rgba(242, 236, 220, 0.6);
 }

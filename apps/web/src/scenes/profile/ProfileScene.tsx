@@ -10,6 +10,7 @@ import { CodeBox } from '../coop/CodeBox.tsx';
 import { sound } from '../../audio/sound.ts';
 import surface from '../../ui/Surface.module.css';
 import s from './ProfileScene.module.css';
+import { Ambience } from '../../ui/Ambience.tsx';
 
 /** Requisitos del siguiente rango como sellos: entintados cuando se cumplen. Sin barras. */
 function Requirements({ stats, next }: { stats: RankStats; next: RankDefinition }) {
@@ -180,6 +181,7 @@ export function ProfileScene() {
 
   return (
     <main className={surface.wood}>
+      <Ambience />
       <div className={`${surface.safe} ${s.layout}`}>
         <aside className={s.side}>
           <BackToDesk label="Escritorio" />

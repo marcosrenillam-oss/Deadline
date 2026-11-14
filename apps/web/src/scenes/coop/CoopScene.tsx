@@ -13,6 +13,7 @@ import { sound } from '../../audio/sound.ts';
 import surface from '../../ui/Surface.module.css';
 import { CodeBox, PasteBox } from './CodeBox.tsx';
 import s from './coop.module.css';
+import { Ambience } from '../../ui/Ambience.tsx';
 
 type View =
   | { v: 'list' }
@@ -112,6 +113,7 @@ export function CoopScene() {
 
   return (
     <main className={surface.wood}>
+      <Ambience />
       <div className={`${surface.safe} ${s.layout}`}>
         <aside className={s.side}>
           <BackToDesk label="Escritorio" />

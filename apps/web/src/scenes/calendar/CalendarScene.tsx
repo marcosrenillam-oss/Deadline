@@ -10,6 +10,7 @@ import { sound } from '../../audio/sound.ts';
 import { haptic } from '../../audio/haptics.ts';
 import { CRIME_CATEGORY_LABELS } from '../../cases/labels.ts';
 import s from './CalendarScene.module.css';
+import { Ambience } from '../../ui/Ambience.tsx';
 
 const STATUS: Record<string, string> = { 'in-progress': 'En curso', solved: 'Resuelto', closed: 'Cerrado' };
 const WEEK = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
@@ -93,6 +94,7 @@ export function CalendarScene() {
 
   return (
     <main className={`m-room ${s.room}`}>
+      <Ambience />
       <header className={s.header}>
         <BrassBack />
         <h1 className={s.title}>Casos del día</h1>

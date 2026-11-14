@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { Link } from 'react-router';
 import {
   ACHIEVEMENTS,
@@ -23,6 +23,7 @@ import { formatDuration } from '../../cases/labels.ts';
 import surface from '../../ui/Surface.module.css';
 import tabs from '../settings/SettingsScene.module.css';
 import s from './HistoryScene.module.css';
+import { Ambience } from '../../ui/Ambience.tsx';
 
 const TABS = [
   { id: 'log', label: 'Historial' },
@@ -261,6 +262,19 @@ function AchievementsTab() {
   );
 }
 
+/** Letrero de paletas, como los de las estaciones: cada carácter gira hasta su sitio. */
+function Flaps({ text, row, className }: { text: string; row: number; className?: string }) {
+  return (
+    <span className={`${s.flaps} ${className ?? ''}`} aria-label={text.trim()}>
+      {text.split('').map((ch, i) => (
+        <span key={i} className={s.flap} style={{ '--i': i + row * 4 } as CSSProperties} aria-hidden="true">
+          {ch === ' ' ? '\u00a0' : ch}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 function FriendsTab() {
   const { profile } = useProfile();
   const progress = useProgress();
@@ -325,18 +339,20 @@ function FriendsTab() {
           Mérito en pareja
         </button>
       </div>
-      <ol className={s.board}>
+      <ol className={s.board} key={by}>
         {rows.map((r, i) => (
           <li key={r.key} data-me={r.me || undefined}>
-            <span className={s.pos}>{i + 1}</span>
+            <Flaps text={String(i + 1).padStart(2, ' ')} row={i} className={s.pos} />
             <span className={s.who}>
-              <strong>{r.me && profile?.alias ? `${r.name} (tú)` : r.name}</strong>
+              <strong>
+                <Flaps text={(r.me && profile?.alias ? `${r.name} (tú)` : r.name).toUpperCase().slice(0, 16).padEnd(16, ' ')} row={i} />
+              </strong>
               <span className={s.meta}>
                 {r.number} · {rankLabel(by === 'solo' ? r.soloRank : r.coopRank)} · {r.solved} {r.solved === 1 ? 'resuelto' : 'resueltos'}
                 {r.at ? ` · tarjeta del ${new Date(r.at).toLocaleDateString('es-ES')}` : ''}
               </span>
             </span>
-            <span className={s.merit}>{by === 'solo' ? r.soloMerit : r.coopMerit}</span>
+            <Flaps text={String(by === 'solo' ? r.soloMerit : r.coopMerit).padStart(5, ' ')} row={i} className={s.merit} />
             {!r.me && (
               <button
                 className={s.remove}
@@ -372,7 +388,8 @@ export function HistoryScene() {
   }, []);
   const current = TABS.find((t) => t.id === tab) ?? TABS[0];
   return (
-    <main className={surface.wood}>
+    <main className="m-room">
+      <Ambience />
       <div className={`${surface.safe} ${tabs.layout}`}>
         <nav className={tabs.side} aria-label="Apartados del registro">
           <BackToDesk label="Escritorio" />

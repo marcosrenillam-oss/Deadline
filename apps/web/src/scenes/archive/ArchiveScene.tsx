@@ -13,6 +13,7 @@ import { BrassBack } from '../../ui/BrassBack.tsx';
 import { sound } from '../../audio/sound.ts';
 import { haptic } from '../../audio/haptics.ts';
 import s from './ArchiveScene.module.css';
+import { Ambience } from '../../ui/Ambience.tsx';
 
 type Shelf = 'all' | 'available' | 'in-progress' | 'solved' | 'archived' | 'locked';
 const SHELVES: Array<{ id: Shelf; label: string }> = [
@@ -144,6 +145,9 @@ export function ArchiveScene({ coop = false }: { coop?: boolean } = {}) {
 
   return (
     <main className={`m-room ${s.room}`}>
+      <Ambience />
+      {/* Detrás, el archivo central: baldas y lomos de carpeta que no se acaban */}
+      <div className={s.endless} aria-hidden="true" />
       <header className={s.header}>
         {coop ? <BrassBack to="/telefono" label="Teléfono" /> : <BrassBack />}
         <h1 className={s.title}>{coop ? 'Expedientes en pareja' : 'Archivo de expedientes'}</h1>

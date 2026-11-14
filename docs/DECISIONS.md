@@ -563,3 +563,13 @@ texto completo del expediente sigue en la pestaña «Expediente».
 El teléfono lleva a la misma estantería de carpetas que el modo solo,
 filtrada a los expedientes en pareja; la ficha de la carpeta tiene
 «Investigar en pareja» y vuelve al teléfono para elegir cómo jugar.
+
+### D-081 · Ambiente vivo y archivos sin fin
+Las pantallas 2D comparten una capa de ambiente solo con CSS: motas de
+polvo en el haz de la lámpara, gotas que resbalan por el reflejo de la
+ventana y un leve parpadeo del filamento (quieto con «reducir movimiento»).
+Detrás de la biblioteca, baldas de carpetas que se pierden en la penumbra;
+en el archivo personal, un pasillo de archivadores sin fondo, y el cajón se
+abre hacia el jugador. La máquina de escribir saca la hoja del rodillo al
+cambiar de apartado y la clasificación es un letrero de paletas, como el de
+una estación, cuyas letras giran hasta su sitio.

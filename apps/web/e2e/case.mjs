@@ -344,8 +344,8 @@ try {
   await p.getByLabel('Pega la tarjeta de un amigo').fill(`Mi tarjeta: ${cardB} ¡a ver si me alcanzas!`);
   await p.getByRole('button', { name: 'Añadir a la clasificación' }).click();
   await p.getByText('Añadido: watson_b.').waitFor();
-  const rows = await p.locator('ol li').allInnerTexts();
-  check(rows.length === 2 && rows[0].includes('Tú') && rows[1].includes('watson_b'), 'Clasificación: tú primero, tu amigo detrás');
+  const rows = (await p.locator('ol li strong > span[aria-label]').evaluateAll((els) => els.map((e) => e.getAttribute('aria-label')))).map((x) => x.toLowerCase());
+  check(rows.length === 2 && rows[0].includes('tú') && rows[1].includes('watson_b'), `Clasificación en letrero de paletas: tú primero, tu amigo detrás (${rows.join(' / ')})`);
   await p.getByLabel('Pega la tarjeta de un amigo').fill(cardB);
   await p.getByRole('button', { name: 'Añadir a la clasificación' }).click();
   check(await visible(p.getByText('Ya tienes una tarjeta igual o más reciente')), 'Una tarjeta repetida no duplica al amigo');

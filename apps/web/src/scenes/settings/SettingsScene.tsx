@@ -6,6 +6,7 @@ import { LightPanel, SoundPanel, TouchPanel, ReadingPanel } from './panels.tsx';
 import { OfficePanel } from './OfficePanel.tsx';
 import { ArchivePanel } from './ArchivePanel.tsx';
 import styles from './SettingsScene.module.css';
+import { Ambience } from '../../ui/Ambience.tsx';
 
 const TABS = [
   { id: 'light', label: 'Luz', Panel: LightPanel },
@@ -25,6 +26,7 @@ export function SettingsScene() {
   const { Panel } = current;
   return (
     <main className="m-room">
+      <Ambience />
       <div className={`${surface.safe} ${styles.layout}`}>
         <nav className={styles.side} aria-label="Apartados de ajustes">
           <BackToDesk label="Escritorio" />
