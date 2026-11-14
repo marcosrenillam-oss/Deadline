@@ -26,6 +26,8 @@ export interface CoopSession {
   seqOut: number;
   seenSeqs: number[];
   messages: Array<{ from: 'me' | 'partner' | 'A' | 'B'; text: string; at: number }>;
+  /** Sala en tiempo real (servidor): los códigos viajan solos entre los dos iPhone. */
+  room?: string;
   /** Último código que debo enviar a mi compañero (propuesta o respuesta); se conserva si se cierra la app. */
   outbox?: { code: string; label: string };
   proposal?: { from: 'A' | 'B'; accusation: JointAccusation; at: number; status: 'pending' | 'agreed' | 'rejected' };

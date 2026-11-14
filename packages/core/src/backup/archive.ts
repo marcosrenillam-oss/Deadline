@@ -213,8 +213,12 @@ export function mergeArchiveData(local: ArchiveData, incoming: ArchiveData, mode
   const achievements = new Map<string, number>();
   for (const a of [...local.profile.achievements, ...incoming.profile.achievements]) achievements.set(a.id, Math.min(a.at, achievements.get(a.id) ?? Infinity));
   const newerProfile = incoming.profile.updatedAt > local.profile.updatedAt ? incoming.profile : local.profile;
+  const olderProfile = newerProfile === incoming.profile ? local.profile : incoming.profile;
   const profile: LocalProfile = {
     ...newerProfile,
+    // Un dispositivo recién estrenado no borra el alias ni el retrato de la cuenta.
+    ...(newerProfile.alias === undefined && olderProfile.alias !== undefined ? { alias: olderProfile.alias } : {}),
+    ...(!newerProfile.avatar && olderProfile.avatar ? { avatar: olderProfile.avatar } : {}),
     // El número de investigador del dispositivo más antiguo se conserva.
     investigatorNumber: local.profile.createdAt <= incoming.profile.createdAt ? local.profile.investigatorNumber : incoming.profile.investigatorNumber,
     createdAt: Math.min(local.profile.createdAt, incoming.profile.createdAt),

@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router';
 import type { CaseFile, InvitePacket } from '@deadline/core';
 import { fetchCatalog, loadCase, portraitUrl, type CatalogEntry } from '../../cases/contentRepo.ts';
 import { formatCaseNumber, timeLimitMinutes } from '@deadline/core';
 import { CRIME_CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../cases/labels.ts';
 import { Portrait } from '../../ui/Portrait.tsx';
-import { acceptInvite, completeHandshake, createInvite, createSameDevice, listSessions, readInvite } from '../../cases/coopRepo.ts';
+import { acceptInvite, completeHandshake, createInvite, createSameDevice, listSessions, readInvite, saveSession } from '../../cases/coopRepo.ts';
+import { RoomLink, newRoomCode, normalizeRoomCode, type RoomStatus } from '../../cases/room.ts';
 import { getInvestigation } from '../../cases/investigationRepo.ts';
 import type { CoopSession } from '../../cases/coopTypes.ts';
 import { BackToDesk } from '../../ui/BackToDesk.tsx';
@@ -38,6 +39,11 @@ export function CoopScene() {
   const [picked, setPicked] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [roomInput, setRoomInput] = useState('');
+  const [roomState, setRoomState] = useState<RoomStatus | null>(null);
+  const link = useRef<RoomLink | null>(null);
+  const joinedRoom = useRef<string | null>(null);
+  useEffect(() => () => link.current?.close(), []);
 
   /** Partidas abiertas cuyo reloj ya se agotó (se cierran del todo al abrirlas). */
   const [expired, setExpired] = useState<Set<string>>(new Set());
@@ -94,14 +100,54 @@ export function CoopScene() {
     if (!picked) return;
     setBusy(true);
     try {
-      const sess = await createInvite(await loadCase(picked), role);
+      const created = await createInvite(await loadCase(picked), role);
+      // Sala en tiempo real: la invitación viaja sola; el compañero solo escribe el código de sala.
+      const sess = await saveSession({ ...created, room: newRoomCode() });
       reload();
       go({ v: 'host', session: sess });
+      openHostRoom(sess);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
     } finally {
       setBusy(false);
     }
+  };
+
+  const openHostRoom = (sess: CoopSession) => {
+    link.current?.close();
+    if (!sess.room) return;
+    link.current = new RoomLink(
+      sess.room,
+      `${sess.me?.n ?? 'host'}-host`,
+      (code) => {
+        void completeHandshake(sess, code).then((r) => {
+          if (r.ok) {
+            sound.play('phone');
+            void navigate(`/pareja/${r.value.id}`);
+          }
+        });
+      },
+      setRoomState,
+    );
+    if (sess.inviteCode) link.current.send(sess.inviteCode);
+  };
+
+  const joinRoom = (raw: string) => {
+    const code = normalizeRoomCode(raw);
+    if (code.length < 4) return setError('Escribe el código de la sala que te ha dado tu compañero.');
+    setError(null);
+    link.current?.close();
+    joinedRoom.current = code;
+    link.current = new RoomLink(
+      code,
+      `guest-${Math.random().toString(36).slice(2, 8)}`,
+      (incoming) => {
+        void readInvite(incoming).then((r) => {
+          if (r.ok) go({ v: 'guest-review', invite: r.value.invite, c: r.value.c });
+        });
+      },
+      setRoomState,
+    );
   };
 
   const pickedCase = catalog.find((e) => e.id === picked);
@@ -128,7 +174,7 @@ export function CoopScene() {
             Nueva investigación
           </button>
           <button className={s.sideButton} aria-pressed={view.v === 'join' || view.v.startsWith('guest')} onClick={() => go({ v: 'join' })}>
-            Unirme con un código
+            Unirme a una sala
           </button>
         </aside>
 
@@ -143,7 +189,7 @@ export function CoopScene() {
                 {sessions.map((x) => (
                   <li key={x.id}>
                     {x.status === 'pending' && x.host ? (
-                      <button className={s.session} onClick={() => go({ v: 'host', session: x })}>
+                      <button className={s.session} onClick={() => (go({ v: 'host', session: x }), openHostRoom(x))}>
                         <span className={s.sessionTitle}>{titleOf(x.caseId)}</span>
                         <span className={s.small}>Correspondencia · {STATUS[x.status]}</span>
                       </button>
@@ -237,7 +283,17 @@ export function CoopScene() {
           {view.v === 'host' && (
             <>
               <h2 className={s.h2}>{titleOf(view.session.caseId)}</h2>
-              <p className={s.p}>1 · Envía esta invitación a tu compañero. 2 · Cuando la acepte, te devolverá un código de aceptación: pégalo aquí y empezará vuestra investigación.</p>
+              {view.session.room && (
+                <div className={s.roomCard}>
+                  <span className={s.era}>Sala en tiempo real</span>
+                  <span className={s.roomCode}>{view.session.room}</span>
+                  <p className={s.p}>
+                    Dile este código a tu compañero: en su teléfono, «Unirme a una sala». La partida empieza sola cuando entre.{' '}
+                    {roomState === 'online' ? 'Sala abierta, esperando…' : roomState === 'offline' ? 'Sin conexión: usa los códigos de abajo.' : 'Abriendo la sala…'}
+                  </p>
+                </div>
+              )}
+              <p className={s.p}>Sin conexión: 1 · Envía esta invitación a tu compañero. 2 · Cuando la acepte, te devolverá un código de aceptación: pégalo aquí y empezará vuestra investigación.</p>
               {view.session.inviteCode && <CodeBox code={view.session.inviteCode} label="Invitación" />}
               <PasteBox
                 label="Código de aceptación de tu compañero"
@@ -254,6 +310,24 @@ export function CoopScene() {
             </>
           )}
 
+          {view.v === 'join' && (
+            <form
+              className={s.roomCard}
+              onSubmit={(e) => {
+                e.preventDefault();
+                joinRoom(roomInput);
+              }}
+            >
+              <label className={s.era} htmlFor="room-code">
+                Unirme a una sala
+              </label>
+              <input id="room-code" className={s.roomInput} value={roomInput} onChange={(e) => setRoomInput(normalizeRoomCode(e.target.value))} placeholder="K7P2QX" autoCapitalize="characters" autoCorrect="off" maxLength={8} />
+              <button className={s.primary} disabled={roomInput.length < 4}>
+                Entrar en la sala
+              </button>
+              {roomState && <p className={s.small}>{roomState === 'online' ? 'Dentro de la sala: esperando la invitación…' : roomState === 'offline' ? 'Sin conexión con la sala.' : 'Conectando…'}</p>}
+            </form>
+          )}
           {view.v === 'join' && (
             <PasteBox
               label="Invitación de tu compañero"
@@ -282,7 +356,15 @@ export function CoopScene() {
                 disabled={busy}
                 onClick={async () => {
                   setBusy(true);
-                  const sess = await acceptInvite(view.invite, view.c);
+                  let sess = await acceptInvite(view.invite, view.c);
+                  if (joinedRoom.current && link.current) {
+                    sess = await saveSession({ ...sess, room: joinedRoom.current });
+                    if (sess.acceptCode) link.current.send(sess.acceptCode);
+                    setBusy(false);
+                    sound.play('phone');
+                    void navigate(`/pareja/${sess.id}`);
+                    return;
+                  }
                   setBusy(false);
                   reload();
                   go({ v: 'guest-ready', session: sess });

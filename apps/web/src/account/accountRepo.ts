@@ -7,7 +7,7 @@
  */
 import { parseArchive, prepareArchive, applyArchive } from '../storage/backup.ts';
 import { getMeta, setMeta } from '../storage/meta.ts';
-import { SERVER_URL } from '../platform/server.ts';
+import { serverUrl } from '../platform/server.ts';
 
 export interface Account {
   username: string;
@@ -31,7 +31,7 @@ export async function skipAccount(): Promise<void> {
 type Result<T> = { ok: true; value: T } | { ok: false; error: string };
 
 async function call(path: string, init: RequestInit): Promise<Response> {
-  return fetch(SERVER_URL + path, { ...init, headers: { 'Content-Type': 'application/json', ...(init.headers ?? {}) } });
+  return fetch(serverUrl() + path, { ...init, headers: { 'Content-Type': 'application/json', ...(init.headers ?? {}) } });
 }
 
 async function auth(kind: 'account' | 'login', username: string, password: string): Promise<Result<Account>> {
@@ -75,7 +75,7 @@ export function syncProgress(): Promise<SyncResult> {
     if (!acc) return 'no-account';
     const headers = { Authorization: `Bearer ${acc.token}` };
     try {
-      const got = await fetch(`${SERVER_URL}/v1/progress`, { headers });
+      const got = await fetch(`${serverUrl()}/v1/progress`, { headers });
       if (got.status === 401) return 'unauthorized';
       if (got.status === 200) {
         const body = (await got.json()) as { archive: unknown };
@@ -83,7 +83,7 @@ export function syncProgress(): Promise<SyncResult> {
         if (parsed.ok) await applyArchive(parsed.archive, 'merge');
       }
       const archive = await prepareArchive();
-      const put = await fetch(`${SERVER_URL}/v1/progress`, { method: 'PUT', headers: { ...headers, 'Content-Type': 'application/json' }, body: JSON.stringify(archive) });
+      const put = await fetch(`${serverUrl()}/v1/progress`, { method: 'PUT', headers: { ...headers, 'Content-Type': 'application/json' }, body: JSON.stringify(archive) });
       if (put.status === 401) return 'unauthorized';
       if (!put.ok) return 'offline';
       await setMeta(KEY, { ...acc, lastSyncAt: Date.now() });

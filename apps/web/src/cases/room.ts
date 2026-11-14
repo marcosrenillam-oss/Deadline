@@ -7,7 +7,7 @@
  * perdió (cursor guardado en el dispositivo). Sin red, siempre queda pegar
  * los códigos a mano.
  */
-import { SERVER_URL } from '../platform/server.ts';
+import { serverUrl } from '../platform/server.ts';
 
 export type RoomStatus = 'connecting' | 'online' | 'offline';
 
@@ -59,7 +59,7 @@ export class RoomLink {
   private open() {
     if (this.closed) return;
     this.setStatus('connecting');
-    const url = `${SERVER_URL.replace(/^http/, 'ws')}/v1/room/${this.room}?client=${encodeURIComponent(this.client)}&after=${this.after}`;
+    const url = `${serverUrl().replace(/^http/, 'ws')}/v1/room/${this.room}?client=${encodeURIComponent(this.client)}&after=${this.after}`;
     let ws: WebSocket;
     try {
       ws = new WebSocket(url);

@@ -31,6 +31,8 @@ interface Props {
   session: CoopSession;
   setSession: (s: CoopSession) => void;
   lastCode: { code: string; label: string } | null;
+  /** Con sala en tiempo real: envía el código al compañero sin copiar y pegar. */
+  deliver?: ((code: string) => void) | undefined;
   onPass: () => void;
 }
 
@@ -39,7 +41,7 @@ interface Props {
  * turno. Correspondencia: preparar informes de campo, recibir los del
  * compañero, mensajes y propuestas de acusación.
  */
-export function CoopPanel({ open, onClose, session, setSession, lastCode, onPass }: Props) {
+export function CoopPanel({ open, onClose, session, setSession, lastCode, onPass, deliver }: Props) {
   const { c, inv, refresh, notify, base, closed } = useCase();
   const navigate = useNavigate();
   const role = inv?.role;
@@ -106,7 +108,11 @@ export function CoopPanel({ open, onClose, session, setSession, lastCode, onPass
       board,
     });
     setSession(out.session);
-    setReport(out.code);
+    if (deliver) {
+      deliver(out.code);
+      notify('info', 'Informe enviado a tu compañero por la sala.');
+      setReport(null);
+    } else setReport(out.code);
     setMessage('');
     setNoteIds([]);
     sound.play('key');

@@ -395,3 +395,63 @@
   line-height: 1.2;
   text-align: center;
 }
+
+/* Sala en tiempo real */
+.roomCard {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+  margin: 10px 0;
+  padding: 14px 16px;
+  background: linear-gradient(180deg, rgba(255, 220, 180, 0.08), rgba(0, 0, 0, 0.25)), url('/textures/walnut.webp') center / 320px, #2b1d14;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.4), 0 10px 22px rgba(0, 0, 0, 0.5);
+  color: var(--ivory);
+}
+.roomCard .p,
+.roomCard .small {
+  color: var(--ivory-dim);
+}
+.roomCode {
+  padding: 4px 14px;
+  background: linear-gradient(180deg, var(--brass-hi), var(--brass-mid) 55%, var(--brass-lo));
+  color: #2c1d07;
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.28em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+.roomInput {
+  min-height: var(--touch);
+  width: 12ch;
+  padding: 0 10px;
+  border: 0;
+  border-bottom: 2px solid var(--brass-mid);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--ivory);
+  font-family: var(--font-type);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.roomBadge {
+  position: fixed;
+  left: 50%;
+  bottom: max(var(--safe-bottom, 0px), 6px);
+  z-index: 20;
+  transform: translateX(-50%);
+  padding: 3px 12px;
+  border-radius: 12px;
+  background: rgba(20, 14, 10, 0.75);
+  color: var(--ivory-dim);
+  font-family: var(--font-type);
+  font-size: 11px;
+  pointer-events: none;
+}
+.roomBadge[data-status='online'] {
+  color: #9fd8a8;
+}
+.roomBadge[data-status='offline'] {
+  color: #f0c27a;
+}

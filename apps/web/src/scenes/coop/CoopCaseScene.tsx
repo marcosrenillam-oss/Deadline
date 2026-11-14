@@ -1,6 +1,8 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router';
 import { CaseProvider } from '../../cases/CaseProvider.tsx';
+import { RoomLink, type RoomStatus } from '../../cases/room.ts';
+import { RoomBridge } from './RoomBridge.tsx';
 import { withdraw as withdrawProposal, answer as answerProposal, getSession, otherRole, propose as proposeAccusation, saveSession } from '../../cases/coopRepo.ts';
 import type { CoopApi, CoopSession } from '../../cases/coopTypes.ts';
 import { loadCase } from '../../cases/contentRepo.ts';
@@ -20,6 +22,8 @@ export function CoopCaseScene() {
   const [lastCode, setLastCode] = useState<{ code: string; label: string } | null>(null);
   const [passing, setPassing] = useState(false);
   const [generation, setGeneration] = useState(0);
+  const room = useRef<RoomLink | null>(null);
+  const [roomStatus, setRoomStatus] = useState<{ s: RoomStatus; peers?: number } | null>(null);
 
   useEffect(() => {
     void getSession(sessionId).then((x) => setSession(x ?? null));
@@ -40,17 +44,22 @@ export function CoopCaseScene() {
         setSession(out.session);
         if (out.code) {
           setLastCode({ code: out.code, label: 'Propuesta de acusación para tu compañero' });
-          setPanel(true);
+          // Con sala, la propuesta llega sola; sin ella, se abre el panel para enviar el código.
+          if (room.current) room.current.send(out.code);
+          else setPanel(true);
         }
       },
       answer: async (agree) => {
         const c = await loadCase(session.caseId);
         const out = await answerProposal(c, session, agree);
         setSession(out.session);
-        if (out.code) setLastCode({ code: out.code, label: agree ? 'Firma de la acusación para tu compañero' : 'Rechazo para tu compañero' });
+        if (out.code) {
+          setLastCode({ code: out.code, label: agree ? 'Firma de la acusación para tu compañero' : 'Rechazo para tu compañero' });
+          room.current?.send(out.code);
+        }
         await reloadProfile();
         setGeneration((g) => g + 1);
-        if (!agree) setPanel(true);
+        if (!agree && !room.current) setPanel(true);
       },
       openPanel: () => setPanel(true),
       withdraw: async () => {
@@ -74,7 +83,14 @@ export function CoopCaseScene() {
       fallback={() => <main className={surface.wood} />}
     >
       <Workspace />
+      {session.room && <RoomBridge session={session} setSession={setSession} linkRef={room} onStatus={(st, peers) => setRoomStatus({ s: st, peers })} />}
+      {session.room && roomStatus && (
+        <div className={s.roomBadge} data-status={roomStatus.s} role="status">
+          Sala {session.room} · {roomStatus.s === 'online' ? 'conectados' : roomStatus.s === 'connecting' ? 'conectando…' : 'sin conexión, se enviará al volver'}
+        </div>
+      )}
       <CoopPanel
+        deliver={session.room ? (code) => room.current?.send(code) : undefined}
         open={panel}
         onClose={() => setPanel(false)}
         session={session}

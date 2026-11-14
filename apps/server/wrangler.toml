@@ -18,4 +18,4 @@ tag = "v1"
 new_sqlite_classes = ["Vault", "Room"]
 
 [vars]
-ALLOWED_ORIGINS = "https://marcosrenillam-oss.github.io,http://localhost:5173,http://localhost:4173,http://localhost:4177,http://localhost:4179"
+ALLOWED_ORIGINS = "https://marcosrenillam-oss.github.io,http://localhost:5173,http://localhost:4173,http://localhost:4177,http://localhost:4179,http://localhost:4181"

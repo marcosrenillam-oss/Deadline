@@ -274,7 +274,7 @@ try {
   await host.p.screenshot({ path: join(shots, 'coop-invite.png') });
 
   await guest.p.goto(`${BASE}/telefono`);
-  await guest.p.getByRole('button', { name: 'Unirme con un código' }).click();
+  await guest.p.getByRole('button', { name: 'Unirme a una sala' }).click();
   await guest.p.getByLabel('Invitación de tu compañero').fill(`Te mando esto: ${invite} ¡vamos!`);
   await guest.p.getByRole('button', { name: 'Leer invitación' }).click();
   await guest.p.getByText(/Te invita archivera/).waitFor();

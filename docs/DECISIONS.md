@@ -586,3 +586,22 @@ encima del corcho, con «← Volver al corcho». En la barra quedan las
 herramientas: relacionar pruebas, libreta, contradicción, pistas, acusar y
 el reloj. El tablero manual de hilos se retira de la navegación: el corcho
 ya pone solos los hilos de relaciones y deducciones.
+
+### D-083 · Servidor sencillo en Cloudflare: credencial y sala en tiempo real
+Revisa D-016 por petición del usuario. Un Worker de Cloudflare (plan
+gratuito) con Durable Objects y SQLite (`apps/server`, desplegado en
+`deadline-archivo.deadline-archivo.workers.dev`):
+- **Credencial**: al abrir la app por primera vez se crea una cuenta con
+  usuario y contraseña (PBKDF2-SHA256, 100 000 iteraciones, el máximo de
+  Workers; tokens guardados solo como hash; límite de intentos). Sin correo
+  ni datos personales. «Ahora no» deja jugar sin cuenta y se puede crear
+  luego en la ficha.
+- **Copia del progreso**: el mismo archivo de la exportación manual se sube
+  al abrir y al salir de la app y cada pocos minutos; al entrar en otro
+  iPhone o tras reinstalar, se baja y se fusiona (alias y retrato incluidos).
+- **Sala en pareja**: el anfitrión recibe un código de 6 caracteres; el
+  compañero lo escribe en «Unirme a una sala». Invitación, aceptación,
+  informes, propuesta y firma viajan solos; la sala no los lee (son los
+  mismos códigos firmados) y guarda los últimos 300 para quien se reconecte.
+  Al firmar, el caso se cierra a la vez en los dos con el mismo informe.
+  Sin conexión siguen funcionando los códigos a mano.
