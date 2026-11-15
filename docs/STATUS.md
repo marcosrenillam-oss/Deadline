@@ -1,6 +1,19 @@
 # Estado del proyecto
 
-Última actualización: rediseño visual (Visual Masterplan) completo: retratos, fotografías, piezas de oficina fotográficas y pantallas restantes.
+Última actualización: primera tanda de casos reales (15 individuales nuevos y 4 cooperativos), archivo cronológico por épocas, sala en tiempo real y credencial con copia en el servidor.
+
+## Casos (objetivo: 2000 individuales, 500 cooperativos, 500 diarios)
+
+| Modo | Publicados | Nuevos en la tanda 1 |
+|---|---|---|
+| Individual | 16 (DL-I-0001 a 0016) | 15 reales: Parkman, Lafarge, Crippen, Sexto Roscio, Fuencarral, Palmer, Overbury, Blandy, Carlos el Bueno, Manning, Pritchard, Brinvilliers, Cream, Moat Farm, Lindbergh |
+| Cooperativo | 6 (DL-C-0001 a 0006) | 4 reales, información dividida: Road Hill House, Novias en la bañera, Burke y Hare, Dreyfus |
+| Diario | 2 | — |
+
+Cada caso real separa lo documentado, las hipótesis y lo dramatizado, cita
+fuentes, y pasa el validador sin avisos (todas las pistas alcanzables; en los
+cooperativos, ningún papel puede resolverlo solo). Los retratos se generan en
+segundo plano con `scripts/portraits/make_all.sh` (CPU: ~5 min por retrato).
 
 ## Etapas
 
