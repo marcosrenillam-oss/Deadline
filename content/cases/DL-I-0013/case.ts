@@ -1,0 +1,640 @@
+import type { CaseFileInput } from '../../../packages/core/src/case/schema.ts';
+
+/**
+ * DL-I-0013 · LA ARQUETA DE SAINTE-CROIX
+ * París, 1672-1676 · Envenenamiento · Caso real · Unidad Especial
+ *
+ * Caso real: la marquesa de Brinvilliers envenenó a su padre y a sus dos
+ * hermanos con los venenos de su amante, Godin de Sainte-Croix. Tras la
+ * muerte de este apareció en su casa una arqueta con venenos y papeles que lo
+ * destapó todo. El proceso abrió la puerta al «asunto de los venenos» en la
+ * corte de Luis XIV. Lo documentado sigue el proceso; las conversaciones del
+ * investigador son una recreación.
+ */
+const caseFile: CaseFileInput = {
+  schemaVersion: 1,
+  id: 'DL-I-0013',
+  contentVersion: 1,
+  mode: 'individual',
+  title: 'La arqueta de Sainte-Croix',
+  subtitle: 'Un oficial muere en su laboratorio y deja una arqueta para una marquesa',
+  origin: 'real',
+  historical: {
+    documented: [
+      'Antoine Dreux d’Aubray, teniente civil de París, murió en 1666 tras meses de enfermedad. Sus dos hijos varones murieron en 1670 con síntomas parecidos.',
+      'Su hija, Marie-Madeleine, marquesa de Brinvilliers, era amante del oficial de caballería Godin de Sainte-Croix. En 1663 su padre había hecho encerrar a Sainte-Croix en la Bastilla por esa relación.',
+      'Sainte-Croix, aficionado a la alquimia, murió en 1672. Entre sus cosas apareció una arqueta con venenos, cartas de la marquesa, un pagaré de ella por treinta mil libras y una nota pidiendo que, a su muerte, se entregara la arqueta a la marquesa sin abrirla.',
+      'La marquesa intentó recuperar la arqueta. Un criado de Sainte-Croix, La Chaussée, que había servido en casa de los hermanos d’Aubray, fue detenido, confesó bajo tormento haberles envenenado y fue ejecutado en 1673.',
+      'La marquesa huyó y se refugió en un convento de Lieja. En 1676 la detuvo el agente François Desgrez, que según la tradición se presentó disfrazado de abad. Entre sus papeles se halló una confesión escrita de sus crímenes.',
+      'Fue juzgada, decapitada y quemada en París el 17 de julio de 1676. El financiero Pennautier, mencionado en los papeles, fue procesado y absuelto.',
+    ],
+    hypotheses: [
+      'Se dijo que Sainte-Croix aprendió los venenos en la Bastilla de un italiano llamado Exili; su papel real es dudoso.',
+      'Se contaba que la marquesa había probado sus venenos en enfermos del Hôtel-Dieu; no hay prueba firme.',
+    ],
+    dramatized: [
+      'La redacción exacta de la nota de la arqueta, de los inventarios y de las declaraciones está reconstruida para el juego.',
+      'Las conversaciones del investigador son una recreación.',
+      'Los retratos son recreaciones artísticas.',
+    ],
+    documentedResolution:
+      'La marquesa de Brinvilliers fue condenada por envenenar a su padre y a sus hermanos, con los venenos de Sainte-Croix y la ayuda del criado La Chaussée, y ejecutada en París el 17 de julio de 1676.',
+    sources: ['Actas del proceso de la marquesa de Brinvilliers (1676)', 'Madame de Sévigné, cartas de julio de 1676', 'Anne Somerset, The Affair of the Poisons (2003)'],
+  },
+  era: 'early-modern',
+  eraLabel: 'París, 1672',
+  year: 1672,
+  location: { city: 'París', place: 'Casa de Sainte-Croix, calle de los Bernardinos', country: 'Francia' },
+  category: 'homicide',
+  difficulty: 'special-unit',
+  keywords: ['Brinvilliers', 'Sainte-Croix', 'veneno', 'Luis XIV', 'arqueta', 'Desgrez', 'La Chaussée', 'caso real'],
+  ambience: { music: 'seville-1588', mood: 'opulent' },
+  maxHints: 4,
+
+  briefing: {
+    incidentDisplay: 'Agosto de 1672',
+    summary:
+      'El capitán Godin de Sainte-Croix ha muerto en su casa, entre retortas y hornillos. Al hacer inventario, los comisarios han encontrado una arqueta cerrada con una nota: «Para entregar a la marquesa de Brinvilliers, sin abrir». La marquesa ya ha mandado tres veces a buscarla.',
+    context:
+      'Seis años antes murió el padre de la marquesa, el teniente civil d’Aubray, de una enfermedad larga. Hace dos, sus dos hermanos. Nadie sospechó. El lugarteniente de policía le pide que abra la arqueta y tire del hilo.',
+    background:
+      'En el París de Luis XIV abundan los alquimistas, las adivinas y los «polvos de sucesión», como los llaman con humor negro: los que ayudan a heredar antes de tiempo.',
+    victim: 'ch-aubray',
+    initialFacts: [],
+    initialEvidence: ['ev-inventario', 'ev-nota', 'ev-muertes'],
+    initialTimeline: ['te-bastilla', 'te-muerte', 'te-sainte-croix'],
+  },
+
+  characters: [
+    {
+      id: 'ch-aubray',
+      name: 'Antoine Dreux d’Aubray',
+      look: { hair: 'long', beard: true },
+      role: 'victim',
+      age: 66,
+      occupation: 'Teniente civil de París',
+      appearance:
+        'a stern 66-year-old French magistrate in 1666, long grave face, thin grey moustache and small beard, long grey periwig, black magistrate robe with white bands, severe eyes, seventeenth-century oil portrait',
+      summary: 'Un magistrado severo con una hija escandalosa.',
+      biography: 'Alto magistrado de la policía de París. Rico, temido y orgulloso de su apellido. Hizo encerrar en la Bastilla al amante de su hija para acabar con el escándalo.',
+      personality: ['Severo', 'Orgulloso', 'Padre exigente'],
+    },
+    {
+      id: 'ch-marquesa',
+      name: 'Marie-Madeleine d’Aubray, marquesa de Brinvilliers',
+      look: { hair: 'long' },
+      role: 'suspect',
+      age: 42,
+      occupation: 'Marquesa',
+      appearance:
+        'a petite 42-year-old French marquise in 1672, delicate pretty face, large blue eyes, chestnut curls framing her face, pearl necklace, low-cut satin gown with lace, sweet composed expression, seventeenth-century oil portrait',
+      summary: 'Menuda, encantadora, con unos ojos azules muy dulces.',
+      biography: 'Hija del teniente civil, casada con el marqués de Brinvilliers, que se arruinó en el juego. Heredó de su padre y de sus hermanos una gran fortuna. Fue amante de Sainte-Croix durante años.',
+      personality: ['Encantadora', 'Fría', 'Devota a ratos'],
+      relationToVictim: 'Su hija',
+      motive: { text: 'Su padre encerró a su amante en la Bastilla y controlaba la fortuna familiar.', visibleWhen: { fact: 'fa-bastilla' } },
+      alibi: { claim: 'Cuidó a su padre en su última enfermedad. La arqueta contiene cartas íntimas que quiere recuperar por decencia.' },
+    },
+    {
+      id: 'ch-lachaussee',
+      name: 'Jean Hamelin, «La Chaussée»',
+      look: { hair: 'short' },
+      role: 'suspect',
+      age: 35,
+      occupation: 'Criado',
+      appearance:
+        'a sly 35-year-old French manservant in 1670, thin pockmarked face, lank dark hair, worn livery coat, darting eyes, seventeenth-century oil portrait',
+      summary: 'Sirvió en casa de Sainte-Croix y luego en la de los hermanos d’Aubray.',
+      biography: 'Antiguo criado de Sainte-Croix, entró a servir como lacayo en casa de los hermanos d’Aubray en 1669, por recomendación. Tras la muerte de los dos, reclamó un legado.',
+      personality: ['Servil', 'Codicioso', 'Cobarde'],
+      relationToVictim: 'Criado de sus hijos',
+      motive: { text: 'Le pagaban por servir lo que le daban.', visibleWhen: { fact: 'fa-chaussee-hermanos' } },
+      alibi: { claim: 'Era un simple lacayo. Servía la mesa como cualquier otro.' },
+    },
+    {
+      id: 'ch-pennautier',
+      name: 'Pierre-Louis de Pennautier',
+      look: { hair: 'long' },
+      role: 'suspect',
+      age: 50,
+      occupation: 'Recaudador general del clero',
+      appearance:
+        'a wealthy 50-year-old French financier in 1672, plump smooth face, enormous dark periwig, rich brocade coat and lace cravat, rings, smooth confident smile, seventeenth-century oil portrait',
+      summary: 'Un financiero muy rico que trataba con Sainte-Croix.',
+      biography: 'Recaudador de los dineros del clero de Languedoc. Su predecesor en el cargo murió de repente. Aparece en los papeles de Sainte-Croix.',
+      personality: ['Poderoso', 'Prudente', 'Influyente'],
+      relationToVictim: 'Ninguna conocida',
+      motive: { text: 'Se murmura que compró a Sainte-Croix un remedio para heredar un cargo.', visibleWhen: { asked: 'q-pennautier' } },
+      alibi: { claim: 'Sus tratos con Sainte-Croix eran de negocios y de alquimia, nada más.' },
+    },
+    {
+      id: 'ch-sainte-croix',
+      name: 'Godin de Sainte-Croix',
+      look: { hair: 'long' },
+      role: 'other',
+      age: 50,
+      occupation: 'Capitán de caballería y alquimista (fallecido)',
+      appearance:
+        'a handsome 50-year-old French cavalry officer in 1672, sharp elegant face, thin moustache, long dark curling hair, plumed hat and cavalry coat, ironic smile, seventeenth-century oil portrait',
+      summary: 'Muerto entre sus retortas.',
+      biography: 'Oficial gascón, guapo y sin dinero, amante de la marquesa durante años. Pasó un tiempo en la Bastilla por orden del padre de ella. Después se dedicó a la alquimia en un laboratorio alquilado.',
+      personality: ['Seductor', 'Ambicioso'],
+    },
+    {
+      id: 'ch-desgrez',
+      name: 'François Desgrez',
+      look: { hair: 'long' },
+      role: 'witness',
+      age: 40,
+      occupation: 'Exento de la policía de París',
+      appearance:
+        'a shrewd 40-year-old French police officer in 1676, lean clever face, short dark moustache, plain brown periwig, sober dark coat, watchful eyes, seventeenth-century oil portrait',
+      summary: 'El mejor cazador de la policía de París.',
+      biography: 'Agente de confianza del lugarteniente de policía La Reynie. Ha seguido a la marquesa hasta los Países Bajos.',
+      personality: ['Astuto', 'Paciente', 'Audaz'],
+      appearsWhen: { fact: 'fa-huida' },
+    },
+    {
+      id: 'ch-briancourt',
+      name: 'Jean-Baptiste Briancourt',
+      look: { hair: 'long' },
+      role: 'witness',
+      age: 28,
+      occupation: 'Antiguo preceptor de los hijos de la marquesa',
+      appearance:
+        'a pale 28-year-old French tutor in 1672, earnest thin face, plain brown hair falling to the shoulders, simple black coat and white collar, frightened eyes, seventeenth-century oil portrait',
+      summary: 'Fue amante de la marquesa, y oyó demasiado.',
+      biography: 'Preceptor en casa de la marquesa. Ella le confió, una noche de vino, cosas que no ha podido olvidar. Teme por su vida.',
+      personality: ['Escrupuloso', 'Asustado'],
+    },
+  ],
+
+  locations: [
+    { id: 'lo-laboratorio', name: 'Laboratorio de Sainte-Croix', description: 'Una habitación alquilada en el callejón de Maubert, con hornillos y retortas.' },
+    { id: 'lo-offemont', name: 'Castillo de Offémont', description: 'Donde el teniente civil pasaba los veranos y enfermó.' },
+    { id: 'lo-bastilla', name: 'La Bastilla', description: 'Donde Sainte-Croix pasó seis semanas en 1663.' },
+    { id: 'lo-lieja', name: 'Convento de Lieja', description: 'Donde se escondió la marquesa.', appearsWhen: { fact: 'fa-huida' } },
+  ],
+
+  relationships: [
+    { id: 're-padre', a: 'ch-marquesa', b: 'ch-aubray', label: 'Padre e hija' },
+    { id: 're-amantes', a: 'ch-marquesa', b: 'ch-sainte-croix', label: 'Amantes' },
+    { id: 're-criado', a: 'ch-lachaussee', b: 'ch-sainte-croix', label: 'Antiguo criado' },
+    { id: 're-pennautier', a: 'ch-pennautier', b: 'ch-sainte-croix', label: 'Tratos', visibleWhen: { asked: 'q-pennautier' } },
+  ],
+
+  facts: [
+    { id: 'fa-bastilla', text: 'En 1663 el padre de la marquesa hizo encerrar a Sainte-Croix en la Bastilla por su relación con ella.', important: true },
+    { id: 'fa-venenos', text: 'La arqueta de Sainte-Croix contiene frascos y papeles de veneno: sublimado, opio, antimonio, un «agua» sin nombre.', important: true },
+    { id: 'fa-para-marquesa', text: 'La arqueta debía entregarse sin abrir a la marquesa a la muerte de Sainte-Croix.', important: true },
+    { id: 'fa-pagare', text: 'En la arqueta hay un pagaré de la marquesa a Sainte-Croix por treinta mil libras, firmado en 1666.', important: true },
+    { id: 'fa-misma-enfermedad', text: 'El padre y los dos hermanos murieron con los mismos síntomas: vómitos, ardor de estómago, consunción.', important: true },
+    { id: 'fa-chaussee-hermanos', text: 'La Chaussée, criado de Sainte-Croix, servía la mesa de los hermanos d’Aubray cuando murieron.', important: true },
+    { id: 'fa-huida', text: 'La marquesa huyó de Francia al saberse que La Chaussée había sido detenido.', important: true },
+    { id: 'fa-confesion-escrita', text: 'Entre los papeles de la marquesa en Lieja había una confesión escrita de su mano, con los envenenamientos de su padre y sus hermanos.', important: true },
+    { id: 'fa-briancourt', text: 'La marquesa le confesó al preceptor Briancourt, borracha, que «había medios para librarse de quien molesta».' },
+  ],
+
+  evidence: [
+    {
+      id: 'ev-inventario',
+      kind: 'record',
+      title: 'Inventario del laboratorio de Sainte-Croix',
+      dated: 'Agosto de 1672',
+      source: 'Comisario Picard, del Châtelet',
+      summary: 'Lo que había en la arqueta.',
+      related: { characters: ['ch-sainte-croix'], locations: ['lo-laboratorio'], events: ['te-sainte-croix'] },
+      body: [
+        { type: 'heading', text: 'ARQUETA DE MADERA ROJA, CERRADA CON LLAVE' },
+        {
+          type: 'table',
+          header: ['Contenido', 'Observaciones'],
+          rows: [
+            ['{{dt-inv-frascos|Frascos de sublimado corrosivo, de antimonio y de opio}}', 'Etiquetados'],
+            ['{{dt-inv-agua|Un frasco de agua clara sin etiqueta}}', 'Probada en un animal: muere en horas'],
+            ['{{dt-inv-pagare|Pagaré de la Sra. de Brinvilliers a favor de Sainte-Croix: 30.000 libras, 1666}}', 'Firmado'],
+            ['Cartas de amor de la misma señora', 'Treinta y cuatro'],
+          ],
+        },
+      ],
+      details: [
+        { id: 'dt-inv-frascos', label: 'Un arsenal', description: 'Sainte-Croix guardaba venenos, no remedios.', effects: [{ grantFact: 'fa-venenos' }], points: 15 },
+        { id: 'dt-inv-agua', label: 'Un agua que mata', description: 'Un veneno sin nombre, probado: mata en horas.', effects: [], points: 10 },
+        { id: 'dt-inv-pagare', label: 'Treinta mil libras, en 1666', description: 'La marquesa se comprometió a pagar una fortuna a su amante el año en que murió su padre.', effects: [{ grantFact: 'fa-pagare' }], points: 20 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-nota',
+      kind: 'document',
+      title: 'Nota pegada a la arqueta',
+      source: 'Laboratorio de Sainte-Croix',
+      summary: 'Una última voluntad.',
+      related: { characters: ['ch-sainte-croix', 'ch-marquesa'], locations: ['lo-laboratorio'], events: [] },
+      body: [
+        {
+          type: 'handwritten',
+          text: '{{dt-nota-texto|Ruego a quien encuentre esta arqueta que la entregue en mano a la señora marquesa de Brinvilliers, que vive en la calle Neuve-Saint-Paul, pues todo lo que contiene le pertenece y no le sirve a nadie más. Si ella hubiera muerto, que se queme sin abrirla.}}',
+          author: 'Godin de Sainte-Croix',
+        },
+      ],
+      details: [{ id: 'dt-nota-texto', label: '«Le pertenece»', description: 'Todo lo de la arqueta, venenos incluidos, era de la marquesa.', effects: [{ grantFact: 'fa-para-marquesa' }], points: 15 }],
+      decisive: true,
+    },
+    {
+      id: 'ev-muertes',
+      kind: 'record',
+      title: 'Registros de defunción de la familia d’Aubray',
+      source: 'Parroquia de Saint-Paul, París',
+      summary: 'Tres muertes en cuatro años.',
+      related: { characters: ['ch-aubray'], locations: ['lo-offemont'], events: ['te-muerte', 'te-hermanos'] },
+      body: [
+        {
+          type: 'table',
+          header: ['Difunto', 'Fecha', 'Notas del médico'],
+          rows: [
+            ['Antoine Dreux d’Aubray, teniente civil', 'Septiembre de 1666', '{{dt-reg-padre|Ocho meses de vómitos y ardores; se consume}}'],
+            ['Antoine d’Aubray, hijo mayor', 'Junio de 1670', '{{dt-reg-hijo1|Vómitos, ardores; se consume en semanas}}'],
+            ['François d’Aubray, consejero', 'Septiembre de 1670', 'Lo mismo'],
+          ],
+        },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-hermanos' }],
+      details: [
+        { id: 'dt-reg-padre', label: 'Ocho meses de agonía', description: 'El padre se consumió lentamente en Offémont, cuidado por su hija.', effects: [{ unlockTimelineEvent: 'te-offemont' }], points: 10 },
+        { id: 'dt-reg-hijo1', label: 'Los mismos síntomas', description: 'Los hijos murieron igual que el padre.', effects: [{ grantFact: 'fa-misma-enfermedad' }], points: 15 },
+      ],
+    },
+    {
+      id: 'ev-lettre',
+      kind: 'document',
+      title: 'Orden real de encierro de Sainte-Croix',
+      dated: '1663',
+      source: 'Archivo de la Bastilla',
+      summary: 'A petición del teniente civil.',
+      autoDiscoverWhen: { asked: 'q-briancourt' },
+      related: { characters: ['ch-sainte-croix', 'ch-aubray'], locations: ['lo-bastilla'], events: ['te-bastilla'] },
+      body: [
+        {
+          type: 'typed',
+          text: '{{dt-lettre-texto|De parte del Rey: se conducirá al señor de Sainte-Croix a nuestro castillo de la Bastilla, a petición del señor d’Aubray, teniente civil, por su escandaloso trato con la marquesa de Brinvilliers, su hija.}}',
+        },
+        { type: 'typed', text: 'Seis semanas de encierro.' },
+      ],
+      details: [{ id: 'dt-lettre-texto', label: 'El padre lo encerró', description: 'El teniente civil humilló al amante de su hija.', effects: [{ grantFact: 'fa-bastilla' }], points: 15 }],
+    },
+    {
+      id: 'ev-chaussee',
+      kind: 'transcript',
+      title: 'Declaración de La Chaussée en el tormento',
+      dated: '1673',
+      source: 'Châtelet de París',
+      summary: 'Lo que dijo el criado antes de morir.',
+      autoDiscoverWhen: { asked: 'q-chaussee' },
+      related: { characters: ['ch-lachaussee', 'ch-sainte-croix', 'ch-marquesa'], locations: [], events: ['te-hermanos'] },
+      body: [
+        {
+          type: 'typed',
+          text: '«{{dt-chau-hermanos|Puse en el vino y en el caldo de los señores d’Aubray lo que me daba el señor de Sainte-Croix. Me prometió cien pistolas y una renta.}}»',
+        },
+        { type: 'typed', text: '«{{dt-chau-marquesa|La señora marquesa sabía. Me preguntaba cómo iban sus hermanos y se reía.}}»' },
+      ],
+      details: [
+        { id: 'dt-chau-hermanos', label: 'El veneno en el vino', description: 'La Chaussée envenenó a los hermanos con lo que le daba Sainte-Croix.', effects: [{ grantFact: 'fa-chaussee-hermanos' }], points: 20 },
+        { id: 'dt-chau-marquesa', label: '«La marquesa sabía»', description: 'El criado señala a la marquesa. Al saberse su confesión, ella huye de Francia.', effects: [{ grantFact: 'fa-huida' }], points: 15 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-confesion',
+      kind: 'document',
+      title: 'Confesión escrita hallada en Lieja',
+      dated: '1676',
+      source: 'Papeles de la marquesa, convento de Lieja',
+      summary: 'Lo que escribió de su mano.',
+      autoDiscoverWhen: { asked: 'q-desgrez' },
+      related: { characters: ['ch-marquesa', 'ch-aubray'], locations: ['lo-lieja'], events: ['te-detencion'] },
+      body: [
+        { type: 'heading', text: 'CONFESIÓN GENERAL' },
+        {
+          type: 'handwritten',
+          text: '{{dt-conf-padre|Me acuso de haber envenenado a mi padre, dándole veneno por mano de un criado y por la mía, durante su estancia en Offémont.}} {{dt-conf-hermanos|Me acuso de haber hecho envenenar a mis dos hermanos por La Chaussée.}}',
+          author: 'M.-M. d’Aubray',
+        },
+        { type: 'paragraph', text: 'La acompañan otras faltas, muchas, de toda una vida.' },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-detencion' }],
+      details: [
+        { id: 'dt-conf-padre', label: 'Mi padre, por mi mano', description: 'La marquesa reconoce por escrito haber envenenado a su padre.', effects: [{ grantFact: 'fa-confesion-escrita' }], points: 25 },
+        { id: 'dt-conf-hermanos', label: 'Mis hermanos, por La Chaussée', description: 'Y haber hecho envenenar a sus hermanos.', effects: [], points: 15 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+  ],
+
+  deductions: [
+    {
+      id: 'de-pagare',
+      title: 'El precio del veneno',
+      combine: ['dt-inv-pagare', 'dt-reg-padre'],
+      explanation: 'La marquesa firmó a Sainte-Croix un pagaré de treinta mil libras en 1666, el año en que su padre se consumió durante ocho meses: el precio de los venenos y del silencio.',
+      points: 35,
+    },
+    {
+      id: 'de-familia',
+      title: 'Una familia que se consume',
+      combine: ['dt-reg-hijo1', 'dt-chau-hermanos'],
+      explanation: 'Padre e hijos murieron igual, y el criado de Sainte-Croix envenenaba el vino de los hijos: la misma mano, el mismo veneno.',
+      points: 30,
+    },
+    {
+      id: 'de-duena',
+      title: 'De quién era la arqueta',
+      combine: ['dt-nota-texto', 'dt-inv-frascos'],
+      explanation: 'Sainte-Croix dejó escrito que todo lo de la arqueta, venenos incluidos, pertenecía a la marquesa y no servía a nadie más.',
+      points: 25,
+    },
+  ],
+
+  contradictions: [
+    {
+      id: 'cx-marquesa-cartas',
+      title: 'No solo cartas de amor',
+      a: { line: 'ln-marquesa-cartas' },
+      b: { detail: 'dt-inv-pagare' },
+      explanation: 'La marquesa dice que en la arqueta solo hay cartas íntimas; también hay un pagaré suyo de treinta mil libras firmado el año en que murió su padre.',
+      points: 25,
+    },
+    {
+      id: 'cx-marquesa-cuidado',
+      title: 'Lo que hizo en Offémont',
+      a: { line: 'ln-marquesa-cuidaba' },
+      b: { detail: 'dt-conf-padre' },
+      explanation: 'La marquesa dice que cuidó a su padre con amor; en su confesión escribe que le envenenó en Offémont.',
+      points: 30,
+    },
+  ],
+
+  secrets: [
+    { id: 'se-briancourt', characterId: 'ch-briancourt', text: 'La marquesa, borracha una noche, le dijo a Briancourt que «hay medios para librarse de quien molesta, y basta un caldo». Después intentó hacerle matar.', revealedWhen: { fact: 'fa-briancourt' }, points: 20 },
+    { id: 'se-pennautier', characterId: 'ch-pennautier', text: 'Pennautier trataba con Sainte-Croix de alquimia y le debía dinero; los rumores sobre la muerte de su predecesor nunca se probaron.', revealedWhen: { asked: 'q-pennautier' }, points: 15 },
+  ],
+
+  interrogations: [
+    {
+      id: 'in-marquesa',
+      characterId: 'ch-marquesa',
+      setting: 'En su salón de la calle Neuve-Saint-Paul, en 1672, y después en la Conciergerie, en 1676. Siempre le recibe sonriendo.',
+      opening: [{ text: 'Me han dicho que tienen algo mío. Quiero que me lo devuelvan, nada más.' }],
+      topics: [
+        {
+          id: 'tp-marquesa-arqueta',
+          label: 'La arqueta',
+          kind: 'other',
+          questions: [
+            {
+              id: 'q-marquesa-arqueta',
+              prompt: '¿Qué contiene la arqueta de Sainte-Croix?',
+              kind: 'ask',
+              responses: [{ lines: [{ id: 'ln-marquesa-cartas', text: 'Cartas mías, íntimas, que una mujer casada no quiere ver leídas en el Châtelet. Por eso la quiero. Pagaría lo que fuera.', tone: 'lie' }] }],
+            },
+            {
+              id: 'q-marquesa-pagare',
+              prompt: 'Hay también un pagaré suyo de treinta mil libras, de 1666.',
+              kind: 'contradiction',
+              contradiction: 'cx-marquesa-cartas',
+              responses: [{ lines: [{ text: 'Un préstamo entre amigos. Sainte-Croix siempre andaba sin dinero. ¿Es eso un crimen?', tone: 'evasion' }] }],
+            },
+          ],
+        },
+        {
+          id: 'tp-marquesa-padre',
+          label: 'Su padre',
+          kind: 'victim',
+          questions: [
+            {
+              id: 'q-marquesa-padre',
+              prompt: '¿Cómo fue la enfermedad de su padre?',
+              kind: 'ask',
+              responses: [{ lines: [{ id: 'ln-marquesa-cuidaba', text: 'Larga y cruel. Le cuidé en Offémont con mis propias manos, día y noche. Fui la hija más devota del mundo.', tone: 'lie' }] }],
+            },
+            {
+              id: 'q-marquesa-cx',
+              prompt: 'En Lieja escribió usted otra cosa: que le envenenó en Offémont.',
+              kind: 'contradiction',
+              contradiction: 'cx-marquesa-cuidado',
+              responses: [
+                {
+                  lines: [
+                    { speaker: 'narration', text: 'La marquesa sigue sonriendo, pero se le quiebra la voz.' },
+                    { text: 'Escribí aquello en un momento de delirio, para mi confesor. Una mujer escribe muchas cosas cuando tiene fiebre.', tone: 'evasion' },
+                    { text: 'Mi padre encerró al hombre que amaba como a un ladrón. Me trató como a una niña toda mi vida. ¿Qué quieren que les diga?', tone: 'admission' },
+                  ],
+                  effects: [{ setFlag: 'marquesa-admite' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-chaussee',
+      characterId: 'ch-lachaussee',
+      setting: 'En una celda del Châtelet, en 1673, ante los instrumentos del tormento.',
+      opening: [{ text: 'Yo era un lacayo. Un lacayo sirve lo que le dan.' }],
+      topics: [
+        {
+          id: 'tp-chaussee',
+          label: 'Los hermanos',
+          kind: 'events',
+          questions: [
+            {
+              id: 'q-chaussee',
+              prompt: '¿Quién le recomendó para servir en casa de los hermanos d’Aubray?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'El señor de Sainte-Croix… y la señora marquesa, que habló por mí a su hermano. No diré más hasta que me obliguen.', tone: 'evasion' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-pennautier',
+      characterId: 'ch-pennautier',
+      setting: 'En su palacio, rodeado de secretarios. Muy tranquilo.',
+      opening: [{ text: 'Mi nombre aparece en muchos papeles. Soy el recaudador del clero; me debe dinero media Francia.' }],
+      topics: [
+        {
+          id: 'tp-pennautier',
+          label: 'Sainte-Croix',
+          kind: 'person',
+          about: 'ch-sainte-croix',
+          questions: [
+            {
+              id: 'q-pennautier',
+              prompt: '¿Qué negocios tenía con Sainte-Croix?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Alquimia, como medio París. Le presté dinero para sus hornillos. Que se dijera que vendía venenos no es asunto mío. Yo no conocía a la marquesa más que de vista.', tone: 'evasion' }] }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-briancourt',
+      characterId: 'ch-briancourt',
+      setting: 'En una buhardilla de París, con la puerta atrancada.',
+      opening: [{ text: 'Si ella sabe que hablo con usted, estoy muerto.' }],
+      topics: [
+        {
+          id: 'tp-briancourt',
+          label: 'La marquesa',
+          kind: 'person',
+          about: 'ch-marquesa',
+          questions: [
+            {
+              id: 'q-briancourt',
+              prompt: '¿Qué sabe de la marquesa y de su padre?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'Que le odiaba desde que encerró a Sainte-Croix en la Bastilla. Busque la orden de encierro; lo contaba con rabia.', tone: 'truth' },
+                    { text: 'Una noche, bebida, me dijo: «Hay medios para librarse de quien molesta. Basta un caldo». Luego se rió y me dijo que lo olvidara.', tone: 'truth' },
+                  ],
+                  effects: [{ grantFact: 'fa-briancourt' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-desgrez',
+      characterId: 'ch-desgrez',
+      setting: 'En una posada de Lieja, en 1676, todavía con la sotana de abad que usó de disfraz.',
+      opening: [{ text: 'Me presenté en el convento como un abate francés que la admiraba. Paseamos por el claustro. Luego la detuve.' }],
+      topics: [
+        {
+          id: 'tp-desgrez',
+          label: 'La detención',
+          kind: 'events',
+          questions: [
+            {
+              id: 'q-desgrez',
+              prompt: '¿Llevaba algo encima la marquesa?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Una cajita que no quiso soltar. Dentro, papeles: una confesión general, escrita de su puño y letra. Léala usted mismo; yo todavía no me lo creo.', tone: 'truth' }] }],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+
+  // t = minutos respecto a la muerte del padre (septiembre de 1666)
+  timeline: [
+    { id: 'te-bastilla', t: -1576800, display: '1663', title: 'El padre hace encerrar a Sainte-Croix en la Bastilla', description: 'Por su escándalo con la marquesa.', characters: ['ch-aubray', 'ch-sainte-croix'], location: 'lo-bastilla', key: true },
+    { id: 'te-offemont', t: -345600, display: 'Invierno de 1666', title: 'El padre enferma en Offémont, cuidado por su hija', description: 'Ocho meses de vómitos.', characters: ['ch-aubray', 'ch-marquesa'], location: 'lo-offemont', key: true },
+    { id: 'te-falso-natural', t: -1440, display: 'Septiembre de 1666', title: 'El teniente civil muere de una enfermedad de estómago', description: 'Según la familia y los médicos.', characters: ['ch-aubray'], veracity: 'false', claimedBy: 'ch-marquesa' },
+    { id: 'te-muerte', t: 0, display: 'Septiembre de 1666', title: 'Muerte de Antoine Dreux d’Aubray', description: 'Su hija hereda.', characters: ['ch-aubray'], key: true },
+    { id: 'te-hermanos', t: 2102400, display: '1670', title: 'Mueren los dos hermanos, servidos por La Chaussée', description: 'Con los mismos síntomas.', characters: ['ch-lachaussee'], key: true },
+    { id: 'te-sainte-croix', t: 3153600, display: 'Agosto de 1672', title: 'Muere Sainte-Croix; aparece la arqueta', description: '«Para la marquesa de Brinvilliers».', characters: ['ch-sainte-croix'], location: 'lo-laboratorio', key: true },
+    { id: 'te-detencion', t: 5256000, display: '1676', title: 'Desgrez detiene a la marquesa en Lieja', description: 'Con una confesión escrita.', characters: ['ch-marquesa', 'ch-desgrez'], location: 'lo-lieja', key: true },
+  ],
+
+  accusation: {
+    suspects: ['ch-marquesa', 'ch-lachaussee', 'ch-pennautier'],
+    motives: [
+      { id: 'mo-venganza-herencia', label: 'Vengarse del padre que encerró a su amante y heredar la fortuna familiar', availableWhen: { all: [{ fact: 'fa-bastilla' }, { fact: 'fa-pagare' }] } },
+      { id: 'mo-cargo', label: 'Heredar un cargo lucrativo', availableWhen: { asked: 'q-pennautier' } },
+      { id: 'mo-dinero', label: 'La recompensa prometida a un criado', availableWhen: { fact: 'fa-chaussee-hermanos' } },
+      { id: 'mo-locura', label: 'La locura de una mujer histérica' },
+    ],
+    methods: [
+      { id: 'me-venenos', label: 'Con los venenos de Sainte-Croix, dados a lo largo de meses en caldos y vino: al padre, por su mano; a los hermanos, por La Chaussée', availableWhen: { all: [{ fact: 'fa-venenos' }, { fact: 'fa-misma-enfermedad' }] } },
+      { id: 'me-agua', label: 'Una sola dosis del agua sin etiqueta' },
+      { id: 'me-hospital', label: 'Con remedios equivocados de los médicos' },
+      { id: 'me-natural', label: 'No hubo veneno: una enfermedad de familia' },
+    ],
+  },
+
+  solution: {
+    culprits: ['ch-marquesa'],
+    motive: 'mo-venganza-herencia',
+    method: 'me-venenos',
+    proof: ['ev-confesion', 'ev-inventario', 'ev-chaussee'],
+    whatHappened:
+      'La marquesa de Brinvilliers envenenó a su padre, el teniente civil d’Aubray, con los venenos que preparaba su amante, Godin de Sainte-Croix. Su padre había hecho encerrar a Sainte-Croix en la Bastilla y la trataba como a una niña; muerto él, ella heredaría. En Offémont, durante ocho meses, le fue dando veneno en los caldos, por su mano y por la de un criado. Ese mismo año firmó a Sainte-Croix un pagaré de treinta mil libras. En 1670 hizo colocar a La Chaussée, criado de Sainte-Croix, en casa de sus hermanos, y los dos murieron igual. Cuando Sainte-Croix murió en 1672, su arqueta, «para entregar a la marquesa», lo destapó todo; ella huyó, y en Lieja la detuvieron con una confesión escrita de su mano.',
+    reconstruction: [
+      '1663: el teniente civil hace encerrar a Sainte-Croix en la Bastilla.',
+      '1666: en Offémont, la marquesa da veneno a su padre durante meses. Firma a Sainte-Croix un pagaré de treinta mil libras.',
+      'Septiembre de 1666: muere el padre. Ella hereda.',
+      '1670: La Chaussée, recomendado por ella, sirve en casa de sus hermanos; los dos mueren igual.',
+      '1672: muere Sainte-Croix; su arqueta lleva el nombre de la marquesa.',
+      '1673: La Chaussée confiesa en el tormento. La marquesa huye.',
+      '1676: Desgrez la detiene en Lieja con su confesión escrita.',
+    ],
+    decisiveEvidence: ['ev-inventario', 'ev-nota', 'ev-chaussee', 'ev-confesion'],
+    alibiTruths: [
+      { characterId: 'ch-marquesa', truth: 'No le cuidó: le envenenó en Offémont, y en la arqueta no solo había cartas de amor.' },
+      { characterId: 'ch-lachaussee', truth: 'No solo servía la mesa: echaba en el vino lo que le daba Sainte-Croix.' },
+    ],
+  },
+
+  endings: [
+    {
+      id: 'en-sevigne',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct', knowledge: { flag: 'marquesa-admite' } },
+      outcome: 'success',
+      title: '«Se ha ido por los aires»',
+      text: 'El 17 de julio de 1676 la marquesa es llevada en una carreta a Notre-Dame a pedir perdón, decapitada en la plaza de Grève y quemada. Madame de Sévigné escribe a su hija: «Por fin está hecho: la Brinvilliers anda por los aires; su pobre cuerpecito fue arrojado a una gran hoguera». El proceso abre una puerta que la corte de Luis XIV tardará años en cerrar: el asunto de los venenos.',
+    },
+    {
+      id: 'en-exito',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct' },
+      outcome: 'success',
+      title: 'La marquesa',
+      text: 'La acusación se sostiene, con la arqueta y la confesión. La marquesa es condenada.',
+    },
+    { id: 'en-chaussee', when: { culprit: 'ch-lachaussee' }, outcome: 'partial', title: 'El criado', text: 'La Chaussée muere en la rueda. La señora que le pagaba se instala en un convento de Lieja y escribe cartas a sus amigas.' },
+    { id: 'en-pennautier', when: { culprit: 'ch-pennautier' }, outcome: 'failure', title: 'El financiero', text: 'Pennautier tiene amigos en todas partes y ninguna prueba en contra. Le absuelven, y la arqueta vuelve a un armario del Châtelet.' },
+    { id: 'en-fallo', when: {}, outcome: 'failure', title: 'Cartas de amor', text: 'La arqueta se entrega a la marquesa, como pedía la nota. Esa noche, en la calle Neuve-Saint-Paul, arde una chimenea durante horas.' },
+  ],
+
+  hints: [
+    {
+      id: 'hl-arqueta',
+      topic: 'La arqueta',
+      relevantWhen: { not: { fact: 'fa-pagare' } },
+      steps: ['Lee el inventario línea por línea.', '¿Qué hay en la arqueta además de cartas?', 'Fíjate en la fecha del pagaré.'],
+    },
+    {
+      id: 'hl-hermanos',
+      topic: 'Los hermanos',
+      relevantWhen: { not: { fact: 'fa-chaussee-hermanos' } },
+      steps: ['¿Quién servía la mesa de los hermanos?', 'Pregunta a La Chaussée quién le recomendó.', 'Lee lo que dijo en el tormento.'],
+    },
+    {
+      id: 'hl-lieja',
+      topic: 'La huida',
+      relevantWhen: { all: [{ fact: 'fa-huida' }, { not: { fact: 'fa-confesion-escrita' } }] },
+      steps: ['La marquesa huyó a los Países Bajos.', 'Habla con Desgrez.', 'Pregúntale qué llevaba encima al detenerla.'],
+    },
+  ],
+
+  objectives: [
+    { id: 'ob-arqueta', text: 'Averigua para quién eran los venenos de la arqueta.', completeWhen: { fact: 'fa-para-marquesa' }, points: 20 },
+    { id: 'ob-hermanos', text: 'Descubre cómo murieron los hermanos.', completeWhen: { fact: 'fa-chaussee-hermanos' }, points: 25 },
+    { id: 'ob-briancourt', text: 'Escucha al preceptor que teme por su vida.', completeWhen: { fact: 'fa-briancourt' }, points: 15, hidden: true },
+  ],
+
+  assets: [],
+};
+
+export default caseFile;
