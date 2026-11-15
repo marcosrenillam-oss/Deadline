@@ -63,6 +63,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-camille',
+      portrait: 'pt-camille',
       name: 'Camille Holland',
       look: { hair: 'bun' },
       role: 'victim',
@@ -76,6 +77,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-dougal',
+      portrait: 'pt-dougal',
       name: 'Samuel Herbert Dougal',
       look: { hair: 'short', beard: true },
       role: 'suspect',
@@ -92,6 +94,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-florence',
+      portrait: 'pt-florence',
       name: 'Florence Havies',
       look: { hair: 'bun' },
       role: 'witness',
@@ -105,6 +108,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-sobrino',
+      portrait: 'pt-sobrino',
       name: 'Edmund Holland',
       look: { hair: 'short' },
       role: 'witness',
@@ -118,6 +122,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-marden',
+      portrait: 'pt-marden',
       name: 'Inspector Alfred Marden',
       look: { hair: 'hat', beard: true },
       role: 'witness',
@@ -131,6 +136,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-pilgrim',
+      portrait: 'pt-pilgrim',
       name: 'Henry Pilgrim',
       look: { hair: 'hat' },
       role: 'witness',
@@ -145,6 +151,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-zapatero',
+      portrait: 'pt-zapatero',
       name: 'Sr. Hayes',
       look: { hair: 'short' },
       role: 'witness',
@@ -635,7 +642,15 @@ const caseFile: CaseFileInput = {
     { id: 'ob-criada', text: 'Descubre qué pasó la víspera de su desaparición.', completeWhen: { fact: 'fa-criada' }, points: 15, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-zapatero', kind: 'image', src: 'portraits/ch-zapatero.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Sr. Hayes.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-pilgrim', kind: 'image', src: 'portraits/ch-pilgrim.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Henry Pilgrim.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-marden', kind: 'image', src: 'portraits/ch-marden.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Inspector Alfred Marden.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-sobrino', kind: 'image', src: 'portraits/ch-sobrino.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Edmund Holland.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-florence', kind: 'image', src: 'portraits/ch-florence.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Florence Havies.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-dougal', kind: 'image', src: 'portraits/ch-dougal.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Samuel Herbert Dougal.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-camille', kind: 'image', src: 'portraits/ch-camille.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Camille Holland.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

@@ -94,6 +94,7 @@
   "characters": [
     {
       "id": "ch-saville",
+      "portrait": "pt-saville",
       "name": "Francis Saville Kent",
       "look": {
         "hair": "short"
@@ -111,6 +112,7 @@
     },
     {
       "id": "ch-constance",
+      "portrait": "pt-constance",
       "name": "Constance Kent",
       "look": {
         "hair": "bun"
@@ -139,6 +141,7 @@
     },
     {
       "id": "ch-gough",
+      "portrait": "pt-gough",
       "name": "Elizabeth Gough",
       "look": {
         "hair": "bun"
@@ -167,6 +170,7 @@
     },
     {
       "id": "ch-samuel",
+      "portrait": "pt-samuel",
       "name": "Samuel Saville Kent",
       "look": {
         "hair": "short",
@@ -196,6 +200,7 @@
     },
     {
       "id": "ch-william",
+      "portrait": "pt-william",
       "name": "William Kent",
       "look": {
         "hair": "short"
@@ -213,6 +218,7 @@
     },
     {
       "id": "ch-cox",
+      "portrait": "pt-cox",
       "name": "Sarah Cox",
       "look": {
         "hair": "bun"
@@ -230,6 +236,7 @@
     },
     {
       "id": "ch-holley",
+      "portrait": "pt-holley",
       "name": "Hester Holley",
       "look": {
         "hair": "hat"
@@ -247,6 +254,7 @@
     },
     {
       "id": "ch-parsons",
+      "portrait": "pt-parsons",
       "name": "Joshua Parsons",
       "look": {
         "hair": "short",
@@ -1714,5 +1722,94 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-parsons",
+      "kind": "image",
+      "src": "portraits/ch-parsons.webp",
+      "bytes": 17898,
+      "sha256": "5a9123a32ab651bfd5ccc027906b5e47108af8bc0f9f4ea898151526152eb8e6",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Joshua Parsons.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-holley",
+      "kind": "image",
+      "src": "portraits/ch-holley.webp",
+      "bytes": 18944,
+      "sha256": "381430e39213d42297a020ad1ee395f0c97534790a38a5e39526e9e5fea90388",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Hester Holley.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-cox",
+      "kind": "image",
+      "src": "portraits/ch-cox.webp",
+      "bytes": 15476,
+      "sha256": "b10772ec5bb79167ffa57095f603a5669c11099d7a435417a1a4d90e847accda",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Sarah Cox.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-william",
+      "kind": "image",
+      "src": "portraits/ch-william.webp",
+      "bytes": 12152,
+      "sha256": "3040c31acc270975e03a0a86f7bf3d41ef7fc7cd3611a435ab15333b1d82d8c8",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de William Kent.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-samuel",
+      "kind": "image",
+      "src": "portraits/ch-samuel.webp",
+      "bytes": 13286,
+      "sha256": "d5dd94f3f4bab71fb8b619cd918be4988ef651c526c10fa158d241ffe1309755",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Samuel Saville Kent.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-gough",
+      "kind": "image",
+      "src": "portraits/ch-gough.webp",
+      "bytes": 15360,
+      "sha256": "e58b459bc71127620b615dbed033465b43267cdb2f0e6d5f0d85612e8504c654",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Elizabeth Gough.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-constance",
+      "kind": "image",
+      "src": "portraits/ch-constance.webp",
+      "bytes": 13260,
+      "sha256": "e4ce18d6d8498afe1e10a5fd2a8998d02fc14bfd42d3b4ea39813d2bbfb67966",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Constance Kent.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-saville",
+      "kind": "image",
+      "src": "portraits/ch-saville.webp",
+      "bytes": 16132,
+      "sha256": "307fbaa5ca34c3e901d440579f73929dbe552dd3fad14d329743c7ef952adcdd",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Francis Saville Kent.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

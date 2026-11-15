@@ -93,6 +93,7 @@
   "characters": [
     {
       "id": "ch-margaret",
+      "portrait": "pt-margaret",
       "name": "Margaret Lofty",
       "look": {
         "hair": "bun"
@@ -111,6 +112,7 @@
     },
     {
       "id": "ch-lloyd",
+      "portrait": "pt-lloyd",
       "name": "«John Lloyd»",
       "look": {
         "hair": "short",
@@ -140,6 +142,7 @@
     },
     {
       "id": "ch-blatch",
+      "portrait": "pt-blatch",
       "name": "Louisa Blatch",
       "look": {
         "hair": "bun"
@@ -168,6 +171,7 @@
     },
     {
       "id": "ch-alice",
+      "portrait": "pt-alice",
       "name": "Alice Burnham",
       "look": {
         "hair": "bun"
@@ -188,6 +192,7 @@
     },
     {
       "id": "ch-bessie",
+      "portrait": "pt-bessie",
       "name": "Bessie Mundy",
       "look": {
         "hair": "bun"
@@ -208,6 +213,7 @@
     },
     {
       "id": "ch-crossley",
+      "portrait": "pt-crossley",
       "name": "Joseph Crossley",
       "look": {
         "hair": "short",
@@ -226,6 +232,7 @@
     },
     {
       "id": "ch-burnham",
+      "portrait": "pt-burnham",
       "name": "Charles Burnham",
       "look": {
         "hair": "short",
@@ -244,6 +251,7 @@
     },
     {
       "id": "ch-spilsbury",
+      "portrait": "pt-spilsbury",
       "name": "Bernard Spilsbury",
       "look": {
         "hair": "short"
@@ -1585,5 +1593,94 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-spilsbury",
+      "kind": "image",
+      "src": "portraits/ch-spilsbury.webp",
+      "bytes": 17356,
+      "sha256": "4c2178059f663b52b917a29d18488f7392927d6928f1498a645cde12f71bf046",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Bernard Spilsbury.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-burnham",
+      "kind": "image",
+      "src": "portraits/ch-burnham.webp",
+      "bytes": 31788,
+      "sha256": "383a96c3aeaafc5613202c352d4d791f49228aa7996ca15b5071c7a56c2d8dd9",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Charles Burnham.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-crossley",
+      "kind": "image",
+      "src": "portraits/ch-crossley.webp",
+      "bytes": 15342,
+      "sha256": "4028ab58213be8a2d6a65ee7c9e9faa19f45fa37e904f397f16aab7c66b69f9e",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Joseph Crossley.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-bessie",
+      "kind": "image",
+      "src": "portraits/ch-bessie.webp",
+      "bytes": 16722,
+      "sha256": "8ed2b8f18c85c7f83dbabc2a6c5cfc87d09f03d04978743c00e8668e993a314b",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Bessie Mundy.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-alice",
+      "kind": "image",
+      "src": "portraits/ch-alice.webp",
+      "bytes": 16354,
+      "sha256": "31d9f99f698f3488b72466d3d62dd30d0ce8145787eb19b6a10b31dec394fe31",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Alice Burnham.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-blatch",
+      "kind": "image",
+      "src": "portraits/ch-blatch.webp",
+      "bytes": 18210,
+      "sha256": "cf6d62a8a276f74303bcc5ff94951f5a1fc37147b25d491d64c4cea80175bb8d",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Louisa Blatch.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-lloyd",
+      "kind": "image",
+      "src": "portraits/ch-lloyd.webp",
+      "bytes": 20076,
+      "sha256": "3bd8db7783c512a1040b9b4667259e9eef0f0043c4d6f98f04b02235c9000c12",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de «John Lloyd».",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-margaret",
+      "kind": "image",
+      "src": "portraits/ch-margaret.webp",
+      "bytes": 19878,
+      "sha256": "22b374dac462ea67b02fc40f1b61a1ee32d5163f0820d05ca47ed4dc06e4a0be",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Margaret Lofty.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

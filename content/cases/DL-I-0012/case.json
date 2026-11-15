@@ -74,6 +74,7 @@
   "characters": [
     {
       "id": "ch-mary-jane",
+      "portrait": "pt-mary-jane",
       "name": "Mary Jane Pritchard",
       "look": {
         "hair": "bun"
@@ -92,6 +93,7 @@
     },
     {
       "id": "ch-pritchard",
+      "portrait": "pt-pritchard",
       "name": "Edward William Pritchard",
       "look": {
         "hair": "bald",
@@ -121,6 +123,7 @@
     },
     {
       "id": "ch-mcleod",
+      "portrait": "pt-mcleod",
       "name": "Mary McLeod",
       "look": {
         "hair": "bun"
@@ -148,6 +151,7 @@
     },
     {
       "id": "ch-paterson",
+      "portrait": "pt-paterson",
       "name": "James Paterson",
       "look": {
         "hair": "short",
@@ -167,6 +171,7 @@
     },
     {
       "id": "ch-cocinera",
+      "portrait": "pt-cocinera",
       "name": "Catherine, la cocinera",
       "look": {
         "hair": "bun"
@@ -184,6 +189,7 @@
     },
     {
       "id": "ch-boticario",
+      "portrait": "pt-boticario",
       "name": "Sr. Currie",
       "look": {
         "hair": "short"
@@ -191,7 +197,7 @@
       "role": "witness",
       "age": 50,
       "occupation": "Boticario de Glasgow",
-      "appearance": "a careful 50-year-old Victorian Glasgow chemist in 1865, neat grey hair, small spectacles, white apron over a dark waistcoat, ledger in hand",
+      "appearance": "a careful 50-year-old Victorian Glasgow man, a chemist in 1865, neat grey hair, small spectacles, white apron over a dark waistcoat, ledger in hand",
       "summary": "Lleva el registro de venenos al día.",
       "biography": "Boticario de Sauchiehall Street. El doctor Pritchard le compra para su consulta.",
       "personality": [
@@ -1372,5 +1378,72 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-boticario",
+      "kind": "image",
+      "src": "portraits/ch-boticario.webp",
+      "bytes": 17128,
+      "sha256": "836e1e82074c0e7bd53469d33cb4c999ea55fdf33d743ab2421473a58a29afb0",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Sr. Currie.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-cocinera",
+      "kind": "image",
+      "src": "portraits/ch-cocinera.webp",
+      "bytes": 14954,
+      "sha256": "cc40041733fd3d5fd8ced6c8d82658478650d991cafcb81c648c5725d80d4cb6",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Catherine, la cocinera.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-paterson",
+      "kind": "image",
+      "src": "portraits/ch-paterson.webp",
+      "bytes": 13838,
+      "sha256": "1c5a949b9193b84803e10934071f9ea8f3788c1ff0a05fc52a249348e8f2761f",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de James Paterson.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-mcleod",
+      "kind": "image",
+      "src": "portraits/ch-mcleod.webp",
+      "bytes": 14350,
+      "sha256": "0b1b1ebd5fe9f39d5db8f621a76f5edac8fe497fc6da0be669d12e398302bd9b",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Mary McLeod.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-pritchard",
+      "kind": "image",
+      "src": "portraits/ch-pritchard.webp",
+      "bytes": 11570,
+      "sha256": "6b1e7231f5ed29bbff257e597da74ece9e739cf627ea108504dcd7299e18b2b2",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Edward William Pritchard.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-mary-jane",
+      "kind": "image",
+      "src": "portraits/ch-mary-jane.webp",
+      "bytes": 16490,
+      "sha256": "5a8a5da6bf1543407ed6fbd563b4f219547410abb21045c6083e4758d438db98",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Mary Jane Pritchard.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

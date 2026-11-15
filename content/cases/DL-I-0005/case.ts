@@ -69,26 +69,28 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-padre',
+      portrait: 'pt-padre',
       name: 'Sexto Roscio',
       look: { hair: 'short' },
       role: 'victim',
       age: 60,
       occupation: 'Propietario de Ameria',
       appearance:
-        'a dignified 60-year-old Roman provincial landowner, weathered intelligent face, short grey hair, clean shaven, white toga over a tunic, calm authoritative gaze',
+        'a dignified 60-year-old Roman man, a provincial landowner, weathered intelligent face, short grey hair, clean shaven, white toga over a tunic, calm authoritative gaze',
       summary: 'Trece fincas junto al Tíber y amigos en las mejores casas de Roma.',
       biography: 'De la nobleza municipal de Ameria. Partidario de la nobleza romana, visitaba a menudo la capital, donde le recibían los Metelos y los Escipiones. Llevaba años de pleitos con sus parientes, los dos Titos Roscios.',
       personality: ['Hospitalario', 'Firme', 'Pleiteador'],
     },
     {
       id: 'ch-hijo',
+      portrait: 'pt-hijo',
       name: 'Sexto Roscio hijo',
       look: { hair: 'short', beard: true },
       role: 'suspect',
       age: 40,
       occupation: 'Administrador de las fincas de su padre',
       appearance:
-        'a rough 40-year-old Roman countryman, sunburnt plain face, short dark beard, simple brown tunic and woollen cloak, bewildered anxious eyes',
+        'a rough 40-year-old Roman man, a countryman, sunburnt plain face, short dark beard, simple brown tunic and woollen cloak, bewildered anxious eyes',
       summary: 'Un hombre de campo que apenas ha pisado Roma.',
       biography: 'Lleva toda la vida ocupándose de las fincas de su padre en Ameria. No tiene amigos en Roma ni dinero propio. Desde que lo echaron de su casa vive del favor de Cecilia Metela.',
       personality: ['Rústico', 'Leal', 'Asustado'],
@@ -98,6 +100,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-magno',
+      portrait: 'pt-magno',
       name: 'Tito Roscio Magno',
       look: { hair: 'short' },
       role: 'suspect',
@@ -114,13 +117,14 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-capito',
+      portrait: 'pt-capito',
       name: 'Tito Roscio Capitón',
       look: { hair: 'short' },
       role: 'suspect',
       age: 55,
       occupation: 'Notable de Ameria',
       appearance:
-        'a sly 55-year-old Roman provincial notable, thin lined face, thinning grey hair, narrow eyes, toga with a purple border, ingratiating smile',
+        'a sly 55-year-old Roman man, a provincial notable, thin lined face, thinning grey hair, narrow eyes, toga with a purple border, ingratiating smile',
       summary: 'Un viejo zorro de la política de Ameria.',
       biography: 'Pariente y enemigo de la víctima, influyente entre los decuriones de Ameria. Conoce bien los caminos de Roma y a sus libertos.',
       personality: ['Astuto', 'Adulador', 'Codicioso'],
@@ -130,52 +134,56 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-glaucia',
+      portrait: 'pt-glaucia',
       name: 'Malio Glaucia',
       look: { hair: 'short' },
       role: 'witness',
       age: 35,
       occupation: 'Liberto y cliente de Magno',
       appearance:
-        'a wiry 35-year-old Roman freedman, narrow ferret face, short hair, plain travelling tunic and dusty cloak, shifty eyes',
+        'a wiry 35-year-old Roman man, a freedman, narrow ferret face, short hair, plain travelling tunic and dusty cloak, shifty eyes',
       summary: 'Hizo cincuenta y seis millas en una noche.',
       biography: 'Antiguo esclavo de la casa de Magno, ahora liberto y hombre para todo de su patrón.',
       personality: ['Escurridizo', 'Leal a su patrón'],
     },
     {
       id: 'ch-crisogono',
+      portrait: 'pt-crisogono',
       name: 'Lucio Cornelio Crisógono',
       look: { hair: 'short' },
       role: 'witness',
       age: 38,
       occupation: 'Liberto de Sila',
       appearance:
-        'an elegant 38-year-old Greek-born Roman freedman, smooth handsome face, carefully curled dark hair, rich embroidered tunic and many rings, arrogant languid expression',
+        'an elegant 38-year-old Greek-born Roman man, a freedman, smooth handsome face, carefully curled dark hair, rich embroidered tunic and many rings, arrogant languid expression',
       summary: 'El hombre al que nadie en Roma se atreve a nombrar.',
       biography: 'Antiguo esclavo griego de Sila, liberto y favorito del dictador. Se ha hecho inmensamente rico comprando en las subastas de los proscritos.',
       personality: ['Soberbio', 'Intocable'],
     },
     {
       id: 'ch-erucio',
+      portrait: 'pt-erucio',
       name: 'Gayo Erucio',
       look: { hair: 'short' },
       role: 'other',
       age: 45,
       occupation: 'Acusador profesional',
       appearance:
-        'a loud fleshy 45-year-old Roman prosecutor, red face, oiled dark hair, toga draped with theatrical care, smug sneering expression',
+        'a loud fleshy 45-year-old Roman man, a prosecutor, red face, oiled dark hair, toga draped with theatrical care, smug sneering expression',
       summary: 'Acusa por encargo, y cobra bien.',
       biography: 'Conocido en el foro por aceptar cualquier acusación que se pague. Da el caso por ganado: nadie se atreverá a defender al acusado.',
       personality: ['Arrogante', 'Teatral'],
     },
     {
       id: 'ch-metela',
+      portrait: 'pt-metela',
       name: 'Cecilia Metela',
       look: { hair: 'bun' },
       role: 'witness',
       age: 50,
       occupation: 'Matrona de la familia de los Metelos',
       appearance:
-        'a noble 50-year-old Roman matron, strong aristocratic face, grey hair dressed in waves and a bun, fine stola and palla, steady proud eyes',
+        'a noble 50-year-old Roman woman, a matron, strong aristocratic face, grey hair dressed in waves and a bun, fine stola and palla, steady proud eyes',
       summary: 'Le ha dado refugio al hijo.',
       biography: 'Hija y hermana de cónsules. Amiga de la familia de Sexto Roscio. Ha acogido al hijo cuando nadie más se atrevía.',
       personality: ['Valiente', 'Directa'],
@@ -801,7 +809,16 @@ const caseFile: CaseFileInput = {
     { id: 'ob-esclavos', text: 'Pide los esclavos testigos.', completeWhen: { fact: 'fa-esclavos' }, points: 20, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-metela', kind: 'image', src: 'portraits/ch-metela.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Cecilia Metela.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-erucio', kind: 'image', src: 'portraits/ch-erucio.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Gayo Erucio.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-crisogono', kind: 'image', src: 'portraits/ch-crisogono.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Lucio Cornelio Crisógono.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-glaucia', kind: 'image', src: 'portraits/ch-glaucia.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Malio Glaucia.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-capito', kind: 'image', src: 'portraits/ch-capito.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Tito Roscio Capitón.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-magno', kind: 'image', src: 'portraits/ch-magno.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Tito Roscio Magno.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-hijo', kind: 'image', src: 'portraits/ch-hijo.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Sexto Roscio hijo.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-padre', kind: 'image', src: 'portraits/ch-padre.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Sexto Roscio.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

@@ -91,6 +91,7 @@
   "characters": [
     {
       "id": "ch-dreyfus",
+      "portrait": "pt-dreyfus",
       "name": "Alfred Dreyfus",
       "look": {
         "hair": "short",
@@ -111,6 +112,7 @@
     },
     {
       "id": "ch-esterhazy",
+      "portrait": "pt-esterhazy",
       "name": "Ferdinand Walsin Esterhazy",
       "look": {
         "hair": "short"
@@ -139,6 +141,7 @@
     },
     {
       "id": "ch-henry",
+      "portrait": "pt-henry",
       "name": "Hubert-Joseph Henry",
       "look": {
         "hair": "short"
@@ -167,6 +170,7 @@
     },
     {
       "id": "ch-picquart",
+      "portrait": "pt-picquart",
       "name": "Georges Picquart",
       "look": {
         "hair": "short"
@@ -185,6 +189,7 @@
     },
     {
       "id": "ch-mathieu",
+      "portrait": "pt-mathieu",
       "name": "Mathieu Dreyfus",
       "look": {
         "hair": "short",
@@ -203,6 +208,7 @@
     },
     {
       "id": "ch-castro",
+      "portrait": "pt-castro",
       "name": "J. de Castro",
       "look": {
         "hair": "hat",
@@ -1443,5 +1449,72 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-castro",
+      "kind": "image",
+      "src": "portraits/ch-castro.webp",
+      "bytes": 12172,
+      "sha256": "1e26cc3c19c86ea7580a0afa6d73829c4e70b700d0d444c1a0148f7c2283bb23",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de J. de Castro.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-mathieu",
+      "kind": "image",
+      "src": "portraits/ch-mathieu.webp",
+      "bytes": 11708,
+      "sha256": "de81fa6d032d0624cc343d854edef21b81c851d501e510eac98e3321fb35971a",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Mathieu Dreyfus.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-picquart",
+      "kind": "image",
+      "src": "portraits/ch-picquart.webp",
+      "bytes": 13832,
+      "sha256": "cc6d65277e4617227fa5ae831b2b70f7bf4877b665e651a191b48f228ade373b",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Georges Picquart.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-henry",
+      "kind": "image",
+      "src": "portraits/ch-henry.webp",
+      "bytes": 13238,
+      "sha256": "e084a06d1a7c4fdd144c9273434f27f815dc34aeb41e213508d91972116cf866",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Hubert-Joseph Henry.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-esterhazy",
+      "kind": "image",
+      "src": "portraits/ch-esterhazy.webp",
+      "bytes": 11332,
+      "sha256": "6fc4cf679173ebca92d558c9caf7ddf8a7e16ada87544de771559e6565133c45",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Ferdinand Walsin Esterhazy.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-dreyfus",
+      "kind": "image",
+      "src": "portraits/ch-dreyfus.webp",
+      "bytes": 11576,
+      "sha256": "e132d20453a457ebd86dd2924ec97eafccaed14bfa26af93fe5d9d4fd6b74bcc",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Alfred Dreyfus.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

@@ -69,6 +69,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-nino',
+      portrait: 'pt-nino',
       name: 'Charles A. Lindbergh Jr.',
       look: { hair: 'short' },
       role: 'victim',
@@ -83,6 +84,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-hauptmann',
+      portrait: 'pt-hauptmann',
       name: 'Bruno Richard Hauptmann',
       look: { hair: 'short' },
       role: 'suspect',
@@ -99,6 +101,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-sharp',
+      portrait: 'pt-sharp',
       name: 'Violet Sharp',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -115,6 +118,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-condon',
+      portrait: 'pt-condon',
       name: 'John F. Condon («Jafsie»)',
       look: { hair: 'bald', beard: true },
       role: 'witness',
@@ -128,6 +132,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-gow',
+      portrait: 'pt-gow',
       name: 'Betty Gow',
       look: { hair: 'bun' },
       role: 'witness',
@@ -141,6 +146,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-koehler',
+      portrait: 'pt-koehler',
       name: 'Arthur Koehler',
       look: { hair: 'short', glasses: true },
       role: 'witness',
@@ -154,6 +160,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-socio',
+      portrait: 'pt-socio',
       name: 'Socio de Isidor Fisch',
       look: { hair: 'hat' },
       role: 'witness',
@@ -168,13 +175,14 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-lyle',
+      portrait: 'pt-lyle',
       name: 'Walter Lyle',
       look: { hair: 'hat' },
       role: 'witness',
       age: 30,
       occupation: 'Empleado de gasolinera',
       appearance:
-        'a cheerful 30-year-old New York gas station attendant in 1934, friendly face, peaked cap, overalls with an oil company badge',
+        'a cheerful 30-year-old New York man, a gas station attendant in 1934, friendly face, peaked cap, overalls with an oil company badge',
       summary: 'Anotó una matrícula en un billete.',
       biography: 'Trabaja en una gasolinera de Lexington Avenue. Los bancos han avisado de que vigilen los certificados de oro.',
       personality: ['Desconfiado', 'Despierto'],
@@ -711,7 +719,16 @@ const caseFile: CaseFileInput = {
     { id: 'ob-sharp', text: 'Comprueba la coartada de Violet Sharp.', completeWhen: { fact: 'fa-sharp-inocente' }, points: 15, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-lyle', kind: 'image', src: 'portraits/ch-lyle.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Walter Lyle.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-socio', kind: 'image', src: 'portraits/ch-socio.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Socio de Isidor Fisch.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-koehler', kind: 'image', src: 'portraits/ch-koehler.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Arthur Koehler.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-gow', kind: 'image', src: 'portraits/ch-gow.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Betty Gow.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-condon', kind: 'image', src: 'portraits/ch-condon.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de John F. Condon («Jafsie»).', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-sharp', kind: 'image', src: 'portraits/ch-sharp.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Violet Sharp.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-hauptmann', kind: 'image', src: 'portraits/ch-hauptmann.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Bruno Richard Hauptmann.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-nino', kind: 'image', src: 'portraits/ch-nino.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Charles A. Lindbergh Jr..', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

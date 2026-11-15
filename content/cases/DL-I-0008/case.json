@@ -78,6 +78,7 @@
   "characters": [
     {
       "id": "ch-overbury",
+      "portrait": "pt-overbury",
       "name": "Sir Thomas Overbury",
       "look": {
         "hair": "short",
@@ -97,6 +98,7 @@
     },
     {
       "id": "ch-frances",
+      "portrait": "pt-frances",
       "name": "Frances Howard",
       "look": {
         "hair": "long"
@@ -125,6 +127,7 @@
     },
     {
       "id": "ch-carr",
+      "portrait": "pt-carr",
       "name": "Robert Carr",
       "look": {
         "hair": "short",
@@ -154,6 +157,7 @@
     },
     {
       "id": "ch-weston",
+      "portrait": "pt-weston",
       "name": "Richard Weston",
       "look": {
         "hair": "bald",
@@ -183,6 +187,7 @@
     },
     {
       "id": "ch-turner",
+      "portrait": "pt-turner",
       "name": "Anne Turner",
       "look": {
         "hair": "bun"
@@ -201,6 +206,7 @@
     },
     {
       "id": "ch-helwys",
+      "portrait": "pt-helwys",
       "name": "Sir Gervase Helwys",
       "look": {
         "hair": "short",
@@ -219,6 +225,7 @@
     },
     {
       "id": "ch-franklin",
+      "portrait": "pt-franklin",
       "name": "James Franklin",
       "look": {
         "hair": "short"
@@ -1655,5 +1662,83 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-franklin",
+      "kind": "image",
+      "src": "portraits/ch-franklin.webp",
+      "bytes": 22536,
+      "sha256": "16169ee128a219cd05ec78bee1f4fe8a811f2e6b07c3784fac70ac92ceb310e0",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de James Franklin.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-helwys",
+      "kind": "image",
+      "src": "portraits/ch-helwys.webp",
+      "bytes": 27034,
+      "sha256": "ddbcba18208a5cb3eb7419d6520a22ebb29edb283e51b33512651bec15ef40a0",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Sir Gervase Helwys.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-turner",
+      "kind": "image",
+      "src": "portraits/ch-turner.webp",
+      "bytes": 18944,
+      "sha256": "4f6903070f5c52957524096b50bebff62bf07445da9eeef5edef50cedd8897ac",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Anne Turner.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-weston",
+      "kind": "image",
+      "src": "portraits/ch-weston.webp",
+      "bytes": 18916,
+      "sha256": "3ab7dde48438342ef8a0ded44ea4b250810cdf9b49f18acbaac0900067a8a372",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Richard Weston.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-carr",
+      "kind": "image",
+      "src": "portraits/ch-carr.webp",
+      "bytes": 22358,
+      "sha256": "1aab9f3d36e5dc4d6120b24d213b3ba1885e8d1de07733c9a0a21e30cac1103a",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Robert Carr.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-frances",
+      "kind": "image",
+      "src": "portraits/ch-frances.webp",
+      "bytes": 20722,
+      "sha256": "fee96b5b9c08fce5ea1b89d0acb30c29ff975069fb7701b1851406a73610e791",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Frances Howard.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-overbury",
+      "kind": "image",
+      "src": "portraits/ch-overbury.webp",
+      "bytes": 17982,
+      "sha256": "134378ad4ce1321706e5ed9b8d355501c9a7e19e33fbe08092de6412c94962ea",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Sir Thomas Overbury.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

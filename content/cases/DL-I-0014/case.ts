@@ -63,6 +63,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-marsh',
+      portrait: 'pt-marsh',
       name: 'Alice Marsh',
       look: { hair: 'bun' },
       role: 'victim',
@@ -76,6 +77,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-cream',
+      portrait: 'pt-cream',
       name: '«Dr. Neill» (Thomas Neill Cream)',
       look: { hair: 'bald', glasses: true, beard: true },
       role: 'suspect',
@@ -92,6 +94,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-harper',
+      portrait: 'pt-harper',
       name: 'Walter Harper',
       look: { hair: 'short' },
       role: 'suspect',
@@ -108,6 +111,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-haynes',
+      portrait: 'pt-haynes',
       name: 'John Haynes',
       look: { hair: 'hat', beard: true },
       role: 'witness',
@@ -121,6 +125,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-harvey',
+      portrait: 'pt-harvey',
       name: 'Louisa Harvey',
       look: { hair: 'hat' },
       role: 'witness',
@@ -135,6 +140,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-comley',
+      portrait: 'pt-comley',
       name: 'George Comley',
       look: { hair: 'hat' },
       role: 'witness',
@@ -622,7 +628,14 @@ const caseFile: CaseFileInput = {
     { id: 'ob-harvey', text: 'Encuentra a la «quinta víctima».', completeWhen: { fact: 'fa-harvey-viva' }, points: 20, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-comley', kind: 'image', src: 'portraits/ch-comley.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de George Comley.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-harvey', kind: 'image', src: 'portraits/ch-harvey.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Louisa Harvey.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-haynes', kind: 'image', src: 'portraits/ch-haynes.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de John Haynes.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-harper', kind: 'image', src: 'portraits/ch-harper.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Walter Harper.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-cream', kind: 'image', src: 'portraits/ch-cream.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de «Dr. Neill» (Thomas Neill Cream).', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-marsh', kind: 'image', src: 'portraits/ch-marsh.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Alice Marsh.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

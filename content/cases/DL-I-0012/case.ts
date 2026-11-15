@@ -64,6 +64,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-mary-jane',
+      portrait: 'pt-mary-jane',
       name: 'Mary Jane Pritchard',
       look: { hair: 'bun' },
       role: 'victim',
@@ -77,6 +78,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-pritchard',
+      portrait: 'pt-pritchard',
       name: 'Edward William Pritchard',
       look: { hair: 'bald', beard: true },
       role: 'suspect',
@@ -93,6 +95,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-mcleod',
+      portrait: 'pt-mcleod',
       name: 'Mary McLeod',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -109,6 +112,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-paterson',
+      portrait: 'pt-paterson',
       name: 'James Paterson',
       look: { hair: 'short', beard: true },
       role: 'witness',
@@ -122,6 +126,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-cocinera',
+      portrait: 'pt-cocinera',
       name: 'Catherine, la cocinera',
       look: { hair: 'bun' },
       role: 'witness',
@@ -135,13 +140,14 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-boticario',
+      portrait: 'pt-boticario',
       name: 'Sr. Currie',
       look: { hair: 'short' },
       role: 'witness',
       age: 50,
       occupation: 'Boticario de Glasgow',
       appearance:
-        'a careful 50-year-old Victorian Glasgow chemist in 1865, neat grey hair, small spectacles, white apron over a dark waistcoat, ledger in hand',
+        'a careful 50-year-old Victorian Glasgow man, a chemist in 1865, neat grey hair, small spectacles, white apron over a dark waistcoat, ledger in hand',
       summary: 'Lleva el registro de venenos al día.',
       biography: 'Boticario de Sauchiehall Street. El doctor Pritchard le compra para su consulta.',
       personality: ['Ordenado', 'Discreto'],
@@ -644,7 +650,14 @@ const caseFile: CaseFileInput = {
     { id: 'ob-paterson', text: 'Descubre por qué Paterson calló.', completeWhen: { secret: 'se-paterson' }, points: 15, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-boticario', kind: 'image', src: 'portraits/ch-boticario.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Sr. Currie.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-cocinera', kind: 'image', src: 'portraits/ch-cocinera.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Catherine, la cocinera.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-paterson', kind: 'image', src: 'portraits/ch-paterson.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de James Paterson.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-mcleod', kind: 'image', src: 'portraits/ch-mcleod.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Mary McLeod.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-pritchard', kind: 'image', src: 'portraits/ch-pritchard.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Edward William Pritchard.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-mary-jane', kind: 'image', src: 'portraits/ch-mary-jane.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Mary Jane Pritchard.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

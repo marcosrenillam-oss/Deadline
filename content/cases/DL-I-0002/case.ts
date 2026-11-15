@@ -74,6 +74,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-parkman',
+      portrait: 'pt-parkman',
       name: 'George Parkman',
       look: { hair: 'short' },
       role: 'victim',
@@ -87,6 +88,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-webster',
+      portrait: 'pt-webster',
       name: 'John White Webster',
       look: { hair: 'short', glasses: true },
       role: 'suspect',
@@ -103,6 +105,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-littlefield',
+      portrait: 'pt-littlefield',
       name: 'Ephraim Littlefield',
       look: { hair: 'short' },
       role: 'suspect',
@@ -119,6 +122,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-keep',
+      portrait: 'pt-keep',
       name: 'Nathan Cooley Keep',
       look: { hair: 'short', beard: true },
       role: 'witness',
@@ -133,6 +137,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-tukey',
+      portrait: 'pt-tukey',
       name: 'Francis Tukey',
       look: { hair: 'short', beard: true },
       role: 'witness',
@@ -865,7 +870,13 @@ const caseFile: CaseFileInput = {
     { id: 'ob-conserje', text: 'Descubre qué escondía el conserje.', completeWhen: { secret: 'se-littlefield' }, points: 20, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-tukey', kind: 'image', src: 'portraits/ch-tukey.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Francis Tukey.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-keep', kind: 'image', src: 'portraits/ch-keep.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Nathan Cooley Keep.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-littlefield', kind: 'image', src: 'portraits/ch-littlefield.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Ephraim Littlefield.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-webster', kind: 'image', src: 'portraits/ch-webster.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de John White Webster.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-parkman', kind: 'image', src: 'portraits/ch-parkman.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de George Parkman.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

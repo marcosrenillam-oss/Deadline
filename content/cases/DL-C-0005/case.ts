@@ -86,6 +86,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-docherty',
+      portrait: 'pt-docherty',
       name: 'Mary Docherty',
       look: { hair: 'hat' },
       role: 'victim',
@@ -99,6 +100,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-burke',
+      portrait: 'pt-burke',
       name: 'William Burke',
       look: { hair: 'short' },
       role: 'suspect',
@@ -115,6 +117,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-hare',
+      portrait: 'pt-hare',
       name: 'William Hare',
       look: { hair: 'short' },
       role: 'suspect',
@@ -131,6 +134,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-mcdougal',
+      portrait: 'pt-mcdougal',
       name: 'Helen McDougal',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -147,6 +151,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-gray',
+      portrait: 'pt-gray',
       name: 'Ann Gray',
       look: { hair: 'bun' },
       role: 'witness',
@@ -160,6 +165,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-alston',
+      portrait: 'pt-alston',
       name: 'Hugh Alston',
       look: { hair: 'short' },
       role: 'witness',
@@ -173,6 +179,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-paterson',
+      portrait: 'pt-paterson',
       name: 'David Paterson',
       look: { hair: 'short' },
       role: 'witness',
@@ -186,6 +193,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-knox',
+      portrait: 'pt-knox',
       name: 'Robert Knox',
       look: { hair: 'bald' },
       role: 'witness',
@@ -725,7 +733,16 @@ const caseFile: CaseFileInput = {
     { id: 'ob-mcdougal', text: 'Averiguad qué hizo Helen McDougal esa noche.', completeWhen: { secret: 'se-mcdougal' }, points: 15, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-knox', kind: 'image', src: 'portraits/ch-knox.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Robert Knox.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-paterson', kind: 'image', src: 'portraits/ch-paterson.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de David Paterson.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-alston', kind: 'image', src: 'portraits/ch-alston.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Hugh Alston.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-gray', kind: 'image', src: 'portraits/ch-gray.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Ann Gray.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-mcdougal', kind: 'image', src: 'portraits/ch-mcdougal.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Helen McDougal.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-hare', kind: 'image', src: 'portraits/ch-hare.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de William Hare.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-burke', kind: 'image', src: 'portraits/ch-burke.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de William Burke.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-docherty', kind: 'image', src: 'portraits/ch-docherty.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Mary Docherty.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

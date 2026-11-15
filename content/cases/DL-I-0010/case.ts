@@ -65,6 +65,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-carlos',
+      portrait: 'pt-carlos',
       name: 'Carlos el Bueno',
       look: { hair: 'short', beard: true },
       role: 'victim',
@@ -78,13 +79,14 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-bertulfo',
+      portrait: 'pt-bertulfo',
       name: 'Bertulfo',
       look: { hair: 'bald' },
       role: 'suspect',
       age: 60,
       occupation: 'Preboste de San Donaciano y canciller de Flandes',
       appearance:
-        'a powerful 60-year-old medieval Flemish provost in 1127, heavy shrewd face, tonsured grey hair, rich black canon robes with a fur collar, ring of office, cold calculating eyes, twelfth-century manuscript style',
+        'a powerful 60-year-old medieval Flemish man, a churchman and provost in 1127, heavy shrewd face, tonsured grey hair, rich black canon robes with a fur collar, ring of office, cold calculating eyes, twelfth-century manuscript style',
       summary: 'El hombre más poderoso de Brujas después del conde.',
       biography: 'Cabeza del clan de los Erembaldos. Ha colocado a sus sobrinos en los mejores puestos y ha casado a sus sobrinas con caballeros libres. Si su familia es declarada sierva, lo pierde todo.',
       personality: ['Orgulloso', 'Astuto', 'Altivo'],
@@ -94,6 +96,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-borsiard',
+      portrait: 'pt-borsiard',
       name: 'Borsiard',
       look: { hair: 'short', beard: true },
       role: 'suspect',
@@ -110,13 +113,14 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-isaac',
+      portrait: 'pt-isaac',
       name: 'Isaac',
       look: { hair: 'short' },
       role: 'suspect',
       age: 35,
       occupation: 'Camarero del conde, pariente del clan',
       appearance:
-        'a nervous 35-year-old medieval Flemish courtier in 1127, narrow pale face, clean shaven, short hair, fine green tunic with a belt of office and keys, darting eyes, twelfth-century manuscript style',
+        'head and shoulders of a nervous 35-year-old medieval Flemish man, a courtier in 1127, narrow pale face, clean shaven, short hair, fine green tunic with a belt of office and keys, darting eyes, twelfth-century manuscript style',
       summary: 'Sabía a qué hora rezaba el conde y por qué puerta.',
       biography: 'Camarero del conde, encargado de sus aposentos. Casado con una sobrina del preboste. Ha desaparecido de Brujas.',
       personality: ['Nervioso', 'Ambicioso', 'Doble'],
@@ -126,6 +130,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-tancmaro',
+      portrait: 'pt-tancmaro',
       name: 'Tancmaro de Straten',
       look: { hair: 'short', beard: true },
       role: 'witness',
@@ -139,26 +144,28 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-galberto',
+      portrait: 'pt-galberto',
       name: 'Galberto',
       look: { hair: 'short' },
       role: 'witness',
       age: 40,
       occupation: 'Notario del conde',
       appearance:
-        'a thoughtful 40-year-old medieval Flemish notary in 1127, gentle intelligent face, clean shaven, tonsured brown hair, plain grey clerical robe, wax tablets and stylus in his hands, twelfth-century manuscript style',
+        'a thoughtful 40-year-old medieval Flemish man, a notary in 1127, gentle intelligent face, clean shaven, tonsured brown hair, plain grey clerical robe, wax tablets and stylus in his hands, twelfth-century manuscript style',
       summary: 'Lo apunta todo en sus tablillas.',
       biography: 'Notario al servicio del conde. Desde el día del crimen escribe cada noche lo ocurrido en tablillas de cera, «a la luz de una vela, entre el ruido de las armas».',
       personality: ['Minucioso', 'Piadoso', 'Valiente'],
     },
     {
       id: 'ch-fromold',
+      portrait: 'pt-fromold',
       name: 'Fromold el Joven',
       look: { hair: 'short' },
       role: 'witness',
       age: 28,
       occupation: 'Notario y favorito del conde',
       appearance:
-        'a young 28-year-old medieval Flemish clerk in 1127, earnest pale face, short fair hair, dark clerical robe, ink-stained fingers, frightened eyes, twelfth-century manuscript style',
+        'a young 28-year-old medieval Flemish man, a clerk in 1127, earnest pale face, short fair hair, dark clerical robe, ink-stained fingers, frightened eyes, twelfth-century manuscript style',
       summary: 'Se libró por no estar en la tribuna.',
       biography: 'Notario joven y de confianza del conde, envidiado por el preboste. Esa mañana se retrasó y llegó a la iglesia cuando ya había ocurrido todo.',
       personality: ['Leal', 'Asustado'],
@@ -650,7 +657,15 @@ const caseFile: CaseFileInput = {
     { id: 'ob-isaac', text: 'Encuentra al que abrió la puerta.', completeWhen: { fact: 'fa-isaac-huye' }, points: 15, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-fromold', kind: 'image', src: 'portraits/ch-fromold.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Fromold el Joven.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-galberto', kind: 'image', src: 'portraits/ch-galberto.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Galberto.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-tancmaro', kind: 'image', src: 'portraits/ch-tancmaro.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Tancmaro de Straten.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-isaac', kind: 'image', src: 'portraits/ch-isaac.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Isaac.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-borsiard', kind: 'image', src: 'portraits/ch-borsiard.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Borsiard.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-bertulfo', kind: 'image', src: 'portraits/ch-bertulfo.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Bertulfo.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-carlos', kind: 'image', src: 'portraits/ch-carlos.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Carlos el Bueno.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

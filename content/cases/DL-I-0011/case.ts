@@ -65,6 +65,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-oconnor',
+      portrait: 'pt-oconnor',
       name: 'Patrick O’Connor',
       look: { hair: 'short', beard: true },
       role: 'victim',
@@ -78,6 +79,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-maria',
+      portrait: 'pt-maria',
       name: 'Maria Manning',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -94,6 +96,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-frederick',
+      portrait: 'pt-frederick',
       name: 'Frederick Manning',
       look: { hair: 'short' },
       role: 'suspect',
@@ -110,19 +113,21 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-massey',
+      portrait: 'pt-massey',
       name: 'William Massey',
       look: { hair: 'short' },
       role: 'witness',
       age: 21,
       occupation: 'Estudiante de medicina, antiguo inquilino',
       appearance:
-        'a nervous 21-year-old London medical student in 1849, thin pale face, untidy fair hair, cheap dark coat, worried eyes',
+        'a nervous 21-year-old London young man, a medical student in 1849, thin pale face, untidy fair hair, cheap dark coat, worried eyes',
       summary: 'Le hicieron preguntas raras.',
       biography: 'Alquiló una habitación a los Manning en primavera. Se marchó en julio porque la señora se lo pidió: necesitaban el cuarto.',
       personality: ['Ingenuo', 'Asustado'],
     },
     {
       id: 'ch-armes',
+      portrait: 'pt-armes',
       name: 'Ann Armes',
       look: { hair: 'bun' },
       role: 'witness',
@@ -136,6 +141,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-barnes',
+      portrait: 'pt-barnes',
       name: 'Agente Henry Barnes',
       look: { hair: 'hat' },
       role: 'witness',
@@ -149,6 +155,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-moffat',
+      portrait: 'pt-moffat',
       name: 'Sr. Moffat',
       look: { hair: 'short', beard: true },
       role: 'witness',
@@ -718,7 +725,15 @@ const caseFile: CaseFileInput = {
     { id: 'ob-frederick', text: 'Descubre dónde estaba Frederick esa tarde.', completeWhen: { secret: 'se-frederick' }, points: 20, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-moffat', kind: 'image', src: 'portraits/ch-moffat.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Sr. Moffat.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-barnes', kind: 'image', src: 'portraits/ch-barnes.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Agente Henry Barnes.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-armes', kind: 'image', src: 'portraits/ch-armes.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Ann Armes.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-massey', kind: 'image', src: 'portraits/ch-massey.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de William Massey.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-frederick', kind: 'image', src: 'portraits/ch-frederick.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Frederick Manning.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-maria', kind: 'image', src: 'portraits/ch-maria.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Maria Manning.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-oconnor', kind: 'image', src: 'portraits/ch-oconnor.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Patrick O’Connor.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

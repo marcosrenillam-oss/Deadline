@@ -68,6 +68,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-overbury',
+      portrait: 'pt-overbury',
       name: 'Sir Thomas Overbury',
       look: { hair: 'short', beard: true },
       role: 'victim',
@@ -81,6 +82,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-frances',
+      portrait: 'pt-frances',
       name: 'Frances Howard',
       look: { hair: 'long' },
       role: 'suspect',
@@ -97,6 +99,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-carr',
+      portrait: 'pt-carr',
       name: 'Robert Carr',
       look: { hair: 'short', beard: true },
       role: 'suspect',
@@ -113,6 +116,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-weston',
+      portrait: 'pt-weston',
       name: 'Richard Weston',
       look: { hair: 'bald', beard: true },
       role: 'suspect',
@@ -129,6 +133,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-turner',
+      portrait: 'pt-turner',
       name: 'Anne Turner',
       look: { hair: 'bun' },
       role: 'witness',
@@ -142,6 +147,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-helwys',
+      portrait: 'pt-helwys',
       name: 'Sir Gervase Helwys',
       look: { hair: 'short', beard: true },
       role: 'witness',
@@ -155,6 +161,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-franklin',
+      portrait: 'pt-franklin',
       name: 'James Franklin',
       look: { hair: 'short' },
       role: 'witness',
@@ -756,7 +763,15 @@ const caseFile: CaseFileInput = {
     { id: 'ob-carr', text: 'Averigua qué mandaba Carr a la Torre.', completeWhen: { fact: 'fa-carr-polvos' }, points: 15, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-franklin', kind: 'image', src: 'portraits/ch-franklin.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de James Franklin.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-helwys', kind: 'image', src: 'portraits/ch-helwys.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Sir Gervase Helwys.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-turner', kind: 'image', src: 'portraits/ch-turner.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Anne Turner.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-weston', kind: 'image', src: 'portraits/ch-weston.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Richard Weston.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-carr', kind: 'image', src: 'portraits/ch-carr.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Robert Carr.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-frances', kind: 'image', src: 'portraits/ch-frances.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Frances Howard.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-overbury', kind: 'image', src: 'portraits/ch-overbury.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Sir Thomas Overbury.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

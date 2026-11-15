@@ -75,6 +75,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-charles',
+      portrait: 'pt-charles',
       name: 'Charles Lafarge',
       look: { hair: 'short' },
       role: 'victim',
@@ -88,6 +89,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-marie',
+      portrait: 'pt-marie',
       name: 'Marie Lafarge',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -104,13 +106,14 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-denis',
+      portrait: 'pt-denis',
       name: 'Denis Barbier',
       look: { hair: 'short' },
       role: 'suspect',
       age: 30,
       occupation: 'Empleado de confianza de Charles',
       appearance:
-        'a 30-year-old French clerk in 1840, thin sharp face, small dark eyes, slicked dark hair, threadbare dark coat and high collar, sly guarded expression',
+        'a 30-year-old French man, a clerk in 1840, thin sharp face, small dark eyes, slicked dark hair, threadbare dark coat and high collar, sly guarded expression',
       summary: 'Sabía de los negocios de Charles más que nadie.',
       biography: 'Hombre para todo de Charles: lleva las cuentas, viaja con él y hace recados. Le acompañó a París en diciembre. Hay quien dice que también le ayudaba con papeles menos limpios.',
       personality: ['Servicial', 'Reservado', 'Hostil con la señora'],
@@ -120,6 +123,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-anna',
+      portrait: 'pt-anna',
       name: 'Anna Brun',
       look: { hair: 'bun' },
       role: 'witness',
@@ -133,6 +137,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-madre',
+      portrait: 'pt-madre',
       name: 'Adélaïde Lafarge',
       look: { hair: 'hat' },
       role: 'witness',
@@ -146,6 +151,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-orfila',
+      portrait: 'pt-orfila',
       name: 'Mathieu Orfila',
       look: { hair: 'short' },
       role: 'witness',
@@ -906,7 +912,14 @@ const caseFile: CaseFileInput = {
     { id: 'ob-denis', text: 'Descubre qué ocultaba Denis.', completeWhen: { secret: 'se-denis' }, points: 20, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-orfila', kind: 'image', src: 'portraits/ch-orfila.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Mathieu Orfila.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-madre', kind: 'image', src: 'portraits/ch-madre.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Adélaïde Lafarge.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-anna', kind: 'image', src: 'portraits/ch-anna.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Anna Brun.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-denis', kind: 'image', src: 'portraits/ch-denis.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Denis Barbier.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-marie', kind: 'image', src: 'portraits/ch-marie.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Marie Lafarge.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-charles', kind: 'image', src: 'portraits/ch-charles.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Charles Lafarge.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

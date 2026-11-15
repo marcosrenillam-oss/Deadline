@@ -73,6 +73,7 @@
   "characters": [
     {
       "id": "ch-marsh",
+      "portrait": "pt-marsh",
       "name": "Alice Marsh",
       "look": {
         "hair": "bun"
@@ -90,6 +91,7 @@
     },
     {
       "id": "ch-cream",
+      "portrait": "pt-cream",
       "name": "«Dr. Neill» (Thomas Neill Cream)",
       "look": {
         "hair": "bald",
@@ -120,6 +122,7 @@
     },
     {
       "id": "ch-harper",
+      "portrait": "pt-harper",
       "name": "Walter Harper",
       "look": {
         "hair": "short"
@@ -147,6 +150,7 @@
     },
     {
       "id": "ch-haynes",
+      "portrait": "pt-haynes",
       "name": "John Haynes",
       "look": {
         "hair": "hat",
@@ -165,6 +169,7 @@
     },
     {
       "id": "ch-harvey",
+      "portrait": "pt-harvey",
       "name": "Louisa Harvey",
       "look": {
         "hair": "hat"
@@ -185,6 +190,7 @@
     },
     {
       "id": "ch-comley",
+      "portrait": "pt-comley",
       "name": "George Comley",
       "look": {
         "hair": "hat"
@@ -1297,5 +1303,72 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-comley",
+      "kind": "image",
+      "src": "portraits/ch-comley.webp",
+      "bytes": 15300,
+      "sha256": "f47e478db6e8ced331ba4e2f69f7d568ae7aa2fc65336b3a842cfc70e0d949b2",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de George Comley.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-harvey",
+      "kind": "image",
+      "src": "portraits/ch-harvey.webp",
+      "bytes": 14140,
+      "sha256": "76b186fd6b58fa1fff6e27d18ecba6a5428f75f47b1a538e844bfd03a0435c03",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Louisa Harvey.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-haynes",
+      "kind": "image",
+      "src": "portraits/ch-haynes.webp",
+      "bytes": 16690,
+      "sha256": "a39b79c21aa141c28ae23f04a12fa26b2d1dd3f1383c093744609955763199fc",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de John Haynes.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-harper",
+      "kind": "image",
+      "src": "portraits/ch-harper.webp",
+      "bytes": 13342,
+      "sha256": "eacfee0e842b82546397726a20d79cd288ed6fe12851426aa5284fc657576cec",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Walter Harper.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-cream",
+      "kind": "image",
+      "src": "portraits/ch-cream.webp",
+      "bytes": 14662,
+      "sha256": "b2e327a4175d94f80718ddbccaa6f9297862b7eebdb1585351fbcca6b30d74f5",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de «Dr. Neill» (Thomas Neill Cream).",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-marsh",
+      "kind": "image",
+      "src": "portraits/ch-marsh.webp",
+      "bytes": 14824,
+      "sha256": "1b172075a6f9b7bf7e27efdecaf6d30eadca6bca152c61076ee64cc799e3c63b",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Alice Marsh.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

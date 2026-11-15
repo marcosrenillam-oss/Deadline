@@ -69,6 +69,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-cook',
+      portrait: 'pt-cook',
       name: 'John Parsons Cook',
       look: { hair: 'short' },
       role: 'victim',
@@ -82,6 +83,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-palmer',
+      portrait: 'pt-palmer',
       name: 'William Palmer',
       look: { hair: 'bald' },
       role: 'suspect',
@@ -98,6 +100,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-bamford',
+      portrait: 'pt-bamford',
       name: 'William Bamford',
       look: { hair: 'bald', glasses: true },
       role: 'suspect',
@@ -114,6 +117,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-stevens',
+      portrait: 'pt-stevens',
       name: 'William Vernon Stevens',
       look: { hair: 'short', beard: true },
       role: 'witness',
@@ -127,6 +131,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-mills',
+      portrait: 'pt-mills',
       name: 'Elizabeth Mills',
       look: { hair: 'bun' },
       role: 'witness',
@@ -140,13 +145,14 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-newton',
+      portrait: 'pt-newton',
       name: 'Charles Newton',
       look: { hair: 'short' },
       role: 'witness',
       age: 20,
       occupation: 'Ayudante de farmacia',
       appearance:
-        'a nervous 20-year-old English chemist’s assistant in 1855, thin pale face, short neat hair, white apron over a dark waistcoat, anxious eyes',
+        'a nervous 20-year-old English young man, a chemist’s assistant in 1855, thin pale face, short neat hair, white apron over a dark waistcoat, anxious eyes',
       summary: 'Vendió algo que no quiere recordar.',
       biography: 'Ayudante en la farmacia de Mr. Salt, en Rugeley. Palmer era cliente habitual.',
       personality: ['Nervioso', 'Honrado'],
@@ -154,6 +160,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-taylor',
+      portrait: 'pt-taylor',
       name: 'Alfred Swaine Taylor',
       look: { hair: 'short' },
       role: 'witness',
@@ -777,7 +784,15 @@ const caseFile: CaseFileInput = {
     { id: 'ob-correos', text: 'Descubre cómo sabía Palmer lo que decía el perito.', completeWhen: { fact: 'fa-correos' }, points: 20, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-taylor', kind: 'image', src: 'portraits/ch-taylor.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Alfred Swaine Taylor.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-newton', kind: 'image', src: 'portraits/ch-newton.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Charles Newton.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-mills', kind: 'image', src: 'portraits/ch-mills.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Elizabeth Mills.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-stevens', kind: 'image', src: 'portraits/ch-stevens.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de William Vernon Stevens.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-bamford', kind: 'image', src: 'portraits/ch-bamford.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de William Bamford.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-palmer', kind: 'image', src: 'portraits/ch-palmer.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de William Palmer.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-cook', kind: 'image', src: 'portraits/ch-cook.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de John Parsons Cook.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

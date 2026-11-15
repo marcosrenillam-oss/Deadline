@@ -75,6 +75,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-belle',
+      portrait: 'pt-belle',
       name: 'Cora Crippen («Belle Elmore»)',
       look: { hair: 'long' },
       role: 'victim',
@@ -88,6 +89,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-crippen',
+      portrait: 'pt-crippen',
       name: 'Hawley Harvey Crippen',
       look: { hair: 'bald', glasses: true },
       role: 'suspect',
@@ -104,6 +106,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-ethel',
+      portrait: 'pt-ethel',
       name: 'Ethel Le Neve',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -120,6 +123,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-clara',
+      portrait: 'pt-clara',
       name: 'Clara Martinetti',
       look: { hair: 'hat' },
       role: 'witness',
@@ -133,6 +137,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-dew',
+      portrait: 'pt-dew',
       name: 'Walter Dew',
       look: { hair: 'hat', beard: true },
       role: 'witness',
@@ -146,6 +151,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-kendall',
+      portrait: 'pt-kendall',
       name: 'Henry Kendall',
       look: { hair: 'hat', beard: true },
       role: 'witness',
@@ -160,6 +166,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-spilsbury',
+      portrait: 'pt-spilsbury',
       name: 'Bernard Spilsbury',
       look: { hair: 'short' },
       role: 'witness',
@@ -936,7 +943,15 @@ const caseFile: CaseFileInput = {
     { id: 'ob-ethel', text: 'Averigua qué sabía Ethel.', completeWhen: { secret: 'se-ethel' }, points: 20, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-spilsbury', kind: 'image', src: 'portraits/ch-spilsbury.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Bernard Spilsbury.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-kendall', kind: 'image', src: 'portraits/ch-kendall.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Henry Kendall.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-dew', kind: 'image', src: 'portraits/ch-dew.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Walter Dew.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-clara', kind: 'image', src: 'portraits/ch-clara.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Clara Martinetti.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-ethel', kind: 'image', src: 'portraits/ch-ethel.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Ethel Le Neve.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-crippen', kind: 'image', src: 'portraits/ch-crippen.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Hawley Harvey Crippen.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-belle', kind: 'image', src: 'portraits/ch-belle.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Cora Crippen («Belle Elmore»).', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

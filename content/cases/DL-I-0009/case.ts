@@ -67,19 +67,21 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-francis',
+      portrait: 'pt-francis',
       name: 'Francis Blandy',
       look: { hair: 'hat' },
       role: 'victim',
       age: 62,
       occupation: 'Abogado y secretario municipal de Henley',
       appearance:
-        'a stout 62-year-old Georgian English country attorney in 1750, florid face, grey powdered wig, brown coat and waistcoat, white neckcloth, shrewd but tired eyes',
+        'a stout elderly 62-year-old Georgian English man, a country attorney in 1750, florid face, grey powdered wig, brown coat and waistcoat, white neckcloth, shrewd but tired eyes',
       summary: 'Orgulloso de su hija y de su dote.',
       biography: 'Abogado respetado del pueblo. Viudo desde hace poco. Repite a quien quiera oírle que su Mary tendrá diez mil libras, aunque su fortuna real es bastante menor.',
       personality: ['Orgulloso', 'Testarudo', 'Cariñoso'],
     },
     {
       id: 'ch-mary',
+      portrait: 'pt-mary',
       name: 'Mary Blandy',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -96,6 +98,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-cranstoun',
+      portrait: 'pt-cranstoun',
       name: 'William Henry Cranstoun',
       look: { hair: 'short' },
       role: 'suspect',
@@ -112,6 +115,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-susan',
+      portrait: 'pt-susan',
       name: 'Susan Gunnell',
       look: { hair: 'bun' },
       role: 'witness',
@@ -125,6 +129,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-addington',
+      portrait: 'pt-addington',
       name: 'Anthony Addington',
       look: { hair: 'hat' },
       role: 'witness',
@@ -139,13 +144,14 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-littleton',
+      portrait: 'pt-littleton',
       name: 'Robert Littleton',
       look: { hair: 'short' },
       role: 'witness',
       age: 25,
       occupation: 'Pasante del señor Blandy',
       appearance:
-        'a nervous 25-year-old Georgian English law clerk in 1751, thin earnest face, own hair tied back, plain dark coat, ink-stained fingers',
+        'a nervous 25-year-old Georgian English young man, a law clerk in 1751, thin earnest face, own hair tied back, plain dark coat, ink-stained fingers',
       summary: 'Le dieron una carta para echar al correo.',
       biography: 'Pasante del despacho de Blandy. Leal a su maestro. Mary le pidió que mandara una carta a Escocia.',
       personality: ['Escrupuloso', 'Leal'],
@@ -647,7 +653,14 @@ const caseFile: CaseFileInput = {
     { id: 'ob-susan', text: 'Descubre si alguien avisó al señor.', completeWhen: { secret: 'se-susan' }, points: 15, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-littleton', kind: 'image', src: 'portraits/ch-littleton.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Robert Littleton.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-addington', kind: 'image', src: 'portraits/ch-addington.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Anthony Addington.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-susan', kind: 'image', src: 'portraits/ch-susan.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Susan Gunnell.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-cranstoun', kind: 'image', src: 'portraits/ch-cranstoun.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de William Henry Cranstoun.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-mary', kind: 'image', src: 'portraits/ch-mary.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Mary Blandy.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-francis', kind: 'image', src: 'portraits/ch-francis.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Francis Blandy.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

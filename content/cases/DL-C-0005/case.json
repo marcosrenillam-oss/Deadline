@@ -92,6 +92,7 @@
   "characters": [
     {
       "id": "ch-docherty",
+      "portrait": "pt-docherty",
       "name": "Mary Docherty",
       "look": {
         "hair": "hat"
@@ -109,6 +110,7 @@
     },
     {
       "id": "ch-burke",
+      "portrait": "pt-burke",
       "name": "William Burke",
       "look": {
         "hair": "short"
@@ -137,6 +139,7 @@
     },
     {
       "id": "ch-hare",
+      "portrait": "pt-hare",
       "name": "William Hare",
       "look": {
         "hair": "short"
@@ -165,6 +168,7 @@
     },
     {
       "id": "ch-mcdougal",
+      "portrait": "pt-mcdougal",
       "name": "Helen McDougal",
       "look": {
         "hair": "bun"
@@ -192,6 +196,7 @@
     },
     {
       "id": "ch-gray",
+      "portrait": "pt-gray",
       "name": "Ann Gray",
       "look": {
         "hair": "bun"
@@ -209,6 +214,7 @@
     },
     {
       "id": "ch-alston",
+      "portrait": "pt-alston",
       "name": "Hugh Alston",
       "look": {
         "hair": "short"
@@ -226,6 +232,7 @@
     },
     {
       "id": "ch-paterson",
+      "portrait": "pt-paterson",
       "name": "David Paterson",
       "look": {
         "hair": "short"
@@ -243,6 +250,7 @@
     },
     {
       "id": "ch-knox",
+      "portrait": "pt-knox",
       "name": "Robert Knox",
       "look": {
         "hair": "bald"
@@ -1468,5 +1476,94 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-knox",
+      "kind": "image",
+      "src": "portraits/ch-knox.webp",
+      "bytes": 18190,
+      "sha256": "fd04028e0324622f2aa318fc9098a5463f00417d206ccebe0593b1de20afa086",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Robert Knox.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-paterson",
+      "kind": "image",
+      "src": "portraits/ch-paterson.webp",
+      "bytes": 11684,
+      "sha256": "e733c16141f0ea9fcbed6d4440e4ca6310caf149eaf9171a767ea824d85c820b",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de David Paterson.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-alston",
+      "kind": "image",
+      "src": "portraits/ch-alston.webp",
+      "bytes": 15042,
+      "sha256": "a7fc305d9a5e0cd6fa7e41ae0ea41c2688198d104075741cdc607fb4603259b1",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Hugh Alston.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-gray",
+      "kind": "image",
+      "src": "portraits/ch-gray.webp",
+      "bytes": 13856,
+      "sha256": "8ce1eacf675a7ef8612371876af02f8ad063b41b62a523d6070c7e8de35e3278",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Ann Gray.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-mcdougal",
+      "kind": "image",
+      "src": "portraits/ch-mcdougal.webp",
+      "bytes": 14242,
+      "sha256": "eca6899ae5abddca0625275ad1f2ef641a993c784c70ea43e9e45b779f7b2d34",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Helen McDougal.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-hare",
+      "kind": "image",
+      "src": "portraits/ch-hare.webp",
+      "bytes": 15574,
+      "sha256": "53b5d47adcf64e1f03ae83f362acdac168e242aca9a4d5389ededf0acfef1ab7",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de William Hare.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-burke",
+      "kind": "image",
+      "src": "portraits/ch-burke.webp",
+      "bytes": 18214,
+      "sha256": "28c86fd0226cd97c6a5b406280f304f11914d735114ba4684ec19d44b5147072",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de William Burke.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-docherty",
+      "kind": "image",
+      "src": "portraits/ch-docherty.webp",
+      "bytes": 14500,
+      "sha256": "d37b885db6432b4440d74914e46ca90b1794df4daef694d3acf0846eb389be4b",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Mary Docherty.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

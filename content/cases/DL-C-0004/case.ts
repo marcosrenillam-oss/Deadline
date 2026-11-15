@@ -88,6 +88,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-margaret',
+      portrait: 'pt-margaret',
       name: 'Margaret Lofty',
       look: { hair: 'bun' },
       role: 'victim',
@@ -101,6 +102,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-lloyd',
+      portrait: 'pt-lloyd',
       name: '«John Lloyd»',
       look: { hair: 'short', beard: true },
       role: 'suspect',
@@ -117,6 +119,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-blatch',
+      portrait: 'pt-blatch',
       name: 'Louisa Blatch',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -133,6 +136,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-alice',
+      portrait: 'pt-alice',
       name: 'Alice Burnham',
       look: { hair: 'bun' },
       role: 'other',
@@ -147,6 +151,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-bessie',
+      portrait: 'pt-bessie',
       name: 'Bessie Mundy',
       look: { hair: 'bun' },
       role: 'other',
@@ -161,6 +166,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-crossley',
+      portrait: 'pt-crossley',
       name: 'Joseph Crossley',
       look: { hair: 'short', beard: true },
       role: 'witness',
@@ -174,6 +180,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-burnham',
+      portrait: 'pt-burnham',
       name: 'Charles Burnham',
       look: { hair: 'short', beard: true },
       role: 'witness',
@@ -187,6 +194,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-spilsbury',
+      portrait: 'pt-spilsbury',
       name: 'Bernard Spilsbury',
       look: { hair: 'short' },
       role: 'witness',
@@ -756,7 +764,16 @@ const caseFile: CaseFileInput = {
     { id: 'ob-blatch', text: 'Averiguad por qué eligió esa pensión.', completeWhen: { secret: 'se-blatch' }, points: 15, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-spilsbury', kind: 'image', src: 'portraits/ch-spilsbury.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Bernard Spilsbury.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-burnham', kind: 'image', src: 'portraits/ch-burnham.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Charles Burnham.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-crossley', kind: 'image', src: 'portraits/ch-crossley.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Joseph Crossley.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-bessie', kind: 'image', src: 'portraits/ch-bessie.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Bessie Mundy.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-alice', kind: 'image', src: 'portraits/ch-alice.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Alice Burnham.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-blatch', kind: 'image', src: 'portraits/ch-blatch.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Louisa Blatch.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-lloyd', kind: 'image', src: 'portraits/ch-lloyd.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de «John Lloyd».', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-margaret', kind: 'image', src: 'portraits/ch-margaret.webp', bytes: 0, sha256: '', width: 480, height: 593, alt: 'Recreación artística del retrato de Margaret Lofty.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

@@ -68,6 +68,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-aubray',
+      portrait: 'pt-aubray',
       name: 'Antoine Dreux d’Aubray',
       look: { hair: 'long', beard: true },
       role: 'victim',
@@ -81,6 +82,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-marquesa',
+      portrait: 'pt-marquesa',
       name: 'Marie-Madeleine d’Aubray, marquesa de Brinvilliers',
       look: { hair: 'long' },
       role: 'suspect',
@@ -97,6 +99,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-lachaussee',
+      portrait: 'pt-lachaussee',
       name: 'Jean Hamelin, «La Chaussée»',
       look: { hair: 'short' },
       role: 'suspect',
@@ -113,6 +116,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-pennautier',
+      portrait: 'pt-pennautier',
       name: 'Pierre-Louis de Pennautier',
       look: { hair: 'long' },
       role: 'suspect',
@@ -129,6 +133,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-sainte-croix',
+      portrait: 'pt-sainte-croix',
       name: 'Godin de Sainte-Croix',
       look: { hair: 'long' },
       role: 'other',
@@ -142,6 +147,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-desgrez',
+      portrait: 'pt-desgrez',
       name: 'François Desgrez',
       look: { hair: 'long' },
       role: 'witness',
@@ -156,6 +162,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-briancourt',
+      portrait: 'pt-briancourt',
       name: 'Jean-Baptiste Briancourt',
       look: { hair: 'long' },
       role: 'witness',
@@ -634,7 +641,15 @@ const caseFile: CaseFileInput = {
     { id: 'ob-briancourt', text: 'Escucha al preceptor que teme por su vida.', completeWhen: { fact: 'fa-briancourt' }, points: 15, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-briancourt', kind: 'image', src: 'portraits/ch-briancourt.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Jean-Baptiste Briancourt.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-desgrez', kind: 'image', src: 'portraits/ch-desgrez.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de François Desgrez.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-sainte-croix', kind: 'image', src: 'portraits/ch-sainte-croix.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Godin de Sainte-Croix.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-pennautier', kind: 'image', src: 'portraits/ch-pennautier.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Pierre-Louis de Pennautier.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-lachaussee', kind: 'image', src: 'portraits/ch-lachaussee.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Jean Hamelin, «La Chaussée».', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-marquesa', kind: 'image', src: 'portraits/ch-marquesa.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Marie-Madeleine d’Aubray, marquesa de Brinvilliers.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-aubray', kind: 'image', src: 'portraits/ch-aubray.webp', bytes: 0, sha256: '', width: 480, height: 600, alt: 'Recreación artística del retrato de Antoine Dreux d’Aubray.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

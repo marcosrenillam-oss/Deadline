@@ -75,6 +75,7 @@
   "characters": [
     {
       "id": "ch-carlos",
+      "portrait": "pt-carlos",
       "name": "Carlos el Bueno",
       "look": {
         "hair": "short",
@@ -94,6 +95,7 @@
     },
     {
       "id": "ch-bertulfo",
+      "portrait": "pt-bertulfo",
       "name": "Bertulfo",
       "look": {
         "hair": "bald"
@@ -101,7 +103,7 @@
       "role": "suspect",
       "age": 60,
       "occupation": "Preboste de San Donaciano y canciller de Flandes",
-      "appearance": "a powerful 60-year-old medieval Flemish provost in 1127, heavy shrewd face, tonsured grey hair, rich black canon robes with a fur collar, ring of office, cold calculating eyes, twelfth-century manuscript style",
+      "appearance": "a powerful 60-year-old medieval Flemish man, a churchman and provost in 1127, heavy shrewd face, tonsured grey hair, rich black canon robes with a fur collar, ring of office, cold calculating eyes, twelfth-century manuscript style",
       "summary": "El hombre más poderoso de Brujas después del conde.",
       "biography": "Cabeza del clan de los Erembaldos. Ha colocado a sus sobrinos en los mejores puestos y ha casado a sus sobrinas con caballeros libres. Si su familia es declarada sierva, lo pierde todo.",
       "personality": [
@@ -122,6 +124,7 @@
     },
     {
       "id": "ch-borsiard",
+      "portrait": "pt-borsiard",
       "name": "Borsiard",
       "look": {
         "hair": "short",
@@ -151,6 +154,7 @@
     },
     {
       "id": "ch-isaac",
+      "portrait": "pt-isaac",
       "name": "Isaac",
       "look": {
         "hair": "short"
@@ -158,7 +162,7 @@
       "role": "suspect",
       "age": 35,
       "occupation": "Camarero del conde, pariente del clan",
-      "appearance": "a nervous 35-year-old medieval Flemish courtier in 1127, narrow pale face, clean shaven, short hair, fine green tunic with a belt of office and keys, darting eyes, twelfth-century manuscript style",
+      "appearance": "head and shoulders of a nervous 35-year-old medieval Flemish man, a courtier in 1127, narrow pale face, clean shaven, short hair, fine green tunic with a belt of office and keys, darting eyes, twelfth-century manuscript style",
       "summary": "Sabía a qué hora rezaba el conde y por qué puerta.",
       "biography": "Camarero del conde, encargado de sus aposentos. Casado con una sobrina del preboste. Ha desaparecido de Brujas.",
       "personality": [
@@ -179,6 +183,7 @@
     },
     {
       "id": "ch-tancmaro",
+      "portrait": "pt-tancmaro",
       "name": "Tancmaro de Straten",
       "look": {
         "hair": "short",
@@ -197,6 +202,7 @@
     },
     {
       "id": "ch-galberto",
+      "portrait": "pt-galberto",
       "name": "Galberto",
       "look": {
         "hair": "short"
@@ -204,7 +210,7 @@
       "role": "witness",
       "age": 40,
       "occupation": "Notario del conde",
-      "appearance": "a thoughtful 40-year-old medieval Flemish notary in 1127, gentle intelligent face, clean shaven, tonsured brown hair, plain grey clerical robe, wax tablets and stylus in his hands, twelfth-century manuscript style",
+      "appearance": "a thoughtful 40-year-old medieval Flemish man, a notary in 1127, gentle intelligent face, clean shaven, tonsured brown hair, plain grey clerical robe, wax tablets and stylus in his hands, twelfth-century manuscript style",
       "summary": "Lo apunta todo en sus tablillas.",
       "biography": "Notario al servicio del conde. Desde el día del crimen escribe cada noche lo ocurrido en tablillas de cera, «a la luz de una vela, entre el ruido de las armas».",
       "personality": [
@@ -215,6 +221,7 @@
     },
     {
       "id": "ch-fromold",
+      "portrait": "pt-fromold",
       "name": "Fromold el Joven",
       "look": {
         "hair": "short"
@@ -222,7 +229,7 @@
       "role": "witness",
       "age": 28,
       "occupation": "Notario y favorito del conde",
-      "appearance": "a young 28-year-old medieval Flemish clerk in 1127, earnest pale face, short fair hair, dark clerical robe, ink-stained fingers, frightened eyes, twelfth-century manuscript style",
+      "appearance": "a young 28-year-old medieval Flemish man, a clerk in 1127, earnest pale face, short fair hair, dark clerical robe, ink-stained fingers, frightened eyes, twelfth-century manuscript style",
       "summary": "Se libró por no estar en la tribuna.",
       "biography": "Notario joven y de confianza del conde, envidiado por el preboste. Esa mañana se retrasó y llegó a la iglesia cuando ya había ocurrido todo.",
       "personality": [
@@ -1338,5 +1345,83 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-fromold",
+      "kind": "image",
+      "src": "portraits/ch-fromold.webp",
+      "bytes": 34372,
+      "sha256": "e7566c450586d9acd44955158ce6bcedbf70a2efab39c2e26a9238a668aae183",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Fromold el Joven.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-galberto",
+      "kind": "image",
+      "src": "portraits/ch-galberto.webp",
+      "bytes": 49310,
+      "sha256": "a1351f94dd99c43fc7dfc4b8b7e1c1ce632a9b486244cc53803bdad816c6c3e5",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Galberto.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-tancmaro",
+      "kind": "image",
+      "src": "portraits/ch-tancmaro.webp",
+      "bytes": 28148,
+      "sha256": "d9279a538f8640e68e3489fa38c571ff88b2bbc62dd78188c72a124082c30729",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Tancmaro de Straten.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-isaac",
+      "kind": "image",
+      "src": "portraits/ch-isaac.webp",
+      "bytes": 53594,
+      "sha256": "1024de09c5947b6b9695a4dc143fd034fbd5696da16a2f45e5b58c2de3c14820",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Isaac.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-borsiard",
+      "kind": "image",
+      "src": "portraits/ch-borsiard.webp",
+      "bytes": 21148,
+      "sha256": "3e3511cf69386da499e7c8d5976324c5bf922bc237fec8b8b5463d54ed103b7e",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Borsiard.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-bertulfo",
+      "kind": "image",
+      "src": "portraits/ch-bertulfo.webp",
+      "bytes": 40868,
+      "sha256": "b8c1358a0f9a18d46f501f58160ebf8af23cb5ac99029d5818114dcd19e64f6a",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Bertulfo.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-carlos",
+      "kind": "image",
+      "src": "portraits/ch-carlos.webp",
+      "bytes": 26534,
+      "sha256": "d60b0a88539fe345fa6818900efab5a3212543ee7160dd262bfb1cf5eaac3763",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Carlos el Bueno.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

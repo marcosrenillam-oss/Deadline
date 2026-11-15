@@ -86,6 +86,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-dreyfus',
+      portrait: 'pt-dreyfus',
       name: 'Alfred Dreyfus',
       look: { hair: 'short', glasses: true, beard: true },
       role: 'victim',
@@ -99,6 +100,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-esterhazy',
+      portrait: 'pt-esterhazy',
       name: 'Ferdinand Walsin Esterhazy',
       look: { hair: 'short' },
       role: 'suspect',
@@ -115,6 +117,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-henry',
+      portrait: 'pt-henry',
       name: 'Hubert-Joseph Henry',
       look: { hair: 'short' },
       role: 'suspect',
@@ -131,6 +134,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-picquart',
+      portrait: 'pt-picquart',
       name: 'Georges Picquart',
       look: { hair: 'short' },
       role: 'witness',
@@ -144,6 +148,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-mathieu',
+      portrait: 'pt-mathieu',
       name: 'Mathieu Dreyfus',
       look: { hair: 'short', beard: true },
       role: 'witness',
@@ -157,6 +162,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-castro',
+      portrait: 'pt-castro',
       name: 'J. de Castro',
       look: { hair: 'hat', beard: true },
       role: 'witness',
@@ -690,7 +696,14 @@ const caseFile: CaseFileInput = {
     { id: 'ob-ulanos', text: 'Averiguad qué pensaba Esterhazy de Francia.', completeWhen: { fact: 'fa-patria' }, points: 15, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-castro', kind: 'image', src: 'portraits/ch-castro.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de J. de Castro.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-mathieu', kind: 'image', src: 'portraits/ch-mathieu.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Mathieu Dreyfus.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-picquart', kind: 'image', src: 'portraits/ch-picquart.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Georges Picquart.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-henry', kind: 'image', src: 'portraits/ch-henry.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Hubert-Joseph Henry.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-esterhazy', kind: 'image', src: 'portraits/ch-esterhazy.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Ferdinand Walsin Esterhazy.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-dreyfus', kind: 'image', src: 'portraits/ch-dreyfus.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Alfred Dreyfus.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

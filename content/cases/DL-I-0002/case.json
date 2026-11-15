@@ -81,6 +81,7 @@
   "characters": [
     {
       "id": "ch-parkman",
+      "portrait": "pt-parkman",
       "name": "George Parkman",
       "look": {
         "hair": "short"
@@ -99,6 +100,7 @@
     },
     {
       "id": "ch-webster",
+      "portrait": "pt-webster",
       "name": "John White Webster",
       "look": {
         "hair": "short",
@@ -128,6 +130,7 @@
     },
     {
       "id": "ch-littlefield",
+      "portrait": "pt-littlefield",
       "name": "Ephraim Littlefield",
       "look": {
         "hair": "short"
@@ -156,6 +159,7 @@
     },
     {
       "id": "ch-keep",
+      "portrait": "pt-keep",
       "name": "Nathan Cooley Keep",
       "look": {
         "hair": "short",
@@ -178,6 +182,7 @@
     },
     {
       "id": "ch-tukey",
+      "portrait": "pt-tukey",
       "name": "Francis Tukey",
       "look": {
         "hair": "short",
@@ -1880,5 +1885,61 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-tukey",
+      "kind": "image",
+      "src": "portraits/ch-tukey.webp",
+      "bytes": 14100,
+      "sha256": "4e054f86039e4534561f45a47c1388c522945df76f8df51d7048f599940e4a5e",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Francis Tukey.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-keep",
+      "kind": "image",
+      "src": "portraits/ch-keep.webp",
+      "bytes": 15194,
+      "sha256": "c44174d1fb72866e0fb144d033d505d731b3a3425cda718df69e9f63d3923ccb",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Nathan Cooley Keep.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-littlefield",
+      "kind": "image",
+      "src": "portraits/ch-littlefield.webp",
+      "bytes": 14614,
+      "sha256": "5dfffa32e105ec0fcb1235dbc2ee4d00968851a649a5672acb4e3899488fec73",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Ephraim Littlefield.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-webster",
+      "kind": "image",
+      "src": "portraits/ch-webster.webp",
+      "bytes": 13502,
+      "sha256": "fd8082f3f5a35e0892b1ff650cd07055cab75822c783a517994755f6d41ec97d",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de John White Webster.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-parkman",
+      "kind": "image",
+      "src": "portraits/ch-parkman.webp",
+      "bytes": 13352,
+      "sha256": "7fd3743049617107cffba4c61762d08e874427cabc63a6d3ef7e272b5ff23c51",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de George Parkman.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

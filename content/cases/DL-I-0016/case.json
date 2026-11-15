@@ -77,6 +77,7 @@
   "characters": [
     {
       "id": "ch-nino",
+      "portrait": "pt-nino",
       "name": "Charles A. Lindbergh Jr.",
       "look": {
         "hair": "short"
@@ -94,6 +95,7 @@
     },
     {
       "id": "ch-hauptmann",
+      "portrait": "pt-hauptmann",
       "name": "Bruno Richard Hauptmann",
       "look": {
         "hair": "short"
@@ -122,6 +124,7 @@
     },
     {
       "id": "ch-sharp",
+      "portrait": "pt-sharp",
       "name": "Violet Sharp",
       "look": {
         "hair": "bun"
@@ -149,6 +152,7 @@
     },
     {
       "id": "ch-condon",
+      "portrait": "pt-condon",
       "name": "John F. Condon («Jafsie»)",
       "look": {
         "hair": "bald",
@@ -168,6 +172,7 @@
     },
     {
       "id": "ch-gow",
+      "portrait": "pt-gow",
       "name": "Betty Gow",
       "look": {
         "hair": "bun"
@@ -185,6 +190,7 @@
     },
     {
       "id": "ch-koehler",
+      "portrait": "pt-koehler",
       "name": "Arthur Koehler",
       "look": {
         "hair": "short",
@@ -203,6 +209,7 @@
     },
     {
       "id": "ch-socio",
+      "portrait": "pt-socio",
       "name": "Socio de Isidor Fisch",
       "look": {
         "hair": "hat"
@@ -223,6 +230,7 @@
     },
     {
       "id": "ch-lyle",
+      "portrait": "pt-lyle",
       "name": "Walter Lyle",
       "look": {
         "hair": "hat"
@@ -230,7 +238,7 @@
       "role": "witness",
       "age": 30,
       "occupation": "Empleado de gasolinera",
-      "appearance": "a cheerful 30-year-old New York gas station attendant in 1934, friendly face, peaked cap, overalls with an oil company badge",
+      "appearance": "a cheerful 30-year-old New York man, a gas station attendant in 1934, friendly face, peaked cap, overalls with an oil company badge",
       "summary": "Anotó una matrícula en un billete.",
       "biography": "Trabaja en una gasolinera de Lexington Avenue. Los bancos han avisado de que vigilen los certificados de oro.",
       "personality": [
@@ -1485,5 +1493,94 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-lyle",
+      "kind": "image",
+      "src": "portraits/ch-lyle.webp",
+      "bytes": 34274,
+      "sha256": "edf8cfbe391b0a696f749b20079682483458c44e8acc6dd79245a8154d1581fb",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Walter Lyle.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-socio",
+      "kind": "image",
+      "src": "portraits/ch-socio.webp",
+      "bytes": 27244,
+      "sha256": "85b9ef2ac1aa9505cb81dbb8bf7a72e62ed5d2b2bbb6bd8ff90856448f1834ec",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Socio de Isidor Fisch.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-koehler",
+      "kind": "image",
+      "src": "portraits/ch-koehler.webp",
+      "bytes": 29932,
+      "sha256": "6e489a6067262a90c5be12a1514f39307de25b71e79984b20fbf0811defd3aa2",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Arthur Koehler.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-gow",
+      "kind": "image",
+      "src": "portraits/ch-gow.webp",
+      "bytes": 18852,
+      "sha256": "6975c0d118baffde880c3db21ec7dc9654b09b2708d569cbd156ae7f0a54a8e3",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Betty Gow.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-condon",
+      "kind": "image",
+      "src": "portraits/ch-condon.webp",
+      "bytes": 24402,
+      "sha256": "301ca265eb874a6e80be61b900eee03dfc1e83fd31802a971fd753a3a610f0fc",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de John F. Condon («Jafsie»).",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-sharp",
+      "kind": "image",
+      "src": "portraits/ch-sharp.webp",
+      "bytes": 16068,
+      "sha256": "bacfc138e497913b69bbbfe3798f58ea48c27afa518a89e491d1a38270764b28",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Violet Sharp.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-hauptmann",
+      "kind": "image",
+      "src": "portraits/ch-hauptmann.webp",
+      "bytes": 22586,
+      "sha256": "803791d2673e74b5ffb48d5a3785f63b61b8b8ab1c2546b1600e1ac11671e5ce",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Bruno Richard Hauptmann.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-nino",
+      "kind": "image",
+      "src": "portraits/ch-nino.webp",
+      "bytes": 26582,
+      "sha256": "9a12c0040d0ae5b48af69ffb5f136d45c61d89d3bfa818b30f26e7b244faed6a",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Charles A. Lindbergh Jr..",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

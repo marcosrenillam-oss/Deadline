@@ -96,6 +96,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-saville',
+      portrait: 'pt-saville',
       name: 'Francis Saville Kent',
       look: { hair: 'short' },
       role: 'victim',
@@ -109,6 +110,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-constance',
+      portrait: 'pt-constance',
       name: 'Constance Kent',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -125,6 +127,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-gough',
+      portrait: 'pt-gough',
       name: 'Elizabeth Gough',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -141,6 +144,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-samuel',
+      portrait: 'pt-samuel',
       name: 'Samuel Saville Kent',
       look: { hair: 'short', beard: true },
       role: 'suspect',
@@ -157,6 +161,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-william',
+      portrait: 'pt-william',
       name: 'William Kent',
       look: { hair: 'short' },
       role: 'witness',
@@ -170,6 +175,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-cox',
+      portrait: 'pt-cox',
       name: 'Sarah Cox',
       look: { hair: 'bun' },
       role: 'witness',
@@ -183,6 +189,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-holley',
+      portrait: 'pt-holley',
       name: 'Hester Holley',
       look: { hair: 'hat' },
       role: 'witness',
@@ -196,6 +203,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-parsons',
+      portrait: 'pt-parsons',
       name: 'Joshua Parsons',
       look: { hair: 'short', beard: true },
       role: 'witness',
@@ -856,7 +864,16 @@ const caseFile: CaseFileInput = {
     { id: 'ob-gough', text: 'Averiguad qué callaba la niñera.', completeWhen: { secret: 'se-gough' }, points: 20, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-parsons', kind: 'image', src: 'portraits/ch-parsons.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Joshua Parsons.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-holley', kind: 'image', src: 'portraits/ch-holley.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Hester Holley.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-cox', kind: 'image', src: 'portraits/ch-cox.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Sarah Cox.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-william', kind: 'image', src: 'portraits/ch-william.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de William Kent.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-samuel', kind: 'image', src: 'portraits/ch-samuel.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Samuel Saville Kent.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-gough', kind: 'image', src: 'portraits/ch-gough.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Elizabeth Gough.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-constance', kind: 'image', src: 'portraits/ch-constance.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Constance Kent.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-saville', kind: 'image', src: 'portraits/ch-saville.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Francis Saville Kent.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

@@ -76,6 +76,7 @@
   "characters": [
     {
       "id": "ch-luciana",
+      "portrait": "pt-luciana",
       "name": "Luciana Borcino",
       "look": {
         "hair": "bun"
@@ -94,6 +95,7 @@
     },
     {
       "id": "ch-higinia",
+      "portrait": "pt-higinia",
       "name": "Higinia Balaguer",
       "look": {
         "hair": "bun"
@@ -122,6 +124,7 @@
     },
     {
       "id": "ch-varela",
+      "portrait": "pt-varela",
       "name": "José Vázquez Varela",
       "look": {
         "hair": "short"
@@ -150,6 +153,7 @@
     },
     {
       "id": "ch-dolores",
+      "portrait": "pt-dolores",
       "name": "Dolores Ávila",
       "look": {
         "hair": "bun"
@@ -177,6 +181,7 @@
     },
     {
       "id": "ch-millan",
+      "portrait": "pt-millan",
       "name": "José Millán Astray",
       "look": {
         "hair": "short",
@@ -196,6 +201,7 @@
     },
     {
       "id": "ch-portera",
+      "portrait": "pt-portera",
       "name": "La portera del número 109",
       "look": {
         "hair": "bun"
@@ -1682,5 +1688,72 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-portera",
+      "kind": "image",
+      "src": "portraits/ch-portera.webp",
+      "bytes": 12708,
+      "sha256": "90337724f3805c80467614e721c6ca4cb93f2bd58243e599ffb63dcb16808948",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de La portera del número 109.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-millan",
+      "kind": "image",
+      "src": "portraits/ch-millan.webp",
+      "bytes": 12332,
+      "sha256": "77e8c865c3177e0062c38e5d7c1021dc88be61c55e36393088883cfbc623dfa1",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de José Millán Astray.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-dolores",
+      "kind": "image",
+      "src": "portraits/ch-dolores.webp",
+      "bytes": 13634,
+      "sha256": "e0515ca0bc8dcc726a6e95c546c7baa96d822e540ca2092337fb0556f2c09761",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Dolores Ávila.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-varela",
+      "kind": "image",
+      "src": "portraits/ch-varela.webp",
+      "bytes": 11888,
+      "sha256": "b406b53ef0544fdf13d750d65886fc055569b2b470dbe2ff5cf520cbf459f15a",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de José Vázquez Varela.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-higinia",
+      "kind": "image",
+      "src": "portraits/ch-higinia.webp",
+      "bytes": 14482,
+      "sha256": "e2adda387f5cf7f69da7e86a77d8d235b6d22ec4517d4f1683cc006acd822d32",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Higinia Balaguer.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-luciana",
+      "kind": "image",
+      "src": "portraits/ch-luciana.webp",
+      "bytes": 16376,
+      "sha256": "d60ef08c49d152d80701d3d038ce3d55040d5f4ff85c114224039328939ac37d",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Luciana Borcino.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

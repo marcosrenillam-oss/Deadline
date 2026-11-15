@@ -82,6 +82,7 @@
   "characters": [
     {
       "id": "ch-belle",
+      "portrait": "pt-belle",
       "name": "Cora Crippen («Belle Elmore»)",
       "look": {
         "hair": "long"
@@ -100,6 +101,7 @@
     },
     {
       "id": "ch-crippen",
+      "portrait": "pt-crippen",
       "name": "Hawley Harvey Crippen",
       "look": {
         "hair": "bald",
@@ -129,6 +131,7 @@
     },
     {
       "id": "ch-ethel",
+      "portrait": "pt-ethel",
       "name": "Ethel Le Neve",
       "look": {
         "hair": "bun"
@@ -157,6 +160,7 @@
     },
     {
       "id": "ch-clara",
+      "portrait": "pt-clara",
       "name": "Clara Martinetti",
       "look": {
         "hair": "hat"
@@ -175,6 +179,7 @@
     },
     {
       "id": "ch-dew",
+      "portrait": "pt-dew",
       "name": "Walter Dew",
       "look": {
         "hair": "hat",
@@ -194,6 +199,7 @@
     },
     {
       "id": "ch-kendall",
+      "portrait": "pt-kendall",
       "name": "Henry Kendall",
       "look": {
         "hair": "hat",
@@ -215,6 +221,7 @@
     },
     {
       "id": "ch-spilsbury",
+      "portrait": "pt-spilsbury",
       "name": "Bernard Spilsbury",
       "look": {
         "hair": "short"
@@ -2015,5 +2022,83 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-spilsbury",
+      "kind": "image",
+      "src": "portraits/ch-spilsbury.webp",
+      "bytes": 16358,
+      "sha256": "680086bf338114bb5cbdd66616f918343ccf19291c30edf911318504db5101de",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Bernard Spilsbury.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-kendall",
+      "kind": "image",
+      "src": "portraits/ch-kendall.webp",
+      "bytes": 20568,
+      "sha256": "e5ebfb4e25c3d7d91ba72ce063b704836297e3cc3684f8857b3470ee9ff6c35e",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Henry Kendall.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-dew",
+      "kind": "image",
+      "src": "portraits/ch-dew.webp",
+      "bytes": 18062,
+      "sha256": "fc48fdd6fbbdee3f38dfa24167b3a15e0149f6f16d7596e6ecc2f48b3d0eff3c",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Walter Dew.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-clara",
+      "kind": "image",
+      "src": "portraits/ch-clara.webp",
+      "bytes": 21376,
+      "sha256": "c6f41eeb394b72bda712244de258c10042e3f2e99b9426b3c2faec832ffb3c03",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Clara Martinetti.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-ethel",
+      "kind": "image",
+      "src": "portraits/ch-ethel.webp",
+      "bytes": 16168,
+      "sha256": "8d3d5c546d10534f51f8c966b4fcf3d2aeda8db6ba6bad051bfee4b02a30cde4",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Ethel Le Neve.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-crippen",
+      "kind": "image",
+      "src": "portraits/ch-crippen.webp",
+      "bytes": 18354,
+      "sha256": "28e2d07b1236764efaa2b932faffdc0e8c95f3288c0fa680e3d8516baf80662b",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Hawley Harvey Crippen.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-belle",
+      "kind": "image",
+      "src": "portraits/ch-belle.webp",
+      "bytes": 22968,
+      "sha256": "7817cfd9a1a09227dce43f190927a35e478079a7879f9c7f078e95a555c975ae",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Cora Crippen («Belle Elmore»).",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

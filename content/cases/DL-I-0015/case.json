@@ -74,6 +74,7 @@
   "characters": [
     {
       "id": "ch-camille",
+      "portrait": "pt-camille",
       "name": "Camille Holland",
       "look": {
         "hair": "bun"
@@ -92,6 +93,7 @@
     },
     {
       "id": "ch-dougal",
+      "portrait": "pt-dougal",
       "name": "Samuel Herbert Dougal",
       "look": {
         "hair": "short",
@@ -121,6 +123,7 @@
     },
     {
       "id": "ch-florence",
+      "portrait": "pt-florence",
       "name": "Florence Havies",
       "look": {
         "hair": "bun"
@@ -138,6 +141,7 @@
     },
     {
       "id": "ch-sobrino",
+      "portrait": "pt-sobrino",
       "name": "Edmund Holland",
       "look": {
         "hair": "short"
@@ -155,6 +159,7 @@
     },
     {
       "id": "ch-marden",
+      "portrait": "pt-marden",
       "name": "Inspector Alfred Marden",
       "look": {
         "hair": "hat",
@@ -173,6 +178,7 @@
     },
     {
       "id": "ch-pilgrim",
+      "portrait": "pt-pilgrim",
       "name": "Henry Pilgrim",
       "look": {
         "hair": "hat"
@@ -193,6 +199,7 @@
     },
     {
       "id": "ch-zapatero",
+      "portrait": "pt-zapatero",
       "name": "Sr. Hayes",
       "look": {
         "hair": "short"
@@ -1356,5 +1363,83 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-zapatero",
+      "kind": "image",
+      "src": "portraits/ch-zapatero.webp",
+      "bytes": 24654,
+      "sha256": "817e3d0c7af012aae44b55eb83f03424fe528ce5baf2c2b9c972118432abf834",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Sr. Hayes.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-pilgrim",
+      "kind": "image",
+      "src": "portraits/ch-pilgrim.webp",
+      "bytes": 26002,
+      "sha256": "be5b63926d606205a8c180d76f1ca61d318661b725af1ef9cf22f9bdcc9582b8",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Henry Pilgrim.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-marden",
+      "kind": "image",
+      "src": "portraits/ch-marden.webp",
+      "bytes": 35158,
+      "sha256": "40bd320527ee64142cf8582ee821ebc30413f0880e05ff66e4dda7a192b93d55",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Inspector Alfred Marden.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-sobrino",
+      "kind": "image",
+      "src": "portraits/ch-sobrino.webp",
+      "bytes": 23188,
+      "sha256": "f8d6d2ed8e8ec67b54a00832d90a67b932f0e96b3af86a8da6e35d2fec2259ce",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Edmund Holland.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-florence",
+      "kind": "image",
+      "src": "portraits/ch-florence.webp",
+      "bytes": 20784,
+      "sha256": "947de2fb78ab0efe0c804eb1d64490984048685fed66afb8db47b122d06eecee",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Florence Havies.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-dougal",
+      "kind": "image",
+      "src": "portraits/ch-dougal.webp",
+      "bytes": 29314,
+      "sha256": "e7af0b288a27b50f658e05f4a67e18a893286adbb6c20c37f19f3b35880dfca7",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Samuel Herbert Dougal.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-camille",
+      "kind": "image",
+      "src": "portraits/ch-camille.webp",
+      "bytes": 18734,
+      "sha256": "3f14330c8e77f61a2181084895a5efcfb7e87619835bb9a860df95034782566b",
+      "width": 480,
+      "height": 593,
+      "alt": "Recreación artística del retrato de Camille Holland.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

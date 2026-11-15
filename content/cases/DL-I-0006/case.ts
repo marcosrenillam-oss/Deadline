@@ -72,6 +72,7 @@ const caseFile: CaseFileInput = {
   characters: [
     {
       id: 'ch-luciana',
+      portrait: 'pt-luciana',
       name: 'Luciana Borcino',
       look: { hair: 'bun' },
       role: 'victim',
@@ -85,6 +86,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-higinia',
+      portrait: 'pt-higinia',
       name: 'Higinia Balaguer',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -101,6 +103,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-varela',
+      portrait: 'pt-varela',
       name: 'José Vázquez Varela',
       look: { hair: 'short' },
       role: 'suspect',
@@ -117,6 +120,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-dolores',
+      portrait: 'pt-dolores',
       name: 'Dolores Ávila',
       look: { hair: 'bun' },
       role: 'suspect',
@@ -133,6 +137,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-millan',
+      portrait: 'pt-millan',
       name: 'José Millán Astray',
       look: { hair: 'short', beard: true },
       role: 'witness',
@@ -146,6 +151,7 @@ const caseFile: CaseFileInput = {
     },
     {
       id: 'ch-portera',
+      portrait: 'pt-portera',
       name: 'La portera del número 109',
       look: { hair: 'bun' },
       role: 'witness',
@@ -802,7 +808,14 @@ const caseFile: CaseFileInput = {
     { id: 'ob-director', text: 'Descubre qué ocultaba el director de la cárcel.', completeWhen: { fact: 'fa-salidas' }, points: 20, hidden: true },
   ],
 
-  assets: [],
+  assets: [
+    { id: 'pt-portera', kind: 'image', src: 'portraits/ch-portera.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de La portera del número 109.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-millan', kind: 'image', src: 'portraits/ch-millan.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de José Millán Astray.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-dolores', kind: 'image', src: 'portraits/ch-dolores.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Dolores Ávila.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-varela', kind: 'image', src: 'portraits/ch-varela.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de José Vázquez Varela.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-higinia', kind: 'image', src: 'portraits/ch-higinia.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Higinia Balaguer.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+    { id: 'pt-luciana', kind: 'image', src: 'portraits/ch-luciana.webp', bytes: 0, sha256: '', width: 480, height: 627, alt: 'Recreación artística del retrato de Luciana Borcino.', credit: 'Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real.' },
+  ],
 };
 
 export default caseFile;

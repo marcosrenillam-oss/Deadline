@@ -76,6 +76,7 @@
   "characters": [
     {
       "id": "ch-oconnor",
+      "portrait": "pt-oconnor",
       "name": "Patrick O’Connor",
       "look": {
         "hair": "short",
@@ -95,6 +96,7 @@
     },
     {
       "id": "ch-maria",
+      "portrait": "pt-maria",
       "name": "Maria Manning",
       "look": {
         "hair": "bun"
@@ -123,6 +125,7 @@
     },
     {
       "id": "ch-frederick",
+      "portrait": "pt-frederick",
       "name": "Frederick Manning",
       "look": {
         "hair": "short"
@@ -151,6 +154,7 @@
     },
     {
       "id": "ch-massey",
+      "portrait": "pt-massey",
       "name": "William Massey",
       "look": {
         "hair": "short"
@@ -158,7 +162,7 @@
       "role": "witness",
       "age": 21,
       "occupation": "Estudiante de medicina, antiguo inquilino",
-      "appearance": "a nervous 21-year-old London medical student in 1849, thin pale face, untidy fair hair, cheap dark coat, worried eyes",
+      "appearance": "a nervous 21-year-old London young man, a medical student in 1849, thin pale face, untidy fair hair, cheap dark coat, worried eyes",
       "summary": "Le hicieron preguntas raras.",
       "biography": "Alquiló una habitación a los Manning en primavera. Se marchó en julio porque la señora se lo pidió: necesitaban el cuarto.",
       "personality": [
@@ -168,6 +172,7 @@
     },
     {
       "id": "ch-armes",
+      "portrait": "pt-armes",
       "name": "Ann Armes",
       "look": {
         "hair": "bun"
@@ -185,6 +190,7 @@
     },
     {
       "id": "ch-barnes",
+      "portrait": "pt-barnes",
       "name": "Agente Henry Barnes",
       "look": {
         "hair": "hat"
@@ -202,6 +208,7 @@
     },
     {
       "id": "ch-moffat",
+      "portrait": "pt-moffat",
       "name": "Sr. Moffat",
       "look": {
         "hair": "short",
@@ -1544,5 +1551,83 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-moffat",
+      "kind": "image",
+      "src": "portraits/ch-moffat.webp",
+      "bytes": 13428,
+      "sha256": "479e3859af008e8f7679817b600ff34a370c70e80c5181b7557f8a95078c4d4f",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Sr. Moffat.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-barnes",
+      "kind": "image",
+      "src": "portraits/ch-barnes.webp",
+      "bytes": 13396,
+      "sha256": "b33bc9f9fd866b0ce3acd88fd974a3ec34a9ac513acfa3ed3083a27f4a1451c7",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Agente Henry Barnes.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-armes",
+      "kind": "image",
+      "src": "portraits/ch-armes.webp",
+      "bytes": 16026,
+      "sha256": "fe31a469732154c50db17b6bcb15024758d43a71062f449e588c0981b0f315b4",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Ann Armes.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-massey",
+      "kind": "image",
+      "src": "portraits/ch-massey.webp",
+      "bytes": 12618,
+      "sha256": "1af9107f860ef317cf8b447d131ae886ba9d7f0feef77a4e633be2c26979595c",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de William Massey.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-frederick",
+      "kind": "image",
+      "src": "portraits/ch-frederick.webp",
+      "bytes": 12322,
+      "sha256": "e5418c0e2461a0c5609e69aee588d9032affdc8b928221c13e4085ed3c5d6b2d",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Frederick Manning.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-maria",
+      "kind": "image",
+      "src": "portraits/ch-maria.webp",
+      "bytes": 13172,
+      "sha256": "0ef0b76fc01e7884178a3e607388142d12663407e605448d1864e9d5a28ac13f",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Maria Manning.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-oconnor",
+      "kind": "image",
+      "src": "portraits/ch-oconnor.webp",
+      "bytes": 12162,
+      "sha256": "693ad1fef7ac3c7874cee6cf7855d0752d6f3ad7444a99034f15d63ce4e9bb01",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Patrick O’Connor.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

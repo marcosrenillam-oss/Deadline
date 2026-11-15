@@ -77,6 +77,7 @@
   "characters": [
     {
       "id": "ch-aubray",
+      "portrait": "pt-aubray",
       "name": "Antoine Dreux d’Aubray",
       "look": {
         "hair": "long",
@@ -96,6 +97,7 @@
     },
     {
       "id": "ch-marquesa",
+      "portrait": "pt-marquesa",
       "name": "Marie-Madeleine d’Aubray, marquesa de Brinvilliers",
       "look": {
         "hair": "long"
@@ -124,6 +126,7 @@
     },
     {
       "id": "ch-lachaussee",
+      "portrait": "pt-lachaussee",
       "name": "Jean Hamelin, «La Chaussée»",
       "look": {
         "hair": "short"
@@ -152,6 +155,7 @@
     },
     {
       "id": "ch-pennautier",
+      "portrait": "pt-pennautier",
       "name": "Pierre-Louis de Pennautier",
       "look": {
         "hair": "long"
@@ -180,6 +184,7 @@
     },
     {
       "id": "ch-sainte-croix",
+      "portrait": "pt-sainte-croix",
       "name": "Godin de Sainte-Croix",
       "look": {
         "hair": "long"
@@ -197,6 +202,7 @@
     },
     {
       "id": "ch-desgrez",
+      "portrait": "pt-desgrez",
       "name": "François Desgrez",
       "look": {
         "hair": "long"
@@ -218,6 +224,7 @@
     },
     {
       "id": "ch-briancourt",
+      "portrait": "pt-briancourt",
       "name": "Jean-Baptiste Briancourt",
       "look": {
         "hair": "long"
@@ -1357,5 +1364,83 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-briancourt",
+      "kind": "image",
+      "src": "portraits/ch-briancourt.webp",
+      "bytes": 20814,
+      "sha256": "05d572a0496ab1679347d55df1cec8bf2b29e48f8c65130a7ba8a3ed6f6dd99b",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Jean-Baptiste Briancourt.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-desgrez",
+      "kind": "image",
+      "src": "portraits/ch-desgrez.webp",
+      "bytes": 16004,
+      "sha256": "e8e74885d099c8117fd78062c5bb14dbdc0f789999dedf6690763f985dcf69d1",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de François Desgrez.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-sainte-croix",
+      "kind": "image",
+      "src": "portraits/ch-sainte-croix.webp",
+      "bytes": 14144,
+      "sha256": "0c5abfe148ce3bb324e6d9fa6b5fb08d195deaa1d76cdb38d264ba0e7ca2cd03",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Godin de Sainte-Croix.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-pennautier",
+      "kind": "image",
+      "src": "portraits/ch-pennautier.webp",
+      "bytes": 18526,
+      "sha256": "49920db5dd22d8c3286e47547ebcbcb8110f3f1839bbfbd2f1630ce5d512a43c",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Pierre-Louis de Pennautier.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-lachaussee",
+      "kind": "image",
+      "src": "portraits/ch-lachaussee.webp",
+      "bytes": 19018,
+      "sha256": "0b7a02dc7bc01666698987feb539e35a4a88d0deeb01f7ea85f5fecc95916ab9",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Jean Hamelin, «La Chaussée».",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-marquesa",
+      "kind": "image",
+      "src": "portraits/ch-marquesa.webp",
+      "bytes": 22898,
+      "sha256": "44f1aa8ca95c85fe406e9b26e5d09cd6d2700b6ef8afa928d457381a5519a22b",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Marie-Madeleine d’Aubray, marquesa de Brinvilliers.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-aubray",
+      "kind": "image",
+      "src": "portraits/ch-aubray.webp",
+      "bytes": 25154,
+      "sha256": "48ad25bd08dcd17a4e17d25f7686fe5a128d400283da29d94f545161f1292055",
+      "width": 480,
+      "height": 600,
+      "alt": "Recreación artística del retrato de Antoine Dreux d’Aubray.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }

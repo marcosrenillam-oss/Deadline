@@ -79,6 +79,7 @@
   "characters": [
     {
       "id": "ch-cook",
+      "portrait": "pt-cook",
       "name": "John Parsons Cook",
       "look": {
         "hair": "short"
@@ -97,6 +98,7 @@
     },
     {
       "id": "ch-palmer",
+      "portrait": "pt-palmer",
       "name": "William Palmer",
       "look": {
         "hair": "bald"
@@ -125,6 +127,7 @@
     },
     {
       "id": "ch-bamford",
+      "portrait": "pt-bamford",
       "name": "William Bamford",
       "look": {
         "hair": "bald",
@@ -153,6 +156,7 @@
     },
     {
       "id": "ch-stevens",
+      "portrait": "pt-stevens",
       "name": "William Vernon Stevens",
       "look": {
         "hair": "short",
@@ -171,6 +175,7 @@
     },
     {
       "id": "ch-mills",
+      "portrait": "pt-mills",
       "name": "Elizabeth Mills",
       "look": {
         "hair": "bun"
@@ -188,6 +193,7 @@
     },
     {
       "id": "ch-newton",
+      "portrait": "pt-newton",
       "name": "Charles Newton",
       "look": {
         "hair": "short"
@@ -195,7 +201,7 @@
       "role": "witness",
       "age": 20,
       "occupation": "Ayudante de farmacia",
-      "appearance": "a nervous 20-year-old English chemist’s assistant in 1855, thin pale face, short neat hair, white apron over a dark waistcoat, anxious eyes",
+      "appearance": "a nervous 20-year-old English young man, a chemist’s assistant in 1855, thin pale face, short neat hair, white apron over a dark waistcoat, anxious eyes",
       "summary": "Vendió algo que no quiere recordar.",
       "biography": "Ayudante en la farmacia de Mr. Salt, en Rugeley. Palmer era cliente habitual.",
       "personality": [
@@ -208,6 +214,7 @@
     },
     {
       "id": "ch-taylor",
+      "portrait": "pt-taylor",
       "name": "Alfred Swaine Taylor",
       "look": {
         "hair": "short"
@@ -1694,5 +1701,83 @@
       "hidden": true
     }
   ],
-  "assets": []
+  "assets": [
+    {
+      "id": "pt-taylor",
+      "kind": "image",
+      "src": "portraits/ch-taylor.webp",
+      "bytes": 12502,
+      "sha256": "d85cf00ae8150a8ada23b81624e7b31775be4dc2e21211fcbeb1560ec411244a",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Alfred Swaine Taylor.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-newton",
+      "kind": "image",
+      "src": "portraits/ch-newton.webp",
+      "bytes": 29004,
+      "sha256": "5ff8d493be7b2c27fd2fdb2937ec47eabea6246ae4d138d8ac69374ef5be1955",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Charles Newton.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-mills",
+      "kind": "image",
+      "src": "portraits/ch-mills.webp",
+      "bytes": 14334,
+      "sha256": "3246cd1add2630d8c1241ff2ab0efe8c39d9c23ac4f2e59066cafe033cbea352",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de Elizabeth Mills.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-stevens",
+      "kind": "image",
+      "src": "portraits/ch-stevens.webp",
+      "bytes": 11848,
+      "sha256": "52740a651baec9f5227ce6f7cc7e6b20f4fe63b4bbde006f95985b010874a036",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de William Vernon Stevens.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-bamford",
+      "kind": "image",
+      "src": "portraits/ch-bamford.webp",
+      "bytes": 13886,
+      "sha256": "ebbc7a37ff5ae1fff481afc08b73af0f309ce840112a24191fc22c8b8293a73f",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de William Bamford.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-palmer",
+      "kind": "image",
+      "src": "portraits/ch-palmer.webp",
+      "bytes": 15326,
+      "sha256": "dc125f41d8387db73fae377f0b59a1ce85af8e071401ad1a084026f2c06aa112",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de William Palmer.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    },
+    {
+      "id": "pt-cook",
+      "kind": "image",
+      "src": "portraits/ch-cook.webp",
+      "bytes": 11418,
+      "sha256": "ac94c1603d586a19451994fefc2fe2f562f87ec0f4cb9c5fb9324cab050fa93a",
+      "width": 480,
+      "height": 627,
+      "alt": "Recreación artística del retrato de John Parsons Cook.",
+      "credit": "Recreación artística generada para DEADLINE con un modelo de imagen de pesos abiertos (Realistic Vision 5.1, CreativeML OpenRAIL-M). No es una fotografía de la persona real."
+    }
+  ]
 }
