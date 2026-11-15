@@ -72,3 +72,13 @@ python3 scripts/desk-render/finalize_variants.py
 ```
 
 Requiere Blender 4.0 o posterior y `python3-numpy` para el importador glTF.
+
+## Retratos rápidos (LCM-LoRA)
+
+Desde la tanda 1 de casos reales, `make_all.sh` usa, si está descargado, el
+adaptador **LCM-LoRA para SD 1.5** (`latent-consistency/lcm-lora-sdv1-5`,
+licencia openrail++) sobre Realistic Vision 5.1: 6 pasos en vez de 24, unos
+35 s por retrato en CPU en lugar de ~5 min, con calidad equivalente para
+retratos de época en blanco y negro. Descarga:
+`HF_HUB_DISABLE_XET=1 .cache/sdenv/bin/python -c "from huggingface_hub import hf_hub_download; hf_hub_download('latent-consistency/lcm-lora-sdv1-5','pytorch_lora_weights.safetensors',local_dir='.cache/models/lcm-lora')"`.
+Sin el adaptador, el script vuelve al modo de 24 pasos.

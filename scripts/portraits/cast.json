@@ -51,6 +51,81 @@
    "style": "press",
    "prompt": "vintage black and white photograph, Londres, 1910, head and shoulders portrait of {who}, film grain, natural light, realistic skin texture, sharp focus on the eyes",
    "negative": "color"
+  },
+  "DL-C-0004": {
+   "style": "press",
+   "prompt": "vintage black and white photograph, Londres, 1914, head and shoulders portrait of {who}, film grain, natural light, realistic skin texture, sharp focus on the eyes",
+   "negative": "color"
+  },
+  "DL-C-0005": {
+   "style": "albumen",
+   "prompt": "antique cabinet card studio portrait photograph, Edimburgo, 1828, {who}, albumen print, sepia tone, soft studio window light, plain painted backdrop, natural skin texture, realistic",
+   "negative": "oval frame, ornate border, color"
+  },
+  "DL-I-0005": {
+   "style": "encaustic",
+   "prompt": "Fayum mummy portrait, flat encaustic painting on a wooden panel, Roma, 81 a. C., head and shoulders of {who}, realistic painted face, large expressive eyes, plain ochre background, visible brush strokes",
+   "negative": "sculpture, relief, statue, 3d, frame, photograph"
+  },
+  "DL-I-0006": {
+   "style": "albumen",
+   "prompt": "antique cabinet card studio portrait photograph, Madrid, 1888, {who}, albumen print, sepia tone, soft studio window light, plain painted backdrop, natural skin texture, realistic",
+   "negative": "oval frame, ornate border, color"
+  },
+  "DL-I-0007": {
+   "style": "albumen",
+   "prompt": "antique cabinet card studio portrait photograph, Rugeley, 1855, {who}, albumen print, sepia tone, soft studio window light, plain painted backdrop, natural skin texture, realistic",
+   "negative": "oval frame, ornate border, color"
+  },
+  "DL-I-0008": {
+   "style": "oil",
+   "prompt": "old master oil painting portrait, Londres, 1613, {who}, dark plain background, chiaroscuro, realistic face, aged varnish, canvas texture",
+   "negative": "photograph, frame, modern"
+  },
+  "DL-I-0009": {
+   "style": "oil",
+   "prompt": "old master oil painting portrait, Henley, 1751, {who}, dark plain background, chiaroscuro, realistic face, aged varnish, canvas texture",
+   "negative": "photograph, frame, modern"
+  },
+  "DL-I-0010": {
+   "style": "oil",
+   "prompt": "medieval panel painting portrait, Brujas, 1127, {who}, tempera on wood, realistic face, plain dark background, aged varnish",
+   "negative": "photograph, frame, modern"
+  },
+  "DL-I-0011": {
+   "style": "albumen",
+   "prompt": "antique cabinet card studio portrait photograph, Londres, 1849, {who}, albumen print, sepia tone, soft studio window light, plain painted backdrop, natural skin texture, realistic",
+   "negative": "oval frame, ornate border, color"
+  },
+  "DL-I-0012": {
+   "style": "albumen",
+   "prompt": "antique cabinet card studio portrait photograph, Glasgow, 1865, {who}, albumen print, sepia tone, soft studio window light, plain painted backdrop, natural skin texture, realistic",
+   "negative": "oval frame, ornate border, color"
+  },
+  "DL-I-0013": {
+   "style": "oil",
+   "prompt": "old master oil painting portrait, París, 1672, {who}, dark plain background, chiaroscuro, realistic face, aged varnish, canvas texture",
+   "negative": "photograph, frame, modern"
+  },
+  "DL-C-0006": {
+   "style": "albumen",
+   "prompt": "antique cabinet card studio portrait photograph, París, 1896, {who}, albumen print, sepia tone, soft studio window light, plain painted backdrop, natural skin texture, realistic",
+   "negative": "oval frame, ornate border, color"
+  },
+  "DL-I-0014": {
+   "style": "albumen",
+   "prompt": "antique cabinet card studio portrait photograph, Londres, 1892, {who}, albumen print, sepia tone, soft studio window light, plain painted backdrop, natural skin texture, realistic",
+   "negative": "oval frame, ornate border, color"
+  },
+  "DL-I-0015": {
+   "style": "press",
+   "prompt": "vintage black and white photograph, Essex, 1903, head and shoulders portrait of {who}, film grain, natural light, realistic skin texture, sharp focus on the eyes",
+   "negative": "color"
+  },
+  "DL-I-0016": {
+   "style": "press",
+   "prompt": "vintage black and white photograph, Nueva Jersey, 1932, head and shoulders portrait of {who}, film grain, natural light, realistic skin texture, sharp focus on the eyes",
+   "negative": "color"
   }
  },
  "people": [
@@ -697,6 +772,526 @@
    "case": "DL-I-0004",
    "id": "ch-spilsbury",
    "prompt": "a tall handsome 33-year-old Edwardian pathologist in 1910, clean shaven, neatly parted dark hair, high white collar and dark suit, a carnation in the buttonhole, cool confident gaze"
+  },
+  {
+   "case": "DL-C-0004",
+   "id": "ch-margaret",
+   "prompt": "a gentle 38-year-old Edwardian English spinster in 1914, plain kind face, brown hair in a modest bun, high-necked blouse with a small brooch, shy hopeful smile"
+  },
+  {
+   "case": "DL-C-0004",
+   "id": "ch-lloyd",
+   "prompt": "a 42-year-old Edwardian English man in 1914, strong jaw, dark hair parted in the middle, thick dark moustache, intense staring dark eyes, cheap but neat suit and bowler hat, smooth confident manner"
+  },
+  {
+   "case": "DL-C-0004",
+   "id": "ch-blatch",
+   "prompt": "a stern 50-year-old Edwardian London landlady in 1914, thin severe face, grey hair in a tight bun, black dress with a white collar, keys at her waist, observant suspicious eyes"
+  },
+  {
+   "case": "DL-C-0004",
+   "id": "ch-alice",
+   "prompt": "a plump cheerful 25-year-old Edwardian English nurse in 1913, round face, fair hair under a small hat, high-collared blouse, warm smile"
+  },
+  {
+   "case": "DL-C-0004",
+   "id": "ch-bessie",
+   "prompt": "a timid 33-year-old Edwardian English woman in 1912, long pale face, light brown hair in a bun, plain dark dress, anxious eyes"
+  },
+  {
+   "case": "DL-C-0004",
+   "id": "ch-crossley",
+   "prompt": "a bluff 50-year-old Lancashire boarding-house keeper in 1914, broad red face, thick grey moustache, flat cap, waistcoat with watch chain, honest stubborn eyes"
+  },
+  {
+   "case": "DL-C-0004",
+   "id": "ch-burnham",
+   "prompt": "a grieving 60-year-old English fruit grower in 1914, lined weathered face, white beard, rough tweed coat, sad stubborn eyes"
+  },
+  {
+   "case": "DL-C-0004",
+   "id": "ch-spilsbury",
+   "prompt": "a tall handsome 37-year-old English pathologist in 1915, clean shaven, neatly parted dark hair, dark suit with a white carnation, cool confident gaze"
+  },
+  {
+   "case": "DL-C-0005",
+   "id": "ch-docherty",
+   "prompt": "a poor 45-year-old Irish woman in Edinburgh in 1828, thin careworn face, grey-streaked dark hair under a ragged shawl and bonnet, patched dress, gentle tired eyes, old engraving style"
+  },
+  {
+   "case": "DL-C-0005",
+   "id": "ch-burke",
+   "prompt": "a stocky 36-year-old Irish labourer in Edinburgh in 1828, round amiable face, short dark hair, side whiskers, worn blue coat and neckerchief, pleasant smile, old engraving style"
+  },
+  {
+   "case": "DL-C-0005",
+   "id": "ch-hare",
+   "prompt": "a rough 24-year-old Irish lodging-house keeper in Edinburgh in 1828, gaunt brutish face, untidy dark hair, scarred brow, ragged coat, sly grin, old engraving style"
+  },
+  {
+   "case": "DL-C-0005",
+   "id": "ch-mcdougal",
+   "prompt": "a hard-faced 33-year-old Scottish woman in Edinburgh in 1828, thin sharp features, dark hair under a cap, shawl over a worn dress, suspicious defiant eyes, old engraving style"
+  },
+  {
+   "case": "DL-C-0005",
+   "id": "ch-gray",
+   "prompt": "a frightened 30-year-old working-class Scottish woman in 1828, pale thin face, light hair under a plain cap, worn shawl, wide terrified eyes, old engraving style"
+  },
+  {
+   "case": "DL-C-0005",
+   "id": "ch-alston",
+   "prompt": "a cautious 55-year-old Edinburgh grocer in 1828, lined honest face, grey hair, apron over a waistcoat, worried eyes, old engraving style"
+  },
+  {
+   "case": "DL-C-0005",
+   "id": "ch-paterson",
+   "prompt": "a sly 30-year-old Edinburgh anatomy school porter in 1828, narrow face, slicked hair, dark coat, keys at his belt, evasive eyes, old engraving style"
+  },
+  {
+   "case": "DL-C-0005",
+   "id": "ch-knox",
+   "prompt": "a striking 37-year-old Scottish anatomist in 1828, bald head, one eye clouded from smallpox, pitted skin, elegant black coat and high white cravat, arrogant clever expression, old engraving style"
+  },
+  {
+   "case": "DL-I-0005",
+   "id": "ch-padre",
+   "prompt": "a dignified 60-year-old Roman provincial landowner, weathered intelligent face, short grey hair, clean shaven, white toga over a tunic, calm authoritative gaze"
+  },
+  {
+   "case": "DL-I-0005",
+   "id": "ch-hijo",
+   "prompt": "a rough 40-year-old Roman countryman, sunburnt plain face, short dark beard, simple brown tunic and woollen cloak, bewildered anxious eyes"
+  },
+  {
+   "case": "DL-I-0005",
+   "id": "ch-magno",
+   "prompt": "a hard-faced 45-year-old Roman man, broad jaw, cropped dark hair, heavy brows, fine white toga worn carelessly, gold ring, mocking confident smile"
+  },
+  {
+   "case": "DL-I-0005",
+   "id": "ch-capito",
+   "prompt": "a sly 55-year-old Roman provincial notable, thin lined face, thinning grey hair, narrow eyes, toga with a purple border, ingratiating smile"
+  },
+  {
+   "case": "DL-I-0005",
+   "id": "ch-glaucia",
+   "prompt": "a wiry 35-year-old Roman freedman, narrow ferret face, short hair, plain travelling tunic and dusty cloak, shifty eyes"
+  },
+  {
+   "case": "DL-I-0005",
+   "id": "ch-crisogono",
+   "prompt": "an elegant 38-year-old Greek-born Roman freedman, smooth handsome face, carefully curled dark hair, rich embroidered tunic and many rings, arrogant languid expression"
+  },
+  {
+   "case": "DL-I-0005",
+   "id": "ch-erucio",
+   "prompt": "a loud fleshy 45-year-old Roman prosecutor, red face, oiled dark hair, toga draped with theatrical care, smug sneering expression"
+  },
+  {
+   "case": "DL-I-0005",
+   "id": "ch-metela",
+   "prompt": "a noble 50-year-old Roman matron, strong aristocratic face, grey hair dressed in waves and a bun, fine stola and palla, steady proud eyes"
+  },
+  {
+   "case": "DL-I-0006",
+   "id": "ch-luciana",
+   "prompt": "a stout 50-year-old Spanish widow in Madrid in 1888, severe round face, dark hair streaked with grey pulled into a tight bun, black silk mourning dress with a high collar and a cameo brooch, stern tired eyes"
+  },
+  {
+   "case": "DL-I-0006",
+   "id": "ch-higinia",
+   "prompt": "a 27-year-old Spanish housemaid in Madrid in 1888, plain sharp face, dark eyes, black hair pulled back under a dark kerchief, simple dark dress and grey shawl, calm defiant expression"
+  },
+  {
+   "case": "DL-I-0006",
+   "id": "ch-varela",
+   "prompt": "a dissolute 25-year-old Spanish young man in Madrid in 1888, handsome but puffy face, slicked black hair, thin moustache, prison-grey jacket over a once-fine waistcoat, insolent smile"
+  },
+  {
+   "case": "DL-I-0006",
+   "id": "ch-dolores",
+   "prompt": "a gaunt 40-year-old Spanish former housemaid in Madrid in 1888, hollow cheeks, sharp nose, greying dark hair under a black kerchief, worn shawl, wary hostile eyes"
+  },
+  {
+   "case": "DL-I-0006",
+   "id": "ch-millan",
+   "prompt": "a 38-year-old Spanish prison director in Madrid in 1888, broad face, thick dark moustache and short beard, receding dark hair, dark frock coat with an official badge, guarded authoritative expression"
+  },
+  {
+   "case": "DL-I-0006",
+   "id": "ch-portera",
+   "prompt": "a plump 55-year-old Madrid concierge in 1888, shrewd round face, grey hair in a bun, black apron over a dark dress, sharp gossiping eyes"
+  },
+  {
+   "case": "DL-I-0007",
+   "id": "ch-cook",
+   "prompt": "a pale slender 28-year-old English gentleman in 1855, delicate face, fair wavy hair, light side whiskers, dark frock coat and loose cravat, friendly weary eyes"
+  },
+  {
+   "case": "DL-I-0007",
+   "id": "ch-palmer",
+   "prompt": "a stout ruddy 31-year-old English country doctor in 1855, round smooth face, receding light brown hair, small side whiskers, black frock coat, broad affable smile, calculating light eyes"
+  },
+  {
+   "case": "DL-I-0007",
+   "id": "ch-bamford",
+   "prompt": "a frail 82-year-old English country doctor in 1855, wrinkled kindly face, bald head with white tufts, small round spectacles, old-fashioned black coat and white neckcloth, vague gentle expression"
+  },
+  {
+   "case": "DL-I-0007",
+   "id": "ch-stevens",
+   "prompt": "a stern 60-year-old London gentleman in 1855, grey side whiskers, thinning grey hair, dark overcoat, top hat in hand, grieving suspicious eyes"
+  },
+  {
+   "case": "DL-I-0007",
+   "id": "ch-mills",
+   "prompt": "a 25-year-old English inn chambermaid in 1855, pleasant frightened face, brown hair under a white cap, dark dress and white apron"
+  },
+  {
+   "case": "DL-I-0007",
+   "id": "ch-newton",
+   "prompt": "a nervous 20-year-old English chemist’s assistant in 1855, thin pale face, short neat hair, white apron over a dark waistcoat, anxious eyes"
+  },
+  {
+   "case": "DL-I-0007",
+   "id": "ch-taylor",
+   "prompt": "a serious 49-year-old Victorian toxicologist in 1855, long scholarly face, neat dark hair going grey, clean shaven, dark frock coat and high white collar, precise cautious expression"
+  },
+  {
+   "case": "DL-I-0008",
+   "id": "ch-overbury",
+   "prompt": "a sharp-featured 32-year-old Jacobean English courtier in 1613, thin intelligent face, pointed reddish beard and moustache, short curled hair, starched white ruff, dark doublet, sardonic eyes"
+  },
+  {
+   "case": "DL-I-0008",
+   "id": "ch-frances",
+   "prompt": "a beautiful 25-year-old Jacobean English noblewoman in 1613, pale oval face, long fair hair loose over her shoulders with pearls, wide lace collar, rich embroidered gown, cool determined blue eyes"
+  },
+  {
+   "case": "DL-I-0008",
+   "id": "ch-carr",
+   "prompt": "a strikingly handsome 28-year-old Scottish courtier in 1613, fine features, fair curled hair, small neat beard, enormous lace ruff, jewelled doublet, vain uncertain expression"
+  },
+  {
+   "case": "DL-I-0008",
+   "id": "ch-weston",
+   "prompt": "a coarse 60-year-old Jacobean English jailer in 1613, weathered heavy face, bald head, grizzled beard, plain leather jerkin, ring of keys at his belt, furtive frightened eyes"
+  },
+  {
+   "case": "DL-I-0008",
+   "id": "ch-turner",
+   "prompt": "a fashionable 36-year-old Jacobean English widow in 1613, pretty sharp face, auburn hair dressed high, large ruff starched yellow with saffron, low-cut bodice, knowing smile"
+  },
+  {
+   "case": "DL-I-0008",
+   "id": "ch-helwys",
+   "prompt": "a grave 52-year-old Jacobean English gentleman in 1613, long tired face, grey pointed beard, plain black doublet with a small white ruff, worried conscientious eyes"
+  },
+  {
+   "case": "DL-I-0008",
+   "id": "ch-franklin",
+   "prompt": "a sly 50-year-old Jacobean English apothecary in 1613, crooked thin face, stringy grey hair, stained leather apron over a brown doublet, shifty eyes"
+  },
+  {
+   "case": "DL-I-0009",
+   "id": "ch-francis",
+   "prompt": "a stout 62-year-old Georgian English country attorney in 1750, florid face, grey powdered wig, brown coat and waistcoat, white neckcloth, shrewd but tired eyes"
+  },
+  {
+   "case": "DL-I-0009",
+   "id": "ch-mary",
+   "prompt": "a 31-year-old Georgian English gentlewoman in 1751, intelligent oval face, dark hair dressed close under a small lace cap, black silk dress with a white fichu, composed sad dark eyes"
+  },
+  {
+   "case": "DL-I-0009",
+   "id": "ch-cranstoun",
+   "prompt": "a short 37-year-old Scottish army captain in 1750, small pockmarked face, weak chin, sandy wig, red regimental coat with gold lace, ingratiating smile"
+  },
+  {
+   "case": "DL-I-0009",
+   "id": "ch-susan",
+   "prompt": "a sturdy 40-year-old Georgian English maidservant in 1751, plain honest face, brown hair under a white mob cap, rough apron over a dark dress, watchful eyes"
+  },
+  {
+   "case": "DL-I-0009",
+   "id": "ch-addington",
+   "prompt": "a 38-year-old Georgian English physician in 1751, intelligent open face, grey wig tied back, dark coat, white neckcloth, careful thoughtful expression"
+  },
+  {
+   "case": "DL-I-0009",
+   "id": "ch-littleton",
+   "prompt": "a nervous 25-year-old Georgian English law clerk in 1751, thin earnest face, own hair tied back, plain dark coat, ink-stained fingers"
+  },
+  {
+   "case": "DL-I-0010",
+   "id": "ch-carlos",
+   "prompt": "a pious 43-year-old medieval Flemish count in 1127, lean ascetic face, short brown beard, simple dark woollen tunic and cloak, thin gold circlet, calm stern eyes, painted in the style of a twelfth-century manuscript portrait"
+  },
+  {
+   "case": "DL-I-0010",
+   "id": "ch-bertulfo",
+   "prompt": "a powerful 60-year-old medieval Flemish provost in 1127, heavy shrewd face, tonsured grey hair, rich black canon robes with a fur collar, ring of office, cold calculating eyes, twelfth-century manuscript style"
+  },
+  {
+   "case": "DL-I-0010",
+   "id": "ch-borsiard",
+   "prompt": "a fierce 30-year-old medieval Flemish knight in 1127, scarred hard face, short dark beard, mail coif pushed back, dark cloak over a hauberk, wild defiant eyes, twelfth-century manuscript style"
+  },
+  {
+   "case": "DL-I-0010",
+   "id": "ch-isaac",
+   "prompt": "a nervous 35-year-old medieval Flemish courtier in 1127, narrow pale face, clean shaven, short hair, fine green tunic with a belt of office and keys, darting eyes, twelfth-century manuscript style"
+  },
+  {
+   "case": "DL-I-0010",
+   "id": "ch-tancmaro",
+   "prompt": "a grim 45-year-old medieval Flemish lord in 1127, broad weathered face, greying beard, fur-lined cloak over a mail shirt, sword at his side, wary vengeful eyes, twelfth-century manuscript style"
+  },
+  {
+   "case": "DL-I-0010",
+   "id": "ch-galberto",
+   "prompt": "a thoughtful 40-year-old medieval Flemish notary in 1127, gentle intelligent face, clean shaven, tonsured brown hair, plain grey clerical robe, wax tablets and stylus in his hands, twelfth-century manuscript style"
+  },
+  {
+   "case": "DL-I-0010",
+   "id": "ch-fromold",
+   "prompt": "a young 28-year-old medieval Flemish clerk in 1127, earnest pale face, short fair hair, dark clerical robe, ink-stained fingers, frightened eyes, twelfth-century manuscript style"
+  },
+  {
+   "case": "DL-I-0011",
+   "id": "ch-oconnor",
+   "prompt": "a tall gaunt 50-year-old Irish customs officer in London in 1849, long lined face, greying side whiskers, dark frock coat and tall hat, gold watch chain, shrewd self-satisfied expression"
+  },
+  {
+   "case": "DL-I-0011",
+   "id": "ch-maria",
+   "prompt": "a handsome 28-year-old Swiss-born woman in London in 1849, strong dark-browed face, dark hair parted and drawn back, black satin dress with a white collar, proud cold eyes"
+  },
+  {
+   "case": "DL-I-0011",
+   "id": "ch-frederick",
+   "prompt": "a heavy 30-year-old English ex-railway guard in 1849, fleshy weak face, light hair, small eyes, shabby brown coat and loose necktie, nervous drinker’s complexion"
+  },
+  {
+   "case": "DL-I-0011",
+   "id": "ch-massey",
+   "prompt": "a nervous 21-year-old London medical student in 1849, thin pale face, untidy fair hair, cheap dark coat, worried eyes"
+  },
+  {
+   "case": "DL-I-0011",
+   "id": "ch-armes",
+   "prompt": "a stout 45-year-old London landlady in 1849, round shrewd face, grey hair under a cap, dark dress and shawl, keys at her waist"
+  },
+  {
+   "case": "DL-I-0011",
+   "id": "ch-barnes",
+   "prompt": "a sturdy 32-year-old Metropolitan Police constable in 1849, honest broad face, side whiskers, dark blue tailcoat uniform and top hat, lantern in hand"
+  },
+  {
+   "case": "DL-I-0011",
+   "id": "ch-moffat",
+   "prompt": "a careful 50-year-old Edinburgh stockbroker in 1849, grey whiskers, spectacles pushed up on his forehead, black coat, ledger under his arm"
+  },
+  {
+   "case": "DL-I-0012",
+   "id": "ch-mary-jane",
+   "prompt": "a gentle 38-year-old Victorian Scottish wife in 1864, soft oval face, dark hair parted in the middle and drawn into a low bun, dark silk dress with a white lace collar, kind tired eyes"
+  },
+  {
+   "case": "DL-I-0012",
+   "id": "ch-pritchard",
+   "prompt": "a tall 40-year-old Victorian English doctor in Glasgow in 1865, high bald forehead, enormous flowing dark beard, intense eyes, black frock coat with a watch chain, theatrical self-assured pose"
+  },
+  {
+   "case": "DL-I-0012",
+   "id": "ch-mcleod",
+   "prompt": "a frightened 16-year-old Scottish maidservant in 1865, young round face, red-brown hair under a white cap, plain dark dress and apron, downcast eyes"
+  },
+  {
+   "case": "DL-I-0012",
+   "id": "ch-paterson",
+   "prompt": "a stern 60-year-old Victorian Scottish physician in 1865, white side whiskers, thin grey hair, gold spectacles, black coat, severe principled expression"
+  },
+  {
+   "case": "DL-I-0012",
+   "id": "ch-cocinera",
+   "prompt": "a stout 45-year-old Victorian Scottish cook in 1865, red cheerful face now worried, grey hair under a cap, large apron, flour on her sleeves"
+  },
+  {
+   "case": "DL-I-0012",
+   "id": "ch-boticario",
+   "prompt": "a careful 50-year-old Victorian Glasgow chemist in 1865, neat grey hair, small spectacles, white apron over a dark waistcoat, ledger in hand"
+  },
+  {
+   "case": "DL-I-0013",
+   "id": "ch-aubray",
+   "prompt": "a stern 66-year-old French magistrate in 1666, long grave face, thin grey moustache and small beard, long grey periwig, black magistrate robe with white bands, severe eyes, seventeenth-century oil portrait"
+  },
+  {
+   "case": "DL-I-0013",
+   "id": "ch-marquesa",
+   "prompt": "a petite 42-year-old French marquise in 1672, delicate pretty face, large blue eyes, chestnut curls framing her face, pearl necklace, low-cut satin gown with lace, sweet composed expression, seventeenth-century oil portrait"
+  },
+  {
+   "case": "DL-I-0013",
+   "id": "ch-lachaussee",
+   "prompt": "a sly 35-year-old French manservant in 1670, thin pockmarked face, lank dark hair, worn livery coat, darting eyes, seventeenth-century oil portrait"
+  },
+  {
+   "case": "DL-I-0013",
+   "id": "ch-pennautier",
+   "prompt": "a wealthy 50-year-old French financier in 1672, plump smooth face, enormous dark periwig, rich brocade coat and lace cravat, rings, smooth confident smile, seventeenth-century oil portrait"
+  },
+  {
+   "case": "DL-I-0013",
+   "id": "ch-sainte-croix",
+   "prompt": "a handsome 50-year-old French cavalry officer in 1672, sharp elegant face, thin moustache, long dark curling hair, plumed hat and cavalry coat, ironic smile, seventeenth-century oil portrait"
+  },
+  {
+   "case": "DL-I-0013",
+   "id": "ch-desgrez",
+   "prompt": "a shrewd 40-year-old French police officer in 1676, lean clever face, short dark moustache, plain brown periwig, sober dark coat, watchful eyes, seventeenth-century oil portrait"
+  },
+  {
+   "case": "DL-I-0013",
+   "id": "ch-briancourt",
+   "prompt": "a pale 28-year-old French tutor in 1672, earnest thin face, plain brown hair falling to the shoulders, simple black coat and white collar, frightened eyes, seventeenth-century oil portrait"
+  },
+  {
+   "case": "DL-C-0006",
+   "id": "ch-dreyfus",
+   "prompt": "a 35-year-old French army captain in 1894, thin serious face, pince-nez spectacles, short dark hair, neat moustache, dark artillery uniform, stiff reserved expression"
+  },
+  {
+   "case": "DL-C-0006",
+   "id": "ch-esterhazy",
+   "prompt": "a gaunt 49-year-old French army major in 1896, hollow cheeks, large drooping dark moustache, bulging restless eyes, infantry uniform worn with dandyish carelessness"
+  },
+  {
+   "case": "DL-C-0006",
+   "id": "ch-henry",
+   "prompt": "a burly 50-year-old French army major in 1896, heavy peasant face, thick moustache, cropped grey hair, uniform tight across the chest, stubborn suspicious eyes"
+  },
+  {
+   "case": "DL-C-0006",
+   "id": "ch-picquart",
+   "prompt": "an elegant 41-year-old French lieutenant colonel in 1896, fine intelligent face, trim moustache, neatly parted dark hair, dark staff uniform, calm thoughtful eyes"
+  },
+  {
+   "case": "DL-C-0006",
+   "id": "ch-mathieu",
+   "prompt": "a determined 38-year-old French industrialist in 1897, strong handsome face, full dark beard, dark frock coat, tired resolute eyes"
+  },
+  {
+   "case": "DL-C-0006",
+   "id": "ch-castro",
+   "prompt": "a well-dressed 45-year-old Parisian banker in 1897, neat grey beard, top hat, dark overcoat, a folded newspaper in his gloved hand"
+  },
+  {
+   "case": "DL-I-0014",
+   "id": "ch-marsh",
+   "prompt": "a young 21-year-old Victorian London woman in 1892, pretty pale face, dark hair pinned up under a small hat with a feather, cheap ruffled blouse, tired eyes"
+  },
+  {
+   "case": "DL-I-0014",
+   "id": "ch-cream",
+   "prompt": "a 41-year-old Victorian doctor in London in 1892, balding head, heavy dark moustache, gold-rimmed spectacles over slightly crossed eyes, silk top hat, dark overcoat, cold smiling expression"
+  },
+  {
+   "case": "DL-I-0014",
+   "id": "ch-harper",
+   "prompt": "a decent 24-year-old Victorian medical student in 1892, open boyish face, neat fair hair, tweed suit, worried honest eyes"
+  },
+  {
+   "case": "DL-I-0014",
+   "id": "ch-haynes",
+   "prompt": "a sharp 45-year-old American former detective in London in 1892, lean weathered face, grey moustache, bowler hat, tweed overcoat, alert skeptical eyes"
+  },
+  {
+   "case": "DL-I-0014",
+   "id": "ch-harvey",
+   "prompt": "a bold 22-year-old Victorian London woman in 1892, lively sharp face, curled fringe under a feathered hat, cheap fur tippet, knowing street-smart eyes"
+  },
+  {
+   "case": "DL-I-0014",
+   "id": "ch-comley",
+   "prompt": "a solid 30-year-old Metropolitan Police constable in 1892, honest broad face, short moustache, custodian helmet, dark uniform with buttoned tunic"
+  },
+  {
+   "case": "DL-I-0015",
+   "id": "ch-camille",
+   "prompt": "a small refined 56-year-old Victorian English lady in 1898, delicate face, fair hair turning grey worn in a neat bun under a small bonnet, high-necked dark silk dress, shy gentle eyes"
+  },
+  {
+   "case": "DL-I-0015",
+   "id": "ch-dougal",
+   "prompt": "a burly 56-year-old Victorian English ex-soldier in 1903, broad ruddy face, thick dark moustache and pointed beard, tweed shooting jacket and cap, bold roving eyes"
+  },
+  {
+   "case": "DL-I-0015",
+   "id": "ch-florence",
+   "prompt": "a young 19-year-old Victorian English maid in 1899, round frightened face, light brown hair under a white cap, plain dark dress and apron"
+  },
+  {
+   "case": "DL-I-0015",
+   "id": "ch-sobrino",
+   "prompt": "a sober 35-year-old Victorian London clerk in 1903, thin serious face, neat dark hair and small moustache, dark suit and stiff collar"
+  },
+  {
+   "case": "DL-I-0015",
+   "id": "ch-marden",
+   "prompt": "a patient 45-year-old Edwardian county police inspector in 1903, weathered face, grey moustache, bowler hat, heavy overcoat and boots muddy to the knee"
+  },
+  {
+   "case": "DL-I-0015",
+   "id": "ch-pilgrim",
+   "prompt": "a weathered 60-year-old Essex farm labourer in 1903, deeply lined face, grey stubble, flat cap, corduroy jacket and neckerchief, slow careful eyes"
+  },
+  {
+   "case": "DL-I-0015",
+   "id": "ch-zapatero",
+   "prompt": "a precise 55-year-old Edwardian London bootmaker in 1903, small spectacles, grey hair, leather apron, a last in his hands"
+  },
+  {
+   "case": "DL-I-0016",
+   "id": "ch-nino",
+   "prompt": "a smiling 20-month-old American toddler in 1932, round face, fair curly hair, white knitted sleeping suit, bright eyes, studio photograph"
+  },
+  {
+   "case": "DL-I-0016",
+   "id": "ch-hauptmann",
+   "prompt": "a 35-year-old German immigrant carpenter in New York in 1934, gaunt angular face, high cheekbones, light brown hair combed back, cleft chin, dark suit and tie, cold pale eyes"
+  },
+  {
+   "case": "DL-I-0016",
+   "id": "ch-sharp",
+   "prompt": "a nervous 28-year-old English housemaid in 1932, pretty thin face, dark bobbed hair under a white cap, black maid’s uniform, anxious eyes"
+  },
+  {
+   "case": "DL-I-0016",
+   "id": "ch-condon",
+   "prompt": "a robust 71-year-old American retired schoolteacher in 1932, broad face, large white walrus moustache, bald head, dark overcoat and bowler hat, self-important eyes"
+  },
+  {
+   "case": "DL-I-0016",
+   "id": "ch-gow",
+   "prompt": "a composed 28-year-old Scottish nursemaid in 1932, fresh open face, light brown hair in a neat bun, white nurse uniform, steady eyes"
+  },
+  {
+   "case": "DL-I-0016",
+   "id": "ch-koehler",
+   "prompt": "a meticulous 47-year-old American wood scientist in 1934, thin face, round glasses, short neat hair, three-piece suit, magnifying glass in hand"
+  },
+  {
+   "case": "DL-I-0016",
+   "id": "ch-socio",
+   "prompt": "a small 45-year-old Jewish furrier in New York in 1934, tired kind face, grey moustache, felt hat, waistcoat with a tape measure around the neck"
+  },
+  {
+   "case": "DL-I-0016",
+   "id": "ch-lyle",
+   "prompt": "a cheerful 30-year-old New York gas station attendant in 1934, friendly face, peaked cap, overalls with an oil company badge"
   }
  ],
  "images": [

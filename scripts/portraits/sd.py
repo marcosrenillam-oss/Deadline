@@ -11,14 +11,16 @@ Las personas son inventadas: los textos describen rasgos, nunca a alguien real.
 """
 import json, os, sys, time, zlib
 import torch
-from diffusers import StableDiffusionPipeline, AutoencoderKL, DPMSolverMultistepScheduler
+from diffusers import StableDiffusionPipeline, AutoencoderKL, DPMSolverMultistepScheduler, LCMScheduler
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..'))
 MODELS = os.path.join(ROOT, '.cache', 'models')
-OUT = os.path.join(ROOT, '.cache', 'portraits', 'sd')
-os.makedirs(OUT, exist_ok=True)
 ARGS = dict(a.lstrip('-').split('=', 1) if '=' in a else (a.lstrip('-'), True) for a in sys.argv[1:])
+OUT = ARGS.get('out') or os.path.join(ROOT, '.cache', 'portraits', 'sd')
+os.makedirs(OUT, exist_ok=True)
+# --fast: LCM-LoRA (MIT, latent-consistency/lcm-lora-sdv1-5): ~6 pasos en vez de 24, unas 4 veces más rápido en CPU.
+FAST = bool(ARGS.get('fast'))
 
 torch.set_num_threads(os.cpu_count() or 4)
 
@@ -31,8 +33,13 @@ def pipeline():
     vae = AutoencoderKL.from_pretrained(os.path.join(MODELS, 'vae-mse'), torch_dtype=torch.float32)
     pipe = StableDiffusionPipeline.from_pretrained(os.path.join(MODELS, 'rv51'), vae=vae, torch_dtype=torch.float32,
                                                    safety_checker=None, requires_safety_checker=False)
-    pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config, use_karras_sigmas=True,
-                                                             algorithm_type='dpmsolver++')
+    if FAST:
+        pipe.load_lora_weights(os.path.join(MODELS, 'lcm-lora'), weight_name='pytorch_lora_weights.safetensors')
+        pipe.fuse_lora()
+        pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
+    else:
+        pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config, use_karras_sigmas=True,
+                                                                 algorithm_type='dpmsolver++')
     pipe.set_progress_bar_config(disable=True)
     pipe.enable_attention_slicing()
     return pipe
@@ -41,6 +48,8 @@ def pipeline():
 def generate(pipe, key, prompt, negative='', width=512, height=640, steps=24, guidance=6.0, seed_offset=0):
     seed = (zlib.crc32(key.encode()) + seed_offset) % (2 ** 31)
     g = torch.Generator('cpu').manual_seed(seed)
+    if FAST:
+        steps, guidance = min(steps, 8), float(ARGS.get('lcm-guidance', 1.5))
     t = time.time()
     im = pipe(prompt, negative_prompt=(NEGATIVE + ', ' + negative).strip(', '), width=width, height=height,
               num_inference_steps=steps, guidance_scale=guidance, generator=g).images[0]
@@ -51,7 +60,7 @@ def generate(pipe, key, prompt, negative='', width=512, height=640, steps=24, gu
 def main():
     cast = json.load(open(os.path.join(ROOT, ARGS.get('cast', 'scripts/portraits/cast.json'))))
     only = set(str(ARGS['only']).split(',')) if 'only' in ARGS else None
-    steps = int(ARGS.get('steps', 24))
+    steps = int(ARGS.get('steps', 6 if FAST else 24))
     pipe = pipeline()
     for p in cast['people']:
         if only and p['id'] not in only:
