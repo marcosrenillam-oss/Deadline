@@ -64,8 +64,8 @@
   },
   "DL-I-0005": {
    "style": "encaustic",
-   "prompt": "Fayum mummy portrait, flat encaustic painting on a wooden panel, Roma, 81 a. C., head and shoulders of {who}, realistic painted face, large expressive eyes, plain ochre background, visible brush strokes",
-   "negative": "sculpture, relief, statue, 3d, frame, photograph"
+   "prompt": "{who}, wearing a draped wool toga over a tunic that covers chest and shoulders, Fayum mummy portrait, encaustic painting on a wooden panel, Rome 81 BC, plain ochre background",
+   "negative": "sculpture, relief, statue, 3d, frame, photograph, nude, bare shoulders"
   },
   "DL-I-0006": {
    "style": "albumen",
@@ -721,7 +721,7 @@
   {
    "case": "DL-I-0003",
    "id": "ch-denis",
-   "prompt": "a 30-year-old French clerk in 1840, thin sharp face, small dark eyes, slicked dark hair, threadbare dark coat and high collar, sly guarded expression"
+   "prompt": "a 30-year-old French man, a clerk in 1840, thin sharp face, small dark eyes, slicked dark hair, threadbare dark coat and high collar, sly guarded expression"
   },
   {
    "case": "DL-I-0003",
@@ -856,12 +856,12 @@
   {
    "case": "DL-I-0005",
    "id": "ch-padre",
-   "prompt": "a dignified 60-year-old Roman provincial landowner, weathered intelligent face, short grey hair, clean shaven, white toga over a tunic, calm authoritative gaze"
+   "prompt": "a dignified 60-year-old Roman man, a provincial landowner, weathered intelligent face, short grey hair, clean shaven, white toga over a tunic, calm authoritative gaze"
   },
   {
    "case": "DL-I-0005",
    "id": "ch-hijo",
-   "prompt": "a rough 40-year-old Roman countryman, sunburnt plain face, short dark beard, simple brown tunic and woollen cloak, bewildered anxious eyes"
+   "prompt": "a rough 40-year-old Roman man, a countryman, sunburnt plain face, short dark beard, simple brown tunic and woollen cloak, bewildered anxious eyes"
   },
   {
    "case": "DL-I-0005",
@@ -871,27 +871,27 @@
   {
    "case": "DL-I-0005",
    "id": "ch-capito",
-   "prompt": "a sly 55-year-old Roman provincial notable, thin lined face, thinning grey hair, narrow eyes, toga with a purple border, ingratiating smile"
+   "prompt": "a sly 55-year-old Roman man, a provincial notable, thin lined face, thinning grey hair, narrow eyes, toga with a purple border, ingratiating smile"
   },
   {
    "case": "DL-I-0005",
    "id": "ch-glaucia",
-   "prompt": "a wiry 35-year-old Roman freedman, narrow ferret face, short hair, plain travelling tunic and dusty cloak, shifty eyes"
+   "prompt": "a wiry 35-year-old Roman man, a freedman, narrow ferret face, short hair, plain travelling tunic and dusty cloak, shifty eyes"
   },
   {
    "case": "DL-I-0005",
    "id": "ch-crisogono",
-   "prompt": "an elegant 38-year-old Greek-born Roman freedman, smooth handsome face, carefully curled dark hair, rich embroidered tunic and many rings, arrogant languid expression"
+   "prompt": "an elegant 38-year-old Greek-born Roman man, a freedman, smooth handsome face, carefully curled dark hair, rich embroidered tunic and many rings, arrogant languid expression"
   },
   {
    "case": "DL-I-0005",
    "id": "ch-erucio",
-   "prompt": "a loud fleshy 45-year-old Roman prosecutor, red face, oiled dark hair, toga draped with theatrical care, smug sneering expression"
+   "prompt": "a loud fleshy 45-year-old Roman man, a prosecutor, red face, oiled dark hair, toga draped with theatrical care, smug sneering expression"
   },
   {
    "case": "DL-I-0005",
    "id": "ch-metela",
-   "prompt": "a noble 50-year-old Roman matron, strong aristocratic face, grey hair dressed in waves and a bun, fine stola and palla, steady proud eyes"
+   "prompt": "a noble 50-year-old Roman woman, a matron, strong aristocratic face, grey hair dressed in waves and a bun, fine stola and palla, steady proud eyes"
   },
   {
    "case": "DL-I-0006",
@@ -951,7 +951,7 @@
   {
    "case": "DL-I-0007",
    "id": "ch-newton",
-   "prompt": "a nervous 20-year-old English chemist’s assistant in 1855, thin pale face, short neat hair, white apron over a dark waistcoat, anxious eyes"
+   "prompt": "a nervous 20-year-old English young man, a chemist’s assistant in 1855, thin pale face, short neat hair, white apron over a dark waistcoat, anxious eyes"
   },
   {
    "case": "DL-I-0007",
@@ -996,7 +996,7 @@
   {
    "case": "DL-I-0009",
    "id": "ch-francis",
-   "prompt": "a stout 62-year-old Georgian English country attorney in 1750, florid face, grey powdered wig, brown coat and waistcoat, white neckcloth, shrewd but tired eyes"
+   "prompt": "a stout elderly 62-year-old Georgian English man, a country attorney in 1750, florid face, grey powdered wig, brown coat and waistcoat, white neckcloth, shrewd but tired eyes"
   },
   {
    "case": "DL-I-0009",
@@ -1021,7 +1021,7 @@
   {
    "case": "DL-I-0009",
    "id": "ch-littleton",
-   "prompt": "a nervous 25-year-old Georgian English law clerk in 1751, thin earnest face, own hair tied back, plain dark coat, ink-stained fingers"
+   "prompt": "a nervous 25-year-old Georgian English young man, a law clerk in 1751, thin earnest face, own hair tied back, plain dark coat, ink-stained fingers"
   },
   {
    "case": "DL-I-0010",
@@ -1031,7 +1031,7 @@
   {
    "case": "DL-I-0010",
    "id": "ch-bertulfo",
-   "prompt": "a powerful 60-year-old medieval Flemish provost in 1127, heavy shrewd face, tonsured grey hair, rich black canon robes with a fur collar, ring of office, cold calculating eyes, twelfth-century manuscript style"
+   "prompt": "a powerful 60-year-old medieval Flemish man, a churchman and provost in 1127, heavy shrewd face, tonsured grey hair, rich black canon robes with a fur collar, ring of office, cold calculating eyes"
   },
   {
    "case": "DL-I-0010",
@@ -1041,7 +1041,7 @@
   {
    "case": "DL-I-0010",
    "id": "ch-isaac",
-   "prompt": "a nervous 35-year-old medieval Flemish courtier in 1127, narrow pale face, clean shaven, short hair, fine green tunic with a belt of office and keys, darting eyes, twelfth-century manuscript style"
+   "prompt": "head and shoulders of a nervous 35-year-old medieval Flemish man, a courtier in 1127, narrow pale face, clean shaven, short hair, fine green tunic with a belt of office and keys, darting eyes"
   },
   {
    "case": "DL-I-0010",
@@ -1051,12 +1051,12 @@
   {
    "case": "DL-I-0010",
    "id": "ch-galberto",
-   "prompt": "a thoughtful 40-year-old medieval Flemish notary in 1127, gentle intelligent face, clean shaven, tonsured brown hair, plain grey clerical robe, wax tablets and stylus in his hands, twelfth-century manuscript style"
+   "prompt": "a thoughtful 40-year-old medieval Flemish man, a notary in 1127, gentle intelligent face, clean shaven, tonsured brown hair, plain grey clerical robe, wax tablets and stylus in his hands"
   },
   {
    "case": "DL-I-0010",
    "id": "ch-fromold",
-   "prompt": "a young 28-year-old medieval Flemish clerk in 1127, earnest pale face, short fair hair, dark clerical robe, ink-stained fingers, frightened eyes, twelfth-century manuscript style"
+   "prompt": "a young 28-year-old medieval Flemish man, a clerk in 1127, earnest pale face, short fair hair, dark clerical robe, ink-stained fingers, frightened eyes"
   },
   {
    "case": "DL-I-0011",
@@ -1076,7 +1076,7 @@
   {
    "case": "DL-I-0011",
    "id": "ch-massey",
-   "prompt": "a nervous 21-year-old London medical student in 1849, thin pale face, untidy fair hair, cheap dark coat, worried eyes"
+   "prompt": "a nervous 21-year-old London young man, a medical student in 1849, thin pale face, untidy fair hair, cheap dark coat, worried eyes"
   },
   {
    "case": "DL-I-0011",
@@ -1121,7 +1121,7 @@
   {
    "case": "DL-I-0012",
    "id": "ch-boticario",
-   "prompt": "a careful 50-year-old Victorian Glasgow chemist in 1865, neat grey hair, small spectacles, white apron over a dark waistcoat, ledger in hand"
+   "prompt": "a careful 50-year-old Victorian Glasgow man, a chemist in 1865, neat grey hair, small spectacles, white apron over a dark waistcoat, ledger in hand"
   },
   {
    "case": "DL-I-0013",
@@ -1291,7 +1291,7 @@
   {
    "case": "DL-I-0016",
    "id": "ch-lyle",
-   "prompt": "a cheerful 30-year-old New York gas station attendant in 1934, friendly face, peaked cap, overalls with an oil company badge"
+   "prompt": "a cheerful 30-year-old New York man, a gas station attendant in 1934, friendly face, peaked cap, overalls with an oil company badge"
   }
  ],
  "images": [

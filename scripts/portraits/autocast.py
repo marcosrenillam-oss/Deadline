@@ -9,14 +9,14 @@ casos sin plantilla de época reciben una según `era`. Todo en blanco y negro
 de archivo (D-071). Después: sd.py (solo genera lo que falta), finish.py,
 integrate.py y `npm run content` — o todo junto con make_all.sh.
 """
-import glob, json, os
+import glob, json, os, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..'))
 CAST_PATH = os.path.join(HERE, 'cast.json')
 
 ERA_STYLE = {
-    'antiquity': ('encaustic', 'Fayum mummy portrait, flat encaustic painting on a wooden panel, {place}, head and shoulders of {who}, realistic painted face, large expressive eyes, plain ochre background, visible brush strokes', 'sculpture, relief, statue, 3d, frame, photograph'),
+    'antiquity': ('encaustic', 'Fayum mummy portrait, flat encaustic painting on a wooden panel, {place}, head and shoulders of {who}, fully clothed, realistic painted face, large expressive eyes, plain ochre background, visible brush strokes', 'sculpture, relief, statue, 3d, frame, photograph, nude, bare shoulders'),
     'medieval': ('oil', 'medieval panel painting portrait, {place}, {who}, tempera on wood, realistic face, plain dark background, aged varnish', 'photograph, frame, modern'),
     'early-modern': ('oil', 'old master oil painting portrait, {place}, {who}, dark plain background, chiaroscuro, realistic face, aged varnish, canvas texture', 'photograph, frame, modern'),
     'c19': ('albumen', 'antique cabinet card studio portrait photograph, {place}, {who}, albumen print, sepia tone, soft studio window light, plain painted backdrop, natural skin texture, realistic', 'oval frame, ornate border, color'),
@@ -25,6 +25,10 @@ ERA_STYLE = {
     'near-future': ('scan', 'photorealistic citizen ID portrait photograph, near future, {place}, {who}, soft even studio light, plain background, realistic skin texture', 'cyberpunk neon, helmet, armor'),
     'dystopian-future': ('scan', 'photorealistic registry portrait photograph, dystopian future, {place}, {who}, harsh even light, plain background, realistic skin texture', 'neon, helmet, armor'),
 }
+
+
+# Sin una palabra así, el modelo decide el sexo al azar (p. ej. un «gas station attendant» salió mujer).
+GENDER = re.compile(r'\b(man|woman|men|women|boy|girl|gentleman|lady|child|baby|toddler|infant)\b', re.I)
 
 
 def fallback(ch):
@@ -46,6 +50,8 @@ def main():
             if ch['role'] == 'investigator' or f"{ch['id']}@{c['id']}" in have:
                 continue
             cast['people'].append({'case': c['id'], 'id': ch['id'], 'prompt': ch.get('appearance') or fallback(ch)})
+            if not GENDER.search(cast['people'][-1]['prompt']):
+                print(f"  ⚠ {c['id']}/{ch['id']}: la descripción no dice «man/woman/boy/girl»; el modelo puede equivocar el sexo")
             added += 1
     json.dump(cast, open(CAST_PATH, 'w'), indent=1, ensure_ascii=False)
     print(f'{added} personajes nuevos en el reparto')

@@ -26,7 +26,7 @@ torch.set_num_threads(os.cpu_count() or 4)
 
 NEGATIVE = ('cartoon, anime, 3d render, cgi, doll, plastic skin, illustration, drawing, deformed, disfigured, '
             'bad anatomy, extra fingers, mutated hands, cross-eyed, text, watermark, signature, logo, frame, '
-            'modern clothing, oversaturated, lowres, blurry face')
+            'modern clothing, oversaturated, lowres, blurry face, nude, naked, topless, bare chest, breasts, cleavage')
 
 
 def pipeline():
@@ -49,7 +49,8 @@ def generate(pipe, key, prompt, negative='', width=512, height=640, steps=24, gu
     seed = (zlib.crc32(key.encode()) + seed_offset) % (2 ** 31)
     g = torch.Generator('cpu').manual_seed(seed)
     if FAST:
-        steps, guidance = min(steps, 8), float(ARGS.get('lcm-guidance', 1.5))
+        # Con guidance > 1 el modelo sí atiende la lista negativa (ropa, desnudos); con 1.0 la ignora.
+        steps, guidance = min(steps, 8), float(ARGS.get('lcm-guidance', 2.0))
     t = time.time()
     im = pipe(prompt, negative_prompt=(NEGATIVE + ', ' + negative).strip(', '), width=width, height=height,
               num_inference_steps=steps, guidance_scale=guidance, generator=g).images[0]
