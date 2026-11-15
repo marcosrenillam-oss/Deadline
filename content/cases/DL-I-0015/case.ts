@@ -1,0 +1,641 @@
+import type { CaseFileInput } from '../../../packages/core/src/case/schema.ts';
+
+/**
+ * DL-I-0015 · CUATRO AÑOS DE CHEQUES
+ * Clavering (Essex), 1899-1903 · Desaparición / homicidio · Caso real · Inspector
+ *
+ * Caso real: la desaparición de Camille Holland en la granja Moat Farm y la
+ * investigación que, cuatro años después, llevó hasta Samuel Herbert Dougal
+ * a través de unos cheques falsificados. Lo documentado sigue el juicio; las
+ * conversaciones y algunos detalles de los documentos son una recreación.
+ */
+const caseFile: CaseFileInput = {
+  schemaVersion: 1,
+  id: 'DL-I-0015',
+  contentVersion: 1,
+  mode: 'individual',
+  title: 'Cuatro años de cheques',
+  subtitle: 'Una dama rica se fue de viaje en 1899. Desde entonces solo escribe cheques',
+  origin: 'real',
+  historical: {
+    documented: [
+      'Camille Holland, una mujer soltera de 56 años con una buena renta, se fue a vivir en 1899 con Samuel Herbert Dougal, antiguo militar, a Moat Farm, una granja rodeada de foso cerca de Clavering (Essex), comprada con su dinero.',
+      'Al poco de llegar, Dougal intentó propasarse con la joven criada, Florence Havies, que se quejó a la señorita Holland.',
+      'El 19 de mayo de 1899 Camille Holland salió en coche con Dougal y no se la volvió a ver. Dougal dijo que se había ido de viaje.',
+      'Durante casi cuatro años Dougal vivió en la granja con otras mujeres y cobró la renta de Camille Holland con cheques que llevaban su firma falsificada.',
+      'En 1903 el banco y la policía sospecharon de las firmas. Dougal intentó retirar dinero en Londres y fue detenido.',
+      'La policía vació el foso sin éxito y excavó la granja durante semanas. Hallaron el cuerpo en una antigua zanja de drenaje rellenada. La identificó, entre otras cosas, el zapatero que le había hecho sus botines.',
+      'Tenía una bala en la cabeza, del calibre del revólver de Dougal. Fue condenado y ahorcado en Chelmsford el 14 de julio de 1903, tras reconocer su culpa al pie del cadalso.',
+    ],
+    hypotheses: ['Nunca se aclaró del todo cómo transportó Dougal el cuerpo hasta la zanja sin testigos.'],
+    dramatized: [
+      'Las conversaciones del investigador, las horas exactas y la redacción de cartas y libros son una recreación.',
+      'Los retratos son recreaciones artísticas.',
+    ],
+    documentedResolution:
+      'Samuel Herbert Dougal fue condenado por el asesinato de Camille Holland, a la que mató de un tiro en mayo de 1899, y ahorcado en Chelmsford el 14 de julio de 1903.',
+    sources: ['F. Tennyson Jesse (ed.), Trial of Samuel Herbert Dougal, Notable British Trials (1928)', 'The Times, crónicas de abril a julio de 1903'],
+  },
+  era: 'c20',
+  eraLabel: 'Essex, 1903',
+  year: 1903,
+  location: { city: 'Clavering', place: 'Moat Farm', country: 'Inglaterra' },
+  category: 'disappearance',
+  difficulty: 'inspector',
+  keywords: ['Moat Farm', 'Dougal', 'Camille Holland', 'cheques', 'falsificación', 'foso', 'Essex', 'caso real'],
+  ambience: { music: 'victorian-night', mood: 'rural' },
+  maxHints: 4,
+
+  briefing: {
+    incidentDisplay: 'Viernes, 19 de mayo de 1899 · anochecer',
+    summary:
+      'Camille Holland, una dama rica y solitaria, se marchó de Moat Farm hace casi cuatro años «de viaje». Nadie la ha visto desde entonces. Su banco sigue pagando cheques con su firma, y su sobrino no recibe una carta suya desde 1899.',
+    context:
+      'Febrero de 1903. El director del banco ha comparado unas firmas que no le gustan, y la policía de Essex ha oído los chismes del pueblo sobre el señor de Moat Farm y sus mujeres. Le encargan averiguar si la señorita Holland está viva.',
+    background:
+      'Moat Farm es una granja aislada en una isla de tierra rodeada por un foso, con un solo puente. El señor Dougal es simpático, bebedor, presume de su pasado militar y nunca le falta dinero.',
+    victim: 'ch-camille',
+    initialFacts: [],
+    initialEvidence: ['ev-banco', 'ev-sobrino', 'ev-chismes'],
+    initialTimeline: ['te-llegada', 'te-muerte'],
+  },
+
+  characters: [
+    {
+      id: 'ch-camille',
+      name: 'Camille Holland',
+      look: { hair: 'bun' },
+      role: 'victim',
+      age: 56,
+      occupation: 'Rentista',
+      appearance:
+        'a small refined 56-year-old Victorian English lady in 1898, delicate face, fair hair turning grey worn in a neat bun under a small bonnet, high-necked dark silk dress, shy gentle eyes',
+      summary: 'Pequeña, educada, con mucho dinero y muy sola.',
+      biography: 'Hija de una familia acomodada de Londres, soltera, con una renta y acciones. Pintaba acuarelas. Conoció a Dougal en 1898 por un anuncio y le confió su vida y su dinero.',
+      personality: ['Tímida', 'Romántica', 'Ordenada'],
+    },
+    {
+      id: 'ch-dougal',
+      name: 'Samuel Herbert Dougal',
+      look: { hair: 'short', beard: true },
+      role: 'suspect',
+      age: 56,
+      occupation: 'Antiguo militar, granjero',
+      appearance:
+        'a burly 56-year-old Victorian English ex-soldier in 1903, broad ruddy face, thick dark moustache and pointed beard, tweed shooting jacket and cap, bold roving eyes',
+      summary: 'Simpático, mujeriego y nunca sin dinero.',
+      biography: 'Veinte años en los Ingenieros Reales. Dos esposas muertas de repente. Desde 1899 vive en Moat Farm, que figura a nombre de la señorita Holland, con otras mujeres que entran y salen.',
+      personality: ['Encantador', 'Mujeriego', 'Frío'],
+      relationToVictim: 'Su compañero',
+      motive: { text: 'Vivía del dinero de Camille Holland; ella acababa de descubrir que había acosado a la criada.', visibleWhen: { fact: 'fa-criada' } },
+      alibi: { claim: 'Camille se fue de viaje en mayo de 1899. Le escribe de vez en cuando y le autoriza a usar su cuenta.' },
+    },
+    {
+      id: 'ch-florence',
+      name: 'Florence Havies',
+      look: { hair: 'bun' },
+      role: 'witness',
+      age: 19,
+      occupation: 'Antigua criada de Moat Farm',
+      appearance:
+        'a young 19-year-old Victorian English maid in 1899, round frightened face, light brown hair under a white cap, plain dark dress and apron',
+      summary: 'Se marchó de la granja asustada en mayo de 1899.',
+      biography: 'Entró a servir en Moat Farm en mayo de 1899. El señor intentó entrar en su cuarto. Ella se lo contó a la señora.',
+      personality: ['Asustadiza', 'Honrada'],
+    },
+    {
+      id: 'ch-sobrino',
+      name: 'Edmund Holland',
+      look: { hair: 'short' },
+      role: 'witness',
+      age: 35,
+      occupation: 'Sobrino de Camille',
+      appearance:
+        'a sober 35-year-old Victorian London clerk in 1903, thin serious face, neat dark hair and small moustache, dark suit and stiff collar',
+      summary: 'Su tía le escribía todas las semanas. Hasta mayo de 1899.',
+      biography: 'Empleado en Londres, único familiar cercano de Camille. Recibía de ella una carta cada semana desde hacía años.',
+      personality: ['Formal', 'Preocupado'],
+    },
+    {
+      id: 'ch-marden',
+      name: 'Inspector Alfred Marden',
+      look: { hair: 'hat', beard: true },
+      role: 'witness',
+      age: 45,
+      occupation: 'Policía de Essex',
+      appearance:
+        'a patient 45-year-old Edwardian county police inspector in 1903, weathered face, grey moustache, bowler hat, heavy overcoat and boots muddy to the knee',
+      summary: 'Ha vaciado un foso entero y no ha encontrado nada.',
+      biography: 'Inspector de la policía de Essex. Dirige la excavación de Moat Farm con una cuadrilla de obreros.',
+      personality: ['Tenaz', 'Paciente'],
+    },
+    {
+      id: 'ch-pilgrim',
+      name: 'Henry Pilgrim',
+      look: { hair: 'hat' },
+      role: 'witness',
+      age: 60,
+      occupation: 'Jornalero',
+      appearance:
+        'a weathered 60-year-old Essex farm labourer in 1903, deeply lined face, grey stubble, flat cap, corduroy jacket and neckerchief, slow careful eyes',
+      summary: 'Trabajó en la granja en 1899.',
+      biography: 'Jornalero de Clavering. Hizo chapuzas en Moat Farm el primer año y no volvió.',
+      personality: ['Lento', 'Honrado'],
+      appearsWhen: { asked: 'q-dougal-zanja' },
+    },
+    {
+      id: 'ch-zapatero',
+      name: 'Sr. Hayes',
+      look: { hair: 'short' },
+      role: 'witness',
+      age: 55,
+      occupation: 'Zapatero de Londres',
+      appearance:
+        'a precise 55-year-old Edwardian London bootmaker in 1903, small spectacles, grey hair, leather apron, a last in his hands',
+      summary: 'Reconoce su trabajo.',
+      biography: 'Hizo durante años los botines de la señorita Holland, que tenía un pie muy pequeño.',
+      personality: ['Minucioso', 'Orgulloso de su oficio'],
+      appearsWhen: { fact: 'fa-cuerpo' },
+    },
+  ],
+
+  locations: [
+    { id: 'lo-granja', name: 'Moat Farm', description: 'Granja rodeada de foso, con un solo puente.' },
+    { id: 'lo-zanja', name: 'Antigua zanja de drenaje', description: 'Junto al foso, rellenada de tierra y ramas en 1899.', appearsWhen: { asked: 'q-jornalero' } },
+    { id: 'lo-banco', name: 'Banco de Saffron Walden', description: 'Donde se cobra la renta de la señorita Holland.' },
+  ],
+
+  relationships: [
+    { id: 're-pareja', a: 'ch-dougal', b: 'ch-camille', label: 'Viven juntos sin casarse' },
+    { id: 're-criada', a: 'ch-florence', b: 'ch-camille', label: 'Criada' },
+    { id: 're-sobrino', a: 'ch-sobrino', b: 'ch-camille', label: 'Tía y sobrino' },
+  ],
+
+  facts: [
+    { id: 'fa-firmas', text: 'Las firmas de los cheques de la señorita Holland desde 1899 no son de su mano.', important: true },
+    { id: 'fa-sin-cartas', text: 'La señorita Holland, que escribía cada semana a su sobrino, no le ha escrito una sola carta desde mayo de 1899.', important: true },
+    { id: 'fa-criada', text: 'Días antes de desaparecer, la señorita Holland supo que Dougal había intentado entrar en el cuarto de la criada.', important: true },
+    { id: 'fa-salida', text: 'El 19 de mayo de 1899 la señorita Holland salió en coche con Dougal al anochecer; él volvió solo.', important: true },
+    { id: 'fa-equipaje', text: 'La señorita Holland «se fue de viaje» sin equipaje: su ropa y sus pinturas siguieron en la granja.', important: true },
+    { id: 'fa-zanja', text: 'Dougal mandó rellenar una zanja de drenaje junto al foso en mayo de 1899.', important: true },
+    { id: 'fa-cuerpo', text: 'En la zanja rellenada hay el cuerpo de una mujer, con una bala en la cabeza.', important: true },
+    { id: 'fa-botines', text: 'Los botines del cuerpo son los que el zapatero hizo a medida para la señorita Holland.', important: true },
+    { id: 'fa-revolver', text: 'La bala es del calibre del revólver que guardaba Dougal.', important: true },
+  ],
+
+  evidence: [
+    {
+      id: 'ev-banco',
+      kind: 'record',
+      title: 'Cheques de la cuenta de Camille Holland',
+      source: 'Banco de Saffron Walden',
+      summary: 'Cuatro años de pagos.',
+      related: { characters: ['ch-camille', 'ch-dougal'], locations: ['lo-banco'], events: ['te-cheques'] },
+      body: [
+        {
+          type: 'table',
+          header: ['Periodo', 'Cheques', 'Cobrados por'],
+          rows: [
+            ['1898', 'Firmados en la oficina, en presencia del cajero', 'Srta. Holland'],
+            ['{{dt-banco-despues|1899-1903}}', '{{dt-banco-firma|Firmados fuera; la «C» y la «H» cambian de forma}}', 'S. H. Dougal, con autorización «de la titular»'],
+          ],
+        },
+        { type: 'handwritten', text: '{{dt-banco-nota|Comparadas con su firma de 1898, las recientes tienen la letra más grande y más segura que la suya.}}', author: 'Nota del director' },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-cheques' }],
+      details: [
+        { id: 'dt-banco-despues', label: 'Desde 1899', description: 'Los cheques empiezan a cobrarse por Dougal justo cuando ella desaparece.', effects: [], points: 10 },
+        { id: 'dt-banco-firma', label: 'Otra mano', description: 'La firma ha cambiado: la «C» y la «H» no son las suyas.', effects: [{ grantFact: 'fa-firmas' }], points: 15 },
+        { id: 'dt-banco-nota', label: 'Demasiado segura', description: 'La firma de una señora tímida no se vuelve más grande y firme a los sesenta.', effects: [], points: 10 },
+      ],
+      decisive: true,
+    },
+    {
+      id: 'ev-sobrino',
+      kind: 'letter',
+      title: 'Carta del sobrino a la policía',
+      dated: 'Febrero de 1903',
+      source: 'Edmund Holland, Londres',
+      summary: 'Una tía que dejó de escribir.',
+      related: { characters: ['ch-sobrino', 'ch-camille'], locations: [], events: [] },
+      body: [
+        {
+          type: 'paragraph',
+          text: '{{dt-sob-cartas|Mi tía me escribía todos los domingos desde hace quince años. Su última carta es del 14 de mayo de 1899. Desde entonces, nada.}}',
+        },
+        { type: 'paragraph', text: 'Escribí al señor Dougal. Me contestó que estaba de viaje por Europa y que no quería ver a la familia. No es propio de ella.' },
+        { type: 'signature', name: 'E. Holland' },
+      ],
+      details: [{ id: 'dt-sob-cartas', label: 'La última carta, mayo de 1899', description: 'Una mujer de costumbres fijas dejó de escribir de golpe.', effects: [{ grantFact: 'fa-sin-cartas' }], points: 15 }],
+    },
+    {
+      id: 'ev-chismes',
+      kind: 'report',
+      title: 'Informe del sargento de Clavering',
+      source: 'Policía de Essex',
+      summary: 'Lo que se dice en el pueblo.',
+      related: { characters: ['ch-dougal'], locations: ['lo-granja'], events: [] },
+      body: [
+        { type: 'typed', text: 'El señor Dougal ha tenido en la granja a varias mujeres jóvenes desde 1899, algunas con hijos suyos. Enseña a montar en bicicleta a las chicas del pueblo.' },
+        { type: 'typed', text: '{{dt-chis-salida|Una vecina recuerda que en mayo de 1899 vio salir el coche de la granja al anochecer con la señora y el señor; esa noche solo volvió él.}}' },
+      ],
+      details: [{ id: 'dt-chis-salida', label: 'Solo volvió él', description: 'La última vez que se la vio salía con Dougal, y él volvió solo.', effects: [{ grantFact: 'fa-salida' }, { unlockTimelineEvent: 'te-salida' }], points: 15 }],
+      decisive: true,
+    },
+    {
+      id: 'ev-armarios',
+      kind: 'physical',
+      title: 'Registro de la granja',
+      dated: 'Marzo de 1903',
+      source: 'Policía de Essex',
+      summary: 'Lo que dejó una viajera.',
+      autoDiscoverWhen: { asked: 'q-marden-registro' },
+      related: { characters: ['ch-camille'], locations: ['lo-granja'], events: [] },
+      body: [
+        {
+          type: 'typed',
+          text: '{{dt-arm-ropa|En un baúl del desván, la ropa de la señorita Holland, sus vestidos de seda, su caja de acuarelas y sus gafas de leer.}}',
+        },
+        { type: 'typed', text: 'En un cajón del despacho, un revólver de seis tiros, del calibre 320.' },
+      ],
+      details: [{ id: 'dt-arm-ropa', label: 'Se fue sin nada', description: 'Ninguna dama se va a Europa sin su ropa ni sus gafas.', effects: [{ grantFact: 'fa-equipaje' }], points: 15 }],
+    },
+    {
+      id: 'ev-hallazgo',
+      kind: 'report',
+      title: 'Informe del hallazgo en la zanja',
+      dated: '27 de abril de 1903',
+      source: 'Inspector Marden',
+      summary: 'Después de cinco semanas cavando.',
+      autoDiscoverWhen: { flag: 'zanja-abierta' },
+      related: { characters: ['ch-marden', 'ch-camille'], locations: ['lo-zanja'], events: ['te-hallazgo'] },
+      body: [
+        { type: 'heading', text: 'MOAT FARM · ZANJA DE DRENAJE' },
+        {
+          type: 'typed',
+          text: '{{dt-hall-cuerpo|A metro y medio, bajo ramas y tierra, el cuerpo de una mujer pequeña, envuelto en ropa de calle. El cráneo tiene un orificio de bala detrás de la oreja derecha; la bala sigue dentro.}}',
+        },
+        { type: 'typed', text: '{{dt-hall-botines|Lleva unos botines de piel de cabritilla, muy pequeños, de buena factura londinense.}}' },
+        { type: 'signature', name: 'A. Marden, inspector' },
+      ],
+      onExamine: [{ unlockTimelineEvent: 'te-hallazgo' }],
+      details: [
+        { id: 'dt-hall-cuerpo', label: 'Una bala en la cabeza', description: 'La mujer de la zanja fue asesinada de un tiro por detrás.', effects: [{ grantFact: 'fa-cuerpo' }], points: 20 },
+        { id: 'dt-hall-botines', label: 'Botines muy pequeños', description: 'Un calzado a medida puede tener nombre.', effects: [], points: 10 },
+      ],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-zapatero',
+      kind: 'statement',
+      title: 'Declaración del zapatero',
+      source: 'Taller de Londres',
+      summary: 'Reconoce su propio trabajo.',
+      autoDiscoverWhen: { asked: 'q-zapatero' },
+      related: { characters: ['ch-zapatero', 'ch-camille'], locations: [], events: [] },
+      body: [
+        { type: 'typed', text: '—{{dt-zap-hormas|Son mis botines. Mire la costura y la horma: tengo la horma de la señorita Holland aquí, en la estantería, con su nombre. Encaja.}}' },
+      ],
+      details: [{ id: 'dt-zap-hormas', label: 'Su horma', description: 'El cuerpo de la zanja es el de Camille Holland.', effects: [{ grantFact: 'fa-botines' }], points: 25 }],
+      decisive: true,
+      points: 10,
+    },
+    {
+      id: 'ev-bala',
+      kind: 'report',
+      title: 'Examen de la bala',
+      source: 'Armero de la policía',
+      summary: 'De qué arma salió.',
+      autoDiscoverWhen: { all: [{ fact: 'fa-cuerpo' }, { fact: 'fa-equipaje' }] },
+      related: { characters: ['ch-dougal'], locations: ['lo-granja'], events: [] },
+      body: [{ type: 'typed', text: '{{dt-bala-calibre|Bala de plomo del calibre 320, como las del revólver hallado en el despacho de Dougal, y como las que quedan en su caja de munición.}}' }],
+      details: [{ id: 'dt-bala-calibre', label: 'Calibre 320', description: 'La bala encaja con el revólver de Dougal.', effects: [{ grantFact: 'fa-revolver' }], points: 20 }],
+      decisive: true,
+    },
+  ],
+
+  deductions: [
+    {
+      id: 'de-viaje',
+      title: 'Un viaje sin equipaje ni cartas',
+      combine: ['dt-sob-cartas', 'dt-arm-ropa'],
+      explanation: 'Camille dejó de escribir en mayo de 1899 y se dejó la ropa, las acuarelas y las gafas: no se fue a ninguna parte.',
+      points: 30,
+    },
+    {
+      id: 'de-cheques',
+      title: 'Quién firma por una muerta',
+      combine: ['dt-banco-firma', 'dt-chis-salida'],
+      explanation: 'Desde la noche en que Dougal volvió solo, los cheques llevan una firma que no es de Camille y los cobra él.',
+      points: 30,
+    },
+    {
+      id: 'de-identidad',
+      title: 'Los botines de la zanja',
+      combine: ['dt-hall-botines', 'dt-zap-hormas'],
+      explanation: 'Los botines del cuerpo encajan en la horma de la señorita Holland: es ella.',
+      points: 30,
+    },
+  ],
+
+  contradictions: [
+    {
+      id: 'cx-dougal-cartas',
+      title: 'Camille no escribe',
+      a: { line: 'ln-dougal-cartas' },
+      b: { detail: 'dt-sob-cartas' },
+      explanation: 'Dougal dice que Camille le escribe de vez en cuando; a su sobrino, al que escribía cada domingo, no le ha escrito ni una línea desde 1899.',
+      points: 25,
+    },
+    {
+      id: 'cx-dougal-zanja',
+      title: 'Para qué la zanja',
+      a: { line: 'ln-dougal-zanja' },
+      b: { line: 'ln-jornalero-fecha' },
+      explanation: 'Dougal dice que la zanja se rellenó hace años, antes de la señorita Holland; el jornalero la rellenó él mismo, por orden de Dougal, la semana en que ella «se fue».',
+      effects: [{ grantFact: 'fa-zanja' }],
+      points: 30,
+    },
+  ],
+
+  secrets: [
+    { id: 'se-florence', characterId: 'ch-florence', text: 'La noche antes de marcharse, Florence oyó a la señorita Holland decirle a Dougal que le echaría de la granja, que era suya.', revealedWhen: { fact: 'fa-criada' }, points: 20 },
+    { id: 'se-dougal', characterId: 'ch-dougal', text: 'Las dos primeras esposas de Dougal murieron de repente, con pocos meses de diferencia, y él cobró lo poco que tenían. Nunca se investigó.', revealedWhen: { fact: 'fa-revolver' }, points: 15 },
+  ],
+
+  interrogations: [
+    {
+      id: 'in-dougal',
+      characterId: 'ch-dougal',
+      setting: 'En el salón de Moat Farm, con una botella de whisky y un perro a los pies. Le recibe con una palmada en la espalda.',
+      opening: [{ text: '¡Policía en mi granja! Pasen, pasen. Si buscan a Camille, está de viaje. Las mujeres, ya se sabe.' }],
+      topics: [
+        {
+          id: 'tp-dougal-camille',
+          label: 'La señorita Holland',
+          kind: 'victim',
+          questions: [
+            {
+              id: 'q-dougal-donde',
+              prompt: '¿Dónde está la señorita Holland?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'De viaje. Por el continente. Nos peleamos por una tontería y se fue en mayo del 99. Es muy independiente.', tone: 'lie' },
+                    { id: 'ln-dougal-cartas', text: 'Me escribe de vez en cuando, desde París o desde Italia, y me autoriza a usar su cuenta para la granja. Las cartas las tiro, no soy sentimental.', tone: 'lie' },
+                  ],
+                  effects: [{ unlockTimelineEvent: 'te-falso-viaje' }],
+                },
+              ],
+            },
+            {
+              id: 'q-dougal-cheques',
+              prompt: '¿Quién firma los cheques de la señorita Holland?',
+              kind: 'confront',
+              requires: { fact: 'fa-firmas' },
+              responses: [{ lines: [{ text: 'Ella, desde donde esté, y me los manda. A lo mejor la letra le ha cambiado con el clima.', tone: 'lie' }] }],
+            },
+          ],
+        },
+        {
+          id: 'tp-dougal-granja',
+          label: 'La granja',
+          kind: 'other',
+          questions: [
+            {
+              id: 'q-dougal-zanja',
+              prompt: '¿Qué es esa zanja rellenada junto al foso?',
+              kind: 'ask',
+              requires: { asked: 'q-marden-registro' },
+              responses: [{ lines: [{ id: 'ln-dougal-zanja', text: 'Un desagüe viejo. Se rellenó hace años, antes de que viniéramos nosotros. No hay nada que ver.', tone: 'lie' }] }],
+            },
+            {
+              id: 'q-dougal-final',
+              prompt: 'En la zanja está la señorita Holland, con una bala de su revólver en la cabeza.',
+              kind: 'confront',
+              requires: { all: [{ fact: 'fa-botines' }, { fact: 'fa-revolver' }] },
+              responses: [
+                {
+                  lines: [
+                    { speaker: 'narration', text: 'Dougal deja el vaso. Por primera vez no sonríe.' },
+                    { text: 'Fue un accidente. Estaba limpiando el revólver en el coche y se disparó. Me asusté, eso es todo.', tone: 'lie' },
+                  ],
+                  effects: [{ setFlag: 'dougal-accidente' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-florence',
+      characterId: 'ch-florence',
+      setting: 'En casa de su madre, en un pueblo vecino. Retuerce el delantal.',
+      opening: [{ text: 'Yo me fui de esa casa en cuanto pude. Me daba miedo.' }],
+      topics: [
+        {
+          id: 'tp-florence',
+          label: 'Mayo de 1899',
+          kind: 'events',
+          questions: [
+            {
+              id: 'q-florence-por-que',
+              prompt: '¿Por qué se fue de Moat Farm?',
+              kind: 'ask',
+              responses: [
+                {
+                  lines: [
+                    { text: 'El señor intentó entrar en mi cuarto de noche, dos veces. Grité, y la señora vino. Me tuvo que dormir con ella.', tone: 'truth' },
+                    { text: 'La señora estaba furiosa con él. Al día siguiente salieron los dos en el coche. La señora no volvió. A la semana me fui.', tone: 'truth' },
+                  ],
+                  effects: [{ grantFact: 'fa-criada' }, { unlockTimelineEvent: 'te-criada' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-marden',
+      characterId: 'ch-marden',
+      setting: 'Junto al foso vaciado, con el barro hasta las rodillas y una cuadrilla de obreros sentados en sus palas.',
+      opening: [{ text: 'Hemos vaciado el foso entero. Ni rastro. O está aquí, o no está en ninguna parte.' }],
+      topics: [
+        {
+          id: 'tp-marden',
+          label: 'La búsqueda',
+          kind: 'other',
+          questions: [
+            {
+              id: 'q-marden-registro',
+              prompt: '¿Han registrado la casa?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'De arriba abajo. Mire lo que encontramos en el desván y en el despacho. Y fíjese en el terreno: esta granja está llena de zanjas viejas.', tone: 'truth' }] }],
+            },
+            {
+              id: 'q-marden-cavar',
+              prompt: 'Caven en la zanja de drenaje que rellenó el jornalero en 1899.',
+              kind: 'ask',
+              requires: { fact: 'fa-zanja' },
+              responses: [
+                {
+                  lines: [
+                    { speaker: 'narration', text: 'Marden escupe en las manos y coge él mismo una pala.' },
+                    { text: '¡Vamos, muchachos! Aquí, junto al viejo desagüe.', tone: 'truth' },
+                  ],
+                  effects: [{ setFlag: 'zanja-abierta' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-jornalero',
+      characterId: 'ch-pilgrim',
+      setting: 'Junto al foso, con la gorra en las manos. Habla despacio, mirando el agua que ya no está.',
+      opening: [{ text: 'Yo trabajé aquí el año que llegó la señora. Pregunte.' }],
+      topics: [
+        {
+          id: 'tp-jornalero',
+          label: 'Las obras de 1899',
+          kind: 'events',
+          questions: [
+            {
+              id: 'q-jornalero',
+              prompt: '¿Hizo alguna obra en la granja en 1899?',
+              kind: 'ask',
+              requires: { asked: 'q-dougal-zanja' },
+              responses: [
+                {
+                  lines: [
+                    { id: 'ln-jornalero-fecha', text: 'Rellené el desagüe viejo junto al foso, por orden del señor, en mayo del 99, la semana que la señora se fue de viaje. Tenía mucha prisa: me dijo que echara ramas y tierra encima y que no preguntara.', tone: 'truth' },
+                  ],
+                  effects: [{ unlockTimelineEvent: 'te-zanja' }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'in-zapatero',
+      characterId: 'ch-zapatero',
+      setting: 'En su taller de Londres, entre hormas de madera con nombres escritos a lápiz.',
+      opening: [{ text: 'Cada pie es distinto, señor. El de la señorita Holland, más que ninguno.' }],
+      topics: [
+        {
+          id: 'tp-zapatero',
+          label: 'Los botines',
+          kind: 'other',
+          questions: [
+            {
+              id: 'q-zapatero',
+              prompt: '¿Reconoce estos botines?',
+              kind: 'ask',
+              responses: [{ lines: [{ text: 'Déjeme ver la costura… Déjeme traer una horma.', tone: 'truth' }] }],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+
+  // t = minutos respecto a la muerte (anochecer del 19 de mayo de 1899)
+  timeline: [
+    { id: 'te-llegada', t: -40320, display: 'Abril de 1899', title: 'Camille Holland y Dougal se instalan en Moat Farm', description: 'La granja, comprada con el dinero de ella.', characters: ['ch-camille', 'ch-dougal'], location: 'lo-granja', key: true },
+    { id: 'te-criada', t: -1440, display: '18 de mayo de 1899', title: 'Dougal intenta entrar en el cuarto de la criada', description: 'Camille se entera y se enfurece.', characters: ['ch-dougal', 'ch-florence', 'ch-camille'], location: 'lo-granja', key: true },
+    { id: 'te-salida', t: -30, display: '19 de mayo, anochecer', title: 'Camille sale en coche con Dougal; él vuelve solo', description: 'Una vecina los ve pasar.', characters: ['ch-camille', 'ch-dougal'], key: true },
+    { id: 'te-muerte', t: 0, display: '19 de mayo de 1899', title: 'Muerte de Camille Holland', description: 'Un tiro por detrás de la oreja.', characters: ['ch-camille'], location: 'lo-granja', key: true },
+    { id: 'te-zanja', t: 4320, display: 'Finales de mayo de 1899', title: 'Dougal manda rellenar a toda prisa la zanja junto al foso', description: 'Ramas y tierra.', characters: ['ch-dougal'], location: 'lo-zanja', key: true },
+    { id: 'te-falso-viaje', t: 10080, display: 'Desde 1899', title: 'Camille viaja por Europa y escribe a Dougal', description: 'Según Dougal.', characters: ['ch-camille'], veracity: 'false', claimedBy: 'ch-dougal' },
+    { id: 'te-cheques', t: 525600, display: '1899-1903', title: 'Dougal cobra la renta de Camille con firmas falsas', description: 'Cuatro años.', characters: ['ch-dougal'], location: 'lo-banco', key: true },
+    { id: 'te-hallazgo', t: 2049120, display: '27 de abril de 1903', title: 'Hallan el cuerpo en la zanja rellenada', description: 'Tras vaciar el foso en vano.', characters: ['ch-marden'], location: 'lo-zanja', key: true },
+  ],
+
+  accusation: {
+    suspects: ['ch-dougal'],
+    motives: [
+      { id: 'mo-dinero', label: 'Quedarse con la granja y la renta de Camille, que iba a echarle tras descubrir lo de la criada', availableWhen: { all: [{ fact: 'fa-criada' }, { fact: 'fa-firmas' }] } },
+      { id: 'mo-celos', label: 'Celos' },
+      { id: 'mo-accidente', label: 'Ninguno: un disparo accidental', availableWhen: { flag: 'dougal-accidente' } },
+      { id: 'mo-otra', label: 'Casarse con otra mujer' },
+    ],
+    methods: [
+      { id: 'me-tiro-zanja', label: 'Le disparó por detrás con su revólver y la enterró en la zanja de drenaje, que mandó rellenar', availableWhen: { all: [{ fact: 'fa-cuerpo' }, { fact: 'fa-revolver' }] } },
+      { id: 'me-foso', label: 'La ahogó en el foso' },
+      { id: 'me-veneno', label: 'La envenenó poco a poco' },
+      { id: 'me-viaje', label: 'La mató durante un viaje por Europa' },
+    ],
+  },
+
+  solution: {
+    culprits: ['ch-dougal'],
+    motive: 'mo-dinero',
+    method: 'me-tiro-zanja',
+    proof: ['ev-zapatero', 'ev-bala', 'ev-banco'],
+    whatHappened:
+      'Samuel Herbert Dougal mató a Camille Holland el 19 de mayo de 1899, un mes después de instalarse con ella en Moat Farm, comprada con su dinero. La víspera, Camille descubrió que había intentado entrar en el cuarto de la criada y amenazó con echarle. Al anochecer salieron juntos en el coche; Dougal le disparó por detrás de la oreja con su revólver y la enterró en una zanja de drenaje junto al foso, que días después mandó rellenar a un jornalero con ramas y tierra. Contó que se había ido de viaje y durante casi cuatro años cobró su renta con cheques que firmaba él imitando su letra. Las firmas, el silencio de sus cartas y un zapatero que reconoció sus botines lo desmontaron.',
+    reconstruction: [
+      'Abril de 1899: Camille compra Moat Farm y se instala con Dougal.',
+      '18 de mayo: Dougal intenta entrar en el cuarto de Florence; Camille amenaza con echarle.',
+      '19 de mayo, anochecer: salen en coche. Dougal le dispara y la entierra en la zanja.',
+      'Él vuelve solo. Días después manda rellenar la zanja con ramas y tierra.',
+      'Dice que Camille está de viaje; la ropa y las gafas de ella se quedan en el desván.',
+      'Durante cuatro años cobra su renta con firmas falsas.',
+      '1903: el banco sospecha; tras vaciar el foso, la policía cava en la zanja.',
+    ],
+    decisiveEvidence: ['ev-banco', 'ev-sobrino', 'ev-chismes', 'ev-hallazgo', 'ev-zapatero', 'ev-bala'],
+    alibiTruths: [{ characterId: 'ch-dougal', truth: 'Camille no viajaba ni escribía: estaba en la zanja desde mayo de 1899, y los cheques los firmaba él.' }],
+  },
+
+  endings: [
+    {
+      id: 'en-chelmsford',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct', knowledge: { flag: 'dougal-accidente' } },
+      outcome: 'success',
+      title: 'Al pie del cadalso',
+      text: 'Dougal es juzgado en Chelmsford en junio de 1903. Su historia del accidente no convence a nadie: se disparó sola, por detrás de la oreja, y luego se enterró sola en una zanja. El 14 de julio, en el cadalso, el capellán le pregunta si es culpable; Dougal responde: «Sí». Moat Farm se convierte en atracción turística: los domingos llegan excursiones en tren a ver el foso.',
+    },
+    {
+      id: 'en-exito',
+      when: { culprit: 'correct', motive: 'correct', method: 'correct', proof: 'correct' },
+      outcome: 'success',
+      title: 'La viajera',
+      text: 'La acusación demuestra que Camille Holland nunca se fue. Dougal es condenado.',
+    },
+    { id: 'en-parcial', when: { culprit: 'correct' }, outcome: 'partial', title: 'Solo un falsificador', text: 'Probáis los cheques falsos, pero no el asesinato. Dougal cumple condena por falsificación y sale diciendo que Camille sigue en Italia.' },
+    { id: 'en-fallo', when: {}, outcome: 'failure', title: 'De viaje', text: 'Camille Holland sigue oficialmente de viaje. En Moat Farm, el señor Dougal enseña a montar en bicicleta a la nueva criada.' },
+  ],
+
+  hints: [
+    {
+      id: 'hl-firmas',
+      topic: '¿Está viva?',
+      relevantWhen: { not: { fact: 'fa-firmas' } },
+      steps: ['¿Qué hace una mujer viva con su dinero?', 'Mira los cheques del banco.', 'Compara las firmas de antes y después de 1899.'],
+    },
+    {
+      id: 'hl-zanja',
+      topic: 'Dónde buscar',
+      relevantWhen: { not: { flag: 'zanja-abierta' } },
+      steps: ['El foso está vacío. ¿Qué otras obras se hicieron en 1899?', 'Pregunta a Dougal por la zanja, y al jornalero cuándo la rellenó.', 'Pide a Marden que cave allí.'],
+    },
+  ],
+
+  objectives: [
+    { id: 'ob-firmas', text: 'Averigua quién firma los cheques.', completeWhen: { fact: 'fa-firmas' }, points: 20 },
+    { id: 'ob-cuerpo', text: 'Encuentra a Camille Holland.', completeWhen: { fact: 'fa-botines' }, points: 30 },
+    { id: 'ob-criada', text: 'Descubre qué pasó la víspera de su desaparición.', completeWhen: { fact: 'fa-criada' }, points: 15, hidden: true },
+  ],
+
+  assets: [],
+};
+
+export default caseFile;
